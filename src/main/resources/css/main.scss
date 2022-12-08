@@ -1,0 +1,33 @@
+// Variables
+:root {
+  --color-text: #222222;
+  --color-primary: #698D4D;
+  --color-border: #E9E9E9;
+  --color-red: #FF0000;
+  --color-green: #368736;
+  --color-text-contrast: #fff;
+
+  --color-background: #fff;
+  --color-background-panel: #F9F9F9;
+}
+
+// Tools
+@import 'tools/reset';
+
+// Generic
+// ==================
+body {
+  font-family: sans-serif;
+  font-size: 16px;
+  color: var(--color-text);
+  line-height: 1.6;
+  background: var(--background);
+}
+
+
+// Views
+@import 'views/index';
+@import 'views/test';
+
+// Modules
+@import 'modules/header';
