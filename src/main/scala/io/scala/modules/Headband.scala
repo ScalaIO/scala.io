@@ -1,8 +1,9 @@
 package io.scala.modules
 
+import io.scala.Data
+
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import io.scala.Data
 import org.scalajs.dom.html
 
 object Headband {

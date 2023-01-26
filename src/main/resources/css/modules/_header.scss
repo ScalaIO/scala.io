@@ -1,3 +1,27 @@
 .header {
-  background-color: beige;
+  background-color: var(--color-secondary);
+  color: var(--color-text-contrast);
+  padding: 15px 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__navbar {
+  display: flex;
+  gap: 30px;
+}
+
+.header__navbar__link {
+  text-transform: uppercase;
+}
+
+.header__call-to-action {
+  background-color: var(--color-primary);
+  border-radius: 8px;
+  padding: 5px 15px;
+}
+
+.header .logo {
+  height: 28px;
 }
