@@ -9,7 +9,7 @@ import org.scalajs.dom.html
 
 object Header {
   def apply(): Div = div(
-    Logo(),
+    div(Logo(), Page.navigateTo(Page.IndexPage)),
     ul(
       Navlink(Data.Header.speakers, Page.SpeakersPage),
       Navlink(Data.Header.sponsors, Page.IndexPage),

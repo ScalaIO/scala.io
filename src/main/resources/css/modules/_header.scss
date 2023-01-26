@@ -45,4 +45,8 @@
 
 .header .logo {
   height: 28px;
+  
+  &:hover {
+    cursor: pointer;
+  }
 }

@@ -1,5 +1,7 @@
 package io.scala.svgs
 
+import io.scala.Page
+
 import com.raquo.laminar.api.L.SvgElement
 import com.raquo.laminar.api.L.svg.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
