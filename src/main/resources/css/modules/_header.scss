@@ -1,25 +1,46 @@
 .header {
   background-color: var(--color-secondary);
   color: var(--color-text-contrast);
-  padding: 15px 20px;
+  padding: 0 20px;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  height: 60px;
 }
 
 .header__navbar {
   display: flex;
-  gap: 30px;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
 .header__navbar__link {
   text-transform: uppercase;
+  padding: 0 15px;
+  height: 100%;
+  line-height: 60px;
+  vertical-align: middle;
+
+  &:hover {
+    background-color: var(--color-primary-darker);
+    border-bottom: 5px solid var(--color-primary);
+    cursor: pointer;
+  }
 }
 
 .header__call-to-action {
   background-color: var(--color-primary);
-  border-radius: 8px;
+  border-radius: 10px;
   padding: 5px 15px;
+
+  &:hover {
+    background-color: var(--color-text-contrast);
+    color: var(--color-text);
+    cursor: pointer;
+  }
+
+  transition: background-color .5s, color .5s;
 }
 
 .header .logo {

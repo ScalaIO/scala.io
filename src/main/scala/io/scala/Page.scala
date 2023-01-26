@@ -11,17 +11,17 @@ import upickle.default.*
 
 enum Page {
   case IndexPage
-  case TestPage
+  case SpeakersPage
 }
 
 object Page {
   implicit val pageCodec: ReadWriter[Page] = macroRW
 
-  val indexRoute = Route.static(Page.IndexPage, root / endOfSegments)
-  val testRoute  = Route.static(Page.TestPage, root / "test" / endOfSegments)
+  val indexRoute    = Route.static(Page.IndexPage, root / endOfSegments)
+  val speakersRoute = Route.static(Page.SpeakersPage, root / "speakers" / endOfSegments)
 
   val router = new Router[Page](
-    routes = List(indexRoute, testRoute),
+    routes = List(indexRoute, speakersRoute),
     getPageTitle = _ => "ScalaIO",
     serializePage = page => write(page)(pageCodec),
     deserializePage = pageStr => read(pageStr)(pageCodec)
@@ -32,8 +32,8 @@ object Page {
 
   val splitter = SplitRender[Page, HtmlElement](router.$currentPage)
     .collect[Page] {
-      case Page.IndexPage => Index.render
-      case Page.TestPage  => Test.render
+      case Page.IndexPage    => Index.render
+      case Page.SpeakersPage => Speakers.render
     }
 
   def navigateTo(page: Page): Binder[HtmlElement] = Binder { el =>

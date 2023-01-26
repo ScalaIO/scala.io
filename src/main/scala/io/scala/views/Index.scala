@@ -6,5 +6,5 @@ import io.scala.views.View
 import com.raquo.laminar.api.L.{*, given}
 
 case object Index extends View {
-  override def body: HtmlElement = button("Go to test", className := "index", navigateTo(TestPage))
+  override def body: HtmlElement = div("Index page")
 }
