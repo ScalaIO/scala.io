@@ -1,14 +1,13 @@
 // Variables
 :root {
   --color-text: #222222;
-  --color-primary: #698D4D;
-  --color-border: #E9E9E9;
-  --color-red: #FF0000;
-  --color-green: #368736;
-  --color-text-contrast: #fff;
+  --color-text-contrast: #FFF;
 
-  --color-background: #fff;
-  --color-background-panel: #F9F9F9;
+  --color-primary: #CE0013;
+  --color-primary-darker: #390909;
+  --color-secondary: #040404;
+
+  --color-background: #FCFAFA;
 }
 
 // Tools
@@ -30,4 +29,5 @@ body {
 @import 'views/test';
 
 // Modules
+@import 'modules/headband';
 @import 'modules/header';

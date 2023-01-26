@@ -1,0 +1,13 @@
+.headband {
+  height: 28px;
+  background-color: var(--color-primary-darker);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 5px;
+}
+
+.headband__information {
+  color: var(--color-text-contrast);
+  font-size: 12px;
+}
