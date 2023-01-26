@@ -17,10 +17,7 @@ object Header {
       Navlink(Data.Header.schedule, Page.IndexPage),
       className := "header__navbar"
     ),
-    div(
-      Data.Header.buyTicket,
-      className := "header__call-to-action"
-    ),
+    ShinyButton(Data.Header.buyTicket),
     className := "header"
   )
 
