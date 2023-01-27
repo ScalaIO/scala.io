@@ -1,6 +1,6 @@
 package io.scala.modules
 
-import io.scala.Data
+import io.scala.Lexicon
 import io.scala.svgs.{Linkedin, Logo, Twitter}
 
 import com.raquo.laminar.api.L.{*, given}
@@ -11,19 +11,19 @@ object Footer {
   private val summary: Div =
     div(
       Logo(),
-      p(Data.Footer.Description.text, className := "footer__summary__description"),
+      p(Lexicon.Footer.Description.text, className := "footer__summary__description"),
       className := "footer__summary"
     )
 
   private val newsletter: Div =
     div(
       h3(
-        Data.Footer.Newsletter.title,
+        Lexicon.Footer.Newsletter.title,
         className := "footer__newsletter__title"
       ),
       div(
         div(
-          Data.Footer.Newsletter.description,
+          Lexicon.Footer.Newsletter.description,
           className := "footer__newsletter__description"
         ),
         form(
@@ -38,7 +38,7 @@ object Footer {
             name      := "EMAIL",
             className := "footer__newsletter__email"
           ),
-          ShinyButton(Data.Footer.Newsletter.button),
+          ShinyButton(Lexicon.Footer.Newsletter.button),
           className := "footer__newsletter__form"
         ),
         className := "footer__newsletter__body"
@@ -61,7 +61,7 @@ object Footer {
     Line(),
     div(
       div(
-        Data.Footer.copyright,
+        Lexicon.Footer.copyright,
         className := "footer__copyright"
       ),
       div(

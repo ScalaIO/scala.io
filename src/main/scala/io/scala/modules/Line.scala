@@ -1,6 +1,6 @@
 package io.scala.modules
 
-import io.scala.Data
+import io.scala.Lexicon
 
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement

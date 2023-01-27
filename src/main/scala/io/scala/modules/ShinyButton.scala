@@ -1,6 +1,6 @@
 package io.scala.modules
 
-import io.scala.{Data, Page}
+import io.scala.{Lexicon, Page}
 import io.scala.svgs.Logo
 
 import com.raquo.laminar.api.L.{*, given}
