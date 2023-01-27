@@ -1,0 +1,64 @@
+.footer {
+  background-color: var(--color-secondary);
+  color: var(--color-text-contrast);
+  padding: 40px var(--spacing-computer);
+  display: flex;
+  flex-direction: column;
+  gap: 55px;
+}
+
+.footer__container {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer__summary .logo {
+  height: 28px;
+}
+
+.footer__summary__description {
+  width: 330px;
+  line-height: 1.2;
+}
+
+.footer__newsletter__title {
+  font-size: 24px;
+  text-align: right;
+}
+
+.footer__newsletter {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.footer__newsletter__description {
+  text-align: right;
+  font-weight: normal;
+}
+
+.footer__newsletter__form {
+  display: flex;
+  gap: 10px;
+}
+
+.footer__socials {
+  display: flex;
+  gap: 10px;
+}
+
+.footer__social svg {
+  height: 18px;
+}
+
+.footer__social .twitter {
+  fill: var(--color-text-contrast);
+}
+
+.footer__social .linkedin__background {
+  fill: var(--color-text-contrast);
+}
+
+.footer__social .linkedin__foreground {
+  fill: var(--color-secondary);
+}

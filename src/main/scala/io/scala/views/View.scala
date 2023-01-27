@@ -10,6 +10,7 @@ trait View {
   def render: HtmlElement = div(
     Headband(),
     Header(),
-    body
+    body,
+    Footer()
   )
 }

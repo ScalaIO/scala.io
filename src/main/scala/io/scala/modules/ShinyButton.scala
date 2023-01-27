@@ -8,9 +8,10 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom.html
 
 object ShinyButton {
-  def apply(text: String): Div =
-    div(
+  def apply(text: String): Button =
+    button(
       text,
+      typ       := "submit",
       className := "shiny-button"
     )
 }

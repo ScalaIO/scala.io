@@ -8,6 +8,8 @@
   --color-secondary: #040404;
 
   --color-background: #FCFAFA;
+
+  --spacing-computer: 170px;
 }
 
 // Tools
@@ -29,6 +31,8 @@ body {
 @import 'views/test';
 
 // Modules
+@import 'modules/footer';
 @import 'modules/headband';
 @import 'modules/header';
+@import 'modules/line';
 @import 'modules/shiny_button';

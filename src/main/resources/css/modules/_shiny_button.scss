@@ -1,7 +1,8 @@
 .shiny-button {
   background-color: var(--color-primary);
-  border-radius: 10px;
+  border-radius: 4px;
   padding: 5px 15px;
+  text-transform: uppercase;
 
   &:hover {
     background-color: var(--color-text-contrast);

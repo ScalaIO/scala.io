@@ -13,4 +13,19 @@ object Data {
     val schedule  = "Schedule"
     val buyTicket = "Buy a ticket"
   }
+
+  object Footer {
+    object Description {
+      val text =
+        "Scala is an association founded 10 years ago by Scala lovers for Scala lovers. Today, it is the first Scala conference in France."
+    }
+
+    object Newsletter {
+      val title       = "Newsletter"
+      val description = "Be the first to know about our news !"
+      val button      = "Subscribe"
+    }
+
+    val copyright = "ScalaIO conference, All Rights Reserved."
+  }
 }
