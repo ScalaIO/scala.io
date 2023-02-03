@@ -25,6 +25,11 @@ body {
   background: var(--background);
 }
 
+h2 {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 29px;
+}
 
 // Views
 @import 'views/index';
@@ -36,3 +41,4 @@ body {
 @import 'modules/header';
 @import 'modules/line';
 @import 'modules/shiny_button';
+@import 'modules/speaker_card';
