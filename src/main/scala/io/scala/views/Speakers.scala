@@ -2,7 +2,7 @@ package io.scala.views
 
 import io.scala.Page.*
 import io.scala.domaines.{Presentation, Speaker, Talk}
-import io.scala.modules.SpeakerCard
+import io.scala.modules.{SpeakerCard, Title}
 import io.scala.views.View
 
 import com.raquo.laminar.api.L.{*, given}
@@ -30,5 +30,9 @@ case object Speakers extends View {
     )
   )
 
-  override def body: HtmlElement = div(SpeakerCard(speaker), styleAttr := "margin: 30px;")
+  override def body: HtmlElement = div(
+    Title("Speaker"),
+    SpeakerCard(speaker),
+    styleAttr := "margin: 70px 120px;"
+  )
 }
