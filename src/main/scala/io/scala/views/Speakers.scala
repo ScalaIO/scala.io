@@ -4,8 +4,8 @@ import io.scala.Page.*
 import io.scala.domaines.{Presentation, Speaker, Talk}
 import io.scala.modules.{SpeakerCard, Title}
 import io.scala.views.View
-
 import com.raquo.laminar.api.L.{*, given}
+import io.scala.Lexicon
 
 case object Speakers extends View {
   val speaker = Speaker(
@@ -31,7 +31,8 @@ case object Speakers extends View {
   )
 
   override def body: HtmlElement = div(
-    Title("Speaker"),
+    Title("Speakers"),
+    p(Lexicon.Speakers.catchphrase),
     SpeakerCard(speaker),
     styleAttr := "margin: 70px 120px;"
   )

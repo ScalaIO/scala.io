@@ -14,6 +14,10 @@ object Lexicon {
     val buyTicket = "Buy a ticket"
   }
 
+  object Speakers {
+    val catchphrase = "Become a ScalaIO 2023 speakers sharing what you love with the community."
+  }
+
   object Footer {
     object Description {
       val text =
