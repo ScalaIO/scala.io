@@ -15,7 +15,7 @@ object Lexicon {
   }
 
   object Speakers {
-    val catchPhrase = "Become a ScalaIO 2023 speakers sharing what you love with the community."
+    val catchPhrase  = "Become a ScalaIO 2023 speakers sharing what you love with the community."
     val callToAction = "Become a speaker"
   }
 

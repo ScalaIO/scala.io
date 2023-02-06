@@ -1,11 +1,12 @@
 package io.scala.views
 
+import io.scala.Lexicon
 import io.scala.Page.*
 import io.scala.domaines.{Presentation, Speaker, Talk}
-import io.scala.modules.{ClassyButton, SpeakerCard, Title}
+import io.scala.modules.{ClassyButton, Line, SpeakerCard, Title}
 import io.scala.views.View
+
 import com.raquo.laminar.api.L.{*, given}
-import io.scala.Lexicon
 
 case object Speakers extends View {
   val speaker = Speaker(
@@ -32,8 +33,12 @@ case object Speakers extends View {
 
   override def body: HtmlElement = div(
     Title("Speakers"),
-    p(Lexicon.Speakers.catchPhrase),
+    p(
+      Lexicon.Speakers.catchPhrase,
+      className := "speakers__catch-phrase"
+    ),
     ClassyButton(Lexicon.Speakers.callToAction),
+    Line(padding = 55),
     SpeakerCard(speaker),
     styleAttr := "margin: 70px 120px;"
   )

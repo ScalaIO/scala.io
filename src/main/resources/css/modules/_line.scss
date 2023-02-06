@@ -1,5 +1,9 @@
 .line {
   height: 1px;
   width: 100%;
+  background-color: var(--color-text);
+}
+
+.line--contrasted {
   background-color: var(--color-text-contrast);
 }
