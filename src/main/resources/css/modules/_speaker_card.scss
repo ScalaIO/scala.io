@@ -40,13 +40,14 @@
 }
 
 .speaker-card__photo {
-  height: 70%;
+  height: 65%;
   background-color: #ecebeb;
   border-radius: 10px 10px 0 0;
+  object-fit: cover;
 }
 
 .speaker-card__information {
-  height: 30%;
+  height: 35%;
   display: flex;
   flex-direction: column;
   margin: 20px;

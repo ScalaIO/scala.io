@@ -20,7 +20,8 @@ object SpeakerCard {
 
   def outer(speaker: Speaker) =
     div(
-      div(
+      img(
+        src       := speaker.photo.fold("/images/profile.jpg")(path => s"/images/profiles/$path"),
         className := "speaker-card__photo"
       ),
       div(

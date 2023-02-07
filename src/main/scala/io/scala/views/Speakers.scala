@@ -11,6 +11,7 @@ import com.raquo.laminar.api.L.{*, given}
 case object Speakers extends View {
   val speaker = Speaker(
     name = "John Doe",
+    photo = None,
     presentation = Presentation.Keynote,
     job = "Data Engineer",
     company = "Scala.IO",
