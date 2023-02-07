@@ -36,7 +36,6 @@ export default ({mode}) => {
         : printSbtTask("publicFolderProd");
 
     return {
-        publicDir: './src/main/resources/public',
         plugins: [createHtmlPlugin({minify: !isDev()})],
         resolve: {
             alias: [

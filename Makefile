@@ -13,7 +13,7 @@ dev-sbt:
 dev-vite:
 	npm run dev
 
-build: build-sbt vite
+build: build-sbt build-vite
 
 build-sbt:
 	sbt "fullLinkJS"

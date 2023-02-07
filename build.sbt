@@ -19,7 +19,7 @@ lazy val root = project
     scalaJSUseMainModuleInitializer := true,
     scalaJSLinkerConfig ~= {
       _.withModuleKind(ModuleKind.ESModule)
-        .withModuleSplitStyle(SmallModulesFor(List("scalaio")))
+        .withModuleSplitStyle(SmallModulesFor(List("io.scala")))
         .withSourceMap(false)
     },
     publicFolderDev := linkerOutputDirectory((Compile / fastLinkJS).value).getAbsolutePath,
