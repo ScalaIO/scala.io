@@ -6,3 +6,24 @@
   display: flex;
   gap: 10px;
 }
+
+.sponsors__partitions {
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+}
+
+.sponsors__partition {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.sponsors__partition__title {
+  font-size: 30px;
+}
+
+.sponsors__partition__logos {
+  display: flex;
+  gap: 20px;
+}

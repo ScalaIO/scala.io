@@ -1,5 +1,7 @@
 package io.scala
 
+import io.scala.domaines.Sponsor
+
 object Lexicon {
   object Headband {
     val left  = "The 26th and 27th of October 2023 @ Unknown location"
@@ -27,6 +29,34 @@ object Lexicon {
 
     val brochureUrl =
       "https://docs.google.com/presentation/d/1nZ_6r4r0M1VZNBUE41DtnKr6FVdjFyoWF-zbJ1BtdSw/edit?usp=sharing"
+
+    val sponsors = Seq(
+      Sponsor(
+        photo = "scalaio.png",
+        website = "https://scala.io/",
+        rank = Sponsor.SponsorRank.Platinum
+      ),
+      Sponsor(
+        photo = "scalaio.png",
+        website = "https://scala.io/",
+        rank = Sponsor.SponsorRank.Gold
+      ),
+      Sponsor(
+        photo = "scalaio.png",
+        website = "https://scala.io/",
+        rank = Sponsor.SponsorRank.Silver
+      ),
+      Sponsor(
+        photo = "scalaio.png",
+        website = "https://scala.io/",
+        rank = Sponsor.SponsorRank.Community
+      ),
+      Sponsor(
+        photo = "scalaio.png",
+        website = "https://scala.io/",
+        rank = Sponsor.SponsorRank.Love
+      )
+    )
   }
 
   object Footer {

@@ -3,7 +3,7 @@ package io.scala.views
 import io.scala.Lexicon
 import io.scala.Page.*
 import io.scala.domaines.{Presentation, Speaker, Talk}
-import io.scala.modules.{ClassyButton, Line, SpeakerCard, Title}
+import io.scala.modules.{ClassyButton, Line, SpeakerCard, SponsorLogo, Title}
 import io.scala.utils.ButtonKind
 import io.scala.views.View
 
@@ -27,6 +27,22 @@ case object Sponsors extends View {
       className := "sponsors__buttons"
     ),
     Line(padding = 55),
+    div(
+      Lexicon.Sponsors.sponsors.groupBy(_.rank).toSeq.sortBy(_._1).map { case (rank, sponsors) =>
+        div(
+          h2(
+            s"${rank.title} sponsors",
+            className := "sponsors__partition__title"
+          ),
+          div(
+            sponsors.map(SponsorLogo.apply),
+            className := "sponsors__partition__logos"
+          ),
+          className := "sponsors__partition"
+        )
+      },
+      className := "sponsors__partitions"
+    ),
     className := "container"
   )
 }
