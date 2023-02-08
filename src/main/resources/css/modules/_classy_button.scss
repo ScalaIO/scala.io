@@ -1,15 +1,24 @@
 .classy-button {
-  border: 1px solid var(--color-primary);
-  color: var(--color-primary);
+  color: var(--color-text);
+
   font-weight: 500;
   border-radius: 4px;
   padding: 10px 30px;
 
   &:hover {
-    background-color: var(--color-primary);
+    background-color: var(--color-text);
     color: var(--color-text-contrast);
     cursor: pointer;
   }
 
   transition: background-color .5s, color .5s;
+}
+
+.classy-button--important {
+  border: 1px solid var(--color-primary);
+  color: var(--color-primary);
+
+  &:hover {
+    background-color: var(--color-primary);
+  }
 }

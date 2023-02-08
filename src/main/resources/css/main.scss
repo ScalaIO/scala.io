@@ -31,9 +31,14 @@ h2 {
   line-height: 29px;
 }
 
+.container {
+  margin: 70px 120px;
+}
+
 // Views
 @import 'views/index';
 @import 'views/speakers';
+@import 'views/sponsors';
 
 // Modules
 @import 'modules/classy_button';

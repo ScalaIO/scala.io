@@ -41,6 +41,6 @@ case object Speakers extends View {
     ClassyButton(Lexicon.Speakers.callToAction),
     Line(padding = 55),
     SpeakerCard(speaker),
-    styleAttr := "margin: 70px 120px;"
+    className := "container"
   )
 }

@@ -19,6 +19,16 @@ object Lexicon {
     val callToAction = "Become a speaker"
   }
 
+  object Sponsors {
+    val catchPhrase =
+      "Become a ScalaIO 2023 sponsor and promote your services, products or simply increase your brand awareness with more than 350 passionate Scala, Spark, and FP languages developers!"
+    val callToAction   = "Become a sponsor"
+    val callToBrochure = "Download the brochure"
+
+    val brochureUrl =
+      "https://docs.google.com/presentation/d/1nZ_6r4r0M1VZNBUE41DtnKr6FVdjFyoWF-zbJ1BtdSw/edit?usp=sharing"
+  }
+
   object Footer {
     object Description {
       val text =

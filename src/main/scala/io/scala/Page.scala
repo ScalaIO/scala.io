@@ -12,6 +12,7 @@ import upickle.default.*
 enum Page {
   case IndexPage
   case SpeakersPage
+  case SponsorsPage
 }
 
 object Page {
@@ -19,9 +20,10 @@ object Page {
 
   val indexRoute    = Route.static(Page.IndexPage, root / endOfSegments)
   val speakersRoute = Route.static(Page.SpeakersPage, root / "speakers" / endOfSegments)
+  val sponsorsRoute = Route.static(Page.SponsorsPage, root / "sponsors" / endOfSegments)
 
   val router = new Router[Page](
-    routes = List(indexRoute, speakersRoute),
+    routes = List(indexRoute, speakersRoute, sponsorsRoute),
     getPageTitle = _ => "ScalaIO",
     serializePage = page => write(page)(pageCodec),
     deserializePage = pageStr => read(pageStr)(pageCodec)
@@ -34,6 +36,7 @@ object Page {
     .collect[Page] {
       case Page.IndexPage    => Index.render
       case Page.SpeakersPage => Speakers.render
+      case Page.SponsorsPage => Sponsors.render
     }
 
   def navigateTo(page: Page): Binder[HtmlElement] = Binder { el =>

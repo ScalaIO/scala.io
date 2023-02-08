@@ -12,7 +12,7 @@ object Header {
     div(Logo(), Page.navigateTo(Page.IndexPage)),
     ul(
       Navlink(Lexicon.Header.speakers, Page.SpeakersPage),
-      Navlink(Lexicon.Header.sponsors, Page.IndexPage),
+      Navlink(Lexicon.Header.sponsors, Page.SponsorsPage),
       Navlink(Lexicon.Header.venue, Page.IndexPage),
       Navlink(Lexicon.Header.schedule, Page.IndexPage),
       className := "header__navbar"
