@@ -5,20 +5,7 @@ import io.scala.domaines.Speaker
 import com.raquo.laminar.api.L.{*, given}
 
 object SpeakerCard {
-  def inner(speaker: Speaker) =
-    div(
-      h2(
-        speaker.talk.name,
-        className := "speaker-card__talk__name"
-      ),
-      p(
-        speaker.talk.description,
-        className := "speaker-card__talk__description"
-      ),
-      className := "speaker-card__back"
-    )
-
-  def outer(speaker: Speaker) =
+  def apply(speaker: Speaker) =
     div(
       img(
         src       := speaker.photo.fold("/images/profile.jpg")(path => s"/images/profiles/$path"),
@@ -48,16 +35,6 @@ object SpeakerCard {
           className := "speaker-card__company"
         ),
         className := "speaker-card__information"
-      ),
-      className := "speaker-card__front"
-    )
-
-  def apply(speaker: Speaker) =
-    div(
-      div(
-        outer(speaker),
-        inner(speaker),
-        className := "speaker-card__inner"
       ),
       className := "speaker-card"
     )

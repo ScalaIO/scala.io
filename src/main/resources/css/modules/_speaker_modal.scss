@@ -1,0 +1,77 @@
+.speaker-modal {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: var(--color-background);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.speaker-modal__container {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+}
+
+.speaker-modal__close {
+  position: absolute;
+  left: 50px;
+  top: 50px;
+  font-size: 80px;
+  line-height: 20px;
+  color: var(--color-text);
+
+  &:hover {
+    opacity: 0.8;
+    font-size: 70px;
+    left: 52px;
+    top: 52px;
+    cursor: pointer;
+  }
+
+  transition: opacity 0.5s, font-size 0.5s, left 0.5s, top 0.5s;
+}
+
+.speaker-modal__header {
+  display: flex;
+  align-items: center;
+  gap: 60px;
+}
+
+.speaker-modal__photo {
+  object-fit: cover;
+  border-radius: 125px 125px 10px 125px;
+}
+
+.speaker-modal__title {
+  display: flex;
+  flex-direction: column;
+}
+
+.speaker-modal__speaker__name {
+  font-weight: 700;
+  font-size: 100px;
+  line-height: 110px;
+  color: var(--color-primary-darker);
+}
+
+.speaker-modal__speaker__job, .speaker-modal__speaker__company {
+  font-weight: 400;
+  font-size: 60px;
+  line-height: 60px;
+  color: var(--color-text);
+}
+
+.speaker-modal__section__title {
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 70px;
+  color: var(--color-primary-darker);
+}
