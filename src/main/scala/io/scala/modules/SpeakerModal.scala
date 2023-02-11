@@ -1,15 +1,15 @@
 package io.scala.modules
 
 import io.scala.domaines.Speaker
-
 import com.raquo.laminar.api.L.{*, given}
+import io.scala.views.Speakers.{selectedSpeaker, speaker}
 
 object SpeakerModal {
   def apply(speaker: Speaker, variable: Var[Option[Speaker]]) =
     div(
       div(
         "×",
-        onClick.mapTo(None) --> variable.writer,
+        onClick.mapTo(None) --> variable,
         className := "speaker-modal__close"
       ),
       div(

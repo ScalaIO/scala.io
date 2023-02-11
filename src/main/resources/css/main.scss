@@ -14,6 +14,24 @@
 
 // Tools
 @import 'tools/reset';
+@import 'tools/animation';
+
+// Views
+@import 'views/index';
+@import 'views/speakers';
+@import 'views/sponsors';
+
+// Modules
+@import 'modules/classy_button';
+@import 'modules/footer';
+@import 'modules/headband';
+@import 'modules/header';
+@import 'modules/line';
+@import 'modules/shiny_button';
+@import 'modules/speaker_card';
+@import 'modules/speaker_modal';
+@import 'modules/sponsor_logo';
+@import 'modules/title';
 
 // Generic
 // ==================
@@ -34,20 +52,3 @@ h2 {
 .container {
   margin: 70px 120px;
 }
-
-// Views
-@import 'views/index';
-@import 'views/speakers';
-@import 'views/sponsors';
-
-// Modules
-@import 'modules/classy_button';
-@import 'modules/footer';
-@import 'modules/headband';
-@import 'modules/header';
-@import 'modules/line';
-@import 'modules/shiny_button';
-@import 'modules/speaker_card';
-@import 'modules/speaker_modal';
-@import 'modules/sponsor_logo';
-@import 'modules/title';

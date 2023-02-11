@@ -5,7 +5,7 @@ import io.scala.domaines.Speaker
 import com.raquo.laminar.api.L.{*, given}
 
 object SpeakerCard {
-  def apply(speaker: Speaker) =
+  def apply(speaker: Speaker, variable: Var[Option[Speaker]]) =
     div(
       img(
         src       := speaker.photo.fold("/images/profile.jpg")(path => s"/images/profiles/$path"),
@@ -36,6 +36,7 @@ object SpeakerCard {
         ),
         className := "speaker-card__information"
       ),
+      onClick.mapTo(Some(speaker)) --> variable,
       className := "speaker-card"
     )
 }

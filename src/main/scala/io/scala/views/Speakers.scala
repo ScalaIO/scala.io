@@ -43,10 +43,7 @@ case object Speakers extends View {
     ),
     ClassyButton(Lexicon.Speakers.callToAction),
     Line(padding = 55),
-    div(
-      SpeakerCard(speaker),
-      onClick.mapTo(Some(speaker)) --> selectedSpeaker.writer
-    ),
+    div(SpeakerCard(speaker, selectedSpeaker)),
     child <-- selectedSpeaker.signal.map {
       case None          => emptyNode
       case Some(speaker) => SpeakerModal(speaker, selectedSpeaker)
