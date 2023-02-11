@@ -1,3 +1,11 @@
 .speakers__catch-phrase {
   margin-bottom: 15px;
 }
+
+.speakers__cards {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  row-gap: 40px;
+  column-gap: 20px;
+}

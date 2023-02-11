@@ -12,3 +12,6 @@ enum Presentation {
     case Presentation.Talk    => "presentation-talk"
     case Presentation.Keynote => "presentation-keynote"
 }
+
+object Presentation:
+  given Ordering[Presentation] = Ordering[Int].on(_.ordinal)

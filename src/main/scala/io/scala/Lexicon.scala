@@ -1,6 +1,6 @@
 package io.scala
 
-import io.scala.domaines.Sponsor
+import io.scala.domaines.{Presentation, Speaker, Sponsor, Talk}
 
 object Lexicon {
   object Headband {
@@ -19,6 +19,31 @@ object Lexicon {
   object Speakers {
     val catchPhrase  = "Become a ScalaIO 2023 speakers sharing what you love with the community."
     val callToAction = "Become a speaker"
+
+    val speakers = Seq.fill(20)(
+      Speaker(
+        name = "John Doe",
+        photo = None,
+        presentation = Presentation.Keynote,
+        job = "Data Engineer",
+        company = "Scala.IO",
+        socials = List.empty,
+        talk = Talk(
+          name = "Scala is a good language",
+          description = """Scala is considered an incredible language
+              |because it is a highly expressive and concise
+              |programming language that combines functional
+              |and object-oriented programming paradigms. It
+              |has built-in support for concurrency, making it
+              |easier to write parallel and asynchronous code,
+              |and it is fully interoperable with Java. These
+              |features, along with its powerful type system
+              |and functional programming features, make Scala
+              |a popular choice for building large-scale, complex
+              |systems in a variety of domains.""".stripMargin.replace("\n", " ")
+        )
+      )
+    )
   }
 
   object Sponsors {

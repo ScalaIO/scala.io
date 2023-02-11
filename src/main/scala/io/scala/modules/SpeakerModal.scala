@@ -1,8 +1,9 @@
 package io.scala.modules
 
 import io.scala.domaines.Speaker
+import io.scala.views.Speakers.selectedSpeaker
+
 import com.raquo.laminar.api.L.{*, given}
-import io.scala.views.Speakers.{selectedSpeaker, speaker}
 
 object SpeakerModal {
   def apply(speaker: Speaker, variable: Var[Option[Speaker]]) =
