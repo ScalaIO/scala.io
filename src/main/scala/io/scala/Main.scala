@@ -8,7 +8,7 @@ import org.scalajs.dom
 object Main {
 
   def main(args: Array[String]): Unit = {
-    val app = div(child <-- Page.splitter.$view)
+    val app = div(child <-- Page.splitter.signal)
 
     renderOnDomContentLoaded(dom.document.querySelector("#app"), app)
   }

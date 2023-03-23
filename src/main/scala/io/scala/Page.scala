@@ -6,7 +6,6 @@ import com.raquo.laminar.api.L
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.waypoint.*
 import org.scalajs.dom.html
-import org.scalajs.dom.idb.Index
 import upickle.default.*
 
 enum Page {
@@ -28,16 +27,14 @@ object Page {
     serializePage = page => write(page)(pageCodec),
     deserializePage = pageStr => read(pageStr)(pageCodec)
   )(
-    $popStateEvent = L.windowEvents.onPopState,
+    popStateEvents = L.windowEvents(_.onPopState),
     owner = L.unsafeWindowOwner
   )
 
-  val splitter = SplitRender[Page, HtmlElement](router.$currentPage)
-    .collect[Page] {
-      case Page.IndexPage    => Index.render
-      case Page.SpeakersPage => Speakers.render
-      case Page.SponsorsPage => Sponsors.render
-    }
+  val splitter = SplitRender[Page, HtmlElement](router.currentPageSignal)
+    .collectStatic(Page.IndexPage)(Index.render)
+    .collectStatic(Page.SpeakersPage)(Speakers.render)
+    .collectStatic(Page.SponsorsPage)(Sponsors.render)
 
   def navigateTo(page: Page): Binder[HtmlElement] = Binder { el =>
 

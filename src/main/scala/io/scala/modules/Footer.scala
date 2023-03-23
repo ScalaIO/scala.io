@@ -35,7 +35,7 @@ object Footer {
           input(
             idAttr    := "mce-EMAIL",
             typ       := "email",
-            name      := "EMAIL",
+            nameAttr  := "EMAIL",
             className := "footer__newsletter__email"
           ),
           ShinyButton(Lexicon.Footer.Newsletter.button),
@@ -52,7 +52,7 @@ object Footer {
     className := "footer__social"
   )
 
-  def apply(): HtmlElement = footer(
+  def apply(): HtmlElement = footerTag(
     div(
       summary,
       newsletter,
