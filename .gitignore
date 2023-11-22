@@ -17,6 +17,7 @@ local.sbt
 
 # npm specific
 package-lock.json
+pnpm-lock.yaml
 node_modules
 
 # Bloop

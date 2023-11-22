@@ -1,7 +1,7 @@
 import org.scalajs.linker.interface.ModuleSplitStyle.SmallModulesFor
 
 ThisBuild / version       := "0.1.0"
-ThisBuild / scalaVersion  := "3.2.1"
+ThisBuild / scalaVersion  := "3.3.1"
 ThisBuild / versionScheme := Some("early-semver")
 
 val publicFolderDev  = taskKey[String]("Returns the compiled main.js parent path for dev")
