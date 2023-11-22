@@ -58,7 +58,7 @@ object Footer {
       newsletter,
       className := "footer__container"
     ),
-    Line(isContrasted = true),
+    Line(kind = LineKind.Contrasted),
     div(
       div(
         Lexicon.Footer.copyright,

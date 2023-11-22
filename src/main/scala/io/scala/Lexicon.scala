@@ -1,6 +1,7 @@
 package io.scala
 
 import io.scala.domaines.{Presentation, Speaker, Sponsor, Talk}
+import io.scala.domaines.ConfDay
 
 object Lexicon {
   object Headband {
@@ -17,7 +18,7 @@ object Lexicon {
   }
 
   object Speakers {
-    val catchPhrase  = "Become a ScalaIO 2023 speakers sharing what you love with the community."
+    val catchPhrase  = "Become a ScalaIO 2024 speakers sharing what you love with the community."
     val callToAction = "Become a speaker"
 
     val speakers = Seq.fill(20)(
@@ -48,7 +49,7 @@ object Lexicon {
 
   object Sponsors {
     val catchPhrase =
-      "Become a ScalaIO 2023 sponsor and promote your services, products or simply increase your brand awareness with more than 350 passionate Scala, Spark, and FP languages developers!"
+      "Become a ScalaIO 2024 sponsor and promote your services, products or simply increase your brand awareness with more than 350 passionate Scala, Spark, and FP languages developers!"
     val callToAction   = "Become a sponsor"
     val callToBrochure = "Download the brochure"
 
@@ -92,6 +93,10 @@ object Lexicon {
         )
       )
     ).flatten
+  }
+
+  object Schedule {
+    val days             = ConfDay.values.map(d => (d.toId, d.toString()))
   }
 
   object Footer {

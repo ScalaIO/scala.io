@@ -1,6 +1,5 @@
 .speaker-card {
   position: relative;
-  display: inline-block;
   height: 380px;
   width: 270px;
   border-radius: 10px;
@@ -64,6 +63,10 @@
 .presentation-keynote {
   color: rgba(206, 0, 19, 1);
   background-color: rgba(206, 0, 19, 0.4);
+}
+
+.speaker-card__name {
+  text-shadow: 4px 4px 3px rgba(0,0,0,0.1); 
 }
 
 .speaker-card__job {

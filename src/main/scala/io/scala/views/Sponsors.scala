@@ -22,7 +22,7 @@ case object Sponsors extends View {
       ClassyButton(
         Lexicon.Sponsors.callToBrochure,
         kind = ButtonKind.Href(Lexicon.Sponsors.brochureUrl),
-        isImportant = false
+        // isImportant = false
       ),
       className := "sponsors__buttons"
     ),

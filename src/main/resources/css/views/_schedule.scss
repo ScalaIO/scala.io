@@ -1,0 +1,36 @@
+.schedule__tab {
+  overflow: hidden;
+  display: flex;
+  justify-content: space-around;
+}
+
+.schedule__tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+
+  &:hover {
+    background-color: #ddd;
+  }
+
+  &:active {
+    background-color: #ccc;
+  }
+}
+
+.schedule__tab button .active {
+  border: 2px solid var(--color-primary);
+}
+
+.schedule__tabcontent {
+  padding: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0 0 0.25rem 0.25rem;
+  background-color: #fff;
+  display: none;
+}

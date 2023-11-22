@@ -15,6 +15,7 @@ lazy val root = project
       "com.raquo"   %%% "laminar"  % Dependencies.laminar,
       "com.raquo"   %%% "waypoint" % Dependencies.waypoint,
       "com.lihaoyi" %%% "upickle"  % Dependencies.upickle,
+      "org.scala-js" %%% "scalajs-dom" % "2.4.0"
     ),
     scalaJSUseMainModuleInitializer := true,
     scalaJSLinkerConfig ~= {

@@ -33,7 +33,7 @@ $text-bold-weight: 700;
 
 $headband-height: 28px;
 
-$front-img-height: 400px; 
+$front-img-height: 400px;
 
 $footer-logo-height: 32px;
 // Tools
@@ -44,6 +44,7 @@ $footer-logo-height: 32px;
 @import "views/index";
 @import "views/speakers";
 @import "views/sponsors";
+@import "views/schedule";
 
 // Modules
 @import "modules/classy_button";

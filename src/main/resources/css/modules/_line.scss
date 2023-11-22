@@ -7,3 +7,7 @@
 .line--contrasted {
   background-color: $text-color-contrast;
 }
+
+.line--colored {
+  background-color: var(--color-primary);
+}
