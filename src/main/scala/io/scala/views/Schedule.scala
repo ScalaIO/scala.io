@@ -1,9 +1,11 @@
 package io.scala.views
 
 import io.scala.Lexicon
+import io.scala.domaines.ConfDay
 import io.scala.domaines.Talk
 import io.scala.modules.{ClassyButton, Line, SpeakerCard, SpeakerModal, Title}
 import io.scala.modules.LineKind
+import io.scala.modules.ScheduleDay
 
 import com.raquo.airstream.state.Var
 import com.raquo.laminar.api.L.{*, given}
@@ -34,7 +36,7 @@ case object Schedule extends View {
             idAttr    := id,
             className := tabLinkName,
             onClick --> { _ => changeDay(id) },
-            h2(day)
+            h2(day.toString())
           ),
           child <-- selectedDay.signal.map {
             case Some(i) if i == id => Line(padding = 50, size = 3, kind = LineKind.Colored)
@@ -42,7 +44,22 @@ case object Schedule extends View {
           }
         )
       }
-    )
+    ),
+    Lexicon.Schedule.days.map { (id, day) =>
+      div(
+        idAttr    := id,
+        className := "schedule__tabcontent",
+        styleAttr <-- selectedDay.signal.map {
+          case Some(i) if i == id => "display: block;"
+          case _                  => "display: none;"
+        },
+        child <-- selectedDay.signal.map {
+          case Some(i) if i == id =>
+            ScheduleDay(talksByDay.get(Some(day)).getOrElse(Seq.empty))
+          case _ => emptyNode
+        }
+      )
+    }
   )
 
   def changeDay(id: String) = selectedDay.set(Some(id))

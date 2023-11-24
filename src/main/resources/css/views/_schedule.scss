@@ -23,14 +23,39 @@
   }
 }
 
-.schedule__tab button .active {
-  border: 2px solid var(--color-primary);
-}
-
 .schedule__tabcontent {
   padding: 1rem;
-  border: 1px solid #ccc;
-  border-radius: 0 0 0.25rem 0.25rem;
   background-color: #fff;
   display: none;
+}
+
+.schedule__day__timeslot {
+  display: grid;
+  grid-template: auto / 1fr 1fr;
+}
+
+.schedule__time {
+  padding-right: 16px;
+}
+
+.schedule__time_hour {
+  font-size: 1.5rem;
+  margin-right: 0.25rem;
+}
+
+.schedule__time_minute {
+  font-size: 1rem;
+}
+
+.schedule__day {
+  display: grid;
+  grid-template: auto / 0.1fr 1fr;
+  border-top: 1px solid #ccc;
+}
+
+@media screen and (max-width: 900px) {
+  .schedule__day__timeslot {
+    display: block;
+  }
+  
 }

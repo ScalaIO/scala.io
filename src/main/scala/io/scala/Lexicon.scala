@@ -1,7 +1,11 @@
 package io.scala
 
-import io.scala.domaines.{Presentation, Speaker, Sponsor, Talk}
+import io.scala.domaines.{Kind, Speaker, Sponsor, Talk}
 import io.scala.domaines.ConfDay
+import io.scala.domaines.Room
+import io.scala.domaines.Time
+
+import scala.util.Random
 
 object Lexicon {
   object Headband {
@@ -21,27 +25,24 @@ object Lexicon {
     val catchPhrase  = "Become a ScalaIO 2024 speakers sharing what you love with the community."
     val callToAction = "Become a speaker"
 
-    val speakers = Seq.fill(20)(
+    val title = "Some nice title"
+    val loremIpsum =
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
+
+    val speakers = Seq.fill(16)(
       Speaker(
         name = "John Doe",
         photo = None,
-        presentation = Presentation.Keynote,
         job = "Data Engineer",
         company = "Scala.IO",
         socials = List.empty,
         talk = Talk(
-          name = "Scala is a good language",
-          description = """Scala is considered an incredible language
-              |because it is a highly expressive and concise
-              |programming language that combines functional
-              |and object-oriented programming paradigms. It
-              |has built-in support for concurrency, making it
-              |easier to write parallel and asynchronous code,
-              |and it is fully interoperable with Java. These
-              |features, along with its powerful type system
-              |and functional programming features, make Scala
-              |a popular choice for building large-scale, complex
-              |systems in a variety of domains.""".stripMargin.replace("\n", " ")
+          title = title,
+          kind = Kind.fromOrdinal(Random.nextInt(2)),
+          description = loremIpsum,
+          day = Some(ConfDay.fromOrdinal(Random.nextInt(2))),
+          start = Some(Time(9+Random.nextInt(7), 0)),
+          room = Some(Room.fromOrdinal(Random.nextInt(2)))
         )
       )
     )

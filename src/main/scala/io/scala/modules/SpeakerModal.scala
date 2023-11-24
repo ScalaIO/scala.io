@@ -40,7 +40,7 @@ object SpeakerModal {
         ),
         div(
           h2(
-            speaker.talk.name,
+            speaker.talk.title,
             className := "speaker-modal__section__title"
           ),
           p(

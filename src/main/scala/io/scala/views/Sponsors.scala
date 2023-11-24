@@ -2,7 +2,7 @@ package io.scala.views
 
 import io.scala.Lexicon
 import io.scala.Page.*
-import io.scala.domaines.{Presentation, Speaker, Talk}
+import io.scala.domaines.{Kind, Speaker, Talk}
 import io.scala.modules.{ClassyButton, Line, SpeakerCard, SponsorLogo, Title}
 import io.scala.utils.ButtonKind
 import io.scala.views.View

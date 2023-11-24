@@ -14,8 +14,8 @@ object SpeakerCard {
       div(
         div(
           div(
-            speaker.presentation.toString,
-            className := s"speaker-card__presentation ${speaker.presentation.toStyle}"
+            speaker.talk.kind.toString,
+            className := s"speaker-card__presentation ${speaker.talk.kind.toStyle}"
           ),
           div(
             className := "speaker-card__socials"

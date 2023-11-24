@@ -1,0 +1,89 @@
+.talk-card {
+  position: relative;
+  margin: 16px;
+  padding: 16px;
+  min-width: 128px;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.3s ease-in-out;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    border-radius: 10px;
+    margin-left: -16px; // Needed to avoid a gap between the card left/top border and the shadow
+    margin-top: -16px; // Needed to avoid a gap between the card left/top border and the shadow
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+.talk-card__body {
+  margin-left: 16px;
+  margin-right: 16px;
+}
+
+.talk-card__footer {
+  display: flex;
+  justify-content: space-between;
+}
+
+.talk-card__description {
+  display: flex;
+  flex-direction: column;
+}
+
+.talk-card__title {
+  text-shadow: 4px 4px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 16px;
+  font-weight: 700;
+  font-size: large;
+}
+
+.talk-card__room {
+  color: var(--color-text-light);
+  font-size: medium;
+}
+
+.talk-card__speaker {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.talk-card__speaker-photo {
+  height: 48px;
+  width: 48px;
+  border-radius: 24px;
+  margin-right: 8px;
+  object-fit: cover;
+}
+
+.talk-card__speaker-name {
+  font-size: medium;
+}
+.talk-card__speaker-company {
+  font-size: small;
+}
+
+@media screen and (max-width: 900px) {
+  .talk-card__room {
+    font-size: small;
+    rotate: 90deg;
+  }
+}
