@@ -1,6 +1,7 @@
 // Variables
 :root {
   --color-text: #222222;
+  --color-text-light: #666;
   --color-text-contrast: #FFF;
 
   --color-primary: #CE0013;
@@ -9,7 +10,10 @@
 
   --color-background: #FCFAFA;
 
-  --spacing-computer: 170px;
+  --spacing-screen: 120px;
+  --spacing-computer: 80px;
+  --spacing-tablet: 60px;
+  --spacing-mobile: 20px;
 }
 
 // Tools
@@ -50,5 +54,29 @@ h2 {
 }
 
 .container {
-  margin: 70px 120px;
+  min-width: 335px;
+}
+
+@media only screen and (max-width: 768px) {
+  .container {
+    margin: 40px var(--spacing-mobile);
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .container {
+    margin: 50px var(--spacing-tablet);
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+  .container {
+    margin: 60px var(--spacing-computer);
+  }
+}
+
+@media only screen and (min-width: 1441px) {
+  .container {
+    margin: 70px var(--spacing-screen);
+  }
 }

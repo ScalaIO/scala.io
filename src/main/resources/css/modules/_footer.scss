@@ -62,3 +62,46 @@
 .footer__social .linkedin__foreground {
   fill: var(--color-secondary);
 }
+
+@media screen and (max-width: 800px) {
+  .footer__container {
+    flex-direction: column;
+    gap: 40px;
+  }
+  .footer__newsletter__form {
+    justify-content: flex-end;
+  }
+}
+@media screen and (max-width: 384px) {
+  .footer__newsletter {
+    align-items: center;
+  }
+  .footer__newsletter__form {
+    flex-direction: column;
+    align-items: center;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+  .footer {
+    padding: 40px var(--spacing-mobile);
+  }
+}
+
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .footer {
+    padding: 50px var(--spacing-tablet);
+  }
+}
+
+@media only screen and (min-width: 1025px) and (max-width: 1440px) {
+  .footer {
+    padding: 60px var(--spacing-computer);
+  }
+}
+
+@media only screen and (min-width: 1441px) {
+  .footer {
+    padding: 70px var(--spacing-screen);
+  }
+}
