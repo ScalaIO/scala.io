@@ -9,11 +9,33 @@ $secondary-color: #1a1313;
 
 $background-color: #fcfafa;
 
-$screen-spacing: 120px;
-$computer-spacing: 80px;
-$tablet-spacing: 60px;
-$mobile-spacing: 20px;
+$spacing-x-small: 8px;
+$spacing-small: 16px;
+$spacing-medium: 24px;
+$spacing-large: 32px;
+$spacing-x-large: 40px;
+$spacing-xx-large: 48px;
+$spacing-huge: 64px;
+$spacing-x-huge: 80px;
+$spacing-xxx-huge: 112px;
 
+$text-size-small: 12px;
+$text-size-medium: 16px;
+$text-size-large: 24px;
+$text-size-x-large: 32px;
+$text-size-xx-large: 40px;
+$text-size-xxx-large: 48px;
+$text-size-huge: 64px;
+$text-size-x-huge: 80px;
+$text-size-xx-huge: 96px;
+
+$text-bold-weight: 700;
+
+$headband-height: 28px;
+
+$front-img-height: 400px; 
+
+$footer-logo-height: 32px;
 // Tools
 @import "tools/reset";
 @import "tools/animation";
@@ -39,42 +61,71 @@ $mobile-spacing: 20px;
 // ==================
 body {
   font-family: sans-serif;
-  font-size: 16px;
+  font-size: $text-size-medium;
   color: $text-color;
   line-height: 1.6;
   background: $background-color;
 }
 
 h2 {
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 29px;
+  font-weight: $text-bold-weight;
+  font-size: $text-size-large;
 }
 
 .container {
   min-width: 335px;
 }
 
+.catch-phrase {
+  margin-bottom: $spacing-small;
+}
+
+.flex-spacing-small {
+  display: flex;
+  gap: $spacing-x-small;
+}
+
+%flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+%flex-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+.flex-center-wrap {
+  @extend .flex-center;
+  flex-wrap: wrap;
+}
+
 @media only screen and (max-width: 768px) {
   .container {
-    margin: 40px $mobile-spacing;
+    margin: 40px $spacing-medium;
   }
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
   .container {
-    margin: 50px $tablet-spacing;
+    margin: 50px $spacing-huge;
   }
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1440px) {
   .container {
-    margin: 60px $computer-spacing;
+    margin: 60px $spacing-x-huge;
   }
 }
 
 @media only screen and (min-width: 1441px) {
   .container {
-    margin: 70px $screen-spacing;
+    margin: 70px $spacing-xxx-huge;
   }
 }

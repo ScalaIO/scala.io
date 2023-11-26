@@ -1,29 +1,25 @@
-.sponsors__catch-phrase {
-  margin-bottom: 15px;
-}
-
 .sponsors__buttons {
-  display: flex;
-  gap: 10px;
+  @extend .flex-spacing-small;
 }
 
-.sponsors__partitions {
-  display: flex;
-  flex-direction: column;
-  gap: 40px;
+.all-sponsors,
+.sponsor-kind {
+  @extend %flex-column;
 }
 
-.sponsors__partition {
-  display: flex;
-  flex-direction: column;
+.all-sponsors {
+  gap: $spacing-x-large;
+}
+
+.sponsor-kind {
   align-items: center;
 }
 
-.sponsors__partition__title {
-  font-size: 30px;
+.sponsor-kind__title {
+  font-size: $text-size-x-large;
 }
 
-.sponsors__partition__logos {
-  display: flex;
-  gap: 20px;
+.sponsor-kind__logos {
+  @extend .flex-center-wrap;
+  gap: $spacing-small;
 }

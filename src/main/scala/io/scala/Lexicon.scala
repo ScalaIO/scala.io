@@ -4,7 +4,7 @@ import io.scala.domaines.{Presentation, Speaker, Sponsor, Talk}
 
 object Lexicon {
   object Headband {
-    val left  = "The 26th and 27th of October 2023 @ Unknown location"
+    val left  = "February 15th-16th 2023 @ Nantes"
     val right = "10th years edition"
   }
 
@@ -56,32 +56,42 @@ object Lexicon {
       "https://docs.google.com/presentation/d/1nZ_6r4r0M1VZNBUE41DtnKr6FVdjFyoWF-zbJ1BtdSw/edit?usp=sharing"
 
     val sponsors = Seq(
-      Sponsor(
-        photo = "scalaio.png",
-        website = "https://scala.io/",
-        rank = Sponsor.SponsorRank.Platinum
+      Seq.fill(3)(
+        Sponsor(
+          photo = "scalaio.png",
+          website = "https://scala.io/",
+          rank = Sponsor.SponsorRank.Platinum
+        )
       ),
-      Sponsor(
-        photo = "scalaio.png",
-        website = "https://scala.io/",
-        rank = Sponsor.SponsorRank.Gold
+      Seq.fill(6)(
+        Sponsor(
+          photo = "scalaio.png",
+          website = "https://scala.io/",
+          rank = Sponsor.SponsorRank.Gold
+        )
       ),
-      Sponsor(
-        photo = "scalaio.png",
-        website = "https://scala.io/",
-        rank = Sponsor.SponsorRank.Silver
+      Seq.fill(12)(
+        Sponsor(
+          photo = "scalaio.png",
+          website = "https://scala.io/",
+          rank = Sponsor.SponsorRank.Silver
+        )
       ),
-      Sponsor(
-        photo = "scalaio.png",
-        website = "https://scala.io/",
-        rank = Sponsor.SponsorRank.Community
+      Seq.fill(2)(
+        Sponsor(
+          photo = "scalaio.png",
+          website = "https://scala.io/",
+          rank = Sponsor.SponsorRank.Community
+        )
       ),
-      Sponsor(
-        photo = "scalaio.png",
-        website = "https://scala.io/",
-        rank = Sponsor.SponsorRank.Love
+      Seq.fill(12)(
+        Sponsor(
+          photo = "scalaio.png",
+          website = "https://scala.io/",
+          rank = Sponsor.SponsorRank.Love
+        )
       )
-    )
+    ).flatten
   }
 
   object Footer {

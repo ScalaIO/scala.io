@@ -1,2 +1,2 @@
-import './src/main/resources/css/main.scss'
+import './src/main/resources/css/output.scss'
 import '@linkOutputDir/main.js'

@@ -17,8 +17,7 @@
 
 .speaker-modal__container {
   width: 800px;
-  display: flex;
-  flex-direction: column;
+  @extend %flex-column;
   gap: 60px;
 }
 
@@ -26,13 +25,13 @@
   position: absolute;
   left: 50px;
   top: 50px;
-  font-size: 80px;
+  font-size: $text-size-x-huge;
   line-height: 20px;
   color: $text-color;
 
   &:hover {
     opacity: 0.8;
-    font-size: 70px;
+    font-size: $text-size-huge;
     left: 52px;
     top: 52px;
     cursor: pointer;
@@ -53,27 +52,26 @@
 }
 
 .speaker-modal__title {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-column;
 }
 
 .speaker-modal__speaker__name {
   font-weight: 700;
-  font-size: 100px;
+  font-size: $text-size-xx-huge;
   line-height: 110px;
   color: $main-color-darker;
 }
 
 .speaker-modal__speaker__job, .speaker-modal__speaker__company {
   font-weight: 400;
-  font-size: 60px;
+  font-size: $text-size-huge;
   line-height: 60px;
   color: $text-color;
 }
 
 .speaker-modal__section__title {
-  font-weight: 700;
-  font-size: 24px;
+  font-weight: $text-bold-weight;
+  font-size: $text-size-large;
   line-height: 70px;
   color: $main-color-darker;
 }

@@ -6,8 +6,7 @@
   border-radius: 10px;
   transition: all 0.3s ease-in-out;
 
-  display: flex;
-  flex-direction: column;
+  @extend %flex-column;
 
   &:after {
     content: '';
@@ -40,8 +39,7 @@
 
 .speaker-card__information {
   height: 35%;
-  display: flex;
-  flex-direction: column;
+  @extend %flex-column;
   margin: 20px;
 }
 
@@ -51,7 +49,7 @@
 }
 
 .speaker-card__presentation {
-  font-size: 12px;
+  font-size: $text-size-small;
   text-transform: uppercase;
   border-radius: 10px;
   padding: 0px 10px;
@@ -67,8 +65,6 @@
   color: rgba(206, 0, 19, 1);
   background-color: rgba(206, 0, 19, 0.4);
 }
-
-.speaker-card__name {}
 
 .speaker-card__job {
   line-height: 19px;

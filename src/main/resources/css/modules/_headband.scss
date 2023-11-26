@@ -1,13 +1,12 @@
 .headband {
-  height: 28px;
-  background-color: $main-color-darker;
-  display: flex;
-  justify-content: space-between;
+  @extend %flex-between;
   align-items: center;
-  padding: 10px 20px;
+  height: $headband-height;
+  background-color: $main-color-darker;
+  padding: $spacing-x-small $spacing-small;
 }
 
 .headband__information {
   color: $text-color-contrast;
-  font-size: 12px;
+  font-size: $text-size-small;
 }

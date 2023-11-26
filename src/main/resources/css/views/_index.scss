@@ -5,34 +5,33 @@
 }
 
 .hero {
-  position: relative;
+  @extend .flex-center;
   background-image: url("images/index-hero.jpeg");
   background-size: cover;
   background-position: center;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #fff;
-  text-align: center;
+  height: $front-img-height;
 }
 
 .overlay {
+  @extend .flex-center;
   background: rgba(0, 0, 0, 0.75);
   width: 100%;
   height: 100%;
-  padding: 20px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  color: #fff;
+  text-align: center;
+  padding: $spacing-medium;
 }
 
 .index__subtitle {
-  font-size: 3rem;
-  margin-bottom: 20px;
+  font-size: $text-size-xxx-large;
+  margin-bottom: $spacing-medium;
+  line-height: $text-size-xxx-large;
 }
 
-@media screen and (max-height: 700px) {
-  .hero {
-    height: calc(100vh - 104px);
-  }
+.index__event-date-location {
+  font-size: $text-size-large;
+}
+
+.index__event-location {
+  border-bottom: 1px solid $text-color-contrast;
 }

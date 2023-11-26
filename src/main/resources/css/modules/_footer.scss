@@ -1,19 +1,16 @@
 .footer {
+  @extend %flex-column;
   background-color: $secondary-color;
   color: $text-color-contrast;
-  padding: 40px $computer-spacing;
-  display: flex;
-  flex-direction: column;
-  gap: 55px;
+  gap: $spacing-large;
 }
 
 .footer__container {
-  display: flex;
-  justify-content: space-between;
+  @extend %flex-between;
 }
 
 .footer__summary .logo {
-  height: 28px;
+  height: $footer-logo-height;
 }
 
 .footer__summary__description {
@@ -22,13 +19,12 @@
 }
 
 .footer__newsletter__title {
-  font-size: 24px;
+  font-size: $text-size-large;
   text-align: right;
 }
 
 .footer__newsletter {
-  display: flex;
-  flex-direction: column;
+  @extend %flex-column;
   justify-content: space-between;
 }
 
@@ -37,36 +33,29 @@
   font-weight: normal;
 }
 
-.footer__newsletter__form {
-  display: flex;
-  gap: 10px;
-}
-
+.footer__newsletter__form,
 .footer__socials {
-  display: flex;
-  gap: 10px;
+  @extend .flex-spacing-small;
 }
 
-.footer__social svg {
-  height: 18px;
-}
+.footer__social {
+  svg {
+    height: $footer-logo-height;
+  }
 
-.footer__social .twitter {
-  fill: $text-color-contrast;
-}
+  .twitter, .linkedin__background {
+    fill: $text-color-contrast;
+  }
 
-.footer__social .linkedin__background {
-  fill: $text-color-contrast;
-}
-
-.footer__social .linkedin__foreground {
-  fill: $secondary-color;
+  .linkedin__foreground {
+    fill: $secondary-color;
+  }
 }
 
 @media screen and (max-width: 800px) {
   .footer__container {
     flex-direction: column;
-    gap: 40px;
+    gap: $spacing-large;
   }
   .footer__newsletter__form {
     justify-content: flex-end;
@@ -84,24 +73,24 @@
 
 @media only screen and (max-width: 768px) {
   .footer {
-    padding: 40px $mobile-spacing;
+    padding: 40px $spacing-medium;
   }
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
   .footer {
-    padding: 50px $tablet-spacing;
+    padding: 50px $spacing-huge;
   }
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1440px) {
   .footer {
-    padding: 60px $computer-spacing;
+    padding: 60px $spacing-x-huge;
   }
 }
 
 @media only screen and (min-width: 1441px) {
   .footer {
-    padding: 70px $screen-spacing;
+    padding: 70px $spacing-xxx-huge;
   }
 }

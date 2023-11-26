@@ -15,7 +15,7 @@ case object Speakers extends View {
     Title("Speakers"),
     p(
       Lexicon.Speakers.catchPhrase,
-      className := "speakers__catch-phrase"
+      className := "catch-phrase"
     ),
     ClassyButton(Lexicon.Speakers.callToAction),
     Line(padding = 55),

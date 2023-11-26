@@ -15,7 +15,7 @@ case object Sponsors extends View {
     Title("Sponsors"),
     p(
       Lexicon.Sponsors.catchPhrase,
-      className := "sponsors__catch-phrase"
+      className := "catch-phrase"
     ),
     div(
       ClassyButton(Lexicon.Sponsors.callToAction),
@@ -32,16 +32,16 @@ case object Sponsors extends View {
         div(
           h2(
             s"${rank.title} sponsors",
-            className := "sponsors__partition__title"
+            className := "sponsor-kind__title"
           ),
           div(
             sponsors.map(SponsorLogo.apply),
-            className := "sponsors__partition__logos"
+            className := "sponsor-kind__logos"
           ),
-          className := "sponsors__partition"
+          className := "sponsor-kind"
         )
       },
-      className := "sponsors__partitions"
+      className := "all-sponsors"
     ),
     className := "container"
   )
