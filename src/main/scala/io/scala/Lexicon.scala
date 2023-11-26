@@ -40,7 +40,7 @@ object Lexicon {
         socials = List.empty,
         talk = Talk(
           title = title + i,
-          kind = Kind.fromOrdinal(Random.nextInt(2)),
+          kind = Kind.fromOrdinal(Random.nextInt(3)),
           description = loremIpsum,
           day = Some(ConfDay.fromOrdinal(Random.nextInt(2))),
           start = Some(Time(9 + Random.nextInt(7), 0)),
