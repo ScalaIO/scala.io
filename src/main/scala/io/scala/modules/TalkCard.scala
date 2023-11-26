@@ -31,12 +31,12 @@ object TalkCard:
         ),
         className := "talk-card__headband"
       ),
-      Line(padding = 10),
+      Line(margin = 10),
       div(
         className := "talk-card__body",
         TalkDescription(speaker.talk.description)
       ),
-      Line(padding = 10),
+      Line(margin = 10),
       div(
         className := "talk-card__footer",
         div(

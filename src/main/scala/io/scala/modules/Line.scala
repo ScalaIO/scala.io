@@ -13,10 +13,10 @@ type SizeUnit = "px" | "em" | "rem" | "vh" | "vw" | "%"
 
 object Line {
   import LineKind.*
-  def apply(padding: Int = 0, size: Int = 1, sizeUnit: SizeUnit = "px", kind: LineKind = Normal): HtmlElement =
+  def apply(margin: Int = 0, size: Int = 1, sizeUnit: SizeUnit = "px", kind: LineKind = Normal): HtmlElement =
     val line = hr(
       className := "line",
-      styleAttr := s"margin: ${padding}px 0; height: ${size}px;"
+      styleAttr := s"margin: ${margin}px 0; height: ${size}px;"
     )
     kind match
       case Normal     => line

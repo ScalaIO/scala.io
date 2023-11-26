@@ -18,7 +18,7 @@ case object Speakers extends View {
       className := "catch-phrase"
     ),
     ClassyButton(Lexicon.Speakers.callToAction),
-    Line(padding = 55),
+    Line(margin = 55),
     div(
       Lexicon.Speakers.speakers.map(SpeakerCard(_, selectedSpeaker)),
       className := "speakers__cards"

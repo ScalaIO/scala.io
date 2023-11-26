@@ -29,23 +29,25 @@ object Lexicon {
     val loremIpsum =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
 
-    val speakers = Seq.fill(16)(
+    var i = 0;
+    val speakers = Seq.fill(32) {
+      i += 1
       Speaker(
-        name = "John Doe",
+        name = "John Doe" + i,
         photo = None,
-        job = "Data Engineer",
-        company = "Scala.IO",
+        job = "Data Engineer" + i,
+        company = "Scala.IO" + i,
         socials = List.empty,
         talk = Talk(
-          title = title,
+          title = title + i,
           kind = Kind.fromOrdinal(Random.nextInt(2)),
           description = loremIpsum,
           day = Some(ConfDay.fromOrdinal(Random.nextInt(2))),
-          start = Some(Time(9+Random.nextInt(7), 0)),
-          room = Some(Room.fromOrdinal(Random.nextInt(2)))
+          start = Some(Time(9 + Random.nextInt(7), 0)),
+          room = Some(Room.fromOrdinal(Random.nextInt(3)))
         )
       )
-    )
+    }
   }
 
   object Sponsors {
@@ -97,7 +99,7 @@ object Lexicon {
   }
 
   object Schedule {
-    val days             = ConfDay.values.map(d => (d.toId, d.toString()))
+    val days = ConfDay.values.map(d => (d.toId, d))
   }
 
   object Footer {

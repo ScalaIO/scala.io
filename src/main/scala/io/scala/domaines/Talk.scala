@@ -1,29 +1,32 @@
 package io.scala.domaines
 
 import io.scala.views.View
+
 import com.raquo.laminar.api.L.{*, given}
 
-sealed trait TalkInfo[A]:
+sealed trait TalkInfo[A <: TalkInfo[A]]:
   def ordinal: Int
 object TalkInfo:
-  given [A<: TalkInfo[A]]: Ordering[A] = Ordering[Int].on(_.ordinal)
+  given [A <: TalkInfo[A]]: Ordering[A] = Ordering[Int].on(_.ordinal)
 
 enum Kind extends TalkInfo[Kind] {
-  case Talk
-  case Keynote
+  case Lightning, Talk, Keynote
 
   override def toString = this match
-    case Kind.Talk    => "Talk"
-    case Kind.Keynote => "Keynote"
+    case Kind.Lightning => "Lightning"
+    case Kind.Talk      => "Talk"
+    case Kind.Keynote   => "Keynote"
 
   def toStyle = this match
-    case Kind.Talk    => "presentation-talk"
-    case Kind.Keynote => "presentation-keynote"
+    case Kind.Lightning => "presentation-lightning"
+    case Kind.Talk      => "presentation-talk"
+    case Kind.Keynote   => "presentation-keynote"
 
   // In minutes
   def duration: Int = this match
-    case Kind.Talk    => 45
-    case Kind.Keynote => 45
+    case Kind.Lightning => 20
+    case Kind.Talk      => 45
+    case Kind.Keynote   => 45
 }
 
 enum ConfDay extends TalkInfo[ConfDay] {
@@ -38,7 +41,9 @@ enum ConfDay extends TalkInfo[ConfDay] {
 }
 
 enum Room extends TalkInfo[Room]:
-  case One, Two
+  case One
+  case Two
+  case Three
   def render = "Room " + this.ordinal
 
 case class Time(h: Int, m: Int) {

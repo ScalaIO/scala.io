@@ -1,9 +1,14 @@
+.empty-talk-card,
 .talk-card {
-  position: relative;
+  flex: 1;
+  min-width: 128px;
   margin: 16px;
   padding: 16px;
-  min-width: 128px;
-  display: flex;
+}
+
+.talk-card {
+  position: relative;
+  display: flex; // Needed for the shadow on hovering
   flex-direction: column;
   transition: all 0.3s ease-in-out;
   border: 1px solid #ccc;

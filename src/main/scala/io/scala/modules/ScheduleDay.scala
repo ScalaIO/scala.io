@@ -1,46 +1,49 @@
 package io.scala.modules
 
+import io.scala.domaines.Room
+import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
+import io.scala.domaines.Time
 import io.scala.views.View
 
 import com.raquo.laminar.api.L.{*, given}
 import org.scalajs.dom
-import io.scala.domaines.Speaker
 
-object ScheduleDay {
-  def apply(speakers: Seq[Speaker]) =
-    val definedTalks = speakers
-      .filter(s => s.talk.room.isDefined && s.talk.start.isDefined)
-      .groupBy(s => (s.talk.start.get, s.talk.room.get))
-      .mapValues(_.head)
-      .force
-      .toSeq
-      .sortBy { case ((start, room), _) => (start, room) }
-    val rooms = speakers
-      .collect { case s if s.talk.room.isDefined => s.talk.room.get }
-      .distinct
-      .sorted
-    val startingTime = speakers
-      .collect { case s if s.talk.start.isDefined => s.talk.start.get }
-      .distinct
-      .sorted
+val rooms = Room.values
 
-    div(
+case class ScheduleDay(definedTalks: Map[Time, Seq[Speaker]], startingTimes: Seq[Time]):
+  def body = div(
       // className := "schedule__day",
-      startingTime.map(time =>
+      startingTimes.map(time =>
         div(
           className := "schedule__day",
           time.render,
           div(
             className := "schedule__day__timeslot",
-            rooms.map(room =>
-              definedTalks
-                .find { case ((start, r), _) => start == time && r == room }
-                .map { case (_, speaker) => TalkCard(speaker) }
-                .getOrElse(span())
-            )
+            definedTalks
+              .find { _._1 == time }
+              .map { speakers =>
+                rooms.map(room =>
+                  speakers._2
+                    .find(_.talk.room.get == room)
+                    .map(TalkCard(_))
+                    .getOrElse(div(className := "empty-talk-card"))
+                )
+              }
+              .getOrElse(Array.fill(Room.values.size)(emptyNode))
           )
         )
       )
     )
+
+object ScheduleDay {
+  def apply(speakers: Seq[Speaker]) =
+    val definedTalks: Map[Time, Seq[Speaker]] = speakers
+      .filter(s => s.talk.room.isDefined && s.talk.start.isDefined)
+      .groupBy(_.talk.start.get)
+    val startingTime = speakers
+      .collect { case s if s.talk.start.isDefined => s.talk.start.get }
+      .distinct
+      .sorted
+    new ScheduleDay(definedTalks, startingTime)
 }

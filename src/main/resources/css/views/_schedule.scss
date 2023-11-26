@@ -2,6 +2,10 @@
   overflow: hidden;
   display: flex;
   justify-content: space-around;
+  position: sticky;
+  top: 0px;
+  background-color: #fff;
+  z-index: 10;
 }
 
 .schedule__tab button {
@@ -30,8 +34,7 @@
 }
 
 .schedule__day__timeslot {
-  display: grid;
-  grid-template: auto / 1fr 1fr;
+  display: flex;
 }
 
 .schedule__time {
@@ -48,8 +51,7 @@
 }
 
 .schedule__day {
-  display: grid;
-  grid-template: auto / 0.1fr 1fr;
+  display: flex;
   border-top: 1px solid #ccc;
 }
 

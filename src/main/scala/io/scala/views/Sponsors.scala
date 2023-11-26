@@ -26,7 +26,7 @@ case object Sponsors extends View {
       ),
       className := "sponsors__buttons"
     ),
-    Line(padding = 55),
+    Line(margin = 55),
     div(
       Lexicon.Sponsors.sponsors.groupBy(_.rank).toSeq.sortBy(_._1).map { case (rank, sponsors) =>
         div(

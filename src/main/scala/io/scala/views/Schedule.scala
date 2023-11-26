@@ -18,6 +18,7 @@ case object Schedule extends View {
   private val tabLinkName: String              = "tablinks"
   private val talksByDay: Map[Option[ConfDay], Seq[Speaker]] =
     Lexicon.Speakers.speakers.groupBy(_.talk.day)
+  private var days: Map[ConfDay, ScheduleDay] = Map()
 
   override def body: HtmlElement = div(
     className := "container",
@@ -27,7 +28,7 @@ case object Schedule extends View {
       className := "catch-phrase"
     ),
     ClassyButton(Lexicon.Speakers.callToAction),
-    Line(padding = 55),
+    Line(margin = 55),
     div(
       className := "schedule__tab",
       Lexicon.Schedule.days.map { (id, day) =>
@@ -39,7 +40,7 @@ case object Schedule extends View {
             h2(day.toString())
           ),
           child <-- selectedDay.signal.map {
-            case Some(i) if i == id => Line(padding = 50, size = 3, kind = LineKind.Colored)
+            case Some(i) if i == id => Line(margin = 24, size = 3, kind = LineKind.Colored)
             case _                  => emptyNode
           }
         )
@@ -49,13 +50,17 @@ case object Schedule extends View {
       div(
         idAttr    := id,
         className := "schedule__tabcontent",
-        styleAttr <-- selectedDay.signal.map {
-          case Some(i) if i == id => "display: block;"
-          case _                  => "display: none;"
+        display <-- selectedDay.signal.map {
+          case Some(i) if i == id => "block"
+          case _                  => "none"
         },
         child <-- selectedDay.signal.map {
           case Some(i) if i == id =>
-            ScheduleDay(talksByDay.get(Some(day)).getOrElse(Seq.empty))
+            days.get(day).map(_.body).getOrElse{
+              val newDay = ScheduleDay(talksByDay.get(Some(day)).getOrElse(Seq.empty))
+              days = days + (day -> newDay)
+              newDay.body
+            }
           case _ => emptyNode
         }
       )
