@@ -1,13 +1,13 @@
 .classy-button {
-  color: var(--color-text);
+  color: $text-color;
 
   font-weight: 500;
   border-radius: 4px;
   padding: 10px 30px;
 
   &:hover {
-    background-color: var(--color-text);
-    color: var(--color-text-contrast);
+    background-color: $text-color;
+    color: $text-color-contrast;
     cursor: pointer;
   }
 
@@ -15,10 +15,10 @@
 }
 
 .classy-button--important {
-  border: 1px solid var(--color-primary);
-  color: var(--color-primary);
+  border: 1px solid $main-color;
+  color: $main-color;
 
   &:hover {
-    background-color: var(--color-primary);
+    background-color: $main-color;
   }
 }

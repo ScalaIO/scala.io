@@ -6,7 +6,7 @@
   width: 100%;
   height: 100%;
   overflow: auto;
-  background-color: var(--color-background);
+  background-color: $background-color;
 
   display: flex;
   align-items: center;
@@ -28,7 +28,7 @@
   top: 50px;
   font-size: 80px;
   line-height: 20px;
-  color: var(--color-text);
+  color: $text-color;
 
   &:hover {
     opacity: 0.8;
@@ -61,19 +61,19 @@
   font-weight: 700;
   font-size: 100px;
   line-height: 110px;
-  color: var(--color-primary-darker);
+  color: $main-color-darker;
 }
 
 .speaker-modal__speaker__job, .speaker-modal__speaker__company {
   font-weight: 400;
   font-size: 60px;
   line-height: 60px;
-  color: var(--color-text);
+  color: $text-color;
 }
 
 .speaker-modal__section__title {
   font-weight: 700;
   font-size: 24px;
   line-height: 70px;
-  color: var(--color-primary-darker);
+  color: $main-color-darker;
 }

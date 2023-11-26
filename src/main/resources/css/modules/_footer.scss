@@ -1,7 +1,7 @@
 .footer {
-  background-color: var(--color-secondary);
-  color: var(--color-text-contrast);
-  padding: 40px var(--spacing-computer);
+  background-color: $secondary-color;
+  color: $text-color-contrast;
+  padding: 40px $computer-spacing;
   display: flex;
   flex-direction: column;
   gap: 55px;
@@ -52,15 +52,15 @@
 }
 
 .footer__social .twitter {
-  fill: var(--color-text-contrast);
+  fill: $text-color-contrast;
 }
 
 .footer__social .linkedin__background {
-  fill: var(--color-text-contrast);
+  fill: $text-color-contrast;
 }
 
 .footer__social .linkedin__foreground {
-  fill: var(--color-secondary);
+  fill: $secondary-color;
 }
 
 @media screen and (max-width: 800px) {
@@ -84,24 +84,24 @@
 
 @media only screen and (max-width: 768px) {
   .footer {
-    padding: 40px var(--spacing-mobile);
+    padding: 40px $mobile-spacing;
   }
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
   .footer {
-    padding: 50px var(--spacing-tablet);
+    padding: 50px $tablet-spacing;
   }
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1440px) {
   .footer {
-    padding: 60px var(--spacing-computer);
+    padding: 60px $computer-spacing;
   }
 }
 
 @media only screen and (min-width: 1441px) {
   .footer {
-    padding: 70px var(--spacing-screen);
+    padding: 70px $screen-spacing;
   }
 }

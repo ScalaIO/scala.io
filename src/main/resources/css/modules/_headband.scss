@@ -1,6 +1,6 @@
 .headband {
   height: 28px;
-  background-color: var(--color-primary-darker);
+  background-color: $main-color-darker;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -8,6 +8,6 @@
 }
 
 .headband__information {
-  color: var(--color-text-contrast);
+  color: $text-color-contrast;
   font-size: 12px;
 }

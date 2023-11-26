@@ -1,6 +1,6 @@
 header {
-  background-color: var(--color-secondary);
-  color: var(--color-text-contrast);
+  background-color: $secondary-color;
+  color: $text-color-contrast;
   padding: 16px 24px;
   display: flex;
   justify-content: space-between;
@@ -44,20 +44,20 @@ header.tablet {
   vertical-align: middle;
 
   &:hover {
-    background-color: var(--color-primary-darker);
-    border-bottom: 5px solid var(--color-primary);
+    background-color: $main-color-darker;
+    border-bottom: 5px solid $main-color;
     cursor: pointer;
   }
 }
 
 .header__call-to-action {
-  background-color: var(--color-primary);
+  background-color: $main-color;
   border-radius: 10px;
   padding: 5px 15px;
 
   &:hover {
-    background-color: var(--color-text-contrast);
-    color: var(--color-text);
+    background-color: $text-color-contrast;
+    color: $text-color;
     cursor: pointer;
   }
 
@@ -79,7 +79,7 @@ header .logo {
   top: 82px;
   right: 24px;
   background-color: #e8e8e8;
-  color: var(--color-text);
+  color: $text-color;
   border-radius: 4px;
 }
 

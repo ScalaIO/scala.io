@@ -1,50 +1,48 @@
 // Variables
-:root {
-  --color-text: #222222;
-  --color-text-light: #666;
-  --color-text-contrast: #FFF;
+$text-color: #222222;
+$text-color-light: #666;
+$text-color-contrast: #fff;
 
-  --color-primary: #CE0013;
-  --color-primary-darker: #390909;
-  --color-secondary: #1A1313;
+$main-color: #ce0013;
+$main-color-darker: #390909;
+$secondary-color: #1a1313;
 
-  --color-background: #FCFAFA;
+$background-color: #fcfafa;
 
-  --spacing-screen: 120px;
-  --spacing-computer: 80px;
-  --spacing-tablet: 60px;
-  --spacing-mobile: 20px;
-}
+$screen-spacing: 120px;
+$computer-spacing: 80px;
+$tablet-spacing: 60px;
+$mobile-spacing: 20px;
 
 // Tools
-@import 'tools/reset';
-@import 'tools/animation';
+@import "tools/reset";
+@import "tools/animation";
 
 // Views
-@import 'views/index';
-@import 'views/speakers';
-@import 'views/sponsors';
+@import "views/index";
+@import "views/speakers";
+@import "views/sponsors";
 
 // Modules
-@import 'modules/classy_button';
-@import 'modules/footer';
-@import 'modules/headband';
-@import 'modules/header';
-@import 'modules/line';
-@import 'modules/shiny_button';
-@import 'modules/speaker_card';
-@import 'modules/speaker_modal';
-@import 'modules/sponsor_logo';
-@import 'modules/title';
+@import "modules/classy_button";
+@import "modules/footer";
+@import "modules/headband";
+@import "modules/header";
+@import "modules/line";
+@import "modules/shiny_button";
+@import "modules/speaker_card";
+@import "modules/speaker_modal";
+@import "modules/sponsor_logo";
+@import "modules/title";
 
 // Generic
 // ==================
 body {
   font-family: sans-serif;
   font-size: 16px;
-  color: var(--color-text);
+  color: $text-color;
   line-height: 1.6;
-  background: var(--background);
+  background: $background-color;
 }
 
 h2 {
@@ -59,24 +57,24 @@ h2 {
 
 @media only screen and (max-width: 768px) {
   .container {
-    margin: 40px var(--spacing-mobile);
+    margin: 40px $mobile-spacing;
   }
 }
 
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
   .container {
-    margin: 50px var(--spacing-tablet);
+    margin: 50px $tablet-spacing;
   }
 }
 
 @media only screen and (min-width: 1025px) and (max-width: 1440px) {
   .container {
-    margin: 60px var(--spacing-computer);
+    margin: 60px $computer-spacing;
   }
 }
 
 @media only screen and (min-width: 1441px) {
   .container {
-    margin: 70px var(--spacing-screen);
+    margin: 70px $screen-spacing;
   }
 }
