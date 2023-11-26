@@ -9,14 +9,26 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 import org.scalajs.dom.UIEvent
 import org.scalajs.dom.html
-object Header {
-  var burgerClicked = Var(false)
 
-  def apply(width: Double) =
-    dom.console.log(s"Width: $width")
-    if width >= 750 then computerPlusScreen
-    else if width >= 450 then tabletScreen
-    else mobileScreen
+object Header {
+  inline def width            = Screen.fromWidth(dom.window.innerWidth)
+  val screenKind: Var[Screen] = Var(width)
+  var burgerClicked = Var(false)
+  private var previousScreen = screenKind.now()
+
+  dom.window.onresize = { _ =>
+    val newScreen = width
+    if newScreen != previousScreen then
+      screenKind.set(newScreen)
+      previousScreen = newScreen
+  }
+
+  def apply() =
+    screenKind.signal.map {
+      case Screen.Computer => computerPlusScreen
+      case Screen.Tablet   => tabletScreen
+      case Screen.Mobile   => mobileScreen
+    }
 
   private def Navlink(name: String, page: Page): Li =
     li(

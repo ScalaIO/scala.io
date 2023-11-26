@@ -9,7 +9,7 @@ trait View {
 
   def render: HtmlElement = div(
     Headband(),
-    Header(),
+    child <-- Header(),
     body,
     Footer()
   )
