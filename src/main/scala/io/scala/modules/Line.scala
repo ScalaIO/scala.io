@@ -20,7 +20,7 @@ object Line {
     )
     kind match
       case Normal     => line
-      case Contrasted => line.amend(className := "line line--contrasted")
-      case Colored    => line.amend(className := "line line--colored")
+      case Contrasted => line.amend(className := "line--contrasted")
+      case Colored    => line.amend(className := "line--colored")
 
 }

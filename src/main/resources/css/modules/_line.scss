@@ -1,13 +1,14 @@
 .line {
-  height: 1px;
   width: 100%;
   background-color: $text-color;
 }
 
 .line--contrasted {
+  @extend .line;
   background-color: $text-color-contrast;
 }
 
 .line--colored {
-  background-color: var(--color-primary);
+  @extend .line;
+  background-color: $main-color;
 }
