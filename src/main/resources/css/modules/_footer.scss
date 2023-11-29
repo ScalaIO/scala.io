@@ -1,5 +1,5 @@
 .footer {
-  @extend %flex-column;
+  @extend .flex-column;
   background-color: $secondary-color;
   color: $text-color-contrast;
   gap: $spacing-large;
@@ -24,7 +24,7 @@
 }
 
 .footer__newsletter {
-  @extend %flex-column;
+  @extend .flex-column;
   justify-content: space-between;
 }
 

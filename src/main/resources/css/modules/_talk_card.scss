@@ -92,3 +92,27 @@
     rotate: 90deg;
   }
 }
+
+.talk-card-modal {
+  position: sticky;
+  bottom: 0px;
+  background-color: lightcoral;
+  animation: slideIn 0.25s;
+
+  .close {
+    position: absolute;
+    right: 50px;
+    top: 50px;
+    font-size: $text-size-x-huge;
+    line-height: 20px;
+    color: $text-color;
+  
+    &:hover {
+      opacity: 0.8;
+      font-size: $text-size-huge;
+      cursor: pointer;
+    }
+  
+    transition: opacity 0.5s, font-size 0.5s, left 0.5s, top 0.5s;
+  }
+}

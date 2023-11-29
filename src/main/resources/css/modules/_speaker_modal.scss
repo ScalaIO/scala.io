@@ -17,7 +17,7 @@
 
 .speaker-modal__container {
   width: 800px;
-  @extend %flex-column;
+  @extend .flex-column;
   gap: 60px;
 }
 
@@ -52,7 +52,7 @@
 }
 
 .speaker-modal__title {
-  @extend %flex-column;
+  @extend .flex-column;
 }
 
 .speaker-modal__speaker__name {

@@ -3,9 +3,10 @@ package io.scala.modules
 import io.scala.domaines.Kind
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
+import io.scala.views.ScheduleState
 
 import com.raquo.laminar.api.L.{*, given}
-
+import org.scalajs.dom
 object TalkKindTag:
   def apply(kind: Kind) =
     div(
@@ -24,6 +25,9 @@ object TalkCard:
   def apply(speaker: Speaker) =
     div(
       className := "talk-card",
+      onClick --> { _ =>
+        ScheduleState.selectedTalk.set(Some(speaker))
+      },
       div(
         h3(
           speaker.talk.title,

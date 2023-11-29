@@ -5,7 +5,7 @@
   border-radius: 10px;
   transition: all 0.3s ease-in-out;
 
-  @extend %flex-column;
+  @extend .flex-column;
 
   &:after {
     content: "";
@@ -38,7 +38,7 @@
 
 .speaker-card__information {
   height: 35%;
-  @extend %flex-column;
+  @extend .flex-column;
   margin: 20px;
 }
 

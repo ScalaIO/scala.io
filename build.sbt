@@ -11,11 +11,13 @@ lazy val root = project
   .in(file("."))
   .enablePlugins(ScalaJSPlugin)
   .settings(
+    resolvers += "jitpack" at "https://jitpack.io",
     libraryDependencies ++= Seq(
-      "com.raquo"   %%% "laminar"  % Dependencies.laminar,
-      "com.raquo"   %%% "waypoint" % Dependencies.waypoint,
-      "com.lihaoyi" %%% "upickle"  % Dependencies.upickle,
-      "org.scala-js" %%% "scalajs-dom" % "2.4.0"
+      "com.raquo"                               %%% "laminar"              % Dependencies.laminar,
+      "com.raquo"                               %%% "waypoint"             % Dependencies.waypoint,
+      "com.lihaoyi"                             %%% "upickle"              % Dependencies.upickle,
+      "org.scala-js"                            %%% "scalajs-dom"          % "2.4.0",
+      "com.github.fdietze.scala-js-fontawesome" %%% "scala-js-fontawesome" % "a412650e7f"
     ),
     scalaJSUseMainModuleInitializer := true,
     scalaJSLinkerConfig ~= {
@@ -23,7 +25,7 @@ lazy val root = project
         .withModuleSplitStyle(SmallModulesFor(List("io.scala")))
         .withSourceMap(false)
     },
-    publicFolderDev := linkerOutputDirectory((Compile / fastLinkJS).value).getAbsolutePath,
+    publicFolderDev  := linkerOutputDirectory((Compile / fastLinkJS).value).getAbsolutePath,
     publicFolderProd := linkerOutputDirectory((Compile / fullLinkJS).value).getAbsolutePath
   )
 

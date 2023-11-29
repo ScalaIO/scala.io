@@ -253,12 +253,11 @@ hr {
 }
 
 .schedule__tab {
-  overflow: hidden;
   display: flex;
   justify-content: space-around;
   position: sticky;
   top: 0px;
-  background-color: #fff;
+  background-color: #fcfafa;
   z-index: 10;
 }
 
@@ -281,12 +280,12 @@ hr {
 
 .schedule__tabcontent {
   padding: 1rem;
-  background-color: #fff;
   display: none;
 }
 
 .schedule__day__timeslot {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .schedule__time {
@@ -307,11 +306,6 @@ hr {
   border-top: 1px solid #ccc;
 }
 
-@media screen and (max-width: 900px) {
-  .schedule__day__timeslot {
-    display: block;
-  }
-}
 .classy-button {
   color: #222222;
   font-weight: 500;
@@ -517,6 +511,110 @@ header .logo:hover {
 
 .line--colored {
   background-color: #ce0013;
+}
+
+.card-overlay {
+  z-index: 10;
+  position: fixed;
+  overflow-x: hidden;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+}
+.card-overlay .card-overlay__title {
+  font-size: 24px;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.card-overlay .card-overlay__description {
+  font-size: 16px;
+  margin-bottom: 16px;
+}
+
+.modal {
+  position: relative;
+  z-index: 100;
+  background-color: #fcfafa;
+  animation: slideIn 0.25s;
+  max-width: min(600px, 80%);
+  padding: 40px;
+  border-radius: 40px;
+  max-height: min(600px, 80vh);
+  overflow-y: auto;
+}
+.modal .talk-title {
+  font-size: 40px;
+}
+.modal .talk-speaker {
+  font-size: 32px;
+}
+.modal .talk-description {
+  font-size: 24px;
+}
+.modal .header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.modal .close {
+  font-size: 24px;
+  color: #222222;
+  width: 32px;
+  transition: all 0.25s ease-in-out;
+}
+.modal .close:hover {
+  transform: scale(1.2);
+}
+@media screen and (max-width: 1024px) {
+  .modal {
+    padding: 32px;
+    border-radius: 32px;
+  }
+  .modal .talk-title {
+    font-size: 40px;
+  }
+  .modal .talk-speaker {
+    font-size: 32px;
+  }
+  .modal .talk-description {
+    font-size: 24px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .modal {
+    padding: 24px;
+    border-radius: 24px;
+  }
+  .modal .talk-title {
+    font-size: 32px;
+  }
+  .modal .talk-speaker {
+    font-size: 24px;
+  }
+  .modal .talk-description {
+    font-size: 16px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .modal {
+    padding: 8px;
+    border-radius: 8px;
+  }
+  .modal .talk-title {
+    font-size: 24px;
+  }
+  .modal .talk-speaker {
+    font-size: 16px;
+  }
+  .modal .talk-description {
+    font-size: 12px;
+  }
 }
 
 .shiny-button {
@@ -799,6 +897,27 @@ header .logo:hover {
     rotate: 90deg;
   }
 }
+.talk-card-modal {
+  position: sticky;
+  bottom: 0px;
+  background-color: lightcoral;
+  animation: slideIn 0.25s;
+}
+.talk-card-modal .close {
+  position: absolute;
+  right: 50px;
+  top: 50px;
+  font-size: 80px;
+  line-height: 20px;
+  color: #222222;
+  transition: opacity 0.5s, font-size 0.5s, left 0.5s, top 0.5s;
+}
+.talk-card-modal .close:hover {
+  opacity: 0.8;
+  font-size: 64px;
+  cursor: pointer;
+}
+
 .title {
   font-size: 50px;
   line-height: 68px;
@@ -806,7 +925,6 @@ header .logo:hover {
   position: relative;
   margin-bottom: 15px;
 }
-
 .title:before {
   content: "";
   position: absolute;
@@ -845,7 +963,7 @@ h2 {
   gap: 8px;
 }
 
-.all-sponsors,
+.flex-column, .all-sponsors,
 .sponsor-kind, .footer, .footer__newsletter, .navbar-tablet-view, .speaker-card, .speaker-card__information, .speaker-modal__container, .speaker-modal__title {
   display: flex;
   flex-direction: column;

@@ -65,8 +65,8 @@ object Footer {
         className := "footer__copyright"
       ),
       div(
-        social(Linkedin(), "https://www.linkedin.com/company/scala-io"),
-        social(Twitter(), "https://twitter.com/ScalaIO_FR"),
+        social(Linkedin.render, "https://www.linkedin.com/company/scala-io"),
+        social(Twitter.render, "https://twitter.com/ScalaIO_FR"),
         className := "footer__socials"
       ),
       className := "footer__container"

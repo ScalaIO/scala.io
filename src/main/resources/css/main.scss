@@ -9,6 +9,11 @@ $secondary-color: #1a1313;
 
 $background-color: #fcfafa;
 
+$mobile-width: 425px;
+$tablet-width: 768px;
+$laptop-width: 1024px;
+$desktop-width: 1440px;
+
 $spacing-x-small: 8px;
 $spacing-small: 16px;
 $spacing-medium: 24px;
@@ -29,6 +34,12 @@ $text-size-huge: 64px;
 $text-size-x-huge: 80px;
 $text-size-xx-huge: 96px;
 
+$b-radius-4: 4px;
+$b-radius-8: 8px;
+$b-radius-16: 16px;
+$b-radius-24: 24px;
+
+
 $text-bold-weight: 700;
 
 $headband-height: 28px;
@@ -36,6 +47,10 @@ $headband-height: 28px;
 $front-img-height: 400px;
 
 $footer-logo-height: 32px;
+
+$close-button-size-small: 16px;
+$close-button-size-medium: 24px;
+$close-button-size-large: 32px;
 // Tools
 @import "tools/reset";
 @import "tools/animation";
@@ -52,6 +67,7 @@ $footer-logo-height: 32px;
 @import "modules/headband";
 @import "modules/header";
 @import "modules/line";
+@import "modules/modal";
 @import "modules/shiny_button";
 @import "modules/speaker_card";
 @import "modules/speaker_modal";
@@ -87,7 +103,7 @@ h2 {
   gap: $spacing-x-small;
 }
 
-%flex-column {
+.flex-column {
   display: flex;
   flex-direction: column;
 }

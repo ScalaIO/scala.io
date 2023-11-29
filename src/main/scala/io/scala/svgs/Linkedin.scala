@@ -1,14 +1,12 @@
 package io.scala.svgs
 
-import io.scala.Page
-
 import com.raquo.laminar.api.L.SvgElement
 import com.raquo.laminar.api.L.svg.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom.html
 
 object Linkedin {
-  def apply(): SvgElement = svg(
+  val render = svg(
     viewBox := "0 0 72 72",
     xmlns   := "http://www.w3.org/2000/svg",
     g(

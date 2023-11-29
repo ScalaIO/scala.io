@@ -1,10 +1,9 @@
 .schedule__tab {
-  overflow: hidden;
   display: flex;
   justify-content: space-around;
   position: sticky;
   top: 0px;
-  background-color: #fff;
+  background-color: $background-color;
   z-index: 10;
 }
 
@@ -29,12 +28,12 @@
 
 .schedule__tabcontent {
   padding: 1rem;
-  background-color: #fff;
   display: none;
 }
 
 .schedule__day__timeslot {
   display: flex;
+  flex-wrap: wrap;
 }
 
 .schedule__time {
@@ -53,10 +52,4 @@
 .schedule__day {
   display: flex;
   border-top: 1px solid #ccc;
-}
-
-@media screen and (max-width: 900px) {
-  .schedule__day__timeslot {
-    display: block;
-  }
 }

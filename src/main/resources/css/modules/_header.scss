@@ -32,7 +32,7 @@ header {
 }
 
 .navbar-tablet-view {
-  @extend %flex-column;
+  @extend .flex-column;
   height: auto;
 }
 
