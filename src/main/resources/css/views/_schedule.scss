@@ -1,0 +1,52 @@
+@use "../base/vars";
+
+.schedule__tab {
+  display: flex;
+  justify-content: space-around;
+  position: sticky;
+  top: 0px;
+  background-color: vars.$background-color;
+  z-index: 10;
+}
+
+.schedule__tab button {
+  background-color: inherit;
+  float: left;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  padding: 14px 16px;
+  transition: 0.3s;
+  font-size: 17px;
+
+  &:hover {
+    background-color: #ddd;
+  }
+
+  &:active {
+    background-color: #ccc;
+  }
+}
+
+.schedule__tabcontent {
+  padding: 1rem;
+  display: none;
+}
+
+.schedule__time {
+  padding-right: 16px;
+}
+
+.schedule__time_hour {
+  font-size: 1.5rem;
+  margin-right: 0.25rem;
+}
+
+.schedule__time_minute {
+  font-size: 1rem;
+}
+
+.schedule__day {
+  display: flex;
+  border-top: 1px solid #ccc;
+}

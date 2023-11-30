@@ -23,7 +23,7 @@ object Header {
       previousScreen = newScreen
   }
 
-  def apply() =
+  lazy val render =
     screenKind.signal.map {
       case Screen.Computer => computerPlusScreen
       case Screen.Tablet   => tabletScreen
@@ -40,7 +40,7 @@ object Header {
   private val linksPage = Seq(
     Lexicon.Header.speakers -> Page.SpeakersPage,
     Lexicon.Header.sponsors -> Page.SponsorsPage,
-    Lexicon.Header.venue    -> Page.IndexPage,
+    Lexicon.Header.venue    -> Page.VenuePage,
     Lexicon.Header.schedule -> Page.SchedulePage
   )
 

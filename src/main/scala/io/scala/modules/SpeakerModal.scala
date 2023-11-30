@@ -1,56 +1,66 @@
 package io.scala.modules
 
 import io.scala.domaines.Speaker
+import io.scala.svgs.Cross
 import io.scala.views.Speakers.selectedSpeaker
 
 import com.raquo.laminar.api.L.{*, given}
 
 object SpeakerModal {
-  def apply(speaker: Speaker, variable: Var[Option[Speaker]]) =
+  def apply(speaker: Var[Option[Speaker]]) =
     div(
-      div(
-        "×",
-        onClick.mapTo(None) --> variable,
+      role := "dialog",
+      className := "card-overlay",
+      display <-- speaker.signal.map(_.isDefined).map {
+        case true  => "flex"
+        case false => "none"
+      },
+      button(
+        Cross(),
+        onClick.mapTo(None) --> speaker,
         className := "speaker-modal__close"
       ),
       div(
+        className := "speaker-modal",
         div(
+          className := "header",
           img(
-            src       := speaker.photo.fold("/images/profile.jpg")(path => s"/images/profiles/$path"),
-            width     := "250px",
-            height    := "250px",
-            className := "speaker-modal__photo"
+            src <-- speaker.signal.map {
+              case Some(s) => s.photo.fold("/images/profile.jpg")(path => s"/images/profiles/$path")
+              case None    => "/images/profile.jpg"
+            },
+            className := "speaker-photo"
           ),
           div(
+            className := "speaker-title",
             h1(
-              speaker.name,
-              className := "speaker-modal__speaker__name"
+              className := "speaker-name",
+              child.text <-- speaker.signal.map(_.map(_.name).getOrElse("ø"))
             ),
             span(
-              speaker.job,
-              className := "speaker-modal__speaker__job"
+              className := "title-2",
+              child.text <-- speaker.signal.map(_.map(_.job).getOrElse("ø"))
             ),
             span(
-              speaker.company,
-              className := "speaker-modal__speaker__company"
-            ),
-            className := "speaker-modal__title"
+              className := "title-2",
+              child.text <-- speaker.signal.map(_.map(_.company).getOrElse("ø"))
+            )
           ),
-          className := "speaker-modal__header"
+          button(
+            className := "close",
+            onClick --> { _ => speaker.set(None) },
+            Cross()
+          )
         ),
         div(
-          h2(
-            speaker.talk.name,
-            className := "speaker-modal__section__title"
+          div(
+            className := "title-2",
+            child.text <-- speaker.signal.map(_.map(_.talk.title).getOrElse("ø"))
           ),
           p(
-            speaker.talk.description,
-            className := "speaker-modal__section__content"
-          ),
-          className := "speaker-modal__section"
-        ),
-        className := "speaker-modal__container"
-      ),
-      className := "speaker-modal"
+            child.text <-- speaker.signal.map(_.map(_.talk.description).getOrElse("ø"))
+          )
+        )
+      )
     )
 }

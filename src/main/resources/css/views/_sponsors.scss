@@ -1,25 +1,58 @@
-.sponsors__buttons {
-  @extend .flex-spacing-small;
-}
+@use "../base/vars";
 
-.all-sponsors,
-.sponsor-kind {
-  @extend %flex-column;
+.sponsors__buttons {
+  display: flex;
+  gap: vars.$spacing-x-small;
 }
 
 .all-sponsors {
-  gap: $spacing-x-large;
+  display: flex;
+  flex-direction: column;
+  gap: vars.$spacing-x-large;
 }
 
 .sponsor-kind {
+  display: flex;
+  flex-direction: column;
   align-items: center;
 }
 
 .sponsor-kind__title {
-  font-size: $text-size-x-large;
+  font-size: vars.$text-size-x-large;
 }
 
 .sponsor-kind__logos {
-  @extend .flex-center-wrap;
-  gap: $spacing-small;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: vars.$spacing-small;
+}
+
+%sponsor-logo {
+  flex: 1;
+}
+.sponsor-logo-platinum {
+  @extend %sponsor-logo;
+  width: 256px;
+}
+
+.sponsor-logo-gold {
+  @extend %sponsor-logo;
+  width: 224px;
+}
+
+.sponsor-logo-silver {
+  @extend %sponsor-logo;
+  width: 192px;
+}
+
+.sponsor-logo-community {
+  @extend %sponsor-logo;
+  width: 160px;
+}
+
+.sponsor-logo-love {
+  @extend %sponsor-logo;
+  width: 128px;
 }

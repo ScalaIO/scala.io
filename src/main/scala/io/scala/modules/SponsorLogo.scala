@@ -13,6 +13,7 @@ object SponsorLogo {
         className := s"sponsor-logo-${sponsor.rank.css}"
       ),
       href   := sponsor.website,
-      target := "_blank"
+      target := "_blank",
+      className := "sponsor-card"
     )
 }

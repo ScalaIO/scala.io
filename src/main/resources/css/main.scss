@@ -1,131 +1,64 @@
-// Variables
-$text-color: #222222;
-$text-color-light: #666;
-$text-color-contrast: #fff;
-
-$main-color: #ce0013;
-$main-color-darker: #390909;
-$secondary-color: #1a1313;
-
-$background-color: #fcfafa;
-
-$spacing-x-small: 8px;
-$spacing-small: 16px;
-$spacing-medium: 24px;
-$spacing-large: 32px;
-$spacing-x-large: 40px;
-$spacing-xx-large: 48px;
-$spacing-huge: 64px;
-$spacing-x-huge: 80px;
-$spacing-xxx-huge: 112px;
-
-$text-size-small: 12px;
-$text-size-medium: 16px;
-$text-size-large: 24px;
-$text-size-x-large: 32px;
-$text-size-xx-large: 40px;
-$text-size-xxx-large: 48px;
-$text-size-huge: 64px;
-$text-size-x-huge: 80px;
-$text-size-xx-huge: 96px;
-
-$text-bold-weight: 700;
-
-$headband-height: 28px;
-
-$front-img-height: 400px; 
-
-$footer-logo-height: 32px;
+// Mixin
+@use "base/mixins";
+@use "base/vars";
 // Tools
-@import "tools/reset";
-@import "tools/animation";
+@use "tools/reset";
+@use "tools/animation";
 
 // Views
-@import "views/index";
-@import "views/speakers";
-@import "views/sponsors";
+@use "views/index";
+@use "views/speakers";
+@use "views/sponsors";
+@use "views/schedule";
 
 // Modules
-@import "modules/classy_button";
-@import "modules/footer";
-@import "modules/headband";
-@import "modules/header";
-@import "modules/line";
-@import "modules/shiny_button";
-@import "modules/speaker_card";
-@import "modules/speaker_modal";
-@import "modules/sponsor_logo";
-@import "modules/title";
+@use "modules/classy_button";
+@use "modules/footer";
+@use "modules/headband";
+@use "modules/header";
+@use "modules/line";
+@use "modules/modal";
+@use "modules/shiny_button";
+@use "modules/card";
+@use "modules/title";
+@use "modules/venue";
 
-// Generic
-// ==================
+/* -------------------------------------------------------------------------- */
+/*                                   Generic                                  */
+/* -------------------------------------------------------------------------- */
 body {
   font-family: sans-serif;
-  font-size: $text-size-medium;
-  color: $text-color;
+  font-size: vars.$text-size-medium;
+  color: vars.$text-color;
   line-height: 1.6;
-  background: $background-color;
+  background: vars.$background-color;
 }
 
 h2 {
-  font-weight: $text-bold-weight;
-  font-size: $text-size-large;
+  font-weight: vars.$text-bold-weight;
+  font-size: vars.$text-size-large;
 }
 
 .container {
   min-width: 335px;
+  margin: vars.$spacing-xx-large vars.$spacing-huge;
+  @include mixins.marginFor(
+    vars.$laptop-width,
+    vars.$spacing-x-large,
+    vars.$spacing-large
+  );
+  @include mixins.marginFor(
+    vars.$tablet-width,
+    vars.$spacing-large,
+    vars.$spacing-medium
+  );
+  @include mixins.marginFor(
+    vars.$mobile-width,
+    vars.$spacing-medium,
+    vars.$spacing-small
+  );
 }
 
 .catch-phrase {
-  margin-bottom: $spacing-small;
-}
-
-.flex-spacing-small {
-  display: flex;
-  gap: $spacing-x-small;
-}
-
-%flex-column {
-  display: flex;
-  flex-direction: column;
-}
-
-.flex-center {
-  display: flex;
-  justify-content: space-evenly;
-  align-items: center;
-}
-
-%flex-between {
-  display: flex;
-  justify-content: space-between;
-}
-
-.flex-center-wrap {
-  @extend .flex-center;
-  flex-wrap: wrap;
-}
-
-@media only screen and (max-width: 768px) {
-  .container {
-    margin: 40px $spacing-medium;
-  }
-}
-
-@media only screen and (min-width: 769px) and (max-width: 1024px) {
-  .container {
-    margin: 50px $spacing-huge;
-  }
-}
-
-@media only screen and (min-width: 1025px) and (max-width: 1440px) {
-  .container {
-    margin: 60px $spacing-x-huge;
-  }
-}
-
-@media only screen and (min-width: 1441px) {
-  .container {
-    margin: 70px $spacing-xxx-huge;
-  }
+  margin-bottom: vars.$spacing-small;
 }

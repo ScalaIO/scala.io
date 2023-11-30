@@ -1,6 +1,8 @@
+@use "../base/vars";
+
 header {
-  background-color: $secondary-color;
-  color: $text-color-contrast;
+  background-color: vars.$secondary-color;
+  color: vars.$text-color-contrast;
   padding: 16px 24px;
   display: flex;
   justify-content: space-between;
@@ -25,37 +27,37 @@ header {
 }
 
 .navbar-links-mobile-buttons {
-  @extend .flex-spacing-small;
-  flex-direction: row;
+  display: flex;
   align-items: center;
+  gap: vars.$spacing-x-small;
   color: #fff;
 }
 
 .navbar-tablet-view {
-  @extend %flex-column;
-  height: auto;
+  display: flex;
+  flex-direction: column;
 }
 
 .header__navbar__link {
   text-transform: uppercase;
-  padding: $spacing-x-small $spacing-small;
+  padding: vars.$spacing-x-small vars.$spacing-small;
   vertical-align: middle;
 
   &:hover {
-    background-color: $main-color-darker;
-    border-bottom: 5px solid $main-color;
+    background-color: vars.$main-color-darker;
+    border-bottom: 5px solid vars.$main-color;
     cursor: pointer;
   }
 }
 
 .header__call-to-action {
-  background-color: $main-color;
+  background-color: vars.$main-color;
   border-radius: 10px;
   padding: 5px 15px;
 
   &:hover {
-    background-color: $text-color-contrast;
-    color: $text-color;
+    background-color: vars.$text-color-contrast;
+    color: vars.$text-color;
     cursor: pointer;
   }
 
@@ -77,7 +79,7 @@ header .logo {
   top: 82px;
   right: 24px;
   background-color: #e8e8e8;
-  color: $text-color;
+  color: vars.$text-color;
   border-radius: 4px;
 }
 

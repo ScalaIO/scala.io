@@ -1,0 +1,43 @@
+@mixin paddingFor($max-width, $v-padding, $h-padding) {
+  @media screen and (max-width: $max-width) {
+    padding: $v-padding $h-padding;
+  }
+}
+
+@mixin marginFor($max-width, $v-margin, $h-margin) {
+  @media screen and (max-width: $max-width) {
+    margin: $v-margin $h-margin;
+  }
+}
+
+@mixin gapFor($max-width, $gap) {
+  @media screen and (max-width: $max-width) {
+    gap: $gap;
+  }
+}
+
+@mixin modal-size(
+  $max-width,
+  $spacing,
+  $title-size,
+  $subtitle-size,
+  $description-size
+) {
+  @media screen and (max-width: $max-width) {
+    padding: $spacing;
+    border-radius: $spacing;
+    .title-1 {
+      font-size: $title-size;
+    }
+    .title-2 {
+      font-size: $subtitle-size;
+    }
+    p {
+      font-size: $description-size;
+    }
+    .close {
+      top: $spacing;
+      right: $spacing;
+    }
+  }
+}

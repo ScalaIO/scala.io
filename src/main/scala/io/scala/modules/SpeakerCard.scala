@@ -9,32 +9,27 @@ object SpeakerCard {
     div(
       img(
         src       := speaker.photo.fold("/images/profile.jpg")(path => s"/images/profiles/$path"),
-        className := "speaker-card__photo"
+        className := "speaker-photo"
       ),
       div(
         div(
           div(
-            speaker.presentation.toString,
-            className := s"speaker-card__presentation ${speaker.presentation.toStyle}"
+            speaker.talk.kind.toString,
+            className := s"${speaker.talk.kind.toStyle}"
           ),
           div(
-            className := "speaker-card__socials"
+            speaker.socialNetworks,
+            className := "speaker-socials"
           ),
-          className := "speaker-card__headband"
+          className := "speaker-headband"
         ),
         h2(
           speaker.name,
-          className := "speaker-card__name"
+          className := "card-title"
         ),
-        span(
-          speaker.job,
-          className := "speaker-card__job"
-        ),
-        span(
-          speaker.company,
-          className := "speaker-card__company"
-        ),
-        className := "speaker-card__information"
+        p(speaker.job),
+        p(speaker.company),
+        className := "speaker-information"
       ),
       onClick.mapTo(Some(speaker)) --> variable,
       className := "speaker-card"

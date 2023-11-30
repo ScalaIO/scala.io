@@ -1,0 +1,148 @@
+@use "../base/vars";
+@use "../base/mixins";
+
+.card-overlay {
+  z-index: 10;
+  position: fixed;
+  overflow-x: hidden;
+  align-items: center;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  transition: all 0.5s ease-in-out;
+
+  .card-overlay__title {
+    font-size: vars.$text-size-large;
+    font-weight: vars.$text-bold-weight;
+    margin-bottom: vars.$spacing-small;
+  }
+
+  .card-overlay__description {
+    font-size: vars.$text-size-medium;
+    margin-bottom: vars.$spacing-small;
+  }
+}
+
+%modal {
+  position: relative;
+  z-index: 100;
+  background-color: vars.$background-color;
+  animation: slideIn 0.25s;
+  max-width: min(600px, 80%);
+  padding: vars.$spacing-x-large;
+  border-radius: vars.$spacing-x-large;
+  max-height: min(600px, 80vh);
+  overflow-y: auto;
+
+  .header {
+    display: flex;
+  }
+
+  .title-1 {
+    font-size: vars.$text-size-xx-large;
+  }
+
+  .title-2 {
+    font-size: vars.$text-size-x-large;
+  }
+
+  p {
+    font-size: vars.$text-size-large;
+  }
+
+  .close {
+    position: absolute;
+    top: vars.$spacing-x-large;
+    right: vars.$spacing-x-large;
+    font-size: vars.$text-size-xx-large;
+    font-size: vars.$text-size-large;
+    color: vars.$text-color;
+    width: vars.$close-button-size-large;
+
+    &:hover {
+      transform: scale(1.2);
+    }
+
+    transition: all 0.25s ease-in-out;
+  }
+
+  @include mixins.modal-size(
+    vars.$laptop-width,
+    vars.$spacing-large,
+    vars.$text-size-xx-large,
+    vars.$text-size-x-large,
+    vars.$text-size-large
+  );
+  @include mixins.modal-size(
+    vars.$tablet-width,
+    vars.$spacing-medium,
+    vars.$text-size-x-large,
+    vars.$text-size-large,
+    vars.$text-size-medium
+  );
+  @include mixins.modal-size(
+    vars.$mobile-width,
+    vars.$spacing-x-small,
+    vars.$text-size-large,
+    vars.$text-size-medium,
+    vars.$text-size-small
+  );
+}
+
+.talk-modal {
+  @extend %modal;
+
+  .header {
+    align-items: center;
+  }
+}
+
+.speaker-modal {
+  @extend %modal;
+
+  .header {
+    align-items: flex-start;
+    gap: vars.$spacing-medium;
+    margin-bottom: vars.$spacing-medium;
+
+    @media screen and (max-width: vars.$mobile-width) {
+      flex-direction: column;
+      align-items: center;
+    }
+  }
+
+  .speaker-photo {
+    object-fit: cover;
+    max-width: min(200px, 24%);
+    max-height: 100%;
+    border-radius: 125px 125px 10px 125px;
+  }
+
+  .speaker-title {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .speaker-name {
+    @extend .title-1;
+    font-weight: 700;
+    color: vars.$main-color-darker;
+  }
+
+  .speaker-job,
+  .speaker-company {
+    font-weight: 400;
+    font-size: vars.$text-size-large;
+    color: vars.$text-color;
+  }
+
+  .talk-title {
+    font-weight: vars.$text-bold-weight;
+    font-size: vars.$text-size-large;
+    color: vars.$main-color-darker;
+  }
+}

@@ -8,7 +8,7 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom.html
 
 object Twitter {
-  def apply(): SvgElement = svg(
+  def apply() = svg(
     xmlns   := "http://www.w3.org/2000/svg",
     viewBox := "0 0 248 204",
     path(

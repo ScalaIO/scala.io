@@ -1,6 +1,12 @@
 package io.scala
 
-import io.scala.domaines.{Presentation, Speaker, Sponsor, Talk}
+import io.scala.domaines.{Kind, Speaker, Sponsor, Talk}
+import io.scala.domaines.ConfDay
+import io.scala.domaines.Room
+import io.scala.domaines.Time
+
+import scala.util.Random
+import io.scala.domaines.Social
 
 object Lexicon {
   object Headband {
@@ -17,38 +23,37 @@ object Lexicon {
   }
 
   object Speakers {
-    val catchPhrase  = "Become a ScalaIO 2023 speakers sharing what you love with the community."
+    val catchPhrase  = "Become a ScalaIO 2024 speakers sharing what you love with the community."
     val callToAction = "Become a speaker"
 
-    val speakers = Seq.fill(20)(
+    val title = "Some nice title"
+    val loremIpsum =
+      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
+
+    var i = 0;
+    val speakers = Seq.fill(32) {
+      i += 1
       Speaker(
-        name = "John Doe",
+        name = "John Doe" + i,
         photo = None,
-        presentation = Presentation.Keynote,
-        job = "Data Engineer",
-        company = "Scala.IO",
-        socials = List.empty,
+        job = "Data Engineer" + i,
+        company = "Scala.IO" + i,
+        socials = List(Social(Social.Kind.Twitter, "https://twitter.com/scala_io"), Social(Social.Kind.Linkedin, "https://www.linkedin.com/company/scala-io/")),
         talk = Talk(
-          name = "Scala is a good language",
-          description = """Scala is considered an incredible language
-              |because it is a highly expressive and concise
-              |programming language that combines functional
-              |and object-oriented programming paradigms. It
-              |has built-in support for concurrency, making it
-              |easier to write parallel and asynchronous code,
-              |and it is fully interoperable with Java. These
-              |features, along with its powerful type system
-              |and functional programming features, make Scala
-              |a popular choice for building large-scale, complex
-              |systems in a variety of domains.""".stripMargin.replace("\n", " ")
+          title = title + i,
+          kind = Kind.fromOrdinal(Random.nextInt(3)),
+          description = loremIpsum,
+          day = Some(ConfDay.fromOrdinal(Random.nextInt(2))),
+          start = Some(Time(9 + Random.nextInt(7), 0)),
+          room = Some(Room.fromOrdinal(Random.nextInt(3)))
         )
       )
-    )
+    }
   }
 
   object Sponsors {
     val catchPhrase =
-      "Become a ScalaIO 2023 sponsor and promote your services, products or simply increase your brand awareness with more than 350 passionate Scala, Spark, and FP languages developers!"
+      "Become a ScalaIO 2024 sponsor and promote your services, products or simply increase your brand awareness with more than 350 passionate Scala, Spark, and FP languages developers!"
     val callToAction   = "Become a sponsor"
     val callToBrochure = "Download the brochure"
 
@@ -92,6 +97,14 @@ object Lexicon {
         )
       )
     ).flatten
+  }
+
+  object Venue {
+    val catchPhrase = "A cosy place in the heart of Nantes"
+  }
+
+  object Schedule {
+    val days = ConfDay.values.map(d => (d.toId, d))
   }
 
   object Footer {
