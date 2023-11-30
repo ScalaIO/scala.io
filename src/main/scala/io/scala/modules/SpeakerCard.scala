@@ -27,12 +27,8 @@ object SpeakerCard {
           speaker.name,
           className := "card-title"
         ),
-        p(
-          speaker.job
-        ),
-        p(
-          speaker.company
-        ),
+        p(speaker.job),
+        p(speaker.company),
         className := "speaker-information"
       ),
       onClick.mapTo(Some(speaker)) --> variable,

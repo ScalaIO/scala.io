@@ -13,7 +13,6 @@ val rooms = Room.values
 
 case class ScheduleDay(definedTalks: Map[Time, Seq[Speaker]], startingTimes: Seq[Time]):
   def body = div(
-      // className := "schedule__day",
       startingTimes.map(time =>
         div(
           className := "schedule__day",

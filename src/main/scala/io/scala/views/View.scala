@@ -10,6 +10,9 @@ trait View {
 
   def render: HtmlElement = div(
     Headband.render,
+    display.flex,
+    flexDirection.column,
+    minHeight := "100vh",
     child <-- Header.render,
     body.amend(flex := "1"),
     Footer.render
