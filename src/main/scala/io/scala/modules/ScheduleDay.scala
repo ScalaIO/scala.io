@@ -19,7 +19,7 @@ case class ScheduleDay(definedTalks: Map[Time, Seq[Speaker]], startingTimes: Seq
           className := "schedule__day",
           time.render,
           div(
-            className := "schedule__day__timeslot",
+            className := "card-container",
             definedTalks
               .find { _._1 == time }
               .map { speakers =>

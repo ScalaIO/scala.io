@@ -6,7 +6,7 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom.html
 
 object Linkedin {
-  val render = svg(
+  def apply() = svg(
     viewBox := "0 0 72 72",
     xmlns   := "http://www.w3.org/2000/svg",
     g(

@@ -7,7 +7,7 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom.html
 
 object Headband {
-  def apply(): Div = div(
+  lazy val render: Div = div(
     span(
       Lexicon.Headband.left,
       className := "headband__information"

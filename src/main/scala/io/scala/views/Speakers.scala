@@ -6,12 +6,15 @@ import io.scala.domaines.{Kind, Speaker, Talk}
 import io.scala.modules.{ClassyButton, Line, SpeakerCard, SpeakerModal, Title}
 import io.scala.views.View
 
-import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.api.L.{className, div, onClick, p, sectionTag, HtmlElement, Var, given}
+import com.raquo.laminar.api.features.unitArrows
+import org.scalajs.dom.Element
 
 case object Speakers extends View {
   private val selectedSpeaker: Var[Option[Speaker]] = Var(None)
 
-  override def body: HtmlElement = div(
+  override def body: HtmlElement = sectionTag(
+    className := "container",
     Title("Speakers"),
     p(
       Lexicon.Speakers.catchPhrase,
@@ -21,12 +24,16 @@ case object Speakers extends View {
     Line(margin = 55),
     div(
       Lexicon.Speakers.speakers.map(SpeakerCard(_, selectedSpeaker)),
-      className := "speakers__cards"
+      className := "card-container"
     ),
-    child <-- selectedSpeaker.signal.map {
-      case None          => emptyNode
-      case Some(speaker) => SpeakerModal(speaker, selectedSpeaker)
-    },
-    className := "container"
+    SpeakerModal(selectedSpeaker),
+    onClick.compose {
+      _.withCurrentValueOf(selectedSpeaker.signal)
+        .collect { case (event, Some(_)) =>
+          event.target match
+            case e: Element if e.classList.contains("card-overlay") =>
+              selectedSpeaker.set(None)
+        }
+    } --> ()
   )
 }

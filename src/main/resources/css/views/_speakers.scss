@@ -1,5 +1,10 @@
+@use "../base/vars";
+
 .speakers__cards {
-  @extend .flex-center-wrap;
-  row-gap: $spacing-xx-large;
-  column-gap: $spacing-medium;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  row-gap: vars.$spacing-xx-large;
+  column-gap: vars.$spacing-medium;
 }

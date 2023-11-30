@@ -18,7 +18,7 @@ object TalkDescription:
     val desc = if (description.length() <= 150) description else description.substring(0, 150) + "..."
     p(
       desc,
-      className := "talk-card__description"
+      className := "talk-description"
     )
 
 object TalkCard:
@@ -28,41 +28,37 @@ object TalkCard:
       onClick --> { _ =>
         ScheduleState.selectedTalk.set(Some(speaker))
       },
-      div(
-        h3(
-          speaker.talk.title,
-          className := "talk-card__title"
-        ),
-        className := "talk-card__headband"
+      h3(
+        speaker.talk.title,
+        className := "card-title"
       ),
       Line(margin = 10),
       div(
-        className := "talk-card__body",
+        className := "card-body",
         TalkDescription(speaker.talk.description)
       ),
       Line(margin = 10),
       div(
-        className := "talk-card__footer",
+        className := "card-footer",
         div(
-          className := "talk-card__speaker",
+          className := "talk-speaker",
           img(
             src       := speaker.photo.fold("/images/profile.jpg")(path => s"/images/profiles/$path"),
-            className := "talk-card__speaker-photo"
+            className := "speaker-photo"
           ),
           div(
-            className := "talk-card__speaker-info",
             p(
               speaker.name,
-              className := "talk-card__speaker-name"
+              className := "speaker-name"
             ),
             p(
               speaker.company,
-              className := "talk-card__speaker-company"
+              className := "speaker-company"
             )
           )
         ),
         p(
-          className := "talk-card__room",
+          className := "room",
           speaker.talk.room.map(_.render).getOrElse("")
         )
       )

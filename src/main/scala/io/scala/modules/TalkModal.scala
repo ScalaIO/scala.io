@@ -10,27 +10,28 @@ import org.scalajs.dom
 object TalkModal:
   def apply(talk: Var[Option[Speaker]]) =
     div(
+      role := "dialog",
       className := "card-overlay",
       display <-- talk.signal.map(_.isDefined).map {
         case true  => "flex"
         case false => "none"
       },
       div(
-        className := "modal",
+        className := "talk-modal",
         div(
           className := "header",
           h2(
-            className := "talk-title",
+            className := "title-1",
             child.text <-- talk.signal.map(_.map(_.talk.title).getOrElse("ø"))
           ),
           button(
             className := "close",
             onClick --> { _ => talk.set(None) },
-            Cross.render
+            Cross()
           )
         ),
         h3(
-          className := "talk-speaker",
+          className := "title-2",
           child.text <-- talk.signal.map {
             _.map { s =>
               s.name + " - " + s.talk.room.map(_.render).getOrElse("")
@@ -38,7 +39,6 @@ object TalkModal:
           }
         ),
           p(
-            className := "talk-description",
             child.text <-- talk.signal.map(_.map(_.talk.description).getOrElse("ø"))
           )
         )

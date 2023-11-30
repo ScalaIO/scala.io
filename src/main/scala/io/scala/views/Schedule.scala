@@ -25,7 +25,7 @@ case object Schedule extends View {
     Lexicon.Speakers.speakers.groupBy(_.talk.day)
   private var days: Map[ConfDay, ScheduleDay] = Map()
 
-  override def body: HtmlElement = div(
+  override def body: HtmlElement = sectionTag(
     className := "container",
     Title("Schedule"),
     p(

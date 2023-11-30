@@ -23,4 +23,9 @@ object Line {
       case Contrasted => line.amend(className := "line--contrasted")
       case Colored    => line.amend(className := "line--colored")
 
+  def separator(vMargin: Int = 0, width: Int = 0, height: Int = 1) =
+    hr(
+      className := "line--colored",
+      styleAttr := s"margin: ${vMargin}px auto; height: ${height}px; width: ${width}%;"
+    )
 }

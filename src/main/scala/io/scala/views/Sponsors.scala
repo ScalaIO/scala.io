@@ -11,7 +11,8 @@ import com.raquo.laminar.api.L.{*, given}
 
 case object Sponsors extends View {
 
-  override def body: HtmlElement = div(
+  override def body: HtmlElement = sectionTag(
+    className := "container",
     Title("Sponsors"),
     p(
       Lexicon.Sponsors.catchPhrase,
@@ -21,28 +22,34 @@ case object Sponsors extends View {
       ClassyButton(Lexicon.Sponsors.callToAction),
       ClassyButton(
         Lexicon.Sponsors.callToBrochure,
-        kind = ButtonKind.Href(Lexicon.Sponsors.brochureUrl),
-        // isImportant = false
+        kind = ButtonKind.Href(Lexicon.Sponsors.brochureUrl)
       ),
       className := "sponsors__buttons"
     ),
     Line(margin = 55),
     div(
-      Lexicon.Sponsors.sponsors.groupBy(_.rank).toSeq.sortBy(_._1).map { case (rank, sponsors) =>
-        div(
-          h2(
-            s"${rank.title} sponsors",
-            className := "sponsor-kind__title"
-          ),
-          div(
-            sponsors.map(SponsorLogo.apply),
-            className := "sponsor-kind__logos"
-          ),
-          className := "sponsor-kind"
-        )
-      },
+      Lexicon.Sponsors.sponsors
+        .groupBy(_.rank)
+        .toSeq
+        .sortBy(_._1)
+        .flatMap { case (rank, sponsors) =>
+          List(
+            div(
+              h2(
+                s"${rank.title}",
+                className := "sponsor-kind__title"
+              ),
+              div(
+                sponsors.map(SponsorLogo.apply),
+                className := "card-container"
+              ),
+              className := "sponsor-kind"
+            ),
+            Line.separator(width = 75, height = 4)
+          )
+        }
+        .dropRight(1),
       className := "all-sponsors"
-    ),
-    className := "container"
+    )
   )
 }

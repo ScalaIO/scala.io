@@ -9,9 +9,9 @@ trait View {
   def body: HtmlElement
 
   def render: HtmlElement = div(
-    Headband(),
-    child <-- Header(),
-    body,
-    Footer()
+    Headband.render,
+    child <-- Header.render,
+    body.amend(flex := "1"),
+    Footer.render
   )
 }

@@ -1,3 +1,5 @@
+@use "../base/vars";
+
 .title {
   font-size: 50px;
   line-height: 68px;
@@ -6,13 +8,13 @@
   margin-bottom: 15px;
 
   &:before {
-    content: '';
+    content: "";
     position: absolute;
     bottom: -2px;
     height: 6px;
     border-radius: 3px;
     width: 60%;
-    background: $main-color;
+    background: vars.$main-color;
     z-index: -1;
   }
 }

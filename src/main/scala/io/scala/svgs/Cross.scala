@@ -6,7 +6,7 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom.html
 
 object Cross:
-  val render =
+  def apply() =
     svg(
       viewBox := "0 0 24 24",
       xmlns   := "http://www.w3.org/2000/svg",

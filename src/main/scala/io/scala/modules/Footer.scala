@@ -11,7 +11,7 @@ object Footer {
   private val summary: Div =
     div(
       Logo(),
-      p(Lexicon.Footer.Description.text, className := "footer__summary__description"),
+      p(Lexicon.Footer.Description.text, className := "description"),
       className := "footer__summary"
     )
 
@@ -19,12 +19,12 @@ object Footer {
     div(
       h3(
         Lexicon.Footer.Newsletter.title,
-        className := "footer__newsletter__title"
+        className := "title-small"
       ),
       div(
         div(
           Lexicon.Footer.Newsletter.description,
-          className := "footer__newsletter__description"
+          className := "description"
         ),
         form(
           action := "https://scala.us13.list-manage.com/subscribe/post?u=32bc8243e81ad6b3dde9a6717&amp;id=c28c7e3f2b",
@@ -39,9 +39,8 @@ object Footer {
             className := "footer__newsletter__email"
           ),
           ShinyButton(Lexicon.Footer.Newsletter.button),
-          className := "footer__newsletter__form"
+          className := "form"
         ),
-        className := "footer__newsletter__body"
       ),
       className := "footer__newsletter"
     )
@@ -49,14 +48,13 @@ object Footer {
   def social(icon: SvgElement, url: String) = a(
     icon,
     href      := url,
-    className := "footer__social"
   )
 
-  def apply(): HtmlElement = footerTag(
+  lazy val render: HtmlElement = footerTag(
     div(
       summary,
       newsletter,
-      className := "footer__container"
+      className := "footer__main"
     ),
     Line(kind = LineKind.Contrasted),
     div(
@@ -65,11 +63,11 @@ object Footer {
         className := "footer__copyright"
       ),
       div(
-        social(Linkedin.render, "https://www.linkedin.com/company/scala-io"),
-        social(Twitter.render, "https://twitter.com/ScalaIO_FR"),
-        className := "footer__socials"
+        social(Linkedin(), "https://www.linkedin.com/company/scala-io"),
+        social(Twitter(), "https://twitter.com/ScalaIO_FR"),
+        className := "social"
       ),
-      className := "footer__container"
+      className := "footer__others"
     ),
     className := "footer"
   )
