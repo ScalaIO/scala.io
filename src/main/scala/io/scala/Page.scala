@@ -12,6 +12,8 @@ enum Page {
   case IndexPage
   case SpeakersPage
   case SponsorsPage
+  case VenuePage
+  case SchedulePage
 }
 
 object Page {
@@ -20,9 +22,11 @@ object Page {
   val indexRoute    = Route.static(Page.IndexPage, root / endOfSegments)
   val speakersRoute = Route.static(Page.SpeakersPage, root / "speakers" / endOfSegments)
   val sponsorsRoute = Route.static(Page.SponsorsPage, root / "sponsors" / endOfSegments)
+  val venueRoute    = Route.static(Page.VenuePage, root / "venue" / endOfSegments)
+  val scheduleRoute = Route.static(Page.SchedulePage, root / "schedule" / endOfSegments)
 
   val router = new Router[Page](
-    routes = List(indexRoute, speakersRoute, sponsorsRoute),
+    routes = List(indexRoute, speakersRoute, sponsorsRoute, venueRoute, scheduleRoute),
     getPageTitle = _ => "ScalaIO",
     serializePage = page => write(page)(pageCodec),
     deserializePage = pageStr => read(pageStr)(pageCodec)
@@ -35,6 +39,8 @@ object Page {
     .collectStatic(Page.IndexPage)(Index.render)
     .collectStatic(Page.SpeakersPage)(Speakers.render)
     .collectStatic(Page.SponsorsPage)(Sponsors.render)
+    .collectStatic(Page.VenuePage)(Venue.render)
+    .collectStatic(Page.SchedulePage)(Schedule.render)
 
   def navigateTo(page: Page): Binder[HtmlElement] = Binder { el =>
 

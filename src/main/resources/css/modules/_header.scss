@@ -1,52 +1,91 @@
-.header {
-  background-color: var(--color-secondary);
-  color: var(--color-text-contrast);
-  padding: 0 20px;
+@use "../base/vars";
+
+header {
+  background-color: vars.$secondary-color;
+  color: vars.$text-color-contrast;
+  padding: 16px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  height: 60px;
 }
 
-.header__navbar {
+.navbar-links,
+.navbar-links-tablet,
+.navbar-links-mobile {
   display: flex;
-  justify-content: center;
   align-items: center;
-  height: 100%;
+  width: 100%;
+}
+
+.navbar-links-tablet,
+.navbar-links-mobile {
+  justify-content: space-between;
+}
+
+.navbar-links {
+  justify-content: center;
+}
+
+.navbar-links-mobile-buttons {
+  display: flex;
+  align-items: center;
+  gap: vars.$spacing-x-small;
+  color: #fff;
+}
+
+.navbar-tablet-view {
+  display: flex;
+  flex-direction: column;
 }
 
 .header__navbar__link {
   text-transform: uppercase;
-  padding: 0 15px;
-  height: 100%;
-  line-height: 60px;
+  padding: vars.$spacing-x-small vars.$spacing-small;
   vertical-align: middle;
 
   &:hover {
-    background-color: var(--color-primary-darker);
-    border-bottom: 5px solid var(--color-primary);
+    background-color: vars.$main-color-darker;
+    border-bottom: 5px solid vars.$main-color;
     cursor: pointer;
   }
 }
 
 .header__call-to-action {
-  background-color: var(--color-primary);
+  background-color: vars.$main-color;
   border-radius: 10px;
   padding: 5px 15px;
 
   &:hover {
-    background-color: var(--color-text-contrast);
-    color: var(--color-text);
+    background-color: vars.$text-color-contrast;
+    color: vars.$text-color;
     cursor: pointer;
   }
 
-  transition: background-color .5s, color .5s;
+  transition: background-color 0.5s, color 0.5s;
 }
 
-.header .logo {
+header .logo {
   height: 28px;
-  
+
   &:hover {
     cursor: pointer;
   }
+}
+
+.header__sidenav {
+  width: 128px;
+  position: fixed;
+  z-index: 1;
+  top: 82px;
+  right: 24px;
+  background-color: #e8e8e8;
+  color: vars.$text-color;
+  border-radius: 4px;
+}
+
+.header__burger {
+  display: block;
+  width: 32px;
+  height: 32px;
+  margin: 6px 0;
 }

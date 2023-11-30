@@ -1,0 +1,188 @@
+@use "../base/vars";
+@use "../base/mixins";
+
+$card-padding: 16px;
+
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  gap: vars.$spacing-small;
+  margin: vars.$spacing-small;
+}
+
+%card {
+  position: relative;
+  display: flex; // Needed for the shadow on hovering
+  flex-direction: column;
+
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  transition: all 0.3s ease-in-out;
+
+  &:after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    border-radius: 10px;
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.3);
+    transition: opacity 0.3s ease-in-out;
+  }
+
+  &:hover {
+    cursor: pointer;
+    transform: translateY(-5px);
+  }
+
+  &:hover::after {
+    opacity: 1;
+  }
+}
+
+.card-title {
+  text-shadow: 4px 4px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: vars.$spacing-x-small;
+  font-weight: 700;
+  font-size: large;
+}
+
+%talk-card-base {
+  flex: 1;
+  min-width: 250px;
+  padding: $card-padding;
+}
+
+.empty-talk-card,
+.talk-card {
+  @extend %talk-card-base;
+}
+
+.talk-card {
+  @extend %card;
+
+  &:after {
+    margin-left: -16px;
+    margin-top: -16px;
+  }
+
+  .card-body {
+    padding: 0px $card-padding;
+  }
+
+  .card-footer {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .talk-description {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .room {
+    color: vars.$text-color-light;
+    font-size: medium;
+    @media screen and (max-width: vars.$tablet-width) {
+      font-size: small;
+      rotate: 90deg;
+    }
+  }
+
+  .talk-speaker {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+
+    .speaker-photo {
+      height: 48px;
+      width: 48px;
+      border-radius: 24px;
+      margin-right: 8px;
+      object-fit: cover;
+    }
+
+    .speaker-name {
+      font-size: medium;
+    }
+
+    .speaker-company {
+      font-size: small;
+    }
+  }
+}
+
+%speaker-card-base {
+  min-width: 128px;
+  max-width: 250px;
+}
+
+.speaker-card {
+  @extend %card;
+  @extend %speaker-card-base;
+  padding: $card-padding;
+
+  &:after {
+    margin-left: -16px;
+    margin-top: -16px;
+  }
+
+  .speaker-photo {
+    background-color: #ecebeb;
+    border-radius: 10px 10px 0 0;
+    object-fit: cover;
+  }
+
+  .speaker-information {
+    margin-top: 20px;
+  }
+
+  .speaker-headband {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: vars.$spacing-small;
+  }
+
+  %speaker-talk-kind {
+    font-size: vars.$text-size-small;
+    text-transform: uppercase;
+    border-radius: 10px;
+    padding: 0px 10px;
+  }
+
+  .presentation-lightning,
+  .presentation-talk,
+  .presentation-keynote {
+    @extend %speaker-talk-kind;
+  }
+  .presentation-lightning {
+    color: #00a300;
+    background-color: rgba(0, 163, 0, 0.4);
+  }
+
+  .presentation-talk {
+    color: #006bce;
+    background-color: rgba(0, 107, 206, 0.4);
+  }
+
+  .presentation-keynote {
+    color: #ce0013;
+    background-color: rgba(206, 0, 19, 0.4);
+  }
+
+  .speaker-socials {
+    display: flex;
+    gap: vars.$spacing-x-small;
+    svg {
+      display: block;
+      height: vars.$card-social-logo-height;
+    }
+  }
+}
+
+.sponsor-card {
+  @extend %card;
+}

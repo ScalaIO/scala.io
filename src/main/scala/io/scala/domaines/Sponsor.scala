@@ -15,11 +15,11 @@ object Sponsor {
     case Love
 
     def title: String = this match
-      case Platinum  => "Platinum"
-      case Gold      => "Gold"
-      case Silver    => "Silver"
-      case Community => "Community"
-      case Love      => "J'aime Scala"
+      case Platinum  => "🎖️ Platinum 🎖️"
+      case Gold      => "🥇 Gold 🥇"
+      case Silver    => "🥈 Silver 🥈"
+      case Community => "👥 Community 👥"
+      case Love      => "❤️ J'aime Scala ❤️"
 
     def css: String = this match
       case Platinum  => "platinum"

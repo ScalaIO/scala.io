@@ -10,9 +10,10 @@ object SponsorLogo {
       img(
         src       := s"/logos/${sponsor.photo}",
         alt       := "logo",
-        className := s"sponsor-logo sponsor-logo--${sponsor.rank.css}"
+        className := s"sponsor-logo-${sponsor.rank.css}"
       ),
       href   := sponsor.website,
-      target := "_blank"
+      target := "_blank",
+      className := "sponsor-card"
     )
 }

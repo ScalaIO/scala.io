@@ -1,9 +1,16 @@
+@use "../base/vars";
+
 .line {
-  height: 1px;
   width: 100%;
-  background-color: var(--color-text);
+  background-color: vars.$text-color;
 }
 
 .line--contrasted {
-  background-color: var(--color-text-contrast);
+  @extend .line;
+  background-color: vars.$text-color-contrast;
+}
+
+.line--colored {
+  @extend .line;
+  background-color: vars.$main-color;
 }

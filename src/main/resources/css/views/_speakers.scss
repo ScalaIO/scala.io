@@ -1,11 +1,10 @@
-.speakers__catch-phrase {
-  margin-bottom: 15px;
-}
+@use "../base/vars";
 
 .speakers__cards {
   display: flex;
+  align-items: center;
+  justify-content: space-evenly;
   flex-wrap: wrap;
-  justify-content: space-around;
-  row-gap: 40px;
-  column-gap: 20px;
+  row-gap: vars.$spacing-xx-large;
+  column-gap: vars.$spacing-medium;
 }

@@ -1,13 +1,15 @@
+@use "../base/vars";
+
 .classy-button {
-  color: var(--color-text);
+  color: vars.$text-color;
 
   font-weight: 500;
   border-radius: 4px;
   padding: 10px 30px;
 
   &:hover {
-    background-color: var(--color-text);
-    color: var(--color-text-contrast);
+    background-color: vars.$text-color;
+    color: vars.$text-color-contrast;
     cursor: pointer;
   }
 
@@ -15,10 +17,10 @@
 }
 
 .classy-button--important {
-  border: 1px solid var(--color-primary);
-  color: var(--color-primary);
+  border: 1px solid vars.$main-color;
+  color: vars.$main-color;
 
   &:hover {
-    background-color: var(--color-primary);
+    background-color: vars.$main-color;
   }
 }
