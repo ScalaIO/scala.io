@@ -1,13 +1,15 @@
+@use "../base/vars";
+
 .headband {
-  height: 28px;
-  background-color: var(--color-primary-darker);
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  padding: 10px 20px;
+  justify-content: space-between;
+  height: vars.$headband-height;
+  background-color: vars.$main-color-darker;
+  padding: vars.$spacing-x-small vars.$spacing-small;
 }
 
 .headband__information {
-  color: var(--color-text-contrast);
-  font-size: 12px;
+  color: vars.$text-color-contrast;
+  font-size: vars.$text-size-small;
 }

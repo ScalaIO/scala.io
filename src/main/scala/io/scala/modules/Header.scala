@@ -13,8 +13,8 @@ import org.scalajs.dom.html
 object Header {
   inline def width            = Screen.fromWidth(dom.window.innerWidth)
   val screenKind: Var[Screen] = Var(width)
-  var burgerClicked = Var(false)
-  private var previousScreen = screenKind.now()
+  var burgerClicked           = Var(false)
+  private var previousScreen  = screenKind.now()
 
   dom.window.onresize = { _ =>
     val newScreen = width
@@ -23,7 +23,7 @@ object Header {
       previousScreen = newScreen
   }
 
-  def apply() =
+  lazy val render =
     screenKind.signal.map {
       case Screen.Computer => computerPlusScreen
       case Screen.Tablet   => tabletScreen
@@ -40,13 +40,13 @@ object Header {
   private val linksPage = Seq(
     Lexicon.Header.speakers -> Page.SpeakersPage,
     Lexicon.Header.sponsors -> Page.SponsorsPage,
-    Lexicon.Header.venue    -> Page.IndexPage,
+    Lexicon.Header.venue    -> Page.VenuePage,
     Lexicon.Header.schedule -> Page.SchedulePage
   )
 
   def links = ul(
     linksPage.map(Navlink _),
-    className := "header__navbar"
+    className := "navbar-links"
   )
   def mobileLinks = ul(
     linksPage.map(Navlink _),
@@ -56,21 +56,21 @@ object Header {
   def computerPlusScreen = headerTag(
     div(Logo(), Page.navigateTo(Page.IndexPage)),
     links,
-    ShinyButton(Lexicon.Header.buyTicket),
-    className := "header__navbar"
+    ShinyButton(Lexicon.Header.buyTicket)
   )
 
   def tabletScreen = headerTag(
-    className := "tablet",
+    className := "navbar-tablet-view",
     div(
       div(Logo(), Page.navigateTo(Page.IndexPage)),
       ShinyButton(Lexicon.Header.buyTicket),
-      className := "header__navbar-tablet"
+      className := "navbar-links-tablet"
     ),
     links
   )
 
   def mobileScreen = headerTag(
+    className := "navbar-links-mobile",
     div(Logo(), Page.navigateTo(Page.IndexPage)),
     div(
       ShinyButton(Lexicon.Header.buyTicket),
@@ -85,8 +85,7 @@ object Header {
           case false => emptyNode
         }
       ),
-      className := "header__navbar-mobile-buttons"
-    ),
-    className := "header__navbar-mobile"
+      className := "navbar-links-mobile-buttons"
+    )
   )
 }

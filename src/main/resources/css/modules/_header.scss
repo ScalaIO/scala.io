@@ -1,63 +1,63 @@
+@use "../base/vars";
+
 header {
-  background-color: var(--color-secondary);
-  color: var(--color-text-contrast);
+  background-color: vars.$secondary-color;
+  color: vars.$text-color-contrast;
   padding: 16px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.header__navbar,
-.header__navbar-tablet,
-.header__navbar-mobile {
+.navbar-links,
+.navbar-links-tablet,
+.navbar-links-mobile {
   display: flex;
   align-items: center;
   width: 100%;
 }
 
-.header__navbar-tablet,
-.header__navbar-mobile {
+.navbar-links-tablet,
+.navbar-links-mobile {
   justify-content: space-between;
 }
 
-.header__navbar {
+.navbar-links {
   justify-content: center;
 }
 
-.header__navbar-mobile-buttons {
+.navbar-links-mobile-buttons {
   display: flex;
-  flex-direction: row;
   align-items: center;
-  gap: 8px;
+  gap: vars.$spacing-x-small;
   color: #fff;
 }
 
-header.tablet {
+.navbar-tablet-view {
   display: flex;
   flex-direction: column;
-  height: auto;
 }
 
 .header__navbar__link {
   text-transform: uppercase;
-  padding: 8px 16px;
+  padding: vars.$spacing-x-small vars.$spacing-small;
   vertical-align: middle;
 
   &:hover {
-    background-color: var(--color-primary-darker);
-    border-bottom: 5px solid var(--color-primary);
+    background-color: vars.$main-color-darker;
+    border-bottom: 5px solid vars.$main-color;
     cursor: pointer;
   }
 }
 
 .header__call-to-action {
-  background-color: var(--color-primary);
+  background-color: vars.$main-color;
   border-radius: 10px;
   padding: 5px 15px;
 
   &:hover {
-    background-color: var(--color-text-contrast);
-    color: var(--color-text);
+    background-color: vars.$text-color-contrast;
+    color: vars.$text-color;
     cursor: pointer;
   }
 
@@ -79,39 +79,10 @@ header .logo {
   top: 82px;
   right: 24px;
   background-color: #e8e8e8;
-  color: var(--color-text);
+  color: vars.$text-color;
   border-radius: 4px;
 }
 
-// .header__open-burger a {
-//   padding: 8px 8px 8px 32px;
-//   text-decoration: none;
-//   font-size: 25px;
-//   color: #818181;
-//   display: block;
-//   transition: 0.3s;
-// }
-
-// .header__open-burger ul {
-//   list-style-type: none;
-//   padding: 0;
-//   margin: 0;
-// }
-
-/* Active class */
-.header__sidenav.active {
-  left: 0;
-}
-
-/* Close btn */
-.header__sidenav .close {
-  position: absolute;
-  top: 0;
-  right: 25px;
-  font-size: 36px;
-}
-
-/* Icône burger */
 .header__burger {
   display: block;
   width: 32px;

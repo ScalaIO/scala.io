@@ -1,82 +1,64 @@
-// Variables
-:root {
-  --color-text: #222222;
-  --color-text-light: #666;
-  --color-text-contrast: #FFF;
-
-  --color-primary: #CE0013;
-  --color-primary-darker: #390909;
-  --color-secondary: #1A1313;
-
-  --color-background: #FCFAFA;
-
-  --spacing-screen: 120px;
-  --spacing-computer: 80px;
-  --spacing-tablet: 60px;
-  --spacing-mobile: 20px;
-}
-
+// Mixin
+@use "base/mixins";
+@use "base/vars";
 // Tools
-@import 'tools/reset';
-@import 'tools/animation';
+@use "tools/reset";
+@use "tools/animation";
 
 // Views
-@import 'views/index';
-@import 'views/speakers';
-@import 'views/sponsors';
+@use "views/index";
+@use "views/speakers";
+@use "views/sponsors";
+@use "views/schedule";
 
 // Modules
-@import 'modules/classy_button';
-@import 'modules/footer';
-@import 'modules/headband';
-@import 'modules/header';
-@import 'modules/line';
-@import 'modules/shiny_button';
-@import 'modules/speaker_card';
-@import 'modules/speaker_modal';
-@import 'modules/sponsor_logo';
-@import 'modules/title';
+@use "modules/classy_button";
+@use "modules/footer";
+@use "modules/headband";
+@use "modules/header";
+@use "modules/line";
+@use "modules/modal";
+@use "modules/shiny_button";
+@use "modules/card";
+@use "modules/title";
+@use "modules/venue";
 
-// Generic
-// ==================
+/* -------------------------------------------------------------------------- */
+/*                                   Generic                                  */
+/* -------------------------------------------------------------------------- */
 body {
   font-family: sans-serif;
-  font-size: 16px;
-  color: var(--color-text);
+  font-size: vars.$text-size-medium;
+  color: vars.$text-color;
   line-height: 1.6;
-  background: var(--background);
+  background: vars.$background-color;
 }
 
 h2 {
-  font-weight: 700;
-  font-size: 24px;
-  line-height: 29px;
+  font-weight: vars.$text-bold-weight;
+  font-size: vars.$text-size-large;
 }
 
 .container {
   min-width: 335px;
+  margin: vars.$spacing-xx-large vars.$spacing-huge;
+  @include mixins.marginFor(
+    vars.$laptop-width,
+    vars.$spacing-x-large,
+    vars.$spacing-large
+  );
+  @include mixins.marginFor(
+    vars.$tablet-width,
+    vars.$spacing-large,
+    vars.$spacing-medium
+  );
+  @include mixins.marginFor(
+    vars.$mobile-width,
+    vars.$spacing-medium,
+    vars.$spacing-small
+  );
 }
 
-@media only screen and (max-width: 768px) {
-  .container {
-    margin: 40px var(--spacing-mobile);
-  }
-}
-
-@media only screen and (min-width: 769px) and (max-width: 1024px) {
-  .container {
-    margin: 50px var(--spacing-tablet);
-  }
-}
-
-@media only screen and (min-width: 1025px) and (max-width: 1440px) {
-  .container {
-    margin: 60px var(--spacing-computer);
-  }
-}
-
-@media only screen and (min-width: 1441px) {
-  .container {
-    margin: 70px var(--spacing-screen);
-  }
+.catch-phrase {
+  margin-bottom: vars.$spacing-small;
 }

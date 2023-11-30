@@ -1,29 +1,58 @@
-.sponsors__catch-phrase {
-  margin-bottom: 15px;
-}
+@use "../base/vars";
 
 .sponsors__buttons {
   display: flex;
-  gap: 10px;
+  gap: vars.$spacing-x-small;
 }
 
-.sponsors__partitions {
+.all-sponsors {
   display: flex;
   flex-direction: column;
-  gap: 40px;
+  gap: vars.$spacing-x-large;
 }
 
-.sponsors__partition {
+.sponsor-kind {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.sponsors__partition__title {
-  font-size: 30px;
+.sponsor-kind__title {
+  font-size: vars.$text-size-x-large;
 }
 
-.sponsors__partition__logos {
+.sponsor-kind__logos {
   display: flex;
-  gap: 20px;
+  align-items: center;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  gap: vars.$spacing-small;
+}
+
+%sponsor-logo {
+  flex: 1;
+}
+.sponsor-logo-platinum {
+  @extend %sponsor-logo;
+  width: 256px;
+}
+
+.sponsor-logo-gold {
+  @extend %sponsor-logo;
+  width: 224px;
+}
+
+.sponsor-logo-silver {
+  @extend %sponsor-logo;
+  width: 192px;
+}
+
+.sponsor-logo-community {
+  @extend %sponsor-logo;
+  width: 160px;
+}
+
+.sponsor-logo-love {
+  @extend %sponsor-logo;
+  width: 128px;
 }
