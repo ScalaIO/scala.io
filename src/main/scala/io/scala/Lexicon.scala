@@ -10,7 +10,7 @@ import io.scala.domaines.Social
 
 object Lexicon {
   object Headband {
-    val left  = "February 15th-16th 2023 @ Nantes"
+    val left  = "February 15th-16th 2024 @ Nantes"
     val right = "10th years edition"
   }
 
