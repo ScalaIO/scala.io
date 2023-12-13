@@ -21,7 +21,11 @@ jobs:
       with:
         timeout_minutes: 5
         max_attempts: 3
-        command: sbt "compile; fullLinkJS" && npm run build
+        command: |
+          npm install
+          npx sass src/main/resources/css/main.scss src/main/resources/css/output.scss
+          sbt "compile; fullLinkJS"
+          npm run build
     - name: Deploy the website in preproduction
       run: |
         npm install -g clever-tools 
