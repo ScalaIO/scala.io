@@ -5,7 +5,7 @@
   "type": "module",
   "scripts": {
     "install": "npm run build",
-    "start": "npx serve -l 8080 dist",
+    "start": "npx serve -l 8080 dist-prod",
     "dev": "npx vite",
     "build": "npx sass src/main/resources/css/main.scss src/main/resources/css/output.scss && sbt \"compile; fullLinkJS\" && npx vite build",
     "preview": "npx vite preview"
