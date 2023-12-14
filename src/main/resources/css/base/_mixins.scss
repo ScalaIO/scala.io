@@ -41,3 +41,10 @@
     }
   }
 }
+
+@mixin text-site($max-width, $text-size, $line-height) {
+  @media screen and (max-width: $max-width) {
+    font-size: $text-size;
+    line-height: $text-size;
+  }
+}

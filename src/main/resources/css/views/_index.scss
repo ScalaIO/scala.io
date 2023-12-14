@@ -1,5 +1,6 @@
 @use "sass:math";
 @use "../base/vars";
+@use "../base/mixins";
 
 .hero {
   display: flex;
@@ -38,6 +39,10 @@
   font-size: vars.$text-size-xxx-large;
   margin-bottom: vars.$spacing-medium;
   line-height: vars.$text-size-xxx-large;
+  @include mixins.text-site(vars.$desktop-width, vars.$text-size-huge, vars.$text-size-huge);
+  @include mixins.text-site(vars.$laptop-width, vars.$text-size-xxx-large, vars.$text-size-xxx-large);
+  @include mixins.text-site(vars.$tablet-width, vars.$text-size-xx-large, vars.$text-size-xx-large);
+  @include mixins.text-site(vars.$mobile-width, vars.$text-size-x-large, vars.$text-size-x-large);
 }
 
 .index__event-date-location {
