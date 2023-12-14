@@ -56,7 +56,11 @@ object Header {
   def computerPlusScreen = headerTag(
     div(Logo(), Page.navigateTo(Page.IndexPage)),
     links,
-    ShinyButton(Lexicon.Header.buyTicket)
+    a(
+      ShinyButton(Lexicon.Header.buyTicket),
+      href := "https://yurplan.com/events/Scala-IO-2024/115152",
+      target := "_blank",
+    )
   )
 
   def tabletScreen = headerTag(

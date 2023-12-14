@@ -6,6 +6,13 @@
       "deploy_url": "https://push-n3-par-clevercloud-customers.services.clever-cloud.com/app_d76e4e40-67d9-4cff-99ad-ecb1a3ea7d8a.git",
       "name": "new scala.io (preprod)",
       "alias": "new-scala.io-(preprod)"
+    },
+    {
+      "app_id": "app_7d8d8bf7-04f4-4a3d-8f46-d3671373e5bc",
+      "org_id": "orga_1f359769-532c-4b0d-8845-d4cec4213a8b",
+      "deploy_url": "https://push-n3-par-clevercloud-customers.services.clever-cloud.com/app_7d8d8bf7-04f4-4a3d-8f46-d3671373e5bc.git",
+      "name": "new scala.io (prod)",
+      "alias": "new-scala.io-(prod)"
     }
   ]
 }

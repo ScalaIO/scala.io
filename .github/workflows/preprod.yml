@@ -33,8 +33,7 @@ jobs:
         cp -r dist/* dist-prod/
         git config --global user.email ${{ secrets.GIT_EMAIL }}
         git config --global user.name ${{ secrets.GIT_NAME }}
-        git remote add preprod git+ssh://git@push-n3-par-clevercloud-customers.services.clever-cloud.com/app_d76e4e40-67d9-4cff-99ad-ecb1a3ea7d8a.git
-        git add -f .
+        git add .
         git commit -m "chore: forward changed to preprod"
         clever login --token ${{ secrets.CLEVER_TOKEN }} --secret ${{ secrets.CLEVER_SECRET }}
         clever link ${{ secrets.CLEVER_APP_ID_PREPROD }}
