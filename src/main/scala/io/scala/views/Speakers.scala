@@ -6,7 +6,7 @@ import io.scala.domaines.{Kind, Speaker, Talk}
 import io.scala.modules.{ClassyButton, Line, SpeakerCard, SpeakerModal, Title}
 import io.scala.views.View
 
-import com.raquo.laminar.api.L.{className, div, onClick, p, sectionTag, HtmlElement, Var, given}
+import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.api.features.unitArrows
 import org.scalajs.dom.Element
 
@@ -20,7 +20,11 @@ case object Speakers extends View {
       Lexicon.Speakers.catchPhrase,
       className := "catch-phrase"
     ),
-    ClassyButton(Lexicon.Speakers.callToAction),
+    a(
+      ClassyButton(Lexicon.Speakers.callToAction),
+      href := "https://www.papercall.io/scalaio-2024-nte",
+      target := "_blank",
+    ),
     Line(margin = 55),
     div(
       Lexicon.Speakers.speakers.map(SpeakerCard(_, selectedSpeaker)),

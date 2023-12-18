@@ -32,7 +32,11 @@ case object Schedule extends View {
       "The schedule will be available soon.",
       className := "catch-phrase"
     ),
-    ClassyButton(Lexicon.Speakers.callToAction),
+    a(
+      ClassyButton(Lexicon.Speakers.callToAction),
+      href   := "https://www.papercall.io/scalaio-2024-nte",
+      target := "_blank"
+    ),
     Line(margin = 55),
     div(
       className := "schedule__tab",

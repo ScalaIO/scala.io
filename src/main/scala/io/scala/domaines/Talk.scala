@@ -42,8 +42,6 @@ enum ConfDay extends TalkInfo[ConfDay] {
 
 enum Room extends TalkInfo[Room]:
   case One
-  case Two
-  case Three
   def render = "Room " + this.ordinal
 
 case class Time(h: Int, m: Int) {

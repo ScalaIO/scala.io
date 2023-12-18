@@ -19,11 +19,15 @@ case object Sponsors extends View {
       className := "catch-phrase"
     ),
     div(
-      ClassyButton(Lexicon.Sponsors.callToAction),
-      ClassyButton(
-        Lexicon.Sponsors.callToBrochure,
-        kind = ButtonKind.Href(Lexicon.Sponsors.brochureUrl)
+      a(
+        ClassyButton(Lexicon.Sponsors.callToAction),
+        href := "mailto:contact@scala.io",
+        target := "_blank"
       ),
+      // ClassyButton(
+      //   Lexicon.Sponsors.callToBrochure,
+      //   kind = ButtonKind.Href(Lexicon.Sponsors.brochureUrl)
+      // ),
       className := "sponsors__buttons"
     ),
     Line(margin = 55),
