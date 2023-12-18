@@ -4,6 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
+    "start": "npx serve -l 8080 dist-prod",
     "dev": "npx vite",
     "build": "npx vite build",
     "preview": "npx vite preview"
@@ -13,5 +14,8 @@
     "typescript": "4.6.2",
     "vite": "^2.9.15",
     "vite-plugin-html": "^3.2.0"
+  },
+  "dependencies": {
+    "serve": "^14.2.1"
   }
 }

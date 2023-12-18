@@ -8,7 +8,6 @@ import org.scalajs.dom.html
 object Burger {
   def apply() = svg(
     viewBox := "0 0 32 32",
-    xmlns   := "http://www.w3.org/2000/svg",
     g(
       fill := "#FFF",
       path(

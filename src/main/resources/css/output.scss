@@ -230,6 +230,30 @@ hr {
   margin-bottom: 24px;
   line-height: 48px;
 }
+@media screen and (max-width: 1440px) {
+  .index__subtitle {
+    font-size: 64px;
+    line-height: 64px;
+  }
+}
+@media screen and (max-width: 1024px) {
+  .index__subtitle {
+    font-size: 48px;
+    line-height: 48px;
+  }
+}
+@media screen and (max-width: 768px) {
+  .index__subtitle {
+    font-size: 40px;
+    line-height: 40px;
+  }
+}
+@media screen and (max-width: 425px) {
+  .index__subtitle {
+    font-size: 32px;
+    line-height: 32px;
+  }
+}
 
 .index__event-date-location {
   font-size: 24px;

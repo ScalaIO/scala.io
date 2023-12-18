@@ -37,6 +37,5 @@ metals.sbt
 /.worksheet/
 
 # Project specific
-dist
-
+dist/
 output.scss.map

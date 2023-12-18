@@ -1,0 +1,41 @@
+name: Publish to preprod
+
+on:
+  push:
+    branches: ["main"]
+
+jobs:
+  deploy:
+    name: Deploy the website in preproduction
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+      with:
+        fetch-depth: 0
+    - uses: coursier/setup-action@v1.3.4
+      with:
+        jvm: adoptium:1.17.0.7
+        apps: sbt
+    - name: Build static website
+      uses: nick-fields/retry@v2
+      with:
+        timeout_minutes: 5
+        max_attempts: 3
+        command: |
+          npm install
+          npx sass src/main/resources/css/main.scss src/main/resources/css/output.scss
+          sbt "compile; fullLinkJS"
+          npm run build
+    - name: Deploy the website in preproduction
+      run: |
+        npm install -g clever-tools 
+        mkdir dist-prod
+        cp -r dist/* dist-prod/
+        git config --global user.email ${{ secrets.GIT_EMAIL }}
+        git config --global user.name ${{ secrets.GIT_NAME }}
+        git remote add preprod git+ssh://git@push-n3-par-clevercloud-customers.services.clever-cloud.com/app_d76e4e40-67d9-4cff-99ad-ecb1a3ea7d8a.git
+        git add -f .
+        git commit -m "chore: forward changed to preprod"
+        clever login --token ${{ secrets.CLEVER_TOKEN }} --secret ${{ secrets.CLEVER_SECRET }}
+        clever link ${{ secrets.CLEVER_APP_ID_PREPROD }}
+        clever deploy --force
