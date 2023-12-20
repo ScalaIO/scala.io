@@ -8,6 +8,7 @@ import com.raquo.laminar.api.L.{*, given}
 case object Index extends View {
   override def body: HtmlElement = sectionTag(
     className := "index-hero",
+    backgroundImage := "url(../images/index-hero.jpeg)",
     div(
       className := "overlay",
       div(

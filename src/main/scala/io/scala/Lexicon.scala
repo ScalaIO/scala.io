@@ -3,10 +3,10 @@ package io.scala
 import io.scala.domaines.{Kind, Speaker, Sponsor, Talk}
 import io.scala.domaines.ConfDay
 import io.scala.domaines.Room
+import io.scala.domaines.Social
 import io.scala.domaines.Time
 
 import scala.util.Random
-import io.scala.domaines.Social
 
 object Lexicon {
   object Headband {
@@ -30,22 +30,23 @@ object Lexicon {
     val loremIpsum =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
 
-    var i = 0;
     val speakers = Seq.fill(32) {
-      i += 1
       Speaker(
-        name = "John Doe" + i,
+        name = if Random.nextInt(2) == 0 then "John Doe" else "Jane Doe",
         photo = None,
-        job = "Data Engineer" + i,
-        company = "Scala.IO" + i,
-        socials = List(Social(Social.Kind.Twitter, "https://twitter.com/scala_io"), Social(Social.Kind.Linkedin, "https://www.linkedin.com/company/scala-io/")),
+        job = "Data Engineer",
+        company = "Scala.IO",
+        socials = List(
+          Social(Social.Kind.Twitter, "https://twitter.com/scala_io"),
+          Social(Social.Kind.Linkedin, "https://www.linkedin.com/company/scala-io/")
+        ),
         talk = Talk(
-          title = title + i,
+          title = title,
           kind = Kind.fromOrdinal(Random.nextInt(3)),
           description = loremIpsum,
           day = Some(ConfDay.fromOrdinal(Random.nextInt(2))),
           start = Some(Time(9 + Random.nextInt(7), 0)),
-          room = Some(Room.fromOrdinal(Random.nextInt(3)))
+          room = Some(Room.fromOrdinal(Random.nextInt(1)))
         )
       )
     }
