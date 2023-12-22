@@ -20,14 +20,11 @@ jobs:
       uses: nick-fields/retry@v2
       with:
         timeout_minutes: 5
-        max_attempts: 3
+        max_attempts: 1
         command: |
-          npm install
-          npx sass src/main/resources/css/main.scss src/main/resources/css/output.scss
           sbt "compile; fullLinkJS; publicFolderProd"
           pwd
           ls $(pwd)/target/scala-3.3.1/root-opt | grep 'main.js'
-          npm run build
     - name: Setup upterm session
       uses: lhotari/action-upterm@v1
       with:
@@ -35,4 +32,15 @@ jobs:
         limit-access-to-actor: true
         ## limits ssh access and adds the ssh public keys of the listed GitHub users
         limit-access-to-users: iusildra,markarasev
-        wait-timeout-minutes: 5
+        wait-timeout-minutes: 10
+    - name: Build static website
+      uses: nick-fields/retry@v2
+      with:
+        timeout_minutes: 5
+        max_attempts: 3
+        command: |
+          npm install
+          npx sass src/main/resources/css/main.scss src/main/resources/css/output.scss
+          pwd
+          ls $(pwd)/target/scala-3.3.1/root-opt | grep 'main.js'
+          npm run build
