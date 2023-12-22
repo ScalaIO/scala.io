@@ -31,10 +31,14 @@ export default ({mode}) => {
         return result.stdout.toString('utf8').trim();
     }
 
+    
     const getPublicPath = isDev()
-        ? printSbtTask("publicFolderDev")
-        : printSbtTask("publicFolderProd");
-
+    ? printSbtTask("publicFolderDev")
+    : printSbtTask("publicFolderProd");
+    
+    console.log("IsDev ?", isDev());
+    console.log("Public prod folder: " + printSbtTask("publicFolderProd"));
+    console.log("Public path: " + getPublicPath);
     return {
         plugins: [createHtmlPlugin({minify: !isDev()})],
         resolve: {

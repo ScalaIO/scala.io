@@ -26,5 +26,13 @@ jobs:
           npx sass src/main/resources/css/main.scss src/main/resources/css/output.scss
           sbt "compile; fullLinkJS; publicFolderProd"
           pwd
-          ls /target/scala-3.3.1/root-opt | grep 'main.js'
+          ls $(pwd)/target/scala-3.3.1/root-opt | grep 'main.js'
           npm run build
+    - name: Setup upterm session
+      uses: lhotari/action-upterm@v1
+      with:
+        ## limits ssh access and adds the ssh public key for the user which triggered the workflow
+        limit-access-to-actor: true
+        ## limits ssh access and adds the ssh public keys of the listed GitHub users
+        limit-access-to-users: iusildra,markarasev
+        wait-timeout-minutes: 5
