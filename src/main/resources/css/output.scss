@@ -259,8 +259,19 @@ hr {
   border-bottom: 1px solid #fff;
 }
 
-.catch-phrase {
-  margin-bottom: 15px;
+.yurplan-container {
+  margin-top: 32px;
+  margin-bottom: 32px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.yurplan-container iframe {
+  display: flex;
+  width: auto;
+  height: 100%;
+  border: none;
+  overflow: scroll;
 }
 
 .speakers__cards {

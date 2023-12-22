@@ -52,6 +52,18 @@
   border-bottom: 1px solid vars.$text-color-contrast;
 }
 
-.catch-phrase {
-  margin-bottom: 15px;
+.yurplan-container {
+  margin-top: vars.$spacing-large;
+  margin-bottom: vars.$spacing-large;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  iframe {
+    display: flex;
+    width: auto;
+    height: 100%;
+    border: none;
+    overflow: scroll;
+  }
 }
