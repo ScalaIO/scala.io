@@ -31,10 +31,11 @@ export default ({mode}) => {
         return result.stdout.toString('utf8').trim();
     }
 
+    
     const getPublicPath = isDev()
-        ? printSbtTask("publicFolderDev")
-        : printSbtTask("publicFolderProd");
-
+    ? printSbtTask("publicFolderDev")
+    : "./target/scala-3.3.1/root-opt"
+    
     return {
         plugins: [createHtmlPlugin({minify: !isDev()})],
         resolve: {
