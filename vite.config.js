@@ -34,7 +34,7 @@ export default ({mode}) => {
     
     const getPublicPath = isDev()
     ? printSbtTask("publicFolderDev")
-    : printSbtTask("publicFolderProd");
+    : "./target/scala-3.3.1/root-opt"
     
     console.log("IsDev ?", isDev());
     console.log("Public prod folder: " + printSbtTask("publicFolderProd"));
