@@ -38,4 +38,5 @@ metals.sbt
 
 # Project specific
 dist/
-output.scss.map
+output.css.map
+output.css
