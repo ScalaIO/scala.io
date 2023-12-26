@@ -21,20 +21,8 @@ jobs:
       with:
         timeout_minutes: 5
         max_attempts: 1
-        command: sbt "compile; fullLinkJS; publicFolderProd"
-    - name: Setup upterm session
-      uses: lhotari/action-upterm@v1
-      with:
-        ## limits ssh access and adds the ssh public key for the user which triggered the workflow
-        limit-access-to-actor: true
-        ## limits ssh access and adds the ssh public keys of the listed GitHub users
-        wait-timeout-minutes: 10
-    - name: Build static website
-      uses: nick-fields/retry@v2
-      with:
-        timeout_minutes: 5
-        max_attempts: 3
         command: |
+          sbt "compile; fullLinkJS; publicFolderProd"
           npm install
           npx sass src/main/resources/css/main.scss src/main/resources/css/output.scss
           npm run build

@@ -34,11 +34,8 @@ export default ({mode}) => {
     
     const getPublicPath = isDev()
     ? printSbtTask("publicFolderDev")
-    : "./target/scala-3.3.1/root-opt"
+    : printSbtTask("publicFolderProd")
     
-    console.log("IsDev ?", isDev());
-    console.log("Public prod folder: " + printSbtTask("publicFolderProd"));
-    console.log("Public path: " + getPublicPath);
     return {
         plugins: [createHtmlPlugin({minify: !isDev()})],
         resolve: {
