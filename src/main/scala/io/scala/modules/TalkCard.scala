@@ -22,44 +22,49 @@ object TalkDescription:
     )
 
 object TalkCard:
-  def apply(speaker: Speaker) =
+  def apply(talk: Talk) =
     div(
       className := "talk-card",
       onClick --> { _ =>
-        ScheduleState.selectedTalk.set(Some(speaker))
+        ScheduleState.selectedTalk.set(Some(talk))
       },
       h3(
-        speaker.talk.title,
+        talk.title,
         className := "card-title"
       ),
       Line(margin = 10),
       div(
         className := "card-body",
-        TalkDescription(speaker.talk.description)
+        TalkDescription(talk.description)
       ),
       Line(margin = 10),
       div(
         className := "card-footer",
         div(
-          className := "talk-speaker",
-          img(
-            src       := speaker.photo.fold("/images/profile.jpg")(path => s"/images/profiles/$path"),
-            className := "speaker-photo"
-          ),
-          div(
-            p(
-              speaker.name,
-              className := "speaker-name"
-            ),
-            p(
-              speaker.company,
-              className := "speaker-company"
+          className := "talk-speakers",
+          talk.speakers.map { speaker =>
+            div(
+              className := "talk-speaker",
+              img(
+                src       := speaker.photo.fold("/images/profile.jpg")(path => s"/images/profiles/$path"),
+                className := "speaker-photo"
+              ),
+              div(
+                p(
+                  speaker.name,
+                  className := "speaker-name"
+                ),
+                p(
+                  speaker.company,
+                  className := "speaker-company"
+                )
+              )
             )
-          )
+          }
         ),
         p(
           className := "room",
-          speaker.talk.room.map(_.render).getOrElse("")
+          talk.room.map(_.render).getOrElse("")
         )
       )
     )

@@ -53,12 +53,8 @@ object SpeakerModal {
           )
         ),
         div(
-          div(
-            className := "title-2",
-            child.text <-- speaker.signal.map(_.map(_.talk.title).getOrElse("ø"))
-          ),
           p(
-            child.text <-- speaker.signal.map(_.map(_.talk.description).getOrElse("ø"))
+            child.text <-- speaker.signal.map(_.map(_.description).getOrElse("ø"))
           )
         )
       )

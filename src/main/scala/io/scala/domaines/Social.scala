@@ -9,5 +9,6 @@ object Social {
   enum Kind:
     case Twitter
     case Linkedin
+    case Github
     case Other
 }

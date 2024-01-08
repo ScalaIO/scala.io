@@ -11,7 +11,7 @@ import org.scalajs.dom
 
 val rooms = Room.values
 
-case class ScheduleDay(definedTalks: Map[Time, Seq[Speaker]], startingTimes: Seq[Time]):
+case class ScheduleDay(definedTalks: Map[Time, Seq[Talk]], startingTimes: Seq[Time]):
   def body = div(
       startingTimes.map(time =>
         div(
@@ -24,7 +24,7 @@ case class ScheduleDay(definedTalks: Map[Time, Seq[Speaker]], startingTimes: Seq
               .map { speakers =>
                 rooms.map(room =>
                   speakers._2
-                    .find(_.talk.room.get == room)
+                    .find(_.room.get == room)
                     .map(TalkCard(_))
                     .getOrElse(div(className := "empty-talk-card"))
                 )
@@ -36,12 +36,12 @@ case class ScheduleDay(definedTalks: Map[Time, Seq[Speaker]], startingTimes: Seq
     )
 
 object ScheduleDay {
-  def apply(speakers: Seq[Speaker]) =
-    val definedTalks: Map[Time, Seq[Speaker]] = speakers
-      .filter(s => s.talk.room.isDefined && s.talk.start.isDefined)
-      .groupBy(_.talk.start.get)
+  def apply(speakers: Seq[Talk]) =
+    val definedTalks: Map[Time, Seq[Talk]] = speakers
+      .filter(s => s.room.isDefined && s.start.isDefined)
+      .groupBy(_.start.get)
     val startingTime = speakers
-      .collect { case s if s.talk.start.isDefined => s.talk.start.get }
+      .collect { case s if s.start.isDefined => s.start.get }
       .distinct
       .sorted
     new ScheduleDay(definedTalks, startingTime)

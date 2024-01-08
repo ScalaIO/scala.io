@@ -66,7 +66,8 @@ case class Talk(
     kind: Kind = Kind.Talk,
     day: Option[ConfDay] = None,
     room: Option[Room] = None,
-    start: Option[Time] = None
+    start: Option[Time] = None,
+    speakers: List[Speaker]
 ):
   val end: Option[Time] = start.map { s =>
     val ending = s.m + kind.duration

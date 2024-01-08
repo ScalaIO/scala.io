@@ -14,15 +14,17 @@ import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.api.features.unitArrows
 import org.scalajs.dom
 import org.scalajs.dom.Element
+import io.scala.data.TalksInfo
+import io.scala.modules.TalkCard
 
 object ScheduleState:
-  val selectedTalk: Var[Option[Speaker]] = Var(None)
+  val selectedTalk: Var[Option[Talk]] = Var(None)
 
 case object Schedule extends View {
   private val selectedDay: Var[Option[String]] = Var(Lexicon.Schedule.days.headOption.map(_._1))
   private val tabLinkName: String              = "tablinks"
-  private val talksByDay: Map[Option[ConfDay], Seq[Speaker]] =
-    Lexicon.Speakers.speakers.groupBy(_.talk.day)
+  private val talksByDay: Map[Option[ConfDay], Seq[Talk]] =
+    TalksInfo.allTalks.groupBy(_.day)
   private var days: Map[ConfDay, ScheduleDay] = Map()
 
   override def body: HtmlElement = sectionTag(
@@ -36,6 +38,14 @@ case object Schedule extends View {
       ClassyButton(Lexicon.Speakers.callToAction),
       href   := "https://www.papercall.io/scalaio-2024-nte",
       target := "_blank"
+    ),
+    Line(margin = 55),
+    div(
+      h2("To be scheduled"),
+      div(
+        className := "card-container unassigned",
+        TalksInfo.allTalks.filter(_.day.isEmpty).map(TalkCard(_))
+      )
     ),
     Line(margin = 55),
     div(
@@ -67,7 +77,7 @@ case object Schedule extends View {
           case Some(i) if i == id =>
             days.get(day).map(_.body).getOrElse {
               val newDay = ScheduleDay(talksByDay.get(Some(day)).getOrElse(Seq.empty))
-              days = days + (day -> newDay)
+              days += (day -> newDay)
               newDay.body
             }
           case _ => emptyNode

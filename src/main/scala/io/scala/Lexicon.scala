@@ -7,6 +7,7 @@ import io.scala.domaines.Social
 import io.scala.domaines.Time
 
 import scala.util.Random
+import io.scala.data.SpeakersInfo
 
 object Lexicon {
   object Headband {
@@ -30,26 +31,7 @@ object Lexicon {
     val loremIpsum =
       "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
 
-    val speakers = Seq.fill(32) {
-      Speaker(
-        name = if Random.nextInt(2) == 0 then "John Doe" else "Jane Doe",
-        photo = None,
-        job = "Data Engineer",
-        company = "Scala.IO",
-        socials = List(
-          Social(Social.Kind.Twitter, "https://twitter.com/scala_io"),
-          Social(Social.Kind.Linkedin, "https://www.linkedin.com/company/scala-io/")
-        ),
-        talk = Talk(
-          title = title,
-          kind = Kind.fromOrdinal(Random.nextInt(3)),
-          description = loremIpsum,
-          day = Some(ConfDay.fromOrdinal(Random.nextInt(2))),
-          start = Some(Time(9 + Random.nextInt(7), 0)),
-          room = Some(Room.fromOrdinal(Random.nextInt(1)))
-        )
-      )
-    }
+    val speakers = SpeakersInfo.allSpeakers
   }
 
   object Sponsors {

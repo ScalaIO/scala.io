@@ -8,7 +8,7 @@ import com.raquo.airstream.core.Signal
 import com.raquo.laminar.api.L.{*, given}
 import org.scalajs.dom
 object TalkModal:
-  def apply(talk: Var[Option[Speaker]]) =
+  def apply(talk: Var[Option[Talk]]) =
     div(
       role := "dialog",
       className := "card-overlay",
@@ -22,7 +22,7 @@ object TalkModal:
           className := "header",
           h2(
             className := "title-1",
-            child.text <-- talk.signal.map(_.map(_.talk.title).getOrElse("ø"))
+            child.text <-- talk.signal.map(_.map(_.title).getOrElse("ø"))
           ),
           button(
             className := "close",
@@ -34,12 +34,12 @@ object TalkModal:
           className := "title-2",
           child.text <-- talk.signal.map {
             _.map { s =>
-              s.name + " - " + s.talk.room.map(_.render).getOrElse("")
+              s.speakers.map(_.name).mkString(", ") + " - " + s.room.map(_.render).getOrElse("")
             }.getOrElse("ø")
           }
         ),
           p(
-            child.text <-- talk.signal.map(_.map(_.talk.description).getOrElse("ø"))
+            child.text <-- talk.signal.map(_.map(_.description).getOrElse("ø"))
           )
         )
     )

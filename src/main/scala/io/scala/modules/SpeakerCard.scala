@@ -13,10 +13,11 @@ object SpeakerCard {
       ),
       div(
         div(
-          div(
-            speaker.talk.kind.toString,
-            className := s"${speaker.talk.kind.toStyle}"
-          ),
+          //? Find a way to display the talk kind
+          // div( 
+          //   talkKind.toString,
+          //   className := s"${talkKind.toStyle}"
+          // ),
           div(
             speaker.socialNetworks,
             className := "speaker-socials"
