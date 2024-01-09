@@ -4,7 +4,7 @@
   "version": "0.1.0",
   "type": "module",
   "scripts": {
-    "start": "npx serve -l 8080 dist-prod",
+    "start": "npx serve -l 8080 dist-prod -s",
     "dev": "npx vite",
     "build": "npx vite build",
     "preview": "npx vite preview"

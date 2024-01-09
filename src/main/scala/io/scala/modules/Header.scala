@@ -1,6 +1,7 @@
 package io.scala.modules
 
 import io.scala.{Lexicon, Page}
+import io.scala.Page.*
 import io.scala.svgs.Burger
 import io.scala.svgs.Logo
 
@@ -38,10 +39,10 @@ object Header {
     )
 
   private val linksPage = Seq(
-    Lexicon.Header.speakers -> Page.SpeakersPage,
-    Lexicon.Header.sponsors -> Page.SponsorsPage,
-    Lexicon.Header.venue    -> Page.VenuePage,
-    Lexicon.Header.schedule -> Page.SchedulePage
+    Lexicon.Header.speakers -> SpeakersPage,
+    Lexicon.Header.sponsors -> SponsorsPage,
+    Lexicon.Header.venue    -> VenuePage,
+    Lexicon.Header.schedule -> SchedulePage
   )
 
   def links = ul(
@@ -54,7 +55,7 @@ object Header {
   )
 
   def computerPlusScreen = headerTag(
-    div(Logo(), Page.navigateTo(Page.IndexPage)),
+    div(Logo(), Page.navigateTo(IndexPage)),
     links,
     a(
       ShinyButton(Lexicon.Header.buyTicket),
@@ -66,7 +67,7 @@ object Header {
   def tabletScreen = headerTag(
     className := "navbar-tablet-view",
     div(
-      div(Logo(), Page.navigateTo(Page.IndexPage)),
+      div(Logo(), Page.navigateTo(IndexPage)),
       ShinyButton(Lexicon.Header.buyTicket),
       className := "navbar-links-tablet"
     ),
@@ -75,7 +76,7 @@ object Header {
 
   def mobileScreen = headerTag(
     className := "navbar-links-mobile",
-    div(Logo(), Page.navigateTo(Page.IndexPage)),
+    div(Logo(), Page.navigateTo(IndexPage)),
     div(
       ShinyButton(Lexicon.Header.buyTicket),
       button(

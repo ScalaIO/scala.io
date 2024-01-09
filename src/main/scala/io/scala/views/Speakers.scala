@@ -22,8 +22,8 @@ case object Speakers extends View {
     ),
     a(
       ClassyButton(Lexicon.Speakers.callToAction),
-      href := "https://www.papercall.io/scalaio-2024-nte",
-      target := "_blank",
+      href   := "https://www.papercall.io/scalaio-2024-nte",
+      target := "_blank"
     ),
     Line(margin = 55),
     div(
