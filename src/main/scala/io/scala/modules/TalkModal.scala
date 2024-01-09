@@ -33,8 +33,8 @@ object TalkModal:
         h3(
           className := "title-2",
           child.text <-- talk.signal.map {
-            _.map { s =>
-              s.speakers.map(_.name).mkString(", ") + " - " + s.room.map(_.render).getOrElse("")
+            _.map { talk =>
+              talk.speakers.map(_.name).mkString(", ") + " - " + talk.room.map(_.render).getOrElse("")
             }.getOrElse("ø")
           }
         ),
