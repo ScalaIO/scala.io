@@ -27,7 +27,7 @@ object Footer {
           className := "description"
         ),
         form(
-          action := "https://pm.us21.list-manage.com/subscribe/post?u=4b3f57c730963d7046d571d18&amp;id=66f1c9c459&amp;f_id=008ae1e6f0",
+          action := "https://scala.us21.list-manage.com/subscribe/post?u=1cda6358b5f519bda81ecb37a&amp;id=e31dddaa5a&amp;f_id=005af1e6f0",
           method := "post",
           idAttr := "mc-embedded-subscribe-form",
           target := "_blank",
