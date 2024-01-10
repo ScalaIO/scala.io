@@ -26,8 +26,8 @@ object SpeakerModal {
           className := "header",
           img(
             src <-- speaker.signal.map {
-              case Some(s) => s.photo.fold("/images/profile.jpg")(path => s"/images/profiles/$path")
-              case None    => "/images/profile.jpg"
+              case Some(s) => s.photo.fold("/images/profilePlaceholder")(path => s"/images/profiles/$path")
+              case None    => "/images/profilePlaceholder"
             },
             className := "speaker-photo"
           ),

@@ -46,7 +46,7 @@ object TalkCard:
             div(
               className := "talk-speaker",
               img(
-                src       := speaker.photo.fold("/images/profile.jpg")(path => s"/images/profiles/$path"),
+                src       := speaker.photo.fold("/images/profilePlaceholder")(path => s"/images/profiles/$path"),
                 className := "speaker-photo"
               ),
               div(

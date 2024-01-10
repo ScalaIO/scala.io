@@ -13,7 +13,7 @@ object SpeakerCard {
 
     div(
       img(
-        src       := speaker.photo.fold("/images/profile.jpg")(path => s"/images/profiles/$path"),
+        src       := speaker.photo.fold(profilePlaceholder)(path => s"/images/profiles/$path"),
         className := "speaker-photo"
       ),
       div(
