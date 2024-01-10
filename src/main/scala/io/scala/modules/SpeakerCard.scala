@@ -1,11 +1,16 @@
 package io.scala.modules
 
 import io.scala.domaines.Speaker
+import io.scala.data.TalksInfo.talksTag
 
 import com.raquo.laminar.api.L.{*, given}
+import org.scalajs.dom.console
+import io.scala.data.TalksInfo.allTalks
 
 object SpeakerCard {
   def apply(speaker: Speaker, variable: Var[Option[Speaker]]) =
+    
+
     div(
       img(
         src       := speaker.photo.fold("/images/profile.jpg")(path => s"/images/profiles/$path"),
@@ -13,11 +18,11 @@ object SpeakerCard {
       ),
       div(
         div(
-          //? Find a way to display the talk kind
-          // div( 
-          //   talkKind.toString,
-          //   className := s"${talkKind.toStyle}"
-          // ),
+          talksTag(speaker).toList.map: tag =>
+            div( 
+              tag.toString,
+              className := s"${tag.toStyle}"
+            ),
           div(
             speaker.socialNetworks,
             className := "speaker-socials"

@@ -4,9 +4,9 @@ import io.scala.domaines.Social
 import io.scala.domaines.Speaker
 
 object SpeakersInfo:
-  val jimNewton = Speaker(
+  lazy val jimNewton = Speaker(
     name = "Jim Newton",
-    photo = Some("jim.jpeg"),
+    photo = Some("jim.webp"),
     job = "",
     company = "EPITA Rennes",
     socials = List(
@@ -14,9 +14,9 @@ object SpeakersInfo:
       Social(Social.Kind.Other, "https://www.lrde.epita.fr/wiki/User:Jnewton")
     )
   )
-  val uliFahrenberg = Speaker(
+  lazy val uliFahrenberg = Speaker(
     name = "Uli Fahrenberg",
-    photo = Some("uli.jpg"),
+    photo = Some("uli.webp"),
     description = """|Ulrich (Uli) Fahrenberg is professor at EPITA Rennes and head of the automata research group at LRE, EPITA Paris. He holds a PhD in mathematics from Aalborg University and has worked at Aalborg University, IRISA Rennes, and at École polytechnique.
          |
          |Fahrenberg works in algebraic topology, concurrency theory, real-time verification, categorical foundations, and general quantitative verification. He has published more than 100 papers in computer science and mathematics. He has been a member of numerous program committees and is steering committee co-chair of the RAMiCS conferences and member of the steering committee of the GETCO conferences.
@@ -29,9 +29,9 @@ object SpeakersInfo:
     )
   )
 
-  val raphaelClaude = Speaker(
+  lazy val raphaelClaude = Speaker(
     name = "Raphael Claude",
-    photo = Some("rClaude.jpeg"),
+    photo = Some("rClaude.webp"),
     description =
       "Staff Dev Lead at Criteo Developer & Site Reliability Engineer that mainly worked with the JVM and Hadoop ecosystem over the last decade.",
     job = "Staff Dev Lead",
@@ -41,7 +41,7 @@ object SpeakersInfo:
     )
   )
 
-  val anatoliiKmetiuk = Speaker(
+  lazy val anatoliiKmetiuk = Speaker(
     name = "Anatolii Kmetiuk",
     photo = Some("toli.webp"),
     job = "Compiler engineer and community manager",
@@ -56,9 +56,9 @@ object SpeakersInfo:
     )
   )
 
-  val briceJaglin = Speaker(
+  lazy val briceJaglin = Speaker(
     name = "Brice Jaglin",
-    photo = Some("bJaglin.jpeg"),
+    photo = Some("bJaglin.webp"),
     description =
       "Brice is the main maintainer of Scalafix since 2020, just after he discovered the potential of using custom rules in a modular monolith at work and started contributing to the project to make that easier. Currently a Staff Engineer at Swile, he no longer uses Scala on a day-to-day basis but continues to maintain Scalafix on his free time as he has yet to find such a powerful tool in another ecosystem!",
     job = "Staff Engineer",
@@ -69,9 +69,9 @@ object SpeakersInfo:
     )
   )
 
-  val johannaVauchel = Speaker(
+  lazy val johannaVauchel = Speaker(
     name = "Johanna Vauchel",
-    photo = Some("jVauchel.jpeg"),
+    photo = Some("jVauchel.webp"),
     description =
       "Diplomée de l'INSA de Rouen spécialité Génie Mathématique, j'ai commencé à travailler pour des applications 3D (aménagement intérieur, imagerie médicale, simulateur de vêtements). En 2021 je me suis reconvertie pour devenir Ingénieure Data, dans l'entreprise Lectra à Bordeaux, où je développe des pipelines de données en Scala via Kafka et Snowflake. J'aime former, vulgariser des concepts et partager avec mes collègues ou lors de conférences, des connaissances ou des retours d'expérience. Je suis adepte du sketchnoting et de la facilitation graphique.",
     job = "Data Engineer",
@@ -83,7 +83,7 @@ object SpeakersInfo:
     )
   )
 
-  val mehdiRebiai = Speaker(
+  lazy val mehdiRebiai = Speaker(
     name = "Mehdi Rebiai",
     photo = None,
     job = "",
@@ -91,7 +91,7 @@ object SpeakersInfo:
     socials = List()
   )
 
-  val valentinBergeron = Speaker(
+  lazy val valentinBergeron = Speaker(
     name = "Valentin Bergeron",
     photo = None,
     description =
@@ -104,7 +104,7 @@ object SpeakersInfo:
     )
   )
 
-  val sophieCollard = Speaker(
+  lazy val sophieCollard = Speaker(
     name = "Sophie Collard",
     photo = None,
     description =
@@ -116,9 +116,9 @@ object SpeakersInfo:
     )
   )
 
-  val paulMatthew = Speaker(
+  lazy val paulMatthew = Speaker(
     name = "Paul Matthews",
-    photo = Some("pMatthews.jpg"),
+    photo = Some("pMatthews.webp"),
     description = """|I'm currently a backend Scala developer at ClearScore with a focus on functional programming.
          |
          |I completed a BSc in Computer Science at the Uni of Hertfordshire in 2020 with first class honours and prior to this have a background in the music industry as a signed recording artist, record producer and audio engineer with credits including number 1 chart positions and platinum and gold sales.
@@ -131,9 +131,9 @@ object SpeakersInfo:
     )
   )
 
-  val dawidFurman = Speaker(
+  lazy val dawidFurman = Speaker(
     name = "Dawid Furman",
-    photo = Some("dFurman.jpg"),
+    photo = Some("dFurman.webp"),
     description =
       "A computer and human language passionate. Enthusiast of the functional paradigm. The guitarist of the best rock-funky-hard SolYNaranjaS band!",
     job = "",
@@ -144,9 +144,9 @@ object SpeakersInfo:
     )
   )
 
-  val lukaszBialy = Speaker(
+  lazy val lukaszBialy = Speaker(
     name = "Łukasz Biały",
-    photo = Some("lBialy.jpg"),
+    photo = Some("lBialy.webp"),
     description =
       "Polyglot full-stack developer and functional programming enthusiast. PSE & Scala Developer Advocate @ VirtusLab. Values quality over quantity. Permanent learner with a severe information dependency problem. Enjoys conversations about philosophy and all things related to mind's inner workings. Loves mountains, biking and hiking.",
     job = "Software Engineer",
@@ -156,9 +156,9 @@ object SpeakersInfo:
     )
   )
 
-  val olivierMelois = Speaker(
+  lazy val olivierMelois = Speaker(
     name = "Olivier Mélois",
-    photo = Some("oMelois.jpeg"),
+    photo = Some("oMelois.webp"),
     description =
       """|My name is Olivier Mélois. I have been using Scala as my main language for since 2013. I maintain weaver-test and smithy4s, and have contribute to many libraries and tools, from ammonite to cats-effect.
          |
@@ -172,9 +172,9 @@ object SpeakersInfo:
     )
   )
 
-  val enzoCrance = Speaker(
+  lazy val enzoCrance = Speaker(
     name = "Enzo Crance",
-    photo = Some("eCrance.jpeg"),
+    photo = Some("eCrance.webp"),
     description = "PhD in Computer Science @ Inria 🇫🇷 Meta-programming for Coq, formal proof automation Functional programming enjoyer",
     job = "PhD Student",
     company = "INRIA",
@@ -185,9 +185,9 @@ object SpeakersInfo:
     )
   )
 
-  val anthonyCros = Speaker(
+  lazy val anthonyCros = Speaker(
     name = "Anthony Cros",
-    photo = Some("aCros.jpg"),
+    photo = Some("aCros.webp"),
     description =
       """|I am an independent software engineer/architect with 20 years of professional coding experience (see LinkedIn). My focus is on data transformations (especially big data), domain modeling, software architecture in general, and bioinformatics.
          |
@@ -206,9 +206,9 @@ object SpeakersInfo:
     )
   )
 
-  val didierPlaindoux = Speaker(
+  lazy val didierPlaindoux = Speaker(
     name = "Didier Plaindoux",
-    photo = Some("dPlaindoux.jpeg"),
+    photo = Some("dPlaindoux.webp"),
     description = "Talks about Java, Python, Swift, Kotlin and FP",
     job = "Senior Software Engineer",
     company = "Akawan (Freelance)",
@@ -219,9 +219,9 @@ object SpeakersInfo:
     )
   )
 
-  val francoisLaroche = Speaker(
+  lazy val francoisLaroche = Speaker(
     name = "François Laroche",
-    photo = Some("fLaroche.jpeg"),
+    photo = Some("fLaroche.webp"),
     description =
       """|Développeur scala depuis plusieurs années, je me passionne pour la performance des applications.
          |
@@ -235,7 +235,7 @@ object SpeakersInfo:
          )
   )
 
-  val allSpeakers = List(
+  lazy val allSpeakers = List(
     jimNewton,
     uliFahrenberg,
     raphaelClaude,

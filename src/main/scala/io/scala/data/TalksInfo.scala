@@ -1,10 +1,22 @@
 package io.scala.data
 
 import io.scala.Lexicon.Footer.Newsletter.description
+import io.scala.data.SpeakersInfo.allSpeakers
+import io.scala.domaines.Kind
+import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 
+import scala.collection.mutable.HashMap
+
 object TalksInfo:
-  val allTalks = List(
+  lazy val talksTag =
+    allTalks.foldLeft(HashMap.empty[Speaker, Set[Kind]].withDefaultValue(Set.empty)): (acc, next) =>
+      next.speakers.foreach: speaker =>
+        acc(speaker) += next.kind
+      acc
+    .toMap
+
+  lazy val allTalks = List(
     Talk(
       title = "Chasing Arrows, in Categories containing Functors and Monads",
       description =
