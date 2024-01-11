@@ -1,4 +1,4 @@
-package io.scala.modules
+package io.scala.modules.layout
 
 import io.scala.{Lexicon, Page}
 import io.scala.{VenuePage, IndexPage, SponsorsPage, SchedulePage, SpeakersPage}
@@ -10,9 +10,11 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 import org.scalajs.dom.UIEvent
 import org.scalajs.dom.html
+import io.scala.utils.Screen
+import io.scala.modules.elements.ShinyButton
 
 object Header {
-  inline def width            = Screen.fromWidth(dom.window.innerWidth)
+  inline def width            = io.scala.utils.Screen.fromWidth(dom.window.innerWidth)
   val screenKind: Var[Screen] = Var(width)
   var burgerClicked           = Var(false)
   private var previousScreen  = screenKind.now()

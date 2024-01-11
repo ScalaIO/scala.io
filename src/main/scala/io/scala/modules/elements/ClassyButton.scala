@@ -1,4 +1,4 @@
-package io.scala.modules
+package io.scala.modules.elements
 
 import io.scala.{Lexicon, Page}
 import io.scala.svgs.Logo

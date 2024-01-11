@@ -54,10 +54,10 @@ object Page {
 
   val splitter = SplitRender[Page, HtmlElement](router.currentPageSignal)
     .collectStatic(IndexPage)(Index.render(Index.body))
-    .collect[SpeakersPage](pge => Speakers.render(Speakers.body(pge.withDraft.getOrElse(false))))
-    .collectStatic(SponsorsPage)(Sponsors.render(Sponsors.body))
-    .collectStatic(VenuePage)(Venue.render(Venue.body))
-    .collect[SchedulePage](pge => Schedule.render(Schedule.body(pge.withDraft.getOrElse(false))))
+    .collect[SpeakersPage](pge => SpeakersList.render(SpeakersList.body(pge.withDraft.getOrElse(false))))
+    .collectStatic(SponsorsPage)(SponsorsList.render(SponsorsList.body))
+    .collectStatic(VenuePage)(VenueView.render(VenueView.body))
+    .collect[SchedulePage](pge => ScheduleView.render(ScheduleView.body(pge.withDraft.getOrElse(false))))
 
   def navigateTo(page: Page): Binder[HtmlElement] = Binder { el =>
 

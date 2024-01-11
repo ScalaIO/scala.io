@@ -1,8 +1,7 @@
-package io.scala.modules
+package io.scala.utils
 
-enum Screen {
+enum Screen:
   case Mobile, Tablet, Computer
-}
 
 object Screen:
   def fromWidth(width: Double): Screen = width match

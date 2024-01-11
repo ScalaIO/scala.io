@@ -1,4 +1,4 @@
-package io.scala.modules
+package io.scala.modules.elements
 
 import com.raquo.laminar.api.L.{*, given}
 

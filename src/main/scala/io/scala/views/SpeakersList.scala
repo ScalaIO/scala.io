@@ -3,7 +3,10 @@ package io.scala.views
 import io.scala.Lexicon
 import io.scala.Page.*
 import io.scala.domaines.{Kind, Speaker, Talk}
-import io.scala.modules.{ClassyButton, Line, SpeakerCard, SpeakerModal, Title}
+import io.scala.modules.{SpeakerCard, SpeakerModal}
+import io.scala.modules.elements.Line
+import io.scala.modules.elements.ClassyButton
+import io.scala.modules.elements.Title
 import io.scala.views.View
 
 import com.raquo.laminar.api.L.{*, given}
@@ -11,7 +14,7 @@ import com.raquo.laminar.api.features.unitArrows
 import org.scalajs.dom.Element
 import org.scalajs.dom.console
 
-case object Speakers extends View {
+case object SpeakersList extends View {
   private val selectedSpeaker: Var[Option[Speaker]] = Var(None)
 
   def bodyContent(speakers: List[Speaker])= sectionTag(

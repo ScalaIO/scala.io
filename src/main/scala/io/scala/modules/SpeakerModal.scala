@@ -2,7 +2,7 @@ package io.scala.modules
 
 import io.scala.domaines.Speaker
 import io.scala.svgs.Cross
-import io.scala.views.Speakers.selectedSpeaker
+import io.scala.views.SpeakersList.selectedSpeaker
 
 import com.raquo.laminar.api.L.{*, given}
 
