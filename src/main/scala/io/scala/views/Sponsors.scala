@@ -8,10 +8,11 @@ import io.scala.utils.ButtonKind
 import io.scala.views.View
 
 import com.raquo.laminar.api.L.{*, given}
+import io.scala.domaines.Sponsor
 
 case object Sponsors extends View {
 
-  override def body: HtmlElement = sectionTag(
+  def body: HtmlElement = sectionTag(
     className := "container",
     Title("Sponsors"),
     p(

@@ -12,7 +12,8 @@ object SpeakersInfo:
     socials = List(
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/jim-newton-463600a8"),
       Social(Social.Kind.Other, "https://www.lrde.epita.fr/wiki/User:Jnewton")
-    )
+    ),
+    confirmed = true
   )
   lazy val uliFahrenberg = Speaker(
     name = "Uli Fahrenberg",
@@ -26,7 +27,8 @@ object SpeakersInfo:
     socials = List(
       Social(Social.Kind.Github, "https://github.com/ulifahrenberg"),
       Social(Social.Kind.Other, "https://ulifahrenberg.github.io")
-    )
+    ),
+    confirmed = true
   )
 
   lazy val raphaelClaude = Speaker(
@@ -38,7 +40,8 @@ object SpeakersInfo:
     company = "Criteo",
     socials = List(
       Social(Social.Kind.Twitter, "http://twitter.com/heapoverflow")
-    )
+    ),
+    confirmed = true
   )
 
   lazy val anatoliiKmetiuk = Speaker(
@@ -53,7 +56,8 @@ object SpeakersInfo:
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/akmetiuk"),
       Social(Social.Kind.Github, "https://github.com/anatoliykmetyuk"),
       Social(Social.Kind.Other, "https://akmetiuk.com")
-    )
+    ),
+    confirmed = true
   )
 
   lazy val briceJaglin = Speaker(
@@ -66,7 +70,8 @@ object SpeakersInfo:
     socials = List(
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/bjaglin"),
       Social(Social.Kind.Github, "https://github.com/bjaglin")
-    )
+    ),
+    confirmed = true
   )
 
   lazy val johannaVauchel = Speaker(
@@ -80,7 +85,8 @@ object SpeakersInfo:
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/johanna-vauchel-05576a78"),
       Social(Social.Kind.Github, "https://github.com/jvauchel"),
       Social(Social.Kind.Other, "https://jvauchel.github.io")
-    )
+    ),
+    confirmed = true
   )
 
   lazy val mehdiRebiai = Speaker(
@@ -88,7 +94,8 @@ object SpeakersInfo:
     photo = None,
     job = "",
     company = "",
-    socials = List()
+    socials = List(),
+    confirmed = true
   )
 
   lazy val valentinBergeron = Speaker(
@@ -101,7 +108,8 @@ object SpeakersInfo:
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/__vberg"),
       Social(Social.Kind.Github, "https://github.com/vbergeron")
-    )
+    ),
+    confirmed = true
   )
 
   lazy val sophieCollard = Speaker(
@@ -113,7 +121,8 @@ object SpeakersInfo:
     company = "JPMorgan",
     socials = List(
       Social(Social.Kind.Github, "https://github.com/sophiecollard")
-    )
+    ),
+    confirmed = false
   )
 
   lazy val paulMatthew = Speaker(
@@ -128,7 +137,8 @@ object SpeakersInfo:
     socials = List(
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/matthews-paul"),
       Social(Social.Kind.Other, "https://en.wikipedia.org/wiki/Paul_Matthews_(musician)")
-    )
+    ),
+    confirmed = true
   )
 
   lazy val dawidFurman = Speaker(
@@ -141,7 +151,8 @@ object SpeakersInfo:
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/dfurmans"),
       Social(Social.Kind.Other, "https://solynaranjas.com/")
-    )
+    ),
+    confirmed = false,
   )
 
   lazy val lukaszBialy = Speaker(
@@ -153,7 +164,8 @@ object SpeakersInfo:
     company = "VirtusLab",
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/lukasz_bialy")
-    )
+    ),
+    confirmed = false
   )
 
   lazy val olivierMelois = Speaker(
@@ -169,27 +181,29 @@ object SpeakersInfo:
     socials = List(
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/olivier-m%C3%A9lois-99234bbb/"),
       Social(Social.Kind.Other, "https://github.com/Baccata")
-    )
+    ),
+    confirmed = false
   )
 
   lazy val enzoCrance = Speaker(
     name = "Enzo Crance",
     photo = Some("eCrance.webp"),
-    description = "PhD in Computer Science @ Inria 🇫🇷 Meta-programming for Coq, formal proof automation Functional programming enjoyer",
+    description =
+      "PhD in Computer Science @ Inria 🇫🇷 Meta-programming for Coq, formal proof automation Functional programming enjoyer",
     job = "PhD Student",
     company = "INRIA",
     socials = List(
       Social(Social.Kind.Twitter, "http://twitter.com/cranceltik"),
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/enzo-crance-099628b9/?locale=en_US"),
       Social(Social.Kind.Other, "https://ecrance.net/")
-    )
+    ),
+    confirmed = true
   )
 
   lazy val anthonyCros = Speaker(
     name = "Anthony Cros",
     photo = Some("aCros.webp"),
-    description =
-      """|I am an independent software engineer/architect with 20 years of professional coding experience (see LinkedIn). My focus is on data transformations (especially big data), domain modeling, software architecture in general, and bioinformatics.
+    description = """|I am an independent software engineer/architect with 20 years of professional coding experience (see LinkedIn). My focus is on data transformations (especially big data), domain modeling, software architecture in general, and bioinformatics.
          |
          |My past experiences primarily include work in the biomedical field, with positions held at the Ontario Institute for Cancer Research, the Hospital for Sick Children in Toronto, the Children's Hospital of Philadelphia, the BF2I lab (INSA Lyon), and the bacteriology lab at UCBL (Lyon). I also worked for a short period of time in the telecom industry, although a less exciting venture for my tastes.
          |
@@ -203,7 +217,8 @@ object SpeakersInfo:
       Social(Social.Kind.Twitter, "http://twitter.com/anthony_cros"),
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/anthony-cros-3587b063/"),
       Social(Social.Kind.Other, "http://anthonycros.com")
-    )
+    ),
+    confirmed = true
   )
 
   lazy val didierPlaindoux = Speaker(
@@ -216,23 +231,24 @@ object SpeakersInfo:
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/didier-plaindoux-912b3517/"),
       Social(Social.Kind.Github, "https://github.com/d-plaindoux"),
       Social(Social.Kind.Other, "http://d.plaindoux.free.fr")
-    )
+    ),
+    confirmed = true
   )
 
   lazy val francoisLaroche = Speaker(
     name = "François Laroche",
     photo = Some("fLaroche.webp"),
-    description =
-      """|Développeur scala depuis plusieurs années, je me passionne pour la performance des applications.
+    description = """|Développeur scala depuis plusieurs années, je me passionne pour la performance des applications.
          |
          |Je suis actuellement l'architecte de Make.org où je mets en place des applications haute disponibilité.
          |""".stripMargin,
-         job = "Tech Lead",
-         company = "NuMind",
-         socials = List(
-          Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/fran%C3%A7ois-laroche-28406132/"),
-          Social(Social.Kind.Other, "https://github.com/larochef/")
-         )
+    job = "Tech Lead",
+    company = "NuMind",
+    socials = List(
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/fran%C3%A7ois-laroche-28406132/"),
+      Social(Social.Kind.Other, "https://github.com/larochef/")
+    ),
+    confirmed = true
   )
 
   lazy val allSpeakers = List(

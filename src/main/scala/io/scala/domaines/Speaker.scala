@@ -13,7 +13,8 @@ case class Speaker(
     description: String = "",
     job: String,
     company: String,
-    socials: List[Social]
+    socials: List[Social],
+    confirmed: Boolean
 ):
     def socialNetworks = socials.map {
         case Social(Social.Kind.Twitter, url)   => a(Twitter(), href := url)
