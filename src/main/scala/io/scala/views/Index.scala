@@ -7,10 +7,10 @@ import com.raquo.laminar.api.L.{*, given}
 import io.scala.modules.YurPlan
 
 case object Index extends View {
-  override def body: HtmlElement = sectionTag(
+  def body: HtmlElement = sectionTag(
     div(
       className := "index-hero",
-      backgroundImage := "url(../images/index-hero.jpeg)",
+      backgroundImage := "url(../images/index-hero.webp)",
       div(
         className := "overlay",
         div(

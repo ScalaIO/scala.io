@@ -8,24 +8,39 @@ import com.raquo.waypoint.*
 import org.scalajs.dom.html
 import upickle.default.*
 
-enum Page:
-  case IndexPage, SpeakersPage, SponsorsPage, VenuePage, SchedulePage
+sealed trait Page:
   def title =
     this match
-      case IndexPage    => "Home"
-      case SpeakersPage => "Speakers"
-      case SponsorsPage => "Sponsors"
-      case VenuePage    => "Venue"
-      case SchedulePage => "Schedule"
+      case IndexPage       => "Home"
+      case _: SpeakersPage => "Speakers"
+      case SponsorsPage    => "Sponsors"
+      case VenuePage       => "Venue"
+      case _: SchedulePage => "Schedule"
+case object IndexPage                       extends Page
+case class SpeakersPage(withDraft: Option[Boolean] = None) extends Page
+case object SponsorsPage                    extends Page
+case object VenuePage                       extends Page
+case class SchedulePage(withDraft: Option[Boolean] = None) extends Page
 
 object Page {
-  implicit val pageCodec: ReadWriter[Page] = macroRW
+  given pageCodec: ReadWriter[Page] = macroRW
+  given ReadWriter[SpeakersPage]    = macroRW
+  given ReadWriter[SchedulePage]    = macroRW
 
-  val indexRoute    = Route.static(IndexPage, root / endOfSegments)
-  val speakersRoute = Route.static(SpeakersPage, root / "speakers" / endOfSegments)
+  val draftParam = param[Boolean]("withDraft").?
+  val indexRoute = Route.static(IndexPage, root / endOfSegments)
+  val speakersRoute = Route.onlyQuery[SpeakersPage, Option[Boolean]](
+    encode = page => page.withDraft,
+    decode = args => SpeakersPage(withDraft = args),
+    (root / "speakers" / endOfSegments) ? draftParam
+  )
   val sponsorsRoute = Route.static(SponsorsPage, root / "sponsors" / endOfSegments)
   val venueRoute    = Route.static(VenuePage, root / "venue" / endOfSegments)
-  val scheduleRoute = Route.static(SchedulePage, root / "schedule" / endOfSegments)
+  val scheduleRoute = Route.onlyQuery[SchedulePage, Option[Boolean]](
+    encode = page => page.withDraft,
+    decode = args => SchedulePage(withDraft = args),
+    (root / "schedule" / endOfSegments) ? draftParam
+  )
 
   val router = new Router[Page](
     routes = List(indexRoute, speakersRoute, sponsorsRoute, venueRoute, scheduleRoute),
@@ -38,11 +53,11 @@ object Page {
   )
 
   val splitter = SplitRender[Page, HtmlElement](router.currentPageSignal)
-    .collectStatic(IndexPage)(Index.render)
-    .collectStatic(SpeakersPage)(Speakers.render)
-    .collectStatic(SponsorsPage)(Sponsors.render)
-    .collectStatic(VenuePage)(Venue.render)
-    .collectStatic(SchedulePage)(Schedule.render)
+    .collectStatic(IndexPage)(Index.render(Index.body))
+    .collect[SpeakersPage](pge => Speakers.render(Speakers.body(pge.withDraft.getOrElse(false))))
+    .collectStatic(SponsorsPage)(Sponsors.render(Sponsors.body))
+    .collectStatic(VenuePage)(Venue.render(Venue.body))
+    .collect[SchedulePage](pge => Schedule.render(Schedule.body(pge.withDraft.getOrElse(false))))
 
   def navigateTo(page: Page): Binder[HtmlElement] = Binder { el =>
 

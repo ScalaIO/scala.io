@@ -8,7 +8,7 @@ import com.raquo.laminar.api.L.{*, given}
 
 object Venue extends View {
 
-  override def body: HtmlElement = sectionTag(
+  def body: HtmlElement = sectionTag(
     className := "container",
     Title("Venue"),
     p(

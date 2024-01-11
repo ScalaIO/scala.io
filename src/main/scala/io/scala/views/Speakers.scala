@@ -9,11 +9,12 @@ import io.scala.views.View
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.api.features.unitArrows
 import org.scalajs.dom.Element
+import org.scalajs.dom.console
 
 case object Speakers extends View {
   private val selectedSpeaker: Var[Option[Speaker]] = Var(None)
 
-  override def body: HtmlElement = sectionTag(
+  def bodyContent(speakers: List[Speaker])= sectionTag(
     className := "container",
     Title("Speakers"),
     p(
@@ -27,7 +28,7 @@ case object Speakers extends View {
     ),
     Line(margin = 55),
     div(
-      Lexicon.Speakers.speakers.map(SpeakerCard(_, selectedSpeaker)),
+      speakers.map(SpeakerCard(_, selectedSpeaker)),
       className := "card-container"
     ),
     SpeakerModal(selectedSpeaker),
@@ -40,4 +41,8 @@ case object Speakers extends View {
         }
     } --> ()
   )
+
+  def body(withDraft: Boolean): HtmlElement =
+    if withDraft then bodyContent(Lexicon.Speakers.speakers)
+    else bodyContent(Lexicon.Speakers.speakers.filter(_.confirmed))
 }

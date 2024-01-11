@@ -6,9 +6,7 @@ import com.raquo.laminar.api.L.{*, given}
 import org.scalajs.dom
 
 trait View {
-  def body: HtmlElement
-
-  def render: HtmlElement = div(
+  def render(body: HtmlElement): HtmlElement = div(
     Headband.render,
     display.flex,
     flexDirection.column,

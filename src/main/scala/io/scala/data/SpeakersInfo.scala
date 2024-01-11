@@ -1,95 +1,24 @@
 package io.scala.data
 
-import io.scala.Lexicon.Speakers.speakers
 import io.scala.domaines.Social
 import io.scala.domaines.Speaker
-import io.scala.domaines.Talk
-import io.scala.data.SpeakersInfo.johannaVauchel
-import io.scala.Lexicon.Footer.Newsletter.description
-
-object TalksInfo:
-  val chasingArrows = Talk(
-    title = "Chasing Arrows, in Categories containing Functors and Monads",
-    description =
-      """|At EPITA (www.epita.fr), we recently presented a course in Category Theory for Programmers (ct4p), where we presented Categories with a mathematical foundation. To make everything make sense, we culminated the course with a history of mapping functions in Lisp and other functional programming languages. Simple lists from programming languages of the 1980s have be generalized in two different, incompatible ways: 1) powerful list manipulation libraries, and 2) functors and monads.
-         |
-         |We used Scala as a vehicle to develop commutative diagrams for mapping functions and showed how flatMap makes the diagrams in a Kleisli category commute.
-         |
-         |This presentation was judged as illuminating for the mathematicians helping them understand the programming perspective, and also illuminating for the programmers helping them understand what monad are and how they relate to Category Theory.
-         |
-         |This ScalaIO talk will be a overview of the EPITA CT4P course, with emphasis on commutation diagrams and simple Scala programming. The talk will be accessible to intermediate programmers of Scala, Python, Lisp and other languages.
-         |""".stripMargin,
-    speakers = List(SpeakersInfo.jimNewton, SpeakersInfo.uliFahrenberg)
-  )
-
-  val dataPipeline = Talk(
-    title = "Data pipelines engineering made simple with Scala",
-    description =
-      "Most organizations have data pipelines and those are growing by the minute. But working on data pipelines can be challenging and take / waste a lot of engineering time! The talk is about a state of the art platform used to build, run, evolve and operate data pipelines at Criteo: a project were Scala particularly shine. We will cover problem framing, core ideas and dive into our experience with SQL parsing, query planning and scheduling with quick introductions to the Scala libraries used. The talk is meant to be accessible to any junior developper and has food for though for tenured data engineers too.",
-    speakers = List(SpeakersInfo.raphaelClaude)
-  )
-
-  val compilerAcademy = Talk(
-    title = "Scala 3 Compiler Academy Journey",
-    description = """
-        |Open Source is all about collaboration. In the Scala world, we have a lot of eager talent hungry to learn together. The best way to learn to program is by doing. On the other hand, the core Scala projects have an ample supply of maintenance tasks – bug fixing, minor feature implementation, and documentation. To match the demand with the supply, in the Summer of 2021, I initiated the project Scala 3 Compiler Academy. Organized by the Scala Center, the Academy aimed to provide an avenue for Scala engineers to start contributing to the Scala Compiler. The Academy was implemented online pair programming sessions and a YouTube channel where one could learn more about the compiler.
-
-        |Now, two years later, with the format fleshed out and the lessons learnt, I'd like to share our journey with you. After attending my talk, you'll learn how the format works, and how to start a similar Spree for your own project as well!""".stripMargin,
-    speakers = List(SpeakersInfo.anatoliiKmetiuk)
-  )
-
-  val scalaFix = Talk(
-    title = "Unleashing Scalafix potential with custom rules",
-    description = """|Scalafix is a mature tool which was started nearly 8 years ago by Ólafur Páll Geirsson at the Scala Center, originally driven by the need to provide a smooth transition from Scala 2.x to Dotty (now known as Scala 3, which provides its own rewriting features).
-         |
-         |Beyond built-in rules execution to organize imports or remove unused code, Scalafix is very extensible thanks to its stable and beginner-friendly API to inspect Scala sources by traversing Scala Abstract Syntax Trees, raise linter errors and/or suggest rewrites to fix them. Like Scalafmt and the Metals language server, it heavily relies on the vibrant Scalameta ecosystem, allowing support of Scala 2.x and Scala 3.
-         |
-         |In this talk, we will demystify AST traversal and semantic information lookup to write custom rules and run them locally and/or on CI, through the sbt-scalafix plugin or via Scala Steward.
-         |""".stripMargin,
-    speakers = List(SpeakersInfo.briceJaglin)
-  )
-
-  val kafkaStreams = Talk(
-    title = "🌴 Youpi dansons la Kapoeira en testant nos Kafka streams 🕺 💃",
-    description = """|Avec le monde de la Data en perpétuelle croissance, l'outil Open Source Apache Kafka est devenu incontournable grâce à ces capacités de collecte, de traitement temps réel, de stockage et d'analyse de données.
-         |
-         |Mais comment facilement tester toutes ces opérations dans un environnement d'intégration ? La solution Open Source Kapoeira tente de répondre à cette problématique.
-         |
-         |Sais-tu danser la Kapoeira ? 🎶 C'est du Cucumber 🥒 et du Kafka ! 🎬 🎺
-         |
-         |C'est à l'aide d'un langage simple et normalisé basé sur Gherkin, qu'un test automatisé Kapoeira pourra être co-écrit par un QA, un PO ou un DEV. Il pourra servir à la fois de spécification, de test d'acceptance et de test de transformation de données sur une vraie infrastructure Kafka.
-         |
-         |Burger Quiz 🍔 : venez découvrir Kapoeira à travers une démo live testant un Kafka Stream qui fabrique des hamburgers !
-         |
-         |Si vous êtes intéressés, nous serons ravis de récolter vos retours et vos contributions pour nous aider à améliorer cet outil.
-         |""".stripMargin,
-    speakers = List(SpeakersInfo.johannaVauchel)
-  )
-
-  val allTalks = List(
-    chasingArrows,
-    dataPipeline,
-    compilerAcademy,
-    scalaFix,
-    kafkaStreams
-  )
 
 object SpeakersInfo:
-  val jimNewton = Speaker(
+  lazy val jimNewton = Speaker(
     name = "Jim Newton",
-    photo = Some("jim.jpeg"),
+    photo = Some("jim.webp"),
     job = "",
     company = "EPITA Rennes",
     socials = List(
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/jim-newton-463600a8"),
       Social(Social.Kind.Other, "https://www.lrde.epita.fr/wiki/User:Jnewton")
-    )
+    ),
+    confirmed = true
   )
-  val uliFahrenberg = Speaker(
+  lazy val uliFahrenberg = Speaker(
     name = "Uli Fahrenberg",
-    photo = Some("uli.jpg"),
-    description =
-      """|Ulrich (Uli) Fahrenberg is professor at EPITA Rennes and head of the automata research group at LRE, EPITA Paris. He holds a PhD in mathematics from Aalborg University and has worked at Aalborg University, IRISA Rennes, and at École polytechnique.
+    photo = Some("uli.webp"),
+    description = """|Ulrich (Uli) Fahrenberg is professor at EPITA Rennes and head of the automata research group at LRE, EPITA Paris. He holds a PhD in mathematics from Aalborg University and has worked at Aalborg University, IRISA Rennes, and at École polytechnique.
          |
          |Fahrenberg works in algebraic topology, concurrency theory, real-time verification, categorical foundations, and general quantitative verification. He has published more than 100 papers in computer science and mathematics. He has been a member of numerous program committees and is steering committee co-chair of the RAMiCS conferences and member of the steering committee of the GETCO conferences.
          |""".stripMargin,
@@ -98,64 +27,246 @@ object SpeakersInfo:
     socials = List(
       Social(Social.Kind.Github, "https://github.com/ulifahrenberg"),
       Social(Social.Kind.Other, "https://ulifahrenberg.github.io")
-    )
+    ),
+    confirmed = true
   )
 
-  val raphaelClaude = Speaker(
+  lazy val raphaelClaude = Speaker(
     name = "Raphael Claude",
-    photo = Some("rClaude.jpeg"),
-    description = "Staff Dev Lead at Criteo Developer & Site Reliability Engineer that mainly worked with the JVM and Hadoop ecosystem over the last decade.",
+    photo = Some("rClaude.webp"),
+    description =
+      "Staff Dev Lead at Criteo Developer & Site Reliability Engineer that mainly worked with the JVM and Hadoop ecosystem over the last decade.",
     job = "Staff Dev Lead",
     company = "Criteo",
     socials = List(
       Social(Social.Kind.Twitter, "http://twitter.com/heapoverflow")
-    )
+    ),
+    confirmed = true
   )
 
-  val anatoliiKmetiuk = Speaker(
+  lazy val anatoliiKmetiuk = Speaker(
     name = "Anatolii Kmetiuk",
     photo = Some("toli.webp"),
     job = "Compiler engineer and community manager",
-    description = "Lawyer turned Scala Engineer for the past 10 years. Started as a Scala and Machine Learning freelancer for 5 years followed by another 4 years at EPFL at the Scala 3 core team in the roles of compiler engineer and community manager.",
+    description =
+      "Lawyer turned Scala Engineer for the past 10 years. Started as a Scala and Machine Learning freelancer for 5 years followed by another 4 years at EPFL at the Scala 3 core team in the roles of compiler engineer and community manager.",
     company = "Scala Center, EPFL",
     socials = List(
       Social(Social.Kind.Twitter, "http://twitter.com/akmetiuk"),
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/akmetiuk"),
       Social(Social.Kind.Github, "https://github.com/anatoliykmetyuk"),
       Social(Social.Kind.Other, "https://akmetiuk.com")
-    )
+    ),
+    confirmed = true
   )
 
-  val briceJaglin = Speaker(
+  lazy val briceJaglin = Speaker(
     name = "Brice Jaglin",
-    photo = Some("bJaglin.jpeg"),
-    description = "Brice is the main maintainer of Scalafix since 2020, just after he discovered the potential of using custom rules in a modular monolith at work and started contributing to the project to make that easier. Currently a Staff Engineer at Swile, he no longer uses Scala on a day-to-day basis but continues to maintain Scalafix on his free time as he has yet to find such a powerful tool in another ecosystem!",
+    photo = Some("bJaglin.webp"),
+    description =
+      "Brice is the main maintainer of Scalafix since 2020, just after he discovered the potential of using custom rules in a modular monolith at work and started contributing to the project to make that easier. Currently a Staff Engineer at Swile, he no longer uses Scala on a day-to-day basis but continues to maintain Scalafix on his free time as he has yet to find such a powerful tool in another ecosystem!",
     job = "Staff Engineer",
     company = "Swile",
     socials = List(
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/bjaglin"),
       Social(Social.Kind.Github, "https://github.com/bjaglin")
-    )
+    ),
+    confirmed = true
   )
 
-  val johannaVauchel = Speaker(
+  lazy val johannaVauchel = Speaker(
     name = "Johanna Vauchel",
-    photo = Some("jVauchel.jpeg"),
-    description = "Diplomée de l’INSA de Rouen spécialité Génie Mathématique, j’ai commencé à travailler pour des applications 3D (aménagement intérieur, imagerie médicale, simulateur de vêtements). En 2021 je me suis reconvertie pour devenir Ingénieure Data, dans l’entreprise Lectra à Bordeaux, où je développe des pipelines de données en Scala via Kafka et Snowflake. J’aime former, vulgariser des concepts et partager avec mes collègues ou lors de conférences, des connaissances ou des retours d’expérience. Je suis adepte du sketchnoting et de la facilitation graphique.",
+    photo = Some("jVauchel.webp"),
+    description =
+      "Diplomée de l'INSA de Rouen spécialité Génie Mathématique, j'ai commencé à travailler pour des applications 3D (aménagement intérieur, imagerie médicale, simulateur de vêtements). En 2021 je me suis reconvertie pour devenir Ingénieure Data, dans l'entreprise Lectra à Bordeaux, où je développe des pipelines de données en Scala via Kafka et Snowflake. J'aime former, vulgariser des concepts et partager avec mes collègues ou lors de conférences, des connaissances ou des retours d'expérience. Je suis adepte du sketchnoting et de la facilitation graphique.",
     job = "Data Engineer",
     company = "Lectra",
     socials = List(
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/johanna-vauchel-05576a78"),
       Social(Social.Kind.Github, "https://github.com/jvauchel"),
       Social(Social.Kind.Other, "https://jvauchel.github.io")
-    )
+    ),
+    confirmed = true
   )
 
-  val allSpeakers = List(
+  lazy val mehdiRebiai = Speaker(
+    name = "Mehdi Rebiai",
+    photo = None,
+    job = "",
+    company = "",
+    socials = List(),
+    confirmed = true
+  )
+
+  lazy val valentinBergeron = Speaker(
+    name = "Valentin Bergeron",
+    photo = None,
+    description =
+      "Currently Engineering team lead @Ledger, I like Scala, making programming languages, and joking about python",
+    job = "Engineering team lead",
+    company = "Ledger",
+    socials = List(
+      Social(Social.Kind.Twitter, "https://twitter.com/__vberg"),
+      Social(Social.Kind.Github, "https://github.com/vbergeron")
+    ),
+    confirmed = true
+  )
+
+  lazy val sophieCollard = Speaker(
+    name = "Sophie Collard",
+    photo = None,
+    description =
+      "Sophie is a software engineer and ex-data scientist with a fondness for strongly typed functional languages. She has worked with Scala for the past 8 years and more recently delved into frontend development using Elm. She is a Lead Software Engineer at JPMorgan where she works on the Model-driven Engineering Platform. Her academic background is in Environmental Engineering (BEng) and Renewable Energy (MSc).",
+    job = "Lead Software Engineer",
+    company = "JPMorgan",
+    socials = List(
+      Social(Social.Kind.Github, "https://github.com/sophiecollard")
+    ),
+    confirmed = false
+  )
+
+  lazy val paulMatthew = Speaker(
+    name = "Paul Matthews",
+    photo = Some("pMatthews.webp"),
+    description = """|I'm currently a backend Scala developer at ClearScore with a focus on functional programming.
+         |
+         |I completed a BSc in Computer Science at the Uni of Hertfordshire in 2020 with first class honours and prior to this have a background in the music industry as a signed recording artist, record producer and audio engineer with credits including number 1 chart positions and platinum and gold sales.
+         |""".stripMargin,
+    job = "Backend Scala Developer",
+    company = "ClearScore",
+    socials = List(
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/matthews-paul"),
+      Social(Social.Kind.Other, "https://en.wikipedia.org/wiki/Paul_Matthews_(musician)")
+    ),
+    confirmed = true
+  )
+
+  lazy val dawidFurman = Speaker(
+    name = "Dawid Furman",
+    photo = Some("dFurman.webp"),
+    description =
+      "A computer and human language passionate. Enthusiast of the functional paradigm. The guitarist of the best rock-funky-hard SolYNaranjaS band!",
+    job = "",
+    company = "",
+    socials = List(
+      Social(Social.Kind.Twitter, "https://twitter.com/dfurmans"),
+      Social(Social.Kind.Other, "https://solynaranjas.com/")
+    ),
+    confirmed = false,
+  )
+
+  lazy val lukaszBialy = Speaker(
+    name = "Łukasz Biały",
+    photo = Some("lBialy.webp"),
+    description =
+      "Polyglot full-stack developer and functional programming enthusiast. PSE & Scala Developer Advocate @ VirtusLab. Values quality over quantity. Permanent learner with a severe information dependency problem. Enjoys conversations about philosophy and all things related to mind's inner workings. Loves mountains, biking and hiking.",
+    job = "Software Engineer",
+    company = "VirtusLab",
+    socials = List(
+      Social(Social.Kind.Twitter, "https://twitter.com/lukasz_bialy")
+    ),
+    confirmed = false
+  )
+
+  lazy val olivierMelois = Speaker(
+    name = "Olivier Mélois",
+    photo = Some("oMelois.webp"),
+    description =
+      """|My name is Olivier Mélois. I have been using Scala as my main language for since 2013. I maintain weaver-test and smithy4s, and have contribute to many libraries and tools, from ammonite to cats-effect.
+         |
+         |After leaving in Manchester (UK) for a while, I moved back to the countryside in the south of France, and now work remotely full-time in the countryside. I try to grow vegetables.
+         |""".stripMargin,
+    job = "Principal Engineer",
+    company = "Disney Streaming Services",
+    socials = List(
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/olivier-m%C3%A9lois-99234bbb/"),
+      Social(Social.Kind.Other, "https://github.com/Baccata")
+    ),
+    confirmed = false
+  )
+
+  lazy val enzoCrance = Speaker(
+    name = "Enzo Crance",
+    photo = Some("eCrance.webp"),
+    description =
+      "PhD in Computer Science @ Inria 🇫🇷 Meta-programming for Coq, formal proof automation Functional programming enjoyer",
+    job = "PhD Student",
+    company = "INRIA",
+    socials = List(
+      Social(Social.Kind.Twitter, "http://twitter.com/cranceltik"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/enzo-crance-099628b9/?locale=en_US"),
+      Social(Social.Kind.Other, "https://ecrance.net/")
+    ),
+    confirmed = true
+  )
+
+  lazy val anthonyCros = Speaker(
+    name = "Anthony Cros",
+    photo = Some("aCros.webp"),
+    description = """|I am an independent software engineer/architect with 20 years of professional coding experience (see LinkedIn). My focus is on data transformations (especially big data), domain modeling, software architecture in general, and bioinformatics.
+         |
+         |My past experiences primarily include work in the biomedical field, with positions held at the Ontario Institute for Cancer Research, the Hospital for Sick Children in Toronto, the Children's Hospital of Philadelphia, the BF2I lab (INSA Lyon), and the bacteriology lab at UCBL (Lyon). I also worked for a short period of time in the telecom industry, although a less exciting venture for my tastes.
+         |
+         |The above experiences included a great many situations in which data had to be modeled with the most extreme care, and processed with just the right trade-offs of practicality and performance. In the biomedical field in particular, errors in judgment on these aspects can have real consequences for patient care, whether indirectly via portals used by researchers (e.g. International Cancer Genome Consortium data portal), or directly in the case of internal hospital systems (typically kept private).
+         |
+         |All these experiences led me to develop my own tool, Gallia, with the aim of streamlining the process of data transformation, and which draws on all the issues I've encountered using existing tools (as well as their strengths!). I'm also developing a tool intended to help with the modeling aspect - with an emphasis on semantics - and hope to publish it as well at some point in the future.
+         |""".stripMargin,
+    job = "Software Architect",
+    company = "Self-employed",
+    socials = List(
+      Social(Social.Kind.Twitter, "http://twitter.com/anthony_cros"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/anthony-cros-3587b063/"),
+      Social(Social.Kind.Other, "http://anthonycros.com")
+    ),
+    confirmed = true
+  )
+
+  lazy val didierPlaindoux = Speaker(
+    name = "Didier Plaindoux",
+    photo = Some("dPlaindoux.webp"),
+    description = "Talks about Java, Python, Swift, Kotlin and FP",
+    job = "Senior Software Engineer",
+    company = "Akawan (Freelance)",
+    socials = List(
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/didier-plaindoux-912b3517/"),
+      Social(Social.Kind.Github, "https://github.com/d-plaindoux"),
+      Social(Social.Kind.Other, "http://d.plaindoux.free.fr")
+    ),
+    confirmed = true
+  )
+
+  lazy val francoisLaroche = Speaker(
+    name = "François Laroche",
+    photo = Some("fLaroche.webp"),
+    description = """|Développeur scala depuis plusieurs années, je me passionne pour la performance des applications.
+         |
+         |Je suis actuellement l'architecte de Make.org où je mets en place des applications haute disponibilité.
+         |""".stripMargin,
+    job = "Tech Lead",
+    company = "NuMind",
+    socials = List(
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/fran%C3%A7ois-laroche-28406132/"),
+      Social(Social.Kind.Other, "https://github.com/larochef/")
+    ),
+    confirmed = true
+  )
+
+  lazy val allSpeakers = List(
     jimNewton,
     uliFahrenberg,
     raphaelClaude,
     anatoliiKmetiuk,
     briceJaglin,
-    johannaVauchel
+    johannaVauchel,
+    valentinBergeron,
+    sophieCollard,
+    paulMatthew,
+    mehdiRebiai,
+    dawidFurman,
+    lukaszBialy,
+    olivierMelois,
+    enzoCrance,
+    anthonyCros,
+    didierPlaindoux,
+    francoisLaroche
   )

@@ -9,7 +9,7 @@ import com.raquo.laminar.api.L.{*, given}
 object SpeakerModal {
   def apply(speaker: Var[Option[Speaker]]) =
     div(
-      role := "dialog",
+      role      := "dialog",
       className := "card-overlay",
       display <-- speaker.signal.map(_.isDefined).map {
         case true  => "flex"
@@ -26,8 +26,8 @@ object SpeakerModal {
           className := "header",
           img(
             src <-- speaker.signal.map {
-              case Some(s) => s.photo.fold("/images/profile.jpg")(path => s"/images/profiles/$path")
-              case None    => "/images/profile.jpg"
+              case Some(s) => s.photo.fold(profilePlaceholder)(path => s"/images/profiles/$path")
+              case None    => profilePlaceholder
             },
             className := "speaker-photo"
           ),
