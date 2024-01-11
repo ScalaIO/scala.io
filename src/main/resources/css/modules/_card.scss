@@ -15,11 +15,16 @@ $card-padding: 16px;
   display: flex; // Needed for the shadow on hovering
   flex-direction: column;
   align-items: stretch;
+  transition: all 0.3s ease-in-out;
   flex-grow: 1;
 
-  border: 1px solid vars.$main-color-lighter;
+  border-width: 1px;
+  border-style: solid;
   border-radius: 10px;
-  transition: all 0.3s ease-in-out;
+  @include mixins.border-style(
+    vars.$main-color-lighter,
+    vars.$main-color
+  );
 
   &:after {
     content: "";
@@ -29,18 +34,40 @@ $card-padding: 16px;
     height: 100%;
     opacity: 0.2;
     border-radius: 10px;
-    box-shadow: 0px 8px 16px rgba(vars.$main-color, 0.3);
     transition: opacity 0.3s ease-in-out;
   }
 
   &:hover {
     cursor: pointer;
-    border-color: vars.$main-color;
     transform: translateY(-5px);
   }
 
   &:hover::after {
     opacity: 1;
+  }
+
+  .presentation-lightning,
+  .presentation-talk,
+  .presentation-keynote {
+    font-size: vars.$text-size-small;
+    text-transform: uppercase;
+    border-radius: 10px;
+    padding: 2px 10px;
+  }
+
+  .presentation-lightning {
+    color: vars.$prez-lightning-color;
+    background-color: rgba(0, 163, 0, 0.4);
+  }
+
+  .presentation-talk {
+    color: vars.$prez-talk-color;
+    background-color: rgba(0, 107, 206, 0.4);
+  }
+
+  .presentation-keynote {
+    color: vars.$prez-keynote-color;
+    background-color: rgba(206, 0, 19, 0.4);
   }
 }
 
@@ -90,7 +117,7 @@ $card-padding: 16px;
     gap: vars.$spacing-small;
     margin-top: vars.$spacing-small;
   }
-  
+
   .talk-speaker {
     display: flex;
     align-items: center;
@@ -150,33 +177,6 @@ $card-padding: 16px;
     justify-content: space-between;
     align-items: center;
     margin-bottom: vars.$spacing-small;
-  }
-
-  %speaker-talk-kind {
-    font-size: vars.$text-size-small;
-    text-transform: uppercase;
-    border-radius: 10px;
-    padding: 0px 10px;
-  }
-
-  .presentation-lightning,
-  .presentation-talk,
-  .presentation-keynote {
-    @extend %speaker-talk-kind;
-  }
-  .presentation-lightning {
-    color: #00a300;
-    background-color: rgba(0, 163, 0, 0.4);
-  }
-
-  .presentation-talk {
-    color: #006bce;
-    background-color: rgba(0, 107, 206, 0.4);
-  }
-
-  .presentation-keynote {
-    color: #ce0013;
-    background-color: rgba(206, 0, 19, 0.4);
   }
 
   .speaker-socials {

@@ -9,9 +9,8 @@ import com.raquo.laminar.api.L.{*, given}
 import org.scalajs.dom
 object TalkKindTag:
   def apply(kind: Kind) =
-    div(
-      kind.toString,
-      className := s"speaker-card__presentation ${kind.toStyle}"
+    span(
+      span(kind.toString, className := kind.toStyle),
     )
 object TalkDescription:
   def apply(description: String) =
@@ -28,9 +27,12 @@ object TalkCard:
       onClick --> { _ =>
         ScheduleState.selectedTalk.set(Some(talk))
       },
-      h3(
-        talk.title,
-        className := "card-title"
+      div(
+        h3(
+          talk.title,
+          className := "card-title"
+        ),
+        TalkKindTag(talk.kind),
       ),
       Line(margin = 10),
       div(

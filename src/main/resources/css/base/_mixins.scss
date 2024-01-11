@@ -48,3 +48,16 @@
     line-height: $text-size;
   }
 }
+
+@mixin border-style(
+  $border-color-light,
+  $border-color-highlight
+) {
+  border-color: $border-color-light;
+  &:after {
+    box-shadow: 0px 8px 16px rgba($border-color-light, 0.75);
+  }
+  &:hover {
+    border-color: $border-color-highlight;
+  }
+}
