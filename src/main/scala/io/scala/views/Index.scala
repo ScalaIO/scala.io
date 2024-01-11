@@ -10,7 +10,7 @@ case object Index extends View {
   override def body: HtmlElement = sectionTag(
     div(
       className := "index-hero",
-      backgroundImage := "url(../images/index-hero.jpeg)",
+      backgroundImage := "url(../images/index-hero.webp)",
       div(
         className := "overlay",
         div(
