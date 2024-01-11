@@ -91,10 +91,18 @@ object SpeakersInfo:
 
   lazy val mehdiRebiai = Speaker(
     name = "Mehdi Rebiai",
-    photo = None,
-    job = "",
-    company = "",
-    socials = List(),
+    photo = Some("mRebiai.webp"),
+    description = """|Développeur depuis bientôt 20 ans, d'abord du Java puis un peu de front, puis beaucoup d'intégration continue et d'automatisation. 
+      |Désormais je suis Tech Lead Data chez Lectra : beaucoup de Scala et de Kafka. 
+      |Je participe également au projet Open Source Kapoeira : https://github.com/lectra-tech/kapoeira
+      |Mon github pour en savoir plus : https://github.com/mrebiai, https://mrebiai.github.io/
+      |""".stripMargin,
+    job = "Data Engineer, Tech Lead",
+    company = "Lectra",
+    socials = List(
+      Social(Social.Kind.Github, "https://github.com/mrebiai"),
+      Social(Social.Kind.Other, "https://mrebiai.github.io")
+    ),
     confirmed = true
   )
 
