@@ -1,7 +1,7 @@
 package io.scala.modules.layout
 
 import io.scala.{Lexicon, Page}
-import io.scala.{VenuePage, IndexPage, SponsorsPage, SchedulePage, SpeakersPage}
+import io.scala.{VenuePage, IndexPage, SponsorsPage, SchedulePage, SpeakersListPage}
 import io.scala.svgs.Burger
 import io.scala.svgs.Logo
 
@@ -41,7 +41,7 @@ object Header {
     )
 
   private val linksPage = Seq(
-    Lexicon.Header.speakers -> SpeakersPage(),
+    Lexicon.Header.speakers -> SpeakersListPage(),
     Lexicon.Header.sponsors -> SponsorsPage,
     Lexicon.Header.venue    -> VenuePage,
     Lexicon.Header.schedule -> SchedulePage()

@@ -24,11 +24,6 @@ case object SpeakersList extends View {
       Lexicon.Speakers.catchPhrase,
       className := "catch-phrase"
     ),
-    a(
-      ClassyButton(Lexicon.Speakers.callToAction),
-      href   := "https://www.papercall.io/scalaio-2024-nte",
-      target := "_blank"
-    ),
     Line(margin = 55),
     div(
       speakers.map(SpeakerCard(_, selectedSpeaker)),

@@ -1,11 +1,54 @@
 package io.scala.views
 
 import io.scala.domaines.Speaker
-import com.raquo.laminar.api.L.{*, given}
 import io.scala.modules.elements.Title
+import io.scala.modules.profilePlaceholder
+import io.scala.svgs.AtSign
+import io.scala.svgs.Suitcase
 
-final case class SpeakerView(speaker: Speaker) extends View:
-  def body: HtmlElement = sectionTag(
-    className := "container",
-    Title(speaker.name)
+import com.raquo.laminar.api.L.{*, given}
+import io.scala.data.TalksInfo
+import io.scala.data.TalksInfo.allTalks
+
+object SpeakerView extends View:
+  def error = sectionTag(
+    "Error :)"
   )
+  def bodyContent(speaker: Speaker): HtmlElement =
+    val talk = allTalks.find(_.speakers.contains(speaker)).get
+    sectionTag(
+      className := "container speaker",
+      Title.withSub(
+        speaker.name,
+        div(
+          className := "speaker-job",
+          div(
+            Suitcase(),
+            speaker.job
+          ),
+          div(
+            AtSign(),
+            speaker.company
+          )
+        )
+      ),
+      div(
+        className := "speaker-data",
+        img(
+          src       := speaker.photo.fold(profilePlaceholder)(path => s"/images/profiles/$path"),
+          className := "speaker-photo"
+        ),
+        div(
+          className := "speaker-info",
+          h2("Who am I"),
+          p(speaker.description),
+          h2(talk.title),
+          p(talk.description)
+        )
+      )
+    )
+
+  def body(speaker: Option[Speaker]) =
+    speaker match
+      case Some(value) => bodyContent(value)
+      case None        => error

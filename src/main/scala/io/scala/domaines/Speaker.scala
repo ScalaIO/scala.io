@@ -16,6 +16,9 @@ case class Speaker(
     socials: List[Social],
     confirmed: Boolean
 ):
+    // TODO: find a better replacement
+    val slug = name.toLowerCase().replaceAll(" ", "-")
+
     def socialNetworks = socials.map {
         case Social(Social.Kind.Twitter, url)   => a(Twitter(), href := url)
         case Social(Social.Kind.Linkedin, url)  => a(Linkedin(), href := url)

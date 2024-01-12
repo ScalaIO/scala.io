@@ -1,0 +1,25 @@
+@use "../base/vars";
+@use "../base/mixins";
+
+.speaker {
+  .speaker-photo {
+    object-fit: cover;
+    position: sticky;
+    top: 20px;
+    border-radius: 125px 125px 10px 125px;
+  }
+
+  svg {
+    fill: vars.$main-color;
+    width: 24px;
+    vertical-align: top;
+    margin-right: 8px;
+  }
+
+  .speaker-data {
+    display: flex;
+    gap: vars.$spacing-large;
+    margin-top: 32px;
+    align-items: flex-start;
+  }
+}

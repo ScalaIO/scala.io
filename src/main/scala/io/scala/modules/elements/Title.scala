@@ -7,4 +7,10 @@ object Title {
     name,
     className := "title"
   )
+
+  def withSub(title: String, subtitle: HtmlElement) = div(
+    h1(title),
+    subtitle.amend(className := "subtitle"),
+    className := "title"
+  )
 }
