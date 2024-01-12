@@ -7,6 +7,8 @@ import io.scala.views.ScheduleState
 
 import com.raquo.laminar.api.L.{*, given}
 import org.scalajs.dom
+import elements.Line
+
 object TalkKindTag:
   def apply(kind: Kind) =
     span(

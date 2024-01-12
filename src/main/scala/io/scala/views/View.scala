@@ -1,6 +1,5 @@
 package io.scala.views
-
-import io.scala.modules.*
+import io.scala.modules.layout.*
 
 import com.raquo.laminar.api.L.{*, given}
 import org.scalajs.dom

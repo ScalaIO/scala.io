@@ -18,6 +18,7 @@
 @use "modules/line";
 @use "modules/modal";
 @use "modules/shiny_button";
+@use "modules/speaker";
 @use "modules/card";
 @use "modules/title";
 @use "modules/venue";
@@ -39,7 +40,6 @@ h2 {
 }
 
 .container {
-  min-width: 335px;
   margin: vars.$spacing-xx-large vars.$spacing-huge;
   @include mixins.marginFor(
     vars.$laptop-width,

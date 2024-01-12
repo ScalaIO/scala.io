@@ -1,4 +1,4 @@
-package io.scala.modules
+package io.scala.modules.layout
 
 import io.scala.Lexicon
 

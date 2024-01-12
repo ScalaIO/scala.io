@@ -156,6 +156,7 @@ $card-padding: 16px;
   @extend %card;
   @extend %speaker-card-base;
   padding: $card-padding;
+  justify-content: space-between;
 
   &:after {
     margin-left: -16px;
@@ -166,6 +167,7 @@ $card-padding: 16px;
     background-color: #ecebeb;
     border-radius: 10px 10px 0 0;
     object-fit: cover;
+    max-height: 220px;
   }
 
   .speaker-information {
@@ -187,6 +189,13 @@ $card-padding: 16px;
       height: vars.$card-social-logo-height;
     }
   }
+}
+
+.card-link {
+  display: flex;
+  justify-content: end;
+  margin-top: 8px;
+  margin-left: auto;
 }
 
 .sponsor-card {

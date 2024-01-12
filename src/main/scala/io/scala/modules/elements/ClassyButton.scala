@@ -1,4 +1,4 @@
-package io.scala.modules
+package io.scala.modules.elements
 
 import io.scala.{Lexicon, Page}
 import io.scala.svgs.Logo
@@ -21,6 +21,6 @@ object ClassyButton {
 
     element.amend(
       className                                    := "classy-button",
-      className.toggle("classy-button--important") := isImportant
+      className.toggle("classy-button-highlight") := isImportant,
     )
 }

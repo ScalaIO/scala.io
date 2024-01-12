@@ -4,7 +4,7 @@ import io.scala.Page._
 import io.scala.views.View
 
 import com.raquo.laminar.api.L.{*, given}
-import io.scala.modules.YurPlan
+import io.scala.modules.elements.YurPlan
 
 case object Index extends View {
   def body: HtmlElement = sectionTag(

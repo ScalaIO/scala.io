@@ -1,11 +1,8 @@
 package io.scala.svgs
 
-import io.scala.Page
-
 import com.raquo.laminar.api.L.SvgElement
 import com.raquo.laminar.api.L.svg.*
-import com.raquo.laminar.nodes.ReactiveHtmlElement
-import org.scalajs.dom.html
+
 object Logo {
   def apply(): SvgElement = svg(
     className := "logo",

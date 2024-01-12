@@ -1,12 +1,12 @@
 package io.scala.views
 
 import io.scala.Lexicon
-import io.scala.modules.Line
-import io.scala.modules.Title
+import io.scala.modules.elements.Line
+import io.scala.modules.elements.Title
 
 import com.raquo.laminar.api.L.{*, given}
 
-object Venue extends View {
+object VenueView extends View {
 
   def body: HtmlElement = sectionTag(
     className := "container",

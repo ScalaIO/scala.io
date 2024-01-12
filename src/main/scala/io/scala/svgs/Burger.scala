@@ -2,8 +2,6 @@ package io.scala.svgs
 
 import com.raquo.laminar.api.L.SvgElement
 import com.raquo.laminar.api.L.svg.*
-import com.raquo.laminar.nodes.ReactiveHtmlElement
-import org.scalajs.dom.html
 
 object Burger {
   def apply() = svg(

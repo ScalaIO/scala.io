@@ -5,8 +5,11 @@ import io.scala.data.TalksInfo
 import io.scala.domaines.ConfDay
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
-import io.scala.modules.{ClassyButton, Line, SpeakerCard, SpeakerModal, Title}
-import io.scala.modules.LineKind
+import io.scala.modules.{SpeakerCard, SpeakerModal}
+import io.scala.modules.elements.Line
+import io.scala.modules.elements.ClassyButton
+import io.scala.modules.elements.Title
+import io.scala.modules.elements.LineKind
 import io.scala.modules.ScheduleDay
 import io.scala.modules.TalkCard
 import io.scala.modules.TalkModal
@@ -21,7 +24,7 @@ import org.scalajs.dom.console
 object ScheduleState:
   val selectedTalk: Var[Option[Talk]] = Var(None)
 
-case object Schedule extends View {
+case object ScheduleView extends View {
   val selectedDay: Var[Option[String]] = Var(None)
   
   def bodyContent(talks: List[Talk]): HtmlElement =

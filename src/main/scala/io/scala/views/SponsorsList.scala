@@ -3,14 +3,18 @@ package io.scala.views
 import io.scala.Lexicon
 import io.scala.Page.*
 import io.scala.domaines.{Kind, Speaker, Talk}
-import io.scala.modules.{ClassyButton, Line, SpeakerCard, SponsorLogo, Title}
+import io.scala.modules.{SpeakerCard}
+import io.scala.modules.elements.SponsorLogo
+import io.scala.modules.elements.Line
+import io.scala.modules.elements.ClassyButton
+import io.scala.modules.elements.Title
 import io.scala.utils.ButtonKind
 import io.scala.views.View
 
 import com.raquo.laminar.api.L.{*, given}
 import io.scala.domaines.Sponsor
 
-case object Sponsors extends View {
+case object SponsorsList extends View {
 
   def body: HtmlElement = sectionTag(
     className := "container",
