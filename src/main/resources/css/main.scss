@@ -40,7 +40,6 @@ h2 {
 }
 
 .container {
-  min-width: 335px;
   margin: vars.$spacing-xx-large vars.$spacing-huge;
   @include mixins.marginFor(
     vars.$laptop-width,

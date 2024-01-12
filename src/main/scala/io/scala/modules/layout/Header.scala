@@ -56,21 +56,24 @@ object Header {
     className := "header__sidenav"
   )
 
-  def computerPlusScreen = headerTag(
-    div(Logo(), Page.navigateTo(IndexPage)),
-    links,
-    a(
+  val buyTicket= a(
+      idAttr := "buy-ticket",
       ShinyButton(Lexicon.Header.buyTicket),
       href := "https://yurplan.com/events/Scala-IO-2024/115152",
       target := "_blank",
     )
+
+  def computerPlusScreen = headerTag(
+    div(Logo(), Page.navigateTo(IndexPage)),
+    links,
+    buyTicket
   )
 
   def tabletScreen = headerTag(
     className := "navbar-tablet-view",
     div(
       div(Logo(), Page.navigateTo(IndexPage)),
-      ShinyButton(Lexicon.Header.buyTicket),
+      buyTicket,
       className := "navbar-links-tablet"
     ),
     links
@@ -80,7 +83,7 @@ object Header {
     className := "navbar-links-mobile",
     div(Logo(), Page.navigateTo(IndexPage)),
     div(
-      ShinyButton(Lexicon.Header.buyTicket),
+      buyTicket,
       button(
         Burger(),
         onClick.mapTo(!burgerClicked.now()) --> burgerClicked,

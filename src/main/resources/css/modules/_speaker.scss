@@ -4,9 +4,16 @@
 .speaker {
   .speaker-photo {
     object-fit: cover;
-    position: sticky;
-    top: 20px;
     border-radius: 125px 125px 10px 125px;
+
+    @media screen and (max-width: vars.$mobile-width) {
+      max-width: 160px;
+    }
+
+    @media screen and (min-width: vars.$mobile-width) {
+      position: sticky;
+      top: 20px;
+    }
   }
 
   svg {
@@ -21,5 +28,10 @@
     gap: vars.$spacing-large;
     margin-top: 32px;
     align-items: flex-start;
+
+    @media screen and (max-width: 650px) {
+      flex-direction: column;
+      align-items: center;
+    }
   }
 }

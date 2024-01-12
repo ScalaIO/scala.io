@@ -14,3 +14,9 @@
 
   transition: background-color .5s, color .5s;
 }
+
+#buy-ticket {
+  @media screen and (max-width: vars.$mobile-width){
+    margin: 4px 8px;
+  }
+}

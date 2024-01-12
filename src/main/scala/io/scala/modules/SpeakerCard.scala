@@ -14,10 +14,9 @@ import org.scalajs.dom.svg.{Path, SVG}
 import org.scalajs.dom.html.Anchor
 
 object SpeakerCard {
-  def apply(speaker: Speaker, variable: Var[Option[Speaker]]) =
+  def apply(speaker: Speaker) =
     div(
       className := "speaker-card",
-      onClick.filter(clickFilter).mapTo(Some(speaker)) --> variable,
       img(
         src       := speaker.photo.fold(profilePlaceholder)(path => s"/images/profiles/$path"),
         className := "speaker-photo"
@@ -47,7 +46,6 @@ object SpeakerCard {
         className := "card-link classy-button classy-button-highlight",
         s"${speaker.name.split(" ")(0)}'s page ",
         GoTo(),
-        target := "_blank",
         href := s"/speakers/${speaker.slug}"
       ),
     )
