@@ -1,6 +1,5 @@
 package io.scala.svgs
 
-import com.raquo.laminar.api.L.SvgElement
 import com.raquo.laminar.api.L.svg.*
 
 object AtSign:

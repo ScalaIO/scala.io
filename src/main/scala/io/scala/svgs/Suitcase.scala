@@ -1,10 +1,9 @@
 package io.scala.svgs
 
-import com.raquo.laminar.api.L.SvgElement
 import com.raquo.laminar.api.L.svg.*
 
 object Suitcase {
-  def apply(): SvgElement = svg(
+  def apply() = svg(
     viewBox := "0 0 240 192",
     g(
       path(d := "m  40,32 0,160 -16,0 a  24,24 0 0 1 -24,-24 l 0,-112 a  24,24 0 0 1  24,-24 z"),

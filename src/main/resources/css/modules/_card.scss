@@ -10,7 +10,7 @@ $card-padding: 16px;
   margin: vars.$spacing-small;
 }
 
-%card {
+%card-base {
   position: relative;
   display: flex; // Needed for the shadow on hovering
   flex-direction: column;
@@ -20,11 +20,14 @@ $card-padding: 16px;
   border-width: 1px;
   border-style: solid;
   border-radius: 10px;
-  @include mixins.border-style(
-    vars.$main-color-lighter,
-    vars.$main-color
-  );
 
+  @include mixins.border-style(
+    vars.$main-color,
+    vars.$main-color-lighter
+  );
+}
+
+%card-action {
   &:after {
     content: "";
     position: absolute;
@@ -44,30 +47,36 @@ $card-padding: 16px;
   &:hover::after {
     opacity: 1;
   }
+}
 
-  .presentation-lightning,
-  .presentation-talk,
-  .presentation-keynote {
-    font-size: vars.$text-size-small;
-    text-transform: uppercase;
-    border-radius: 10px;
-    padding: 2px 10px;
-  }
+span.presentation-lightning,
+span.presentation-short,
+span.presentation-talk,
+span.presentation-keynote {
+  font-size: vars.$text-size-small;
+  text-transform: uppercase;
+  border-radius: 10px;
+  padding: 2px 10px;
+}
 
-  .presentation-lightning {
-    color: vars.$prez-lightning-color;
-    background-color: rgba(0, 163, 0, 0.4);
-  }
+span.presentation-lightning {
+  color: vars.$prez-lightning-color;
+  background-color: rgba(0, 163, 0, 0.4);
+}
 
-  .presentation-talk {
-    color: vars.$prez-talk-color;
-    background-color: rgba(0, 107, 206, 0.4);
-  }
+span.presentation-short {
+  color: vars.$prez-short-color;
+  background-color: rgba(140, 0, 206, 0.4);
+}
 
-  .presentation-keynote {
-    color: vars.$prez-keynote-color;
-    background-color: rgba(206, 0, 19, 0.4);
-  }
+span.presentation-talk {
+  color: vars.$prez-talk-color;
+  background-color: rgba(0, 107, 206, 0.4);
+}
+
+span.presentation-keynote {
+  color: vars.$prez-keynote-color;
+  background-color: rgba(206, 0, 19, 0.4);
 }
 
 .card-title {
@@ -77,23 +86,44 @@ $card-padding: 16px;
   font-size: large;
 }
 
+
 %talk-card-base {
   min-width: 250px;
   padding: $card-padding;
 }
 
-.empty-talk-card,
+.blank-card,
 .talk-card {
+  @extend %card-base;
   @extend %talk-card-base;
-}
-
-.talk-card {
-  @extend %card;
 
   &:after {
     margin-left: -16px;
     margin-top: -16px;
   }
+}
+
+.blank-card {
+  @include mixins.border-style(
+    vars.$text-color-light,
+    vars.$text-color
+  );
+
+  height: vars.$spacing-xxx-huge;
+  width: 100%;
+
+  >div {
+    max-height: 100%;
+  }
+
+  svg {
+    height: auto;
+  }
+
+}
+
+.talk-card {
+  @extend %card-action;
 
   .card-body {
     padding: 0px $card-padding;
@@ -139,6 +169,31 @@ $card-padding: 16px;
   }
 }
 
+.talk-card.presentation-lightning {
+  @include mixins.border-style(
+    vars.$prez-lightning-color,
+    vars.$prez-lightning-color
+  );
+}
+.talk-card.presentation-short {
+  @include mixins.border-style(
+    vars.$prez-short-color,
+    vars.$prez-short-color
+  );
+}
+.talk-card.presentation-talk {
+  @include mixins.border-style(
+    vars.$prez-talk-color,
+    vars.$prez-talk-color
+  );
+}
+.talk-card.presentation-keynote {
+  @include mixins.border-style(
+    vars.$prez-keynote-color,
+    vars.$prez-keynote-color
+  );
+}
+
 .unassigned {
   .talk-card {
     flex: 0 1 0;
@@ -152,8 +207,10 @@ $card-padding: 16px;
 }
 
 .speaker-card {
-  @extend %card;
+  @extend %card-base;
+  @extend %card-action;
   @extend %speaker-card-base;
+
   padding: $card-padding;
   justify-content: space-between;
   flex-grow: 1;
@@ -203,5 +260,6 @@ $card-padding: 16px;
 }
 
 .sponsor-card {
-  @extend %card;
+  @extend %card-base;
+  @extend %card-action;
 }

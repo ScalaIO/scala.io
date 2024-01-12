@@ -2,6 +2,7 @@ package io.scala.data
 
 import io.scala.domaines.Social
 import io.scala.domaines.Speaker
+import io.scala.data.TalksInfo.allTalks
 
 object SpeakersInfo:
   lazy val jimNewton = Speaker(
@@ -259,22 +260,4 @@ object SpeakersInfo:
     confirmed = true
   )
 
-  lazy val allSpeakers = List(
-    jimNewton,
-    uliFahrenberg,
-    raphaelClaude,
-    anatoliiKmetiuk,
-    briceJaglin,
-    johannaVauchel,
-    valentinBergeron,
-    sophieCollard,
-    paulMatthew,
-    mehdiRebiai,
-    dawidFurman,
-    lukaszBialy,
-    olivierMelois,
-    enzoCrance,
-    anthonyCros,
-    didierPlaindoux,
-    francoisLaroche
-  )
+  lazy val allSpeakers = allTalks.flatMap(_.speakers).distinct
