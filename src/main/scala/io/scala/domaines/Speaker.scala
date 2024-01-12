@@ -9,11 +9,11 @@ import io.scala.svgs.Chain
 
 case class Speaker(
     name: String,
-    photo: Option[String],
+    photo: Option[String] = None,
     description: String = "",
-    job: String,
-    company: String,
-    socials: List[Social],
+    job: String = "",
+    company: String = "",
+    socials: List[Social] = List.empty,
     confirmed: Boolean
 ):
     // TODO: find a better replacement

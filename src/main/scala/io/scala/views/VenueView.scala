@@ -1,10 +1,9 @@
 package io.scala.views
 
+import com.raquo.laminar.api.L.{*, given}
 import io.scala.Lexicon
 import io.scala.modules.elements.Line
 import io.scala.modules.elements.Title
-
-import com.raquo.laminar.api.L.{*, given}
 
 object VenueView extends View {
 

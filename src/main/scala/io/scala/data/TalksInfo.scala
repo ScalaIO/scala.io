@@ -2,7 +2,6 @@ package io.scala.data
 
 import io.scala.Lexicon.Footer.Newsletter.description
 import io.scala.data.SpeakersInfo.allSpeakers
-import io.scala.domaines.Kind
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 
@@ -10,7 +9,7 @@ import scala.collection.mutable.HashMap
 
 object TalksInfo:
   lazy val talksTag =
-    allTalks.foldLeft(HashMap.empty[Speaker, Set[Kind]].withDefaultValue(Set.empty)): (acc, next) =>
+    allTalks.foldLeft(HashMap.empty[Speaker, Set[Talk.Kind]].withDefaultValue(Set.empty)): (acc, next) =>
       next.speakers.foreach: speaker =>
         acc(speaker) += next.kind
       acc

@@ -1,13 +1,7 @@
 package io.scala
 
-import io.scala.domaines.{Kind, Speaker, Sponsor, Talk}
-import io.scala.domaines.ConfDay
-import io.scala.domaines.Room
+import io.scala.domaines.{Sponsor}
 import io.scala.domaines.Social
-import io.scala.domaines.Time
-
-import scala.util.Random
-import io.scala.data.SpeakersInfo
 
 object Lexicon {
   object Headband {
@@ -26,12 +20,6 @@ object Lexicon {
   object Speakers {
     val catchPhrase  = "Become a ScalaIO 2024 speakers sharing what you love with the community."
     val callToAction = "Become a speaker"
-
-    val title = "Some nice title"
-    val loremIpsum =
-      "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed non risus. Suspendisse lectus tortor, dignissim sit amet, adipiscing nec, ultricies sed, dolor."
-
-    val speakers = SpeakersInfo.allSpeakers
   }
 
   object Sponsors {
@@ -84,10 +72,6 @@ object Lexicon {
 
   object Venue {
     val catchPhrase = "A cosy place in the heart of Nantes"
-  }
-
-  object Schedule {
-    val days = ConfDay.values.map(d => (d.toId, d))
   }
 
   object Footer {

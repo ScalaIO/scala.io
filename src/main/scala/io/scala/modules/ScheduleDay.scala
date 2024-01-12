@@ -1,5 +1,7 @@
-package io.scala.modules
+package io.scala
+package modules
 
+import io.scala.domaines.Break
 import io.scala.domaines.Room
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
@@ -7,15 +9,15 @@ import io.scala.domaines.Time
 import io.scala.views.View
 
 import com.raquo.laminar.api.L.{*, given}
-import org.scalajs.dom
 
 val rooms = Room.values
 
-case class ScheduleDay(definedTalks: Map[Time, Seq[Talk]], startingTimes: Seq[Time]):
+case class ScheduleDay(definedTalks: Map[Time, Seq[Event]], startingTimes: Seq[Time]):
   def body = div(
+      className := "day",
       startingTimes.map(time =>
         div(
-          className := "schedule__day",
+          className := "timeslot",
           time.render,
           div(
             className := "card-container",
@@ -24,25 +26,40 @@ case class ScheduleDay(definedTalks: Map[Time, Seq[Talk]], startingTimes: Seq[Ti
               .map { speakers =>
                 rooms.map(room =>
                   speakers._2
-                    .find(_.room.get == room)
-                    .map(TalkCard(_))
-                    .getOrElse(div(className := "empty-talk-card"))
+                    .find{
+                      case t: Talk => t.room.get == room
+                      case b: Break => true //! Will cause problem for multi-track events
+                    }
+                    .map:
+                      case t: Talk => TalkCard(t)
+                      case b: Break => BreakCard(b)
+                    .getOrElse(div(className := "blank-card"))
                 )
               }
-              .getOrElse(Array.fill(Room.values.size)(emptyNode))
+              .getOrElse(Array.fill(Room.values.size)(emptyNode)),
           )
         )
       )
     )
 
 object ScheduleDay {
-  def apply(speakers: Seq[Talk]) =
-    val definedTalks: Map[Time, Seq[Talk]] = speakers
-      .filter(s => s.room.isDefined && s.start.isDefined)
-      .groupBy(_.start.get)
-    val startingTime = speakers
-      .collect { case s if s.start.isDefined => s.start.get }
+  def apply(events: Seq[Event]) =
+    val definedTalks: Map[Time, Seq[Event]] = events
+      .filter{
+        case t: Talk => t.room.isDefined && t.start.isDefined
+        case b: Break => true
+      }
+      .groupBy{
+        case t: Talk => t.start.get
+        case b: Break => b.start
+      }
+    val startingTimes = events
+      .collect {
+        case t: Talk if t.start.isDefined => t.start.get
+        case b: Break => b.start
+      }
       .distinct
       .sorted
-    new ScheduleDay(definedTalks, startingTime)
+
+    new ScheduleDay(definedTalks, startingTimes)
 }

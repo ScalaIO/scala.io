@@ -1,6 +1,5 @@
 package io.scala.modules
 
-import io.scala.domaines.Kind
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 import io.scala.views.ScheduleState
@@ -10,13 +9,13 @@ import org.scalajs.dom
 import elements.Line
 
 object TalkKindTag:
-  def apply(kind: Kind) =
+  def apply(kind: Talk.Kind) =
     span(
       span(kind.toString, className := kind.toStyle),
     )
 object TalkDescription:
   def apply(description: String) =
-    val desc = if (description.length() <= 150) description else description.substring(0, 150) + "..."
+    val desc = if (description.length() <= 200) description else description.substring(0, 200) + "..."
     p(
       desc,
       className := "talk-description"
@@ -25,7 +24,7 @@ object TalkDescription:
 object TalkCard:
   def apply(talk: Talk) =
     div(
-      className := "talk-card",
+      className := s"talk-card ${talk.kind.toStyle}",
       onClick --> { _ =>
         ScheduleState.selectedTalk.set(Some(talk))
       },
