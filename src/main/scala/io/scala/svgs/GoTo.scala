@@ -5,8 +5,6 @@ import com.raquo.laminar.api.L.svg.*
 
 object GoTo {
   def apply() = svg(
-    height    := "16",
-    height    := "16",
     viewBox   := "0 0 512 512",
     transform := "rotate(180)",
     path(

@@ -36,4 +36,5 @@ jobs:
         git add .
         git commit -m "chore: forward changed to preprod"
         clever login --token ${{ secrets.CLEVER_TOKEN }} --secret ${{ secrets.CLEVER_SECRET }}
-        clever deploy --alias "new-scala.io-(preprod)" --force
+        clever link ${{ secrets.CLEVER_APP_ID_PREPROD}}
+        clever deploy --force

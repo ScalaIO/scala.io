@@ -36,6 +36,9 @@ metals.sbt
 .idea_modules
 /.worksheet/
 
+# Clever cloud
+.clever.json
+
 # Project specific
 dist/
 output.css.map

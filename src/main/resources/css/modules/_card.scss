@@ -196,6 +196,10 @@ $card-padding: 16px;
   justify-content: end;
   margin-top: 8px;
   margin-left: auto;
+  svg {
+    width: 16px;
+    margin-left: 4px;
+  }
 }
 
 .sponsor-card {
