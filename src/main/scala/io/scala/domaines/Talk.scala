@@ -1,6 +1,5 @@
 package io.scala.domaines
 
-import io.scala.Lexicon.Footer.Newsletter.description
 import io.scala.views.View
 
 import com.raquo.laminar.api.L.{*, given}
@@ -44,12 +43,6 @@ case class Time(h: Int, m: Int) {
 }
 object Time:
   given Ordering[Time] = Ordering[(Int, Int)].on(t => (t.h, t.m))
-
-// trait Event:
-//   def day: Option[ConfDay]
-//   def room: Option[Room]
-//   def start: Option[Time]
-//   def end: Option[Time]
 
 case class Talk(
     title: String,

@@ -28,7 +28,7 @@ case class ScheduleDay(definedTalks: Map[Time, Seq[Event]], startingTimes: Seq[T
                   speakers._2
                     .find{
                       case t: Talk => t.room.get == room
-                      case b: Break => true
+                      case b: Break => true //! Will cause problem for multi-track events
                     }
                     .map:
                       case t: Talk => TalkCard(t)

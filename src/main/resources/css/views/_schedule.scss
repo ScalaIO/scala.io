@@ -68,6 +68,12 @@
 
   @media screen and (min-width: vars.$mobile-width) {
     > div:first-child {
+      width: 75%;
+    }
+  }
+  
+  @media screen and (min-width: vars.$desktop-width) {
+    > div:first-child {
       width: 50%;
       max-width: 800px;
     }
