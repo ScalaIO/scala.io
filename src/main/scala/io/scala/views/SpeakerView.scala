@@ -11,8 +11,10 @@ import io.scala.data.TalksInfo
 import io.scala.data.TalksInfo.allTalks
 
 object SpeakerView extends View:
+
+  // TODO: add a 404 page
   def error = sectionTag(
-    "Error :)"
+    "Speaker not found :("
   )
   def bodyContent(speaker: Speaker): HtmlElement =
     val talk = allTalks.find(_.speakers.contains(speaker)).get
