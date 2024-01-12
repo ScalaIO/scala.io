@@ -28,11 +28,11 @@ jobs:
     - name: Deploy the website in production
       run: |
         npm install -g clever-tools 
-        mkdir dist-prod
-        cp -r dist/* dist-prod/
+        mv dist dist-prod
         git config --global user.email ${{ secrets.GIT_EMAIL }}
         git config --global user.name ${{ secrets.GIT_NAME }}
         git add .
         git commit -m "chore: forward changed to prod"
         clever login --token ${{ secrets.CLEVER_TOKEN }} --secret ${{ secrets.CLEVER_SECRET }}
-        clever deploy --alias "new-scala.io-(prod)" --force
+        clever link ${{ secrets.CLEVER_APP_ID_PROD}}
+        clever deploy --force
