@@ -16,7 +16,6 @@ $card-padding: 16px;
   flex-direction: column;
   align-items: stretch;
   transition: all 0.3s ease-in-out;
-  flex-grow: 1;
 
   border-width: 1px;
   border-style: solid;
@@ -157,6 +156,7 @@ $card-padding: 16px;
   @extend %speaker-card-base;
   padding: $card-padding;
   justify-content: space-between;
+  flex-grow: 1;
 
   &:after {
     margin-left: -16px;
