@@ -12,6 +12,7 @@
 
     @media screen and (min-width: vars.$mobile-width) {
       position: sticky;
+      max-width: 200px;
       top: 20px;
     }
   }

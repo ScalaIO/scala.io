@@ -87,15 +87,12 @@ span.presentation-keynote {
 }
 
 
-%talk-card-base {
-  min-width: 250px;
-  padding: $card-padding;
-}
-
 .blank-card,
 .talk-card {
   @extend %card-base;
-  @extend %talk-card-base;
+
+  min-width: 250px;
+  padding: $card-padding;
 
   &:after {
     margin-left: -16px;
@@ -201,19 +198,15 @@ span.presentation-keynote {
   }
 }
 
-%speaker-card-base {
-  min-width: 128px;
-  max-width: 250px;
-}
-
 .speaker-card {
   @extend %card-base;
   @extend %card-action;
-  @extend %speaker-card-base;
 
+  min-width: 128px;
+  max-width: 250px;
   padding: $card-padding;
   justify-content: space-between;
-  flex-grow: 1;
+  flex-basis: 100%;
 
   &:after {
     margin-left: -16px;
