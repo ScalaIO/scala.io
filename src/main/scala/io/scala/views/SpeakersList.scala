@@ -3,7 +3,7 @@ package io.scala.views
 import io.scala.Lexicon
 import io.scala.Page.*
 import io.scala.domaines.{Kind, Speaker, Talk}
-import io.scala.modules.{SpeakerCard, SpeakerModal}
+import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.Line
 import io.scala.modules.elements.ClassyButton
 import io.scala.modules.elements.Title

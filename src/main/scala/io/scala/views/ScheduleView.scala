@@ -5,9 +5,7 @@ import io.scala.data.TalksInfo
 import io.scala.domaines.ConfDay
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
-import io.scala.modules.{SpeakerCard, SpeakerModal}
 import io.scala.modules.elements.Line
-import io.scala.modules.elements.ClassyButton
 import io.scala.modules.elements.Title
 import io.scala.modules.elements.LineKind
 import io.scala.modules.ScheduleDay
@@ -36,11 +34,6 @@ case object ScheduleView extends View {
       p(
         "The schedule will be available soon.",
         className := "catch-phrase"
-      ),
-      a(
-        ClassyButton(Lexicon.Speakers.callToAction),
-        href   := "https://www.papercall.io/scalaio-2024-nte",
-        target := "_blank"
       ),
       Line(margin = 55),
       div(
@@ -107,5 +100,4 @@ case object ScheduleView extends View {
         TalksInfo.allTalks.filter: talk =>
           talk.speakers.forall(_.confirmed)
       }
-
 }
