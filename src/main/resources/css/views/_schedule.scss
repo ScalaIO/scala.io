@@ -79,19 +79,19 @@
     }
   }
 
-  @media screen and (min-width: vars.$laptop-width) {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    align-items: start;
+  // @media screen and (min-width: vars.$laptop-width) {
+  //   display: grid;
+  //   grid-template-columns: 1fr 1fr;
+  //   align-items: start;
 
-    .tab {
-      grid-column: span 2;
-    }
+  //   .tab {
+  //     grid-column: span 2;
+  //   }
 
-    .tab-content {
-      display: flex;
-    }
-  }
+  //   .tab-content {
+  //     display: flex;
+  //   }
+  // }
 }
 
 .time_hour {
