@@ -4,7 +4,6 @@ import com.raquo.laminar.api.L.svg.*
 
 object Logo {
   def apply(fillColor:String = "#ffffff") = svg(
-    className := "logo",
     viewBox   := "0 0 402.14301 98.025002",
     g(
       transform := "translate(-39.344,-43.23)",

@@ -64,7 +64,7 @@ object Page {
   )
 
   val splitter = SplitRender[Page, HtmlElement](router.currentPageSignal)
-    .collectStatic(IndexPage)(Index.render(Index.body))
+    .collectStatic(IndexPage)(View.renderIndex)
     .collect[SpeakersListPage](pge => SpeakersList.render(SpeakersList.body(pge.withDraft.getOrElse(false))))
     .collect[SpeakerPage](pge =>
       SpeakerView.render(SpeakerView.body(SpeakersInfo.allSpeakers.find(_.slug == pge.speakerSlug)))
