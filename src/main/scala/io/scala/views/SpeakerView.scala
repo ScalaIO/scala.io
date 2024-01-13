@@ -9,13 +9,10 @@ import io.scala.modules.profilePlaceholder
 import io.scala.svgs.AtSign
 import io.scala.svgs.Suitcase
 
-object SpeakerView extends View:
+class SpeakerView(speaker: Speaker) extends SimpleView:
+  override def title: String = "Speaker " + speaker.name
 
-  // TODO: add a 404 page
-  def error = sectionTag(
-    "Speaker not found :("
-  )
-  def bodyContent(speaker: Speaker): HtmlElement =
+  def body(withDraft:Boolean): HtmlElement =
     val talk = allTalks.find(_.speakers.contains(speaker)).get
     sectionTag(
       className := "container speaker",
@@ -48,8 +45,3 @@ object SpeakerView extends View:
         )
       )
     )
-
-  def body(speaker: Option[Speaker]) =
-    speaker match
-      case Some(value) => bodyContent(value)
-      case None        => error

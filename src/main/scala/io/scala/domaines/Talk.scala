@@ -1,11 +1,12 @@
 package io.scala.domaines
 
-import io.scala.views.View
 
 import com.raquo.laminar.api.L.{*, given}
 
 sealed trait TalkInfo[A <: TalkInfo[A]]:
   def ordinal: Int
+
+
 object TalkInfo:
   given [A <: TalkInfo[A]]: Ordering[A] = Ordering[Int].on(_.ordinal)
 

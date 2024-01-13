@@ -6,7 +6,6 @@ import io.scala.domaines.Room
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 import io.scala.domaines.Time
-import io.scala.views.View
 
 import com.raquo.laminar.api.L.{*, given}
 

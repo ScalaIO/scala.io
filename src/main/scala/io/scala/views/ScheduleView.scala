@@ -15,7 +15,7 @@ import org.scalajs.dom.Element
 object ScheduleState:
   val selectedTalk: Var[Option[Talk]] = Var(None)
 
-case object ScheduleView extends View {
+case object ScheduleView extends SimpleView {
   val selectedDay: Var[ConfDay] = Var(ConfDay.Thursday)
 
   def bodyContent(talks: List[Talk]): HtmlElement =
@@ -97,4 +97,6 @@ case object ScheduleView extends View {
           talk.speakers.forall(_.confirmed)
         }
       }
+
+  override def title: String = "Schedule"
 }

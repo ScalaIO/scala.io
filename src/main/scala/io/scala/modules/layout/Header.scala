@@ -1,10 +1,8 @@
 package io.scala.modules.layout
 
-import io.scala.{Lexicon, Page}
-import io.scala.{VenuePage, IndexPage, SponsorsPage, SchedulePage, SpeakersListPage}
+import io.scala.{BasicPage, Lexicon, Page, PageArg}
 import io.scala.svgs.Burger
 import io.scala.svgs.Logo
-
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
@@ -33,7 +31,7 @@ object Header {
       case Screen.Mobile   => mobileScreen
     }
 
-  private def Navlink(name: String, page: Page): Li =
+  private def Navlink(name: String, page: PageArg): Li =
     li(
       name,
       className := "header__navbar__link",
@@ -41,10 +39,10 @@ object Header {
     )
 
   private val linksPage = Seq(
-    Lexicon.Header.speakers -> SpeakersListPage(),
-    Lexicon.Header.sponsors -> SponsorsPage,
-    Lexicon.Header.venue    -> VenuePage,
-    Lexicon.Header.schedule -> SchedulePage()
+    Lexicon.Header.speakers -> BasicPage.Speakers.toPageArg,
+    Lexicon.Header.sponsors -> BasicPage.Sponsors.toPageArg,
+    Lexicon.Header.venue    -> BasicPage.Venue.toPageArg,
+    Lexicon.Header.schedule -> BasicPage.Schedule.toPageArg,
   )
 
   def links = ul(
@@ -58,7 +56,7 @@ object Header {
 
   val logo = div(
     className := "logo",
-    Logo(), Page.navigateTo(IndexPage)
+    Logo.apply(), Page.navigateTo(BasicPage.Index.toPageArg)
   )
 
   val buyTicket= a(
