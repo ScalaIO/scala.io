@@ -1,15 +1,28 @@
 package io.scala.views
 
-import io.scala.Page._
+import io.scala.Page.*
 import io.scala.modules.elements.Separator
 import io.scala.modules.elements.Title
 import io.scala.modules.elements.YurPlan
-import io.scala.modules.layout.Footer
-import io.scala.views.View
-
+import io.scala.modules.layout.{Footer, Headband, Header}
 import com.raquo.laminar.api.L.{*, given}
 
-case object Index extends View {
+case object IndexView extends GenericView {
+
+  def render(withDraft: Boolean): HtmlElement =
+    div(
+      div(
+        display.flex,
+        flexDirection.column,
+        minHeight := "100vh",
+        Headband.render,
+        child <-- Header.render,
+        IndexView.hero
+      ),
+      IndexView.body,
+      Footer.render
+    )
+
   val description =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis ligula sem, eu tincidunt augue dictum in. Aliquam euismod sit amet nibh sit amet gravida. Ut fringilla vitae ligula sed dapibus. Nunc sed arcu sed leo molestie auctor non id orci. Fusce nulla ipsum, egestas vel pharetra nec, maximus eu velit. Aenean egestas, ipsum ac porta scelerisque, sapien dolor elementum dolor, posuere dapibus nisi dolor cursus augue. Integer pellentesque urna et neque faucibus aliquet. Sed posuere nunc sed erat dictum suscipit. In hac habitasse platea dictumst."
   def body: HtmlElement = sectionTag(

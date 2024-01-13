@@ -5,9 +5,9 @@ import io.scala.Lexicon
 import io.scala.modules.elements.Line
 import io.scala.modules.elements.Title
 
-object VenueView extends View {
+object VenueView extends SimpleView {
 
-  def body: HtmlElement = sectionTag(
+  def body(withDraft:Boolean): HtmlElement = sectionTag(
     className := "container",
     Title("Venue"),
     p(
@@ -40,4 +40,5 @@ object VenueView extends View {
     )
   )
 
+  override def title: String = "Venue"
 }

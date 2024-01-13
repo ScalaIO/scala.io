@@ -8,11 +8,10 @@ import io.scala.modules.elements.ClassyButton
 import io.scala.modules.elements.Line
 import io.scala.modules.elements.SponsorLogo
 import io.scala.modules.elements.Title
-import io.scala.views.View
 
-case object SponsorsList extends View {
+case object SponsorsList extends SimpleView {
 
-  def body: HtmlElement = sectionTag(
+  def body(withDraft:Boolean): HtmlElement = sectionTag(
     className := "container",
     Title("Sponsors"),
     p(
@@ -57,4 +56,6 @@ case object SponsorsList extends View {
       className := "all-sponsors"
     )
   )
+
+  override def title: String = "Sponsors"
 }
