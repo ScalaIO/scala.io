@@ -80,7 +80,7 @@ object TalksInfo:
          |
          |In this talk, we'll show first the different technique we can use to apply constraints is our domains. Then, we'll present Iron, its features, extensions, and integrations. We'll finish by showcasing a fully-integrated constraint-enforcing app.
          |""".stripMargin,
-      speakers = List(SpeakersInfo.valentinBergeron)
+      speakers = List(SpeakersInfo.valentinBergeron, SpeakersInfo.raphaelLemaitre)
     ),
     Talk(
       title = "Contravariance: intuition building from first principles",

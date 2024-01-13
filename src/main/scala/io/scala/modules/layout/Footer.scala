@@ -15,7 +15,7 @@ object Footer {
     div(
       Logo(),
       p(Lexicon.Footer.Description.text, className := "description"),
-      className := "footer__summary"
+      className := "summary"
     )
 
   private val newsletter: Div =
@@ -39,13 +39,12 @@ object Footer {
             idAttr    := "mce-EMAIL",
             typ       := "email",
             nameAttr  := "EMAIL",
-            className := "footer__newsletter__email"
           ),
           ShinyButton(Lexicon.Footer.Newsletter.button),
           className := "form"
         ),
       ),
-      className := "footer__newsletter"
+      className := "newsletter"
     )
 
   def social(icon: SvgElement, url: String) = a(
@@ -54,24 +53,24 @@ object Footer {
   )
 
   lazy val render: HtmlElement = footerTag(
+    className := "footer",
     div(
       summary,
       newsletter,
-      className := "footer__main"
+      className := "main"
     ),
     Line(kind = LineKind.Contrasted),
     div(
       div(
         Lexicon.Footer.copyright,
-        className := "footer__copyright"
+        className := "copyright"
       ),
       div(
         social(Linkedin(), "https://www.linkedin.com/company/scala-io"),
         social(Twitter(), "https://twitter.com/ScalaIO_FR"),
         className := "social"
       ),
-      className := "footer__others"
-    ),
-    className := "footer"
+      className := "others"
+    )
   )
 }

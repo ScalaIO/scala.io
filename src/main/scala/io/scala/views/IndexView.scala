@@ -25,6 +25,7 @@ case object IndexView extends GenericView {
 
   val description =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis ligula sem, eu tincidunt augue dictum in. Aliquam euismod sit amet nibh sit amet gravida. Ut fringilla vitae ligula sed dapibus. Nunc sed arcu sed leo molestie auctor non id orci. Fusce nulla ipsum, egestas vel pharetra nec, maximus eu velit. Aenean egestas, ipsum ac porta scelerisque, sapien dolor elementum dolor, posuere dapibus nisi dolor cursus augue. Integer pellentesque urna et neque faucibus aliquet. Sed posuere nunc sed erat dictum suscipit. In hac habitasse platea dictumst."
+
   def body: HtmlElement = sectionTag(
     className := "index",
     div(className := "container description", Title("Who are we ?"), p(description)),
@@ -61,7 +62,7 @@ case object IndexView extends GenericView {
           className := "event-date-location",
           "15th-16th February 2024 - ",
           span(
-            className := "index__event-town",
+            className := "event-town",
             "Nantes"
           ),
           " @ ",
