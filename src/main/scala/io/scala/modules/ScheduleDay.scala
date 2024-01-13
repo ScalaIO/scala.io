@@ -13,11 +13,10 @@ val rooms = Room.values
 
 case class ScheduleDay(definedTalks: Map[Time, Seq[Event]], startingTimes: Seq[Time]):
   def body = div(
-      className := "day",
       startingTimes.map(time =>
         div(
           className := "timeslot",
-          time.render,
+          time.render().amend(marginRight := "16px"),
           div(
             className := "card-container",
             definedTalks

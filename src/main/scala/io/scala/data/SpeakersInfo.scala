@@ -3,9 +3,10 @@ package io.scala.data
 import io.scala.domaines.Social
 import io.scala.domaines.Speaker
 import io.scala.data.TalksInfo.allTalks
+import io.scala.Lexicon.Footer.Newsletter.description
 
 object SpeakersInfo:
-  lazy val jimNewton = Speaker(
+  val jimNewton = Speaker(
     name = "Jim Newton",
     photo = Some("jim.webp"),
     job = "",
@@ -16,7 +17,7 @@ object SpeakersInfo:
     ),
     confirmed = true
   )
-  lazy val uliFahrenberg = Speaker(
+  val uliFahrenberg = Speaker(
     name = "Uli Fahrenberg",
     photo = Some("uli.webp"),
     description = """|Ulrich (Uli) Fahrenberg is professor at EPITA Rennes and head of the automata research group at LRE, EPITA Paris. He holds a PhD in mathematics from Aalborg University and has worked at Aalborg University, IRISA Rennes, and at École polytechnique.
@@ -32,7 +33,7 @@ object SpeakersInfo:
     confirmed = true
   )
 
-  lazy val raphaelClaude = Speaker(
+  val raphaelClaude = Speaker(
     name = "Raphael Claude",
     photo = Some("rClaude.webp"),
     description =
@@ -45,7 +46,7 @@ object SpeakersInfo:
     confirmed = true
   )
 
-  lazy val anatoliiKmetiuk = Speaker(
+  val anatoliiKmetiuk = Speaker(
     name = "Anatolii Kmetiuk",
     photo = Some("toli.webp"),
     job = "Compiler engineer and community manager",
@@ -61,7 +62,7 @@ object SpeakersInfo:
     confirmed = true
   )
 
-  lazy val briceJaglin = Speaker(
+  val briceJaglin = Speaker(
     name = "Brice Jaglin",
     photo = Some("bJaglin.webp"),
     description =
@@ -75,7 +76,7 @@ object SpeakersInfo:
     confirmed = true
   )
 
-  lazy val johannaVauchel = Speaker(
+  val johannaVauchel = Speaker(
     name = "Johanna Vauchel",
     photo = Some("jVauchel.webp"),
     description =
@@ -90,7 +91,7 @@ object SpeakersInfo:
     confirmed = true
   )
 
-  lazy val mehdiRebiai = Speaker(
+  val mehdiRebiai = Speaker(
     name = "Mehdi Rebiai",
     photo = Some("mRebiai.webp"),
     description = """|Développeur depuis bientôt 20 ans, d'abord du Java puis un peu de front, puis beaucoup d'intégration continue et d'automatisation. 
@@ -107,7 +108,7 @@ object SpeakersInfo:
     confirmed = true
   )
 
-  lazy val valentinBergeron = Speaker(
+  val valentinBergeron = Speaker(
     name = "Valentin Bergeron",
     photo = None,
     description =
@@ -121,7 +122,7 @@ object SpeakersInfo:
     confirmed = true
   )
 
-  lazy val sophieCollard = Speaker(
+  val sophieCollard = Speaker(
     name = "Sophie Collard",
     photo = None,
     description =
@@ -134,7 +135,7 @@ object SpeakersInfo:
     confirmed = false
   )
 
-  lazy val paulMatthew = Speaker(
+  val paulMatthew = Speaker(
     name = "Paul Matthews",
     photo = Some("pMatthews.webp"),
     description = """|I'm currently a backend Scala developer at ClearScore with a focus on functional programming.
@@ -150,7 +151,7 @@ object SpeakersInfo:
     confirmed = true
   )
 
-  lazy val dawidFurman = Speaker(
+  val dawidFurman = Speaker(
     name = "Dawid Furman",
     photo = Some("dFurman.webp"),
     description =
@@ -164,7 +165,7 @@ object SpeakersInfo:
     confirmed = false,
   )
 
-  lazy val lukaszBialy = Speaker(
+  val lukaszBialy = Speaker(
     name = "Łukasz Biały",
     photo = Some("lBialy.webp"),
     description =
@@ -177,7 +178,7 @@ object SpeakersInfo:
     confirmed = false
   )
 
-  lazy val olivierMelois = Speaker(
+  val olivierMelois = Speaker(
     name = "Olivier Mélois",
     photo = Some("oMelois.webp"),
     description =
@@ -194,7 +195,7 @@ object SpeakersInfo:
     confirmed = false
   )
 
-  lazy val enzoCrance = Speaker(
+  val enzoCrance = Speaker(
     name = "Enzo Crance",
     photo = Some("eCrance.webp"),
     description =
@@ -209,7 +210,7 @@ object SpeakersInfo:
     confirmed = true
   )
 
-  lazy val anthonyCros = Speaker(
+  val anthonyCros = Speaker(
     name = "Anthony Cros",
     photo = Some("aCros.webp"),
     description = """|I am an independent software engineer/architect with 20 years of professional coding experience (see LinkedIn). My focus is on data transformations (especially big data), domain modeling, software architecture in general, and bioinformatics.
@@ -230,7 +231,7 @@ object SpeakersInfo:
     confirmed = true
   )
 
-  lazy val didierPlaindoux = Speaker(
+  val didierPlaindoux = Speaker(
     name = "Didier Plaindoux",
     photo = Some("dPlaindoux.webp"),
     description = "Talks about Java, Python, Swift, Kotlin and FP",
@@ -244,7 +245,7 @@ object SpeakersInfo:
     confirmed = true
   )
 
-  lazy val francoisLaroche = Speaker(
+  val francoisLaroche = Speaker(
     name = "François Laroche",
     photo = Some("fLaroche.webp"),
     description = """|Développeur scala depuis plusieurs années, je me passionne pour la performance des applications.
@@ -260,4 +261,27 @@ object SpeakersInfo:
     confirmed = true
   )
 
-  lazy val allSpeakers = allTalks.flatMap(_.speakers).distinct
+  val raphaelLemaitre = Speaker(
+    name = "Raphaël Lemaitre",
+    photo = Some("rLemaitre.webp"),
+    description =
+      """|Bonjour! I'm Raphaël Lemaitre, a seasoned programmer passionate about crafting efficient and sustainable technology. Since embarking on my career journey in 2000, I've been deeply involved in the realm of software development, with a focus on JVM languages like Java and Scala. My technical proficiency includes functional programming, database technologies such as PostgreSQL and Cassandra, along with system design.
+         |
+         |Currently, in my role as a Back-end Senior Staff Engineer at Ledger, I concentrate on designing and writing maintainable systems. My goal is to develop software that is not only functional but also robust and adaptable for future advancements. I strive for clean, effective, and scalable solutions that emphasize long-term sustainability in software design.
+         |
+         |Beyond my professional pursuits, I'm an enthusiastic golfer, an escape game enthusiast, and a proud father. I firmly believe in the power of continuous learning and sharing knowledge, which led me to create a blog for exchanging ideas, particularly focusing on ADHD strategies for developers.
+         |
+         |My interests span from software development to history and technology, where I eagerly engage in conversations that ignite curiosity and foster innovation. Join me in exploring the dynamic landscape of technology, as we seek to build more efficient, maintainable, and impactful technological solutions.
+         |""".stripMargin,
+    job = "Senior Staff Engineer",
+    company = "Ledger",
+    socials = List(
+      Social(Social.Kind.Twitter, "https://twitter.com/rlemaitre"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/rlemaitre/"),
+      Social(Social.Kind.Github, "https://github.com/rlemaitre"),
+      Social(Social.Kind.Other, "https://rlemaitre.com/")
+    ),
+    confirmed = true
+  )
+
+  val allSpeakers = allTalks.flatMap(_.speakers).distinct

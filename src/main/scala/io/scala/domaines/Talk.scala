@@ -2,6 +2,8 @@ package io.scala.domaines
 
 
 import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.tags.HtmlTag
+import org.scalajs.dom
 
 sealed trait TalkInfo[A <: TalkInfo[A]]:
   def ordinal: Int
@@ -30,8 +32,7 @@ case class Time(h: Int, m: Int) {
     val ending = m + minutes
     if ending >= 60 then Time(h + 1, ending - 60)
     else Time(h, ending)
-  def render = div(
-    className := "schedule__time",
+  def render(tag: HtmlTag[dom.html.Element] = div) = tag(
     span(
       f"$h%02d",
       className := "time_hour"
@@ -54,7 +55,8 @@ case class Talk(
     start: Option[Time] = None,
     speakers: List[Speaker]
 ):
-  val end: Option[Time] = start.map(_ + kind.duration)
+  lazy val renderDescription = description.split("\n").map(p(_))
+  val slug = title.toLowerCase().replace(" ", "-")
 
 object Talk:
   enum Kind extends TalkInfo[Kind]:
@@ -72,26 +74,12 @@ object Talk:
       case Speech    => "presentation-talk"
       case Keynote   => "presentation-keynote"
 
-    // In minutes
-    def duration: Int = this match
-      case Lightning => 10
-      case Short     => 25
-      case Speech    => 45
-      case Keynote   => 60
-
 case class Break(
     day: ConfDay,
     start: Time,
     kind: Break.Kind
-):
-  val end: Time = start + kind.duration
+)
 
 object Break:
   enum Kind:
-    case Coffee, Large, Launch, End
-
-    def duration: Int = this match
-      case Coffee => 5
-      case Large  => 15
-      case Launch => 60
-      case End => -1
+    case Coffee, Large, Launch, End, CommunityParty

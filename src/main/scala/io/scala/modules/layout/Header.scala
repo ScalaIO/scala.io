@@ -39,7 +39,7 @@ object Header {
     )
 
   private val linksPage = Seq(
-    Lexicon.Header.speakers -> BasicPage.Speakers.toPageArg,
+    Lexicon.Header.talks -> BasicPage.Talks.toPageArg,
     Lexicon.Header.sponsors -> BasicPage.Sponsors.toPageArg,
     Lexicon.Header.venue    -> BasicPage.Venue.toPageArg,
     Lexicon.Header.schedule -> BasicPage.Schedule.toPageArg,
@@ -59,12 +59,12 @@ object Header {
     Logo.apply(), Page.navigateTo(BasicPage.Index.toPageArg)
   )
 
-  val buyTicket= a(
-      idAttr := "buy-ticket",
-      ShinyButton(Lexicon.Header.buyTicket),
-      href := "https://yurplan.com/events/Scala-IO-2024/115152",
-      target := "_blank",
-    )
+  val buyTicket = a(
+    idAttr := "buy-ticket",
+    ShinyButton(Lexicon.Header.buyTicket),
+    href   := "https://yurplan.com/events/Scala-IO-2024/115152",
+    target := "_blank"
+  )
 
   def computerPlusScreen = headerTag(
     logo,

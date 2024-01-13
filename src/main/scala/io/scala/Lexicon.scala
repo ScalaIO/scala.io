@@ -1,7 +1,8 @@
 package io.scala
 
-import io.scala.domaines.{Sponsor}
 import io.scala.domaines.Social
+import io.scala.domaines.Sponsor
+import io.scala.domaines.Time
 
 object Lexicon {
   object Headband {
@@ -10,7 +11,7 @@ object Lexicon {
   }
 
   object Header {
-    val speakers  = "Speakers"
+    val talks     = "Talks"
     val sponsors  = "Sponsors"
     val venue     = "Venue"
     val schedule  = "Schedule"
@@ -69,6 +70,12 @@ object Lexicon {
       )
     ).flatten
   }
+
+  object Schedule:
+    val opening = Array(Time(9, 30), Time(9, 0))
+    val launch = Array(Time(12, 30), Time(12, 30))
+    val closing = Array(Time(18, 15), Time(18, 0))
+    val communityParty = Time(19, 30)
 
   object Venue {
     val catchPhrase = "A cosy place in the heart of Nantes"

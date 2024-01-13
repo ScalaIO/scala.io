@@ -2,17 +2,16 @@ package io.scala.modules
 
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
+import io.scala.svgs.GoTo
 import io.scala.views.ScheduleState
 
 import com.raquo.laminar.api.L.{*, given}
-import org.scalajs.dom
 import elements.Line
+import org.scalajs.dom
 
 object TalkKindTag:
   def apply(kind: Talk.Kind) =
-    span(
-      span(kind.toString, className := kind.toStyle),
-    )
+    span(kind.toString, className := kind.toStyle)
 object TalkDescription:
   def apply(description: String) =
     val desc = if (description.length() <= 200) description else description.substring(0, 200) + "..."
@@ -33,7 +32,7 @@ object TalkCard:
           talk.title,
           className := "card-title"
         ),
-        TalkKindTag(talk.kind),
+        TalkKindTag(talk.kind)
       ),
       Line(margin = 10),
       div(
@@ -64,6 +63,12 @@ object TalkCard:
               )
             )
           }
+        ),
+        a(
+          className := "card-link classy-button classy-button-highlight",
+          s"Open talk's page ",
+          GoTo(),
+          href := s"/talks/${talk.slug}"
         ),
         p(
           className := "room",

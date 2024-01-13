@@ -180,6 +180,11 @@ object ScheduleInfo {
       kind = Break.Kind.End
     ),
     Break(
+      day = ConfDay.Thursday,
+      start = Time(19, 30),
+      kind = Break.Kind.CommunityParty
+    ),
+    Break(
       day = ConfDay.Friday,
       start = Time(9, 45),
       kind = Break.Kind.Coffee

@@ -1,15 +1,18 @@
 package io.scala
 package views
 
+import io.scala.data.ScheduleInfo
+import io.scala.data.TalksInfo
+import io.scala.domaines.*
+import io.scala.domaines.Break
+import io.scala.modules.*
+import io.scala.modules.elements.*
+import io.scala.utils.Screen
+
 import com.raquo.airstream.state.Var
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.api.features.unitArrows
-import io.scala.data.ScheduleInfo
-import io.scala.data.TalksInfo
-import io.scala.domaines.Break
-import io.scala.domaines.*
-import io.scala.modules.*
-import io.scala.modules.elements.*
+import org.scalajs.dom
 import org.scalajs.dom.Element
 
 object ScheduleState:
@@ -17,14 +20,72 @@ object ScheduleState:
 
 case object ScheduleView extends SimpleView {
   val selectedDay: Var[ConfDay] = Var(ConfDay.Thursday)
+  inline def width: Screen      = io.scala.utils.Screen.fromWidth(dom.window.innerWidth)
+  val screenKind: Var[Screen]   = Var(width)
+
+  lazy val globalHours: Div = div(
+    span(
+      "Hours",
+      className := "subtitle"
+    ),
+    div(
+      className := "hours",
+      span(),
+      span("Thursday"),
+      span("Friday"),
+      span("Opening"),
+      Lexicon.Schedule.opening.map(_.render(span)),
+      span("Launch"),
+      Lexicon.Schedule.launch.map(_.render(span)),
+      span("Closing"),
+      Lexicon.Schedule.closing.map(_.render(span)),
+      span("Community party"),
+      Lexicon.Schedule.communityParty.render(span)
+    )
+  )
+
+  def renderSchedule(eventsByDay: Map[ConfDay, List[Event]]) =
+    div(
+      className := "schedule",
+      div(
+        className := "tab",
+        ConfDay.values.map { day =>
+          div(
+            button(
+              className := "tablinks",
+              onClick --> { _ => selectedDay.set(day) },
+              h2(day.toString())
+            ),
+            child <-- selectedDay.signal.map { d =>
+              if d == day then Line(margin = 24, size = 3, kind = LineKind.Colored)
+              else emptyNode
+            }
+          )
+        }
+      ),
+      ConfDay.values.map { day =>
+        div(
+          className := "tab-content",
+          display <-- selectedDay.signal.map { d =>
+            if d == day then "block"
+            else "none"
+          },
+          child <-- selectedDay.signal.map {
+            case i if i == day =>
+              ScheduleDay(eventsByDay.get(day).getOrElse(Seq.empty)).body
+            case _ => emptyNode
+          }
+        )
+      }
+    )
 
   def bodyContent(talks: List[Talk]): HtmlElement =
-    val talksByDay: Map[ConfDay, List[Event]] = 
-      ScheduleInfo.blankSchedule.groupBy{
-        case t: Talk => t.day.get
+    val eventsByDay: Map[ConfDay, List[Event]] =
+      ScheduleInfo.blankSchedule.groupBy {
+        case t: Talk  => t.day.get
         case b: Break => b.day
       }
-    var days: Map[ConfDay, ScheduleDay] = Map()
+
     sectionTag(
       className := "container",
       Title("Schedule"),
@@ -33,51 +94,9 @@ case object ScheduleView extends SimpleView {
         className := "catch-phrase"
       ),
       Line(margin = 55),
-      div(
-        h2("To be scheduled"),
-        div(
-          className := "card-container unassigned",
-          talks.map(TalkCard(_))
-        )
-      ),
+      globalHours,
       Line(margin = 55),
-      div(
-        className := "schedule",
-        div(
-          className := "tab",
-          ConfDay.values.map { day =>
-            div(
-              button(
-                className := "tablinks",
-                onClick --> { _ => selectedDay.set(day) },
-                h2(day.toString())
-              ),
-              child <-- selectedDay.signal.map { d =>
-                if d == day then Line(margin = 24, size = 3, kind = LineKind.Colored)
-                else emptyNode
-              }
-            )
-          }
-        ),
-        ConfDay.values.map { day =>
-          div(
-            className := "tab-content",
-            display <-- selectedDay.signal.map { d =>
-              if d == day then "flex"
-              else "none"
-            },
-            child <-- selectedDay.signal.map {
-              case i if i == day =>
-                days.get(day).map(_.body).getOrElse {
-                  val newDay = ScheduleDay(talksByDay.get(day).getOrElse(Seq.empty))
-                  days += (day -> newDay)
-                  newDay.body
-                }
-              case _ => emptyNode
-            }
-          )
-        }
-      ),
+      renderSchedule(eventsByDay),
       TalkModal(ScheduleState.selectedTalk),
       onClick.compose {
         _.withCurrentValueOf(ScheduleState.selectedTalk.signal)

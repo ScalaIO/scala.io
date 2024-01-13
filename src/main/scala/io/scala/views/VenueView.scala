@@ -8,7 +8,7 @@ import io.scala.modules.elements.Title
 object VenueView extends SimpleView {
 
   def body(withDraft:Boolean): HtmlElement = sectionTag(
-    className := "container",
+    className := "container venue",
     Title("Venue"),
     p(
       Lexicon.Venue.catchPhrase,
@@ -21,9 +21,9 @@ object VenueView extends SimpleView {
       div(
         className := "overlay",
         div(
-          h2(className := "index__subtitle", "Le Palace"),
+          h2(className := "title", "Le Palace"),
           h3(
-            className := "index__event-date-location",
+            className := "event-date-location",
             "4 Rue Voltaire, 44000 Nantes"
           )
         )
