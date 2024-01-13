@@ -1,0 +1,21 @@
+@use "../base/vars";
+@use "../base/mixins";
+
+.separator {
+  padding: vars.$spacing-xx-large 0px vars.$spacing-xx-large vars.$spacing-huge;
+  color: vars.$text-color-contrast;
+  margin-top: vars.$spacing-large;
+  margin-bottom: vars.$spacing-large;
+  width: 100%;
+  background-color: vars.$main-color-darker;
+
+  .page-title {
+    &::before {
+      background: vars.$text-color-contrast;
+    }
+  }
+
+  @include mixins.padding-all(vars.$laptop-width, vars.$spacing-large, 0px, vars.$spacing-large, vars.$spacing-x-large);
+  @include mixins.padding-all(vars.$tablet-width, vars.$spacing-medium, 0px, vars.$spacing-medium, vars.$spacing-large);
+  @include mixins.padding-all(vars.$mobile-width, vars.$spacing-small, 0px, vars.$spacing-small, vars.$spacing-medium);
+}

@@ -9,9 +9,9 @@
   gap: vars.$spacing-small;
   padding: vars.$spacing-x-large vars.$spacing-huge;
 
-  @include mixins.paddingFor(vars.$laptop-width, vars.$spacing-x-large, vars.$spacing-large);
-  @include mixins.paddingFor(vars.$tablet-width, vars.$spacing-large, vars.$spacing-medium);
-  @include mixins.paddingFor(vars.$mobile-width, vars.$spacing-medium, vars.$spacing-small);
+  @include mixins.padding-vh(vars.$laptop-width, vars.$spacing-x-large, vars.$spacing-large);
+  @include mixins.padding-vh(vars.$tablet-width, vars.$spacing-large, vars.$spacing-medium);
+  @include mixins.padding-vh(vars.$mobile-width, vars.$spacing-medium, vars.$spacing-small);
 }
 
 .footer__main {

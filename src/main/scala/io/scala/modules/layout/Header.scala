@@ -56,6 +56,11 @@ object Header {
     className := "header__sidenav"
   )
 
+  val logo = div(
+    className := "logo",
+    Logo(), Page.navigateTo(IndexPage)
+  )
+
   val buyTicket= a(
       idAttr := "buy-ticket",
       ShinyButton(Lexicon.Header.buyTicket),
@@ -64,7 +69,7 @@ object Header {
     )
 
   def computerPlusScreen = headerTag(
-    div(Logo(), Page.navigateTo(IndexPage)),
+    logo,
     links,
     buyTicket
   )
@@ -72,7 +77,7 @@ object Header {
   def tabletScreen = headerTag(
     className := "navbar-tablet-view",
     div(
-      div(Logo(), Page.navigateTo(IndexPage)),
+      logo,
       buyTicket,
       className := "navbar-links-tablet"
     ),
@@ -81,7 +86,7 @@ object Header {
 
   def mobileScreen = headerTag(
     className := "navbar-links-mobile",
-    div(Logo(), Page.navigateTo(IndexPage)),
+    logo,
     div(
       buyTicket,
       button(

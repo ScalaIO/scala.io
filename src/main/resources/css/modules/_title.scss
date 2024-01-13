@@ -1,8 +1,8 @@
 @use "../base/vars";
 
-.title {
+.page-title {
   font-size: 50px;
-  line-height: 68px;
+  line-height: vars.$title-line-height;
   display: inline-block;
   position: relative;
   margin-bottom: 15px;
@@ -15,7 +15,6 @@
     border-radius: 3px;
     width: 60%;
     background: vars.$main-color;
-    z-index: -1;
   }
 }
 

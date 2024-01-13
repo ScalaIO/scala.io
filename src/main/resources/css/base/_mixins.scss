@@ -1,4 +1,10 @@
-@mixin paddingFor($max-width, $v-padding, $h-padding) {
+@mixin padding-all($max-width, $t-padding, $r-padding, $b-padding, $l-padding) {
+  @media screen and (max-width: $max-width) {
+    padding: $t-padding $r-padding $b-padding $l-padding;
+  }
+}
+
+@mixin padding-vh($max-width, $v-padding, $h-padding) {
   @media screen and (max-width: $max-width) {
     padding: $v-padding $h-padding;
   }

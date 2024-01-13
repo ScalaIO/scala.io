@@ -64,8 +64,9 @@ header {
   transition: background-color 0.5s, color 0.5s;
 }
 
-header .logo {
-  height: 28px;
+header .logo svg {
+  height: 32px;
+  margin: 4px 0px;
 
   &:hover {
     cursor: pointer;
