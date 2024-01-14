@@ -21,6 +21,12 @@ $card-padding: 16px;
   border-style: solid;
   border-radius: 10px;
 
+  .card-subtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   @include mixins.border-style(
     vars.$main-color,
     vars.$main-color-lighter
@@ -56,7 +62,7 @@ span.presentation-keynote {
   font-size: vars.$text-size-small;
   text-transform: uppercase;
   border-radius: 10px;
-  padding: 6px 10px 2px 10px;
+  padding: 4px
 }
 
 span.presentation-lightning {
@@ -114,13 +120,18 @@ span.presentation-keynote {
   }
 
   svg {
-    height: auto;
+    width: 100%;
   }
-
 }
 
 .talk-card {
   @extend %card-action;
+
+  .card-subtitle {
+    span {
+      padding: 4px;
+    }
+  }
 
   .card-body {
     padding: 0px $card-padding;
@@ -129,6 +140,7 @@ span.presentation-keynote {
   .card-footer {
     display: flex;
     flex-direction: column;
+    gap: vars.$spacing-small;
   }
 
   .talk-description {
@@ -228,10 +240,7 @@ span.presentation-keynote {
     margin-top: 20px;
   }
 
-  .speaker-headband {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  .card-subtitle {
     margin-bottom: vars.$spacing-small;
   }
 
@@ -248,7 +257,6 @@ span.presentation-keynote {
 .card-link {
   display: flex;
   justify-content: end;
-  margin-top: 8px;
   margin-left: auto;
   svg {
     width: 16px;

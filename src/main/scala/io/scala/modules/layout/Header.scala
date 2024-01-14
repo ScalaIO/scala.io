@@ -1,34 +1,33 @@
 package io.scala.modules.layout
 
 import io.scala.{BasicPage, Lexicon, Page, PageArg}
+import io.scala.modules.elements.ShinyButton
 import io.scala.svgs.Burger
 import io.scala.svgs.Logo
+import io.scala.utils.Screen
+import io.scala.utils.Screen.screenVar
+
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 import org.scalajs.dom.UIEvent
 import org.scalajs.dom.html
-import io.scala.utils.Screen
-import io.scala.modules.elements.ShinyButton
+import org.scalajs.dom.window
 
 object Header {
-  inline def width            = io.scala.utils.Screen.fromWidth(dom.window.innerWidth)
-  val screenKind: Var[Screen] = Var(width)
-  var burgerClicked           = Var(false)
-  private var previousScreen  = screenKind.now()
-
-  dom.window.onresize = { _ =>
-    val newScreen = width
-    if newScreen != previousScreen then
-      screenKind.set(newScreen)
-      previousScreen = newScreen
+  var burgerClicked = Var(false)
+  window.onclick = { _ =>
+    burgerClicked.update {
+      case true  => false
+      case false => false
+    }
   }
 
   lazy val render =
-    screenKind.signal.map {
-      case Screen.Computer => computerPlusScreen
-      case Screen.Tablet   => tabletScreen
-      case Screen.Mobile   => mobileScreen
+    screenVar.signal.map {
+      case Screen.Mobile => mobileScreen
+      case Screen.Tablet => tabletScreen
+      case _             => laptopPlusScreen
     }
 
   private def Navlink(name: String, page: PageArg): Li =
@@ -39,10 +38,10 @@ object Header {
     )
 
   private val linksPage = Seq(
-    Lexicon.Header.talks -> BasicPage.Talks.toPageArg,
+    Lexicon.Header.talks    -> BasicPage.Talks.toPageArg,
     Lexicon.Header.sponsors -> BasicPage.Sponsors.toPageArg,
     Lexicon.Header.venue    -> BasicPage.Venue.toPageArg,
-    Lexicon.Header.schedule -> BasicPage.Schedule.toPageArg,
+    Lexicon.Header.schedule -> BasicPage.Schedule.toPageArg
   )
 
   def links = ul(
@@ -56,7 +55,8 @@ object Header {
 
   val logo = div(
     className := "logo",
-    Logo.apply(), Page.navigateTo(BasicPage.Index.toPageArg)
+    Logo.apply(),
+    Page.navigateTo(BasicPage.Index.toPageArg)
   )
 
   val buyTicket = a(
@@ -66,7 +66,7 @@ object Header {
     target := "_blank"
   )
 
-  def computerPlusScreen = headerTag(
+  def laptopPlusScreen = headerTag(
     logo,
     links,
     buyTicket
@@ -89,12 +89,12 @@ object Header {
       buyTicket,
       button(
         Burger(),
-        onClick.mapTo(!burgerClicked.now()) --> burgerClicked,
+        onClick.stopImmediatePropagation.mapTo(!burgerClicked.now()) --> burgerClicked,
         className := "header__burger"
       ),
       div(
         child <-- burgerClicked.signal.map {
-          case true  => mobileLinks.amend(onClick.mapTo(false) --> burgerClicked)
+          case true  => mobileLinks
           case false => emptyNode
         }
       ),

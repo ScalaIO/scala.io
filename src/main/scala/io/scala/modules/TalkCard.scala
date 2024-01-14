@@ -32,7 +32,14 @@ object TalkCard:
           talk.title,
           className := "card-title"
         ),
-        TalkKindTag(talk.kind)
+        div(
+          className := "card-subtitle",
+          TalkKindTag(talk.kind),
+          span(
+            className := "room",
+            talk.room.map(_.render).getOrElse("")
+          )
+        )
       ),
       Line(margin = 10),
       div(
@@ -66,13 +73,9 @@ object TalkCard:
         ),
         a(
           className := "card-link classy-button classy-button-highlight",
-          s"Open talk's page ",
+          s"More info ",
           GoTo(),
           href := s"/talks/${talk.slug}"
-        ),
-        p(
-          className := "room",
-          talk.room.map(_.render).getOrElse("")
         )
       )
     )
