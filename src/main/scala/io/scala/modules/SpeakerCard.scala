@@ -5,7 +5,6 @@ import io.scala.data.TalksInfo.talksBySpeaker
 
 import com.raquo.laminar.api.L.{*, given}
 import org.scalajs.dom
-import org.scalajs.dom.console
 import io.scala.data.TalksInfo.allTalks
 import io.scala.svgs.GoTo
 import io.scala.modules.elements.ClassyButton

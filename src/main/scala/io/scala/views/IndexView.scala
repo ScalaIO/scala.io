@@ -8,7 +8,6 @@ import io.scala.modules.elements.Separator
 import io.scala.modules.elements.Title
 import io.scala.modules.elements.YurPlan
 import io.scala.modules.layout.{Footer, Headband, Header}
-import org.scalajs.dom.console
 
 import com.raquo.laminar.api.L.{*, given}
 
@@ -57,11 +56,9 @@ case object IndexView extends GenericView {
   )
 
   def speakerGallery(withDraft: Boolean) =
-    console.log(s"withDraft: $withDraft")
     val speakers =
       if withDraft then SpeakersInfo.allSpeakers
       else SpeakersInfo.allSpeakers.filter(_.confirmed)
-    console.log(s"speakers: ${speakers.size}")
     div(
       className := "container speaker-gallery",
       span(
