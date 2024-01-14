@@ -82,7 +82,7 @@ object Page {
     (root / segment[BasicPage] / endOfSegments) ? draftParam
 
   val indexRoute: Route[PageArg.Generic, Option[Boolean]] = Route.onlyQuery[PageArg.Generic, Option[Boolean]](
-    encode = page => Some(page.withDraft),
+    encode = page => Some(page.withDraft).filter(identity),
     decode = param => PageArg.Generic(BasicPage.Index, param.getOrElse(false)),
     (root / endOfSegments) ? draftParam)
 
