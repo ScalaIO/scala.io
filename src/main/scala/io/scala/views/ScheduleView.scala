@@ -23,28 +23,33 @@ object ScheduleState:
 case object ScheduleView extends SimpleView {
   val selectedDay: Var[ConfDay] = Var(ConfDay.Thursday)
 
-  lazy val globalHours: Div = div(
-    span(
-      "Hours",
-      className := "subtitle"
-    ),
+  lazy val globalHours: Div =
+    def renderHours(name: String, hours: Time*) =
+      div(
+        className := "row",
+        span(name),
+        hours.map(_.render(span))
+      )
     div(
-      className := "hours",
-      span(),
-      span("Thursday"),
-      span("Friday"),
-      span("Opening"),
-      Lexicon.Schedule.opening.map(_.render(span)),
-      span("First talk"),
-      Lexicon.Schedule.firstTalk.map(_.render(span)),
-      span("Launch"),
-      Lexicon.Schedule.launch.map(_.render(span)),
-      span("End of talks"),
-      Lexicon.Schedule.endOfTalks.map(_.render(span)),
-      span("Community party"),
-      Lexicon.Schedule.communityParty.render(span)
+      h2(
+        "Hours",
+        className := "content-title"
+      ),
+      div(
+        className := "hours",
+        div(
+          className := "column-header",
+          span(),
+          span("Thursday"),
+          span("Friday"),
+        ),
+        renderHours("Opening", Lexicon.Schedule.opening: _*),
+        renderHours("First talks", Lexicon.Schedule.firstTalk: _*),
+        renderHours("Lunch", Lexicon.Schedule.lunch: _*),
+        renderHours("End of talks", Lexicon.Schedule.endOfTalks: _*),
+        renderHours("Community party", Lexicon.Schedule.communityParty)
+      )
     )
-  )
 
   def renderSmall(eventsByDay: Map[ConfDay, List[Event]]) =
     div(

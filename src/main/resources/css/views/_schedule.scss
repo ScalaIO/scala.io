@@ -42,6 +42,7 @@
 
   .card-container {
     width: 100%;
+    margin: 16px 0px;
   }
 
   .day {
@@ -60,6 +61,11 @@
     width: 100%;
   }
 
+  .tab > div {
+    flex: 1 1 0;
+    max-width: max-content;
+  }
+
   .tab h2,
   .tab button {
     background-color: inherit;
@@ -67,7 +73,7 @@
     border: none;
     outline: none;
     cursor: pointer;
-    padding: 14px 16px;
+    padding: 8px;
     transition: 0.3s;
 
     &:hover {
@@ -88,7 +94,6 @@
   .tab-content {
     padding: 1rem;
     display: "block";
-    max-width: 100%;
   }
 
   .timeslot {
@@ -111,7 +116,27 @@
   font-size: 1rem;
 }
 
-.hours {
+%hours-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.hours {
+  @extend %hours-grid;
+  text-align: right;
+
+  .row, .column-header {
+    grid-column: span 3;
+    @extend %hours-grid;
+  }
+
+  .row {
+    > span:first-child {
+      font-size: larger;
+    }
+  }
+
+  .column-header {
+    font-size: x-large;
+  }
 }

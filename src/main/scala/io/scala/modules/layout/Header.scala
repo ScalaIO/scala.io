@@ -1,25 +1,33 @@
 package io.scala.modules.layout
 
 import io.scala.{BasicPage, Lexicon, Page, PageArg}
+import io.scala.modules.elements.ShinyButton
 import io.scala.svgs.Burger
 import io.scala.svgs.Logo
+import io.scala.utils.Screen
+import io.scala.utils.Screen.screenVar
+
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 import org.scalajs.dom.UIEvent
 import org.scalajs.dom.html
-import io.scala.utils.Screen
-import io.scala.modules.elements.ShinyButton
-import io.scala.utils.Screen.screenVar
+import org.scalajs.dom.window
 
 object Header {
-  var burgerClicked           = Var(false)
+  var burgerClicked = Var(false)
+  window.onclick = { _ =>
+    burgerClicked.update {
+      case true  => false
+      case false => false
+    }
+  }
 
   lazy val render =
     screenVar.signal.map {
-      case Screen.Mobile   => mobileScreen
-      case Screen.Tablet   => tabletScreen
-      case _ => laptopPlusScreen
+      case Screen.Mobile => mobileScreen
+      case Screen.Tablet => tabletScreen
+      case _             => laptopPlusScreen
     }
 
   private def Navlink(name: String, page: PageArg): Li =
@@ -30,10 +38,10 @@ object Header {
     )
 
   private val linksPage = Seq(
-    Lexicon.Header.talks -> BasicPage.Talks.toPageArg,
+    Lexicon.Header.talks    -> BasicPage.Talks.toPageArg,
     Lexicon.Header.sponsors -> BasicPage.Sponsors.toPageArg,
     Lexicon.Header.venue    -> BasicPage.Venue.toPageArg,
-    Lexicon.Header.schedule -> BasicPage.Schedule.toPageArg,
+    Lexicon.Header.schedule -> BasicPage.Schedule.toPageArg
   )
 
   def links = ul(
@@ -47,7 +55,8 @@ object Header {
 
   val logo = div(
     className := "logo",
-    Logo.apply(), Page.navigateTo(BasicPage.Index.toPageArg)
+    Logo.apply(),
+    Page.navigateTo(BasicPage.Index.toPageArg)
   )
 
   val buyTicket = a(
@@ -80,12 +89,12 @@ object Header {
       buyTicket,
       button(
         Burger(),
-        onClick.mapTo(!burgerClicked.now()) --> burgerClicked,
+        onClick.stopImmediatePropagation.mapTo(!burgerClicked.now()) --> burgerClicked,
         className := "header__burger"
       ),
       div(
         child <-- burgerClicked.signal.map {
-          case true  => mobileLinks.amend(onClick.mapTo(false) --> burgerClicked)
+          case true  => mobileLinks
           case false => emptyNode
         }
       ),
