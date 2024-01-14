@@ -125,6 +125,10 @@
   @extend %hours-grid;
   text-align: right;
 
+  @media screen and (min-width: vars.$mobile-width) {
+    text-align: left;
+  }
+
   .row, .column-header {
     grid-column: span 3;
     @extend %hours-grid;

@@ -3,7 +3,6 @@ package io.scala.modules
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 import io.scala.svgs.GoTo
-import io.scala.views.ScheduleState
 
 import com.raquo.laminar.api.L.{*, given}
 import elements.Line
@@ -24,9 +23,6 @@ object TalkCard:
   def apply(talk: Talk) =
     div(
       className := s"talk-card ${talk.kind.toStyle}",
-      onClick --> { _ =>
-        ScheduleState.selectedTalk.set(Some(talk))
-      },
       div(
         h3(
           talk.title,

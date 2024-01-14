@@ -38,7 +38,6 @@ sealed trait PageArg {
 
   final def title: String = this match {
     case PageArg.Generic(page, _)        => page.title
-    case PageArg.Speaker(speakerSlug, _) => "Speaker" + speakerSlug // incorrect
     case PageArg.Talk(talkSlug, _) => "Talk" + talkSlug // double incorrect
   }
 
@@ -48,7 +47,6 @@ sealed trait PageArg {
 object PageArg {
   case class Generic(page: BasicPage, withDraft: Boolean) extends PageArg
 
-  case class Speaker(speakerSlug: String, withDraft: Boolean) extends PageArg
   case class Talk(talkSlug: String, withDraft: Boolean)       extends PageArg
 }
 
@@ -58,15 +56,11 @@ object Page {
 
   given pageArgGenericCodec: ReadWriter[PageArg.Generic] = macroRW
 
-  given pageArgSpeakerCodec: ReadWriter[PageArg.Speaker] = macroRW
-
   given pageArgTalkCodec: ReadWriter[PageArg.Talk] = macroRW
 
   given pageArgCodec: ReadWriter[PageArg] = macroRW
 
   val draftParam = param[Boolean]("withDraft").?
-
-  val indexRoute: Route[PageArg, Unit] = Route.static(BasicPage.Index.toPageArg, root / endOfSegments)
 
   given FromString[BasicPage, DummyError] = {
     case "talks"    => Right(BasicPage.Talks)
@@ -87,6 +81,11 @@ object Page {
   val pattern: PathSegmentWithQueryParams[BasicPage, DummyError, Option[Boolean], DummyError] =
     (root / segment[BasicPage] / endOfSegments) ? draftParam
 
+  val indexRoute: Route[PageArg.Generic, Option[Boolean]] = Route.onlyQuery[PageArg.Generic, Option[Boolean]](
+    encode = page => Some(page.withDraft),
+    decode = param => PageArg.Generic(BasicPage.Index, param.getOrElse(false)),
+    (root / endOfSegments) ? draftParam)
+
   val basicPages: Route[PageArg.Generic, PatternArgs[BasicPage, Option[Boolean]]] =
     Route.withQuery[PageArg.Generic, BasicPage, Option[Boolean]](
       encode = page => UrlMatching(page.page, Some(page.withDraft).filter(identity)),
@@ -94,11 +93,6 @@ object Page {
       pattern
     )
 
-  val speakerRoute: Route[PageArg.Speaker, String] = Route[PageArg.Speaker, String](
-    encode = page => page.speakerSlug,
-    decode = args => PageArg.Speaker(args, false),
-    root / "speakers" / segment[String] / endOfSegments
-  )
   val talkRoute: Route[PageArg.Talk, String] = Route[PageArg.Talk, String](
     encode = page => page.talkSlug,
     decode = args => PageArg.Talk(args, false),
@@ -106,7 +100,7 @@ object Page {
   )
 
   val router: Router[PageArg] = new Router[PageArg](
-    routes = List(indexRoute, speakerRoute, talkRoute, basicPages),
+    routes = List(indexRoute, talkRoute, basicPages),
     getPageTitle = page => page.title + " - ScalaIO",
     serializePage = page => write(page)(pageArgCodec),
     deserializePage = pageStr => read(pageStr)(pageArgCodec)
@@ -122,11 +116,6 @@ object Page {
       case PageArg.Generic(basicPage, withDraft) =>
         basicPage.view.render(withDraft)
 
-      case PageArg.Speaker(speakerSlug, withDraft) =>
-        SpeakersInfo.allSpeakers
-          .find(_.slug == speakerSlug)
-          .map(new SpeakerView(_).render(withDraft))
-          .getOrElse(L.div())
       case PageArg.Talk(talkSlug, withDraft) =>
         TalksInfo.allTalks
           .find(_.slug == talkSlug)

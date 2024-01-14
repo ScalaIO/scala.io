@@ -1,6 +1,5 @@
 package io.scala.views
 
-import com.raquo.laminar.api.L.{*, given}
 import io.scala.data.TalksInfo
 import io.scala.data.TalksInfo.allTalks
 import io.scala.domaines.Speaker
@@ -9,27 +8,14 @@ import io.scala.modules.profilePlaceholder
 import io.scala.svgs.AtSign
 import io.scala.svgs.Suitcase
 
-class SpeakerView(speaker: Speaker) extends SimpleView:
-  override def title: String = "Speaker " + speaker.name
+import com.raquo.laminar.api.L.{*, given}
 
-  def body(withDraft:Boolean): HtmlElement =
+class SpeakerView(speaker: Speaker):
+  def body: HtmlElement =
     val talk = allTalks.find(_.speakers.contains(speaker)).get
-    sectionTag(
-      className := "container speaker",
-      Title.withSub(
-        speaker.name,
-        div(
-          className := "speaker-job",
-          div(
-            Suitcase(),
-            speaker.job
-          ),
-          div(
-            AtSign(),
-            speaker.company
-          )
-        )
-      ),
+    div(
+      className := "speaker",
+      Title.small(speaker.name),
       div(
         className := "speaker-data",
         img(
@@ -37,11 +23,24 @@ class SpeakerView(speaker: Speaker) extends SimpleView:
           className := "speaker-photo"
         ),
         div(
-          className := "speaker-info",
+          className := "paragraph",
+          div(
+            className := "speaker-job",
+            div(
+              Suitcase(),
+              speaker.job
+            ),
+            div(
+              AtSign(),
+              speaker.company
+            )
+          ),
           h2("Who am I"),
-          p(speaker.description),
-          h2(talk.title),
-          p(talk.description)
+          speaker.renderDescription,
+          div(
+            className := "socials",
+            speaker.socialNetworksWithAccount
+          )
         )
       )
     )

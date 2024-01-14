@@ -20,19 +20,15 @@ class TalkView(talk: Talk) extends SimpleView:
       className := "container talk",
       Title("Talk"),
       div(
-        className := "talk-data",
         div(
-          className := "talk-info",
+          className := "paragraph",
           h2(talk.title),
           talk.renderDescription
-        ),
-        div(
-          className := "talk-speakers",
-          h2("Speakers"),
-          div(
-            className := "card-container",
-            talk.speakers.map(SpeakerCard(_))
-          )
         )
+      ),
+      Title(if (talk.speakers.size > 1) "Speakers" else "Speaker"),
+      div(
+        className := "card-container",
+        talk.speakers.map(SpeakerView(_).body)
       )
     )

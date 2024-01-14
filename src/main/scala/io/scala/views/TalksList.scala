@@ -9,13 +9,13 @@ import io.scala.modules.elements.*
 
 case object TalksList extends SimpleView {
   def bodyContent(talks: List[Talk]) = sectionTag(
-    className := "container",
+    className := "container talks-list",
     Title("Talks"),
     Line(margin = 55),
     div(
       div(
         talks.map(TalkCard(_)),
-        className := "card-container unassigned"
+        className := "card-container"
       ),
     )
   )

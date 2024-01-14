@@ -1,7 +1,7 @@
 package io.scala.modules
 
 import io.scala.domaines.Speaker
-import io.scala.data.TalksInfo.talksTag
+import io.scala.data.TalksInfo.talksBySpeaker
 
 import com.raquo.laminar.api.L.{*, given}
 import org.scalajs.dom
@@ -12,6 +12,7 @@ import io.scala.modules.elements.ClassyButton
 import com.raquo.laminar.api.features.unitArrows
 import org.scalajs.dom.svg.{Path, SVG}
 import org.scalajs.dom.html.Anchor
+import io.scala.domaines.Talk
 
 object SpeakerCard {
   def apply(speaker: Speaker) =
@@ -23,10 +24,10 @@ object SpeakerCard {
       ),
       div(
         div(
-          talksTag(speaker).toList.map: kind =>
+          talksBySpeaker(speaker).map: talk =>
             span( 
-              kind.toString,
-              className := kind.toStyle
+              talk.kind.toString,
+              className := talk.kind.toStyle
             ),
           div(
             speaker.socialNetworks,
@@ -42,11 +43,15 @@ object SpeakerCard {
         p(speaker.company),
         className := "speaker-information"
       ),
+      linkToTalks(talksBySpeaker(speaker))
+    )
+  
+  def linkToTalks(talks: Seq[Talk]) =
+    talks.map{ talk =>
       a(
         className := "card-link classy-button classy-button-highlight",
-        s"${speaker.name.split(" ")(0)}'s page ",
+        "See talk ", //! Problem if >= 2 talks
         GoTo(),
-        href := s"/speakers/${speaker.slug}"
-      ),
-    )
+        href := s"/talks/${talk.slug}")
+      }
 }
