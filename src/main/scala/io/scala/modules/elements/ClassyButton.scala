@@ -1,13 +1,14 @@
 package io.scala.modules.elements
 
-import io.scala.{Lexicon, Page}
+import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.nodes.ReactiveHtmlElement
+import io.scala.Lexicon
+import io.scala.Page
 import io.scala.svgs.Logo
 import io.scala.utils.ButtonKind
 import io.scala.utils.ButtonKind.Submit
-
-import com.raquo.laminar.api.L.{*, given}
-import com.raquo.laminar.nodes.ReactiveHtmlElement
-import org.scalajs.dom.{html, HTMLElement}
+import org.scalajs.dom.HTMLElement
+import org.scalajs.dom.html
 
 object ClassyButton {
   def apply(

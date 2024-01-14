@@ -1,5 +1,6 @@
 package io.scala.views
 
+import com.raquo.laminar.api.L.{*, given}
 import io.scala.Lexicon.Header.talks
 import io.scala.Page.*
 import io.scala.data.SpeakersInfo
@@ -7,9 +8,9 @@ import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.Separator
 import io.scala.modules.elements.Title
 import io.scala.modules.elements.YurPlan
-import io.scala.modules.layout.{Footer, Headband, Header}
-
-import com.raquo.laminar.api.L.{*, given}
+import io.scala.modules.layout.Footer
+import io.scala.modules.layout.Headband
+import io.scala.modules.layout.Header
 
 case object IndexView extends GenericView {
 

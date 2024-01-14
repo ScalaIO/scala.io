@@ -1,14 +1,16 @@
 package io.scala.modules.layout
 
-import io.scala.{BasicPage, Lexicon, Page, PageArg}
+import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.nodes.ReactiveHtmlElement
+import io.scala.BasicPage
+import io.scala.Lexicon
+import io.scala.Page
+import io.scala.PageArg
 import io.scala.modules.elements.ShinyButton
 import io.scala.svgs.Burger
 import io.scala.svgs.Logo
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
-
-import com.raquo.laminar.api.L.{*, given}
-import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 import org.scalajs.dom.UIEvent
 import org.scalajs.dom.html

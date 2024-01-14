@@ -1,13 +1,12 @@
 package io.scala.modules
 
+import com.raquo.laminar.api.L.{*, given}
 import io.scala.domaines.Break
 import io.scala.domaines.Break.Kind
 import io.scala.svgs.Chat
 import io.scala.svgs.Coffee
 import io.scala.svgs.Food
 import io.scala.svgs.Logo
-
-import com.raquo.laminar.api.L.{*, given}
 
 object BreakCard:
   val blankCardClass = "blank-card"

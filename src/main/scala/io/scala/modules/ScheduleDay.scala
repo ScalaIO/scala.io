@@ -1,13 +1,12 @@
 package io.scala
 package modules
 
+import com.raquo.laminar.api.L.{*, given}
 import io.scala.domaines.Break
 import io.scala.domaines.Room
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 import io.scala.domaines.Time
-
-import com.raquo.laminar.api.L.{*, given}
 
 val rooms = Room.values
 

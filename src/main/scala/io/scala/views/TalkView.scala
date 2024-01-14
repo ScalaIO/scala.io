@@ -1,6 +1,7 @@
 package io.scala
 package views
 
+import com.raquo.laminar.api.L.{*, given}
 import io.scala.data.TalksInfo
 import io.scala.data.TalksInfo.allTalks
 import io.scala.domaines.Speaker
@@ -9,8 +10,6 @@ import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.Title
 import io.scala.svgs.AtSign
 import io.scala.svgs.Suitcase
-
-import com.raquo.laminar.api.L.{*, given}
 
 class TalkView(talk: Talk) extends SimpleView:
   override def title: String = talk.title

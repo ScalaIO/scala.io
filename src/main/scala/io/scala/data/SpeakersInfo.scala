@@ -1,9 +1,9 @@
 package io.scala.data
 
+import io.scala.Lexicon.Footer.Newsletter.description
+import io.scala.data.TalksInfo.allTalks
 import io.scala.domaines.Social
 import io.scala.domaines.Speaker
-import io.scala.data.TalksInfo.allTalks
-import io.scala.Lexicon.Footer.Newsletter.description
 
 object SpeakersInfo:
   val jimNewton = Speaker(

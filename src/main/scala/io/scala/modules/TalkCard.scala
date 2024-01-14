@@ -1,13 +1,13 @@
 package io.scala
 package modules
 
+import com.raquo.laminar.api.L.{*, given}
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 import io.scala.svgs.GoTo
-
-import com.raquo.laminar.api.L.{*, given}
-import elements.Line
 import org.scalajs.dom
+
+import elements.Line
 
 object TalkKindTag:
   def apply(kind: Talk.Kind) =

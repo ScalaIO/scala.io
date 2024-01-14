@@ -1,17 +1,16 @@
 package io.scala
 package views
 
+import com.raquo.airstream.state.Var
+import com.raquo.laminar.api.L.{*, given}
 import io.scala.data.ScheduleInfo
 import io.scala.data.TalksInfo
-import io.scala.domaines.*
 import io.scala.domaines.Break
+import io.scala.domaines.*
 import io.scala.modules.*
 import io.scala.modules.elements.*
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
-
-import com.raquo.airstream.state.Var
-import com.raquo.laminar.api.L.{*, given}
 import org.scalajs.dom
 import org.scalajs.dom.Element
 import org.scalajs.dom.window

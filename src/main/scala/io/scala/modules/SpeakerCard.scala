@@ -1,18 +1,18 @@
 package io.scala
 package modules
 
-import io.scala.domaines.Speaker
-import io.scala.data.TalksInfo.talksBySpeaker
-
 import com.raquo.laminar.api.L.{*, given}
-import org.scalajs.dom
-import io.scala.data.TalksInfo.allTalks
-import io.scala.svgs.GoTo
-import io.scala.modules.elements.ClassyButton
 import com.raquo.laminar.api.features.unitArrows
-import org.scalajs.dom.svg.{Path, SVG}
-import org.scalajs.dom.html.Anchor
+import io.scala.data.TalksInfo.allTalks
+import io.scala.data.TalksInfo.talksBySpeaker
+import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
+import io.scala.modules.elements.ClassyButton
+import io.scala.svgs.GoTo
+import org.scalajs.dom
+import org.scalajs.dom.html.Anchor
+import org.scalajs.dom.svg.Path
+import org.scalajs.dom.svg.SVG
 
 object SpeakerCard {
   def apply(speaker: Speaker) =
