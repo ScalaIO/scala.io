@@ -56,10 +56,10 @@ case object ScheduleView extends SimpleView {
               onClick --> { _ => selectedDay.set(day) },
               h2(day.toString())
             ),
-            child <-- selectedDay.signal.map { d =>
-              if d == day then Line(margin = 24, size = 3, kind = LineKind.Colored)
-              else emptyNode
-            }
+            Line(margin = 24, size = 3, kind = LineKind.Colored).amend(display <-- selectedDay.signal.map { d =>
+              if d == day then "block"
+              else "none"
+            })
           )
         }
       ),
