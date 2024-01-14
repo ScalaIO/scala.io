@@ -32,7 +32,7 @@ object SpeakerCard {
             speaker.socialNetworks,
             className := "speaker-socials"
           ),
-          className := "speaker-headband"
+          className := "card-subtitle"
         ),
         h2(
           speaker.name,

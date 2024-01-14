@@ -11,6 +11,14 @@
     min-width: 200px;
   }
 
+  .talk-card .card-footer {
+    @media screen and (min-width: vars.$tablet-width) {
+      flex-direction: row;
+      justify-content: space-between;
+      align-items: center;
+    }
+  }
+
   .blank-card {
     display: flex;
     flex-direction: row;
