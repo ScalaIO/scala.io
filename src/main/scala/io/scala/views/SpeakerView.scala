@@ -1,10 +1,10 @@
-package io.scala.views
+package io.scala
+package views
 
 import io.scala.data.TalksInfo
 import io.scala.data.TalksInfo.allTalks
 import io.scala.domaines.Speaker
 import io.scala.modules.elements.Title
-import io.scala.modules.profilePlaceholder
 import io.scala.svgs.AtSign
 import io.scala.svgs.Suitcase
 

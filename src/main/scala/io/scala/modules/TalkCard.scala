@@ -1,4 +1,5 @@
-package io.scala.modules
+package io.scala
+package modules
 
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
