@@ -54,11 +54,7 @@ jobs:
       - name: Create app
         run: | 
           clever create --type node ${{ env.APP_NAME }}-${{ env.BRANCH_NAME }} --alias ${{ env.APP_NAME }}-${{ env.BRANCH_NAME }} --region par --org ${{secrets.ORGA_ID}}
-      - name: Set evironment variables
-        run: |
-          clever domain add ${{ env.APP_NAME }}-${{ env.BRANCH_NAME }}.cleverapps.io
       - name: Set domain
-      # Set review app domain with "clever domain add".
         run: |
           clever domain add ${{ env.APP_NAME }}-${{ env.BRANCH_NAME }}.cleverapps.io
       - name: Deploy
