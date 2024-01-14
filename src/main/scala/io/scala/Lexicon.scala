@@ -72,9 +72,10 @@ object Lexicon {
   }
 
   object Schedule:
-    val opening = Array(Time(9, 30), Time(9, 0))
+    val opening = Array(Time(7, 45), Time(7, 45))
+    val firstTalk = Array(Time(9, 30), Time(9, 0))
     val launch = Array(Time(12, 30), Time(12, 30))
-    val closing = Array(Time(18, 15), Time(18, 0))
+    val endOfTalks = Array(Time(18, 15), Time(18, 0))
     val communityParty = Time(19, 30)
 
   object Venue {

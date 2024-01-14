@@ -8,20 +8,20 @@ import io.scala.domaines.Break
 import io.scala.modules.*
 import io.scala.modules.elements.*
 import io.scala.utils.Screen
+import io.scala.utils.Screen.screenVar
 
 import com.raquo.airstream.state.Var
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.api.features.unitArrows
 import org.scalajs.dom
 import org.scalajs.dom.Element
+import org.scalajs.dom.window
 
 object ScheduleState:
   val selectedTalk: Var[Option[Talk]] = Var(None)
 
 case object ScheduleView extends SimpleView {
   val selectedDay: Var[ConfDay] = Var(ConfDay.Thursday)
-  inline def width: Screen      = io.scala.utils.Screen.fromWidth(dom.window.innerWidth)
-  val screenKind: Var[Screen]   = Var(width)
 
   lazy val globalHours: Div = div(
     span(
@@ -35,16 +35,18 @@ case object ScheduleView extends SimpleView {
       span("Friday"),
       span("Opening"),
       Lexicon.Schedule.opening.map(_.render(span)),
+      span("First talk"),
+      Lexicon.Schedule.firstTalk.map(_.render(span)),
       span("Launch"),
       Lexicon.Schedule.launch.map(_.render(span)),
-      span("Closing"),
-      Lexicon.Schedule.closing.map(_.render(span)),
+      span("End of talks"),
+      Lexicon.Schedule.endOfTalks.map(_.render(span)),
       span("Community party"),
       Lexicon.Schedule.communityParty.render(span)
     )
   )
 
-  def renderSchedule(eventsByDay: Map[ConfDay, List[Event]]) =
+  def renderSmall(eventsByDay: Map[ConfDay, List[Event]]) =
     div(
       className := "schedule",
       div(
@@ -52,7 +54,6 @@ case object ScheduleView extends SimpleView {
         ConfDay.values.map { day =>
           div(
             button(
-              className := "tablinks",
               onClick --> { _ => selectedDay.set(day) },
               h2(day.toString())
             ),
@@ -79,6 +80,36 @@ case object ScheduleView extends SimpleView {
       }
     )
 
+  def renderLarge(eventsByDay: Map[ConfDay, List[Event]]) =
+    div(
+      className := "schedule",
+      ConfDay.values.map { day =>
+        div(
+          className := "day",
+          div(
+            className := "tab",
+            div(
+              h2(day.toString()),
+              Line(margin = 24, size = 3, kind = LineKind.Colored)
+            )
+          ),
+          div(
+            className := "content",
+            div(
+              className := "tab-content",
+              ScheduleDay(eventsByDay.get(day).getOrElse(Seq.empty)).body
+            )
+          )
+        )
+      }
+    )
+
+  def renderSchedule(eventsByDay: Map[ConfDay, List[Event]]) =
+    screenVar.signal.map {
+      case Screen.Desktop => renderLarge(eventsByDay)
+      case _              => renderSmall(eventsByDay)
+    }
+
   def bodyContent(talks: List[Talk]): HtmlElement =
     val eventsByDay: Map[ConfDay, List[Event]] =
       ScheduleInfo.blankSchedule.groupBy {
@@ -96,7 +127,7 @@ case object ScheduleView extends SimpleView {
       Line(margin = 55),
       globalHours,
       Line(margin = 55),
-      renderSchedule(eventsByDay),
+      child <-- renderSchedule(eventsByDay),
       TalkModal(ScheduleState.selectedTalk),
       onClick.compose {
         _.withCurrentValueOf(ScheduleState.selectedTalk.signal)

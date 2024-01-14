@@ -10,25 +10,16 @@ import org.scalajs.dom.UIEvent
 import org.scalajs.dom.html
 import io.scala.utils.Screen
 import io.scala.modules.elements.ShinyButton
+import io.scala.utils.Screen.screenVar
 
 object Header {
-  inline def width            = io.scala.utils.Screen.fromWidth(dom.window.innerWidth)
-  val screenKind: Var[Screen] = Var(width)
   var burgerClicked           = Var(false)
-  private var previousScreen  = screenKind.now()
-
-  dom.window.onresize = { _ =>
-    val newScreen = width
-    if newScreen != previousScreen then
-      screenKind.set(newScreen)
-      previousScreen = newScreen
-  }
 
   lazy val render =
-    screenKind.signal.map {
-      case Screen.Computer => computerPlusScreen
-      case Screen.Tablet   => tabletScreen
+    screenVar.signal.map {
       case Screen.Mobile   => mobileScreen
+      case Screen.Tablet   => tabletScreen
+      case _ => laptopPlusScreen
     }
 
   private def Navlink(name: String, page: PageArg): Li =
@@ -66,7 +57,7 @@ object Header {
     target := "_blank"
   )
 
-  def computerPlusScreen = headerTag(
+  def laptopPlusScreen = headerTag(
     logo,
     links,
     buyTicket

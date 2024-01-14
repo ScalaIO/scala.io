@@ -73,7 +73,7 @@ object TalkCard:
         ),
         a(
           className := "card-link classy-button classy-button-highlight",
-          s"Open talk's page ",
+          s"More info ",
           GoTo(),
           href := s"/talks/${talk.slug}"
         )
