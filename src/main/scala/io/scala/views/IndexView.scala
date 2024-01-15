@@ -1,55 +1,76 @@
 package io.scala.views
 
+import com.raquo.laminar.api.L.{*, given}
+import io.scala.Lexicon.Header.talks
 import io.scala.Page.*
+import io.scala.data.SpeakersInfo
+import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.Separator
 import io.scala.modules.elements.Title
 import io.scala.modules.elements.YurPlan
-import io.scala.modules.layout.{Footer, Headband, Header}
-import com.raquo.laminar.api.L.{*, given}
+import io.scala.modules.layout.Footer
+import io.scala.modules.layout.Headband
+import io.scala.modules.layout.Header
 
 case object IndexView extends GenericView {
 
   def render(withDraft: Boolean): HtmlElement =
     div(
       div(
-        display.flex,
-        flexDirection.column,
-        minHeight := "100vh",
+        className := "fullscreen",
         Headband.render,
         child <-- Header.render,
         IndexView.hero
       ),
-      IndexView.body,
+      IndexView.body(withDraft),
       Footer.render
     )
 
   val description =
     "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis ligula sem, eu tincidunt augue dictum in. Aliquam euismod sit amet nibh sit amet gravida. Ut fringilla vitae ligula sed dapibus. Nunc sed arcu sed leo molestie auctor non id orci. Fusce nulla ipsum, egestas vel pharetra nec, maximus eu velit. Aenean egestas, ipsum ac porta scelerisque, sapien dolor elementum dolor, posuere dapibus nisi dolor cursus augue. Integer pellentesque urna et neque faucibus aliquet. Sed posuere nunc sed erat dictum suscipit. In hac habitasse platea dictumst."
 
-  def body: HtmlElement = sectionTag(
+  def body(withDraft: Boolean): HtmlElement = sectionTag(
     className := "index",
     div(className := "container description", Title("Who are we ?"), p(description)),
-    Separator {
+    Separator(
+      span(
+        className := "page-title",
+        "Content"
+      ),
       div(
-        span(
-          className := "page-title",
-          "Content"
-        ),
-        div(
-          className := "container stats",
-          stat("2", "Days"),
-          stat("19", "Talks"),
-          stat("150", "Attendees"),
-          stat("1", "Track")
-        )
+        className := "container stats",
+        stat("2", "Days"),
+        stat("19", "Talks"),
+        stat("150", "Attendees"),
+        stat("1", "Track")
       )
-    },
+    ),
     div(
       className := "container description",
       Title("Tickets"),
       YurPlan()
-    )
+    ),
+    Separator(
+      h2(textAlign.center, "Small separator to make it look good")
+    ),
+    speakerGallery(withDraft)
   )
+
+  def speakerGallery(withDraft: Boolean) =
+    val speakers =
+      if withDraft then SpeakersInfo.allSpeakers
+      else SpeakersInfo.allSpeakers.filter(_.confirmed)
+    div(
+      className := "container speaker-gallery",
+      span(
+        className := "page-title",
+        "Speaker Gallery"
+      ),
+      div(
+        className := "card-container",
+        speakers.map(SpeakerCard(_))
+      )
+    )
 
   lazy val hero = div(
     className       := "hero",

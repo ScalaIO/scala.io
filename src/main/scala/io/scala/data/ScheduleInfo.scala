@@ -28,6 +28,7 @@ object ScheduleInfo {
   def talk(day: ConfDay, start: Time, kind: Talk.Kind) =
     Talk(
       title = "Lorem ipsum dolor sit amet consectetur adipiscing elit",
+      slug = "lorem-ipsum",
       description =
         "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed vitae eros quis nisl aliquam aliquet. Sed vitae eros quis nisl aliquam aliquet. Sed vitae eros quis nisl aliquam aliquet. Sed vitae eros quis nisl aliquam aliquet.",
       speakers = List(speaker),

@@ -8,6 +8,11 @@ object Title {
     className := "page-title"
   )
 
+  def small(title: String) = h2(
+    title,
+    className := "content-title"
+  )
+
   def withSub(title: String, subtitle: HtmlElement) = div(
     h1(title),
     subtitle.amend(className := "subtitle"),

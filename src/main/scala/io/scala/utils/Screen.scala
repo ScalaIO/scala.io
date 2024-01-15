@@ -4,7 +4,6 @@ import com.raquo.airstream.state.Var
 import org.scalajs.dom
 import org.scalajs.dom.UIEvent
 import org.scalajs.dom.window
-import org.scalajs.dom.console
 
 enum Screen:
   case Mobile, Tablet, Laptop, Desktop

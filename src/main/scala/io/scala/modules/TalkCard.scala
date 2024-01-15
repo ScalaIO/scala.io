@@ -1,13 +1,13 @@
-package io.scala.modules
+package io.scala
+package modules
 
+import com.raquo.laminar.api.L.{*, given}
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 import io.scala.svgs.GoTo
-import io.scala.views.ScheduleState
-
-import com.raquo.laminar.api.L.{*, given}
-import elements.Line
 import org.scalajs.dom
+
+import elements.Line
 
 object TalkKindTag:
   def apply(kind: Talk.Kind) =
@@ -24,9 +24,6 @@ object TalkCard:
   def apply(talk: Talk) =
     div(
       className := s"talk-card ${talk.kind.toStyle}",
-      onClick --> { _ =>
-        ScheduleState.selectedTalk.set(Some(talk))
-      },
       div(
         h3(
           talk.title,
@@ -71,11 +68,11 @@ object TalkCard:
             )
           }
         ),
-        a(
+        span(
           className := "card-link classy-button classy-button-highlight",
           s"More info ",
           GoTo(),
-          href := s"/talks/${talk.slug}"
+          Page.navigateTo(PageArg.Talk(talk.slug, false))
         )
       )
     )

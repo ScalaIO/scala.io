@@ -97,3 +97,9 @@
     font-size: vars.$text-size-large;
   }
 }
+
+.speaker-gallery {
+  .card-container {
+    justify-content: space-between;
+  }
+}

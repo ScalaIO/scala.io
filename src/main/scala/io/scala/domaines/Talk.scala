@@ -48,6 +48,7 @@ object Time:
 
 case class Talk(
     title: String,
+    slug: String,
     description: String,
     kind: Talk.Kind = Kind.Speech,
     day: Option[ConfDay] = None,
@@ -56,7 +57,6 @@ case class Talk(
     speakers: List[Speaker]
 ):
   lazy val renderDescription = description.split("\n").map(p(_))
-  val slug = title.toLowerCase().replace(" ", "-")
 
 object Talk:
   enum Kind extends TalkInfo[Kind]:

@@ -1,9 +1,8 @@
 package io.scala.modules.layout
 
-import io.scala.Lexicon
-
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import io.scala.Lexicon
 import org.scalajs.dom.html
 
 object Headband {

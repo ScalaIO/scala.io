@@ -1,4 +1,5 @@
-package io.scala.views
+package io.scala
+package views
 
 import io.scala.data.TalksInfo
 import io.scala.data.TalksInfo.allTalks
@@ -6,7 +7,6 @@ import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.Title
-import io.scala.modules.profilePlaceholder
 import io.scala.svgs.AtSign
 import io.scala.svgs.Suitcase
 
@@ -18,21 +18,15 @@ class TalkView(talk: Talk) extends SimpleView:
   def body(withDraft: Boolean): HtmlElement =
     sectionTag(
       className := "container talk",
-      Title("Talk"),
+      Title(talk.title),
       div(
-        className := "talk-data",
-        div(
-          className := "talk-info",
-          h2(talk.title),
-          talk.renderDescription
-        ),
-        div(
-          className := "talk-speakers",
-          h2("Speakers"),
-          div(
-            className := "card-container",
-            talk.speakers.map(SpeakerCard(_))
-          )
-        )
+        marginBottom := "2rem",
+        className := "paragraph",
+        talk.renderDescription
+      ),
+      Title(if (talk.speakers.size > 1) "Speakers" else "Speaker"),
+      div(
+        className := "card-container",
+        talk.speakers.map(SpeakerView(_).body)
       )
     )

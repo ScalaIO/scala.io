@@ -1,14 +1,15 @@
 package io.scala.modules.layout
 
-import io.scala.Lexicon
-import io.scala.svgs.{Linkedin, Logo, Twitter}
-
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import org.scalajs.dom.html
-import io.scala.modules.elements.ShinyButton
+import io.scala.Lexicon
 import io.scala.modules.elements.Line
 import io.scala.modules.elements.LineKind
+import io.scala.modules.elements.ShinyButton
+import io.scala.svgs.Linkedin
+import io.scala.svgs.Logo
+import io.scala.svgs.Twitter
+import org.scalajs.dom.html
 
 object Footer {
   private val summary: Div =

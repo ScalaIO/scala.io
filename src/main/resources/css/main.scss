@@ -19,9 +19,10 @@
 @use "modules/modal";
 @use "modules/shiny_button";
 @use "modules/speaker";
+@use "modules/paragraph";
 @use "modules/card";
 @use "modules/title";
-@use "modules/talk";
+@use "modules/talks";
 @use "modules/venue";
 @use "modules/separator";
 
@@ -34,6 +35,12 @@ body {
   color: vars.$text-color;
   line-height: 1.6;
   background: vars.$background-color;
+}
+
+.fullscreen {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 
 h2 {

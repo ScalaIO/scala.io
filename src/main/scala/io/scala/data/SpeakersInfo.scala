@@ -1,9 +1,9 @@
 package io.scala.data
 
+import io.scala.Lexicon.Footer.Newsletter.description
+import io.scala.data.TalksInfo.allTalks
 import io.scala.domaines.Social
 import io.scala.domaines.Speaker
-import io.scala.data.TalksInfo.allTalks
-import io.scala.Lexicon.Footer.Newsletter.description
 
 object SpeakersInfo:
   val jimNewton = Speaker(
@@ -41,7 +41,7 @@ object SpeakersInfo:
     job = "Staff Dev Lead",
     company = "Criteo",
     socials = List(
-      Social(Social.Kind.Twitter, "http://twitter.com/heapoverflow")
+      Social(Social.Kind.Twitter, "https://twitter.com/heapoverflow")
     ),
     confirmed = true
   )
@@ -54,7 +54,7 @@ object SpeakersInfo:
       "Lawyer turned Scala Engineer for the past 10 years. Started as a Scala and Machine Learning freelancer for 5 years followed by another 4 years at EPFL at the Scala 3 core team in the roles of compiler engineer and community manager.",
     company = "Scala Center, EPFL",
     socials = List(
-      Social(Social.Kind.Twitter, "http://twitter.com/akmetiuk"),
+      Social(Social.Kind.Twitter, "https://twitter.com/akmetiuk"),
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/akmetiuk"),
       Social(Social.Kind.Github, "https://github.com/anatoliykmetyuk"),
       Social(Social.Kind.Other, "https://akmetiuk.com")
@@ -97,7 +97,6 @@ object SpeakersInfo:
     description = """|Développeur depuis bientôt 20 ans, d'abord du Java puis un peu de front, puis beaucoup d'intégration continue et d'automatisation. 
       |Désormais je suis Tech Lead Data chez Lectra : beaucoup de Scala et de Kafka. 
       |Je participe également au projet Open Source Kapoeira : https://github.com/lectra-tech/kapoeira
-      |Mon github pour en savoir plus : https://github.com/mrebiai, https://mrebiai.github.io/
       |""".stripMargin,
     job = "Data Engineer, Tech Lead",
     company = "Lectra",
@@ -160,7 +159,7 @@ object SpeakersInfo:
     company = "",
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/dfurmans"),
-      Social(Social.Kind.Other, "https://solynaranjas.com/")
+      Social(Social.Kind.Other, "https://solynaranjas.com")
     ),
     confirmed = false,
   )
@@ -189,7 +188,7 @@ object SpeakersInfo:
     job = "Principal Engineer",
     company = "Disney Streaming Services",
     socials = List(
-      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/olivier-m%C3%A9lois-99234bbb/"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/olivier-m%C3%A9lois-99234bbb"),
       Social(Social.Kind.Other, "https://github.com/Baccata")
     ),
     confirmed = false
@@ -203,9 +202,9 @@ object SpeakersInfo:
     job = "PhD Student",
     company = "INRIA",
     socials = List(
-      Social(Social.Kind.Twitter, "http://twitter.com/cranceltik"),
+      Social(Social.Kind.Twitter, "https://twitter.com/cranceltik"),
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/enzo-crance-099628b9/?locale=en_US"),
-      Social(Social.Kind.Other, "https://ecrance.net/")
+      Social(Social.Kind.Other, "https://ecrance.net")
     ),
     confirmed = true
   )
@@ -224,8 +223,8 @@ object SpeakersInfo:
     job = "Software Architect",
     company = "Self-employed",
     socials = List(
-      Social(Social.Kind.Twitter, "http://twitter.com/anthony_cros"),
-      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/anthony-cros-3587b063/"),
+      Social(Social.Kind.Twitter, "https://twitter.com/anthony_cros"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/anthony-cros-3587b063"),
       Social(Social.Kind.Other, "http://anthonycros.com")
     ),
     confirmed = true
@@ -238,7 +237,7 @@ object SpeakersInfo:
     job = "Senior Software Engineer",
     company = "Akawan (Freelance)",
     socials = List(
-      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/didier-plaindoux-912b3517/"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/didier-plaindoux-912b3517"),
       Social(Social.Kind.Github, "https://github.com/d-plaindoux"),
       Social(Social.Kind.Other, "http://d.plaindoux.free.fr")
     ),
@@ -255,8 +254,8 @@ object SpeakersInfo:
     job = "Tech Lead",
     company = "NuMind",
     socials = List(
-      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/fran%C3%A7ois-laroche-28406132/"),
-      Social(Social.Kind.Other, "https://github.com/larochef/")
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/fran%C3%A7ois-laroche-28406132"),
+      Social(Social.Kind.Other, "https://github.com/larochef")
     ),
     confirmed = true
   )
@@ -277,9 +276,9 @@ object SpeakersInfo:
     company = "Ledger",
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/rlemaitre"),
-      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/rlemaitre/"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/rlemaitre"),
       Social(Social.Kind.Github, "https://github.com/rlemaitre"),
-      Social(Social.Kind.Other, "https://rlemaitre.com/")
+      Social(Social.Kind.Other, "https://rlemaitre.com")
     ),
     confirmed = true
   )

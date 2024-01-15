@@ -1,24 +1,19 @@
 package io.scala
 package views
 
+import com.raquo.airstream.state.Var
+import com.raquo.laminar.api.L.{*, given}
 import io.scala.data.ScheduleInfo
 import io.scala.data.TalksInfo
-import io.scala.domaines.*
 import io.scala.domaines.Break
+import io.scala.domaines.*
 import io.scala.modules.*
 import io.scala.modules.elements.*
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
-
-import com.raquo.airstream.state.Var
-import com.raquo.laminar.api.L.{*, given}
-import com.raquo.laminar.api.features.unitArrows
 import org.scalajs.dom
 import org.scalajs.dom.Element
 import org.scalajs.dom.window
-
-object ScheduleState:
-  val selectedTalk: Var[Option[Talk]] = Var(None)
 
 case object ScheduleView extends SimpleView {
   val selectedDay: Var[ConfDay] = Var(ConfDay.Thursday)
@@ -31,17 +26,14 @@ case object ScheduleView extends SimpleView {
         hours.map(_.render(span))
       )
     div(
-      h2(
-        "Hours",
-        className := "content-title"
-      ),
+      Title.small("Hours"),
       div(
         className := "hours",
         div(
           className := "column-header",
           span(),
           span("Thursday"),
-          span("Friday"),
+          span("Friday")
         ),
         renderHours("Opening", Lexicon.Schedule.opening: _*),
         renderHours("First talks", Lexicon.Schedule.firstTalk: _*),
@@ -132,16 +124,7 @@ case object ScheduleView extends SimpleView {
       Line(margin = 55),
       globalHours,
       Line(margin = 55),
-      child <-- renderSchedule(eventsByDay),
-      TalkModal(ScheduleState.selectedTalk),
-      onClick.compose {
-        _.withCurrentValueOf(ScheduleState.selectedTalk.signal)
-          .collect { case (event, Some(_)) =>
-            event.target match
-              case e: Element if e.classList.contains("card-overlay") =>
-                ScheduleState.selectedTalk.set(None)
-          }
-      } --> ()
+      child <-- renderSchedule(eventsByDay)
     )
 
   def body(withDraft: Boolean): HtmlElement =

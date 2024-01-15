@@ -1,17 +1,18 @@
-package io.scala.modules
-
-import io.scala.domaines.Speaker
-import io.scala.data.TalksInfo.talksTag
+package io.scala
+package modules
 
 import com.raquo.laminar.api.L.{*, given}
-import org.scalajs.dom
-import org.scalajs.dom.console
-import io.scala.data.TalksInfo.allTalks
-import io.scala.svgs.GoTo
-import io.scala.modules.elements.ClassyButton
 import com.raquo.laminar.api.features.unitArrows
-import org.scalajs.dom.svg.{Path, SVG}
+import io.scala.data.TalksInfo.allTalks
+import io.scala.data.TalksInfo.talksBySpeaker
+import io.scala.domaines.Speaker
+import io.scala.domaines.Talk
+import io.scala.modules.elements.ClassyButton
+import io.scala.svgs.GoTo
+import org.scalajs.dom
 import org.scalajs.dom.html.Anchor
+import org.scalajs.dom.svg.Path
+import org.scalajs.dom.svg.SVG
 
 object SpeakerCard {
   def apply(speaker: Speaker) =
@@ -23,10 +24,10 @@ object SpeakerCard {
       ),
       div(
         div(
-          talksTag(speaker).toList.map: kind =>
+          talksBySpeaker(speaker).map: talk =>
             span( 
-              kind.toString,
-              className := kind.toStyle
+              talk.kind.toString,
+              className := talk.kind.toStyle
             ),
           div(
             speaker.socialNetworks,
@@ -42,11 +43,16 @@ object SpeakerCard {
         p(speaker.company),
         className := "speaker-information"
       ),
-      a(
-        className := "card-link classy-button classy-button-highlight",
-        s"${speaker.name.split(" ")(0)}'s page ",
-        GoTo(),
-        href := s"/speakers/${speaker.slug}"
-      ),
+      linkToTalks(talksBySpeaker(speaker))
     )
+  
+  def linkToTalks(talks: Seq[Talk]) =
+    talks.map{ talk =>
+      span(
+        className := "card-link classy-button classy-button-highlight",
+        "See talk ", //! Problem if >= 2 talks
+        GoTo(),
+        Page.navigateTo(PageArg.Talk(talk.slug, false))
+      )
+    }
 }
