@@ -18,11 +18,10 @@ class TalkView(talk: Talk) extends SimpleView:
   def body(withDraft: Boolean): HtmlElement =
     sectionTag(
       className := "container talk",
-      Title("Talk"),
+      Title(talk.title),
       div(
         marginBottom := "2rem",
         className := "paragraph",
-        Title.small(talk.title),
         talk.renderDescription
       ),
       Title(if (talk.speakers.size > 1) "Speakers" else "Speaker"),
