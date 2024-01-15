@@ -83,11 +83,7 @@ object Page {
   val pattern: PathSegmentWithQueryParams[BasicPage, DummyError, Option[Boolean], DummyError] =
     (root / segment[BasicPage] / endOfSegments) ? draftParam
 
-  val indexRoute: Route[PageArg.Generic, Option[Boolean]] = Route.onlyQuery(
-    encode = pge => Some(pge.withDraft).filter(identity),
-    decode = withDraft => PageArg.Generic(BasicPage.Index, withDraft.getOrElse(false)),
-    (root / endOfSegments) ? draftParam
-  )
+  val indexRoute: Route[PageArg, Unit] = Route.static(BasicPage.Index.toPageArg, root / endOfSegments)
 
   val basicPages: Route[PageArg.Generic, PatternArgs[BasicPage, Option[Boolean]]] =
     Route.withQuery[PageArg.Generic, BasicPage, Option[Boolean]](
