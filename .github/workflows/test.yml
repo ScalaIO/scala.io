@@ -8,12 +8,13 @@ on:
 
 env:
   APP_NAME: "scalaio-preview"
-  BRANCH_NAME: $(echo ${{ github.head_ref || github.ref_name }} | sed 's/[^a-zA-Z0-9\-]/-/g')
+  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
 
 jobs:
   echo:
     runs-on: ubuntu-latest
     steps:
+      - run: BRANCH_NAME=$(echo ${{ env.BRANCH_NAME }} | 's/[^a-zA-Z0-9\-]/-/g')
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}. The slug is ${{ env.BRANCH_NAME }}"
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🍏 This job's status is ${{ job.status }}."
