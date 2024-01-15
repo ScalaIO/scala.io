@@ -15,7 +15,7 @@ object Lexicon {
     val sponsors  = "Sponsors"
     val venue     = "Venue"
     val schedule  = "Schedule"
-    val buyTicket = "Buy a ticket"
+    val buyTicket = "Get your ticket"
   }
 
   object Speakers {
@@ -72,10 +72,10 @@ object Lexicon {
   }
 
   object Schedule:
-    val opening = Array(Time(7, 45), Time(7, 45))
-    val firstTalk = Array(Time(9, 30), Time(9, 0))
-    val lunch = Array(Time(12, 30), Time(12, 30))
-    val endOfTalks = Array(Time(18, 15), Time(18, 0))
+    val opening        = Array(Time(7, 45), Time(7, 45))
+    val firstTalk      = Array(Time(9, 30), Time(9, 0))
+    val lunch          = Array(Time(12, 30), Time(12, 30))
+    val endOfTalks     = Array(Time(18, 15), Time(18, 0))
     val communityParty = Time(19, 30)
 
   object Venue {
@@ -84,8 +84,7 @@ object Lexicon {
 
   object Footer {
     object Description {
-      val text =
-        "Scala is an association founded 10 years ago by Scala lovers for Scala lovers. Today, it is the first Scala conference in France."
+      val text = "Scala is an association founded in 2013 by Scala supporters for Scala enthusiasts."
     }
 
     object Newsletter {

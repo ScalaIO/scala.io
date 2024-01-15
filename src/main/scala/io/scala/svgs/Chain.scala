@@ -7,12 +7,12 @@ object Chain:
     svg(
       viewBox := "0 0 512 512",
       g(
-        idAttr := "SVGRepo_bgCarrier",
+        idAttr      := "SVGRepo_bgCarrier",
         strokeWidth := "0"
       ),
       g(
-        idAttr := "SVGRepo_tracerCarrier",
-        strokeLineCap := "round",
+        idAttr         := "SVGRepo_tracerCarrier",
+        strokeLineCap  := "round",
         strokeLineJoin := "round"
       ),
       g(
@@ -34,11 +34,11 @@ object Chain:
         g(
           g(
             rect(
-              x := "149.549",
-              y := "235.505",
+              x         := "149.549",
+              y         := "235.505",
               transform := "matrix(0.7071 -0.7071 0.7071 0.7071 -101.7958 245.7455)",
-              width := "192.358",
-              height := "20.48"
+              width     := "192.358",
+              height    := "20.48"
             )
           )
         )

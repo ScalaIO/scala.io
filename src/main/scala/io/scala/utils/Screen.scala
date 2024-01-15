@@ -3,6 +3,7 @@ package io.scala.utils
 import com.raquo.airstream.state.Var
 import org.scalajs.dom
 import org.scalajs.dom.UIEvent
+import org.scalajs.dom.console
 import org.scalajs.dom.window
 
 enum Screen:
@@ -21,4 +22,4 @@ object Screen:
     case w if w < 450  => Screen.Mobile
     case w if w < 768  => Screen.Tablet
     case w if w < 1024 => Screen.Laptop
-    case _ => Screen.Desktop
+    case _             => Screen.Desktop

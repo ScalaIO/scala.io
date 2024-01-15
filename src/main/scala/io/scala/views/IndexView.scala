@@ -31,20 +31,26 @@ case object IndexView extends GenericView {
 
   def body(withDraft: Boolean): HtmlElement = sectionTag(
     className := "index",
-    div(className := "container description", Title("Who are we ?"), p(description)),
-    Separator(
-      span(
-        className := "page-title",
-        "Content"
-      ),
-      div(
-        className := "container stats",
-        stat("2", "Days"),
-        stat("19", "Talks"),
-        stat("150", "Attendees"),
-        stat("1", "Track")
-      )
-    ),
+    div(className := "container description",
+
+      h2("Exchanging Ideas"),
+      p(
+        """
+          Scala.IO is a conference for people having
+           interest in the Scala ecosystem or simply
+           being curious about the language, usages.
+
+          """),
+      p(
+        """The conference is organized by Scala supporters from the community,
+          | and provides a great opportunity to meet with other enthusiasts and practitioners.""".stripMargin),
+
+
+      h2("2024 - Nantes"),
+      p("For this edition, we are meeting in Nantes, for 2 days, one track, and a large community space.")
+    )
+
+,
     div(
       className := "container description",
       Title("Tickets"),
@@ -73,12 +79,12 @@ case object IndexView extends GenericView {
     )
 
   lazy val hero = div(
-    className       := "hero",
+    className := "hero",
     backgroundImage := "url(../images/index-hero.webp)",
     div(
       className := "overlay",
       div(
-        h2(className := "title", "Your Scala Event in France !"),
+        h2(className := "title", "Connecting Scala Enthusiasts!"),
         h3(
           className := "event-date-location",
           "15th-16th February 2024 - ",
@@ -89,7 +95,7 @@ case object IndexView extends GenericView {
           " @ ",
           a(
             className := "event-location",
-            href      := "https://maps.app.goo.gl/o22S4SjA2v11R6ef8",
+            href := "/venue",
             "Le Palace"
           )
         )
