@@ -6,18 +6,40 @@ on:
   pull_request_target:
     types: [opened, closed, synchronize, reopened]
     branches: [ main ]
+    paths:
+      - ".github/**"
+      - "project/**"
+      - "public/**"
+      - "src/**"
+      - "build.sbt"
+      - "index.html"
+      - "package.json"
+      - "root.js"
+      - "vite.config.js"
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
 
 env:
   APP_NAME: "scalaio-preview"
-  BRANCH_NAME: ${{ github.head_ref || github.ref_name }}
+  BRANCH_NAME_RAW: ${{ github.head_ref || github.ref_name }}
   CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
   CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
   ORGA_ID: ${{ secrets.ORGA_ID }}
 
 jobs:
+  slugify:
+    runs-on: ubuntu-latest
+    outputs:
+      branch_slug: ${{ steps.slugify.outputs.slug }}
+    steps:
+      - id: slugify
+        run: echo "slug=$(echo ${{ env.BRANCH_NAME_RAW }} | sed 's/[^a-zA-Z0-9\-]/-/g')" >> "$GITHUB_OUTPUT"
   deploy:
     if: github.event.action == 'opened'|| github.event.action == 'reopened'
     runs-on: ubuntu-latest
+    needs: slugify
     permissions:
       issues: write
       pull-requests: write
@@ -51,12 +73,12 @@ jobs:
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: install clever-tools
         run: npm install -g clever-tools
-      - name: Create app
+      - name: Create app and add domain
+        env:
+          BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
         run: | 
-          clever create --type node ${{ env.APP_NAME }}-${{ env.BRANCH_NAME }} --alias ${{ env.APP_NAME }}-${{ env.BRANCH_NAME }} --region par --org ${{secrets.ORGA_ID}}
-      - name: Set domain
-        run: |
-          clever domain add ${{ env.APP_NAME }}-${{ env.BRANCH_NAME }}.cleverapps.io
+          clever create --type node ${{ env.APP_NAME }}-$BRANCH_NAME --alias ${{ env.APP_NAME }}-$BRANCH_NAME --region par --org ${{secrets.ORGA_ID}}
+          clever domain add ${{ env.APP_NAME }}-$BRANCH_NAME.cleverapps.io
       - name: Deploy
         run: clever deploy
       # Post your domain in PR's discussion
@@ -65,7 +87,7 @@ jobs:
         with:
           script: |
             const issue_number = context.payload.pull_request.number;
-            const message = `Deployment has finished 👁️👄👁️ Your app is available [here](https://${{ env.APP_NAME }}-${process.env.BRANCH_NAME}.cleverapps.io)`;
+            const message = `Deployment has finished 👁️👄👁️ Your app is available [here](https://${{ env.APP_NAME }}-$BRANCH_NAME.cleverapps.io)`;
             github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -74,11 +96,13 @@ jobs:
             });
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
   
   # Deploy review apps on new commits
   update:
     if: github.event.action == 'synchronize'
     runs-on: ubuntu-latest
+    needs: slugify
     permissions:
       issues: write
       contents: read
@@ -107,15 +131,17 @@ jobs:
       - name: install clever-tools
         run: npm install -g clever-tools
       - name: Link and update app
+        env:
+          BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
         run: | 
-          clever link -o ${{ env.ORGA_ID }} ${{ env.APP_NAME }}-${{ env.BRANCH_NAME }}
+          clever link -o ${{ env.ORGA_ID }} ${{ env.APP_NAME }}-$BRANCH_NAME
           clever deploy --force
       - name: Comment PR
         uses: actions/github-script@v5
         with:
           script: |
             const issue_number = context.payload.pull_request.number;
-            const message = `🚀 Your app has been updated and is available [here](https://${{ env.APP_NAME }}-${process.env.BRANCH_NAME}.cleverapps.io)`;
+            const message = `🚀 Your app has been updated and is available [here](https://${{ env.APP_NAME }}-$BRANCH_NAME.cleverapps.io)`;
             github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
@@ -124,10 +150,12 @@ jobs:
             });
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
 
   # Delete review app when the PR is closed (merged or not)
   delete:
     runs-on: ubuntu-latest
+    needs: slugify
     permissions:
       issues: write
       pull-requests: write
@@ -136,9 +164,11 @@ jobs:
       - name: install clever-tools
         run: npm install -g clever-tools
       - name: Delete app
+        env:
+          BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
         run: |
-          clever link -o ${{ env.ORGA_ID }} ${{ env.APP_NAME }}-${{ env.BRANCH_NAME }}
-          clever delete --alias ${{ env.APP_NAME }}-${{ env.BRANCH_NAME }} --yes
+          clever link -o ${{ env.ORGA_ID }} ${{ env.APP_NAME }}-$BRANCH_NAME
+          clever delete --alias ${{ env.APP_NAME }}-$BRANCH_NAME --yes
       - name: Comment PR
         uses: actions/github-script@v5
         with:
