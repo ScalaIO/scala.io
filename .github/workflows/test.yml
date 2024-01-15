@@ -1,0 +1,19 @@
+name: Clever Cloud Review App on Pull Requests
+
+# description: Deploy, sync and delete review apps on Clever Cloud for every pull request
+
+on:
+  push:
+    branches: [ "*" ]
+
+env:
+  APP_NAME: "scalaio-preview"
+  BRANCH_NAME: $(echo ${{ github.head_ref || github.ref_name }} | sed 's/[^a-zA-Z0-9\-]/-/g')
+
+jobs:
+  echo:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}. The slug is ${{ env.BRANCH_NAME }}"
+      - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - run: echo "🍏 This job's status is ${{ job.status }}."
