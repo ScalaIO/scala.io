@@ -11,15 +11,10 @@ env:
   BRANCH_NAME_RAW: ${{ github.head_ref || github.ref_name }}
 
 jobs:
-  slugify:
-    runs-on: ubuntu-latest
-    steps:
-      - run: echo "BRANCH_NAME=$(echo ${{ env.BRANCH_NAME_RAW }} | sed 's/[^a-zA-Z0-9\-]/-/g')" >> $GITHUB_ENV
-
   echo:
     runs-on: ubuntu-latest
-    needs: slugify
     steps:
+      - run: echo "BRANCH_NAME=$(echo ${{ env.BRANCH_NAME_RAW }} | sed 's/[^a-zA-Z0-9\-]/-/g')" >> "$GITHUB_ENV"
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}. The slug is ${{ env.BRANCH_NAME }}"
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - run: echo "🍏 This job's status is ${{ job.status }}."
