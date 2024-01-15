@@ -1,22 +1,22 @@
 package io.scala
 
-import com.raquo.laminar.api.L
-import com.raquo.laminar.api.L.{*, given}
-import com.raquo.waypoint.*
 import io.scala.data.SpeakersInfo
 import io.scala.data.TalksInfo
 import io.scala.domaines.Speaker
 import io.scala.domaines.TalkInfo
 import io.scala.views.*
+
+import com.raquo.laminar.api.L
+import com.raquo.laminar.api.L.{*, given}
+import com.raquo.waypoint.*
 import org.scalajs.dom.html
-import upickle.default.ReadWriter
 import upickle.default.*
+import upickle.default.ReadWriter
 import urldsl.errors.DummyError
 import urldsl.language.PathSegmentWithQueryParams
 import urldsl.vocabulary.FromString
 import urldsl.vocabulary.Printer
 import urldsl.vocabulary.UrlMatching
-
 import views.SpeakerView
 
 enum BasicPage(val view: GenericView):
@@ -39,7 +39,7 @@ enum BasicPage(val view: GenericView):
 sealed trait PageArg {
 
   final def title: String = this match {
-    case PageArg.Generic(page, _)        => page.title
+    case PageArg.Generic(page, _)  => page.title
     case PageArg.Talk(talkSlug, _) => "Talk" + talkSlug // double incorrect
   }
 
@@ -49,7 +49,7 @@ sealed trait PageArg {
 object PageArg {
   case class Generic(page: BasicPage, withDraft: Boolean) extends PageArg
 
-  case class Talk(talkSlug: String, withDraft: Boolean)       extends PageArg
+  case class Talk(talkSlug: String, withDraft: Boolean) extends PageArg
 }
 
 object Page {
@@ -83,10 +83,11 @@ object Page {
   val pattern: PathSegmentWithQueryParams[BasicPage, DummyError, Option[Boolean], DummyError] =
     (root / segment[BasicPage] / endOfSegments) ? draftParam
 
-  val indexRoute: Route[PageArg.Generic, Option[Boolean]] = Route.onlyQuery[PageArg.Generic, Option[Boolean]](
-    encode = page => Some(page.withDraft).filter(identity),
-    decode = param => PageArg.Generic(BasicPage.Index, param.getOrElse(false)),
-    (root / endOfSegments) ? draftParam)
+  val indexRoute: Route[PageArg.Generic, Option[Boolean]] = Route.onlyQuery(
+    encode = pge => Some(pge.withDraft).filter(identity),
+    decode = withDraft => PageArg.Generic(BasicPage.Index, withDraft.getOrElse(false)),
+    (root / endOfSegments) ? draftParam
+  )
 
   val basicPages: Route[PageArg.Generic, PatternArgs[BasicPage, Option[Boolean]]] =
     Route.withQuery[PageArg.Generic, BasicPage, Option[Boolean]](

@@ -48,10 +48,11 @@ object SpeakerCard {
   
   def linkToTalks(talks: Seq[Talk]) =
     talks.map{ talk =>
-      a(
+      span(
         className := "card-link classy-button classy-button-highlight",
         "See talk ", //! Problem if >= 2 talks
         GoTo(),
-        href := s"/talks/${talk.slug}")
-      }
+        Page.navigateTo(PageArg.Talk(talk.slug, false))
+      )
+    }
 }

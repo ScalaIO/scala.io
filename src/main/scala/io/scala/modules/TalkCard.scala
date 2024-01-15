@@ -68,11 +68,11 @@ object TalkCard:
             )
           }
         ),
-        a(
+        span(
           className := "card-link classy-button classy-button-highlight",
           s"More info ",
           GoTo(),
-          href := s"/talks/${talk.slug}"
+          Page.navigateTo(PageArg.Talk(talk.slug, false))
         )
       )
     )
