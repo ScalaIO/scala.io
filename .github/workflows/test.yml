@@ -24,6 +24,6 @@ jobs:
     steps:
       - env:
           BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
-        run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}. The slug is $BRANCH_NAME
+        run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}. The slug is $BRANCH_NAME"
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner. I guess $BRANCH_NAME is not available"
-      - run: echo "🍏 And ${{ BRANCH_NAME }} isn't available here either"
+      - run: echo "🍏 This job's status is ${{ job.status }}."
