@@ -127,20 +127,55 @@ object VenueView extends SimpleView {
     h2("Arriving from Nantes Train Station"),
     h3("Walking (25 minutes)"),
     h3("By Bus (7 minutes + 4 minutes walk downhill)"),
-    p("You can take the bus number C3, direction Armor at the bus stop 'Gare Sud' (the exit in the south of the train station)."),
-    p("Get off at the bus stop 'Copernic'."),
+    ul(
+      className := "basic-list",
+      li("Reach the south exit of the train station (also called Bus/Taxi exit);"),
+      li("In front of the exit, purchase a bus ticket and board the C3 line in the direction of Armor;"),
+      li("Get off at the \"Copernic\" bus stop;"),
+      li("Walk down to the venue;"),
+    ),
     h3("By tramway (9 minutes + 5 minutes walk uphill)"),
-    p("You can take the tramway number 1, direction François Mitterrand/Jamet at the tramway stop 'Gare SNCF'."),
-    p("Get off at the tramway stop 'Médiathèque'."),
+    ul(
+      className := "basic-list",
+      li("Reach the north exit of the train station (also called the \"Nantes Centre\" exit);"),
+      li("In front of the exit, cross the railway and purchase a ticket at the dispenser;"),
+      li("Board Tramway Line 1 in the direction of François Mitterrand/Jamet;"),
+      li("Get off at the tramway stop 'Médiathèque';"),
+      li("Walk up to the venue;"),
+    ),
     //
     h2("Arriving from Nantes Atlantique Airport"),
     p("The airport is unusually close to the city center (less than 10km):"),
     ul(
       className := "basic-list",
-      li("15 minutes by car/taxi (depending of trafic)"),
-      li("40 minutes by public transportation (bus + tramway)"),
+      li("20 minutes by car/taxi (depending on traffic);"),
+      li("40 minutes by public transportation (bus + tramway);"),
+    ),
+    h3("With public transportation"),
+    ul(
+      className := "basic-list",
+      li("Reach the airport shuttle \"Navette Aéroport\" departure place, located in the middle of the outside area behind the taxi lane;"),
+      li("Buy a ticket at the dispenser (10€ per passenger);"),
+      li("Get off at the \"Hôtel Dieu\" stop;"),
+      li("Board the C3 line in the direction of Armor;"),
+      li("Get off at the \"Copernic\" bus stop"),
+      li("Walk down to the venue;"),
+
+    ),
+    h3("With taxi or private driver"),
+    ul(
+      className := "basic-list",
+      li("A taxi from their lane is around 40€ for the transfer;"),
+      li("Uber, Bolt, and some other private driver services operate in the area of Nantes;"),
+
     ),
 
+    p(
+      className := "small-note",
+      """
+        |Note: Every public transportation mode (tramway, bus, and airport shuttle) requires you to buy a ticket; there are dispensers around their stops. It's currently 1.80€ per passenger for 1 hour and 10€ for a ticket from the airport (you don't need another ticket to use the C3 when traveling from the airport).
+        |""".stripMargin
+    ),
     /*div(
       className := "venue-map-container",
       iframe(
