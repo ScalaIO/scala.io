@@ -43,7 +43,7 @@ sealed trait PageArg {
 
   final def title: String = this match {
     case PageArg.Generic(page, _)  => page.title
-    case PageArg.Talk(talkSlug, _)       => "Talk" + talkSlug       // double incorrect
+    case PageArg.Talk(talkSlug, _) => "Talk" + talkSlug // double incorrect
   }
 
   def withDraft: Boolean
