@@ -132,7 +132,7 @@ object SpeakersInfo:
     socials = List(
       Social(Social.Kind.Github, "https://github.com/sophiecollard")
     ),
-    confirmed = false
+    confirmed = true
   )
 
   val paulMatthew = Speaker(
@@ -162,7 +162,7 @@ object SpeakersInfo:
       Social(Social.Kind.Twitter, "https://twitter.com/dfurmans"),
       Social(Social.Kind.Other, "https://solynaranjas.com")
     ),
-    confirmed = false
+    confirmed = false //not confirmed 2024-W03-2
   )
 
   val lukaszBialy = Speaker(
@@ -175,7 +175,7 @@ object SpeakersInfo:
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/lukasz_bialy")
     ),
-    confirmed = false
+    confirmed = true
   )
 
   val olivierMelois = Speaker(
@@ -192,7 +192,7 @@ object SpeakersInfo:
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/olivier-m%C3%A9lois-99234bbb"),
       Social(Social.Kind.Other, "https://github.com/Baccata")
     ),
-    confirmed = false
+    confirmed = true
   )
 
   val enzoCrance = Speaker(

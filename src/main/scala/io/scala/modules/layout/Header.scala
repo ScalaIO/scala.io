@@ -43,7 +43,8 @@ object Header {
     Lexicon.Header.talks    -> BasicPage.Talks.toPageArg,
     Lexicon.Header.sponsors -> BasicPage.Sponsors.toPageArg,
     Lexicon.Header.venue    -> BasicPage.Venue.toPageArg,
-    Lexicon.Header.schedule -> BasicPage.Schedule.toPageArg
+    Lexicon.Header.schedule -> BasicPage.Schedule.toPageArg,
+    "FAQ"                   -> BasicPage.FAQ.toPageArg
   )
 
   def links = ul(

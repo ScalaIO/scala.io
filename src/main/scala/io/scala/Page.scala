@@ -29,6 +29,7 @@ enum BasicPage(val view: GenericView):
     case BasicPage.Sponsors => "Sponsors"
     case BasicPage.Venue    => "Venue"
     case BasicPage.Schedule => "Schedule"
+    case BasicPage.FAQ      => "FAQ"
   }
 
   case Index    extends BasicPage(IndexView)
@@ -36,12 +37,13 @@ enum BasicPage(val view: GenericView):
   case Sponsors extends BasicPage(SponsorsList)
   case Venue    extends BasicPage(VenueView)
   case Schedule extends BasicPage(ScheduleView)
+  case FAQ      extends BasicPage(FAQView)
 
 sealed trait PageArg {
 
   final def title: String = this match {
     case PageArg.Generic(page, _)  => page.title
-    case PageArg.Talk(talkSlug, _)       => "Talk" + talkSlug       // double incorrect
+    case PageArg.Talk(talkSlug, _) => "Talk" + talkSlug // double incorrect
   }
 
   def withDraft: Boolean
@@ -70,6 +72,7 @@ object Page {
     case "sponsors" => Right(BasicPage.Sponsors)
     case "venue"    => Right(BasicPage.Venue)
     case "schedule" => Right(BasicPage.Schedule)
+    case "faq"      => Right(BasicPage.FAQ)
     case _          => Left(DummyError.dummyError)
   }
 
@@ -78,7 +81,8 @@ object Page {
     case BasicPage.Sponsors => "sponsors"
     case BasicPage.Venue    => "venue"
     case BasicPage.Schedule => "schedule"
-    case _                  => ""
+    case BasicPage.FAQ      => "faq"
+    case BasicPage.Index    => ""
   }
 
   val pattern: PathSegmentWithQueryParams[BasicPage, DummyError, Option[Boolean], DummyError] =
