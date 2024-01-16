@@ -94,7 +94,8 @@ object SpeakersInfo:
   val mehdiRebiai = Speaker(
     name = "Mehdi Rebiai",
     photo = Some("mRebiai.webp"),
-    description = """|Développeur depuis bientôt 20 ans, d'abord du Java puis un peu de front, puis beaucoup d'intégration continue et d'automatisation. 
+    description =
+      """|Développeur depuis bientôt 20 ans, d'abord du Java puis un peu de front, puis beaucoup d'intégration continue et d'automatisation. 
       |Désormais je suis Tech Lead Data chez Lectra : beaucoup de Scala et de Kafka. 
       |Je participe également au projet Open Source Kapoeira : https://github.com/lectra-tech/kapoeira
       |""".stripMargin,
@@ -161,7 +162,7 @@ object SpeakersInfo:
       Social(Social.Kind.Twitter, "https://twitter.com/dfurmans"),
       Social(Social.Kind.Other, "https://solynaranjas.com")
     ),
-    confirmed = false,
+    confirmed = false
   )
 
   val lukaszBialy = Speaker(

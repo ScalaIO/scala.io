@@ -14,6 +14,7 @@ import upickle.default.*
 import upickle.default.ReadWriter
 import urldsl.errors.DummyError
 import urldsl.language.PathSegmentWithQueryParams
+import urldsl.vocabulary.{FromString, Printer, UrlMatching}
 import urldsl.vocabulary.FromString
 import urldsl.vocabulary.Printer
 import urldsl.vocabulary.UrlMatching
@@ -40,7 +41,7 @@ sealed trait PageArg {
 
   final def title: String = this match {
     case PageArg.Generic(page, _)  => page.title
-    case PageArg.Talk(talkSlug, _) => "Talk" + talkSlug // double incorrect
+    case PageArg.Talk(talkSlug, _)       => "Talk" + talkSlug       // double incorrect
   }
 
   def withDraft: Boolean

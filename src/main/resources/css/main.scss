@@ -48,25 +48,46 @@ h2 {
   font-size: vars.$text-size-large;
 }
 
+h3 {
+  font-weight: vars.$text-bold-weight;
+  font-size: vars.$text-size-medium;
+}
+
 .container {
   margin: vars.$spacing-xx-large vars.$spacing-huge;
   @include mixins.marginFor(
-    vars.$laptop-width,
-    vars.$spacing-large,
-    vars.$spacing-x-large,
+                  vars.$laptop-width,
+                  vars.$spacing-large,
+                  vars.$spacing-x-large,
   );
   @include mixins.marginFor(
-    vars.$tablet-width,
-    vars.$spacing-medium,
-    vars.$spacing-large,
+                  vars.$tablet-width,
+                  vars.$spacing-medium,
+                  vars.$spacing-large,
   );
   @include mixins.marginFor(
-    vars.$mobile-width,
-    vars.$spacing-small,
-    vars.$spacing-medium,
+                  vars.$mobile-width,
+                  vars.$spacing-small,
+                  vars.$spacing-medium,
   );
 }
 
 .catch-phrase {
   margin-bottom: vars.$spacing-small;
+}
+
+.basic-link {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.small-note {
+  font-size: vars.$text-size-small;
+  color: vars.$text-color-light;
+  font-style: italic;
+}
+
+.basic-list {
+  list-style-type: disc;
+  margin-left: 2em;
 }

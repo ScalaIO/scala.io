@@ -1,13 +1,11 @@
 package io.scala.domaines
 
-
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.tags.HtmlTag
 import org.scalajs.dom
 
 sealed trait TalkInfo[A <: TalkInfo[A]]:
   def ordinal: Int
-
 
 object TalkInfo:
   given [A <: TalkInfo[A]]: Ordering[A] = Ordering[Int].on(_.ordinal)

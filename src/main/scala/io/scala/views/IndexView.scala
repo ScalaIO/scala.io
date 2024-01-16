@@ -8,6 +8,11 @@ import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.Separator
 import io.scala.modules.elements.Title
 import io.scala.modules.elements.YurPlan
+import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.nodes.ReactiveHtmlElement
+import org.scalajs.dom.HTMLDivElement
+import com.raquo.laminar.nodes.ReactiveHtmlElement
+import org.scalajs.dom.HTMLDivElement
 import io.scala.modules.layout.Footer
 import io.scala.modules.layout.Headband
 import io.scala.modules.layout.Header
@@ -31,20 +36,33 @@ case object IndexView extends GenericView {
 
   def body(withDraft: Boolean): HtmlElement = sectionTag(
     className := "index",
-    div(className := "container description", Title("Who are we ?"), p(description)),
-    Separator(
-      span(
-        className := "page-title",
-        "Content"
+    div(className := "container description",
+
+      h2("Exchanging Ideas"),
+      p(
+        """
+          Scala.IO is a conference for people having
+           interest in the Scala ecosystem or simply
+           being curious about the language, usages.
+
+          """),
+      p(
+        """The conference is organized by Scala supporters from the community,
+          | and provides a great opportunity to meet with other enthusiasts and practitioners.""".stripMargin),
+
+      h2("Past editions (2013 - 2022)"),
+      p("You can find the videos of the past editions (200+) on our ",
+        a(className := "basic-link",
+          href := "https://www.youtube.com/@scalaio/videos", "youtube channel")
+        ,"."
       ),
-      div(
-        className := "container stats",
-        stat("2", "Days"),
-        stat("19", "Talks"),
-        stat("150", "Attendees"),
-        stat("1", "Track")
-      )
-    ),
+
+
+      h2("2024 - Nantes"),
+      p("For this edition, we are meeting in Nantes, for 2 days, one track, and a large community space.")
+    )
+
+,
     div(
       className := "container description",
       Title("Tickets"),
@@ -72,13 +90,13 @@ case object IndexView extends GenericView {
       )
     )
 
-  lazy val hero = div(
-    className       := "hero",
+  lazy val hero: ReactiveHtmlElement[HTMLDivElement] = div(
+    className := "hero",
     backgroundImage := "url(../images/index-hero.webp)",
     div(
       className := "overlay",
       div(
-        h2(className := "title", "Your Scala Event in France !"),
+        h2(className := "title", "Connecting Scala Enthusiasts!"),
         h3(
           className := "event-date-location",
           "15th-16th February 2024 - ",
@@ -89,7 +107,7 @@ case object IndexView extends GenericView {
           " @ ",
           a(
             className := "event-location",
-            href      := "https://maps.app.goo.gl/o22S4SjA2v11R6ef8",
+            href := "/venue",
             "Le Palace"
           )
         )
@@ -97,7 +115,7 @@ case object IndexView extends GenericView {
     )
   )
 
-  def stat(number: String, description: String) =
+  def stat(number: String, description: String): ReactiveHtmlElement[HTMLDivElement] =
     div(
       className := "item",
       div(

@@ -7,37 +7,148 @@ import io.scala.modules.elements.Title
 
 object VenueView extends SimpleView {
 
-  def body(withDraft:Boolean): HtmlElement = sectionTag(
+  def body(withDraft: Boolean): HtmlElement = sectionTag(
     className := "container venue",
-    Title("Venue"),
-    p(
-      Lexicon.Venue.catchPhrase,
-      className := "catch-phrase"
+    Title("Our Venue"),
+    p("""Situated in the vibrant center of Nantes, """,
+      a(className := "basic-link", href := "https://icilundi.fr/lieux/le-palace/", "the Palace", target := "_blank"),
+      """ is an ideal hub for collaboration
+        |and knowledge sharing. It offers a comfortable and nurturing work environment tailored for startups,
+        | teams from major corporate innovation departments, accelerators, educational institutions, and investors.
+        |""".stripMargin
+
     ),
-    Line(margin = 55),
+
+    Title("Two spaces"),
+    p(
+      """
+        |As with every edition of Scala.IO, we have a focus on nurturing the exchange between participants, for this edition with have two equally sized spaces.
+        |one large conference space and on large community space.
+        |""".stripMargin),
+    h2("Conference space"),
+    p("Our conference space is a large auditorium with a large capacity called 'la salle des coffres' (it was formerly a bank vault)."),
     div(
-      className       := "hero",
+      className := "hero",
+      backgroundImage := "url(https://icilundi.fr/wp-content/uploads/2023/09/04/capture-decran-2023-09-04-a-16.27.11.png)",
+      div(
+        className := "overlay",
+        div(
+          h2(className := "title", "The Vault")
+        )
+      )
+    ),
+    h2("Community space"),
+    p(
+      """Our community space is a large open space, full of light, called the Atrium. It is the perfect place to exchange ideas and network. The community space
+        |will be the place where you can meet our sponsors, speakers and other participants. It is also the place where you can enjoy a coffee, a snack or a drink.
+        |They are sited area where you can engage in longer conversations.
+        |""".stripMargin),
+    p(
+      className := "small-note",
+      """Note : we plan to have a setup like the edition in 2013, with some retransmission available in the community space."""),
+      div(
+      className := "hero",
       backgroundImage := "url(https://icilundi.fr/wp-content/uploads/2021/05/06/le-palace-atrium-scaled.jpg)",
       div(
         className := "overlay",
         div(
-          h2(className := "title", "Le Palace"),
-          h3(
-            className := "event-date-location",
-            "4 Rue Voltaire, 44000 Nantes"
+          h2(className := "title", "The Atrium"),
+          p(
+            className := "description",
+            """
+              |The Atrium, a large open space. Perfect for exchanging ideas and networking.
+              |""".stripMargin
           )
         )
       )
     ),
     Line.separator(vMargin = 32, width = 80, height = 8),
-    div(
+
+    Title("Access to the conference"),
+
+    p(
+      """
+        |The conference is located in the heart of Nantes, France,
+        |""".stripMargin,
+      a(
+        href := "https://maps.app.goo.gl/bGSepESpcX1VJKST6",
+        target := "_blank",
+        "4 Rue Voltaire."
+      ),
+    ),
+
+    h2("Recommended hotels"),
+    p(
+      """
+        |We recommend the following hotels:
+        |""".stripMargin,
+
+      ul(
+        className := "basic-list",
+        li(a(
+          href := "https://www.booking.com/hotel/fr/de-france-nantes.en-gb.html?aid=318615&label=English_France_EN_FR_21457883905-tvCAVDJnGUWD7jawmA84BQS640819002915%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atidsa-912298701041%3Alp9055556%3Ali%3Adec%3Adm%3Aag21457883905%3Acmp339900145&sid=480d696252c6328f249922e049f38bda&all_sr_blocks=5389301_98058694_0_2_0;checkin=2024-02-14;checkout=2024-02-16;dest_id=-1454460;dest_type=city;dist=0;group_adults=2;group_children=0;hapos=1;highlighted_blocks=5389301_98058694_0_2_0;hpos=1;matching_block_id=5389301_98058694_0_2_0;no_rooms=1;req_adults=2;req_children=0;room1=A%2CA;sb_price_type=total;sr_order=popularity;sr_pri_blocks=5389301_98058694_0_2_0__28900;srepoch=1705295547;srpvid=289f2496dc760058;type=total;ucfs=1&#hotelTmpl",
+          target := "_blank",
+          "Oceania l'Hôtel de France"
+        )),
+        li(a(
+          href := "https://www.booking.com/hotel/fr/maisons-du-monde-hotel-and-suites.en-gb.html?aid=318615&label=English_France_EN_FR_21457883905-tvCAVDJnGUWD7jawmA84BQS640819002915%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atidsa-912298701041%3Alp9055556%3Ali%3Adec%3Adm%3Aag21457883905%3Acmp339900145&sid=480d696252c6328f249922e049f38bda&dest_id=-1454460&dest_type=city&room1=A%2CA&;group_adults=2;group_children=0;no_rooms=1;checkin=2024-02-14;checkout=2024-02-16;highlighted_blocks=5176024_88552707_2_2_0;atlas_src=sr_iw_btn;from_sr_map=1;from=searchresults;ucfs=1",
+          target := "_blank",
+          "Maisons du Monde"
+        )),
+        li(
+          a(
+            href := "https://www.booking.com/hotel/fr/cholet.en-gb.html?aid=318615&label=English_France_EN_FR_21457883905-tvCAVDJnGUWD7jawmA84BQS640819002915%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atidsa-912298701041%3Alp9055556%3Ali%3Adec%3Adm%3Aag21457883905%3Acmp339900145&sid=480d696252c6328f249922e049f38bda&dest_id=-1454460&dest_type=city&room1=A%2CA&;group_adults=2;group_children=0;no_rooms=1;checkin=2024-02-14;checkout=2024-02-16;highlighted_blocks=5440202_88552713_2_2_0;atlas_src=sr_iw_btn;from_sr_map=1;from=searchresults;ucfs=1",
+            target := "_blank",
+            "Hotel Voltaire Opera"
+          )
+        )
+      )
+    ),
+
+    h2("Coming from Paris"),
+    p(
+      """
+        |If you're traveling from Paris, you have the option to take a train from Montparnasse station directly to Nantes.
+        |
+        |""".stripMargin
+    ),
+    p(
+      className := "small-note",
+      """
+        |Note : Some participants will be arriving by train (Train Number 8863) at 8:54 am on Thursday morning. We are currently exploring options to expedite the transfer from the train station to the conference venue.
+        |If this applies to you, we kindly request that you
+        |""".stripMargin
+      ,
+      a(
+        className := "basic-link",
+        href := "mailto:contact@scala.io",
+        "send us an email for further coordination.")
+    ),
+    h2("Arriving from Nantes Train Station"),
+    h3("Walking (25 minutes)"),
+    h3("By Bus (7 minutes + 4 minutes walk downhill)"),
+    p("You can take the bus number C3, direction Armor at the bus stop 'Gare Sud' (the exit in the south of the train station)."),
+    p("Get off at the bus stop 'Copernic'."),
+    h3("By tramway (9 minutes + 5 minutes walk uphill)"),
+    p("You can take the tramway number 1, direction François Mitterrand/Jamet at the tramway stop 'Gare SNCF'."),
+    p("Get off at the tramway stop 'Médiathèque'."),
+    //
+    h2("Arriving from Nantes Atlantique Airport"),
+    p("The airport is unusually close to the city center (less than 10km):"),
+    ul(
+      className := "basic-list",
+      li("15 minutes by car/taxi (depending of trafic)"),
+      li("40 minutes by public transportation (bus + tramway)"),
+    ),
+
+    /*div(
       className := "venue-map-container",
       iframe(
         className := "venue-map",
         src := "https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d1355.095279080701!2d-1.5657394!3d47.2128536!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x4805ed0c3af02b81%3A0xfe8747f744fd5b97!2sLe%20Palace%20_icilundi!5e0!3m2!1sfr!2sfr!4v1701301592089!5m2!1sfr!2sfr",
         loadingAttr := "lazy"
       )
-    )
+    )*/
   )
 
   override def title: String = "Venue"

@@ -36,7 +36,7 @@ case object ScheduleView extends SimpleView {
           span("Friday")
         ),
         renderHours("Opening", Lexicon.Schedule.opening: _*),
-        renderHours("First talks", Lexicon.Schedule.firstTalk: _*),
+        renderHours("First talk", Lexicon.Schedule.firstTalk: _*),
         renderHours("Lunch", Lexicon.Schedule.lunch: _*),
         renderHours("End of talks", Lexicon.Schedule.endOfTalks: _*),
         renderHours("Community party", Lexicon.Schedule.communityParty)

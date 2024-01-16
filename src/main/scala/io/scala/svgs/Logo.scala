@@ -5,8 +5,8 @@ import com.raquo.laminar.nodes.ReactiveSvgElement
 import org.scalajs.dom.SVGSVGElement
 
 object Logo {
-  def apply(fillColor:String = "#ffffff"): ReactiveSvgElement[SVGSVGElement] = svg(
-    viewBox   := "0 0 402.14301 98.025002",
+  def apply(fillColor: String = "#ffffff"): ReactiveSvgElement[SVGSVGElement] = svg(
+    viewBox := "0 0 402.14301 98.025002",
     g(
       transform := "translate(-39.344,-43.23)",
       g(
