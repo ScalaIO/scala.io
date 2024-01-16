@@ -68,9 +68,7 @@ case object IndexView extends GenericView {
       Title("Tickets"),
       YurPlan()
     ),
-    Separator(
-      h2(textAlign.center, "Small separator to make it look good")
-    ),
+    Separator(),
     speakerGallery(withDraft)
   )
 
