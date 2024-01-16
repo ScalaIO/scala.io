@@ -9,34 +9,44 @@ object VenueView extends SimpleView {
 
   def body(withDraft: Boolean): HtmlElement = sectionTag(
     className := "container venue",
-    Title("Venue"),
+    Title("Our Venue"),
+    p("""Situated in the vibrant center of Nantes, """,
+      a(className := "basic-link", href := "https://icilundi.fr/lieux/le-palace/", "the Palace", target := "_blank"),
+      """ is an ideal hub for collaboration
+        |and knowledge sharing. It offers a comfortable and nurturing work environment tailored for startups,
+        | teams from major corporate innovation departments, accelerators, educational institutions, and investors.
+        |""".stripMargin
+
+    ),
+
+    Title("Two spaces"),
     p(
       """
-        |Situated in the vibrant center of Nantes, the Palace stands as an ideal hub for collaboration and knowledge sharing. It offers a comfortable and nurturing work environment tailored for startups, teams from major corporate innovation departments, accelerators, educational institutions, and investors.
-        |""".stripMargin
-      ,
-      className := "catch-phrase"
-    ),
-    Line(margin = 55),
+        |As with every edition of Scala.IO, we have a focus on nurturing the exchange between participants, for this edition with have two equally sized spaces.
+        |one large conference space and on large community space.
+        |""".stripMargin),
     h2("Conference space"),
+    p("Our conference space is a large auditorium with a large capacity called 'la salle des coffres' (it was formerly a bank vault)."),
     div(
       className := "hero",
       backgroundImage := "url(https://icilundi.fr/wp-content/uploads/2023/09/04/capture-decran-2023-09-04-a-16.27.11.png)",
       div(
         className := "overlay",
         div(
-          h2(className := "title", "The Vault"),
-          p(
-            className := "description",
-            """
-              |The Vault, an auditorium  perfect place to host conferences".
-              |""".stripMargin
-          )
+          h2(className := "title", "The Vault")
         )
       )
     ),
     h2("Community space"),
-    div(
+    p(
+      """Our community space is a large open space, full of light, called the Atrium. It is the perfect place to exchange ideas and network. The community space
+        |will be the place where you can meet our sponsors, speakers and other participants. It is also the place where you can enjoy a coffee, a snack or a drink.
+        |They are sited area where you can engage in longer conversations.
+        |""".stripMargin),
+    p(
+      className := "small-note",
+      """Note : we plan to have a setup like the edition in 2013, with some retransmission available in the community space."""),
+      div(
       className := "hero",
       backgroundImage := "url(https://icilundi.fr/wp-content/uploads/2021/05/06/le-palace-atrium-scaled.jpg)",
       div(
@@ -74,6 +84,7 @@ object VenueView extends SimpleView {
         |""".stripMargin,
 
       ul(
+        className := "basic-list",
         li(a(
           href := "https://www.booking.com/hotel/fr/de-france-nantes.en-gb.html?aid=318615&label=English_France_EN_FR_21457883905-tvCAVDJnGUWD7jawmA84BQS640819002915%3Apl%3Ata%3Ap1%3Ap2%3Aac%3Aap%3Aneg%3Afi%3Atidsa-912298701041%3Alp9055556%3Ali%3Adec%3Adm%3Aag21457883905%3Acmp339900145&sid=480d696252c6328f249922e049f38bda&all_sr_blocks=5389301_98058694_0_2_0;checkin=2024-02-14;checkout=2024-02-16;dest_id=-1454460;dest_type=city;dist=0;group_adults=2;group_children=0;hapos=1;highlighted_blocks=5389301_98058694_0_2_0;hpos=1;matching_block_id=5389301_98058694_0_2_0;no_rooms=1;req_adults=2;req_children=0;room1=A%2CA;sb_price_type=total;sr_order=popularity;sr_pri_blocks=5389301_98058694_0_2_0__28900;srepoch=1705295547;srpvid=289f2496dc760058;type=total;ucfs=1&#hotelTmpl",
           target := "_blank",
@@ -97,12 +108,38 @@ object VenueView extends SimpleView {
     h2("Coming from Paris"),
     p(
       """
-        |If you are coming from Paris, you can take the train from Montparnasse station to Nantes.
+        |If you're traveling from Paris, you have the option to take a train from Montparnasse station directly to Nantes.
         |
         |""".stripMargin
     ),
-
-    //Note : some participants will be taking the train (8863) arriving at 8:54 am on thursday morning.
+    p(
+      className := "small-note",
+      """
+        |Note : Some participants will be arriving by train (Train Number 8863) at 8:54 am on Thursday morning. We are currently exploring options to expedite the transfer from the train station to the conference venue.
+        |If this applies to you, we kindly request that you
+        |""".stripMargin
+      ,
+      a(
+        className := "basic-link",
+        href := "mailto:contact@scala.io",
+        "send us an email for further coordination.")
+    ),
+    h2("Arriving from Nantes Train Station"),
+    h3("Walking (25 minutes)"),
+    h3("By Bus (7 minutes + 4 minutes walk downhill)"),
+    p("You can take the bus number C3, direction Armor at the bus stop 'Gare Sud' (the exit in the south of the train station)."),
+    p("Get off at the bus stop 'Copernic'."),
+    h3("By tramway (9 minutes + 5 minutes walk uphill)"),
+    p("You can take the tramway number 1, direction François Mitterrand/Jamet at the tramway stop 'Gare SNCF'."),
+    p("Get off at the tramway stop 'Médiathèque'."),
+    //
+    h2("Arriving from Nantes Atlantique Airport"),
+    p("The airport is unusually close to the city center (less than 10km):"),
+    ul(
+      className := "basic-list",
+      li("15 minutes by car/taxi (depending of trafic)"),
+      li("40 minutes by public transportation (bus + tramway)"),
+    ),
 
     /*div(
       className := "venue-map-container",

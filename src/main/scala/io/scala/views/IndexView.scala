@@ -8,6 +8,11 @@ import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.Separator
 import io.scala.modules.elements.Title
 import io.scala.modules.elements.YurPlan
+import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.nodes.ReactiveHtmlElement
+import org.scalajs.dom.HTMLDivElement
+import com.raquo.laminar.nodes.ReactiveHtmlElement
+import org.scalajs.dom.HTMLDivElement
 import io.scala.modules.layout.Footer
 import io.scala.modules.layout.Headband
 import io.scala.modules.layout.Header
@@ -45,6 +50,13 @@ case object IndexView extends GenericView {
         """The conference is organized by Scala supporters from the community,
           | and provides a great opportunity to meet with other enthusiasts and practitioners.""".stripMargin),
 
+      h2("Past editions (2013 - 2022)"),
+      p("You can find the videos of the past editions (200+) on our ",
+        a(className := "basic-link",
+          href := "https://www.youtube.com/@scalaio/videos", "youtube channel")
+        ,"."
+      ),
+
 
       h2("2024 - Nantes"),
       p("For this edition, we are meeting in Nantes, for 2 days, one track, and a large community space.")
@@ -78,7 +90,7 @@ case object IndexView extends GenericView {
       )
     )
 
-  lazy val hero = div(
+  lazy val hero: ReactiveHtmlElement[HTMLDivElement] = div(
     className := "hero",
     backgroundImage := "url(../images/index-hero.webp)",
     div(
@@ -103,7 +115,7 @@ case object IndexView extends GenericView {
     )
   )
 
-  def stat(number: String, description: String) =
+  def stat(number: String, description: String): ReactiveHtmlElement[HTMLDivElement] =
     div(
       className := "item",
       div(
