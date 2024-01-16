@@ -77,8 +77,8 @@ jobs:
         env:
           BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
         run: | 
-          clever create --type node ${{ env.APP_NAME }}-$BRANCH_NAME --alias ${{ env.APP_NAME }}-$BRANCH_NAME --region par --org ${{secrets.ORGA_ID}}
-          clever domain add ${{ env.APP_NAME }}-$BRANCH_NAME.cleverapps.io
+          clever create --type node ${{ env.APP_NAME }}-${BRANCH_NAME} --alias ${{ env.APP_NAME }}-${BRANCH_NAME} --region par --org ${{secrets.ORGA_ID}}
+          clever domain add ${{ env.APP_NAME }}-${BRANCH_NAME}.cleverapps.io
       - name: Deploy
         run: clever deploy
       # Post your domain in PR's discussion
@@ -134,7 +134,7 @@ jobs:
         env:
           BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
         run: | 
-          clever link -o ${{ env.ORGA_ID }} ${{ env.APP_NAME }}-$BRANCH_NAME
+          clever link -o ${{ env.ORGA_ID }} ${{ env.APP_NAME }}-${BRANCH_NAME}
           clever deploy --force
       - name: Comment PR
         uses: actions/github-script@v5
@@ -167,8 +167,8 @@ jobs:
         env:
           BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
         run: |
-          clever link -o ${{ env.ORGA_ID }} ${{ env.APP_NAME }}-$BRANCH_NAME
-          clever delete --alias ${{ env.APP_NAME }}-$BRANCH_NAME --yes
+          clever link -o ${{ env.ORGA_ID }} ${{ env.APP_NAME }}-${BRANCH_NAME}
+          clever delete --alias ${{ env.APP_NAME }}-${BRANCH_NAME} --yes
       - name: Comment PR
         uses: actions/github-script@v5
         with:
