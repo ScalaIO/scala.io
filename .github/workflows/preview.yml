@@ -84,19 +84,19 @@ jobs:
       # Post your domain in PR's discussion
       - name: Comment PR
         uses: actions/github-script@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
         with:
           script: |
             const issue_number = context.payload.pull_request.number;
-            const message = `Deployment has finished 👁️👄👁️ Your app is available [here](https://${{ env.APP_NAME }}-${BRANCH_NAME}.cleverapps.io)`;
+            const message = `Deployment has finished 👁️👄👁️ Your app is available [here](https://${{ env.APP_NAME }}-${process.env.BRANCH_NAME}.cleverapps.io)`;
             github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issue_number,
               body: message
             });
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
   
   # Deploy review apps on new commits
   update:
@@ -138,19 +138,19 @@ jobs:
           clever deploy --force
       - name: Comment PR
         uses: actions/github-script@v5
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
         with:
           script: |
             const issue_number = context.payload.pull_request.number;
-            const message = `🚀 Your app has been updated and is available [here](https://${{ env.APP_NAME }}-${BRANCH_NAME}.cleverapps.io)`;
+            const message = `🚀 Your app has been updated and is available [here](https://${{ env.APP_NAME }}-${process.env.BRANCH_NAME}.cleverapps.io)`;
             github.rest.issues.createComment({
               owner: context.repo.owner,
               repo: context.repo.repo,
               issue_number: issue_number,
               body: message
             });
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
 
   # Delete review app when the PR is closed (merged or not)
   delete:
