@@ -189,7 +189,7 @@ object SpeakersInfo:
     job = "Principal Engineer",
     company = "Disney Streaming Services",
     socials = List(
-      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/olivier-m%C3%A9lois-99234bbb"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/olivier-mélois-99234bbb"),
       Social(Social.Kind.Other, "https://github.com/Baccata")
     ),
     confirmed = true
@@ -255,7 +255,7 @@ object SpeakersInfo:
     job = "Tech Lead",
     company = "NuMind",
     socials = List(
-      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/fran%C3%A7ois-laroche-28406132"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/françois-laroche-28406132"),
       Social(Social.Kind.Other, "https://github.com/larochef")
     ),
     confirmed = true
