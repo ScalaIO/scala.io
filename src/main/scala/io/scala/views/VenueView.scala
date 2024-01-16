@@ -130,7 +130,7 @@ object VenueView extends SimpleView {
     ul(
       className := "basic-list",
       li("Reach the south exit of the train station (also called Bus/Taxi exit);"),
-      li("In front of the exit, purchase a bus ticket and board the C3 line in the direction of Armor;"),
+      li("In front of the exit, purchase a bus ticket and board the C3 line in the direction \"Armor\";"),
       li("Get off at the \"Copernic\" bus stop;"),
       li("Walk down to the venue;"),
     ),
@@ -139,7 +139,7 @@ object VenueView extends SimpleView {
       className := "basic-list",
       li("Reach the north exit of the train station (also called the \"Nantes Centre\" exit);"),
       li("In front of the exit, cross the railway and purchase a ticket at the dispenser;"),
-      li("Board Tramway Line 1 in the direction of François Mitterrand/Jamet;"),
+      li("Board Tramway Line 1 in the direction of \"François Mitterrand/Jamet\";"),
       li("Get off at the tramway stop 'Médiathèque';"),
       li("Walk up to the venue;"),
     ),
@@ -157,7 +157,7 @@ object VenueView extends SimpleView {
       li("Reach the airport shuttle \"Navette Aéroport\" departure place, located in the middle of the outside area behind the taxi lane;"),
       li("Buy a ticket at the dispenser (10€ per passenger);"),
       li("Get off at the \"Hôtel Dieu\" stop;"),
-      li("Board the C3 line in the direction of Armor;"),
+      li("Board the C3 line in the direction \"Armor\";"),
       li("Get off at the \"Copernic\" bus stop"),
       li("Walk down to the venue;"),
 
