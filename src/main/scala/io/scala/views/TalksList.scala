@@ -1,23 +1,26 @@
 package io.scala.views
 
-import com.raquo.laminar.api.L.{*, given}
 import io.scala.Lexicon
 import io.scala.data.TalksInfo
 import io.scala.domaines.*
 import io.scala.modules.TalkCard
 import io.scala.modules.elements.*
 
+import com.raquo.laminar.api.L.{*, given}
+
 case object TalksList extends SimpleView {
   def bodyContent(talks: List[Talk]) = sectionTag(
     className := "container talks-list",
     Title("Talks"),
     Line(margin = 55),
-    div(
+    Talk.Category.values.map: category =>
       div(
-        talks.map(TalkCard(_)),
-        className := "card-container"
-      ),
-    )
+        h2(className := "content-title", category.toName),
+        div(
+          talks.filter(_.category == category).map(TalkCard(_)),
+          className := "card-container"
+        )
+      )
   )
 
   def body(withDraft: Boolean): HtmlElement =

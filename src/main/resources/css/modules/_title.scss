@@ -29,4 +29,16 @@
   line-height: 42px;
   margin-bottom: 8px;
   font-weight: bold;
+  display: inline-block;
+  position: relative;
+
+  &:before {
+    content: "";
+    position: absolute;
+    bottom: -2px;
+    height: 6px;
+    border-radius: 3px;
+    width: 60%;
+    background: vars.$main-color;
+  }
 }

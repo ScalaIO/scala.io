@@ -30,14 +30,16 @@ object TalksInfo:
          |
          |This ScalaIO talk will be a overview of the EPITA CT4P course, with emphasis on commutation diagrams and simple Scala programming. The talk will be accessible to intermediate programmers of Scala, Python, Lisp and other languages.
          |""".stripMargin,
-      speakers = List(SpeakersInfo.jimNewton, SpeakersInfo.uliFahrenberg)
+      speakers = List(SpeakersInfo.jimNewton, SpeakersInfo.uliFahrenberg),
+      category = Talk.Category.Idk
     ),
     Talk(
       title = "Data pipelines engineering made simple with Scala",
       slug = "data-pipelines-simple",
       description =
         "Most organizations have data pipelines and those are growing by the minute. But working on data pipelines can be challenging and take / waste a lot of engineering time! The talk is about a state of the art platform used to build, run, evolve and operate data pipelines at Criteo: a project were Scala particularly shine. We will cover problem framing, core ideas and dive into our experience with SQL parsing, query planning and scheduling with quick introductions to the Scala libraries used. The talk is meant to be accessible to any junior developer and has food for though for tenured data engineers too.",
-      speakers = List(SpeakersInfo.raphaelClaude)
+      speakers = List(SpeakersInfo.raphaelClaude),
+      category = Talk.Category.DataEng
     ),
     Talk(
       title = "Scala 3 Compiler Academy Journey",
@@ -46,7 +48,8 @@ object TalksInfo:
         |Open Source is all about collaboration. In the Scala world, we have a lot of eager talent hungry to learn together. The best way to learn to program is by doing. On the other hand, the core Scala projects have an ample supply of maintenance tasks – bug fixing, minor feature implementation, and documentation. To match the demand with the supply, in the Summer of 2021, I initiated the project Scala 3 Compiler Academy. Organized by the Scala Center, the Academy aimed to provide an avenue for Scala engineers to start contributing to the Scala Compiler. The Academy was implemented online pair programming sessions and a YouTube channel where one could learn more about the compiler.
 
         |Now, two years later, with the format fleshed out and the lessons learnt, I'd like to share our journey with you. After attending my talk, you'll learn how the format works, and how to start a similar Spree for your own project as well!""".stripMargin,
-      speakers = List(SpeakersInfo.anatoliiKmetiuk)
+      speakers = List(SpeakersInfo.anatoliiKmetiuk),
+      category = Talk.Category.ScalaStuff
     ),
     Talk(
       title = "Unleashing Scalafix potential with custom rules",
@@ -57,7 +60,8 @@ object TalksInfo:
          |
          |In this talk, we will demystify AST traversal and semantic information lookup to write custom rules and run them locally and/or on CI, through the sbt-scalafix plugin or via Scala Steward.
          |""".stripMargin,
-      speakers = List(SpeakersInfo.briceJaglin)
+      speakers = List(SpeakersInfo.briceJaglin),
+      category = Talk.Category.Libs
     ),
     Talk(
       title = "🌴 Youpi dansons la Kapoeira en testant nos Kafka streams 🕺 💃",
@@ -74,7 +78,8 @@ object TalksInfo:
          |
          |Si vous êtes intéressés, nous serons ravis de récolter vos retours et vos contributions pour nous aider à améliorer cet outil.
          |""".stripMargin,
-      speakers = List(SpeakersInfo.johannaVauchel, SpeakersInfo.mehdiRebiai)
+      speakers = List(SpeakersInfo.johannaVauchel, SpeakersInfo.mehdiRebiai),
+      category = Talk.Category.DataEng
     ),
     Talk(
       title = "Armored type safety with Iron",
@@ -88,7 +93,8 @@ object TalksInfo:
          |
          |In this talk, we'll show first the different technique we can use to apply constraints is our domains. Then, we'll present Iron, its features, extensions, and integrations. We'll finish by showcasing a fully-integrated constraint-enforcing app.
          |""".stripMargin,
-      speakers = List(SpeakersInfo.raphaelLemaitre, SpeakersInfo.valentinBergeron)
+      speakers = List(SpeakersInfo.raphaelLemaitre, SpeakersInfo.valentinBergeron),
+      category = Talk.Category.Libs
     ),
     Talk(
       title = "Contravariance: intuition building from first principles",
@@ -101,7 +107,8 @@ object TalksInfo:
          |
          |We'll begin by working with an Animal type hierarchy and some PetRescue and PetClinic typeclasses. By working out what can be substituted for what, we'll begin building up intuition for covariance and contravariance. We'll then test this intuition by working through a second example involving JsonDecoder and JsonEncoder typeclasses.
          |""".stripMargin,
-      speakers = List(SpeakersInfo.sophieCollard)
+      speakers = List(SpeakersInfo.sophieCollard),
+      category = Talk.Category.ScalaStuff
     ),
     Talk(
       title = "Songwriting in Scala - Creating a DSL for writing Music with ADT's",
@@ -109,14 +116,16 @@ object TalksInfo:
       description =
         """|Can you compose and produce music with Scala? Absolutely! And I'll show you how. As a longtime professional musician now re-purposed as a Scala developer, I have used functional programming fundamentals to model music and create some simple music web audio applications. The presentation will walk through how and why I made modelling decisions to represent musical properties and events, and I'll write and play a song from scratch in real time using a Domain Specific Language for Music. The talk is aimed at Scala and FP beginners and/or any fans of digital music creation and production and is designed as a fun and interactive introduction to ADT usage in modelling real life data. Topics covered: * How I have chosen to model musical elements and properties. * How Algebraic Data types have been used to create a simple idiomatic music DSL. * Live demonstration of arranging and playing a polyphonic arrangement with the DSL.
          |""".stripMargin,
-      speakers = List(SpeakersInfo.paulMatthew)
+      speakers = List(SpeakersInfo.paulMatthew),
+      category = Talk.Category.Idk
     ),
     Talk(
       title = "Hands-on Besom: Infrastructure-as-Code with Scala",
       slug = "hands-on-besom-iaac-with-scala",
       description =
         "In my talk I will briefly introduce Besom, a Pulumi SDK for Scala and then swiftly proceed to show - hands on - how to use it to declare cloud infrastructure and deploy your services in a simple yet safe and robust way. Besom is the first step in the new vision of programming with Scala where full products can be built using the same reliable, functional idioms. The talk will be interesting to any Scala developer who wants to upgrade her skills and capabilities in the area of cloud resource management and complete product engineering.",
-      speakers = List(SpeakersInfo.lukaszBialy)
+      speakers = List(SpeakersInfo.lukaszBialy),
+      category = Talk.Category.Libs
     ),
     Talk(
       title = "Introduction to Smithy/Smithy4s",
@@ -129,14 +138,16 @@ object TalksInfo:
          |
          |This talk will serve as an introduction to the Smithy IDL, and a demo of what is possible with Smithy4s
          |""".stripMargin,
-      speakers = List(SpeakersInfo.olivierMelois)
+      speakers = List(SpeakersInfo.olivierMelois),
+      category = Talk.Category.Libs
     ),
     Talk(
       title = "Logic Meta-Programming for Functional Languages",
       slug = "logic-meta-programming-for-functional-languages",
       description =
         "Since the beginning of the 21st century, the functional programming paradigm, whose root ideas are now almost 100 years old, has finally trickled down to the rest of the community, bringing more safety and clarity to the more mainstream languages: several languages adopted the idiom of lambda functions, the Java community gave birth to Scala, Clojure, and Kotlin, that all include a substantial amount of functional features; most modern languages embrace immutability by default and feature a form of algebraic data types as well as lazy and/or stateless data structures; etc. In more confidential contexts, the logic programming paradigm, although more obscure, managed to remain stable in a niche of specific use cases: inference and unification problems, rule-based reasoning, combinatorics, constraint programming, operational research, etc. In this talk, we will explore one of the areas where both of these unique yet powerful tools converge: using a logic programming language as a meta-language for a functional programming language. First, we will present its use for implementing a type-checker, then for proof transfer in the context of dependently-typed functional languages.",
-      speakers = List(SpeakersInfo.enzoCrance)
+      speakers = List(SpeakersInfo.enzoCrance),
+      category = Talk.Category.ScalaStuff
     ),
     Talk(
       title = "Migrating Gallia to Scala 3: the good, the bad, and the very good.",
@@ -148,7 +159,8 @@ object TalksInfo:
            |I will briefly introduce how certain features worked before (e.g. the now defunct scala.reflect.{api,runtime}) prior to showing the new approach(s), as well as why I chose to handle certain problems the way I did, notably when it came to reflection and macros.
            |""".stripMargin,
       kind = Talk.Kind.Short,
-      speakers = List(SpeakersInfo.anthonyCros)
+      speakers = List(SpeakersInfo.anthonyCros),
+      category = Talk.Category.ScalaStuff
     ),
     Talk(
       title = "Types dépendants: de la théorie à la pratique",
@@ -161,7 +173,8 @@ object TalksInfo:
            |
            |Nous aborderons: le type fonctionnel dépendant, la paire dépendante, le type somme et si tout va bien l'égalité propositionnelle.
            |""".stripMargin,
-      speakers = List(SpeakersInfo.didierPlaindoux)
+      speakers = List(SpeakersInfo.didierPlaindoux),
+      category = Talk.Category.ScalaStuff
     ),
     Talk(
       title = "Utilisez l'intelligence artificielle dans vos programmes !",
@@ -171,14 +184,16 @@ object TalksInfo:
                |
                |Une fois ceci fait, je souhaite montrer comment utiliser un modèle en utilisant la bibliothèque DJL, en utilisant pyTorch, et montrer l'implémentation des différentes briques.
                |""".stripMargin,
-      speakers = List(SpeakersInfo.francoisLaroche)
+      speakers = List(SpeakersInfo.francoisLaroche),
+      category = Talk.Category.Idk
     ),
     Talk(
       title = "To be announced",
       slug = "keynote-2",
       description = "To be announced",
       kind = Talk.Kind.Keynote,
-      speakers = List(SpeakersInfo.xavierVdW)
+      speakers = List(SpeakersInfo.xavierVdW),
+      category = Talk.Category.ScalaStuff
     ),
     Talk(
       title = "To be announced",
@@ -192,7 +207,9 @@ object TalksInfo:
       slug = "keynote-1",
       description = "To be announced",
       kind = Talk.Kind.Keynote,
-      speakers = List(SpeakersInfo.adamWarski)
+      speakers = List(SpeakersInfo.adamWarski),
+      category = Talk.Category.Libs
+
     ),
     Talk(
       title = "To be announced",
