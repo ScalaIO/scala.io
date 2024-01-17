@@ -55,7 +55,8 @@ case class Talk(
     day: Option[ConfDay] = None,
     room: Option[Room] = None,
     start: Option[Time] = None,
-    speakers: List[Speaker]
+    speakers: List[Speaker],
+    category: Talk.Category = Talk.Category.NA
 ):
   lazy val renderDescription = description.split("\n").map(p(_))
 
@@ -74,6 +75,23 @@ object Talk:
       case Short     => "presentation-short"
       case Keynote   => "presentation-keynote"
       case Lightning => "presentation-lightning"
+
+  enum Category:
+    case One, Two, Three, Four, NA
+
+    def toName = this match
+      case One   => "One"
+      case Two   => "Two"
+      case Three => "Three"
+      case Four  => "Four"
+      case NA    => "N/A"
+
+    def toStyle = this match
+      case One   => "category-one"
+      case Two   => "category-two"
+      case Three => "category-three"
+      case Four  => "category-four"
+      case NA    => "category-na"
 
 case class Break(
     day: ConfDay,

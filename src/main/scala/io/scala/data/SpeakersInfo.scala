@@ -162,7 +162,7 @@ object SpeakersInfo:
       Social(Social.Kind.Twitter, "https://twitter.com/dfurmans"),
       Social(Social.Kind.Other, "https://solynaranjas.com")
     ),
-    confirmed = false //not confirmed 2024-W03-2
+    confirmed = false // not confirmed 2024-W03-2
   )
 
   val lukaszBialy = Speaker(
@@ -282,6 +282,55 @@ object SpeakersInfo:
       Social(Social.Kind.Other, "https://rlemaitre.com")
     ),
     confirmed = true
+  )
+
+  val olyaMazhara = Speaker(
+    name = "Olya Mazhara",
+    photo = Some("oMazhara.webp"),
+    description =
+      """|Scala has been my coding playground for about 5 wonderful years. While I've never taken the stage at conferences, I'm an avid attendee, soaking up the vibrant energy of the Scala community. My journey includes sharing the love for Scala by teaching courses at the university and organising cozy Scala meet-ups with friends. I even celebrated a birthday at one of our Scala gatherings, making it a memorable affair.
+         |
+         |Working with phenomenal individuals has shaped my perspective, making the Scala world, for me, a realm of camaraderie and shared passion. I believe friendship is the key factor in community creation, and I'm excited to delve into my experiences and insights on building strong, connected Scala communities amidst challenges.
+         |""".stripMargin,
+    job = "Software Engineer",
+    company = "Intellias",
+    socials = List(
+      Social(Social.Kind.Twitter, "https://twitter.com/Olga80572775"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/olya-mazhara-28092681"),
+    ),
+    confirmed = true
+  )
+
+  val adamWarski = Speaker(
+    name = "Adam Warski",
+    photo = Some("aWarski.webp"),
+    description =
+      """|I am one of the co-founders of SoftwareMill, where I code mainly using Scala and other interesting technologies. I am involved in open-source projects, such as sttp, MacWire, Quicklens, ElasticMQ and others. I have been a speaker at major conferences, such as JavaOne, LambdaConf, Devoxx and ScalaDays.
+         |
+         |Apart from writing closed- and open-source software, in my free time I try to read the Internet on various (functional) programming-related subjects. Any ideas or insights usually end up with a blog (https://softwaremill.com/blog)
+         |""".stripMargin,
+    job = "Co-founder",
+    company = "SoftwareMill",
+    socials = List(
+      Social(Social.Kind.Twitter, "http://twitter.com/adamwarski"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/adamwarski"),
+      Social(Social.Kind.Other, "http://softwaremill.com")
+    ),
+    confirmed = true
+  )
+
+  val xavierVdW = Speaker(
+    name = "Xavier Van de Woestyne",
+    photo = Some("xVdW.webp"),
+    description = "I love programming languages (like OCaml, Elm, Elixir/Erlang, IO, Haskell and Scala), Types systems and Web programming.",
+    job = "Software Engineer",
+    company = "", // TODO
+    socials = List(
+      Social(Social.Kind.Twitter, "http://twitter.com/vdwxv"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/xavdw"),
+      Social(Social.Kind.Other, "https://xvw.lol")
+    ),
+    confirmed = true,
   )
 
   val allSpeakers = allTalks.flatMap(_.speakers).distinct
