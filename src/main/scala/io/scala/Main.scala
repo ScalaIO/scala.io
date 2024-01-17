@@ -3,11 +3,12 @@ package io.scala
 import io.scala.Page
 import io.scala.domaines.Break
 import io.scala.domaines.Talk
+import io.scala.domaines.Special
 
 import com.raquo.laminar.api.L.{*, given}
 import org.scalajs.dom
 
-type Event = Talk | Break
+type Event = Talk | Break | Special
 val profilePlaceholder = "/images/profile.webp"
 
 object Main {

@@ -1,5 +1,8 @@
 package io.scala.domaines
 
+import io.scala.svgs
+import io.scala.svgs.Logo
+
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.tags.HtmlTag
 import org.scalajs.dom
@@ -57,20 +60,20 @@ case class Talk(
   lazy val renderDescription = description.split("\n").map(p(_))
 
 object Talk:
-  enum Kind extends TalkInfo[Kind]:
+  enum Kind:
     case Lightning, Short, Speech, Keynote
 
     override def toString = this match
-      case Lightning => "Lightning"
-      case Short     => "Short"
       case Speech    => "Talk"
+      case Short     => "Short"
       case Keynote   => "Keynote"
+      case Lightning => "Lightning"
 
     def toStyle = this match
-      case Lightning => "presentation-lightning"
-      case Short     => "presentation-short"
       case Speech    => "presentation-talk"
+      case Short     => "presentation-short"
       case Keynote   => "presentation-keynote"
+      case Lightning => "presentation-lightning"
 
 case class Break(
     day: ConfDay,
@@ -80,4 +83,28 @@ case class Break(
 
 object Break:
   enum Kind:
-    case Coffee, Large, Launch, End, CommunityParty
+    case Coffee, Large, Launch
+
+    def toIcon = this match
+      case Coffee => svgs.Coffee()
+      case Large  => svgs.Chat()
+      case Launch => svgs.Food()
+    def duration = this match
+      case Coffee => 5
+      case Large  => 15
+      case Launch => 60
+  object Kind:
+    val max = Kind.values.map(_.duration).max
+
+case class Special(
+    day: ConfDay,
+    start: Time,
+    kind: Special.Kind
+):
+  def render = kind match
+    case Special.Kind.End            => div(className := "blank-card", Logo("#222222"))
+    case Special.Kind.CommunityParty => div(className := s"blank-card community-party")
+
+object Special:
+  enum Kind:
+    case End, CommunityParty

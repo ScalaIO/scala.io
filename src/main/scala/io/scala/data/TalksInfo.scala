@@ -155,6 +155,7 @@ object TalksInfo:
            |
            |I will briefly introduce how certain features worked before (e.g. the now defunct scala.reflect.{api,runtime}) prior to showing the new approach(s), as well as why I chose to handle certain problems the way I did, notably when it came to reflection and macros.
            |""".stripMargin,
+      kind = Talk.Kind.Short,
       speakers = List(SpeakersInfo.anthonyCros)
     ),
     Talk(

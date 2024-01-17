@@ -2,12 +2,7 @@ package io.scala.data
 
 import io.scala.Event
 import io.scala.data.TalksInfo.allTalks
-import io.scala.domaines.Break
-import io.scala.domaines.ConfDay
-import io.scala.domaines.Room
-import io.scala.domaines.Speaker
-import io.scala.domaines.Talk
-import io.scala.domaines.Time
+import io.scala.domaines.*
 
 import scala.util.Random
 
@@ -175,15 +170,15 @@ object ScheduleInfo {
       start = Time(17, 25),
       kind = Break.Kind.Coffee
     ),
-    Break(
+    Special(
       day = ConfDay.Thursday,
       start = Time(18, 15),
-      kind = Break.Kind.End
+      kind = Special.Kind.End
     ),
-    Break(
+    Special(
       day = ConfDay.Thursday,
       start = Time(19, 30),
-      kind = Break.Kind.CommunityParty
+      kind = Special.Kind.CommunityParty
     ),
     Break(
       day = ConfDay.Friday,
@@ -230,10 +225,10 @@ object ScheduleInfo {
       start = Time(16, 55),
       kind = Break.Kind.Coffee
     ),
-    Break(
+    Special(
       day = ConfDay.Friday,
       start = Time(18, 0),
-      kind = Break.Kind.End
+      kind = Special.Kind.End
     )
   )
 

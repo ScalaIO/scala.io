@@ -40,11 +40,6 @@
     background-position: center;
   }
 
-  .card-container {
-    width: 100%;
-    margin: 16px 0px;
-  }
-
   .day {
     display: flex;
     flex-direction: column;
@@ -85,21 +80,21 @@
     }
   }
 
-  .content {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-  }
-
   .tab-content {
     padding: 1rem;
-    display: "block";
+    display: flex;
+    flex-direction: column;
   }
 
   .timeslot {
     display: flex;
     border-top: 1px solid #ccc;
     margin-top: 16px;
+    padding-top: 16px;
+
+    > div:first-child {
+      margin-right: 16px;
+    }
 
     @media screen and (max-width: vars.$mobile-width) {
       flex-direction: column;
