@@ -2,10 +2,11 @@ package io.scala.domaines
 
 import io.scala.svgs
 import io.scala.svgs.Logo
-
 import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.nodes.ReactiveHtmlElement
 import com.raquo.laminar.tags.HtmlTag
 import org.scalajs.dom
+import org.scalajs.dom.HTMLDivElement
 
 sealed trait TalkInfo[A <: TalkInfo[A]]:
   def ordinal: Int
@@ -90,9 +91,9 @@ object Talk:
       case Lightning => 15
 
   enum Category:
-    case Algebra, DataEng, Community, ToolsEcosystem, Effects, Modeling, Cloud, AI, NA
+    case Algebra,Effects , ToolsEcosystem,  Community, Cloud, Modeling, DataEng, AI, NA
 
-    def slug = this match
+    def slug: String = this match
       case Algebra        => "dash-of-algebra"
       case DataEng        => "data-engineering"
       case Community      => "community"
@@ -103,18 +104,18 @@ object Talk:
       case AI             => "artificial-intelligence"
       case NA             => "not-assigned"
 
-    def name = this match
+    def name: String = this match
       case Algebra        => "A Dash of Algebra"
       case DataEng        => "Data Engineering"
       case Community      => "Community"
       case ToolsEcosystem => "Tools & Ecosystems"
-      case Effects        => "Effects"
+      case Effects        => "Concurrent programming"
       case Modeling       => "Modeling / Domain Modeling"
       case Cloud          => "Cloud"
       case AI             => "AI"
       case NA             => "N/A"
 
-    def toStyle = this match
+    def toStyle: String = this match
       case Algebra        => "category-algebra"
       case DataEng        => "category-data"
       case Community      => "category-community"
@@ -146,14 +147,14 @@ object Break:
       case Large  => 15
       case Launch => 60
   object Kind:
-    val max = Kind.values.map(_.duration).max
+    val max: Int = Kind.values.map(_.duration).max
 
 case class Special(
     day: ConfDay,
     start: Time,
     kind: Special.Kind
 ) extends Event:
-  def render = kind match
+  def render: ReactiveHtmlElement[HTMLDivElement] = kind match
     case Special.Kind.End            => div(className := "blank-card", Logo("#222222"))
     case Special.Kind.CommunityParty => div(className := s"blank-card community-party")
 
