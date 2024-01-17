@@ -151,20 +151,6 @@ object SpeakersInfo:
     confirmed = true
   )
 
-  val dawidFurman = Speaker(
-    name = "Dawid Furman",
-    photo = Some("dFurman.webp"),
-    description =
-      "A computer and human language passionate. Enthusiast of the functional paradigm. The guitarist of the best rock-funky-hard SolYNaranjaS band!",
-    job = "",
-    company = "",
-    socials = List(
-      Social(Social.Kind.Twitter, "https://twitter.com/dfurmans"),
-      Social(Social.Kind.Other, "https://solynaranjas.com")
-    ),
-    confirmed = false // not confirmed 2024-W03-2
-  )
-
   val lukaszBialy = Speaker(
     name = "Łukasz Biały",
     photo = Some("lBialy.webp"),
@@ -296,7 +282,7 @@ object SpeakersInfo:
     company = "Intellias",
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/Olga80572775"),
-      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/olya-mazhara-28092681"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/olya-mazhara-28092681")
     ),
     confirmed = true
   )
@@ -322,7 +308,8 @@ object SpeakersInfo:
   val xavierVdW = Speaker(
     name = "Xavier Van de Woestyne",
     photo = Some("xVdW.webp"),
-    description = "I love programming languages (like OCaml, Elm, Elixir/Erlang, IO, Haskell and Scala), Types systems and Web programming.",
+    description =
+      "I love programming languages (like OCaml, Elm, Elixir/Erlang, IO, Haskell and Scala), Types systems and Web programming.",
     job = "Software Engineer",
     company = "", // TODO
     socials = List(
@@ -330,7 +317,35 @@ object SpeakersInfo:
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/xavdw"),
       Social(Social.Kind.Other, "https://xvw.lol")
     ),
-    confirmed = true,
+    confirmed = true
+  )
+
+  val monicaMcGuigan = Speaker(
+    name = "Monica McGuigan",
+    photo = Some("mMcGuigan.webp"),
+    description = """|Monica is a junior Scala developer at JP Morgan, working in a team who aims to improve understanding of the banks’ data and data models.
+         |
+         |She began her programming journey using C#, then onto a mixture C++, JavaScript and TypeScript throughout her undergraduate Physics degree. She now writes Scala full time in her current position. Monica is also passionate about encouraging those who do not have a Computer Science background into software development roles, as she has been able to apply her transferable problem-solving skills from a scientific discipline to programming and is really enjoying it!
+         |""".stripMargin,
+    job = "Software Engineer",
+    company = "JP Morgan",
+    socials = List(
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/monica-mcguigan")
+    ),
+    confirmed = true
+  )
+
+  val matthieuBaechler = Speaker(
+    name = "Matthieu Baechler",
+    photo = Some("mBaechler.webp"),
+    description = "I’m a veteran backend developer, living in Ardèche and writing software as a contractor for a living. I wrote Java for years and I’m now mainly writing Scala and Elm on a daily basis. My domains of interest are FP, reactive programming, distributed architecture, CQRS/ES and performance analysis.",
+    socials = List(
+      Social(Social.Kind.Twitter, "https://twitter.com/m_baechler"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/matthieu-baechler-12336011")
+    ),
+    job = "Developer",
+    company = "Conduktor",
+    confirmed = false
   )
 
   val allSpeakers = allTalks.flatMap(_.speakers).distinct

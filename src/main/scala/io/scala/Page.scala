@@ -10,6 +10,7 @@ import com.raquo.laminar.api.L
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.waypoint.*
 import org.scalajs.dom.html
+import org.scalajs.dom.document
 import upickle.default.*
 import upickle.default.ReadWriter
 import urldsl.errors.DummyError
@@ -140,6 +141,10 @@ object Page {
     (onClick
       .filter(ev => !(isLinkElement && (ev.ctrlKey || ev.metaKey || ev.shiftKey || ev.altKey)))
       .preventDefault
-      --> (_ => router.pushState(page))).bind(el)
+      --> { _ =>
+        router.pushState(page)
+        document.body.scrollTop = 0;            // For Safari
+        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+      }).bind(el)
   }
 }

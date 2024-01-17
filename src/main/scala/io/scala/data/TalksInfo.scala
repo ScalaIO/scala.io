@@ -116,7 +116,7 @@ object TalksInfo:
       description =
         """|Can you compose and produce music with Scala? Absolutely! And I'll show you how. As a longtime professional musician now re-purposed as a Scala developer, I have used functional programming fundamentals to model music and create some simple music web audio applications. The presentation will walk through how and why I made modelling decisions to represent musical properties and events, and I'll write and play a song from scratch in real time using a Domain Specific Language for Music. The talk is aimed at Scala and FP beginners and/or any fans of digital music creation and production and is designed as a fun and interactive introduction to ADT usage in modelling real life data. Topics covered: * How I have chosen to model musical elements and properties. * How Algebraic Data types have been used to create a simple idiomatic music DSL. * Live demonstration of arranging and playing a polyphonic arrangement with the DSL.
          |""".stripMargin,
-      kind = Talk.Kind.Short,
+      kind = Talk.Kind.Speech,
       speakers = List(SpeakersInfo.paulMatthew),
       category = Talk.Category.Modeling
     ),
@@ -189,6 +189,20 @@ object TalksInfo:
       category = Talk.Category.AI
     ),
     Talk(
+      title = "My first year in Scala",
+      slug = "my-first-year-in-scala",
+      description = """|Navigating the world of Scala and functional programming as a beginner can feel daunting and intimidating. Over a year ago, I was thrown into learning Scala headfirst.
+           |
+           |Now, having come out on the other side, I want to share the lessons I learned with other beginners, as well as what I wish the senior developers I worked with knew. I started my Scala journey at a corporate bank after graduating with a degree in Physics. So, not only did I have to learn Scala from scratch, but I also had to apply these concepts to a domain I had no prior knowledge of. Initially, I experienced a lot of confusion and frustration, trying to navigate a new language, along with a new job and learning to work in a large team. Thankfully, my experienced Scala colleagues were always there to help me and answer the many, many questions I had.
+           |
+           |In this talk, I will cover three key concepts that emerged from reflecting on this past year of learning: 1. Making Mistakes 2. Helping Others to Help You 3. Finding Community
+           |
+           |By the end of this talk, I hope that newcomers will feel less alone and more optimistic about diving into the exciting world of Scala, and that experienced developers will gain a better understanding of how to best support their juniors in their learning journey.
+           |""".stripMargin,
+      speakers = List(SpeakersInfo.monicaMcGuigan),
+      category = Talk.Category.Community
+    ),
+    Talk(
       title = "To be announced",
       slug = "keynote-2",
       description = "To be announced",
@@ -211,20 +225,22 @@ object TalksInfo:
       kind = Talk.Kind.Keynote,
       speakers = List(SpeakersInfo.adamWarski),
       category = Talk.Category.Effects
-
     ),
     Talk(
-      title = "To be announced",
-      slug = "talk-1",
-      description = "To be announced",
-      speakers = List(SpeakersInfo.dawidFurman),
-      category = Talk.Category.ToolsEcosystem
-    ),
-    Talk(
-      title = "To be announced",
-      slug = "talk-2",
-      description = "To be announced",
-      speakers = List.empty
+      title = "When all the nails are trees, the hammer you need probably looks like a chainsaw",
+      slug = "nails-are-tree-need-chainsaw",
+      description = """|For the last months, most of the problems I had to solve at work have been about trees.
+           |
+           |Initially, I tried to solve the problems the way other similar problems are solved in the codebase and it was painful.
+           |
+           |Then I looked for better tools and discovered Rose Trees : a very straightforward tree that comes with the operators you already know.
+           |
+           |In this talk, I will show you with some code and drawings what I learnt in
+           |the process and how it helped me solved my problems with less pain.
+           |""".stripMargin,
+      speakers = List(SpeakersInfo.matthieuBaechler),
+      category = Talk.Category.Algebra,
+      kind = Talk.Kind.Short
     ),
     Talk(
       title = "To be announced",
