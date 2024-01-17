@@ -1,5 +1,4 @@
-package io.scala
-package modules
+package io.scala.modules
 
 import io.scala.domaines.*
 
@@ -22,7 +21,7 @@ case class ScheduleDay(eventsList: Map[Time, Seq[Event]], startingTimes: Seq[Tim
             rooms.map(room =>
               events._2
                 .find {
-                  case t: Talk               => t.room.get == room
+                  case t: Talk               => t.room == room
                   case _: Break | _: Special => true // ! Will cause problem for multi-track events
                 }
                 .map {
@@ -39,22 +38,14 @@ case class ScheduleDay(eventsList: Map[Time, Seq[Event]], startingTimes: Seq[Tim
 
 object ScheduleDay {
   def apply(events: Seq[Event]) =
-    val definedTalks: Map[Time, Seq[Event]] = events
-      .filter {
-        case t: Talk               => t.room.isDefined && t.start.isDefined
-        case _: Break | _: Special => true
-      }
-      .groupBy {
-        case t: Talk    => t.start.get
-        case b: Break   => b.start
-        case s: Special => s.start
-      }
-    val startingTimes = events
-      .collect {
-        case t: Talk if t.start.isDefined => t.start.get
-        case b: Break                     => b.start
-        case s: Special                   => s.start
-      }
+    val scheduledEvents = events
+      .filter:
+        case t: Talk => t.day != null && t.start != null && t.room != null
+        case _       => true
+    val definedTalks: Map[Time, Seq[Event]] =
+      scheduledEvents.groupBy(_.start)
+    val startingTimes = scheduledEvents
+      .map(_.start)
       .distinct
       .sorted
 

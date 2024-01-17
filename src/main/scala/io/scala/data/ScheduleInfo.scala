@@ -1,6 +1,5 @@
 package io.scala.data
 
-import io.scala.Event
 import io.scala.data.TalksInfo.allTalks
 import io.scala.domaines.*
 
@@ -27,9 +26,9 @@ object ScheduleInfo {
       description =
         "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed vitae eros quis nisl aliquam aliquet. Sed vitae eros quis nisl aliquam aliquet. Sed vitae eros quis nisl aliquam aliquet. Sed vitae eros quis nisl aliquam aliquet.",
       speakers = List(speaker),
-      day = Some(day),
-      room = Some(Room.One),
-      start = Some(start),
+      day = day,
+      room = Room.One,
+      start = start,
       kind = kind
     )
   val blankTalks = List(

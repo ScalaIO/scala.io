@@ -1,6 +1,6 @@
-package io.scala
-package views
+package io.scala.views
 
+import io.scala.Lexicon
 import io.scala.data.ScheduleInfo
 import io.scala.data.TalksInfo
 import io.scala.domaines.*
@@ -136,11 +136,11 @@ case object ScheduleView extends SimpleView {
 
   def bodyContent(talks: List[Talk]): HtmlElement =
     val eventsByDay: Map[ConfDay, List[Event]] =
-      ScheduleInfo.blankSchedule.groupBy {
-        case t: Talk    => t.day.get
-        case b: Break   => b.day
-        case s: Special => s.day
-      }
+      ScheduleInfo.blankSchedule
+        .collect {
+          case event if event.day != null => event
+        }
+        .groupBy { _.day }
 
     sectionTag(
       className := "container",

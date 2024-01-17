@@ -1,13 +1,13 @@
 package io.scala
 package modules
 
-import com.raquo.laminar.api.L.{*, given}
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 import io.scala.svgs.GoTo
-import org.scalajs.dom
 
+import com.raquo.laminar.api.L.{*, given}
 import elements.Line
+import org.scalajs.dom
 
 object TalkKindTag:
   def apply(kind: Talk.Kind) =
@@ -32,10 +32,12 @@ object TalkCard:
         div(
           className := "card-subtitle",
           TalkKindTag(talk.kind),
-          span(
-            className := "room",
-            talk.room.map(_.render).getOrElse("")
-          )
+          if talk.room != null then
+            span(
+              className := "room",
+              talk.room.render
+            )
+          else emptyNode
         )
       ),
       Line(margin = 10),

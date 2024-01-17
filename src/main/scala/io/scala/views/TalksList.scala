@@ -13,14 +13,21 @@ case object TalksList extends SimpleView {
     className := "container talks-list",
     Title("Talks"),
     Line(margin = 55),
-    Talk.Category.values.map: category =>
+    div(
+      className := "with-toc",
       div(
-        h2(className := "content-title", category.toName),
-        div(
-          talks.filter(_.category == category).map(TalkCard(_)),
-          className := "card-container"
-        )
-      )
+        className := "content",
+        Talk.Category.values.map: category =>
+          div(
+            h2(idAttr := category.slug, className := "content-title", category.name),
+            div(
+              talks.filter(_.category == category).map(TalkCard(_)),
+              className := "card-container"
+            )
+          ),
+      ),
+      stickScroll
+    )
   )
 
   def body(withDraft: Boolean): HtmlElement =
@@ -28,4 +35,19 @@ case object TalksList extends SimpleView {
     else bodyContent(TalksInfo.allTalks.filter(_.speakers.forall(_.confirmed)))
 
   def title = "Talks"
+
+  def stickScroll =
+    div(
+      className := "table-of-contents",
+      idAttr    := "talks-cat-toc",
+      div(
+        className := "toc-content",
+        h3("Navigation"),
+        Talk.Category.values.map: cat =>
+          a(
+            href := s"#${cat.slug}",
+            span(s"- ${cat.name}")
+          )
+      )
+    )
 }
