@@ -5,28 +5,22 @@
 - [Node.js](https://nodejs.org/en/) (>= 18)
 - [Sass](https://sass-lang.com/): `npm install -g sass`
 
-## Running
-
-### Dev mode
-
-Run sass watcher (will compile sass files to css on change):
+## Running dev
 
 ```bash
-sass --watch <input> <output>
+npm install
+make dev
 ```
 
-Run the scalajs compilation watcher (will compile scala to js after each compilation):
+## Fixing a speaker / talk information
 
-```bash
-sbt:root> ~fastLinkJS
+- Create a fork
+- Edit the content in `src/main/scala/io/scala/data`
+- Open a PR
+
+You can use the following git commit message template:
+
+```sh
+fix(talk): <talk title>
+fix(speaker): <speaker name>
 ```
-
-Run the server:
-
-```bash
-npm run dev
-```
-
-### Prod mode
-
-Should be handled by the GH action.
