@@ -12,6 +12,8 @@ npm install
 make dev
 ```
 
+The app wil be available at http://localhost:5173
+
 ## Fixing a speaker / talk information
 
 - Create a fork
