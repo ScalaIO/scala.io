@@ -1,19 +1,26 @@
-package io.scala
-package views
+package io.scala.views
 
-import com.raquo.airstream.state.Var
-import com.raquo.laminar.api.L.{*, given}
+import io.scala.Lexicon
 import io.scala.data.ScheduleInfo
 import io.scala.data.TalksInfo
-import io.scala.domaines.Break
 import io.scala.domaines.*
+import io.scala.domaines.Break
 import io.scala.modules.*
 import io.scala.modules.elements.*
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
+
+import com.raquo.airstream.state.Var
+import com.raquo.laminar.api.L.{*, given}
 import org.scalajs.dom
+import org.scalajs.dom.{Event => jsEvent}
 import org.scalajs.dom.Element
+import org.scalajs.dom.UIEvent
+import org.scalajs.dom.console
+import org.scalajs.dom.document
 import org.scalajs.dom.window
+import scala.util.Failure
+import scala.util.Success
 
 case object ScheduleView extends SimpleView {
   val selectedDay: Var[ConfDay] = Var(ConfDay.Thursday)
@@ -68,14 +75,33 @@ case object ScheduleView extends SimpleView {
             if d == day then "block"
             else "none"
           },
-          child <-- selectedDay.signal.map {
+          children <-- selectedDay.signal.map {
             case i if i == day =>
               ScheduleDay(eventsByDay.get(day).getOrElse(Seq.empty)).body
-            case _ => emptyNode
+            case _ => Seq(emptyNode)
           }
         )
       }
     )
+
+  val spanVar: Var[HtmlElement] = Var(div())
+
+  def spanUpdater: Function1[jsEvent, Unit] = _ =>
+    console.log("Updating span...", screenVar.now().toString())
+    screenVar.now() match
+      case Screen.Mobile | Screen.Tablet => ()
+      case _ =>
+        val tab1 = document.body.querySelector(".tab-content")
+        val ts1  = tab1.querySelector(".timeslot:nth-child(2)")
+        val ts2  = tab1.querySelector(".timeslot:nth-child(3)")
+        console.log("Computing new height...")
+        spanVar.tryUpdate {
+          case Success(div) =>
+            Success(
+              div.amend(height := s"${ts1.getBoundingClientRect().height + ts2.getBoundingClientRect().height + 32}px")
+            )
+          case Failure(_) => Success(div())
+        }
 
   def renderLarge(eventsByDay: Map[ConfDay, List[Event]]) =
     div(
@@ -91,11 +117,12 @@ case object ScheduleView extends SimpleView {
             )
           ),
           div(
-            className := "content",
-            div(
-              className := "tab-content",
-              ScheduleDay(eventsByDay.get(day).getOrElse(Seq.empty)).body
-            )
+            className := "tab-content",
+            child <-- spanVar.signal.map {
+              case span if day.ordinal == 0 => span
+              case _                        => emptyNode
+            },
+            ScheduleDay(eventsByDay.get(day).getOrElse(Seq.empty)).body
           )
         )
       }
@@ -109,10 +136,11 @@ case object ScheduleView extends SimpleView {
 
   def bodyContent(talks: List[Talk]): HtmlElement =
     val eventsByDay: Map[ConfDay, List[Event]] =
-      ScheduleInfo.blankSchedule.groupBy {
-        case t: Talk  => t.day.get
-        case b: Break => b.day
-      }
+      ScheduleInfo.blankSchedule
+        .collect {
+          case event if event.day != null => event
+        }
+        .groupBy { _.day }
 
     sectionTag(
       className := "container",

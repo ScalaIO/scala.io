@@ -1,4 +1,5 @@
 @use "../base/vars";
+@use "../base/mixins";
 
 .page-title {
   font-size: 50px;
@@ -7,15 +8,7 @@
   position: relative;
   margin-bottom: 15px;
 
-  &:before {
-    content: "";
-    position: absolute;
-    bottom: -2px;
-    height: 6px;
-    border-radius: 3px;
-    width: 60%;
-    background: vars.$main-color;
-  }
+  @include mixins.belowBar(vars.$main-color, 60%, 6px);
 }
 
 .subtitle {
@@ -29,4 +22,8 @@
   line-height: 42px;
   margin-bottom: 8px;
   font-weight: bold;
+  display: inline-block;
+  position: relative;
+
+  @include mixins.belowBar(vars.$main-color, 60%, 2px);
 }
