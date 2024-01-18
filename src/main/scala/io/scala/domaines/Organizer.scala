@@ -8,5 +8,6 @@ final case class Organizer(
   job: String = "",
   company: String = "",
   socials: List[Social] = List.empty,
+  representative: Boolean = false
 ):
   def photoPath = photo.fold(io.scala.profilePlaceholder)(path => s"/images/profiles/$path")

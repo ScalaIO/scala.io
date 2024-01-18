@@ -15,7 +15,8 @@ object OrgaInfo:
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/jwinandy"),
       Social(Social.Kind.Github, "https://github.com/ahoy-jon"),
       Social(Social.Kind.Other, "https://univalence.io")
-    )
+    ),
+    representative = true
   )
 
   val marcKarassev = Organizer(
@@ -51,7 +52,8 @@ object OrgaInfo:
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/waxzce/"),
       Social(Social.Kind.Github, "https://github.com/waxzce"),
       Social(Social.Kind.Other, "https://www.waxzce.org")
-    )
+    ),
+    representative = true
   )
 
   val lucasNouguier = Organizer(
