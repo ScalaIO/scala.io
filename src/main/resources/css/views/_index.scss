@@ -11,7 +11,7 @@
   background-position: center;
   height: auto;
   position: relative;
-  
+
   .overlay {
     display: flex;
     flex-direction: column;
@@ -54,30 +54,85 @@
       vars.$text-size-x-large
     );
   }
-  
+
   .event-date-location {
     font-size: vars.$text-size-large;
   }
-  
+
   .event-location {
     border-bottom: 1px solid vars.$text-color-contrast;
   }
 }
 
-
 .index {
-  .yurplan-container {
+  .tickets {
     margin-top: vars.$spacing-large;
-    margin-bottom: vars.$spacing-large;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  
-    iframe {
-      width: 100%;
-      max-width: 800px;
-      height: 540px;
-      border: none;
+    @media screen and (min-width: vars.$laptop-width) {
+      display: flex;
+      justify-content: space-evenly;
+      gap: 64px;
+      > div:first-child {
+        flex: 1;
+      }
+    }
+
+    .yurplan-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      iframe {
+        width: 100%;
+        min-height: 470px;
+        border: none;
+
+        body {
+          background-color: vars.$background-color;
+        }
+      }
+    }
+
+    .group-ticket {
+      border: 1px solid vars.$main-color;
+      border-radius: 16px;
+      padding: 32px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+
+      p {
+        color: vars.$text-color-light;
+        font-style: italic;
+
+        .small {
+          font-size: small;
+        }
+      }
+
+      h3 {
+        font-size: x-large;
+      }
+
+      > svg {
+        width: 64px;
+      }
+
+      div > svg {
+        fill: vars.$main-color;
+        width: 16px;
+        vertical-align: middle;
+        margin-right: 16px;
+      }
+
+      div {
+        width: 100%;
+        text-align: left;
+      }
+
+      a {
+        margin: 16px 0px;
+      }
     }
   }
 }
@@ -86,7 +141,6 @@
   display: grid;
   gap: 32px 16px;
   grid-template-columns: repeat(2, 1fr);
-
 
   .stat-number {
     font-size: vars.$text-size-xx-large;

@@ -1,7 +1,5 @@
 package io.scala.modules.layout
 
-import com.raquo.laminar.api.L.{*, given}
-import com.raquo.laminar.nodes.ReactiveHtmlElement
 import io.scala.BasicPage
 import io.scala.Lexicon
 import io.scala.Page
@@ -11,6 +9,9 @@ import io.scala.svgs.Burger
 import io.scala.svgs.Logo
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
+
+import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 import org.scalajs.dom.UIEvent
 import org.scalajs.dom.html
@@ -32,8 +33,8 @@ object Header {
       case _             => laptopPlusScreen
     }
 
-  private def Navlink(name: String, page: PageArg): Li =
-    li(
+  private def navLink(name: String, page: PageArg): Anchor =
+    a(
       name,
       className := "header__navbar__link",
       Page.navigateTo(page)
@@ -47,27 +48,28 @@ object Header {
     "FAQ"                   -> BasicPage.FAQ.toPageArg
   )
 
-  def links = ul(
-    linksPage.map(Navlink _),
+  def links = div(
+    linksPage.map(navLink _),
     className := "navbar-links"
   )
-  def mobileLinks = ul(
-    linksPage.map(Navlink _),
+  def mobileLinks = div(
+    linksPage.map(navLink _),
     className := "header__sidenav"
   )
 
-  val logo = div(
+  val logo = button (
     className := "logo",
     Logo.apply(),
     Page.navigateTo(BasicPage.Index.toPageArg)
   )
 
-  val buyTicket = a(
-    idAttr := "buy-ticket",
-    ShinyButton(Lexicon.Header.buyTicket),
-    href   := "https://yurplan.com/events/Scala-IO-2024/115152",
-    target := "_blank"
-  )
+  val buyTicket = ShinyButton
+    .link(Lexicon.Header.buyTicket)
+    .amend(
+      idAttr := "buy-ticket",
+      href   := "https://yurplan.com/events/Scala-IO-2024/115152",
+      target := "_blank"
+    )
 
   def laptopPlusScreen = headerTag(
     logo,
