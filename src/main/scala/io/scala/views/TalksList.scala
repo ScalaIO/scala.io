@@ -14,7 +14,8 @@ case object TalksList extends SimpleView {
     Title("Talks"),
     Line(margin = 55),
     div(
-      className := "with-toc",
+      className := "with-toc r-toc",
+      stickScroll,
       div(
         className := "content",
         Talk.Category.values.map: category =>
@@ -25,8 +26,7 @@ case object TalksList extends SimpleView {
               className := "card-container"
             )
           ),
-      ),
-      stickScroll
+      )
     )
   )
 

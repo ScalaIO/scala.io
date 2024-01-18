@@ -46,7 +46,7 @@ object SpeakerCard {
 
   def linkToTalks(talks: Seq[Talk]) =
     talks.map{ talk =>
-      span(
+      button(
         className := "card-link classy-button classy-button-highlight",
         "See talk ", //! Problem if >= 2 talks
         GoTo(),

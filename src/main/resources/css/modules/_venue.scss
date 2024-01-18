@@ -11,7 +11,23 @@
 }
 
 .venue {
-  .hero {
-    height: 400px;
+  .conference-space {
+    margin: 32px 0px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 32px;
+
+    > div {
+      flex:1;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-width: 350px;
+    }
+
+    .hero {
+      min-height: 400px;
+      max-height: 400px;
+    }
   }
 }

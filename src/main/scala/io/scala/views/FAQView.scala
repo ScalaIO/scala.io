@@ -23,7 +23,7 @@ object FAQView extends SimpleView {
       question("Why 2023-10 was cancelled?","It was difficult to get sponsorship to close the budget, that's why we had to work on a new format for this edition."),
 
       question(
-        "Is the a Code of Conduct?",
+        "Is there a Code of Conduct?",
         """We had a Code of Conduct, the new one is lighter : 'please be nice', 'we are here to exchange idea and appreciate a shared moment', 'if there is something disturbing, we will take care of it'.
           |
           |We are not avoiding the idea of a CoC and it was discussed with others in the community. Writing something is not the same thing are making sure everyone is welcomed.

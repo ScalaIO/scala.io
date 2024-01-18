@@ -66,7 +66,7 @@ header {
 
 header .logo svg {
   height: 32px;
-  margin: 4px 0px;
+  margin: 5px 0px;
 
   &:hover {
     cursor: pointer;
@@ -82,6 +82,10 @@ header .logo svg {
   background-color: #e8e8e8;
   color: vars.$text-color;
   border-radius: 4px;
+
+  > a {
+    display: block;
+  }
 }
 
 .header__burger {

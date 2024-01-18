@@ -70,7 +70,7 @@ object TalkCard:
             )
           }
         ),
-        span(
+        button(
           className := "card-link classy-button classy-button-highlight",
           s"More info ",
           GoTo(),
