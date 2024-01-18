@@ -8,8 +8,6 @@ object OrgaInfo:
   val johnathanWinandy = Organizer(
     name = "Johnathan Winandy",
     photo = Some("jWinandy.webp"),
-    description =
-      "CEO of Univalence, a software shop with expertise in Scala/Spark/Kafka. Doing some Clojure on my spare time.",
     job = "Data Engineering Manager",
     company = "Univalence",
     socials = List(
@@ -23,7 +21,6 @@ object OrgaInfo:
   val marcKarassev = Organizer(
     name = "Marc Karassev",
     photo = Some("mKarassev.webp"),
-    description = "",
     job = "Scala Freelance",
     company = "Self-employed",
     socials = List(
@@ -34,7 +31,6 @@ object OrgaInfo:
   val francoisSarradin = Organizer(
     name = "François Sarradin",
     photo = Some("fSarradin.webp"),
-    description = "",
     job = "Data tech lead",
     company = "Univalence",
     socials = List(
@@ -48,7 +44,6 @@ object OrgaInfo:
   val quentinAdam = Organizer(
     name = "Quentin Adam",
     photo = Some("qAdam.webp"),
-    description = "",
     job = "CEO",
     company = "Clever Cloud",
     socials = List(
@@ -62,7 +57,6 @@ object OrgaInfo:
   val lucasNouguier = Organizer(
     name = "Lucas Nouguier",
     photo = Some("lNouguier.webp"),
-    description = "",
     job = "Student",
     company = "Polytech Montpellier",
     socials = List(
@@ -72,4 +66,15 @@ object OrgaInfo:
     )
   )
 
-  val allOrga = List(johnathanWinandy, marcKarassev, francoisSarradin, quentinAdam, lucasNouguier)
+  val warisRadji = Organizer(
+    name = "Waris Radji",
+    photo = Some("wRadji.webp"),
+    job = "Deep Reinforcement Learning Research Engineer",
+    company = "INRIA",
+    socials = List(
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/warisr"),
+      Social(Social.Kind.Github, "https://github.com/riiswa")
+    )
+  )
+
+  val allOrga = List(johnathanWinandy, marcKarassev, francoisSarradin, quentinAdam, lucasNouguier, warisRadji)

@@ -4,19 +4,19 @@ import com.raquo.laminar.api.L.{*, given}
 import io.scala.modules.elements.Title
 import io.scala.svgs.AtSign
 import io.scala.svgs.Suitcase
-import io.scala.domaines.Person
+import io.scala.domaines.{Speaker, Social}
 import io.scala.profilePlaceholder
 
-class PersonView(person: Person):
+class SpeakerView(person: Speaker):
   def body: HtmlElement =
     div(
       className := "person",
       Title.small(person.name),
       div(
-        className := "person-data",
+        className := "speaker-data",
         img(
-          src       := person.photo.fold(profilePlaceholder)(path => s"/images/profiles/$path"),
-          className := "person-photo"
+          src       := person.photoPath,
+          className := "speaker-photo"
         ),
         div(
           className := "paragraph",
@@ -34,7 +34,7 @@ class PersonView(person: Person):
           person.renderDescription,
           div(
             className := "socials",
-            person.socialNetworksWithAccount
+            Social.renderWithAccount(person.socials)
           )
         )
       )

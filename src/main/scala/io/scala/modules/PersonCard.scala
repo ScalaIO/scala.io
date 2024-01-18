@@ -2,8 +2,7 @@ package io.scala.modules
 
 import io.scala.{Page, PageArg}
 import io.scala.data.TalksInfo.{allTalks, talksBySpeaker}
-import io.scala.domaines.{Speaker, Talk}
-import io.scala.domaines.Person
+import io.scala.domaines.{Social, Speaker, Talk}
 import io.scala.modules.elements.ClassyButton
 import io.scala.svgs.GoTo
 
@@ -15,42 +14,36 @@ import org.scalajs.dom.html.Anchor
 import org.scalajs.dom.svg.{Path, SVG}
 
 object PersonCard {
-  def apply(person: Person) =
+  def apply(speaker: Speaker) =
     div(
-      className := "person-card",
+      className := "speaker-card",
       img(
-        src       := person.photo.fold(io.scala.profilePlaceholder)(path => s"/images/profiles/$path"),
-        className := "person-photo"
+        src       := speaker.photoPath,
+        className := "speaker-photo"
       ),
       div(
         div(
-          person match {
-            case speaker: Speaker =>
-              talksBySpeaker(speaker).map: talk =>
-                span(
-                  talk.kind.toString,
-                  className := talk.kind.toStyle
-                )
-            case _ => emptyNode
-          },
-          div(
-            person.socialNetworks,
-            className := "person-socials"
-          ),
+          talksBySpeaker(speaker).map: talk =>
+            span(
+              talk.kind.toString,
+              className := talk.kind.toStyle
+            )
+            div(
+              Social.render(speaker.socials),
+              className := "speaker-socials"
+            )
+          ,
           className := "card-subtitle"
         ),
         h2(
-          person.name,
+          speaker.name,
           className := "card-title"
         ),
-        p(person.job),
-        p(person.company),
-        className := "person-information"
+        p(speaker.job),
+        p(speaker.company),
+        className := "speaker-information"
       ),
-      person match {
-        case speaker: Speaker => linkToTalks(talksBySpeaker(speaker))
-        case _                => emptyNode
-      }
+      linkToTalks(talksBySpeaker(speaker))
     )
 
   def linkToTalks(talks: Seq[Talk]) =

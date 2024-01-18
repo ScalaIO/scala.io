@@ -1,12 +1,8 @@
 package io.scala.views
 
-<<<<<<< HEAD
-||||||| parent of 5db0d4c (added organizers v1)
-import com.raquo.laminar.api.L.*
-=======
 import io.scala.data.OrgaInfo.allOrga
+import io.scala.domaines.Social
 import io.scala.modules.PersonCard
->>>>>>> 5db0d4c (added organizers v1)
 import io.scala.modules.elements.Title
 
 import com.raquo.laminar.api.L.*
@@ -46,11 +42,24 @@ object FAQView extends SimpleView {
       question(
         "Can I have a receipt?",
         "In the confirmation email, there is a link to download it. If you can't find it, send us an email and we will send you a new one."
-      )
+      ),
       Title("Who is behind Scala.IO?"),
       div(
         className := "card-container organizers",
-        allOrga.map(org => div(className :="rainbow", PersonView(org).body))
+        allOrga.map: org =>
+          div(
+            className := "orga",
+            img(
+              className := "photo",
+              src       := org.photoPath
+            ),
+            div(
+              p(org.name),
+              p(org.job),
+              p("@" + org.company),
+              Social.render(org.socials)
+            )
+          )
       )
     )
   }

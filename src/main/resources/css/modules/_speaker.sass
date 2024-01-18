@@ -1,17 +1,17 @@
 @use "../base/vars"
 @use "../base/mixins"
 
-$person-data-threshold: 650px
+$speaker-data-threshold: 650px
 
 .person
-  .person-photo
+  .speaker-photo
     object-fit: cover
     border-radius: 125px 125px 10px 125px
 
-    @media screen and (max-width: $person-data-threshold)
+    @media screen and (max-width: $speaker-data-threshold)
       max-width: 160px
 
-    @media screen and (min-width: $person-data-threshold)
+    @media screen and (min-width: $speaker-data-threshold)
       max-width: 200px
       position: sticky
       top: 20px
@@ -26,12 +26,12 @@ $person-data-threshold: 650px
       span
         line-height: 24px
 
-  .person-data
+  .speaker-data
     display: flex
     gap: vars.$spacing-large
     margin-top: 32px
     align-items: flex-start
 
-    @media screen and (max-width: $person-data-threshold)
+    @media screen and (max-width: $speaker-data-threshold)
       flex-direction: column
       align-items: center

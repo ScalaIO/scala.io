@@ -160,7 +160,7 @@ span.presentation-keynote {
     display: flex;
     align-items: center;
 
-    .person-photo {
+    .speaker-photo {
       height: 48px;
       width: 48px;
       border-radius: 24px;
@@ -168,11 +168,11 @@ span.presentation-keynote {
       object-fit: cover;
     }
 
-    .person-name {
+    .speaker-name {
       font-size: medium;
     }
 
-    .person-company {
+    .speaker-company {
       font-size: small;
     }
   }
@@ -197,7 +197,7 @@ span.presentation-keynote {
   );
 }
 
-.person-card {
+.speaker-card {
   @extend %card-base;
   @extend %card-action;
 
@@ -212,14 +212,14 @@ span.presentation-keynote {
     margin-top: -16px;
   }
 
-  .person-photo {
+  .speaker-photo {
     background-color: #ecebeb;
     border-radius: 10px 10px 0 0;
     object-fit: cover;
     max-height: 220px;
   }
 
-  .person-information {
+  .speaker-information {
     margin-top: 20px;
   }
 
@@ -227,7 +227,7 @@ span.presentation-keynote {
     margin-bottom: vars.$spacing-small;
   }
 
-  .person-socials {
+  .speaker-socials {
     display: flex;
     gap: vars.$spacing-x-small;
     svg {
@@ -252,8 +252,7 @@ span.presentation-keynote {
   @extend %card-action;
 }
 
-.talk,
-.faq {
+.talk {
   > .card-container {
     margin-bottom: 1rem;
   }

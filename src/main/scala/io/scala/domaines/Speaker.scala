@@ -15,4 +15,6 @@ case class Speaker(
     company: String = "",
     socials: List[Social] = List.empty,
     confirmed: Boolean
-) extends Person
+):
+  def renderDescription = description.split("\n").map(p(_))
+  def photoPath = photo.fold(io.scala.profilePlaceholder)(path => s"/images/profiles/$path")

@@ -1,5 +1,4 @@
-package io.scala
-package views
+package io.scala.views
 
 import io.scala.data.TalksInfo
 import io.scala.data.TalksInfo.allTalks
@@ -27,6 +26,6 @@ class TalkView(talk: Talk) extends SimpleView:
       Title(if (talk.speakers.size > 1) "Speakers" else "Speaker"),
       div(
         className := "card-container",
-        talk.speakers.map(PersonView(_).body)
+        talk.speakers.map(SpeakerView(_).body)
       )
     )
