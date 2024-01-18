@@ -24,10 +24,9 @@ object OrgaInfo:
     name = "Marc Karassev",
     photo = Some("mKarassev.webp"),
     description = "",
-    job = "",
-    company = "",
+    job = "Scala Freelance",
+    company = "Self-employed",
     socials = List(
-      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/markarassev"),
       Social(Social.Kind.Github, "https://github.com/markarasev")
     )
   )

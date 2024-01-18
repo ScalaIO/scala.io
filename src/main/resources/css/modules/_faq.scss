@@ -6,7 +6,7 @@
     justify-content: space-evenly;
   }
   .rainbow {
-    flex: 1;
+    flex: 1 1 45%;
     position: relative;
     z-index: 1;
     padding: 2px;
@@ -36,8 +36,6 @@
     border-radius: 32px;
     padding: 16px 32px;
     height: 100%;
-    display: flex;
-    flex-direction: column;
 
     > div {
       flex: 1;
