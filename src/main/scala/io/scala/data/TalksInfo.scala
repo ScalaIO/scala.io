@@ -248,12 +248,5 @@ object TalksInfo:
       description = "To be announced",
       speakers = List.empty,
       kind = Talk.Kind.Lightning
-    ),
-    Talk(
-      title = "To be announced",
-      slug = "lightning-3",
-      description = "To be announced",
-      speakers = List.empty,
-      kind = Talk.Kind.Lightning
     )
   )

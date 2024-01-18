@@ -6,7 +6,7 @@
   line-height: vars.$title-line-height;
   display: inline-block;
   position: relative;
-  margin-bottom: 15px;
+  margin-bottom: 32px;
 
   @include mixins.belowBar(vars.$main-color, 60%, 6px);
 }
