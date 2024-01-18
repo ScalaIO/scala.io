@@ -66,7 +66,6 @@
     background-color: inherit;
     float: left;
     border: none;
-    outline: none;
     cursor: pointer;
     padding: 8px;
     transition: 0.3s;
@@ -124,7 +123,8 @@
     text-align: left;
   }
 
-  .row, .column-header {
+  .row,
+  .column-header {
     grid-column: span 3;
     @extend %hours-grid;
   }
