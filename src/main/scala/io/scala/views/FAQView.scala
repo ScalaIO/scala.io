@@ -1,5 +1,6 @@
 package io.scala.views
 
+import io.scala.domaines.Social
 import io.scala.modules.elements.Title
 
 import com.raquo.laminar.api.L.*

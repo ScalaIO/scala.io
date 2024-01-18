@@ -1,6 +1,5 @@
 package io.scala.views
 
-import io.scala.Lexicon
 import io.scala.modules.elements.Line
 import io.scala.modules.elements.Title
 

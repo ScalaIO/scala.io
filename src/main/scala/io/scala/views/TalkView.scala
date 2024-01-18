@@ -1,14 +1,9 @@
 package io.scala
 package views
 
-import io.scala.data.TalksInfo
-import io.scala.data.TalksInfo.allTalks
-import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.Title
-import io.scala.svgs.AtSign
-import io.scala.svgs.Suitcase
 
 import com.raquo.laminar.api.L.{*, given}
 

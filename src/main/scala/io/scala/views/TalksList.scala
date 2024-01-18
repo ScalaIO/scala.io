@@ -1,6 +1,5 @@
 package io.scala.views
 
-import io.scala.Lexicon
 import io.scala.data.TalksInfo
 import io.scala.domaines.*
 import io.scala.modules.TalkCard

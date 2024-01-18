@@ -3,17 +3,12 @@ package io.scala.views
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import io.scala.Lexicon
-import io.scala.domaines.Sponsor
-import io.scala.modules.SpeakerCard
-import io.scala.modules.elements.ClassyButton
-import io.scala.modules.elements.Line
-import io.scala.modules.elements.SponsorLogo
-import io.scala.modules.elements.Title
-import org.scalajs.dom.HTMLDivElement
+import io.scala.modules.elements.*
+import io.scala.data.SponsorSInfo
 
 case object SponsorsList extends SimpleView {
-  val sponsorList: ReactiveHtmlElement[HTMLDivElement] = div(
-    Lexicon.Sponsors.sponsors
+  val sponsorList: Div = div(
+    SponsorSInfo.allSponsors
       .groupBy(_.rank)
       .toSeq
       .sortBy(_._1)
@@ -25,12 +20,12 @@ case object SponsorsList extends SimpleView {
               className := "sponsor-kind__title"
             ),
             div(
-              sponsors.map(SponsorLogo.apply),
+              sponsors.map(SponsorLogo(_)),
               className := "card-container"
             ),
             className := "sponsor-kind"
           ),
-          Line.separator(width = 75, height = 4)
+          Line.separator(width = 75, height = 2)
         )
       }
       .dropRight(1),
@@ -59,8 +54,7 @@ case object SponsorsList extends SimpleView {
         className := "sponsors__buttons"
       ),
       Line(margin = 55),
-      p(className := "small-note",
-        "To Be Announced.")
+      sponsorList
 
     )
   }

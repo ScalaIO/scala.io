@@ -5,25 +5,22 @@ import io.scala.domaines.Sponsor
 import io.scala.domaines.Time
 
 object Lexicon {
-  object Headband {
+  object Headband:
     val left  = "February 15th-16th 2024 @ Nantes"
     val right = "10th years edition"
-  }
 
-  object Header {
+  object Header:
     val talks     = "Talks"
     val sponsors  = "Sponsors"
     val venue     = "Venue"
     val schedule  = "Schedule"
     val buyTicket = "Get your ticket"
-  }
 
-  object Speakers {
+  object Speakers:
     val catchPhrase  = "Become a ScalaIO 2024 speakers sharing what you love with the community."
     val callToAction = "Become a speaker"
-  }
 
-  object Sponsors {
+  object Sponsors:
     val catchPhrase =
       "Become a ScalaIO 2024 sponsor and promote your services, products or simply increase your brand awareness with more than 350 passionate Scala, Spark, and FP languages developers!"
     val callToAction   = "Become a sponsor"
@@ -31,45 +28,6 @@ object Lexicon {
 
     val brochureUrl =
       "https://docs.google.com/presentation/d/1nZ_6r4r0M1VZNBUE41DtnKr6FVdjFyoWF-zbJ1BtdSw/edit?usp=sharing"
-
-    val sponsors = Seq(
-      Seq.fill(3)(
-        Sponsor(
-          photo = "scalaio.png",
-          website = "https://scala.io/",
-          rank = Sponsor.SponsorRank.Platinum
-        )
-      ),
-      Seq.fill(6)(
-        Sponsor(
-          photo = "scalaio.png",
-          website = "https://scala.io/",
-          rank = Sponsor.SponsorRank.Gold
-        )
-      ),
-      Seq.fill(12)(
-        Sponsor(
-          photo = "scalaio.png",
-          website = "https://scala.io/",
-          rank = Sponsor.SponsorRank.Silver
-        )
-      ),
-      Seq.fill(2)(
-        Sponsor(
-          photo = "scalaio.png",
-          website = "https://scala.io/",
-          rank = Sponsor.SponsorRank.Community
-        )
-      ),
-      Seq.fill(12)(
-        Sponsor(
-          photo = "scalaio.png",
-          website = "https://scala.io/",
-          rank = Sponsor.SponsorRank.Love
-        )
-      )
-    ).flatten
-  }
 
   object Schedule:
     val opening        = Array(Time(7, 45), Time(7, 45))
