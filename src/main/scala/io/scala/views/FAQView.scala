@@ -1,13 +1,13 @@
 package io.scala.views
 
-import com.raquo.laminar.api.L.*
 import io.scala.modules.elements.Title
 
+import com.raquo.laminar.api.L.*
 
 object FAQView extends SimpleView {
   override def title: String = "Frequently Asked Questions"
 
-  def question(question: String, answer: String): HtmlElement = {
+  private def question(question: String, answer: String): HtmlElement = {
     div(
       className := "question",
       h2(question),
@@ -19,9 +19,10 @@ object FAQView extends SimpleView {
     sectionTag(
       className := "container",
       Title("Frequently Asked Questions"),
-
-      question("Why 2023-10 was cancelled?","It was difficult to get sponsorship to close the budget, that's why we had to work on a new format for this edition."),
-
+      question(
+        "Why 2023-10 was cancelled?",
+        "It was difficult to get sponsorship to close the budget, that's why we had to work on a new format for this edition."
+      ),
       question(
         "Is there a Code of Conduct?",
         """We had a Code of Conduct, the new one is lighter : 'please be nice', 'we are here to exchange idea and appreciate a shared moment', 'if there is something disturbing, we will take care of it'.
@@ -31,9 +32,14 @@ object FAQView extends SimpleView {
           | in continuity with the quality of our event.
           |""".stripMargin
       ),
-      question("Do you reimburse the tickets?", "We would prefer not to, however you can always send use an email and we will see what we can do. (We always reimbursed tickets if needed)")
-
-
+      question(
+        "Do you reimburse the tickets?",
+        "We would prefer not to, however you can always send use an email and we will see what we can do. (We always reimbursed tickets if needed)"
+      ),
+      question(
+        "Can I have a receipt?",
+        "In the confirmation email, there is a link to download it. If you can't find it, send us an email and we will send you a new one."
+      )
     )
   }
 }
