@@ -39,6 +39,7 @@ object FAQView extends SimpleView {
           | in continuity with the quality of our event.
           |""".stripMargin
       ),
+<<<<<<< HEAD
       question(
         "Do you reimburse the tickets?",
         "We would prefer not to, however you can always send use an email and we will see what we can do. (We always reimbursed tickets if needed)"
@@ -47,11 +48,21 @@ object FAQView extends SimpleView {
         "Can I have a receipt?",
         "In the confirmation email, there is a link to download it. If you can't find it, send us an email and we will send you a new one."
       )
+||||||| parent of 5db0d4c (added organizers v1)
+      question("Do you reimburse the tickets?", "We would prefer not to, however you can always send use an email and we will see what we can do. (We always reimbursed tickets if needed)")
+
+
+=======
+      question(
+        "Do you reimburse the tickets?",
+        "We would prefer not to, however you can always send use an email and we will see what we can do. (We always reimbursed tickets if needed)"
+      ),
       Title("Who is behind Scala.IO?"),
       div(
         className := "card-container organizers",
         allOrga.map(org => div(className :="rainbow", PersonView(org).body))
       )
+>>>>>>> 5db0d4c (added organizers v1)
     )
   }
 }

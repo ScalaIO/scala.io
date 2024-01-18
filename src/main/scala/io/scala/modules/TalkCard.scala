@@ -55,16 +55,16 @@ object TalkCard:
               className := "talk-speaker",
               img(
                 src       := speaker.photo.fold(profilePlaceholder)(path => s"/images/profiles/$path"),
-                className := "speaker-photo"
+                className := "person-photo"
               ),
               div(
                 p(
                   speaker.name,
-                  className := "speaker-name"
+                  className := "person-name"
                 ),
                 p(
                   speaker.company,
-                  className := "speaker-company"
+                  className := "person-company"
                 )
               )
             )

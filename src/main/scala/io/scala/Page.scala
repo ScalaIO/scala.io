@@ -19,7 +19,7 @@ import urldsl.vocabulary.{FromString, Printer, UrlMatching}
 import urldsl.vocabulary.FromString
 import urldsl.vocabulary.Printer
 import urldsl.vocabulary.UrlMatching
-import views.SpeakerView
+import views.PersonView
 
 enum BasicPage(val view: GenericView):
   def toPageArg: PageArg = PageArg.Generic(this, false)
