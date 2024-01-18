@@ -68,21 +68,7 @@ case object IndexView extends GenericView {
           className := "group-ticket",
           Ticket(),
           p("Group tickets"),
-          ticketPerks
-            .map(e =>
-              List(
-                e,
-                Line(margin = 10)
-              )
-            )
-            .flatten
-            .dropRight(1),
-          ShinyButton.linkLight("Email us!").amend(href := s"mailto:contact@scala.io"),
-          p(
-            className := "small",
-            "Style stolen from ",
-            u(a(href := "https://www.scalar-conf.com/tickets", "scalar-conf.com/tickets"))
-          )
+          ShinyButton.linkLight("Email us!").amend(href := s"mailto:contact@scala.io")
         )
       )
     ),
