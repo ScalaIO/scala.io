@@ -67,28 +67,26 @@
 .index {
   .tickets {
     margin-top: vars.$spacing-large;
-    @media screen and (min-width: vars.$laptop-width) {
-      display: flex;
-      justify-content: space-evenly;
-      gap: 64px;
-      > div:first-child {
-        flex: 1;
-      }
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    gap: 64px;
+    > div:first-child {
+      flex: 1;
     }
 
     .yurplan-container {
       display: flex;
+      min-width: 272px;
       flex-direction: column;
       align-items: center;
 
       iframe {
+        border: 1px solid vars.$main-color;
+        border-radius: 16px;
         width: 100%;
-        min-height: 470px;
-        border: none;
-
-        body {
-          background-color: vars.$background-color;
-        }
+        min-height: 530px;
+        height: 100%;
       }
     }
 
