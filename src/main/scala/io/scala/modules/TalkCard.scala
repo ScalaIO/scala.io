@@ -68,13 +68,13 @@ object TalkCard:
                 )
               )
             )
-          }
-        ),
-        button(
-          className := "card-link classy-button classy-button-highlight",
-          s"More info ",
-          GoTo(),
-          Page.navigateTo(PageArg.Talk(talk.slug, false))
+          },
+          button(
+            className := "card-link classy-button classy-button-highlight",
+            s"More info ",
+            GoTo(),
+            Page.navigateTo(PageArg.Talk(talk.slug, false))
+          )
         )
       )
     )

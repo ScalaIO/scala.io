@@ -93,12 +93,15 @@ span.presentation-keynote {
 .talk-card {
   @extend %card-base;
 
-  min-width: 275px;
   padding: $card-padding;
 
   &:after {
     margin-left: -16px;
     margin-top: -16px;
+  }
+
+  @media screen and (min-width: vars.$mobile-width) {
+    min-width: 282px;
   }
 }
 
@@ -149,7 +152,7 @@ span.presentation-keynote {
 
   .talk-speakers {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
     gap: vars.$spacing-small;
   }
 
