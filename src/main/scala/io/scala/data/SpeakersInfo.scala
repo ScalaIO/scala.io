@@ -110,7 +110,7 @@ object SpeakersInfo:
 
   val valentinBergeron = Speaker(
     name = "Valentin Bergeron",
-    photo = None,
+    photo = Some("vBergeron.webp"),
     description =
       "Currently Engineering team lead @Ledger, I like Scala, making programming languages, and joking about python",
     job = "Engineering team lead",
