@@ -8,8 +8,7 @@ object OrgaInfo:
   val johnathanWinandy = Organizer(
     name = "Johnathan Winandy",
     photo = Some("jWinandy.webp"),
-    job = "Data Engineering Manager",
-    company = "Univalence",
+    job = "Data Engineering Manager @ Univalence",
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/ahoy_jon"),
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/jwinandy"),
@@ -23,17 +22,16 @@ object OrgaInfo:
     name = "Marc Karassev",
     photo = Some("mKarassev.webp"),
     job = "Scala Freelance",
-    company = "Self-employed",
     socials = List(
       Social(Social.Kind.Github, "https://github.com/markarasev")
-    )
+    ),
+    representative = true
   )
 
   val francoisSarradin = Organizer(
     name = "François Sarradin",
     photo = Some("fSarradin.webp"),
-    job = "Data tech lead",
-    company = "Univalence",
+    job = "Data tech lead @ Univalence",
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/fsarradin"),
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/fsarradin"),
@@ -45,8 +43,7 @@ object OrgaInfo:
   val quentinAdam = Organizer(
     name = "Quentin Adam",
     photo = Some("qAdam.webp"),
-    job = "CEO",
-    company = "Clever Cloud",
+    job = "CEO @ Clever Cloud",
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/waxzce"),
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/waxzce/"),
@@ -59,8 +56,8 @@ object OrgaInfo:
   val lucasNouguier = Organizer(
     name = "Lucas Nouguier",
     photo = Some("lNouguier.webp"),
-    job = "Student",
-    company = "Polytech Montpellier",
+    job = "Student @ Polytech Montpellier",
+    misc = Some("Main website maintener"),
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/LucasNouguier"),
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/lucas-nouguier"),
@@ -71,12 +68,22 @@ object OrgaInfo:
   val warisRadji = Organizer(
     name = "Waris Radji",
     photo = Some("wRadji.webp"),
-    job = "Deep Reinforcement Learning Research Engineer",
-    company = "INRIA",
+    job = "Deep Reinforcement Learning Research Engineer @ INRIA",
     socials = List(
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/warisr"),
       Social(Social.Kind.Github, "https://github.com/riiswa")
     )
   )
 
-  val allOrga = List(johnathanWinandy, marcKarassev, francoisSarradin, quentinAdam, lucasNouguier, warisRadji)
+  val jbKaiser = Organizer(
+    name = "Jean-Baptiste Kaiser",
+    photo = Some("jbKaiser.webp"),
+    job = "Scala Developer @ Clever Cloud",
+    socials = List(
+      Social(Social.Kind.Twitter, "https://twitter.com/ArendSyl"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/arendsyl"),
+      Social(Social.Kind.Github, "https://github.com/Arendsyl")
+    )
+  )
+
+  val allOrga = List(johnathanWinandy, marcKarassev, francoisSarradin, quentinAdam, lucasNouguier, warisRadji, jbKaiser)

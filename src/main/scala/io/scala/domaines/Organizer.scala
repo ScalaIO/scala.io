@@ -6,7 +6,7 @@ final case class Organizer(
   name: String,
   photo: Option[String] = None,
   job: String = "",
-  company: String = "",
+  misc: Option[String] = None,
   socials: List[Social] = List.empty,
   representative: Boolean = false
 ):

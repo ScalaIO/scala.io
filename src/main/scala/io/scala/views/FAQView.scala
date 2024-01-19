@@ -64,7 +64,8 @@ object FAQView extends SimpleView {
         ),
         div(
           p(org.name),
-          p(org.job + " @ " + org.company),
+          p(org.job),
+          org.misc.map(misc => p(misc)),
           Social.render(org.socials)
         )
       )
