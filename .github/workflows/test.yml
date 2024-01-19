@@ -31,8 +31,4 @@ jobs:
       - run: echo "🔎 The name of your branch is ${{ github.ref }}. The slug is ${{ needs.slugify-test.outputs.branch_slug }} and your repository is ${{ env.BRANCH_REPO }}."
       - name: Check out repository code
         uses: actions/checkout@v4
-        with:
-          repository: ${{ github.event.pull_request.head.repo }}
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
       - run: echo "💡 The app be deployed at ${{ env.APP_NAME }}-${BRANCH_NAME}.cleverapps.io"
