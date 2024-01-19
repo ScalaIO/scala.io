@@ -51,6 +51,8 @@ jobs:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - uses: coursier/setup-action@v1.3.4
         with:
@@ -107,6 +109,8 @@ jobs:
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: coursier/setup-action@v1.3.4
         with:
           jvm: adoptium:1.17.0.7
