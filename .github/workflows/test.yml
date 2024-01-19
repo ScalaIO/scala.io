@@ -8,7 +8,7 @@ on:
 
 env:
   APP_NAME: "scalaio-preview"
-  BRANCH_REPO: ${{ github.event.pull_request.head.repo.name }}
+  PR_NB: ${{ github.event.pull_request.number }}
   BRANCH_NAME_RAW: ${{ github.head_ref || github.ref_name }}
   CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
   CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
@@ -26,9 +26,9 @@ jobs:
     runs-on: ubuntu-latest
     needs: slugify-test
     env:
-      BRANCH_NAME: ${{ github.event.pull_request.head.repo.name }}-${{ needs.slugify-test.outputs.branch_slug }}
+      BRANCH_NAME: ${{ github.env.PR_NB }}-${{ needs.slugify-test.outputs.branch_slug }}
     steps:
-      - run: echo "🔎 The name of your branch is ${{ github.ref }}. The slug is ${{ needs.slugify-test.outputs.branch_slug }} and your repository is ${{ env.BRANCH_REPO }}."
+      - run: echo "🔎 The name of your branch is ${{ github.ref }}. The slug is ${{ needs.slugify-test.outputs.branch_slug }} and the pr number is ${{ env.PR_NB }}."
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: echo "💡 The app be deployed at ${{ env.APP_NAME }}-${BRANCH_NAME}.cleverapps.io"
