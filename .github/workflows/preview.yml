@@ -5,7 +5,7 @@ name: Clever Cloud Review App on Pull Requests
 on:
   pull_request_target:
     types: [opened, closed, synchronize, reopened]
-    branches: [ main ]
+    branches: [main]
     paths:
       - ".github/**"
       - "project/**"
@@ -23,6 +23,7 @@ concurrency:
 
 env:
   APP_NAME: "scalaio-preview"
+  PR_NB: ${{ github.event.pull_request.number }}
   BRANCH_NAME_RAW: ${{ github.head_ref || github.ref_name }}
   CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
   CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
@@ -35,7 +36,7 @@ jobs:
       branch_slug: ${{ steps.slugify.outputs.slug }}
     steps:
       - id: slugify
-        run: echo "slug=$(echo ${{ env.BRANCH_NAME_RAW }} | sed 's/[^a-zA-Z0-9\-]/-/g')" >> "$GITHUB_OUTPUT"
+        run: echo "slug=$(echo ${{ env.PR_NB }}-${{ env.BRANCH_NAME_RAW }} | sed 's/[^a-zA-Z0-9\-]/-/g')" >> "$GITHUB_OUTPUT"
   deploy:
     if: github.event.action == 'opened'|| github.event.action == 'reopened'
     runs-on: ubuntu-latest
@@ -44,15 +45,12 @@ jobs:
       issues: write
       pull-requests: write
       contents: read
-    # environment:
-    #   name: PR review apps
+    env:
+      BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
     steps:
       - run: echo "🔎 The name of your branch is ${{ github.ref }} and your repository is ${{ github.repository }}."
       - name: Check out repository code
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - uses: coursier/setup-action@v1.3.4
         with:
@@ -61,22 +59,20 @@ jobs:
       - run: echo "🖥️ The workflow is now ready to test your code on the runner."
       - name: Build static website
         run: |
-            npm install
-            npx sass src/main/resources/css/main.scss src/main/resources/css/output.css
-            sbt "compile; fullLinkJS"
-            npm run build
-            mv dist dist-prod
-            git config --global user.email ${{ secrets.GIT_EMAIL }}
-            git config --global user.name ${{ secrets.GIT_NAME }}
-            git add .
-            git commit -m "chore: forward changed to preview"
+          npm install
+          npx sass src/main/resources/css/main.scss src/main/resources/css/output.css
+          sbt "compile; fullLinkJS"
+          npm run build
+          mv dist dist-prod
+          git config --global user.email ${{ secrets.GIT_EMAIL }}
+          git config --global user.name ${{ secrets.GIT_NAME }}
+          git add .
+          git commit -m "chore: forward changed to preview"
       - run: echo "🍏 This job's status is ${{ job.status }}."
       - name: install clever-tools
         run: npm install -g clever-tools
       - name: Create app and add domain
-        env:
-          BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
-        run: | 
+        run: |
           clever create --type node ${{ env.APP_NAME }}-${BRANCH_NAME} --alias ${{ env.APP_NAME }}-${BRANCH_NAME} --region par --org ${{secrets.ORGA_ID}}
           clever domain add ${{ env.APP_NAME }}-${BRANCH_NAME}.cleverapps.io
       - name: Deploy
@@ -86,7 +82,6 @@ jobs:
         uses: actions/github-script@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
         with:
           script: |
             const issue_number = context.payload.pull_request.number;
@@ -97,7 +92,7 @@ jobs:
               issue_number: issue_number,
               body: message
             });
-  
+
   # Deploy review apps on new commits
   update:
     if: github.event.action == 'synchronize'
@@ -107,40 +102,36 @@ jobs:
       issues: write
       contents: read
       pull-requests: write
+    env:
+      BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
     steps:
       - name: Check out repository code
         uses: actions/checkout@v4
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
-          fetch-depth: 0  
       - uses: coursier/setup-action@v1.3.4
         with:
           jvm: adoptium:1.17.0.7
           apps: sbt
       - name: Build static website
         run: |
-            npm install
-            npx sass src/main/resources/css/main.scss src/main/resources/css/output.css
-            sbt "compile; fullLinkJS"
-            npm run build
-            mv dist dist-prod
-            git config --global user.email ${{ secrets.GIT_EMAIL }}
-            git config --global user.name ${{ secrets.GIT_NAME }}
-            git add .
-            git commit -m "chore: forward changed to preview"
+          npm install
+          npx sass src/main/resources/css/main.scss src/main/resources/css/output.css
+          sbt "compile; fullLinkJS"
+          npm run build
+          mv dist dist-prod
+          git config --global user.email ${{ secrets.GIT_EMAIL }}
+          git config --global user.name ${{ secrets.GIT_NAME }}
+          git add .
+          git commit -m "chore: forward changed to preview"
       - name: install clever-tools
         run: npm install -g clever-tools
       - name: Link and update app
-        env:
-          BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
-        run: | 
+        run: |
           clever link -o ${{ env.ORGA_ID }} ${{ env.APP_NAME }}-${BRANCH_NAME}
           clever deploy --force
       - name: Comment PR
         uses: actions/github-script@v5
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
         with:
           script: |
             const issue_number = context.payload.pull_request.number;
@@ -160,12 +151,12 @@ jobs:
       issues: write
       pull-requests: write
     if: always() && github.event_name == 'pull_request_target' && github.event.action == 'closed'
+    env:
+      BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
     steps:
       - name: install clever-tools
         run: npm install -g clever-tools
       - name: Delete app
-        env:
-          BRANCH_NAME: ${{ needs.slugify.outputs.branch_slug }}
         run: |
           clever link -o ${{ env.ORGA_ID }} ${{ env.APP_NAME }}-${BRANCH_NAME}
           clever delete --alias ${{ env.APP_NAME }}-${BRANCH_NAME} --yes
