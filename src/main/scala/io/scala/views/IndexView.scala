@@ -131,17 +131,6 @@ case object IndexView extends GenericView {
           href      := "/venue",
           "Le Palace"
         )
-      ),
-      div(
-        className := "scala-js",
-        p("Powered by"),
-        a(
-          href := "https://www.scala-js.org",
-          nameAttr := "Scala.js",
-          img(
-            src := "images/scala-js-logo.svg"
-          )
-        )
       )
     )
   )

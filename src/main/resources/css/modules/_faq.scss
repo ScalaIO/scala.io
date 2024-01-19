@@ -2,6 +2,34 @@
 @use "../base/mixins";
 
 .faq {
+  .question:not(:first-of-type) {
+    margin-top: 16px;
+  }
+
+  ul {
+    list-style-type: disc;
+    list-style-position: inside;
+  }
+  a {
+    color: vars.$main-color;
+  }
+
+  .logos {
+    display: grid;
+    grid-template: auto / repeat(auto-fill, minmax(65px, 1fr));
+    justify-items: center;
+    padding: 8px 32px;
+    gap: 32px;
+    img,
+    svg {
+      height: 64px;
+    }
+
+    a {
+      display: block;
+    }
+  }
+
   .organizers {
     display: grid;
     grid-template: auto / repeat(auto-fill, minmax(250px, 1fr));

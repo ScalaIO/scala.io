@@ -11,18 +11,6 @@
   background-position: center;
   position: relative;
 
-  .scala-js {
-    width: 128px;
-
-    p {
-      font-size: x-large;
-    }
-
-    a[name="Scala.js"] {
-      display: block;
-    }
-  }
-
   .overlay {
     display: flex;
     flex-direction: column;
