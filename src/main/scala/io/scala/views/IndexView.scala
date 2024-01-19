@@ -117,7 +117,7 @@ case object IndexView extends GenericView {
     backgroundImage := "url(../images/index-hero.webp)",
     div(
       className := "overlay",
-      h2(className := "title", "Connecting Scala Enthusiasts!"),
+      h2(className := "title", "Working CI!"),
       h3(
         className := "event-date-location",
         "15th-16th February 2024 - ",
