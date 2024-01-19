@@ -3,7 +3,7 @@ package io.scala.views
 import io.scala.Lexicon.Header.talks
 import io.scala.Page.*
 import io.scala.data.SpeakersInfo
-import io.scala.modules.SpeakerCard
+import io.scala.modules.PersonCard
 import io.scala.modules.elements.Line
 import io.scala.modules.elements.Separator
 import io.scala.modules.elements.ShinyButton
@@ -108,7 +108,7 @@ case object IndexView extends GenericView {
       ),
       div(
         className := "card-container",
-        speakers.map(SpeakerCard(_))
+        speakers.map(PersonCard(_))
       )
     )
 

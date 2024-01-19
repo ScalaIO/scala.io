@@ -1,5 +1,9 @@
 package io.scala.views
 
+import io.scala.data.OrgaInfo.allOrga
+import io.scala.domaines.Organizer
+import io.scala.domaines.Social
+import io.scala.modules.PersonCard
 import io.scala.modules.elements.Title
 
 import com.raquo.laminar.api.L.*
@@ -17,7 +21,7 @@ object FAQView extends SimpleView {
 
   override def body(withDraft: Boolean): HtmlElement = {
     sectionTag(
-      className := "container",
+      className := "container faq",
       Title("Frequently Asked Questions"),
       question(
         "Why 2023-10 was cancelled?",
@@ -39,7 +43,31 @@ object FAQView extends SimpleView {
       question(
         "Can I have a receipt?",
         "In the confirmation email, there is a link to download it. If you can't find it, send us an email and we will send you a new one."
-      )
+      ),
+      Title("Who is behind Scala.IO?"),
+      div(),
+      Title.small("Representatives"),
+      organizersList(allOrga.filter(_.representative)),
+      Title.small("Organizers"),
+      organizersList(allOrga.filterNot(_.representative))
     )
   }
+
+  def organizersList(orgs: List[Organizer]): Div = div(
+    className := "card-container organizers",
+    orgs.map: org =>
+      div(
+        className := "orga",
+        img(
+          className := "photo",
+          src       := org.photoPath
+        ),
+        div(
+          p(org.name),
+          p(org.job),
+          org.misc.map(misc => p(misc)),
+          Social.render(org.socials)
+        )
+      )
+  )
 }

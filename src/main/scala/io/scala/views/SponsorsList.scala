@@ -4,7 +4,7 @@ import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import io.scala.Lexicon
 import io.scala.domaines.Sponsor
-import io.scala.modules.SpeakerCard
+import io.scala.modules.PersonCard
 import io.scala.modules.elements.ClassyButton
 import io.scala.modules.elements.Line
 import io.scala.modules.elements.SponsorLogo
