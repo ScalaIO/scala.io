@@ -3,7 +3,7 @@ name: Clever Cloud Review App on Pull Requests
 # description: Deploy, sync and delete review apps on Clever Cloud for every pull request
 
 on:
-  pull_request_target:
+  pull_request:
     branches: ["*"]
 
 env:
