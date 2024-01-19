@@ -1,0 +1,34 @@
+name: Clever Cloud Review App on Pull Requests
+
+# description: Deploy, sync and delete review apps on Clever Cloud for every pull request
+
+on:
+  pull_request_target:
+    branches: ["*"]
+
+env:
+  APP_NAME: "scalaio-preview"
+  BRANCH_REPO: ${{ github.event.pull_request.head.repo.name }}
+  BRANCH_NAME_RAW: ${{ github.head_ref || github.ref_name }}
+  CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
+  CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
+  ORGA_ID: ${{ secrets.ORGA_ID }}
+
+jobs:
+  slugify:
+    runs-on: ubuntu-latest
+    outputs:
+      branch_slug: ${{ steps.slugify.outputs.slug }}
+    env:
+      BRANCH_NAME: ${{ env.BRANCH_REPO }}-${{ needs.slugify.outputs.branch_slug }}
+    steps:
+      - id: slugify
+        run: echo "slug=$(echo ${{ env.BRANCH_NAME_RAW }} | sed 's/[^a-zA-Z0-9\-]/-/g')" >> "$GITHUB_OUTPUT"
+      - run: echo "🔎 The name of your branch is ${{ github.ref }}. The slug is ${{ needs.slugify.outputs.branch_slug }} and your repository is ${{ env.BRANCH_REPO }}."
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
+      - run: echo "💡 The app be deployed at ${{ env.APP_NAME }}-${BRANCH_NAME}.cleverapps.io"
