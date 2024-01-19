@@ -1,0 +1,29 @@
+name: Clever Cloud Review App on Pull Requests
+
+# description: Deploy, sync and delete review apps on Clever Cloud for every pull request
+
+on:
+  pull_request:
+    branches: ["*"]
+
+concurrency:
+  group: ${{ github.ref }}
+  cancel-in-progress: ${{ github.ref != 'refs/heads/main' }}
+
+jobs:
+  checkout-repo:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo some logs
+        run: |
+          echo "github.event.repository: ${{ github.event.repository }}"
+          echo "github.event.pull_request.head.repo: ${{ github.event.pull_request.head.repo }}"
+          echo "github.event.pull_request.head.repo.name: ${{ github.event.pull_request.head.repo.name }}"
+          echo "github.event.pull_request.head.repo.full_name: ${{ github.event.pull_request.head.repo.full_name }}"
+
+      - name: Check out repository code
+        uses: actions/checkout@v4
+        with:
+          repository: ${{ github.event.pull_request.head.repo }}
+          ref: ${{ github.event.pull_request.head.ref }}
+          fetch-depth: 0
