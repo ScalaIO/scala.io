@@ -5,6 +5,7 @@ import io.scala.domaines.Organizer
 import io.scala.domaines.Social
 import io.scala.modules.PersonCard
 import io.scala.modules.elements.Title
+import io.scala.svgs.Github
 
 import com.raquo.laminar.api.L.*
 
@@ -16,6 +17,14 @@ object FAQView extends SimpleView {
       className := "question",
       h2(question),
       p(answer)
+    )
+  }
+
+  private def question(question: String, answer: HtmlElement*): HtmlElement = {
+    div(
+      className := "question",
+      h2(question),
+      answer
     )
   }
 
@@ -43,6 +52,65 @@ object FAQView extends SimpleView {
       question(
         "Can I have a receipt?",
         "In the confirmation email, there is a link to download it. If you can't find it, send us an email and we will send you a new one."
+      ),
+      question(
+        "What did you use to build this website?",
+        ul(
+          li(
+            "Source code: ",
+            a(href := "https://scala-lang.org", "Scala 3"),
+            " with ",
+            a(href := "https://www.scala-js.org", "Scala.js"),
+            " to compile Scala to JavaScript and ",
+            a(href := "https://laminar.dev", "Laminar"),
+            " to build a reactive UI."
+          ),
+          li(
+            "Hosting: ",
+            a(href := "https://github.com/ScalaIO/scala.io", "Github repository"),
+            " for the source code and ",
+            a(href := "https://www.clever-cloud.com", "Clever Cloud"),
+            " for the website"
+          )
+        )
+      ),
+      div(
+        className := "logos",
+        a(
+          href     := "https://www.scala-js.org",
+          nameAttr := "Scala.js",
+          img(
+            src := "logos/scalajs.svg"
+          )
+        ),
+        a(
+          href     := "https://laminar.dev",
+          nameAttr := "Laminar",
+          img(
+            src := "logos/laminar.webp"
+          )
+        ),
+        a(
+          href     := "https://www.clever-cloud.com",
+          nameAttr := "Clever Cloud",
+          img(
+            src := "logos/clever.svg"
+          )
+        ),
+        a(
+          href     := "https://github.com/ScalaIO/scala.io",
+          nameAttr := "Github",
+          Github()
+        )
+      ),
+      question(
+        "I found a bug / an error on the website, what should I do?",
+        p(
+          "Feel free to open an issue us on the ",
+          a(href := "https://github.com/ScalaIO/scala.io/issues/new", "Github repository"),
+          " or send us an email at ",
+          a(href := "mailto:contact@scala.io", "contact@scala.io")
+        )
       ),
       Title("Who is behind Scala.IO?"),
       div(),
