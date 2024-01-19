@@ -7,6 +7,7 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import com.raquo.laminar.tags.HtmlTag
 import org.scalajs.dom
 import org.scalajs.dom.HTMLDivElement
+import io.scala.modules.TalkCard
 
 sealed trait TalkInfo[A <: TalkInfo[A]]:
   def ordinal: Int
@@ -51,6 +52,7 @@ object Time:
 sealed trait Event:
   def day: ConfDay
   def start: Time
+  def render: Div
 sealed trait Durable:
   def duration: Int
 case class Talk(
@@ -67,6 +69,7 @@ case class Talk(
     with Durable:
   lazy val renderDescription = description.split("\n").map(p(_))
   def duration: Int          = kind.duration
+  def render = TalkCard(this)
 
 object Talk:
   enum Kind:
@@ -133,6 +136,7 @@ case class Break(
 ) extends Event
     with Durable:
   def duration: Int = kind.duration
+  def render = div(className := "blank-card", kind.toIcon, kind.toIcon)
 
 object Break:
   enum Kind:
