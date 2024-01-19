@@ -137,7 +137,9 @@ span.presentation-keynote {
 
   .card-footer {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
     gap: vars.$spacing-small;
   }
 
@@ -150,12 +152,6 @@ span.presentation-keynote {
     color: vars.$text-color-light;
     font-size: medium;
     text-align: right;
-  }
-
-  .talk-speakers {
-    display: flex;
-    flex-wrap: wrap;
-    gap: vars.$spacing-small;
   }
 
   .talk-speaker {
