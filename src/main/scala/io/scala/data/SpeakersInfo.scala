@@ -66,7 +66,7 @@ object SpeakersInfo:
     name = "Brice Jaglin",
     photo = Some("bJaglin.webp"),
     description =
-      "Brice is the main maintainer of Scalafix since 2020, just after he discovered the potential of using custom rules in a modular monolith at work and started contributing to the project to make that easier. Currently a Staff Engineer at Swile, he no longer uses Scala on a day-to-day basis but continues to maintain Scalafix on his free time as he has yet to find such a powerful tool in another ecosystem!",
+      "I am the main maintainer of Scalafix since 2020, after I discovered the potential of using custom rules in a modular monolith at work and started contributing to the project to make that easier. Currently a Staff Engineer at Swile, I no longer use Scala on a day-to-day basis but I continue to maintain Scalafix on my free time as I have yet to find such a powerful tool in another ecosystem!",
     job = "Staff Engineer",
     company = "Swile",
     socials = List(
@@ -124,7 +124,7 @@ object SpeakersInfo:
 
   val sophieCollard = Speaker(
     name = "Sophie Collard",
-    photo = None,
+    photo = Some("sCollard.webp"),
     description =
       "Sophie is a software engineer and ex-data scientist with a fondness for strongly typed functional languages. She has worked with Scala for the past 8 years and more recently delved into frontend development using Elm. She is a Lead Software Engineer at JPMorgan where she works on the Model-driven Engineering Platform. Her academic background is in Environmental Engineering (BEng) and Renewable Energy (MSc).",
     job = "Lead Software Engineer",

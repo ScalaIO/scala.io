@@ -33,9 +33,6 @@ case object IndexView extends GenericView {
       Footer.render
     )
 
-  val description =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis ligula sem, eu tincidunt augue dictum in. Aliquam euismod sit amet nibh sit amet gravida. Ut fringilla vitae ligula sed dapibus. Nunc sed arcu sed leo molestie auctor non id orci. Fusce nulla ipsum, egestas vel pharetra nec, maximus eu velit. Aenean egestas, ipsum ac porta scelerisque, sapien dolor elementum dolor, posuere dapibus nisi dolor cursus augue. Integer pellentesque urna et neque faucibus aliquet. Sed posuere nunc sed erat dictum suscipit. In hac habitasse platea dictumst."
-
   def body(withDraft: Boolean): HtmlElement = sectionTag(
     className := "index",
     div(
@@ -63,7 +60,7 @@ case object IndexView extends GenericView {
       Title("Tickets"),
       div(
         className := "tickets",
-        YurPlan(),
+        YurPlan()
         // div(
         //   className := "group-ticket",
         //   Ticket(),
@@ -120,20 +117,29 @@ case object IndexView extends GenericView {
     backgroundImage := "url(../images/index-hero.webp)",
     div(
       className := "overlay",
+      h2(className := "title", "Connecting Scala Enthusiasts!"),
+      h3(
+        className := "event-date-location",
+        "15th-16th February 2024 - ",
+        span(
+          className := "event-town",
+          "Nantes"
+        ),
+        " @ ",
+        a(
+          className := "event-location",
+          href      := "/venue",
+          "Le Palace"
+        )
+      ),
       div(
-        h2(className := "title", "Connecting Scala Enthusiasts!"),
-        h3(
-          className := "event-date-location",
-          "15th-16th February 2024 - ",
-          span(
-            className := "event-town",
-            "Nantes"
-          ),
-          " @ ",
-          a(
-            className := "event-location",
-            href      := "/venue",
-            "Le Palace"
+        className := "scala-js",
+        p("Powered by"),
+        a(
+          href := "https://www.scala-js.org",
+          nameAttr := "Scala.js",
+          img(
+            src := "images/scala-js-logo.svg"
           )
         )
       )
