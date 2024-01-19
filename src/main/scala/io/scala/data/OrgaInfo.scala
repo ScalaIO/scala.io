@@ -6,7 +6,7 @@ import io.scala.domaines.Social
 
 object OrgaInfo:
   val johnathanWinandy = Organizer(
-    name = "Johnathan Winandy",
+    name = "Jonathan Winandy",
     photo = Some("jWinandy.webp"),
     job = "Data Engineering Manager @ Univalence",
     socials = List(
