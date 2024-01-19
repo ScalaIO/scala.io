@@ -1,5 +1,10 @@
 # ScalaIO website code source
 
+Note : `main` is deployed to https://preprod-scala-io.cleverapps.io/
+
+Previews on PR are availables with the bot.
+
+
 ## Pre-requisites
 
 - [Node.js](https://nodejs.org/en/) (>= 18)
