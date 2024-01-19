@@ -52,6 +52,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
       - uses: coursier/setup-action@v1.3.4
@@ -110,6 +111,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
         with:
+          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
       - uses: coursier/setup-action@v1.3.4
         with:
