@@ -18,14 +18,15 @@ case object TalksList extends SimpleView {
       stickScroll,
       div(
         className := "content",
-        Talk.Category.values.map: category =>
-          div(
-            h2(idAttr := category.slug, className := "content-title", category.name),
-            div(
-              talks.filter(_.category == category).map(TalkCard(_)),
-              className := "card-container"
+        Talk.Category.values
+          .flatMap: category =>
+            Array(
+              h2(idAttr := category.slug, className := "content-title", category.name),
+              div(
+                talks.filter(_.category == category).map(TalkCard(_)),
+                className := "card-container"
+              )
             )
-          ),
       )
     )
   )

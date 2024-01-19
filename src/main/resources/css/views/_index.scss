@@ -129,4 +129,8 @@
       }
     }
   }
+
+  .card-container {
+    grid-template: auto / repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+  }
 }

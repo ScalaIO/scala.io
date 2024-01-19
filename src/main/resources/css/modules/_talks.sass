@@ -2,8 +2,10 @@
   
 .talks-list
   .talk-card
-    flex: 1 1 0
     justify-content: space-between
+
+  .card-container
+    grid-template: auto / repeat(auto-fill, minmax(min(280px, 100%), 1fr))
 
   .card-container:first-of-type
     margin-bottom: 64px
