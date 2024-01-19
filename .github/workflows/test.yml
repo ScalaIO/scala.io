@@ -20,7 +20,7 @@ jobs:
     outputs:
       branch_slug: ${{ steps.slugify.outputs.slug }}
     env:
-      BRANCH_NAME: ${{ env.BRANCH_REPO }}-${{ needs.slugify.outputs.branch_slug }}
+      BRANCH_NAME: ${{ github.event.pull_request.head.repo.name }}-${{ needs.slugify.outputs.branch_slug }}
     steps:
       - id: slugify
         run: echo "slug=$(echo ${{ env.BRANCH_NAME_RAW }} | sed 's/[^a-zA-Z0-9\-]/-/g')" >> "$GITHUB_OUTPUT"
