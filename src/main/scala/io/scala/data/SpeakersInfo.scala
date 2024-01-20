@@ -341,11 +341,12 @@ object SpeakersInfo:
     description = "I’m a veteran backend developer, living in Ardèche and writing software as a contractor for a living. I wrote Java for years and I’m now mainly writing Scala and Elm on a daily basis. My domains of interest are FP, reactive programming, distributed architecture, CQRS/ES and performance analysis.",
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/m_baechler"),
-      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/matthieu-baechler-12336011")
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/matthieu-baechler-12336011"),
+      Social(Social.Kind.Other, "https://framapiaf.org/@matthieu")
     ),
     job = "Developer",
-    company = "Conduktor",
-    confirmed = false
+    company = "Freelancer",
+    confirmed = true
   )
 
   val allSpeakers = allTalks.flatMap(_.speakers).distinct
