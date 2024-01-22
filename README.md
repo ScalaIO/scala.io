@@ -1,5 +1,15 @@
 # ScalaIO website code source
 
+Note : `main` is deployed to https://preprod-scala-io.cleverapps.io/
+
+Previews on PR are availables with the bot.
+
+
+## Data
+
+Data for talks, speakers, schedule are here: https://github.com/ScalaIO/scala.io/tree/main/src/main/scala/io/scala/data
+
+
 ## Pre-requisites
 
 - [Node.js](https://nodejs.org/en/) (>= 18)

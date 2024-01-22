@@ -5,6 +5,13 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import io.scala.Lexicon
 import io.scala.modules.elements.*
 import io.scala.data.SponsorSInfo
+import io.scala.domaines.Sponsor
+import io.scala.modules.PersonCard
+import io.scala.modules.elements.ClassyButton
+import io.scala.modules.elements.Line
+import io.scala.modules.elements.SponsorLogo
+import io.scala.modules.elements.Title
+import org.scalajs.dom.HTMLDivElement
 
 case object SponsorsList extends SimpleView {
   val sponsorList: Div = div(

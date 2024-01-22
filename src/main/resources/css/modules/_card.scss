@@ -4,8 +4,8 @@
 $card-padding: 16px;
 
 .card-container {
-  display: flex;
-  flex-wrap: wrap;
+  display: grid;
+  justify-items: center;
   gap: vars.$spacing-large;
   margin: vars.$spacing-small;
 }
@@ -16,6 +16,7 @@ $card-padding: 16px;
   flex-direction: column;
   align-items: stretch;
   transition: all 0.3s ease-in-out;
+  width: 100%;
   padding: $card-padding;
 
   border-width: 1px;
@@ -33,10 +34,7 @@ $card-padding: 16px;
     align-items: center;
   }
 
-  @include mixins.border-style(
-    vars.$main-color,
-    vars.$main-color-lighter
-  );
+  @include mixins.border-style(vars.$main-color, vars.$main-color-lighter);
 }
 
 %card-action {
@@ -68,7 +66,7 @@ span.presentation-keynote {
   font-size: vars.$text-size-small;
   text-transform: uppercase;
   border-radius: 10px;
-  padding: 4px
+  padding: 4px;
 }
 
 span.presentation-lightning {
@@ -98,13 +96,15 @@ span.presentation-keynote {
   font-size: large;
 }
 
-
 .blank-card,
 .talk-card {
   @extend %card-base;
 
-  min-width: 275px;
   padding: $card-padding;
+
+  @media screen and (min-width: vars.$mobile-width) {
+    min-width: 282px;
+  }
 
   @media screen and (min-width: vars.$mobile-width) {
     min-width: 282px;
@@ -112,10 +112,7 @@ span.presentation-keynote {
 }
 
 .blank-card {
-  @include mixins.border-style(
-    vars.$text-color-light,
-    vars.$text-color
-  );
+  @include mixins.border-style(vars.$text-color-light, vars.$text-color);
 
   height: vars.$spacing-xxx-huge;
   width: 100%;
@@ -144,7 +141,9 @@ span.presentation-keynote {
 
   .card-footer {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    width: 100%;
     gap: vars.$spacing-small;
   }
 
@@ -157,12 +156,6 @@ span.presentation-keynote {
     color: vars.$text-color-light;
     font-size: medium;
     text-align: right;
-  }
-
-  .talk-speakers {
-    display: flex;
-    flex-direction: column;
-    gap: vars.$spacing-small;
   }
 
   .talk-speaker {
@@ -194,16 +187,10 @@ span.presentation-keynote {
   );
 }
 .talk-card.presentation-short {
-  @include mixins.border-style(
-    vars.$prez-short-color,
-    vars.$prez-short-color
-  );
+  @include mixins.border-style(vars.$prez-short-color, vars.$prez-short-color);
 }
 .talk-card.presentation-talk {
-  @include mixins.border-style(
-    vars.$prez-talk-color,
-    vars.$prez-talk-color
-  );
+  @include mixins.border-style(vars.$prez-talk-color, vars.$prez-talk-color);
 }
 .talk-card.presentation-keynote {
   @include mixins.border-style(
@@ -264,4 +251,23 @@ span.presentation-keynote {
 .sponsor-card {
   @extend %card-base;
   @extend %card-action;
+}
+
+.talk {
+  > .card-container {
+    margin-bottom: 1rem;
+  }
+
+  @media screen and (min-width: vars.$desktop-width) {
+    .person,
+    .rainbow {
+      flex: 1 1 45%;
+    }
+  }
+  svg {
+    fill: vars.$main-color;
+    width: 24px;
+    vertical-align: top;
+    margin-right: 8px;
+  }
 }

@@ -1,23 +1,24 @@
 package io.scala.modules
 
-import com.raquo.laminar.api.L.{*, given}
-import com.raquo.laminar.api.features.unitArrows
+import io.scala.{Page, PageArg}
 import io.scala.data.TalksInfo.{allTalks, talksBySpeaker}
-import io.scala.domaines.{Speaker, Talk}
+import io.scala.domaines.{Social, Speaker, Talk}
 import io.scala.modules.elements.ClassyButton
 import io.scala.svgs.GoTo
-import io.scala.{Page, PageArg}
+
+import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.api.features.unitArrows
 import org.scalajs.dom
 import org.scalajs.dom.console
 import org.scalajs.dom.html.Anchor
 import org.scalajs.dom.svg.{Path, SVG}
 
-object SpeakerCard {
+object PersonCard {
   def apply(speaker: Speaker) =
     div(
       className := "speaker-card",
       img(
-        src       := speaker.photo.fold(io.scala.profilePlaceholder)(path => s"/images/profiles/$path"),
+        src       := speaker.photoPath,
         className := "speaker-photo"
       ),
       div(
@@ -26,11 +27,12 @@ object SpeakerCard {
             span(
               talk.kind.toString,
               className := talk.kind.toStyle
-            ),
-          div(
-            speaker.socialNetworks,
-            className := "speaker-socials"
-          ),
+            )
+            div(
+              Social.render(speaker.socials),
+              className := "speaker-socials"
+            )
+          ,
           className := "card-subtitle"
         ),
         h2(
@@ -45,10 +47,10 @@ object SpeakerCard {
     )
 
   def linkToTalks(talks: Seq[Talk]) =
-    talks.map{ talk =>
+    talks.map { talk =>
       button(
         className := "card-link classy-button classy-button-highlight",
-        "See talk ", //! Problem if >= 2 talks
+        "See talk ", // ! Problem if >= 2 talks
         GoTo(),
         Page.navigateTo(PageArg.Talk(talk.slug, false))
       )

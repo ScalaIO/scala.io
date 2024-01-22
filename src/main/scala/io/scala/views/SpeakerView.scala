@@ -1,44 +1,40 @@
-package io.scala
-package views
+package io.scala.views
 
 import com.raquo.laminar.api.L.{*, given}
-import io.scala.data.TalksInfo
-import io.scala.data.TalksInfo.allTalks
-import io.scala.domaines.Speaker
 import io.scala.modules.elements.Title
 import io.scala.svgs.AtSign
 import io.scala.svgs.Suitcase
+import io.scala.domaines.{Speaker, Social}
+import io.scala.profilePlaceholder
 
-class SpeakerView(speaker: Speaker):
+class SpeakerView(person: Speaker):
   def body: HtmlElement =
-    val talk = allTalks.find(_.speakers.contains(speaker)).get
     div(
-      className := "speaker",
-      Title.small(speaker.name),
+      className := "person",
+      Title.small(person.name),
       div(
         className := "speaker-data",
         img(
-          src       := speaker.photo.fold(profilePlaceholder)(path => s"/images/profiles/$path"),
+          src       := person.photoPath,
           className := "speaker-photo"
         ),
         div(
           className := "paragraph",
           div(
-            className := "speaker-job",
             div(
               Suitcase(),
-              speaker.job
+              person.job
             ),
             div(
               AtSign(),
-              speaker.company
+              person.company
             )
           ),
           h2("Who am I"),
-          speaker.renderDescription,
+          person.renderDescription,
           div(
             className := "socials",
-            speaker.socialNetworksWithAccount
+            Social.renderWithAccount(person.socials)
           )
         )
       )

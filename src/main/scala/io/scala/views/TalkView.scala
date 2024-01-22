@@ -1,8 +1,7 @@
-package io.scala
-package views
+package io.scala.views
 
 import io.scala.domaines.Talk
-import io.scala.modules.SpeakerCard
+import io.scala.modules.PersonCard
 import io.scala.modules.elements.Title
 
 import com.raquo.laminar.api.L.{*, given}

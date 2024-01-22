@@ -3,7 +3,7 @@ package io.scala.views
 import io.scala.Lexicon.Header.talks
 import io.scala.Page.*
 import io.scala.data.SpeakersInfo
-import io.scala.modules.SpeakerCard
+import io.scala.modules.PersonCard
 import io.scala.modules.elements.*
 import io.scala.modules.layout.*
 import io.scala.svgs.Check
@@ -24,9 +24,6 @@ case object IndexView extends GenericView {
       IndexView.body(withDraft),
       Footer.render
     )
-
-  val description =
-    "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam convallis ligula sem, eu tincidunt augue dictum in. Aliquam euismod sit amet nibh sit amet gravida. Ut fringilla vitae ligula sed dapibus. Nunc sed arcu sed leo molestie auctor non id orci. Fusce nulla ipsum, egestas vel pharetra nec, maximus eu velit. Aenean egestas, ipsum ac porta scelerisque, sapien dolor elementum dolor, posuere dapibus nisi dolor cursus augue. Integer pellentesque urna et neque faucibus aliquet. Sed posuere nunc sed erat dictum suscipit. In hac habitasse platea dictumst."
 
   def body(withDraft: Boolean): HtmlElement = sectionTag(
     className := "index",
@@ -55,7 +52,7 @@ case object IndexView extends GenericView {
       Title("Tickets"),
       div(
         className := "tickets",
-        YurPlan(),
+        YurPlan()
         // div(
         //   className := "group-ticket",
         //   Ticket(),
@@ -103,7 +100,7 @@ case object IndexView extends GenericView {
       ),
       div(
         className := "card-container",
-        speakers.map(SpeakerCard(_))
+        speakers.map(PersonCard(_))
       )
     )
 
@@ -112,21 +109,19 @@ case object IndexView extends GenericView {
     backgroundImage := "url(../images/index-hero.webp)",
     div(
       className := "overlay",
-      div(
-        h2(className := "title", "Connecting Scala Enthusiasts!"),
-        h3(
-          className := "event-date-location",
-          "15th-16th February 2024 - ",
-          span(
-            className := "event-town",
-            "Nantes"
-          ),
-          " @ ",
-          a(
-            className := "event-location",
-            href      := "/venue",
-            "Le Palace"
-          )
+      h2(className := "title", "Connecting Scala Enthusiasts!"),
+      h3(
+        className := "event-date-location",
+        "15th-16th February 2024 - ",
+        span(
+          className := "event-town",
+          "Nantes"
+        ),
+        " @ ",
+        a(
+          className := "event-location",
+          href      := "/venue",
+          "Le Palace"
         )
       )
     )

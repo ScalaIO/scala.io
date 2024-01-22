@@ -1,7 +1,12 @@
 package io.scala.views
 
 import io.scala.domaines.Social
+import io.scala.data.OrgaInfo.allOrga
+import io.scala.domaines.Organizer
+import io.scala.domaines.Social
+import io.scala.modules.PersonCard
 import io.scala.modules.elements.Title
+import io.scala.svgs.Github
 
 import com.raquo.laminar.api.L.*
 
@@ -16,9 +21,17 @@ object FAQView extends SimpleView {
     )
   }
 
+  private def question(question: String, answer: HtmlElement*): HtmlElement = {
+    div(
+      className := "question",
+      h2(question),
+      answer
+    )
+  }
+
   override def body(withDraft: Boolean): HtmlElement = {
     sectionTag(
-      className := "container",
+      className := "container faq",
       Title("Frequently Asked Questions"),
       question(
         "Why 2023-10 was cancelled?",
@@ -40,7 +53,90 @@ object FAQView extends SimpleView {
       question(
         "Can I have a receipt?",
         "In the confirmation email, there is a link to download it. If you can't find it, send us an email and we will send you a new one."
-      )
+      ),
+      question(
+        "What did you use to build this website?",
+        ul(
+          li(
+            "Source code: ",
+            a(href := "https://scala-lang.org", "Scala 3"),
+            " with ",
+            a(href := "https://www.scala-js.org", "Scala.js"),
+            " to compile Scala to JavaScript and ",
+            a(href := "https://laminar.dev", "Laminar"),
+            " to build a reactive UI."
+          ),
+          li(
+            "Hosting: ",
+            a(href := "https://github.com/ScalaIO/scala.io", "Github repository"),
+            " for the source code and ",
+            a(href := "https://www.clever-cloud.com", "Clever Cloud"),
+            " for the website"
+          )
+        )
+      ),
+      div(
+        className := "logos",
+        a(
+          href     := "https://www.scala-js.org",
+          nameAttr := "Scala.js",
+          img(
+            src := "logos/scalajs.svg"
+          )
+        ),
+        a(
+          href     := "https://laminar.dev",
+          nameAttr := "Laminar",
+          img(
+            src := "logos/laminar.webp"
+          )
+        ),
+        a(
+          href     := "https://www.clever-cloud.com",
+          nameAttr := "Clever Cloud",
+          img(
+            src := "logos/clever.svg"
+          )
+        ),
+        a(
+          href     := "https://github.com/ScalaIO/scala.io",
+          nameAttr := "Github",
+          Github()
+        )
+      ),
+      question(
+        "I found a bug / an error on the website, what should I do?",
+        p(
+          "Feel free to open an issue us on the ",
+          a(href := "https://github.com/ScalaIO/scala.io/issues/new", "Github repository"),
+          " or send us an email at ",
+          a(href := "mailto:contact@scala.io", "contact@scala.io")
+        )
+      ),
+      Title("Who is behind Scala.IO?"),
+      div(),
+      Title.small("Representatives"),
+      organizersList(allOrga.filter(_.representative)),
+      Title.small("Organizers"),
+      organizersList(allOrga.filterNot(_.representative))
     )
   }
+
+  def organizersList(orgs: List[Organizer]): Div = div(
+    className := "card-container organizers",
+    orgs.map: org =>
+      div(
+        className := "orga",
+        img(
+          className := "photo",
+          src       := org.photoPath
+        ),
+        div(
+          p(org.name),
+          p(org.job),
+          org.misc.map(misc => p(misc)),
+          Social.render(org.socials)
+        )
+      )
+  )
 }

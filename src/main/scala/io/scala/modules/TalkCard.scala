@@ -48,28 +48,25 @@ object TalkCard:
       Line(margin = 10),
       div(
         className := "card-footer",
-        div(
-          className := "talk-speakers",
-          talk.speakers.map { speaker =>
+        talk.speakers.map { speaker =>
+          div(
+            className := "talk-speaker",
+            img(
+              src       := speaker.photoPath,
+              className := "speaker-photo"
+            ),
             div(
-              className := "talk-speaker",
-              img(
-                src       := speaker.photo.fold(profilePlaceholder)(path => s"/images/profiles/$path"),
-                className := "speaker-photo"
+              p(
+                speaker.name,
+                className := "speaker-name"
               ),
-              div(
-                p(
-                  speaker.name,
-                  className := "speaker-name"
-                ),
-                p(
-                  speaker.company,
-                  className := "speaker-company"
-                )
+              p(
+                speaker.company,
+                className := "speaker-company"
               )
             )
-          }
-        ),
+          )
+        },
         button(
           className := "card-link classy-button classy-button-highlight",
           s"More info ",

@@ -244,9 +244,10 @@ object TalksInfo:
     ),
     Talk(
       title = "To be announced",
-      slug = "lightning-2",
+      slug = "rex-migration-scala-2-to-scala-3",
       description = "To be announced",
       speakers = List.empty,
-      kind = Talk.Kind.Lightning
+      kind = Talk.Kind.Lightning,
+      category = Talk.Category.ToolsEcosystem
     )
   )

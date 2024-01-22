@@ -11,6 +11,10 @@
   @include mixins.belowBar(vars.$main-color, 60%, 6px);
 }
 
+.page-title:not(:first-of-type) {
+  margin-top: 32px;
+}
+
 .subtitle {
   font-size: 24px;
   line-height: 30px;
@@ -26,4 +30,8 @@
   position: relative;
 
   @include mixins.belowBar(vars.$main-color, 60%, 2px);
+}
+
+.content-title:not(:first-of-type) {
+  margin-top: 32px;
 }
