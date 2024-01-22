@@ -34,25 +34,31 @@
 }
 .sponsor-logo-platinum {
   @extend %sponsor-logo;
-  width: 256px;
+  height: 80px;
+  fill: vars.$text-color;
 }
 
 .sponsor-logo-gold {
   @extend %sponsor-logo;
-  width: 224px;
+  height: 70px;
 }
 
 .sponsor-logo-silver {
   @extend %sponsor-logo;
-  width: 192px;
+  height: 50px;
+}
+
+.sponsor-logo-partner {
+  @extend %sponsor-logo;
+  height: 50px;
 }
 
 .sponsor-logo-community {
   @extend %sponsor-logo;
-  width: 160px;
+  height: 40px;
 }
 
 .sponsor-logo-love {
   @extend %sponsor-logo;
-  width: 128px;
+  height: 30px;
 }

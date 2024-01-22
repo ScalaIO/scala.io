@@ -17,10 +17,16 @@ $card-padding: 16px;
   align-items: stretch;
   transition: all 0.3s ease-in-out;
   width: 100%;
+  padding: $card-padding;
 
   border-width: 1px;
   border-style: solid;
   border-radius: 10px;
+
+  &:after {
+    margin-left: -16px;
+    margin-top: -16px;
+  }
 
   .card-subtitle {
     display: flex;
@@ -96,9 +102,8 @@ span.presentation-keynote {
 
   padding: $card-padding;
 
-  &:after {
-    margin-left: -16px;
-    margin-top: -16px;
+  @media screen and (min-width: vars.$mobile-width) {
+    min-width: 282px;
   }
 
   @media screen and (min-width: vars.$mobile-width) {
@@ -200,7 +205,6 @@ span.presentation-keynote {
 
   min-width: 128px;
   max-width: 250px;
-  padding: $card-padding;
   justify-content: space-between;
   flex-basis: 100%;
 

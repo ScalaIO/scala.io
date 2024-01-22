@@ -1,5 +1,6 @@
 package io.scala.views
 
+import io.scala.domaines.Social
 import io.scala.data.OrgaInfo.allOrga
 import io.scala.domaines.Organizer
 import io.scala.domaines.Social

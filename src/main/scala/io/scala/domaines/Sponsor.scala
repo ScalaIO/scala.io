@@ -1,17 +1,20 @@
 package io.scala.domaines
 
 case class Sponsor(
+    name: String,
     photo: String,
     website: String,
-    rank: Sponsor.SponsorRank
-)
+    rank: Sponsor.Rank
+):
+  def photoPath = s"images/sponsors/${photo}"
 
 object Sponsor {
-  enum SponsorRank:
+  enum Rank:
     case Platinum
     case Gold
     case Silver
     case Community
+    case Partner
     case Love
 
     def title: String = this match
@@ -20,6 +23,7 @@ object Sponsor {
       case Silver    => "🥈 Silver 🥈"
       case Community => "👥 Community 👥"
       case Love      => "❤️ J'aime Scala ❤️"
+      case Partner   => "🤝 Partner 🤝"
 
     def css: String = this match
       case Platinum  => "platinum"
@@ -27,7 +31,8 @@ object Sponsor {
       case Silver    => "silver"
       case Community => "community"
       case Love      => "love"
+      case Partner   => "partner"
 
-  object SponsorRank:
-    given Ordering[SponsorRank] = Ordering[Int].on(_.ordinal)
+  object Rank:
+    given Ordering[Rank] = Ordering[Int].on(_.ordinal)
 }
