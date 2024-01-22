@@ -52,8 +52,8 @@ object FAQView extends SimpleView {
           |""".stripMargin
       ),
       question(
-        "Do you reimburse the tickets?",
-        "We would prefer not to, however you can always send use an email and we will see what we can do. (We always reimbursed tickets if needed)"
+        "Do you reimburse tickets?",
+        "We would prefer not to, however you can always send us an email. We always reimbursed tickets if needed."
       ),
       question(
         "Can I have a receipt?",
