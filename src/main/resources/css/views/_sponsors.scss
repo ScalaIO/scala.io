@@ -48,6 +48,11 @@
   height: 50px;
 }
 
+.sponsor-logo-partner {
+  @extend %sponsor-logo;
+  height: 50px;
+}
+
 .sponsor-logo-community {
   @extend %sponsor-logo;
   height: 40px;

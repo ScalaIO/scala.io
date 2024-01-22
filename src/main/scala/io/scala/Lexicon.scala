@@ -21,8 +21,11 @@ object Lexicon {
     val callToAction = "Become a speaker"
 
   object Sponsors:
-    val catchPhrase =
-      "Become a ScalaIO 2024 sponsor and promote your services, products or simply increase your brand awareness with more than 350 passionate Scala, Spark, and FP languages developers!"
+    val catchPhrase: String =
+      """Become a ScalaIO 2024 sponsor and promote your services,
+        |products or simply increase your brand awareness with passionate
+        |Scala, Spark, and FP languages developers!""".stripMargin
+
     val callToAction   = "Become a sponsor"
     val callToBrochure = "Download the brochure"
 

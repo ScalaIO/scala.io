@@ -14,6 +14,7 @@ object Sponsor {
     case Gold
     case Silver
     case Community
+    case Partner
     case Love
 
     def title: String = this match
@@ -22,6 +23,7 @@ object Sponsor {
       case Silver    => "🥈 Silver 🥈"
       case Community => "👥 Community 👥"
       case Love      => "❤️ J'aime Scala ❤️"
+      case Partner   => "🤝 Partner 🤝"
 
     def css: String = this match
       case Platinum  => "platinum"
@@ -29,6 +31,7 @@ object Sponsor {
       case Silver    => "silver"
       case Community => "community"
       case Love      => "love"
+      case Partner   => "partner"
 
   object Rank:
     given Ordering[Rank] = Ordering[Int].on(_.ordinal)
