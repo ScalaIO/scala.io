@@ -29,7 +29,7 @@ case object IndexView extends GenericView {
     className := "index",
     div(
       className := "container description",
-      h2("Exchanging Ideas"),
+      Title("Exchanging Ideas"),
       p("""
           Scala.IO is a conference for people having
            interest in the Scala ecosystem or simply
@@ -37,15 +37,13 @@ case object IndexView extends GenericView {
 
           """),
       p("""The conference is organized by Scala supporters from the community,
-          | and provides a great opportunity to meet with other enthusiasts and practitioners.""".stripMargin),
-      h2("Past editions (2013 - 2022)"),
-      p(
+          | and provides a great opportunity to meet with other enthusiasts and practitioners.""".stripMargin,
         "You can find the videos of the past editions (200+) on our ",
         a(className := "basic-link", href := "https://www.youtube.com/@scalaio/videos", "youtube channel"),
         "."
       ),
-      h2("2024 - Nantes"),
-      p("For this edition, we are meeting in Nantes, for 2 days, one track, and a large community space.")
+      br(),
+      p("This edition brings us together in Nantes for two days, with a single-session structure and a large community space. With a great venue, wonderful speakers, and a lot of surprises, we are looking forward to meeting you there!"),
     ),
     div(
       className := "container",

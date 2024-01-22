@@ -2,6 +2,7 @@ package io.scala.data
 
 import io.scala.data.TalksInfo.allTalks
 import io.scala.domaines.*
+import io.scala.domaines.Talk.Category
 
 import scala.util.Random
 
@@ -29,7 +30,8 @@ object ScheduleInfo {
       day = day,
       room = Room.One,
       start = start,
-      kind = kind
+      kind = kind,
+      category = Category.Effects
     )
   val blankTalks = List(
     talk(
