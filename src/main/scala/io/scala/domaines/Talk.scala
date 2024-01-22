@@ -64,7 +64,7 @@ case class Talk(
     room: Room | Null = null,
     start: Time | Null = null,
     speakers: List[Speaker],
-    category: Talk.Category = Talk.Category.NA
+    category: Talk.Category
 ) extends Event
     with Durable:
   lazy val renderDescription = description.split("\n").map(p(_))
@@ -94,7 +94,7 @@ object Talk:
       case Lightning => 15
 
   enum Category:
-    case Algebra,Effects , ToolsEcosystem,  Community, Cloud, Modeling, DataEng, AI, NA
+    case Algebra,Effects , ToolsEcosystem,  Community, Cloud, Modeling, DataEng, AI
 
     def slug: String = this match
       case Algebra        => "dash-of-algebra"
@@ -105,7 +105,6 @@ object Talk:
       case Modeling       => "modeling"
       case Cloud          => "cloud"
       case AI             => "artificial-intelligence"
-      case NA             => "not-assigned"
 
     def name: String = this match
       case Algebra        => "A Dash of Algebra"
@@ -115,8 +114,7 @@ object Talk:
       case Effects        => "Concurrent programming"
       case Modeling       => "Modeling / Domain Modeling"
       case Cloud          => "Cloud"
-      case AI             => "AI"
-      case NA             => "N/A"
+      case AI             => "Artificial Intelligence"
 
     def toStyle: String = this match
       case Algebra        => "category-algebra"
@@ -127,7 +125,6 @@ object Talk:
       case Modeling       => "category-modeling"
       case Cloud          => "category-cloud"
       case AI             => "category-ai"
-      case NA             => "category-na"
 
 case class Break(
     day: ConfDay,

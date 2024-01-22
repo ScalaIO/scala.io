@@ -38,6 +38,11 @@ object FAQView extends SimpleView {
         "It was difficult to get sponsorship to close the budget, that's why we had to work on a new format for this edition."
       ),
       question(
+        "Why Nantes?",
+        """The conference was in Paris (2013, 2014, 2022) and Lyon (2016, 2017, 2018, 2019).
+          |The organisers are in majority familiar with Nantes, Clever Cloud and _icilundi offered to facilitate hosting the event.""".stripMargin
+      ),
+      question(
         "Is there a Code of Conduct?",
         """We had a Code of Conduct, the new one is lighter : 'please be nice', 'we are here to exchange idea and appreciate a shared moment', 'if there is something disturbing, we will take care of it'.
           |
@@ -47,8 +52,8 @@ object FAQView extends SimpleView {
           |""".stripMargin
       ),
       question(
-        "Do you reimburse the tickets?",
-        "We would prefer not to, however you can always send use an email and we will see what we can do. (We always reimbursed tickets if needed)"
+        "Do you reimburse tickets?",
+        "We would prefer not to, however you can always send us an email. We always reimbursed tickets if needed."
       ),
       question(
         "Can I have a receipt?",
