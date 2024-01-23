@@ -4,7 +4,6 @@ import io.scala.domaines.Social
 import io.scala.data.OrgaInfo.allOrga
 import io.scala.domaines.Organizer
 import io.scala.domaines.Social
-import io.scala.modules.PersonCard
 import io.scala.modules.elements.Title
 import io.scala.svgs.Github
 

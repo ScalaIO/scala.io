@@ -41,63 +41,58 @@ case object ScheduleView extends SimpleView {
 
   def renderSmall(eventsByDay: Map[ConfDay, List[Event]]) =
     div(
-      className := "schedule",
+      className := "schedule small",
       div(
-        className := "tab",
+        className := "tabs",
         ConfDay.values.map { day =>
           div(
             button(
               onClick --> { _ => selectedDay.set(day) },
               h2(day.toString())
             ),
-            Line(margin = 24, size = 3, kind = LineKind.Colored).amend(display <-- selectedDay.signal.map { d =>
-              if d == day then "block"
+            Line(margin = 8, size = 3, kind = LineKind.Colored).amend(display <-- selectedDay.signal.map { d =>
+              if d == day then "flex"
               else "none"
             })
           )
         }
       ),
-      ConfDay.values.map { day =>
-        div(
-          className := "tab-content",
-          display <-- selectedDay.signal.map { d =>
-            if d == day then "block"
-            else "none"
-          },
-          children <-- selectedDay.signal.map {
-            case i if i == day =>
-              ScheduleDay(eventsByDay.get(day).getOrElse(Seq.empty)).body
-            case _ => Seq(emptyNode)
-          }
-        )
-      }
+      div(
+        ConfDay.values.map { day =>
+          div(
+            className := "content",
+            display <-- selectedDay.signal.map { d =>
+              if d == day then "flex"
+              else "none"
+            },
+            children <-- selectedDay.signal.map {
+              case i if i == day =>
+                ScheduleDay(eventsByDay.get(day).getOrElse(Seq.empty)).body
+              case _ => Seq(emptyNode)
+            }
+          )
+        }
+      )
     )
-
-  val spanVar: Var[HtmlElement] = Var(div())
 
   def renderLarge(eventsByDay: Map[ConfDay, List[Event]]) =
     div(
-      className := "schedule",
-      ConfDay.values.map { day =>
-        div(
-          className := "day",
+      className := "schedule large",
+      div(
+        className := "tabs",
+        ConfDay.values.map: day =>
           div(
-            className := "tab",
-            div(
-              h2(day.toString()),
-              Line(margin = 24, size = 3, kind = LineKind.Colored)
-            )
-          ),
+            h2(day.toString()),
+            Line(margin = 8, size = 3, kind = LineKind.Colored)
+          )
+      ),
+      div(
+        ConfDay.values.map: day =>
           div(
-            className := "tab-content",
-            child <-- spanVar.signal.map {
-              case span if day.ordinal == 0 => span
-              case _                        => emptyNode
-            },
+            className := "content",
             ScheduleDay(eventsByDay.get(day).getOrElse(Seq.empty)).body
           )
-        )
-      }
+      )
     )
 
   def renderSchedule(eventsByDay: Map[ConfDay, List[Event]]) =
@@ -106,14 +101,7 @@ case object ScheduleView extends SimpleView {
       case _              => renderSmall(eventsByDay)
     }
 
-  def bodyContent(talks: List[Talk]): HtmlElement =
-    val eventsByDay: Map[ConfDay, List[Event]] =
-      ScheduleInfo.blankSchedule
-        .collect {
-          case event if event.day != null => event
-        }
-        .groupBy { _.day }
-
+  def bodyContent(eventsByDay: Map[ConfDay, List[Event]]): HtmlElement =
     sectionTag(
       className := "container",
       Title("Schedule"),
@@ -128,13 +116,14 @@ case object ScheduleView extends SimpleView {
     )
 
   def body(withDraft: Boolean): HtmlElement =
-    if withDraft then bodyContent(TalksInfo.allTalks)
-    else
-      bodyContent {
-        TalksInfo.allTalks.filter { talk =>
-          talk.speakers.forall(_.confirmed)
-        }
-      }
+    val schedule =
+      if withDraft then ScheduleInfo.schedule
+      else ScheduleInfo.blankSchedule
+    val eventsByDay: Map[ConfDay, List[Event]] =
+      schedule
+        .filter(_.day != null)
+        .groupBy { _.day }
+    bodyContent(eventsByDay)
 
   override def title: String = "Schedule"
 }

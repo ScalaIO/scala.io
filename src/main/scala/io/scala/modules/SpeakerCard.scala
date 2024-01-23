@@ -13,7 +13,7 @@ import org.scalajs.dom.console
 import org.scalajs.dom.html.Anchor
 import org.scalajs.dom.svg.{Path, SVG}
 
-object PersonCard {
+object SpeakerCard {
   def apply(speaker: Speaker) =
     div(
       className := "speaker-card",

@@ -1,11 +1,23 @@
 @use "../base/vars"
-  
-.talks-list
-  .talk-card
-    justify-content: space-between
 
+.talks-list
   .card-container
     grid-template: auto / repeat(auto-fill, minmax(min(280px, 100%), 1fr))
 
   .card-container:first-of-type
     margin-bottom: 64px
+
+.talk
+  > .card-container
+    grid-template: auto / repeat(auto-fill, minmax(min(650px, 100%), 1fr))
+    margin-bottom: 1rem
+
+  @media screen and (min-width: vars.$desktop-width)
+    .person
+      flex: 1 1 45%
+
+  svg
+    fill: vars.$main-color
+    width: 24px
+    vertical-align: top
+    margin-right: 8px

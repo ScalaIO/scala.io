@@ -10,7 +10,7 @@ enum Screen:
   case Mobile, Tablet, Laptop, Desktop
 
 object Screen:
-  inline def width: Screen   = io.scala.utils.Screen.fromWidth(dom.window.innerWidth)
+  inline def width: Screen   = fromWidth(dom.window.innerWidth)
   val screenVar: Var[Screen] = Var(width)
 
   window.onresize = { _ =>

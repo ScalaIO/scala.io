@@ -15,10 +15,7 @@ object TalkKindTag:
 object TalkDescription:
   def apply(description: String) =
     val desc = if (description.length() <= 200) description else description.substring(0, 200) + "..."
-    p(
-      desc,
-      className := "talk-description"
-    )
+    p(desc)
 
 object TalkCard:
   def apply(talk: Talk) =

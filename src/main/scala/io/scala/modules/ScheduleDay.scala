@@ -24,11 +24,7 @@ case class ScheduleDay(eventsList: Map[Time, Seq[Event]], startingTimes: Seq[Tim
                   case t: Talk               => t.room == room
                   case _: Break | _: Special => true // ! Will cause problem for multi-track events
                 }
-                .map {
-                  case t: Talk    => TalkCard(t)
-                  case b: Break   => div(className := "blank-card", b.kind.toIcon, b.kind.toIcon)
-                  case s: Special => s.render
-                }
+                .map(_.render)
                 .getOrElse(div(className := "blank-card"))
             )
           }
@@ -40,8 +36,8 @@ object ScheduleDay {
   def apply(events: Seq[Event]) =
     val scheduledEvents = events
       .filter:
-        case t: Talk => t.day != null && t.start != null && t.room != null
-        case _       => true
+        case t: Talk => t.start != null && t.room != null
+        case e       => e.start != null
     val definedTalks: Map[Time, Seq[Event]] =
       scheduledEvents.groupBy(_.start)
     val startingTimes = scheduledEvents

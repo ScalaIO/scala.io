@@ -22,7 +22,7 @@ case object TalksList extends SimpleView {
             Array(
               h2(idAttr := category.slug, className := "content-title", category.name),
               div(
-                talks.filter(_.category == category).map(TalkCard(_)),
+                talks.filter(_.category == category).sortBy(_.title).map(TalkCard(_)),
                 className := "card-container"
               )
             )

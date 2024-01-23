@@ -349,4 +349,4 @@ object SpeakersInfo:
     confirmed = true
   )
 
-  val allSpeakers = allTalks.flatMap(_.speakers).distinct
+  val allSpeakers = allTalks.flatMap(_.speakers).distinct.sortBy(_.name)

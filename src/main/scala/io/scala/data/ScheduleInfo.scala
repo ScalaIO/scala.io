@@ -33,6 +33,7 @@ object ScheduleInfo {
       kind = kind,
       category = Category.Effects
     )
+
   val blankTalks = List(
     talk(
       ConfDay.Thursday,
@@ -171,9 +172,14 @@ object ScheduleInfo {
       start = Time(17, 25),
       kind = Break.Kind.Coffee
     ),
-    Special(
+    Break(
       day = ConfDay.Thursday,
       start = Time(18, 15),
+      kind = Break.Kind.Coffee
+    ),
+    Special(
+      day = ConfDay.Thursday,
+      start = Time(18, 35),
       kind = Special.Kind.End
     ),
     Special(
@@ -233,6 +239,8 @@ object ScheduleInfo {
     )
   )
 
+  val minStart      = Time(9, 0)
+  val maxStart      = Time(18, 20)
   lazy val blankSchedule = blankTalks ++ breaks
   lazy val schedule      = allTalks ++ breaks
 }

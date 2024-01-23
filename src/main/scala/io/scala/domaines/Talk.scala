@@ -53,6 +53,7 @@ sealed trait Event:
   def day: ConfDay
   def start: Time
   def render: Div
+
 sealed trait Durable:
   def duration: Int
 case class Talk(
@@ -69,7 +70,7 @@ case class Talk(
     with Durable:
   lazy val renderDescription = description.split("\n").map(p(_))
   def duration: Int          = kind.duration
-  def render = TalkCard(this)
+  def render                 = TalkCard(this)
 
 object Talk:
   enum Kind:
@@ -94,7 +95,7 @@ object Talk:
       case Lightning => 15
 
   enum Category:
-    case Algebra,Effects , ToolsEcosystem,  Community, Cloud, Modeling, DataEng, AI
+    case Algebra, Effects, ToolsEcosystem, Community, Cloud, Modeling, DataEng, AI
 
     def slug: String = this match
       case Algebra        => "dash-of-algebra"
@@ -133,7 +134,7 @@ case class Break(
 ) extends Event
     with Durable:
   def duration: Int = kind.duration
-  def render = div(className := "blank-card", kind.toIcon, kind.toIcon)
+  def render        = div(className := "blank-card", kind.toIcon, kind.toIcon)
 
 object Break:
   enum Kind:

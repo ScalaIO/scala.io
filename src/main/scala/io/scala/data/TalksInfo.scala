@@ -6,6 +6,9 @@ import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 
 import scala.collection.mutable.HashMap
+import io.scala.domaines.ConfDay
+import io.scala.domaines.Time
+import io.scala.domaines.Room
 
 object TalksInfo:
   lazy val talksBySpeaker =
@@ -31,7 +34,10 @@ object TalksInfo:
          |This ScalaIO talk will be a overview of the EPITA CT4P course, with emphasis on commutation diagrams and simple Scala programming. The talk will be accessible to intermediate programmers of Scala, Python, Lisp and other languages.
          |""".stripMargin,
       speakers = List(SpeakersInfo.jimNewton, SpeakersInfo.uliFahrenberg),
-      category = Talk.Category.Algebra
+      category = Talk.Category.Algebra,
+      day = ConfDay.Thursday,
+      start = Time(10, 50),
+      room = Room.One
     ),
     Talk(
       title = "Data pipelines engineering made simple with Scala",
@@ -39,7 +45,10 @@ object TalksInfo:
       description =
         "Most organizations have data pipelines and those are growing by the minute. But working on data pipelines can be challenging and take / waste a lot of engineering time! The talk is about a state of the art platform used to build, run, evolve and operate data pipelines at Criteo: a project were Scala particularly shine. We will cover problem framing, core ideas and dive into our experience with SQL parsing, query planning and scheduling with quick introductions to the Scala libraries used. The talk is meant to be accessible to any junior developer and has food for though for tenured data engineers too.",
       speakers = List(SpeakersInfo.raphaelClaude),
-      category = Talk.Category.DataEng
+      category = Talk.Category.DataEng,
+      day = ConfDay.Thursday,
+      start = Time(11, 40),
+      room = Room.One
     ),
     Talk(
       title = "Scala 3 Compiler Academy Journey",
@@ -49,7 +58,10 @@ object TalksInfo:
 
         |Now, two years later, with the format fleshed out and the lessons learnt, I'd like to share our journey with you. After attending my talk, you'll learn how the format works, and how to start a similar Spree for your own project as well!""".stripMargin,
       speakers = List(SpeakersInfo.anatoliiKmetiuk),
-      category = Talk.Category.Community
+      category = Talk.Category.Community,
+      day = ConfDay.Friday,
+      start = Time(9, 0),
+      room = Room.One
     ),
     Talk(
       title = "Unleashing Scalafix potential with custom rules",
@@ -61,7 +73,10 @@ object TalksInfo:
          |In this talk, we will demystify AST traversal and semantic information lookup to write custom rules and run them locally and/or on CI, through the sbt-scalafix plugin or via Scala Steward.
          |""".stripMargin,
       speakers = List(SpeakersInfo.briceJaglin),
-      category = Talk.Category.ToolsEcosystem
+      category = Talk.Category.ToolsEcosystem,
+      day = ConfDay.Friday,
+      start = Time(9, 50),
+      room = Room.One
     ),
     Talk(
       title = "🌴 Youpi dansons la Kapoeira en testant nos Kafka streams 🕺 💃",
@@ -79,7 +94,10 @@ object TalksInfo:
          |Si vous êtes intéressés, nous serons ravis de récolter vos retours et vos contributions pour nous aider à améliorer cet outil.
          |""".stripMargin,
       speakers = List(SpeakersInfo.johannaVauchel, SpeakersInfo.mehdiRebiai),
-      category = Talk.Category.DataEng
+      category = Talk.Category.DataEng,
+      day = ConfDay.Friday,
+      start = Time(10, 50),
+      room = Room.One
     ),
     Talk(
       title = "Armored type safety with Iron",
@@ -94,7 +112,10 @@ object TalksInfo:
          |In this talk, we'll show first the different technique we can use to apply constraints is our domains. Then, we'll present Iron, its features, extensions, and integrations. We'll finish by showcasing a fully-integrated constraint-enforcing app.
          |""".stripMargin,
       speakers = List(SpeakersInfo.raphaelLemaitre, SpeakersInfo.valentinBergeron),
-      category = Talk.Category.Modeling
+      category = Talk.Category.Modeling,
+      day = ConfDay.Friday,
+      start = Time(11, 40),
+      room = Room.One
     ),
     Talk(
       title = "Contravariance: intuition building from first principles",
@@ -108,7 +129,10 @@ object TalksInfo:
          |We'll begin by working with an Animal type hierarchy and some PetRescue and PetClinic typeclasses. By working out what can be substituted for what, we'll begin building up intuition for covariance and contravariance. We'll then test this intuition by working through a second example involving JsonDecoder and JsonEncoder typeclasses.
          |""".stripMargin,
       speakers = List(SpeakersInfo.sophieCollard),
-      category = Talk.Category.Modeling
+      category = Talk.Category.Modeling,
+      day = ConfDay.Friday,
+      start = Time(14, 0),
+      room = Room.One
     ),
     Talk(
       title = "Songwriting in Scala - Creating a DSL for writing Music with ADT's",
@@ -118,7 +142,10 @@ object TalksInfo:
          |""".stripMargin,
       kind = Talk.Kind.Speech,
       speakers = List(SpeakersInfo.paulMatthew),
-      category = Talk.Category.Modeling
+      category = Talk.Category.Modeling,
+      day = ConfDay.Friday,
+      start = Time(14, 50),
+      room = Room.One
     ),
     Talk(
       title = "Hands-on Besom: Infrastructure-as-Code with Scala",
@@ -126,7 +153,10 @@ object TalksInfo:
       description =
         "In my talk I will briefly introduce Besom, a Pulumi SDK for Scala and then swiftly proceed to show - hands on - how to use it to declare cloud infrastructure and deploy your services in a simple yet safe and robust way. Besom is the first step in the new vision of programming with Scala where full products can be built using the same reliable, functional idioms. The talk will be interesting to any Scala developer who wants to upgrade her skills and capabilities in the area of cloud resource management and complete product engineering.",
       speakers = List(SpeakersInfo.lukaszBialy),
-      category = Talk.Category.Cloud
+      category = Talk.Category.Cloud,
+      day = ConfDay.Friday,
+      start = Time(15, 40),
+      room = Room.One
     ),
     Talk(
       title = "Introduction to Smithy/Smithy4s",
@@ -140,7 +170,11 @@ object TalksInfo:
          |This talk will serve as an introduction to the Smithy IDL, and a demo of what is possible with Smithy4s
          |""".stripMargin,
       speakers = List(SpeakersInfo.olivierMelois),
-      category = Talk.Category.Cloud
+      kind = Talk.Kind.Short,
+      category = Talk.Category.Cloud,
+      day = ConfDay.Friday,
+      start = Time(13, 30),
+      room = Room.One
     ),
     Talk(
       title = "Logic Meta-Programming for Functional Languages",
@@ -148,7 +182,10 @@ object TalksInfo:
       description =
         "Since the beginning of the 21st century, the functional programming paradigm, whose root ideas are now almost 100 years old, has finally trickled down to the rest of the community, bringing more safety and clarity to the more mainstream languages: several languages adopted the idiom of lambda functions, the Java community gave birth to Scala, Clojure, and Kotlin, that all include a substantial amount of functional features; most modern languages embrace immutability by default and feature a form of algebraic data types as well as lazy and/or stateless data structures; etc. In more confidential contexts, the logic programming paradigm, although more obscure, managed to remain stable in a niche of specific use cases: inference and unification problems, rule-based reasoning, combinatorics, constraint programming, operational research, etc. In this talk, we will explore one of the areas where both of these unique yet powerful tools converge: using a logic programming language as a meta-language for a functional programming language. First, we will present its use for implementing a type-checker, then for proof transfer in the context of dependently-typed functional languages.",
       speakers = List(SpeakersInfo.enzoCrance),
-      category = Talk.Category.Algebra
+      category = Talk.Category.Algebra,
+      day = ConfDay.Thursday,
+      start = Time(14, 0),
+      room = Room.One
     ),
     Talk(
       title = "Migrating Gallia to Scala 3: the good, the bad, and the very good.",
@@ -161,7 +198,10 @@ object TalksInfo:
            |""".stripMargin,
       kind = Talk.Kind.Speech,
       speakers = List(SpeakersInfo.anthonyCros),
-      category = Talk.Category.ToolsEcosystem
+      category = Talk.Category.ToolsEcosystem,
+      day = ConfDay.Thursday,
+      start = Time(15, 40),
+      room = Room.One
     ),
     Talk(
       title = "Types dépendants: de la théorie à la pratique",
@@ -175,7 +215,10 @@ object TalksInfo:
            |Nous aborderons: le type fonctionnel dépendant, la paire dépendante, le type somme et si tout va bien l'égalité propositionnelle.
            |""".stripMargin,
       speakers = List(SpeakersInfo.didierPlaindoux),
-      category = Talk.Category.Algebra
+      category = Talk.Category.Algebra,
+      day = ConfDay.Thursday,
+      start = Time(14, 50),
+      room = Room.One
     ),
     Talk(
       title = "Utilisez l'intelligence artificielle dans vos programmes !",
@@ -186,7 +229,10 @@ object TalksInfo:
                |Une fois ceci fait, je souhaite montrer comment utiliser un modèle en utilisant la bibliothèque DJL, en utilisant pyTorch, et montrer l'implémentation des différentes briques.
                |""".stripMargin,
       speakers = List(SpeakersInfo.francoisLaroche),
-      category = Talk.Category.AI
+      category = Talk.Category.AI,
+      day = ConfDay.Thursday,
+      start = Time(16, 40),
+      room = Room.One
     ),
     Talk(
       title = "My first year in Scala",
@@ -200,7 +246,10 @@ object TalksInfo:
            |By the end of this talk, I hope that newcomers will feel less alone and more optimistic about diving into the exciting world of Scala, and that experienced developers will gain a better understanding of how to best support their juniors in their learning journey.
            |""".stripMargin,
       speakers = List(SpeakersInfo.monicaMcGuigan),
-      category = Talk.Category.Community
+      category = Talk.Category.Community,
+      day = ConfDay.Thursday,
+      start = Time(17, 30),
+      room = Room.One
     ),
     Talk(
       title = "To be announced",
@@ -208,7 +257,10 @@ object TalksInfo:
       description = "To be announced",
       kind = Talk.Kind.Keynote,
       speakers = List(SpeakersInfo.xavierVdW),
-      category = Talk.Category.Algebra
+      category = Talk.Category.Algebra,
+      day = ConfDay.Thursday,
+      start = Time(9, 30),
+      room = Room.One
     ),
     Talk(
       title = "To be announced",
@@ -216,7 +268,10 @@ object TalksInfo:
       description = "To be announced",
       kind = Talk.Kind.Lightning,
       speakers = List(SpeakersInfo.olyaMazhara),
-      category = Talk.Category.Community
+      category = Talk.Category.Community,
+      day = ConfDay.Friday,
+      start = Time(16, 40),
+      room = Room.One
     ),
     Talk(
       title = "To be announced",
@@ -224,7 +279,10 @@ object TalksInfo:
       description = "To be announced",
       kind = Talk.Kind.Keynote,
       speakers = List(SpeakersInfo.adamWarski),
-      category = Talk.Category.Effects
+      category = Talk.Category.Effects,
+      day = ConfDay.Friday,
+      start = Time(17, 0),
+      room = Room.One
     ),
     Talk(
       title = "When all the nails are trees, the hammer you need probably looks like a chainsaw",
@@ -240,7 +298,10 @@ object TalksInfo:
            |""".stripMargin,
       speakers = List(SpeakersInfo.matthieuBaechler),
       category = Talk.Category.Algebra,
-      kind = Talk.Kind.Short
+      kind = Talk.Kind.Short,
+      day = ConfDay.Thursday,
+      start = Time(13, 30),
+      room = Room.One
     ),
     Talk(
       title = "To be announced",
@@ -248,6 +309,9 @@ object TalksInfo:
       description = "To be announced",
       speakers = List.empty,
       kind = Talk.Kind.Lightning,
-      category = Talk.Category.ToolsEcosystem
+      category = Talk.Category.ToolsEcosystem,
+      day = ConfDay.Thursday,
+      start = Time(18, 20),
+      room = Room.One
     )
   )

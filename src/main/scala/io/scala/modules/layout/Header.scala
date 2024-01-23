@@ -19,12 +19,11 @@ import org.scalajs.dom.window
 
 object Header {
   var burgerClicked = Var(false)
-  window.onclick = { _ =>
+  window.onclick = _ =>
     burgerClicked.update {
       case true  => false
       case false => false
     }
-  }
 
   lazy val render =
     screenVar.signal.map {
@@ -57,7 +56,7 @@ object Header {
     className := "header__sidenav"
   )
 
-  val logo = button (
+  val logo = button(
     className := "logo",
     Logo.apply(),
     Page.navigateTo(BasicPage.Index.toPageArg)
