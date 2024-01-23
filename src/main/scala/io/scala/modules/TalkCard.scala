@@ -14,7 +14,7 @@ object TalkKindTag:
     span(kind.toString, className := kind.toStyle)
 object TalkDescription:
   def apply(description: String) =
-    val desc = if (description.length() <= 200) description else description.substring(0, 200) + "..."
+    val desc = if (description.length() <= 150) description else description.substring(0, 150) + "..."
     p(desc)
 
 object TalkCard:

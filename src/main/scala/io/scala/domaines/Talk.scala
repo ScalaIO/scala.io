@@ -31,10 +31,7 @@ enum Room extends TalkInfo[Room]:
   def render = "Room " + this.ordinal
 
 case class Time(h: Int, m: Int) {
-  def +(minutes: Int): Time =
-    val ending = m + minutes
-    if ending >= 60 then Time(h + 1, ending - 60)
-    else Time(h, ending)
+  val toHour = h + m / 60.0
   def render(tag: HtmlTag[dom.html.Element] = div) = tag(
     span(
       f"$h%02d",
@@ -134,12 +131,16 @@ case class Break(
 ) extends Event
     with Durable:
   def duration: Int = kind.duration
-  def render        = div(className := "blank-card", kind.toIcon, kind.toIcon)
+  def render        = div(className := s"blank-card ${kind.toStyle}", kind.toIcon, kind.toIcon)
 
 object Break:
   enum Kind:
     case Coffee, Large, Launch
 
+    def toStyle = this match
+      case Coffee => "break-coffee"
+      case Large  => "break-large"
+      case Launch => "break-launch"
     def toIcon = this match
       case Coffee => svgs.Coffee()
       case Large  => svgs.Chat()

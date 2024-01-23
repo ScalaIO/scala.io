@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    gap: 32px;
   }
 
   .timeslot {
@@ -23,8 +24,7 @@
     }
   
     .talk-card,
-    .blank-card,
-    .empty-card {
+    .blank-card {
       flex: 1;
       min-width: min(250px, 100%);
     }
@@ -97,6 +97,41 @@
 
 .schedule.large {
   @extend %schedule;
+
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+
+  .tab {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .times {
+    position: relative;
+
+    div {
+      position: absolute;
+    }
+  }
+
+  > div:nth-child(5) {
+    grid-column: span 2;
+    display: flex;
+  }
+
+  .content {
+    flex: 1;
+    position: relative;
+    margin: 16px 0;
+
+    .card {
+      position: absolute;
+      width: calc(100% - 32px);
+      > div {
+        height: 100%;
+      }
+    }
+  }
 
   width: min(100%, 1000px);
   margin: 0 auto;
