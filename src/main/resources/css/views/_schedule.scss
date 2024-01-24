@@ -9,6 +9,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
+    gap: 32px;
   }
 
   .timeslot {
@@ -23,8 +24,7 @@
     }
   
     .talk-card,
-    .blank-card,
-    .empty-card {
+    .blank-card {
       flex: 1;
       min-width: min(250px, 100%);
     }
@@ -76,6 +76,10 @@
     background-size: cover;
     background-position: center;
   }
+
+  .classy-button {
+    padding: 8px 16px;
+  }
 }
 
 .schedule.small {
@@ -98,7 +102,75 @@
 .schedule.large {
   @extend %schedule;
 
-  width: min(100%, 1000px);
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+
+  .tabs {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: 16px;
+  }
+
+  .times {
+    position: relative;
+
+    div {
+      position: absolute;
+    }
+  }
+
+  .times + div {
+    grid-column: span 2;
+    display: flex;
+  }
+
+  .content {
+    flex: 1;
+    position: relative;
+    margin: 16px 0;
+
+    .event {
+      position: absolute;
+      width: calc(100% - 32px);
+    }
+
+    .break > span {
+      display: flex;
+      align-items: center;
+    }
+
+    .break > span > span:first-child {
+      font-size: xx-large;
+      margin-right: 4px;
+    }
+
+    .break-coffee {
+      padding: 0;
+    }
+
+    .break-launch {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .presentation-talk,
+    .presentation-keynote {
+      .card-body p {
+        line-height: vars.$text-size-x-large;
+        text-align: justify;
+      }
+    }
+    .presentation-short,
+    .presentation-lightning {
+      .line, .card-body {
+        display: none;
+      }
+    }
+  }
+
+  width: min(100%, 1200px);
   margin: 0 auto;
 }
 

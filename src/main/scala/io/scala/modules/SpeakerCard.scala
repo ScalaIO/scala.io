@@ -23,16 +23,17 @@ object SpeakerCard {
       ),
       div(
         div(
-          talksBySpeaker(speaker).map: talk =>
-            span(
-              talk.kind.toString,
-              className := talk.kind.toStyle
-            )
-            div(
-              Social.render(speaker.socials),
-              className := "speaker-socials"
-            )
-          ,
+          talksBySpeaker(speaker).flatMap: talk =>
+            Array(
+              span(
+                talk.kind.toString,
+                className := talk.kind.toStyle
+              ),
+              div(
+                Social.render(speaker.socials),
+                className := "speaker-socials"
+              )
+            ),
           className := "card-subtitle"
         ),
         h2(

@@ -182,11 +182,11 @@ object ScheduleInfo {
       start = Time(18, 35),
       kind = Special.Kind.End
     ),
-    Special(
-      day = ConfDay.Thursday,
-      start = Time(19, 30),
-      kind = Special.Kind.CommunityParty
-    ),
+    // Special(
+    //   day = ConfDay.Thursday,
+    //   start = Time(19, 30),
+    //   kind = Special.Kind.CommunityParty
+    // ),
     Break(
       day = ConfDay.Friday,
       start = Time(9, 45),
@@ -239,8 +239,9 @@ object ScheduleInfo {
     )
   )
 
-  val minStart      = Time(9, 0)
-  val maxStart      = Time(18, 20)
+  val minStart           = Time(9, 0)
+  val maxEnd             = Time(19, 0)
+  val pxByHour           = 550
   lazy val blankSchedule = blankTalks ++ breaks
   lazy val schedule      = allTalks ++ breaks
 }
