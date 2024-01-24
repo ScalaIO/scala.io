@@ -146,7 +146,7 @@ object ScheduleInfo {
     Break(
       day = ConfDay.Thursday,
       start = Time(12, 30),
-      kind = Break.Kind.Launch
+      kind = Break.Kind.Lunch
     ),
     Break(
       day = ConfDay.Thursday,
@@ -206,7 +206,7 @@ object ScheduleInfo {
     Break(
       day = ConfDay.Friday,
       start = Time(12, 30),
-      kind = Break.Kind.Launch
+      kind = Break.Kind.Lunch
     ),
     Break(
       day = ConfDay.Friday,

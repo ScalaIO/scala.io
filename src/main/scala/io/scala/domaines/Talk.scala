@@ -136,20 +136,20 @@ case class Break(
 
 object Break:
   enum Kind:
-    case Coffee, Large, Launch
+    case Coffee, Large, Lunch
 
     def toStyle = this match
       case Coffee => "break-coffee"
       case Large  => "break-large"
-      case Launch => "break-launch"
+      case Lunch => "break-lunch"
     def toIcon = this match
       case Coffee => svgs.Coffee()
       case Large  => svgs.Chat()
-      case Launch => svgs.Food()
+      case Lunch => svgs.Food()
     def duration = this match
       case Coffee => 5
       case Large  => 15
-      case Launch => 60
+      case Lunch => 60
   object Kind:
     val max: Int = Kind.values.map(_.duration).max
 

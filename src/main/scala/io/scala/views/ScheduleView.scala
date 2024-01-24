@@ -127,7 +127,7 @@ case object ScheduleView extends SimpleView {
         .getOrElse(Seq())
         .foldLeft(Queue.empty[Element]): (acc, event) =>
           event match
-            case b: Break                               => acc :+ span()
+            case b: Break if b.kind != Break.Kind.Lunch => acc :+ span()
             case e: Event if inserted.contains(e.start) => acc :+ span()
             case _ =>
               inserted.add(event.start)
