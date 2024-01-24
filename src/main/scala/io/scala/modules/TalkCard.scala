@@ -20,16 +20,17 @@ object TalkCard:
       div(
         h3(
           className := "card-title",
-          span(
-            talk.title,
-            TalkKindTag(talk.kind),
-            if talk.room != null then
-              span(
-                className := "room",
-                talk.room.render
-              )
-            else emptyNode
-          )
+          span(talk.title)
+        ),
+        div(
+          className := "card-subtitle",
+          TalkKindTag(talk.kind),
+          if talk.room != null then
+            span(
+              className := "room",
+              talk.room.render
+            )
+          else emptyNode
         )
       ),
       Line(margin = 4),

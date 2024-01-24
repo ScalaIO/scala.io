@@ -27,6 +27,12 @@ $card-padding: 16px;
     margin-top: -16px;
   }
 
+  .card-subtitle {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
   @include mixins.border-style(vars.$main-color, vars.$main-color-lighter);
 }
 
