@@ -80,6 +80,16 @@
   .classy-button {
     padding: 8px 16px;
   }
+
+  .break > span {
+    display: flex;
+    align-items: center;
+  }
+
+  .break > span > span:first-child {
+    font-size: xx-large;
+    margin-right: 4px;
+  }
 }
 
 .schedule.small {
@@ -136,16 +146,6 @@
       width: calc(100% - 32px);
     }
 
-    .break > span {
-      display: flex;
-      align-items: center;
-    }
-
-    .break > span > span:first-child {
-      font-size: xx-large;
-      margin-right: 4px;
-    }
-
     .break-coffee {
       padding: 0;
     }
@@ -162,7 +162,6 @@
         text-align: justify;
       }
     }
-    .presentation-short,
     .presentation-lightning {
       .line, .card-body {
         display: none;
