@@ -127,10 +127,11 @@ object Talk:
 case class Break(
     day: ConfDay,
     start: Time,
-    kind: Break.Kind
+    kind: Break.Kind,
+    overrideDuration: Option[Int] = None
 ) extends Event
     with Durable:
-  def duration: Int = kind.duration
+  def duration: Int = overrideDuration.getOrElse(kind.duration)
   def render        = div(className := s"blank-card break ${kind.toStyle}", kind.toIcon, span(span(duration), span("min")), kind.toIcon)
 
 object Break:

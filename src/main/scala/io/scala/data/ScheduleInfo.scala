@@ -135,7 +135,8 @@ object ScheduleInfo {
     Break(
       day = ConfDay.Thursday,
       start = Time(10, 30),
-      kind = Break.Kind.Large
+      kind = Break.Kind.Large,
+      overrideDuration = Some(20)
     ),
     Break(
       day = ConfDay.Thursday,
