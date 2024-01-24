@@ -131,7 +131,7 @@ case class Break(
 ) extends Event
     with Durable:
   def duration: Int = kind.duration
-  def render        = div(className := s"blank-card ${kind.toStyle}", kind.toIcon, kind.toIcon)
+  def render        = div(className := s"blank-card break ${kind.toStyle}", kind.toIcon, span(span(duration), span("min")), kind.toIcon)
 
 object Break:
   enum Kind:

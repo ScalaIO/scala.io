@@ -241,7 +241,7 @@ object ScheduleInfo {
 
   val minStart           = Time(9, 0)
   val maxEnd             = Time(19, 0)
-  val pxByHour           = 500
+  val pxByHour           = 550
   lazy val blankSchedule = blankTalks ++ breaks
   lazy val schedule      = allTalks ++ breaks
 }

@@ -83,37 +83,31 @@ case object ScheduleView extends SimpleView {
       )
     )
 
-  //? We suppose that the events are sorted by starting time
+  def computeTop(event: Event, count: Int, day: ConfDay) =
+    val base = (event.start.toHour - minStart.toHour) * pxByHour
+    if day == ConfDay.Thursday then base + (count + 2) * 32
+    else base + count * 32
+
+  // ? We suppose that the events are sorted by starting time
   def renderLarge(eventsByDay: Map[ConfDay, List[Event]]) =
-    val times    = eventsByDay.values.flatten.map(_.start).toSeq.distinct.sorted
-    val inserted = mutable.Set.empty[Time]
     div(
       className := "schedule large",
       div(),
-      ConfDay.values.map: day =>
-        div(
-          className := "tab",
-          h2(day.toString()),
-          Line(margin = 8, size = 3, kind = LineKind.Colored)
-        ),
       div(
-        className := "times",
-        ConfDay.values.flatMap: day =>
-          eventsByDay.get(day) match
-            case None => Seq()
-            case Some(events) =>
-              events
-                .foldLeft(Queue.empty[Element]): (acc, event) =>
-                  if inserted.contains(event.start) then acc
-                  else
-                    inserted.add(event.start)
-                    acc :+
-                      event.start
-                        .render()
-                        .amend(top := s"${(event.start.toHour - minStart.toHour) * pxByHour + acc.length * 32}px")
+        className := "tabs",
+        ConfDay.values.map: day =>
+          div(
+            className := "tab",
+            h2(day.toString()),
+            Line(margin = 8, size = 3, kind = LineKind.Colored)
+          ),
       ),
       div(
-        height := s"${(maxEnd.h - minStart.h) * (pxByHour+55)}px",
+        className := "times",
+        renderTimeline(eventsByDay)
+      ),
+      div(
+        height := s"${(maxEnd.h - minStart.h) * (pxByHour + 60)}px",
         ConfDay.values.map: day =>
           eventsByDay.get(day) match
             case None => div()
@@ -121,24 +115,38 @@ case object ScheduleView extends SimpleView {
               div(
                 className := "content",
                 events.foldLeft(Queue.empty[Div]): (acc, event) =>
-                  acc :+ placeCard(event, acc.length)
+                  acc :+ placeCard(event, acc.length, day)
               )
       )
     )
 
-  def placeCard(event: Event, index: Int): Div =
+  def renderTimeline(eventsByDay: Map[ConfDay, Seq[Event]]) =
+    val inserted = mutable.Set.empty[Time]
+    ConfDay.values.flatMap: day =>
+      eventsByDay.get(day) match
+        case None => Seq()
+        case Some(events) =>
+          events
+            .foldLeft(Queue.empty[Element]): (acc, event) =>
+              event match
+                case b: Break                        => acc :+ span()
+                case e if inserted.contains(e.start) => acc :+ span()
+                case _ =>
+                  inserted.add(event.start)
+                  acc :+
+                    event.start
+                      .render()
+                      .amend(top := s"${computeTop(event, acc.length, day)}px")
+
+  def placeCard(event: Event, index: Int, day: ConfDay): Div =
     val duration = event match
       case d: Durable => d.duration
       case _          => 15
     div(
       className := "card",
-      top       := s"${(event.start.toHour - minStart.toHour) * pxByHour + index * 32}px",
+      top       := s"${computeTop(event, index, day)}px",
       height    := s"${duration / 60.0 * pxByHour}px",
-      event.render.amend {
-        event match
-          case Break(_, _, Break.Kind.Coffee) => padding := "0"
-          case _                              => emptyNode
-      }
+      event.render
     )
 
   def renderSchedule(eventsByDay: Map[ConfDay, List[Event]]) =
