@@ -8,7 +8,7 @@ import io.scala.modules.elements.*
 import com.raquo.laminar.api.L.{*, given}
 
 case object TalkList extends SimpleView {
-  def bodyContent(talks: List[Talk]) = sectionTag(
+  private def bodyContent(talks: List[Talk]) = sectionTag(
     className := "container talks-list",
     Title("Talks"),
     Line(margin = 55),
@@ -30,13 +30,13 @@ case object TalkList extends SimpleView {
     )
   )
 
-  def body(withDraft: Boolean): HtmlElement =
+  override def body(withDraft: Boolean): HtmlElement =
     if withDraft then bodyContent(TalksInfo.allTalks)
     else bodyContent(TalksInfo.allTalks.filter(_.speakers.forall(_.confirmed)))
 
-  def title = "Talks"
+  override def title: String = "Talks"
 
-  def stickScroll =
+  private def stickScroll =
     div(
       className := "table-of-contents",
       idAttr    := "talks-cat-toc",
