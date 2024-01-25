@@ -65,7 +65,7 @@ case object TalkList extends SimpleView {
         sortedCategories.map: cat =>
           a(
             href := s"#${cat.slug}",
-            span(s"- ${cat.name}")
+            span(cat.name)
           )
       )
     )
