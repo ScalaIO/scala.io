@@ -39,7 +39,7 @@ case object IndexView extends GenericView {
       p("""The conference is organized by Scala supporters from the community,
           | and provides a great opportunity to meet with other enthusiasts and practitioners.""".stripMargin,
         "You can find the videos of the past editions (200+) on our ",
-        a(className := "basic-link", href := "https://www.youtube.com/@scalaio/videos", "youtube channel"),
+        a(className := "basic-link", href := "https://www.youtube.com/@scalaio/videos", "YouTube channel"),
         "."
       ),
       br(),
