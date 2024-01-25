@@ -13,7 +13,7 @@ import org.scalajs.dom.console
 import org.scalajs.dom.html.Anchor
 import org.scalajs.dom.svg.{Path, SVG}
 
-object PersonCard {
+object SpeakerCard {
   def apply(speaker: Speaker) =
     div(
       className := "speaker-card",
@@ -23,16 +23,17 @@ object PersonCard {
       ),
       div(
         div(
-          talksBySpeaker(speaker).map: talk =>
-            span(
-              talk.kind.toString,
-              className := talk.kind.toStyle
-            )
-            div(
-              Social.render(speaker.socials),
-              className := "speaker-socials"
-            )
-          ,
+          talksBySpeaker(speaker).flatMap: talk =>
+            Array(
+              span(
+                talk.kind.toString,
+                className := talk.kind.toStyle
+              ),
+              div(
+                Social.render(speaker.socials),
+                className := "speaker-socials"
+              )
+            ),
           className := "card-subtitle"
         ),
         h2(

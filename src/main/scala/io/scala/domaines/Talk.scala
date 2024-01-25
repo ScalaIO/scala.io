@@ -31,10 +31,7 @@ enum Room extends TalkInfo[Room]:
   def render = "Room " + this.ordinal
 
 case class Time(h: Int, m: Int) {
-  def +(minutes: Int): Time =
-    val ending = m + minutes
-    if ending >= 60 then Time(h + 1, ending - 60)
-    else Time(h, ending)
+  val toHour = h + m / 60.0
   def render(tag: HtmlTag[dom.html.Element] = div) = tag(
     span(
       f"$h%02d",
@@ -53,6 +50,7 @@ sealed trait Event:
   def day: ConfDay
   def start: Time
   def render: Div
+
 sealed trait Durable:
   def duration: Int
 case class Talk(
@@ -69,7 +67,7 @@ case class Talk(
     with Durable:
   lazy val renderDescription = description.split("\n").map(p(_))
   def duration: Int          = kind.duration
-  def render = TalkCard(this)
+  def render                 = TalkCard(this)
 
 object Talk:
   enum Kind:
@@ -94,7 +92,7 @@ object Talk:
       case Lightning => 15
 
   enum Category:
-    case Algebra,Effects , ToolsEcosystem,  Community, Cloud, Modeling, DataEng, AI
+    case Algebra, Effects, ToolsEcosystem, Community, Cloud, Modeling, DataEng, AI
 
     def slug: String = this match
       case Algebra        => "dash-of-algebra"
@@ -129,24 +127,29 @@ object Talk:
 case class Break(
     day: ConfDay,
     start: Time,
-    kind: Break.Kind
+    kind: Break.Kind,
+    overrideDuration: Option[Int] = None
 ) extends Event
     with Durable:
-  def duration: Int = kind.duration
-  def render = div(className := "blank-card", kind.toIcon, kind.toIcon)
+  def duration: Int = overrideDuration.getOrElse(kind.duration)
+  def render        = div(className := s"blank-card break ${kind.toStyle}", kind.toIcon, span(span(duration), span("min")), kind.toIcon)
 
 object Break:
   enum Kind:
-    case Coffee, Large, Launch
+    case Coffee, Large, Lunch
 
+    def toStyle = this match
+      case Coffee => "break-coffee"
+      case Large  => "break-large"
+      case Lunch => "break-lunch"
     def toIcon = this match
       case Coffee => svgs.Coffee()
       case Large  => svgs.Chat()
-      case Launch => svgs.Food()
+      case Lunch => svgs.Food()
     def duration = this match
       case Coffee => 5
       case Large  => 15
-      case Launch => 60
+      case Lunch => 60
   object Kind:
     val max: Int = Kind.values.map(_.duration).max
 

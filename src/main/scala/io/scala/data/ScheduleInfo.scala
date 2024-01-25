@@ -33,6 +33,7 @@ object ScheduleInfo {
       kind = kind,
       category = Category.Effects
     )
+
   val blankTalks = List(
     talk(
       ConfDay.Thursday,
@@ -134,7 +135,8 @@ object ScheduleInfo {
     Break(
       day = ConfDay.Thursday,
       start = Time(10, 30),
-      kind = Break.Kind.Large
+      kind = Break.Kind.Large,
+      overrideDuration = Some(20)
     ),
     Break(
       day = ConfDay.Thursday,
@@ -144,7 +146,7 @@ object ScheduleInfo {
     Break(
       day = ConfDay.Thursday,
       start = Time(12, 30),
-      kind = Break.Kind.Launch
+      kind = Break.Kind.Lunch
     ),
     Break(
       day = ConfDay.Thursday,
@@ -171,16 +173,21 @@ object ScheduleInfo {
       start = Time(17, 25),
       kind = Break.Kind.Coffee
     ),
-    Special(
+    Break(
       day = ConfDay.Thursday,
       start = Time(18, 15),
-      kind = Special.Kind.End
+      kind = Break.Kind.Coffee
     ),
     Special(
       day = ConfDay.Thursday,
-      start = Time(19, 30),
-      kind = Special.Kind.CommunityParty
+      start = Time(18, 35),
+      kind = Special.Kind.End
     ),
+    // Special(
+    //   day = ConfDay.Thursday,
+    //   start = Time(19, 30),
+    //   kind = Special.Kind.CommunityParty
+    // ),
     Break(
       day = ConfDay.Friday,
       start = Time(9, 45),
@@ -199,7 +206,7 @@ object ScheduleInfo {
     Break(
       day = ConfDay.Friday,
       start = Time(12, 30),
-      kind = Break.Kind.Launch
+      kind = Break.Kind.Lunch
     ),
     Break(
       day = ConfDay.Friday,
@@ -233,6 +240,9 @@ object ScheduleInfo {
     )
   )
 
+  val minStart           = Time(9, 0)
+  val maxEnd             = Time(19, 0)
+  val pxByHour           = 600
   lazy val blankSchedule = blankTalks ++ breaks
   lazy val schedule      = allTalks ++ breaks
 }

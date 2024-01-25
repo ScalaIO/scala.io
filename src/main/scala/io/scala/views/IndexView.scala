@@ -3,7 +3,7 @@ package io.scala.views
 import io.scala.Lexicon.Header.talks
 import io.scala.Page.*
 import io.scala.data.SpeakersInfo
-import io.scala.modules.PersonCard
+import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
 import io.scala.modules.layout.*
 import io.scala.svgs.Check
@@ -98,7 +98,7 @@ case object IndexView extends GenericView {
       ),
       div(
         className := "card-container",
-        speakers.map(PersonCard(_))
+        speakers.map(SpeakerCard(_))
       )
     )
 
@@ -124,17 +124,4 @@ case object IndexView extends GenericView {
       )
     )
   )
-
-  def stat(number: String, description: String): Div =
-    div(
-      className := "item",
-      div(
-        className := "stat-number",
-        number
-      ),
-      div(
-        className := "stat-text",
-        description
-      )
-    )
 }

@@ -2,14 +2,21 @@ package io.scala.views
 
 import io.scala.Lexicon
 import io.scala.data.ScheduleInfo
+import io.scala.data.ScheduleInfo.maxEnd
+import io.scala.data.ScheduleInfo.minStart
+import io.scala.data.ScheduleInfo.pxByHour
 import io.scala.data.TalksInfo
 import io.scala.domaines.*
+import io.scala.domaines.Break.Kind.max
 import io.scala.modules.*
 import io.scala.modules.elements.*
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
 
 import com.raquo.laminar.api.L.{*, given}
+import org.scalajs.dom.console
+import scala.collection.immutable.Queue
+import scala.collection.mutable
 
 case object ScheduleView extends SimpleView {
   val selectedDay: Var[ConfDay] = Var(ConfDay.Thursday)
@@ -41,63 +48,102 @@ case object ScheduleView extends SimpleView {
 
   def renderSmall(eventsByDay: Map[ConfDay, List[Event]]) =
     div(
-      className := "schedule",
+      className := "schedule small",
       div(
-        className := "tab",
+        className := "tabs",
         ConfDay.values.map { day =>
           div(
             button(
               onClick --> { _ => selectedDay.set(day) },
               h2(day.toString())
             ),
-            Line(margin = 24, size = 3, kind = LineKind.Colored).amend(display <-- selectedDay.signal.map { d =>
-              if d == day then "block"
+            Line(margin = 8, size = 3, kind = LineKind.Colored).amend(display <-- selectedDay.signal.map { d =>
+              if d == day then "flex"
               else "none"
             })
           )
         }
       ),
-      ConfDay.values.map { day =>
-        div(
-          className := "tab-content",
-          display <-- selectedDay.signal.map { d =>
-            if d == day then "block"
-            else "none"
-          },
-          children <-- selectedDay.signal.map {
-            case i if i == day =>
-              ScheduleDay(eventsByDay.get(day).getOrElse(Seq.empty)).body
-            case _ => Seq(emptyNode)
-          }
-        )
-      }
+      div(
+        ConfDay.values.map { day =>
+          div(
+            className := "content",
+            display <-- selectedDay.signal.map { d =>
+              if d == day then "flex"
+              else "none"
+            },
+            children <-- selectedDay.signal.map {
+              case i if i == day =>
+                ScheduleDay(eventsByDay.get(day).getOrElse(Seq.empty)).body
+              case _ => Seq(emptyNode)
+            }
+          )
+        }
+      )
     )
 
-  val spanVar: Var[HtmlElement] = Var(div())
+  def computeTop(event: Event, count: Int, day: ConfDay) =
+    val base = (event.start.toHour - minStart.toHour) * pxByHour
+    if day == ConfDay.Thursday then base + (count + 2) * 32
+    else base + count * 32
 
+  // ? We suppose that the events are sorted by starting time
   def renderLarge(eventsByDay: Map[ConfDay, List[Event]]) =
     div(
-      className := "schedule",
-      ConfDay.values.map { day =>
-        div(
-          className := "day",
+      className := "schedule large",
+      div(),
+      div(
+        className := "tabs",
+        ConfDay.values.map: day =>
           div(
             className := "tab",
-            div(
-              h2(day.toString()),
-              Line(margin = 24, size = 3, kind = LineKind.Colored)
-            )
+            h2(day.toString()),
+            Line(margin = 8, size = 3, kind = LineKind.Colored)
           ),
-          div(
-            className := "tab-content",
-            child <-- spanVar.signal.map {
-              case span if day.ordinal == 0 => span
-              case _                        => emptyNode
-            },
-            ScheduleDay(eventsByDay.get(day).getOrElse(Seq.empty)).body
-          )
-        )
-      }
+      ),
+      div(
+        className := "times",
+        renderTimeline(eventsByDay)
+      ),
+      div(
+        height := s"${(maxEnd.h - minStart.h) * (pxByHour + 60)}px",
+        ConfDay.values.map: day =>
+          eventsByDay.get(day) match
+            case None => div()
+            case Some(events) =>
+              div(
+                className := "content",
+                events.foldLeft(Queue.empty[Div]): (acc, event) =>
+                  acc :+ placeCard(event, acc.length, day)
+              )
+      )
+    )
+
+  def renderTimeline(eventsByDay: Map[ConfDay, Seq[Event]]) =
+    val inserted = mutable.Set.empty[Time]
+    ConfDay.values.flatMap: day => // ? Needed for each day to advance independently in the timeline
+      eventsByDay
+        .get(day)
+        .getOrElse(Seq())
+        .foldLeft(Queue.empty[Element]): (acc, event) =>
+          event match
+            case b: Break if b.kind != Break.Kind.Lunch => acc :+ span()
+            case e: Event if inserted.contains(e.start) => acc :+ span()
+            case _ =>
+              inserted.add(event.start)
+              acc :+
+                event.start
+                  .render()
+                  .amend(top := s"${computeTop(event, acc.length, day)}px")
+
+  def placeCard(event: Event, index: Int, day: ConfDay): Div =
+    val duration = event match
+      case d: Durable => d.duration
+      case _          => 15
+    event.render.amend(
+      className := "event",
+      top       := s"${computeTop(event, index, day)}px",
+      height    := s"${duration / 60.0 * pxByHour}px"
     )
 
   def renderSchedule(eventsByDay: Map[ConfDay, List[Event]]) =
@@ -106,14 +152,7 @@ case object ScheduleView extends SimpleView {
       case _              => renderSmall(eventsByDay)
     }
 
-  def bodyContent(talks: List[Talk]): HtmlElement =
-    val eventsByDay: Map[ConfDay, List[Event]] =
-      ScheduleInfo.blankSchedule
-        .collect {
-          case event if event.day != null => event
-        }
-        .groupBy { _.day }
-
+  def bodyContent(eventsByDay: Map[ConfDay, List[Event]]): HtmlElement =
     sectionTag(
       className := "container",
       Title("Schedule"),
@@ -128,13 +167,15 @@ case object ScheduleView extends SimpleView {
     )
 
   def body(withDraft: Boolean): HtmlElement =
-    if withDraft then bodyContent(TalksInfo.allTalks)
-    else
-      bodyContent {
-        TalksInfo.allTalks.filter { talk =>
-          talk.speakers.forall(_.confirmed)
-        }
-      }
+    val schedule =
+      if withDraft then ScheduleInfo.schedule
+      else ScheduleInfo.blankSchedule
+    val eventsByDay: Map[ConfDay, List[Event]] =
+      schedule
+        .filter(_.day != null)
+        .groupBy { _.day }
+        .map((k, v) => (k, v.sortBy(_.start)))
+    bodyContent(eventsByDay)
 
   override def title: String = "Schedule"
 }

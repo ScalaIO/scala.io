@@ -12,13 +12,6 @@ import org.scalajs.dom
 object TalkKindTag:
   def apply(kind: Talk.Kind) =
     span(kind.toString, className := kind.toStyle)
-object TalkDescription:
-  def apply(description: String) =
-    val desc = if (description.length() <= 200) description else description.substring(0, 200) + "..."
-    p(
-      desc,
-      className := "talk-description"
-    )
 
 object TalkCard:
   def apply(talk: Talk) =
@@ -26,8 +19,8 @@ object TalkCard:
       className := s"talk-card ${talk.kind.toStyle}",
       div(
         h3(
-          talk.title,
-          className := "card-title"
+          className := "card-title",
+          span(talk.title)
         ),
         div(
           className := "card-subtitle",
@@ -40,12 +33,12 @@ object TalkCard:
           else emptyNode
         )
       ),
-      Line(margin = 10),
+      Line(margin = 4),
       div(
         className := "card-body",
-        TalkDescription(talk.description)
+        p(talk.description)
       ),
-      Line(margin = 10),
+      Line(margin = 4),
       div(
         className := "card-footer",
         talk.speakers.map { speaker =>

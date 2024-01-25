@@ -5,7 +5,6 @@ $card-padding: 16px;
 
 .card-container {
   display: grid;
-  justify-items: center;
   gap: vars.$spacing-large;
   margin: vars.$spacing-small;
 }
@@ -50,7 +49,6 @@ $card-padding: 16px;
   }
 
   &:hover {
-    cursor: pointer;
     transform: translateY(-5px);
   }
 
@@ -90,10 +88,15 @@ span.presentation-keynote {
 }
 
 .card-title {
-  text-shadow: 4px 4px 3px rgba(0, 0, 0, 0.1);
-  margin-bottom: vars.$spacing-x-small;
-  font-weight: 700;
-  font-size: large;
+  span > span {
+    margin-left: vars.$spacing-small;
+  }
+  &:first-child {
+    text-shadow: 4px 4px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 4px;
+    font-weight: 700;
+    font-size: large;
+  }
 }
 
 .blank-card,
@@ -103,11 +106,7 @@ span.presentation-keynote {
   padding: $card-padding;
 
   @media screen and (min-width: vars.$mobile-width) {
-    min-width: 282px;
-  }
-
-  @media screen and (min-width: vars.$mobile-width) {
-    min-width: 282px;
+    min-width: min(282px, 100%);
   }
 }
 
@@ -115,7 +114,6 @@ span.presentation-keynote {
   @include mixins.border-style(vars.$text-color-light, vars.$text-color);
 
   height: vars.$spacing-xxx-huge;
-  width: 100%;
 
   > div {
     max-height: 100%;
@@ -129,6 +127,8 @@ span.presentation-keynote {
 .talk-card {
   @extend %card-action;
 
+  justify-content: space-between;
+
   .card-subtitle {
     span {
       padding: 4px;
@@ -137,6 +137,18 @@ span.presentation-keynote {
 
   .card-body {
     padding: 0px $card-padding;
+    max-height: 200px;
+    overflow-y: scroll;
+    &::-webkit-scrollbar {
+      width: 2px;
+    }
+    &::-webkit-scrollbar-track {
+      background-color: vars.$background-color; /* Color of the tracking area */
+    }
+    &::-webkit-scrollbar-thumb {
+      background-color: vars.$main-color;
+      border-radius: 4px; /* Rounded corners of the scrollbar thumb */
+    }
   }
 
   .card-footer {
@@ -145,11 +157,6 @@ span.presentation-keynote {
     justify-content: space-between;
     width: 100%;
     gap: vars.$spacing-small;
-  }
-
-  .talk-description {
-    display: flex;
-    flex-direction: column;
   }
 
   .room {
@@ -165,7 +172,7 @@ span.presentation-keynote {
     .speaker-photo {
       height: 48px;
       width: 48px;
-      border-radius: 24px;
+      border-radius: 18px;
       margin-right: 8px;
       object-fit: cover;
     }
@@ -241,6 +248,7 @@ span.presentation-keynote {
 .card-link {
   display: flex;
   justify-content: end;
+  align-items: center;
   margin-left: auto;
   svg {
     width: 16px;
@@ -251,23 +259,4 @@ span.presentation-keynote {
 .sponsor-card {
   @extend %card-base;
   @extend %card-action;
-}
-
-.talk {
-  > .card-container {
-    margin-bottom: 1rem;
-  }
-
-  @media screen and (min-width: vars.$desktop-width) {
-    .person,
-    .rainbow {
-      flex: 1 1 45%;
-    }
-  }
-  svg {
-    fill: vars.$main-color;
-    width: 24px;
-    vertical-align: top;
-    margin-right: 8px;
-  }
 }
