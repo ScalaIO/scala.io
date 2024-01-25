@@ -7,7 +7,7 @@ import io.scala.modules.elements.*
 
 import com.raquo.laminar.api.L.{*, given}
 
-case object TalksList extends SimpleView {
+case object TalkList extends SimpleView {
   def bodyContent(talks: List[Talk]) = sectionTag(
     className := "container talks-list",
     Title("Talks"),
