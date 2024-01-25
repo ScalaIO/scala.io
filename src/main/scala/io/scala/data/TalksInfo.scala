@@ -304,7 +304,7 @@ object TalksInfo:
       room = Room.One
     ),
     Talk(
-      title = "To be announced",
+      title = "Rex: Migration de Scala 2 à Scala 3",
       slug = "rex-migration-scala-2-to-scala-3",
       description = "To be announced",
       speakers = List.empty,
