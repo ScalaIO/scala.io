@@ -110,7 +110,7 @@ object Talk:
       case Community      => "Community"
       case ToolsEcosystem => "Tools & Ecosystems"
       case Effects        => "Concurrent programming"
-      case Modeling       => "Modeling / Domain Modeling"
+      case Modeling       => "Modeling"
       case Cloud          => "Cloud"
       case AI             => "Artificial Intelligence"
 
