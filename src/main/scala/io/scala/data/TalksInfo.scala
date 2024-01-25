@@ -36,7 +36,7 @@ object TalksInfo:
       speakers = List(SpeakersInfo.jimNewton, SpeakersInfo.uliFahrenberg),
       category = Talk.Category.Algebra,
       day = ConfDay.Thursday,
-      start = Time(15, 40),
+      start = Time(16, 40),
       room = Room.One
     ),
     Talk(
@@ -60,7 +60,7 @@ object TalksInfo:
       speakers = List(SpeakersInfo.anatoliiKmetiuk),
       category = Talk.Category.Community,
       day = ConfDay.Thursday,
-      start = Time(16, 40),
+      start = Time(15, 40),
       room = Room.One
     ),
     Talk(
