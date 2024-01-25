@@ -134,7 +134,8 @@ case class Break(
 ) extends Event
     with Durable:
   def duration: Int = overrideDuration.getOrElse(kind.duration)
-  def render        = div(className := s"blank-card break ${kind.toStyle}", kind.toIcon, span(span(duration), span("min")), kind.toIcon)
+  def render =
+    div(className := s"blank-card break ${kind.toStyle}", kind.toIcon, span(span(duration), span("min")), kind.toIcon)
 
 object Break:
   enum Kind:
@@ -143,15 +144,15 @@ object Break:
     def toStyle = this match
       case Coffee => "break-coffee"
       case Large  => "break-large"
-      case Lunch => "break-lunch"
+      case Lunch  => "break-lunch"
     def toIcon = this match
       case Coffee => svgs.Coffee()
       case Large  => svgs.Chat()
-      case Lunch => svgs.Food()
+      case Lunch  => svgs.Food()
     def duration = this match
       case Coffee => 5
       case Large  => 15
-      case Lunch => 60
+      case Lunch  => 60
   object Kind:
     val max: Int = Kind.values.map(_.duration).max
 
