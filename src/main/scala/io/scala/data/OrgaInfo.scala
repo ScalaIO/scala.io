@@ -5,7 +5,7 @@ import io.scala.domaines.Organizer
 import io.scala.domaines.Social
 
 object OrgaInfo:
-  val johnathanWinandy = Organizer(
+  val jonathanWinandy = Organizer(
     name = "Jonathan Winandy",
     photo = Some("jWinandy.webp"),
     job = "Data Engineering Manager @ Univalence",
@@ -57,7 +57,7 @@ object OrgaInfo:
     name = "Lucas Nouguier",
     photo = Some("lNouguier.webp"),
     job = "Student @ Polytech Montpellier",
-    misc = Some("Main website maintener"),
+    misc = Some("Main website maintainer"),
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/LucasNouguier"),
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/lucas-nouguier"),
@@ -86,4 +86,4 @@ object OrgaInfo:
     )
   )
 
-  val allOrga = List(johnathanWinandy, marcKarassev, francoisSarradin, quentinAdam, lucasNouguier, warisRadji, jbKaiser)
+  val allOrga = List(jonathanWinandy, marcKarassev, francoisSarradin, quentinAdam, lucasNouguier, warisRadji, jbKaiser)
