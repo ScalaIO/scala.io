@@ -33,7 +33,7 @@ enum BasicPage(val view: GenericView):
   }
 
   case Index    extends BasicPage(IndexView)
-  case Talks    extends BasicPage(TalksList)
+  case Talks    extends BasicPage(TalkList)
   case Sponsors extends BasicPage(SponsorsList)
   case Venue    extends BasicPage(VenueView)
   case Schedule extends BasicPage(ScheduleView)
