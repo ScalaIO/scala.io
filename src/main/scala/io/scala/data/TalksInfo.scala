@@ -36,7 +36,7 @@ object TalksInfo:
       speakers = List(SpeakersInfo.jimNewton, SpeakersInfo.uliFahrenberg),
       category = Talk.Category.Algebra,
       day = ConfDay.Thursday,
-      start = Time(10, 50),
+      start = Time(15, 40),
       room = Room.One
     ),
     Talk(
@@ -46,8 +46,8 @@ object TalksInfo:
         "Most organizations have data pipelines and those are growing by the minute. But working on data pipelines can be challenging and take / waste a lot of engineering time! The talk is about a state of the art platform used to build, run, evolve and operate data pipelines at Criteo: a project were Scala particularly shine. We will cover problem framing, core ideas and dive into our experience with SQL parsing, query planning and scheduling with quick introductions to the Scala libraries used. The talk is meant to be accessible to any junior developer and has food for though for tenured data engineers too.",
       speakers = List(SpeakersInfo.raphaelClaude),
       category = Talk.Category.DataEng,
-      day = ConfDay.Thursday,
-      start = Time(11, 40),
+      day = ConfDay.Friday,
+      start = Time(9, 50),
       room = Room.One
     ),
     Talk(
@@ -59,8 +59,8 @@ object TalksInfo:
         |Now, two years later, with the format fleshed out and the lessons learnt, I'd like to share our journey with you. After attending my talk, you'll learn how the format works, and how to start a similar Spree for your own project as well!""".stripMargin,
       speakers = List(SpeakersInfo.anatoliiKmetiuk),
       category = Talk.Category.Community,
-      day = ConfDay.Friday,
-      start = Time(9, 0),
+      day = ConfDay.Thursday,
+      start = Time(16, 40),
       room = Room.One
     ),
     Talk(
@@ -74,8 +74,8 @@ object TalksInfo:
          |""".stripMargin,
       speakers = List(SpeakersInfo.briceJaglin),
       category = Talk.Category.ToolsEcosystem,
-      day = ConfDay.Friday,
-      start = Time(9, 50),
+      day = ConfDay.Thursday,
+      start = Time(10, 50),
       room = Room.One
     ),
     Talk(
@@ -96,7 +96,7 @@ object TalksInfo:
       speakers = List(SpeakersInfo.johannaVauchel, SpeakersInfo.mehdiRebiai),
       category = Talk.Category.DataEng,
       day = ConfDay.Friday,
-      start = Time(10, 50),
+      start = Time(11, 40),
       room = Room.One
     ),
     Talk(
@@ -113,7 +113,7 @@ object TalksInfo:
          |""".stripMargin,
       speakers = List(SpeakersInfo.raphaelLemaitre, SpeakersInfo.valentinBergeron),
       category = Talk.Category.Modeling,
-      day = ConfDay.Friday,
+      day = ConfDay.Thursday,
       start = Time(11, 40),
       room = Room.One
     ),
@@ -131,7 +131,7 @@ object TalksInfo:
       speakers = List(SpeakersInfo.sophieCollard),
       category = Talk.Category.Modeling,
       day = ConfDay.Friday,
-      start = Time(14, 0),
+      start = Time(9, 0),
       room = Room.One
     ),
     Talk(
@@ -143,8 +143,8 @@ object TalksInfo:
       kind = Talk.Kind.Speech,
       speakers = List(SpeakersInfo.paulMatthew),
       category = Talk.Category.Modeling,
-      day = ConfDay.Friday,
-      start = Time(14, 50),
+      day = ConfDay.Thursday,
+      start = Time(14, 0),
       room = Room.One
     ),
     Talk(
@@ -155,7 +155,7 @@ object TalksInfo:
       speakers = List(SpeakersInfo.lukaszBialy),
       category = Talk.Category.Cloud,
       day = ConfDay.Friday,
-      start = Time(15, 40),
+      start = Time(10, 50),
       room = Room.One
     ),
     Talk(
@@ -170,10 +170,10 @@ object TalksInfo:
          |This talk will serve as an introduction to the Smithy IDL, and a demo of what is possible with Smithy4s
          |""".stripMargin,
       speakers = List(SpeakersInfo.olivierMelois),
-      kind = Talk.Kind.Short,
+      kind = Talk.Kind.Speech,
       category = Talk.Category.Cloud,
-      day = ConfDay.Friday,
-      start = Time(13, 30),
+      day = ConfDay.Thursday,
+      start = Time(14, 50),
       room = Room.One
     ),
     Talk(
@@ -183,8 +183,8 @@ object TalksInfo:
         "Since the beginning of the 21st century, the functional programming paradigm, whose root ideas are now almost 100 years old, has finally trickled down to the rest of the community, bringing more safety and clarity to the more mainstream languages: several languages adopted the idiom of lambda functions, the Java community gave birth to Scala, Clojure, and Kotlin, that all include a substantial amount of functional features; most modern languages embrace immutability by default and feature a form of algebraic data types as well as lazy and/or stateless data structures; etc. In more confidential contexts, the logic programming paradigm, although more obscure, managed to remain stable in a niche of specific use cases: inference and unification problems, rule-based reasoning, combinatorics, constraint programming, operational research, etc. In this talk, we will explore one of the areas where both of these unique yet powerful tools converge: using a logic programming language as a meta-language for a functional programming language. First, we will present its use for implementing a type-checker, then for proof transfer in the context of dependently-typed functional languages.",
       speakers = List(SpeakersInfo.enzoCrance),
       category = Talk.Category.Algebra,
-      day = ConfDay.Thursday,
-      start = Time(14, 0),
+      day = ConfDay.Friday,
+      start = Time(14, 50),
       room = Room.One
     ),
     Talk(
@@ -196,11 +196,11 @@ object TalksInfo:
            |
            |I will briefly introduce how certain features worked before (e.g. the now defunct scala.reflect.{api,runtime}) prior to showing the new approach(s), as well as why I chose to handle certain problems the way I did, notably when it came to reflection and macros.
            |""".stripMargin,
-      kind = Talk.Kind.Speech,
+      kind = Talk.Kind.Short,
       speakers = List(SpeakersInfo.anthonyCros),
       category = Talk.Category.ToolsEcosystem,
-      day = ConfDay.Thursday,
-      start = Time(15, 40),
+      day = ConfDay.Friday,
+      start = Time(13, 30),
       room = Room.One
     ),
     Talk(
@@ -216,8 +216,8 @@ object TalksInfo:
            |""".stripMargin,
       speakers = List(SpeakersInfo.didierPlaindoux),
       category = Talk.Category.Algebra,
-      day = ConfDay.Thursday,
-      start = Time(14, 50),
+      day = ConfDay.Friday,
+      start = Time(14, 0),
       room = Room.One
     ),
     Talk(
@@ -230,8 +230,8 @@ object TalksInfo:
                |""".stripMargin,
       speakers = List(SpeakersInfo.francoisLaroche),
       category = Talk.Category.AI,
-      day = ConfDay.Thursday,
-      start = Time(16, 40),
+      day = ConfDay.Friday,
+      start = Time(15, 40),
       room = Room.One
     ),
     Talk(
