@@ -4,17 +4,18 @@ package modules
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 import io.scala.svgs.GoTo
-
 import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.nodes.ReactiveHtmlElement
 import elements.Line
 import org.scalajs.dom
+import org.scalajs.dom.{HTMLDivElement, HTMLSpanElement}
 
 object TalkKindTag:
-  def apply(kind: Talk.Kind) =
+  def apply(kind: Talk.Kind): ReactiveHtmlElement[HTMLSpanElement] =
     span(kind.toString, className := kind.toStyle)
 
 object TalkCard:
-  def apply(talk: Talk) =
+  def apply(talk: Talk): ReactiveHtmlElement[HTMLDivElement] =
     div(
       className := s"talk-card ${talk.kind.toStyle}",
       div(
