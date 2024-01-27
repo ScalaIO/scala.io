@@ -3,12 +3,11 @@ package io.scala.domaines
 import io.scala.modules.TalkCard
 import io.scala.svgs
 import io.scala.svgs.Logo
-
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import com.raquo.laminar.tags.HtmlTag
 import org.scalajs.dom
-import org.scalajs.dom.HTMLDivElement
+import org.scalajs.dom.{HTMLDivElement, HTMLParagraphElement}
 
 sealed trait TalkInfo[A <: TalkInfo[A]]:
   def ordinal: Int
@@ -66,7 +65,7 @@ case class Talk(
     category: Talk.Category
 ) extends Event
     with Durable:
-  lazy val renderDescription = description.split("\n").map(p(_))
+  lazy val renderDescription: Array[ReactiveHtmlElement[HTMLParagraphElement]] = description.split("\n").map(p(_))
   def duration: Int          = kind.duration
   def render                 = TalkCard(this)
   def isKeynote: Boolean     = kind == Talk.Kind.Keynote
