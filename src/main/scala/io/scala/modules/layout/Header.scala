@@ -58,6 +58,7 @@ object Header {
 
   val logo = button(
     className := "logo",
+    nameAttr := "home page",
     Logo.apply(),
     Page.navigateTo(BasicPage.Index.toPageArg)
   )
@@ -94,7 +95,8 @@ object Header {
       button(
         Burger(),
         onClick.stopImmediatePropagation.mapTo(!burgerClicked.now()) --> burgerClicked,
-        className := "header__burger"
+        className := "header__burger",
+        nameAttr := "menu"
       ),
       div(
         child <-- burgerClicked.signal.map {

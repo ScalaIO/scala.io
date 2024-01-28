@@ -9,7 +9,7 @@ object SponsorLogo {
     a(
       img(
         src       := sponsor.photoPath,
-        alt       := sponsor.name,
+        alt       := s"${sponsor.name} logo",
         className := s"sponsor-logo-${sponsor.rank.css}"
       ),
       href   := sponsor.website,

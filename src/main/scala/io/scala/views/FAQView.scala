@@ -85,21 +85,24 @@ object FAQView extends SimpleView {
           href     := "https://www.scala-js.org",
           nameAttr := "Scala.js",
           img(
-            src := "logos/scalajs.svg"
+            src := "logos/scalajs.svg",
+            alt := "Scala.js logo"
           )
         ),
         a(
           href     := "https://laminar.dev",
           nameAttr := "Laminar",
           img(
-            src := "logos/laminar.webp"
+            src := "logos/laminar.webp",
+            alt := "Laminar logo"
           )
         ),
         a(
           href     := "https://www.clever-cloud.com",
           nameAttr := "Clever Cloud",
           img(
-            src := "logos/clever.svg"
+            src := "logos/clever.svg",
+            alt := "Clever Cloud logo"
           )
         ),
         a(
@@ -133,7 +136,8 @@ object FAQView extends SimpleView {
         className := "orga",
         img(
           className := "photo",
-          src       := org.photoPath
+          src       := org.photoPath,
+          alt       := s"${org.name}'s profile picture"
         ),
         div(
           p(org.name),
