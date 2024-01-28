@@ -57,6 +57,12 @@ jobs:
           ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
       - run: echo "💡 The ${{ github.repository }} repository has been cloned to the runner."
+      - name: install clever-tools
+        run: npm install -g clever-tools
+      - name: Create app and add domain
+        run: |
+          clever create --type node ${{ env.APP_NAME }}-${BRANCH_NAME} --alias ${{ env.APP_NAME }}-${BRANCH_NAME} --region par --org ${{secrets.ORGA_ID}}
+          clever domain add ${{ env.APP_NAME }}-${BRANCH_NAME}.cleverapps.io
       - uses: coursier/setup-action@v1.3.4
         with:
           jvm: adoptium:1.17.0.7
@@ -74,12 +80,6 @@ jobs:
           git add .
           git commit -m "chore: forward changed to preview"
       - run: echo "🍏 This job's status is ${{ job.status }}."
-      - name: install clever-tools
-        run: npm install -g clever-tools
-      - name: Create app and add domain
-        run: |
-          clever create --type node ${{ env.APP_NAME }}-${BRANCH_NAME} --alias ${{ env.APP_NAME }}-${BRANCH_NAME} --region par --org ${{secrets.ORGA_ID}}
-          clever domain add ${{ env.APP_NAME }}-${BRANCH_NAME}.cleverapps.io
       - name: Deploy
         run: clever deploy
       # Post your domain in PR's discussion
