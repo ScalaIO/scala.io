@@ -17,8 +17,7 @@ lazy val root = project
       "com.raquo"                               %%% "waypoint"             % Dependencies.waypoint,
       "com.lihaoyi"                             %%% "upickle"              % Dependencies.upickle,
       "org.scala-js"                            %%% "scalajs-dom"          % "2.4.0",
-      "com.github.fdietze.scala-js-fontawesome" %%% "scala-js-fontawesome" % "a412650e7f",
-      "org.foundweekends"                       %%% "knockoff"             % "0.9.0"
+      "com.github.fdietze.scala-js-fontawesome" %%% "scala-js-fontawesome" % "a412650e7f"
     ),
     scalaJSUseMainModuleInitializer := true,
     scalaJSLinkerConfig ~= {
