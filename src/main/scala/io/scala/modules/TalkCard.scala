@@ -47,7 +47,8 @@ object TalkCard:
             className := "talk-speaker",
             img(
               src       := speaker.photoPath,
-              className := "speaker-photo"
+              className := "speaker-photo",
+              alt       := s"${speaker.name}'s profile picture"
             ),
             div(
               p(

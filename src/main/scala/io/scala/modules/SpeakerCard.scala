@@ -19,7 +19,8 @@ object SpeakerCard {
       className := "speaker-card",
       img(
         src       := speaker.photoPath,
-        className := "speaker-photo"
+        className := "speaker-photo",
+        alt       := s"${speaker.name}'s profile picture"
       ),
       div(
         div(

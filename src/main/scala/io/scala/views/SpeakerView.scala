@@ -7,34 +7,35 @@ import io.scala.svgs.Suitcase
 import io.scala.domaines.{Speaker, Social}
 import io.scala.profilePlaceholder
 
-class SpeakerView(person: Speaker):
+class SpeakerView(speaker: Speaker):
   def body: HtmlElement =
     div(
       className := "person",
-      Title.small(person.name),
+      Title.small(speaker.name),
       div(
         className := "speaker-data",
         img(
-          src       := person.photoPath,
-          className := "speaker-photo"
+          src       := speaker.photoPath,
+          className := "speaker-photo",
+          alt       := s"${speaker.name}'s profile picture"
         ),
         div(
           className := "paragraph",
           div(
             div(
               Suitcase(),
-              person.job
+              speaker.job
             ),
             div(
               AtSign(),
-              person.company
+              speaker.company
             )
           ),
           h2("Who am I"),
-          person.renderDescription,
+          speaker.renderDescription,
           div(
             className := "socials",
-            Social.renderWithAccount(person.socials)
+            Social.renderWithAccount(speaker.socials)
           )
         )
       )
