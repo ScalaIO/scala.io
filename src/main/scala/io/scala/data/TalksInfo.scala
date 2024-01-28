@@ -8,25 +8,11 @@ import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 import io.scala.domaines.Time
 
-import knockoff.ChunkParser
 import scala.collection.mutable.HashMap
 import java.nio.file.Files
 import java.nio.file.Path
 
 object TalksInfo:
-  // def md(slug: String) =
-  //   Files.readString:
-  //     Path.of(s"./src/main/scala/io/scala/data/md/$slug.md")
-  // val parser = new ChunkParser
-
-  // val text          = (parser.emptyLine.* ~> parser.textBlock <~ parser.emptyLine.*).+
-  // val headThenChunk = parser.header ~ text
-  // parser.parse(headThenChunk, md("Test")) match
-  //   case parser.Success(result, next) =>
-  //     result._1.content
-  //   case parser.Failure(msg, next) => msg
-  //   case parser.Error(msg, next)   => msg
-
   lazy val talksBySpeaker =
     allTalks
       .foldLeft(HashMap.empty[Speaker, Set[Talk]].withDefaultValue(Set.empty)): (acc, next) =>
