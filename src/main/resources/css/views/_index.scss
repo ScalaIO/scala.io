@@ -29,13 +29,8 @@
   }
 
   .title {
-    font-size: vars.$text-size-xxx-large;
-    line-height: vars.$text-size-xxx-large;
-    @include mixins.text-site(
-      vars.$desktop-width,
-      vars.$text-size-huge,
-      vars.$text-size-huge
-    );
+    font-size: vars.$text-size-huge;
+    line-height: vars.$text-size-huge;
     @include mixins.text-site(
       vars.$laptop-width,
       vars.$text-size-xxx-large,
