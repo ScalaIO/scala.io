@@ -1,13 +1,15 @@
 package io.scala.views
 
+import io.scala.Lexicon
+import io.scala.data.SponsorSInfo
+import io.scala.modules.elements.*
+
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import io.scala.Lexicon
-import io.scala.modules.elements.*
-import io.scala.data.SponsorSInfo
 
 case object SponsorsList extends SimpleView {
   val sponsorList: Div = div(
+    className := "container",
     SponsorSInfo.allSponsors
       .groupBy(_.rank)
       .toSeq
@@ -15,25 +17,26 @@ case object SponsorsList extends SimpleView {
       .flatMap { case (rank, sponsors) =>
         List(
           div(
+            className := "container sponsor-kind",
             h2(
-              s"${rank.title}",
-              className := "sponsor-kind__title"
+              className := "title",
+              s"${rank.title}"
             ),
             div(
-              sponsors.map(SponsorLogo(_)),
-              className := "card-container"
-            ),
-            className := "sponsor-kind"
+              className := s"card-container ${rank.css}",
+              sponsors.map: sponsor =>
+                SponsorLogo(sponsor).amend(
+                  styleAttr := s"grid-column: span ${sponsor.gridCol}; grid-row: span ${sponsor.gridRow}"
+                )
+            )
           ),
-          Line.separator(width = 75, height = 2)
+          Line.separator(width = 100, height = 2)
         )
       }
-      .dropRight(1),
-    className := "all-sponsors"
+      .dropRight(1)
   )
 
-
-  def body(withDraft:Boolean): HtmlElement = {
+  def body(withDraft: Boolean): HtmlElement = {
     sectionTag(
       className := "container",
       Title("Sponsors"),
@@ -44,7 +47,7 @@ case object SponsorsList extends SimpleView {
       div(
         a(
           ClassyButton(Lexicon.Sponsors.callToAction),
-          href := "mailto:contact@scala.io",
+          href   := "mailto:contact@scala.io",
           target := "_blank"
         ),
         // ClassyButton(
@@ -55,7 +58,6 @@ case object SponsorsList extends SimpleView {
       ),
       Line(margin = 55),
       sponsorList
-
     )
   }
 

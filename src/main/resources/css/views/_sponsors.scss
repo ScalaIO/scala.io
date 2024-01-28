@@ -5,47 +5,40 @@
   gap: vars.$spacing-x-small;
 }
 
-.all-sponsors {
-  display: flex;
-  flex-direction: column;
-  gap: vars.$spacing-x-large;
-}
-
 .sponsor-kind {
   display: flex;
   flex-direction: column;
   align-items: center;
-}
 
-.sponsor-kind__title {
-  font-size: vars.$text-size-x-large;
-}
+  .title {
+    font-size: vars.$text-size-x-large;
+  }
 
-.sponsor-kind__logos {
-  display: flex;
-  align-items: center;
-  justify-content: space-evenly;
-  flex-wrap: wrap;
-  gap: vars.$spacing-small;
+  > .card-container.partner {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+    gap: 32px;
+  }
 }
 
 %sponsor-logo {
   flex: 1;
 }
+
 .sponsor-logo-platinum {
   @extend %sponsor-logo;
-  height: 80px;
+  height: 100px;
   fill: vars.$text-color;
 }
 
 .sponsor-logo-gold {
   @extend %sponsor-logo;
-  height: 70px;
+  height: 80px;
 }
 
 .sponsor-logo-silver {
   @extend %sponsor-logo;
-  height: 50px;
+  height: 70px;
 }
 
 .sponsor-logo-partner {
@@ -55,10 +48,10 @@
 
 .sponsor-logo-community {
   @extend %sponsor-logo;
-  height: 40px;
+  height: 50px;
 }
 
 .sponsor-logo-love {
   @extend %sponsor-logo;
-  height: 30px;
+  height: 50px;
 }

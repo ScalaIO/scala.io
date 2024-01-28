@@ -1,2 +1,2 @@
 import './src/main/resources/css/output.css'
-import '@linkOutputDir/main.js'
+import 'scalajs:main.js'

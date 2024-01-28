@@ -2,13 +2,15 @@ package io.scala.data
 
 import io.scala.Lexicon.Footer.Newsletter.description
 import io.scala.data.SpeakersInfo.allSpeakers
+import io.scala.domaines.ConfDay
+import io.scala.domaines.Room
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
+import io.scala.domaines.Time
 
 import scala.collection.mutable.HashMap
-import io.scala.domaines.ConfDay
-import io.scala.domaines.Time
-import io.scala.domaines.Room
+import java.nio.file.Files
+import java.nio.file.Path
 
 object TalksInfo:
   lazy val talksBySpeaker =
@@ -254,7 +256,8 @@ object TalksInfo:
     Talk(
       title = "Une autre introduction aux GADTs",
       slug = "intro-to-gadts",
-      description = "Les GADTs et Scala, c'est une très longue histoire de “je t'aime, moi non plus”, et leur implémentation maladroite dans les précédentes versions de Scala est probablement dûe à la mécompréhension de la notion d'égalité de types locale. Dans cette présentation, je vais tâcher de donner des exemples un peu différents des habituels, qui tirent intelligemment partit des GADTs pour décrire des invariants statiquement vérifiés ! C'est cool les GADTs et ça vaut le coup d'en parler !",
+      description =
+        "Les GADTs et Scala, c'est une très longue histoire de “je t'aime, moi non plus”, et leur implémentation maladroite dans les précédentes versions de Scala est probablement dûe à la mécompréhension de la notion d'égalité de types locale. Dans cette présentation, je vais tâcher de donner des exemples un peu différents des habituels, qui tirent intelligemment partit des GADTs pour décrire des invariants statiquement vérifiés ! C'est cool les GADTs et ça vaut le coup d'en parler !",
       kind = Talk.Kind.Keynote,
       speakers = List(SpeakersInfo.xavierVdW),
       category = Talk.Category.Algebra,
