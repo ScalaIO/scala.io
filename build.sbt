@@ -26,7 +26,36 @@ lazy val root = project
         .withSourceMap(false)
     },
     publicFolderDev  := linkerOutputDirectory((Compile / fastLinkJS).value).getAbsolutePath,
-    publicFolderProd := linkerOutputDirectory((Compile / fullLinkJS).value).getAbsolutePath
+    publicFolderProd := linkerOutputDirectory((Compile / fullLinkJS).value).getAbsolutePath,
+    Compile / sourceGenerators += Def.task {
+      val file = (sourceManaged in Compile).value / "io" / "scala" / "data" / "MarkdownSource.scala"
+
+      val markdowns: Seq[File] = (Compile / resourceDirectory).value.listFiles().filter(_.getName.endsWith(".md")).toList
+
+      def lines(lines: String*) = lines.mkString("\n")
+      def slugify(name: String): String = name.toLowerCase().replace(" ", "-")
+
+      val content: String = lines(
+        "package io.scala.data",
+        "",
+        "object MarkdownSource {",
+        "  case class MarkdownSource(name:String, content:String)",
+        "",
+        lines(markdowns.map(file => {
+          val name: String = slugify(file.getName.replace(".md", ""))
+          val content: String = "\"" * 3 + IO.read(file) + "\"" * 3
+
+          s"""  val $name = MarkdownSource("$name", $content)"""
+        }) *),
+        "}"
+      )
+
+      if (!file.exists() || IO.read(file) != content) {
+        IO.write(file, content)
+      }
+
+      Seq(file)
+    }.taskValue
   )
 
 def linkerOutputDirectory(v: Attributed[org.scalajs.linker.interface.Report]): File = {
