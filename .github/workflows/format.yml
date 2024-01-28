@@ -1,0 +1,38 @@
+name: Format PR and add commit hash
+
+on:
+  pull_request:
+    types:
+      - synchronize
+      - opened
+      - reopened
+
+jobs:
+  format-and-commit:
+    runs-on: alpine-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - uses: coursier/setup-action@v1.3.4
+        with:
+          jvm: adoptium:1.17.0.7
+          apps: sbt
+
+      - name: Format code
+        run: |
+          make format
+
+      - name: Commit changes
+        run: |
+          git config --global user.email ${{ secrets.GIT_EMAIL }}
+          git config --global user.name ${{ secrets.GIT_NAME }}
+          git add .
+          git commit -m "Format code"
+
+      - name: Add commit hash to .git-blame-ignore-revs
+        run: |
+          echo "$(git rev-parse HEAD)" >> .git-blame-ignore-revs
+          git add .git-blame-ignore-revs
+          git commit -m "chore: format code"

@@ -32,7 +32,7 @@ env:
 
 jobs:
   slugify:
-    runs-on: ubuntu-latest
+    runs-on: alpine-latest
     outputs:
       branch_slug: ${{ steps.slugify.outputs.slug }}
     steps:
@@ -40,7 +40,7 @@ jobs:
         run: echo "slug=$(echo ${{ env.PR_NB }}-${{ env.BRANCH_NAME_RAW }} | sed 's/[^a-zA-Z0-9\-]/-/g')" >> "$GITHUB_OUTPUT"
   deploy:
     if: github.event.action == 'opened'|| github.event.action == 'reopened'
-    runs-on: ubuntu-latest
+    runs-on: alpine-latest
     needs: slugify
     permissions:
       issues: write
@@ -101,7 +101,7 @@ jobs:
   # Deploy review apps on new commits
   update:
     if: github.event.action == 'synchronize'
-    runs-on: ubuntu-latest
+    runs-on: alpine-latest
     needs: slugify
     permissions:
       issues: write
@@ -154,7 +154,7 @@ jobs:
 
   # Delete review app when the PR is closed (merged or not)
   delete:
-    runs-on: ubuntu-latest
+    runs-on: alpine-latest
     needs: slugify
     permissions:
       issues: write
