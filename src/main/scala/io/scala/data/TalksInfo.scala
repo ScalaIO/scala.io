@@ -2,15 +2,31 @@ package io.scala.data
 
 import io.scala.Lexicon.Footer.Newsletter.description
 import io.scala.data.SpeakersInfo.allSpeakers
+import io.scala.domaines.ConfDay
+import io.scala.domaines.Room
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
-
-import scala.collection.mutable.HashMap
-import io.scala.domaines.ConfDay
 import io.scala.domaines.Time
-import io.scala.domaines.Room
+
+import knockoff.ChunkParser
+import scala.collection.mutable.HashMap
+import java.nio.file.Files
+import java.nio.file.Path
 
 object TalksInfo:
+  // def md(slug: String) =
+  //   Files.readString:
+  //     Path.of(s"./src/main/scala/io/scala/data/md/$slug.md")
+  // val parser = new ChunkParser
+
+  // val text          = (parser.emptyLine.* ~> parser.textBlock <~ parser.emptyLine.*).+
+  // val headThenChunk = parser.header ~ text
+  // parser.parse(headThenChunk, md("Test")) match
+  //   case parser.Success(result, next) =>
+  //     result._1.content
+  //   case parser.Failure(msg, next) => msg
+  //   case parser.Error(msg, next)   => msg
+
   lazy val talksBySpeaker =
     allTalks
       .foldLeft(HashMap.empty[Speaker, Set[Talk]].withDefaultValue(Set.empty)): (acc, next) =>
@@ -254,7 +270,8 @@ object TalksInfo:
     Talk(
       title = "Une autre introduction aux GADTs",
       slug = "intro-to-gadts",
-      description = "Les GADTs et Scala, c'est une très longue histoire de “je t'aime, moi non plus”, et leur implémentation maladroite dans les précédentes versions de Scala est probablement dûe à la mécompréhension de la notion d'égalité de types locale. Dans cette présentation, je vais tâcher de donner des exemples un peu différents des habituels, qui tirent intelligemment partit des GADTs pour décrire des invariants statiquement vérifiés ! C'est cool les GADTs et ça vaut le coup d'en parler !",
+      description =
+        "Les GADTs et Scala, c'est une très longue histoire de “je t'aime, moi non plus”, et leur implémentation maladroite dans les précédentes versions de Scala est probablement dûe à la mécompréhension de la notion d'égalité de types locale. Dans cette présentation, je vais tâcher de donner des exemples un peu différents des habituels, qui tirent intelligemment partit des GADTs pour décrire des invariants statiquement vérifiés ! C'est cool les GADTs et ça vaut le coup d'en parler !",
       kind = Talk.Kind.Keynote,
       speakers = List(SpeakersInfo.xavierVdW),
       category = Talk.Category.Algebra,

@@ -2,7 +2,7 @@ package io.scala.data
 
 import io.scala.domaines.Sponsor
 
-object SponsorSInfo {
+object SponsorSInfo:
   val allSponsors = List(
     Sponsor(
       name = "Clever Cloud",
@@ -27,6 +27,19 @@ object SponsorSInfo {
       website = "https://www.numind.ai",
       photo = "numind.svg",
       rank = Sponsor.Rank.Gold
+    ),
+    Sponsor(
+      name = "PSUG",
+      website = "https://www.meetup.com/fr-FR/paris-scala-user-group-psug",
+      photo = "psug.webp",
+      rank = Sponsor.Rank.Partner,
+      gridRow = 3
+    ),
+    Sponsor(
+      name = "LambdaNantes",
+      website = "https://mobilizon.fr/@lambdanantes",
+      photo = "lambdaNantes.webp",
+      rank = Sponsor.Rank.Partner,
+      gridRow = 2
     )
   )
-}
