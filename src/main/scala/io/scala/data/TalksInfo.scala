@@ -8,11 +8,41 @@ import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 import io.scala.domaines.Time
 
-import scala.collection.mutable.HashMap
+import com.raquo.laminar.api.L.{*, given}
 import java.nio.file.Files
 import java.nio.file.Path
+import java.nio.file.Paths
+import knockoff.Chunk
+import knockoff.ChunkParser
+import knockoff.LinkDefinitionChunk
+import scala.collection.mutable.HashMap
 
 object TalksInfo:
+  val parser = new ChunkParser
+  import parser.{*, given}
+  val paragraph = (parser.textBlock ~ (parser.linkDefinition ~ parser.textBlock.?).?).+
+  val textBlock = (parser.emptyLine.* ~> paragraph <~ parser.emptyLine.*).+
+  val talk      = parser.phrase(parser.header ~ textBlock)
+
+  def parseTalk(md: String) =
+    val content = Files.readString(Paths.get(s"./src/main/resources/data/md/$md.md"))
+    parser.parse(talk, md) match
+      case parser.Success(result, next) =>
+        (
+          result._1.content,
+          result._2.map: par =>
+            p {
+              par.map {
+                case text ~ None                                     => text.content
+                case text ~ Some((link: LinkDefinitionChunk) ~ None) => text.content + a(href := link.url, link.title)
+                case text ~ Some((link: LinkDefinitionChunk) ~ Some(text2)) =>
+                  text.content + a(href := link.url, link.title) + text2.content
+                case _ => "Unexpected error"
+              }
+            }
+        )
+      case fail: parser.NoSuccess => (fail.msg, Nil)
+
   lazy val talksBySpeaker =
     allTalks
       .foldLeft(HashMap.empty[Speaker, Set[Talk]].withDefaultValue(Set.empty)): (acc, next) =>
@@ -26,15 +56,6 @@ object TalksInfo:
     Talk(
       title = "Chasing Arrows, in Categories containing Functors and Monads",
       slug = "chasing-arrows-functors-monads",
-      description =
-        """|At EPITA (www.epita.fr), we recently presented a course in Category Theory for Programmers (ct4p), where we presented Categories with a mathematical foundation. To make everything make sense, we culminated the course with a history of mapping functions in Lisp and other functional programming languages. Simple lists from programming languages of the 1980s have be generalized in two different, incompatible ways: 1) powerful list manipulation libraries, and 2) functors and monads.
-         |
-         |We used Scala as a vehicle to develop commutative diagrams for mapping functions and showed how flatMap makes the diagrams in a Kleisli category commute.
-         |
-         |This presentation was judged as illuminating for the mathematicians helping them understand the programming perspective, and also illuminating for the programmers helping them understand what monad are and how they relate to Category Theory.
-         |
-         |This ScalaIO talk will be a overview of the EPITA CT4P course, with emphasis on commutation diagrams and simple Scala programming. The talk will be accessible to intermediate programmers of Scala, Python, Lisp and other languages.
-         |""".stripMargin,
       speakers = List(SpeakersInfo.jimNewton, SpeakersInfo.uliFahrenberg),
       category = Talk.Category.Algebra,
       day = ConfDay.Thursday,
