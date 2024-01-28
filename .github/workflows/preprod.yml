@@ -7,7 +7,7 @@ on:
 jobs:
   deploy:
     name: Deploy the website in preproduction
-    runs-on: ubuntu-latest
+    runs-on: alpine-latest
     steps:
     - uses: actions/checkout@v3
       with:
