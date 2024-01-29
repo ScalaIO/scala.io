@@ -104,7 +104,6 @@ case object IndexView extends GenericView {
 
   lazy val hero: Div = div(
     className       := "hero",
-    backgroundImage := "url(../images/index-hero.webp)",
     div(
       className := "overlay",
       h2(className := "title", "Connecting Scala Enthusiasts!"),
