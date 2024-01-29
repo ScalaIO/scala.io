@@ -220,9 +220,9 @@ object SpeakersInfo:
   val didierPlaindoux = Speaker(
     name = "Didier Plaindoux",
     photo = Some("dPlaindoux.webp"),
-    description = "Talks about Java, Python, Swift, Kotlin and FP",
+    description = "I'm a compulsive designer of strong-typed functional, logical and object-oriented programming languages! The rest of the time, I'm a freelance software developer who works very hard to produce usable and used solutions.",
     job = "Senior Software Engineer",
-    company = "Akawan (Freelance)",
+    company = "Fungus (Freelance)",
     socials = List(
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/didier-plaindoux-912b3517"),
       Social(Social.Kind.Github, "https://github.com/d-plaindoux"),
