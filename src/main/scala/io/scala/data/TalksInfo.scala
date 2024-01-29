@@ -186,7 +186,7 @@ object TalksInfo:
       speakers = List(SpeakersInfo.enzoCrance),
       category = Talk.Category.Algebra,
       day = ConfDay.Friday,
-      start = Time(9, 00),
+      start = Time(9, 0),
       room = Room.One
     ),
     Talk(

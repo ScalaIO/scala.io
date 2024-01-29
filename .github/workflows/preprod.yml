@@ -9,7 +9,7 @@ jobs:
     name: Deploy the website in preproduction
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v3
+    - uses: actions/checkout@v4
       with:
         fetch-depth: 0
     - uses: coursier/setup-action@v1.3.4
