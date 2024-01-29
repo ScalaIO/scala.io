@@ -133,7 +133,7 @@ object TalksInfo:
       speakers = List(SpeakersInfo.sophieCollard),
       category = Talk.Category.Modeling,
       day = ConfDay.Friday,
-      start = Time(9, 0),
+      start = Time(14, 50),
       room = Room.One
     ),
     Talk(
@@ -186,7 +186,7 @@ object TalksInfo:
       speakers = List(SpeakersInfo.enzoCrance),
       category = Talk.Category.Algebra,
       day = ConfDay.Friday,
-      start = Time(14, 50),
+      start = Time(9, 00),
       room = Room.One
     ),
     Talk(
