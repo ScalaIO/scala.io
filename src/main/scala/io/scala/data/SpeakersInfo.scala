@@ -311,7 +311,7 @@ object SpeakersInfo:
     description =
       "I love programming languages (like OCaml, Elm, Elixir/Erlang, IO, Haskell and Scala), Types systems and Web programming.",
     job = "Software Engineer",
-    company = "", // TODO
+    company = "The Funkyworkers",
     socials = List(
       Social(Social.Kind.Twitter, "http://twitter.com/vdwxv"),
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/xavdw"),
