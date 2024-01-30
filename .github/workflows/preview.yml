@@ -62,6 +62,7 @@ jobs:
       - name: Create app and add domain
         run: |
           clever create --type node ${{ env.APP_NAME }}-${BRANCH_NAME} --alias ${{ env.APP_NAME }}-${BRANCH_NAME} --region par --org ${{secrets.ORGA_ID}}
+          clever scale --flavor pico
           clever domain add ${{ env.APP_NAME }}-${BRANCH_NAME}.cleverapps.io
       - uses: coursier/setup-action@v1.3.4
         with:
