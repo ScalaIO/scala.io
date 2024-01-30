@@ -43,7 +43,7 @@ object TalksInfo:
               .foldLeft((initialQueue, 0)):
                 case ((queue, start), next) =>
                   queue += span(text.substring(start, next.start))
-                  queue += a(href := next.group(2), next.group(1))
+                  queue += a(href := next.group(2), target := "_blank", next.group(1), aria.label := next.group(2))
                   (queue, next.end)
             withLinks._1.enqueue(span(text.substring(withLinks._2)))
       case fail: parser.NoSuccess =>
