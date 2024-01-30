@@ -27,8 +27,8 @@ object Social:
     case Github
     case Other
 
-  def render(socials: List[Social]) = socials.sorted.map: social =>
-    a(social.icon, href := social.url)
+  def render(socials: List[Social], owner: String) = socials.sorted.map: social =>
+    a(social.icon, href := social.url, aria.label := s"$owner's ${social.kind}")
 
   def renderWithAccount(socials: List[Social]) = socials.sorted.map:
     case social @ (Social(Kind.Twitter, _) | Social(Kind.Github, _)) =>

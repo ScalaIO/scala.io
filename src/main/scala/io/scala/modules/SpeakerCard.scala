@@ -31,7 +31,7 @@ object SpeakerCard {
                 className := talk.kind.toStyle
               ),
               div(
-                Social.render(speaker.socials),
+                Social.render(speaker.socials, speaker.name),
                 className := "speaker-socials"
               )
             ),

@@ -143,7 +143,7 @@ object FAQView extends SimpleView {
           p(org.name),
           p(org.job),
           org.misc.map(misc => p(misc)),
-          Social.render(org.socials)
+          Social.render(org.socials, org.name)
         )
       )
   )
