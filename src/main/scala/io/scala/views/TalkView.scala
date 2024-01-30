@@ -20,7 +20,7 @@ class TalkView(talk: Talk) extends SimpleView:
       div(
         marginBottom := "2rem",
         className := "paragraph talk-description",
-        talk.renderDescription._2
+        talk.renderDescription
       ),
       Title(if (talk.speakers.size > 1) "Speakers" else "Speaker"),
       div(

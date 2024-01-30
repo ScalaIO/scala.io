@@ -10,42 +10,43 @@ import io.scala.domaines.Talk
 import io.scala.domaines.Time
 
 import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.defs.tags.HtmlTags
+import com.raquo.laminar.nodes.ReactiveHtmlElement
 import java.nio.file.Files
 import java.nio.file.Path
 import java.nio.file.Paths
 import knockoff.Chunk
 import knockoff.ChunkParser
+import knockoff.HeaderChunk
 import knockoff.LinkDefinitionChunk
 import org.scalajs.dom.console
-import scala.collection.mutable.HashMap
+import scala.collection.mutable.{HashMap, Queue}
 
 object TalksInfo:
   val parser = new ChunkParser
   import parser.{*, given}
-  val paragraph = (parser.textBlock ~ (parser.linkDefinition ~ parser.textBlock.?).*).+
-  val textBlock = (parser.emptyLine.* ~> paragraph <~ parser.emptyLine.*).+
-  val talk      = parser.phrase(parser.header ~ textBlock)
+  val textBlock = parser.emptyLine.* ~> parser.textBlock <~ parser.emptyLine.*
+  val talk      = parser.phrase(parser.header ~ parser.emptyLine.? ~ (parser.atxHeader.? ~ textBlock).+)
+  val linkRegex = """\[([^\[\]]+)\]\s*\(([^\(\)]+)\)""".r
 
   def parseTalk(md: String) =
     parser.parse(talk, md) match
       case parser.Success(result, next) =>
-        (
-          result._1.content,
-          result._2.map: par =>
-            p {
-              par.flatMap {
-                case text ~ List() => List(text.content)
-                case text ~ others =>
-                  others.map:
-                    case (link: LinkDefinitionChunk) ~ None => text.content + a(href := link.url, link.title)
-                    case (link: LinkDefinitionChunk) ~ Some(text2) =>
-                      text.content + a(href := link.url, link.title) + text2.content
-                    case _ => "Unexpected error"
-              }
-            }
-        )
+        result._2.map: par =>
+          val text = par._2.content
+          val initialQueue: Queue[HtmlElement] =
+            Queue.from { par._1.map { case HeaderChunk(_, content) => h4(content) } }
+
+          val withLinks = linkRegex
+            .findAllMatchIn(text)
+            .foldLeft((initialQueue, 0)):
+              case ((queue, start), next) =>
+                queue += span(text.substring(start, next.start))
+                queue += a(href := next.group(2), next.group(1))
+                (queue, next.end)
+          withLinks._1.enqueue(span(text.substring(withLinks._2)))
       case fail: parser.NoSuccess =>
-        (fail.msg, Nil)
+        List(Queue(p("To be announced")))
 
   lazy val talksBySpeaker =
     allTalks

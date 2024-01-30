@@ -24,8 +24,9 @@ object ScheduleInfo {
     Talk(
       title = "Lorem ipsum dolor sit amet consectetur adipiscing elit",
       slug = "lorem-ipsum",
-      description =
-        "Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed vitae eros quis nisl aliquam aliquet. Sed vitae eros quis nisl aliquam aliquet. Sed vitae eros quis nisl aliquam aliquet. Sed vitae eros quis nisl aliquam aliquet.",
+      description = """# Lorem ipsum dolor sit amet consectetur adipiscing elit
+        
+        Lorem ipsum dolor sit amet consectetur adipiscing elit. Sed vitae eros quis nisl aliquam aliquet. Sed vitae eros quis nisl aliquam aliquet. Sed vitae eros quis nisl aliquam aliquet. Sed vitae eros quis nisl aliquam aliquet.""",
       speakers = List(speaker),
       day = day,
       room = Room.One,

@@ -60,7 +60,7 @@ sealed trait Durable:
 case class Talk(
     title: String = "",
     slug: String,
-    description: String = "",
+    description: String,
     kind: Talk.Kind = Kind.Speech,
     day: ConfDay | Null = null,
     room: Room | Null = null,
@@ -69,8 +69,7 @@ case class Talk(
     category: Talk.Category
 ) extends Event
     with Durable:
-  lazy val talkFromMd        = TalksInfo.parseTalk(description)
-  lazy val renderDescription = talkFromMd
+  lazy val renderDescription = TalksInfo.parseTalk(description).map(p(_))
 
   def duration: Int      = kind.duration
   def render             = TalkCard(this)

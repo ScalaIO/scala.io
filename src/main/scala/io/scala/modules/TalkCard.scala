@@ -21,7 +21,7 @@ object TalkCard:
       div(
         h3(
           className := "card-title",
-          span(talk.title)
+          talk.title
         ),
         div(
           className := "card-subtitle",
@@ -37,7 +37,7 @@ object TalkCard:
       Line(margin = 4),
       div(
         className := "card-body paragraph",
-        talk.renderDescription._2
+        talk.renderDescription
       ),
       Line(margin = 4),
       div(
