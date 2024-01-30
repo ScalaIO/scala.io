@@ -139,15 +139,10 @@ span.presentation-keynote {
     padding: 0px $card-padding;
     max-height: 200px;
     overflow-y: scroll;
+
     &::-webkit-scrollbar {
       width: 2px;
-    }
-    &::-webkit-scrollbar-track {
-      background-color: vars.$background-color; /* Color of the tracking area */
-    }
-    &::-webkit-scrollbar-thumb {
-      background-color: vars.$main-color;
-      border-radius: 4px; /* Rounded corners of the scrollbar thumb */
+      height: 2px;
     }
   }
 

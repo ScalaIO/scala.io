@@ -1,6 +1,7 @@
 package io.scala.data
 
 import io.scala.Lexicon.Footer.Newsletter.description
+import io.scala.data.MarkdownSource.*
 import io.scala.data.SpeakersInfo.allSpeakers
 import io.scala.domaines.ConfDay
 import io.scala.domaines.Room
@@ -8,11 +9,46 @@ import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 import io.scala.domaines.Time
 
-import scala.collection.mutable.HashMap
+import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.defs.tags.HtmlTags
+import com.raquo.laminar.nodes.ReactiveHtmlElement
 import java.nio.file.Files
 import java.nio.file.Path
+import java.nio.file.Paths
+import knockoff.Chunk
+import knockoff.ChunkParser
+import knockoff.HeaderChunk
+import knockoff.LinkDefinitionChunk
+import org.scalajs.dom.console
+import scala.collection.mutable.{HashMap, Queue}
 
 object TalksInfo:
+  val parser = new ChunkParser
+  import parser.{*, given}
+  val textBlock = parser.emptyLine.* ~> parser.textBlock <~ parser.emptyLine.*
+  val talk      = parser.phrase((parser.header ~ parser.emptyLine.?) ~> (parser.atxHeader.? ~ textBlock).+)
+  val linkRegex = """\[([^\[\]]+)\]\s*\(([^\(\)]+)\)""".r
+
+  def parseTalk(md: String) =
+    parser.parse(talk, md) match
+      case parser.Success(result, next) =>
+        result.map:
+          case header ~ textBlock =>
+            val initialQueue: Queue[HtmlElement] =
+              Queue.from { header.map { case HeaderChunk(_, content) => h4(content) } }
+              
+            val text = textBlock.content
+            val withLinks = linkRegex
+              .findAllMatchIn(text)
+              .foldLeft((initialQueue, 0)):
+                case ((queue, start), next) =>
+                  queue += span(text.substring(start, next.start))
+                  queue += a(href := next.group(2), target := "_blank", next.group(1), aria.label := next.group(2))
+                  (queue, next.end)
+            withLinks._1.enqueue(span(text.substring(withLinks._2)))
+      case fail: parser.NoSuccess =>
+        List(Queue(p("To be announced")))
+
   lazy val talksBySpeaker =
     allTalks
       .foldLeft(HashMap.empty[Speaker, Set[Talk]].withDefaultValue(Set.empty)): (acc, next) =>
@@ -26,15 +62,7 @@ object TalksInfo:
     Talk(
       title = "Chasing Arrows, in Categories containing Functors and Monads",
       slug = "chasing-arrows-functors-monads",
-      description =
-        """|At EPITA (www.epita.fr), we recently presented a course in Category Theory for Programmers (ct4p), where we presented Categories with a mathematical foundation. To make everything make sense, we culminated the course with a history of mapping functions in Lisp and other functional programming languages. Simple lists from programming languages of the 1980s have be generalized in two different, incompatible ways: 1) powerful list manipulation libraries, and 2) functors and monads.
-         |
-         |We used Scala as a vehicle to develop commutative diagrams for mapping functions and showed how flatMap makes the diagrams in a Kleisli category commute.
-         |
-         |This presentation was judged as illuminating for the mathematicians helping them understand the programming perspective, and also illuminating for the programmers helping them understand what monad are and how they relate to Category Theory.
-         |
-         |This ScalaIO talk will be a overview of the EPITA CT4P course, with emphasis on commutation diagrams and simple Scala programming. The talk will be accessible to intermediate programmers of Scala, Python, Lisp and other languages.
-         |""".stripMargin,
+      description = chasing_arrows_functors_monads,
       speakers = List(SpeakersInfo.jimNewton, SpeakersInfo.uliFahrenberg),
       category = Talk.Category.Algebra,
       day = ConfDay.Thursday,
@@ -44,8 +72,7 @@ object TalksInfo:
     Talk(
       title = "Data pipelines engineering made simple with Scala",
       slug = "data-pipelines-simple",
-      description =
-        "Most organizations have data pipelines and those are growing by the minute. But working on data pipelines can be challenging and take / waste a lot of engineering time! The talk is about a state of the art platform used to build, run, evolve and operate data pipelines at Criteo: a project were Scala particularly shine. We will cover problem framing, core ideas and dive into our experience with SQL parsing, query planning and scheduling with quick introductions to the Scala libraries used. The talk is meant to be accessible to any junior developer and has food for though for tenured data engineers too.",
+      description = data_pipepline,
       speakers = List(SpeakersInfo.raphaelClaude),
       category = Talk.Category.DataEng,
       day = ConfDay.Friday,
@@ -55,10 +82,7 @@ object TalksInfo:
     Talk(
       title = "Scala 3 Compiler Academy Journey",
       slug = "scala-3-compiler-academy-journey",
-      description = """
-        |Open Source is all about collaboration. In the Scala world, we have a lot of eager talent hungry to learn together. The best way to learn to program is by doing. On the other hand, the core Scala projects have an ample supply of maintenance tasks – bug fixing, minor feature implementation, and documentation. To match the demand with the supply, in the Summer of 2021, I initiated the project Scala 3 Compiler Academy. Organized by the Scala Center, the Academy aimed to provide an avenue for Scala engineers to start contributing to the Scala Compiler. The Academy was implemented online pair programming sessions and a YouTube channel where one could learn more about the compiler.
-
-        |Now, two years later, with the format fleshed out and the lessons learnt, I'd like to share our journey with you. After attending my talk, you'll learn how the format works, and how to start a similar Spree for your own project as well!""".stripMargin,
+      description = compiler_academy,
       speakers = List(SpeakersInfo.anatoliiKmetiuk),
       category = Talk.Category.Community,
       day = ConfDay.Thursday,
@@ -68,12 +92,7 @@ object TalksInfo:
     Talk(
       title = "Unleashing Scalafix potential with custom rules",
       slug = "unleashing-scalafix-potential",
-      description = """|Scalafix is a mature tool which was started nearly 8 years ago by Ólafur Páll Geirsson at the Scala Center, originally driven by the need to provide a smooth transition from Scala 2.x to Dotty (now known as Scala 3, which provides its own rewriting features).
-         |
-         |Beyond built-in rules execution to organize imports or remove unused code, Scalafix is very extensible thanks to its stable and beginner-friendly API to inspect Scala sources by traversing Scala Abstract Syntax Trees, raise linter errors and/or suggest rewrites to fix them. Like Scalafmt and the Metals language server, it heavily relies on the vibrant Scalameta ecosystem, allowing support of Scala 2.x and Scala 3.
-         |
-         |In this talk, we will demystify AST traversal and semantic information lookup to write custom rules and run them locally and/or on CI, through the sbt-scalafix plugin or via Scala Steward.
-         |""".stripMargin,
+      description = unleashing_scalafix,
       speakers = List(SpeakersInfo.briceJaglin),
       category = Talk.Category.ToolsEcosystem,
       day = ConfDay.Thursday,
@@ -83,18 +102,7 @@ object TalksInfo:
     Talk(
       title = "🌴 Youpi dansons la Kapoeira en testant nos Kafka streams 🕺 💃",
       slug = "kapoeira-with-kafka-streams",
-      description = """|Avec le monde de la Data en perpétuelle croissance, l'outil Open Source Apache Kafka est devenu incontournable grâce à ces capacités de collecte, de traitement temps réel, de stockage et d'analyse de données.
-         |
-         |Mais comment facilement tester toutes ces opérations dans un environnement d'intégration ? La solution Open Source Kapoeira tente de répondre à cette problématique.
-         |
-         |Sais-tu danser la Kapoeira ? 🎶 C'est du Cucumber 🥒 et du Kafka ! 🎬 🎺
-         |
-         |C'est à l'aide d'un langage simple et normalisé basé sur Gherkin, qu'un test automatisé Kapoeira pourra être co-écrit par un QA, un PO ou un DEV. Il pourra servir à la fois de spécification, de test d'acceptance et de test de transformation de données sur une vraie infrastructure Kafka.
-         |
-         |Burger Quiz 🍔 : venez découvrir Kapoeira à travers une démo live testant un Kafka Stream qui fabrique des hamburgers !
-         |
-         |Si vous êtes intéressés, nous serons ravis de récolter vos retours et vos contributions pour nous aider à améliorer cet outil.
-         |""".stripMargin,
+      description = kafka_streams,
       speakers = List(SpeakersInfo.johannaVauchel, SpeakersInfo.mehdiRebiai),
       category = Talk.Category.DataEng,
       day = ConfDay.Friday,
@@ -104,15 +112,7 @@ object TalksInfo:
     Talk(
       title = "Armored type safety with Iron",
       slug = "armored-type-safety-with-iron",
-      description =
-        """|When designing an application, we often ends up with domain specific types, that all behold constraints that we try to enforce as much as possible : an age is positive, a delivery date can't be in the past, etc. Modeling the data right is a part of the success of scala and functional programming in general, but it also brings either boilerplate (we have to do again and again validation), or rely purely on conventions.
-         |
-         |But there is hope. Meet the Iron library.
-         |
-         |Iron is, a type constraint library that allow us to have a safe, declarative and smarter model. It enable us to have a continuous stream of valid data from our API endpoints to the database, and removed a whole class of bugs. Using advanced features like opaque types, inlines and the new macro system, it offer a true 0 cost, 0 dependency library that don't hamper compile time.
-         |
-         |In this talk, we'll show first the different technique we can use to apply constraints is our domains. Then, we'll present Iron, its features, extensions, and integrations. We'll finish by showcasing a fully-integrated constraint-enforcing app.
-         |""".stripMargin,
+      description = armored_type_safety_iron,
       speakers = List(SpeakersInfo.raphaelLemaitre, SpeakersInfo.valentinBergeron),
       category = Talk.Category.Modeling,
       day = ConfDay.Thursday,
@@ -122,14 +122,7 @@ object TalksInfo:
     Talk(
       title = "Contravariance: intuition building from first principles",
       slug = "contravariance-intuition-building",
-      description = """|Contravariance throws many developers off the first time they run into it. This talk will equip the audience with an intuitive understanding of contravariance and the tools for working out from first principles whether a type parameter should be covariant or contravariant.
-         |
-         |The goal of this talk is to help the audience build an intuition for contravariance from first principles, instead of relying on memorised shortcuts such as “input type parameters tend to be contravariant and output type parameters covariant”.
-         |
-         |This talks is designed for beginner to intermediate Scala developers. Attendees need to be familiar with subtyping and typeclasses. An understanding of covariance would be beneficial but is not required as we'll cover it in the talk.
-         |
-         |We'll begin by working with an Animal type hierarchy and some PetRescue and PetClinic typeclasses. By working out what can be substituted for what, we'll begin building up intuition for covariance and contravariance. We'll then test this intuition by working through a second example involving JsonDecoder and JsonEncoder typeclasses.
-         |""".stripMargin,
+      description = contravariance,
       speakers = List(SpeakersInfo.sophieCollard),
       category = Talk.Category.Modeling,
       day = ConfDay.Friday,
@@ -139,9 +132,7 @@ object TalksInfo:
     Talk(
       title = "Songwriting in Scala - Creating a DSL for writing Music with ADT's",
       slug = "songwriting-in-scala-dsl-and-adt",
-      description =
-        """|Can you compose and produce music with Scala? Absolutely! And I'll show you how. As a longtime professional musician now re-purposed as a Scala developer, I have used functional programming fundamentals to model music and create some simple music web audio applications. The presentation will walk through how and why I made modelling decisions to represent musical properties and events, and I'll write and play a song from scratch in real time using a Domain Specific Language for Music. The talk is aimed at Scala and FP beginners and/or any fans of digital music creation and production and is designed as a fun and interactive introduction to ADT usage in modelling real life data. Topics covered: * How I have chosen to model musical elements and properties. * How Algebraic Data types have been used to create a simple idiomatic music DSL. * Live demonstration of arranging and playing a polyphonic arrangement with the DSL.
-         |""".stripMargin,
+      description = songwriting_music_adt,
       kind = Talk.Kind.Speech,
       speakers = List(SpeakersInfo.paulMatthew),
       category = Talk.Category.Modeling,
@@ -152,8 +143,7 @@ object TalksInfo:
     Talk(
       title = "Hands-on Besom: Infrastructure-as-Code with Scala",
       slug = "hands-on-besom-iac-with-scala",
-      description =
-        "In my talk I will briefly introduce Besom, a Pulumi SDK for Scala and then swiftly proceed to show - hands on - how to use it to declare cloud infrastructure and deploy your services in a simple yet safe and robust way. Besom is the first step in the new vision of programming with Scala where full products can be built using the same reliable, functional idioms. The talk will be interesting to any Scala developer who wants to upgrade her skills and capabilities in the area of cloud resource management and complete product engineering.",
+      description = hands_on_besom,
       speakers = List(SpeakersInfo.lukaszBialy),
       category = Talk.Category.Cloud,
       day = ConfDay.Friday,
@@ -163,14 +153,7 @@ object TalksInfo:
     Talk(
       title = "Introduction to Smithy/Smithy4s",
       slug = "introduction-to-smithy-smithy4s",
-      description = """|AWS (Amazon Web Services), one of the biggest cloud providers, provides hundreds of services, and offers SDKs in multiple languages to interact with these services. These public-facing services are backed by tens of thousands of services internal to the AWS platform. In order to streamline the development process of such a behemoth, AWS relies on code-generation.
-         |
-         |Smithy is the culmination of ~14 years of iterations in the field of code-generation. It is an elegant declarative language that enables defining data types, operations and services in a clear and concise manner. The unique aspect of Smithy is that protocol concerns (transport, serialisation) are abstracted away in an extensible annotation-based mechanism. This means that Smithy can be used to describe things like rest/json services, but an infinite amount of other things.
-         |
-         |Smithy4s is a Scala code-generator that feeds off Smithy files. It is unique in that it retains the protocol-agnostic nature of Smithy :the code-generator is not biased towards any protocol or serialisation mechanism. Users can generate Scala code from Smithy to get case classes and interfaces, that can be wired in runtime-interpreters in an opt-in fashion, to derive http services, or CLIs, or even pure-Scala AWS SDKs. Developers could provide support for specific protocols as third party libraries, without ever having to touch code-generation.
-         |
-         |This talk will serve as an introduction to the Smithy IDL, and a demo of what is possible with Smithy4s
-         |""".stripMargin,
+      description = intro_smithy4s,
       speakers = List(SpeakersInfo.olivierMelois),
       kind = Talk.Kind.Speech,
       category = Talk.Category.Cloud,
@@ -181,8 +164,7 @@ object TalksInfo:
     Talk(
       title = "Logic Meta-Programming for Functional Languages",
       slug = "logic-meta-programming-for-functional-languages",
-      description =
-        "Since the beginning of the 21st century, the functional programming paradigm, whose root ideas are now almost 100 years old, has finally trickled down to the rest of the community, bringing more safety and clarity to the more mainstream languages: several languages adopted the idiom of lambda functions, the Java community gave birth to Scala, Clojure, and Kotlin, that all include a substantial amount of functional features; most modern languages embrace immutability by default and feature a form of algebraic data types as well as lazy and/or stateless data structures; etc. In more confidential contexts, the logic programming paradigm, although more obscure, managed to remain stable in a niche of specific use cases: inference and unification problems, rule-based reasoning, combinatorics, constraint programming, operational research, etc. In this talk, we will explore one of the areas where both of these unique yet powerful tools converge: using a logic programming language as a meta-language for a functional programming language. First, we will present its use for implementing a type-checker, then for proof transfer in the context of dependently-typed functional languages.",
+      description = logic_meta_prog,
       speakers = List(SpeakersInfo.enzoCrance),
       category = Talk.Category.Algebra,
       day = ConfDay.Friday,
@@ -192,12 +174,7 @@ object TalksInfo:
     Talk(
       title = "Migrating Gallia to Scala 3: the good, the bad, and the very good.",
       slug = "migrating-gallia-to-scala-3",
-      description = """|Following my previous talk at Scala Days last year, two major pieces of feedback emerged for Gallia: one was the need for performance improvements (for another talk) and the other was migration to Scala 3. The strong demand for the latter surprised me as I did not expect the community to have adopted it so quickly, and so successfully. I therefore decided to tackle the migration first, albeit not without some hesitation and some serious apprehension.
-           |
-           |In this talk I will highlight my journey tackling this endeavor in concrete terms (where does one start?), lessons I've learned for other projects that will also need migration, and the positive/negative aspects of the overall process. As the title of the presentation suggests, I would rate my overall experience as quite positive. This was unexpected because while Scala 3 looked great on paper, this kind of migration can be an extremely frustrating experience irrespective of the context.
-           |
-           |I will briefly introduce how certain features worked before (e.g. the now defunct scala.reflect.{api,runtime}) prior to showing the new approach(s), as well as why I chose to handle certain problems the way I did, notably when it came to reflection and macros.
-           |""".stripMargin,
+      description = migrating_gallia_to_scala_3,
       kind = Talk.Kind.Speech,
       speakers = List(SpeakersInfo.anthonyCros),
       category = Talk.Category.ToolsEcosystem,
@@ -208,14 +185,7 @@ object TalksInfo:
     Talk(
       title = "Types dépendants: de la théorie à la pratique",
       slug = "dependent-types-from-theory-to-practice",
-      description = """|Quand on parle de types dépendants, une approche informelle est souvent faite en tentant d'initier les gens à travers des exemples plus ou moins simples. Le plus immédiat est bien évidemment le vecteur avec sa taille …
-           |
-           |Malheureusement, avec une telle approche nous n'abordons pas le sujet en profondeur et l'essence même de ce qu'est la dépendance de type nous passe au dessus de la tête.
-           |
-           |Durant cette présentation, nous allons sortir de notre zone de confort dès le départ en partant de la théorie pour aller vers la pratique. Partir de la théorie veut dire lecture de formalise pour mieux apprehender ce qu'est effectivement la dépendance de type !
-           |
-           |Nous aborderons: le type fonctionnel dépendant, la paire dépendante, le type somme et si tout va bien l'égalité propositionnelle.
-           |""".stripMargin,
+      description = dependant_types,
       speakers = List(SpeakersInfo.didierPlaindoux),
       category = Talk.Category.Algebra,
       day = ConfDay.Friday,
@@ -225,11 +195,7 @@ object TalksInfo:
     Talk(
       title = "Utilisez l'intelligence artificielle dans vos programmes !",
       slug = "use-ai-in-your-programs",
-      description =
-        """|Le but de ce talk est de donner une bonne compréhension de ce qu'il est possible de faire avec les modèles NLP, notamment ceux issus de BERT, qui peuvent être utilisés par des programmes sans avoir besoin de se connecter à des apis externes. L'idée est de présenter la chaîne de traitement, que ce soit en amont ou en aval de l'appel au modèle et l'utilisation du résultat.
-               |
-               |Une fois ceci fait, je souhaite montrer comment utiliser un modèle en utilisant la bibliothèque DJL, en utilisant pyTorch, et montrer l'implémentation des différentes briques.
-               |""".stripMargin,
+      description = use_ai_in_programs,
       speakers = List(SpeakersInfo.francoisLaroche),
       category = Talk.Category.AI,
       day = ConfDay.Friday,
@@ -239,14 +205,7 @@ object TalksInfo:
     Talk(
       title = "My first year in Scala",
       slug = "my-first-year-in-scala",
-      description = """|Navigating the world of Scala and functional programming as a beginner can feel daunting and intimidating. Over a year ago, I was thrown into learning Scala headfirst.
-           |
-           |Now, having come out on the other side, I want to share the lessons I learned with other beginners, as well as what I wish the senior developers I worked with knew. I started my Scala journey at a corporate bank after graduating with a degree in Physics. So, not only did I have to learn Scala from scratch, but I also had to apply these concepts to a domain I had no prior knowledge of. Initially, I experienced a lot of confusion and frustration, trying to navigate a new language, along with a new job and learning to work in a large team. Thankfully, my experienced Scala colleagues were always there to help me and answer the many, many questions I had.
-           |
-           |In this talk, I will cover three key concepts that emerged from reflecting on this past year of learning: 1. Making Mistakes 2. Helping Others to Help You 3. Finding Community
-           |
-           |By the end of this talk, I hope that newcomers will feel less alone and more optimistic about diving into the exciting world of Scala, and that experienced developers will gain a better understanding of how to best support their juniors in their learning journey.
-           |""".stripMargin,
+      description = first_year_scala,
       speakers = List(SpeakersInfo.monicaMcGuigan),
       category = Talk.Category.Community,
       day = ConfDay.Thursday,
@@ -256,8 +215,7 @@ object TalksInfo:
     Talk(
       title = "Une autre introduction aux GADTs",
       slug = "intro-to-gadts",
-      description =
-        "Les GADTs et Scala, c'est une très longue histoire de “je t'aime, moi non plus”, et leur implémentation maladroite dans les précédentes versions de Scala est probablement dûe à la mécompréhension de la notion d'égalité de types locale. Dans cette présentation, je vais tâcher de donner des exemples un peu différents des habituels, qui tirent intelligemment partit des GADTs pour décrire des invariants statiquement vérifiés ! C'est cool les GADTs et ça vaut le coup d'en parler !",
+      description = other_intro_gadts,
       kind = Talk.Kind.Keynote,
       speakers = List(SpeakersInfo.xavierVdW),
       category = Talk.Category.Algebra,
@@ -290,15 +248,7 @@ object TalksInfo:
     Talk(
       title = "When all the nails are trees, the hammer you need probably looks like a chainsaw",
       slug = "nails-are-tree-need-chainsaw",
-      description = """|For the last months, most of the problems I had to solve at work have been about trees.
-           |
-           |Initially, I tried to solve the problems the way other similar problems are solved in the codebase and it was painful.
-           |
-           |Then I looked for better tools and discovered Rose Trees : a very straightforward tree that comes with the operators you already know.
-           |
-           |In this talk, I will show you with some code and drawings what I learnt in
-           |the process and how it helped me solved my problems with less pain.
-           |""".stripMargin,
+      description = nails_trees_chainsaw,
       speakers = List(SpeakersInfo.matthieuBaechler),
       category = Talk.Category.Algebra,
       kind = Talk.Kind.Short,

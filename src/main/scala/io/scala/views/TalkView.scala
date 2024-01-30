@@ -19,8 +19,7 @@ class TalkView(talk: Talk) extends SimpleView:
       kindInfo,
       div(
         marginBottom := "2rem",
-        className := "paragraph",
-        className := "talk-description",
+        className := "paragraph talk-description",
         talk.renderDescription
       ),
       Title(if (talk.speakers.size > 1) "Speakers" else "Speaker"),
