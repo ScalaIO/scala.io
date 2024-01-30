@@ -26,25 +26,26 @@ object TalksInfo:
   val parser = new ChunkParser
   import parser.{*, given}
   val textBlock = parser.emptyLine.* ~> parser.textBlock <~ parser.emptyLine.*
-  val talk      = parser.phrase(parser.header ~ parser.emptyLine.? ~ (parser.atxHeader.? ~ textBlock).+)
+  val talk      = parser.phrase((parser.header ~ parser.emptyLine.?) ~> (parser.atxHeader.? ~ textBlock).+)
   val linkRegex = """\[([^\[\]]+)\]\s*\(([^\(\)]+)\)""".r
 
   def parseTalk(md: String) =
     parser.parse(talk, md) match
       case parser.Success(result, next) =>
-        result._2.map: par =>
-          val text = par._2.content
-          val initialQueue: Queue[HtmlElement] =
-            Queue.from { par._1.map { case HeaderChunk(_, content) => h4(content) } }
-
-          val withLinks = linkRegex
-            .findAllMatchIn(text)
-            .foldLeft((initialQueue, 0)):
-              case ((queue, start), next) =>
-                queue += span(text.substring(start, next.start))
-                queue += a(href := next.group(2), next.group(1))
-                (queue, next.end)
-          withLinks._1.enqueue(span(text.substring(withLinks._2)))
+        result.map:
+          case header ~ textBlock =>
+            val initialQueue: Queue[HtmlElement] =
+              Queue.from { header.map { case HeaderChunk(_, content) => h4(content) } }
+              
+            val text = textBlock.content
+            val withLinks = linkRegex
+              .findAllMatchIn(text)
+              .foldLeft((initialQueue, 0)):
+                case ((queue, start), next) =>
+                  queue += span(text.substring(start, next.start))
+                  queue += a(href := next.group(2), next.group(1))
+                  (queue, next.end)
+            withLinks._1.enqueue(span(text.substring(withLinks._2)))
       case fail: parser.NoSuccess =>
         List(Queue(p("To be announced")))
 
