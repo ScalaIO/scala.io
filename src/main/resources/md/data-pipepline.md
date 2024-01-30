@@ -1,0 +1,3 @@
+# Data pipelines engineering made simple with Scala
+
+Most organizations have data pipelines and those are growing by the minute. But working on data pipelines can be challenging and take / waste a lot of engineering time! The talk is about a state of the art platform used to build, run, evolve and operate data pipelines at Criteo: a project were Scala particularly shine. We will cover problem framing, core ideas and dive into our experience with SQL parsing, query planning and scheduling with quick introductions to the Scala libraries used. The talk is meant to be accessible to any junior developer and has food for though for tenured data engineers too.

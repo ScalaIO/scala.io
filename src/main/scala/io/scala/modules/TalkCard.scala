@@ -36,8 +36,8 @@ object TalkCard:
       ),
       Line(margin = 4),
       div(
-        className := "card-body",
-        p(talk.description)
+        className := "card-body paragraph",
+        talk.renderDescription._2
       ),
       Line(margin = 4),
       div(

@@ -11,13 +11,11 @@ lazy val root = project
   .in(file("."))
   .enablePlugins(ScalaJSPlugin)
   .settings(
-    resolvers += "jitpack" at "https://jitpack.io",
     libraryDependencies ++= Seq(
       "com.raquo"                               %%% "laminar"              % Dependencies.laminar,
       "com.raquo"                               %%% "waypoint"             % Dependencies.waypoint,
       "com.lihaoyi"                             %%% "upickle"              % Dependencies.upickle,
       "org.scala-js"                            %%% "scalajs-dom"          % "2.4.0",
-      "com.github.fdietze.scala-js-fontawesome" %%% "scala-js-fontawesome" % "a412650e7f",
       "org.foundweekends"                       %%% "knockoff"             % "0.9.0"
     ),
     scalaJSUseMainModuleInitializer := true,
@@ -29,24 +27,23 @@ lazy val root = project
     publicFolderDev  := linkerOutputDirectory((Compile / fastLinkJS).value).getAbsolutePath,
     publicFolderProd := linkerOutputDirectory((Compile / fullLinkJS).value).getAbsolutePath,
     Compile / sourceGenerators += Def.task {
-      val file = (sourceManaged in Compile).value / "io" / "scala" / "data" / "MarkdownSource.scala"
+      val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "MarkdownSource.scala"
 
-      val markdowns: Seq[File] = (Compile / resourceDirectory).value.listFiles().filter(_.getName.endsWith(".md")).toList
+      val markdowns: Seq[File] = ((Compile / resourceDirectory).value / "md").listFiles().filter(_.getName.endsWith(".md")).toList
 
       def lines(lines: String*) = lines.mkString("\n")
-      def slugify(name: String): String = name.toLowerCase().replace(" ", "-")
+      def slugify(name: String): String = name.toLowerCase().replace("-", "_")
 
       val content: String = lines(
         "package io.scala.data",
         "",
         "object MarkdownSource {",
-        "  case class MarkdownSource(name:String, content:String)",
         "",
         lines(markdowns.map(file => {
-          val name: String = slugify(file.getName.replace(".md", ""))
+          val name: String = slugify(file.getName.stripSuffix(".md"))
           val content: String = "\"" * 3 + IO.read(file) + "\"" * 3
 
-          s"""  val $name = MarkdownSource("$name", $content)"""
+          s"""  val $name = $content"""
         }) *),
         "}"
       )

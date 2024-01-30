@@ -1,15 +1,16 @@
 package io.scala.domaines
 
+import io.scala.data.TalksInfo
 import io.scala.modules.TalkCard
 import io.scala.svgs
 import io.scala.svgs.Logo
+
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import com.raquo.laminar.tags.HtmlTag
-import org.scalajs.dom
-import org.scalajs.dom.{HTMLDivElement}
-import io.scala.data.TalksInfo
 import java.nio.file.Path
+import org.scalajs.dom
+import org.scalajs.dom.HTMLDivElement
 
 sealed trait TalkInfo[A <: TalkInfo[A]]:
   def ordinal: Int
@@ -68,12 +69,12 @@ case class Talk(
     category: Talk.Category
 ) extends Event
     with Durable:
-  lazy val talkFromMd = TalksInfo.parseTalk(slug)
-  lazy val renderDescription = talkFromMd._2
+  lazy val talkFromMd        = TalksInfo.parseTalk(description)
+  lazy val renderDescription = talkFromMd
 
-  def duration: Int          = kind.duration
-  def render                 = TalkCard(this)
-  def isKeynote: Boolean     = kind == Talk.Kind.Keynote
+  def duration: Int      = kind.duration
+  def render             = TalkCard(this)
+  def isKeynote: Boolean = kind == Talk.Kind.Keynote
 
 object Talk:
   enum Kind:
