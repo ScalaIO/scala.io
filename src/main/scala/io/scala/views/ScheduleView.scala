@@ -18,7 +18,7 @@ import org.scalajs.dom.console
 import scala.collection.immutable.Queue
 import scala.collection.mutable
 
-case object ScheduleView extends SimpleView {
+case object ScheduleView extends SimpleViewWithDraft {
   val selectedDay: Var[ConfDay] = Var(ConfDay.Thursday)
 
   lazy val globalHours: Div =
@@ -176,6 +176,4 @@ case object ScheduleView extends SimpleView {
         .groupBy { _.day }
         .map((k, v) => (k, v.sortBy(_.start)))
     bodyContent(eventsByDay)
-
-  override def title: String = "Schedule"
 }

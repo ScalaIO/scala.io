@@ -1,6 +1,6 @@
-package io.scala.modules
+package io.scala
+package modules
 
-import io.scala.{Page, PageArg}
 import io.scala.data.TalksInfo.{allTalks, talksBySpeaker}
 import io.scala.domaines.{Social, Speaker, Talk}
 import io.scala.modules.elements.ClassyButton
@@ -31,7 +31,7 @@ object SpeakerCard {
                 className := talk.kind.toStyle
               ),
               div(
-                Social.render(speaker.socials),
+                Social.render(speaker.socials, speaker.name),
                 className := "speaker-socials"
               )
             ),
@@ -54,7 +54,7 @@ object SpeakerCard {
         className := "card-link classy-button classy-button-highlight",
         "See talk ", // ! Problem if >= 2 talks
         GoTo(),
-        Page.navigateTo(PageArg.Talk(talk.slug, false))
+        Page.navigateTo(TalkPage(talk.slug))
       )
     }
 }

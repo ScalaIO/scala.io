@@ -36,7 +36,7 @@ case object SponsorsList extends SimpleView {
       .dropRight(1)
   )
 
-  def body(withDraft: Boolean): HtmlElement = {
+  def body(): HtmlElement = {
     sectionTag(
       className := "container",
       Title("Sponsors"),
@@ -60,6 +60,4 @@ case object SponsorsList extends SimpleView {
       sponsorList
     )
   }
-
-  override def title: String = "Sponsors"
 }

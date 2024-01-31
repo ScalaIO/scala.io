@@ -51,7 +51,7 @@ object Footer {
   def social(icon: SvgElement, url: String, name: String) = a(
     icon,
     href := url,
-    nameAttr := name
+    aria.label := name
   )
 
   lazy val render: HtmlElement = footerTag(

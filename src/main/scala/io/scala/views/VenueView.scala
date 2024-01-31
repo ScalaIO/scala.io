@@ -7,7 +7,7 @@ import com.raquo.laminar.api.L.{*, given}
 
 object VenueView extends SimpleView {
 
-  def body(withDraft: Boolean): HtmlElement = sectionTag(
+  def body(): HtmlElement = sectionTag(
     className := "container venue",
     Title("Our Venue"),
     div(
@@ -196,6 +196,4 @@ object VenueView extends SimpleView {
       )
     )
   )
-
-  override def title: String = "Venue"
 }

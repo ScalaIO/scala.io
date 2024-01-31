@@ -36,21 +36,24 @@ case object IndexView extends GenericView {
            being curious about the language, usages.
 
           """),
-      p("""The conference is organized by Scala supporters from the community,
+      p(
+        """The conference is organized by Scala supporters from the community,
           | and provides a great opportunity to meet with other enthusiasts and practitioners.""".stripMargin,
         "You can find the videos of the past editions (200+) on our ",
         a(className := "basic-link", href := "https://www.youtube.com/@scalaio/videos", "YouTube channel"),
         "."
       ),
       br(),
-      p("This edition brings us together in Nantes for two days, with a single-session structure and a large community space. With a great venue, wonderful speakers, and a lot of surprises, we are looking forward to meeting you there!"),
+      p(
+        "This edition brings us together in Nantes for two days, with a single-session structure and a large community space. With a great venue, wonderful speakers, and a lot of surprises, we are looking forward to meeting you there!"
+      )
     ),
     div(
       className := "container",
       Title("Tickets"),
       div(
-        className := "tickets",
-        YurPlan()
+        className := "tickets"
+        // YurPlan()
         // div(
         //   className := "group-ticket",
         //   Ticket(),
@@ -103,8 +106,7 @@ case object IndexView extends GenericView {
     )
 
   lazy val hero: Div = div(
-    className       := "hero",
-    backgroundImage := "url(../images/index-hero.webp)",
+    className := "hero",
     div(
       className := "overlay",
       h2(className := "title", "Connecting Scala Enthusiasts!"),

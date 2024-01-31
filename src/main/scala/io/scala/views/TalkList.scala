@@ -7,7 +7,7 @@ import io.scala.modules.elements.*
 
 import com.raquo.laminar.api.L.{*, given}
 
-case object TalkList extends SimpleView {
+case object TalkList extends SimpleViewWithDraft {
 
   private def sortedCategories(talks: List[Talk]): List[(Talk.Category, List[Talk])] =
     talks
@@ -22,9 +22,9 @@ case object TalkList extends SimpleView {
             case (false, true, _) => false
             case (true, false, _) => true
             // 2nd criterion: categories with more talks
-            case (_, _, false)    => talks1.size > talks2.size
+            case (_, _, false) => talks1.size > talks2.size
             // 3rd criterion: lexicographic order
-            case (_, _, true)     => cat1.name < cat2.name
+            case (_, _, true) => cat1.name < cat2.name
 
   private def bodyContent(allTalks: List[Talk]) =
     val categories = sortedCategories(allTalks)
@@ -52,8 +52,6 @@ case object TalkList extends SimpleView {
   override def body(withDraft: Boolean): HtmlElement =
     if withDraft then bodyContent(TalksInfo.allTalks)
     else bodyContent(TalksInfo.allTalks.filter(_.speakers.forall(_.confirmed)))
-
-  override def title: String = "Talks"
 
   private def stickScroll(sortedCategories: List[Talk.Category]) =
     div(

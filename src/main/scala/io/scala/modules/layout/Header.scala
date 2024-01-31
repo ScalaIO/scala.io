@@ -1,9 +1,6 @@
-package io.scala.modules.layout
+package io.scala
+package modules.layout
 
-import io.scala.BasicPage
-import io.scala.Lexicon
-import io.scala.Page
-import io.scala.PageArg
 import io.scala.modules.elements.ShinyButton
 import io.scala.svgs.Burger
 import io.scala.svgs.Logo
@@ -32,19 +29,19 @@ object Header {
       case _             => laptopPlusScreen
     }
 
-  private def navLink(name: String, page: PageArg): Anchor =
+  private def navLink(name: String, page: Page): Anchor =
     a(
       name,
       className := "header__navbar__link",
       Page.navigateTo(page)
     )
 
-  private val linksPage = Seq(
-    Lexicon.Header.talks    -> BasicPage.Talks.toPageArg,
-    Lexicon.Header.sponsors -> BasicPage.Sponsors.toPageArg,
-    Lexicon.Header.venue    -> BasicPage.Venue.toPageArg,
-    Lexicon.Header.schedule -> BasicPage.Schedule.toPageArg,
-    "FAQ"                   -> BasicPage.FAQ.toPageArg
+  private val linksPage: Seq[(String, Page)] = Seq(
+    Lexicon.Header.talks    -> TalksPage(),
+    Lexicon.Header.sponsors -> SponsorsPage,
+    Lexicon.Header.venue    -> VenuePage,
+    Lexicon.Header.schedule -> SchedulePage(),
+    "FAQ"                   -> FAQPage
   )
 
   def links = div(
@@ -57,10 +54,10 @@ object Header {
   )
 
   val logo = button(
-    className := "logo",
-    nameAttr := "home page",
+    className  := "logo",
+    aria.label := "home page",
     Logo.apply(),
-    Page.navigateTo(BasicPage.Index.toPageArg)
+    Page.navigateTo(IndexPage())
   )
 
   val buyTicket = ShinyButton
@@ -95,8 +92,8 @@ object Header {
       button(
         Burger(),
         onClick.stopImmediatePropagation.mapTo(!burgerClicked.now()) --> burgerClicked,
-        className := "header__burger",
-        nameAttr := "menu"
+        className  := "header__burger",
+        aria.label := "menu"
       ),
       div(
         child <-- burgerClicked.signal.map {
