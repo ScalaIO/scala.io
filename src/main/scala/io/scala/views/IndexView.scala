@@ -52,8 +52,8 @@ case object IndexView extends GenericView {
       className := "container",
       Title("Tickets"),
       div(
-        className := "tickets"
-        // YurPlan()
+        className := "tickets",
+        YurPlan()
         // div(
         //   className := "group-ticket",
         //   Ticket(),
