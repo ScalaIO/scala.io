@@ -10,8 +10,6 @@ import io.scala.svgs.Github
 import com.raquo.laminar.api.L.*
 
 object FAQView extends SimpleView {
-  override def title: String = "Frequently Asked Questions"
-
   private def question(question: String, answer: String): HtmlElement = {
     div(
       className := "question",
@@ -28,7 +26,7 @@ object FAQView extends SimpleView {
     )
   }
 
-  override def body(withDraft: Boolean): HtmlElement = {
+  override def body(): HtmlElement = {
     sectionTag(
       className := "container faq",
       Title("Frequently Asked Questions"),

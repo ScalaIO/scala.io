@@ -5,129 +5,135 @@ import io.scala.data.TalksInfo
 import io.scala.domaines.Speaker
 import io.scala.domaines.TalkInfo
 import io.scala.views.*
+import io.scala.views.IndexView
 
-import com.raquo.laminar.api.L
+import com.raquo.airstream.core.Signal
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.waypoint.*
-import org.scalajs.dom.html
 import org.scalajs.dom.document
+import org.scalajs.dom.html
 import upickle.default.*
-import upickle.default.ReadWriter
 import urldsl.errors.DummyError
 import urldsl.language.PathSegmentWithQueryParams
 import urldsl.vocabulary.{FromString, Printer, UrlMatching}
 import urldsl.vocabulary.FromString
 import urldsl.vocabulary.Printer
 import urldsl.vocabulary.UrlMatching
+import org.scalajs.dom.console
 
-enum BasicPage(val view: GenericView):
-  def toPageArg: PageArg = PageArg.Generic(this, false)
+sealed trait Draftable:
+  def withDraft: Option[Boolean]
 
-  def title: String = this match {
-    case BasicPage.Index    => "Home"
-    case BasicPage.Talks    => "Talks"
-    case BasicPage.Sponsors => "Sponsors"
-    case BasicPage.Venue    => "Venue"
-    case BasicPage.Schedule => "Schedule"
-    case BasicPage.FAQ      => "FAQ"
-  }
+sealed trait Slugify:
+  def slug: String
+sealed trait Page:
+  def title: String
 
-  case Index    extends BasicPage(IndexView)
-  case Talks    extends BasicPage(TalkList)
-  case Sponsors extends BasicPage(SponsorsList)
-  case Venue    extends BasicPage(VenueView)
-  case Schedule extends BasicPage(ScheduleView)
-  case FAQ      extends BasicPage(FAQView)
-
-sealed trait PageArg {
-
-  final def title: String = this match {
-    case PageArg.Generic(page, _)  => page.title
-    case PageArg.Talk(talkSlug, _) => "Talk" + talkSlug // double incorrect
-  }
-
-  def withDraft: Boolean
-}
-
-object PageArg {
-  case class Generic(page: BasicPage, withDraft: Boolean) extends PageArg
-
-  case class Talk(talkSlug: String, withDraft: Boolean) extends PageArg
-}
+case class IndexPage(withDraft: Option[Boolean] = None) extends Page with Draftable:
+  def title: String = "Home"
+case class TalksPage(withDraft: Option[Boolean] = None) extends Page with Draftable:
+  def title: String = "Talks"
+case class TalkPage(slug: String) extends Page with Slugify:
+  def title: String = s"Talk - $slug"
+case object SponsorsPage extends Page:
+  def title: String = "Sponsors"
+case object VenuePage extends Page:
+  def title: String = "Venue"
+case class SchedulePage(withDraft: Option[Boolean] = None) extends Page with Draftable:
+  def title: String = "Schedule"
+case object FAQPage extends Page:
+  def title: String = "FAQ"
 
 object Page {
 
-  given pageArgBasicCodec: ReadWriter[BasicPage] = macroRW
+  given indexCodec: ReadWriter[IndexPage]            = macroRW
+  given talksCodec: ReadWriter[TalksPage]            = macroRW
+  given talkCodec: ReadWriter[TalkPage]              = macroRW
+  given sponsorsCodec: ReadWriter[SponsorsPage.type] = macroRW
+  given venueCodec: ReadWriter[VenuePage.type]       = macroRW
+  given scheduleCodec: ReadWriter[SchedulePage]      = macroRW
+  given faqCodec: ReadWriter[FAQPage.type]           = macroRW
 
-  given pageArgGenericCodec: ReadWriter[PageArg.Generic] = macroRW
-
-  given pageArgTalkCodec: ReadWriter[PageArg.Talk] = macroRW
-
-  given pageArgCodec: ReadWriter[PageArg] = macroRW
+  given pageArgBasicCodec: ReadWriter[Page] = macroRW
 
   val draftParam = param[Boolean]("withDraft").?
 
-  given FromString[BasicPage, DummyError] = {
-    case "talks"    => Right(BasicPage.Talks)
-    case "sponsors" => Right(BasicPage.Sponsors)
-    case "venue"    => Right(BasicPage.Venue)
-    case "schedule" => Right(BasicPage.Schedule)
-    case "faq"      => Right(BasicPage.FAQ)
+  given FromString[Page, DummyError] = {
+    case "talks"    => Right(TalksPage())
+    case "sponsors" => Right(SponsorsPage)
+    case "venue"    => Right(VenuePage)
+    case "schedule" => Right(SchedulePage())
+    case "faq"      => Right(FAQPage)
     case _          => Left(DummyError.dummyError)
   }
 
-  given Printer[BasicPage] = {
-    case BasicPage.Talks    => "talks"
-    case BasicPage.Sponsors => "sponsors"
-    case BasicPage.Venue    => "venue"
-    case BasicPage.Schedule => "schedule"
-    case BasicPage.FAQ      => "faq"
-    case BasicPage.Index    => ""
+  given Printer[Page] = {
+    case _: TalksPage    => "talks"
+    case t: TalkPage     => s"talks/${t.slug}"
+    case SponsorsPage    => "sponsors"
+    case VenuePage       => "venue"
+    case _: SchedulePage => "schedule"
+    case FAQPage         => "faq"
+    case _: IndexPage    => ""
   }
 
-  val pattern: PathSegmentWithQueryParams[BasicPage, DummyError, Option[Boolean], DummyError] =
-    (root / segment[BasicPage] / endOfSegments) ? draftParam
-
-  val indexRoute: Route[PageArg, Unit] = Route.static(BasicPage.Index.toPageArg, root / endOfSegments)
-
-  val basicPages: Route[PageArg.Generic, PatternArgs[BasicPage, Option[Boolean]]] =
-    Route.withQuery[PageArg.Generic, BasicPage, Option[Boolean]](
-      encode = page => UrlMatching(page.page, Some(page.withDraft).filter(identity)),
-      decode = urlMatching => PageArg.Generic(urlMatching.path, urlMatching.params.getOrElse(false)),
-      pattern
-    )
-
-  val talkRoute: Route[PageArg.Talk, String] = Route[PageArg.Talk, String](
-    encode = page => page.talkSlug,
-    decode = args => PageArg.Talk(args, false),
+  val indexRoute = Route.onlyQuery[IndexPage, Option[Boolean]](
+    encode = x => x.withDraft,
+    decode = args => IndexPage(args),
+    (root / endOfSegments) ? draftParam
+  )
+  val talksRoute = Route.onlyQuery[TalksPage, Option[Boolean]](
+    encode = x => x.withDraft,
+    decode = args => TalksPage(args),
+    (root / "talks" / endOfSegments) ? draftParam
+  )
+  val talkRoute = Route[TalkPage, String](
+    encode = x => x.slug,
+    decode = args => TalkPage(args),
     root / "talks" / segment[String] / endOfSegments
   )
+  val sponsorsRoute = Route.static(
+    SponsorsPage,
+    root / "sponsors" / endOfSegments
+  )
+  val venueRoute = Route.static(
+    VenuePage,
+    root / "venue" / endOfSegments
+  )
+  val scheduleRoute = Route.onlyQuery[SchedulePage, Option[Boolean]](
+    encode = x => x.withDraft,
+    decode = args => SchedulePage(args),
+    (root / "schedule" / endOfSegments) ? draftParam
+  )
+  val faqRoute = Route.static(
+    FAQPage,
+    root / "faq" / endOfSegments
+  )
 
-  val router: Router[PageArg] = new Router[PageArg](
-    routes = List(indexRoute, talkRoute, basicPages),
+
+  val router = new Router[Page](
+    routes = List(indexRoute, talksRoute, talkRoute, sponsorsRoute, venueRoute, scheduleRoute, faqRoute),
     getPageTitle = page => page.title + " - ScalaIO",
-    serializePage = page => write(page)(pageArgCodec),
-    deserializePage = pageStr => read(pageStr)(pageArgCodec)
+    serializePage = page => write(page)(pageArgBasicCodec),
+    deserializePage = pageStr => read(pageStr)(pageArgBasicCodec)
   )(
-    popStateEvents = L.windowEvents(_.onPopState),
-    owner = L.unsafeWindowOwner
+    popStateEvents = windowEvents(_.onPopState),
+    owner = unsafeWindowOwner
   ) {
-    override def relativeUrlForPage(page: PageArg): String = super.relativeUrlForPage(page).replaceAll("\\?$", "")
+    override def relativeUrlForPage(page: Page): String = super.relativeUrlForPage(page).replaceAll("\\?$", "")
   }
 
-  val splitter: SplitRender[PageArg, L.HtmlElement] =
-    SplitRender[PageArg, HtmlElement](router.currentPageSignal).collectStaticPF({
-      case PageArg.Generic(basicPage, withDraft) =>
-        basicPage.view.render(withDraft)
+  val splitter: SplitRender[Page, HtmlElement] =
+    SplitRender(router.currentPageSignal)
+      .collect[IndexPage](args => IndexView.render(args.withDraft.getOrElse(false)))
+      .collect[TalksPage](args => TalkList.render(args.withDraft.getOrElse(false)))
+      .collectSignal[TalkPage](args => TalkView.render(args))
+      .collectStatic(SponsorsPage)(SponsorsList.render())
+      .collectStatic(VenuePage)(VenueView.render())
+      .collect[SchedulePage](arg => ScheduleView.render(arg.withDraft.getOrElse(false)))
+      .collectStatic(FAQPage)(FAQView.render())
 
-      case PageArg.Talk(talkSlug, withDraft) =>
-        TalksInfo.allTalks
-          .find(_.slug == talkSlug)
-          .map(new TalkView(_).render(withDraft))
-          .getOrElse(L.div())
-    })
-
-  def navigateTo(page: PageArg): Binder[HtmlElement] = Binder { el =>
+  def navigateTo(page: Page): Binder[HtmlElement] = Binder { el =>
     val isLinkElement = el.ref.isInstanceOf[html.Anchor]
     if (isLinkElement) {
       el.amend(href(router.absoluteUrlForPage(page)))

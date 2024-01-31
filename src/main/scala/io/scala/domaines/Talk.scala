@@ -70,10 +70,9 @@ case class Talk(
 ) extends Event
     with Durable:
   lazy val renderDescription = TalksInfo.parseTalk(description).map(p(_))
-
-  def duration: Int      = kind.duration
-  def render             = TalkCard(this)
-  def isKeynote: Boolean = kind == Talk.Kind.Keynote
+  def duration: Int          = kind.duration
+  def render: Div            = TalkCard(this)
+  def isKeynote: Boolean     = kind == Talk.Kind.Keynote
 
 object Talk:
   enum Kind:

@@ -190,7 +190,7 @@ object SpeakersInfo:
     company = "INRIA",
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/cranceltik"),
-      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/enzo-crance-099628b9/?locale=en_US"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/enzo-crance-099628b9"),
       Social(Social.Kind.Other, "https://ecrance.net")
     ),
     confirmed = true

@@ -4,6 +4,7 @@ package modules
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 import io.scala.svgs.GoTo
+
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import elements.Line
@@ -66,7 +67,7 @@ object TalkCard:
           className := "card-link classy-button classy-button-highlight",
           s"More info ",
           GoTo(),
-          Page.navigateTo(PageArg.Talk(talk.slug, false))
+          Page.navigateTo(TalkPage(talk.slug))
         )
       )
     )
