@@ -65,8 +65,8 @@ object TalksInfo:
       description = chasing_arrows_functors_monads,
       speakers = List(SpeakersInfo.jimNewton, SpeakersInfo.uliFahrenberg),
       category = Talk.Category.Algebra,
-      day = ConfDay.Thursday,
-      start = Time(16, 40),
+      day = ConfDay.Friday,
+      start = Time(15, 40),
       room = Room.One
     ),
     Talk(
@@ -105,8 +105,8 @@ object TalksInfo:
       description = kafka_streams,
       speakers = List(SpeakersInfo.johannaVauchel, SpeakersInfo.mehdiRebiai),
       category = Talk.Category.DataEng,
-      day = ConfDay.Friday,
-      start = Time(11, 40),
+      day = ConfDay.Thursday,
+      start = Time(16, 40),
       room = Room.One
     ),
     Talk(
@@ -199,7 +199,7 @@ object TalksInfo:
       speakers = List(SpeakersInfo.francoisLaroche),
       category = Talk.Category.AI,
       day = ConfDay.Friday,
-      start = Time(15, 40),
+      start = Time(11, 40),
       room = Room.One
     ),
     Talk(
