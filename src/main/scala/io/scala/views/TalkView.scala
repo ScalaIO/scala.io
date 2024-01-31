@@ -15,7 +15,7 @@ object TalkView extends ReactiveView[TalkPage]:
     sectionTag(
       className := "container talk",
       h1( // TODO: reuse Title(name: String)
-        child.text <-- signal.map(_.title),
+        child.text <-- talk.map(_.title),
         className := "page-title"
       ),
       div(
