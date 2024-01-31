@@ -35,12 +35,12 @@ object TalkCard:
           else emptyNode
         )
       ),
-      Line(margin = 4),
+      Line(margin = 16),
       div(
         className := "card-body paragraph",
         talk.renderDescription
       ),
-      Line(margin = 4),
+      Line(margin = 16),
       div(
         className := "card-footer",
         talk.speakers.map { speaker =>
