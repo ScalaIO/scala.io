@@ -167,11 +167,8 @@ case object ScheduleView extends SimpleViewWithDraft {
     )
 
   def body(withDraft: Boolean): HtmlElement =
-    val schedule =
-      if withDraft then ScheduleInfo.schedule
-      else ScheduleInfo.blankSchedule
     val eventsByDay: Map[ConfDay, List[Event]] =
-      schedule
+      ScheduleInfo.schedule
         .filter(_.day != null)
         .groupBy { _.day }
         .map((k, v) => (k, v.sortBy(_.start)))
