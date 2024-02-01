@@ -36,7 +36,7 @@ object TalksInfo:
           case header ~ textBlock =>
             val initialQueue: Queue[HtmlElement] =
               Queue.from { header.map { case HeaderChunk(_, content) => h4(content) } }
-              
+
             val text = textBlock.content
             val withLinks = linkRegex
               .findAllMatchIn(text)
@@ -260,7 +260,7 @@ object TalksInfo:
       title = "Rex: Migration de Scala 2 à Scala 3",
       slug = "rex-migration-scala-2-to-scala-3",
       description = "To be announced",
-      speakers = List.empty,
+      speakers = List(SpeakersInfo.antoineBlondeau),
       kind = Talk.Kind.Lightning,
       category = Talk.Category.ToolsEcosystem,
       day = ConfDay.Thursday,
