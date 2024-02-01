@@ -95,8 +95,8 @@ object SpeakersInfo:
     name = "Mehdi Rebiai",
     photo = Some("mRebiai.webp"),
     description =
-      """|Développeur depuis bientôt 20 ans, d'abord du Java puis un peu de front, puis beaucoup d'intégration continue et d'automatisation. 
-      |Désormais je suis Tech Lead Data chez Lectra : beaucoup de Scala et de Kafka. 
+      """|Développeur depuis bientôt 20 ans, d'abord du Java puis un peu de front, puis beaucoup d'intégration continue et d'automatisation.
+      |Désormais je suis Tech Lead Data chez Lectra : beaucoup de Scala et de Kafka.
       |Je participe également au projet Open Source Kapoeira : https://github.com/lectra-tech/kapoeira
       |""".stripMargin,
     job = "Data Engineer, Tech Lead",
@@ -346,6 +346,19 @@ object SpeakersInfo:
     ),
     job = "Developer",
     company = "Freelancer",
+    confirmed = true
+  )
+
+  val antoineBlondeau = Speaker(
+    name = "Antoine Blondeau",
+    photo = Some("aBlondeau.webp"),
+    description = "I'm a backend developer specialized in platform orchestration. I have experience with Python, Golang and I work with scala since around a year.",
+    socials = List(
+      Social(Social.Kind.Twitter, "https://twitter.com/P4ndaFR"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/antblondeau/"),
+    ),
+    job = "Developer",
+    company = "Clever Cloud",
     confirmed = true
   )
 
