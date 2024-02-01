@@ -149,8 +149,16 @@ span.presentation-keynote {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
+    align-items: end;
     width: 100%;
-    gap: vars.$spacing-small;
+    gap: 8px;
+
+    .classy-button {
+      padding-left: 8px;
+      padding-right: 8px;
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
   }
 
   .room {

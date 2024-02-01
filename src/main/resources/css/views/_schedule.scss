@@ -34,7 +34,6 @@
     @media screen and (min-width: vars.$tablet-width) {
       flex-direction: row;
       justify-content: space-between;
-      align-items: center;
     }
   }
 
@@ -107,6 +106,10 @@
       background-color: #ccc;
     }
   }
+
+  .card-body {
+    max-height: 200px;
+  }
 }
 
 .schedule.large {
@@ -162,8 +165,16 @@
         text-align: justify;
       }
     }
+    
+    .presentation-short,
     .presentation-lightning {
-      .line, .card-body {
+      .line {
+        display: none;
+      }
+    }
+
+    .presentation-lightning {
+      .card-body {
         display: none;
       }
     }

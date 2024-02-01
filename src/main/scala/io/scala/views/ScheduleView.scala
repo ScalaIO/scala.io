@@ -22,7 +22,7 @@ case object ScheduleView extends SimpleViewWithDraft {
   val selectedDay: Var[ConfDay] = Var(ConfDay.Thursday)
 
   lazy val globalHours: Div =
-    def renderHours(name: String, hours: Time*) =
+    def renderHours(name: String, hours: Seq[Time]) =
       div(
         className := "row",
         span(name),
@@ -38,10 +38,10 @@ case object ScheduleView extends SimpleViewWithDraft {
           span("Thursday"),
           span("Friday")
         ),
-        renderHours("Opening", Lexicon.Schedule.opening: _*),
-        renderHours("First talk", Lexicon.Schedule.firstTalk: _*),
-        renderHours("Lunch", Lexicon.Schedule.lunch: _*),
-        renderHours("End of talks", Lexicon.Schedule.endOfTalks: _*),
+        renderHours("Opening", Lexicon.Schedule.opening),
+        renderHours("First talk", Lexicon.Schedule.firstTalk),
+        renderHours("Lunch", Lexicon.Schedule.lunch),
+        renderHours("End of talks", Lexicon.Schedule.endOfTalks),
         renderHours("Community party", Lexicon.Schedule.communityParty)
       )
     )
@@ -167,11 +167,8 @@ case object ScheduleView extends SimpleViewWithDraft {
     )
 
   def body(withDraft: Boolean): HtmlElement =
-    val schedule =
-      if withDraft then ScheduleInfo.schedule
-      else ScheduleInfo.blankSchedule
     val eventsByDay: Map[ConfDay, List[Event]] =
-      schedule
+      ScheduleInfo.schedule
         .filter(_.day != null)
         .groupBy { _.day }
         .map((k, v) => (k, v.sortBy(_.start)))
