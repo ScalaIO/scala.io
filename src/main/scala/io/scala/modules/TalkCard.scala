@@ -16,6 +16,11 @@ object TalkKindTag:
     span(kind.toString, className := kind.toStyle)
 
 object TalkCard:
+  def shortName(name: String) =
+    name.split(" ", 2) match
+      case Array(first, last) => s"${first.charAt(0)}. $last"
+      case _                  => name
+
   def apply(talk: Talk): ReactiveHtmlElement[HTMLDivElement] =
     div(
       className := s"talk-card ${talk.kind.toStyle}",
@@ -53,7 +58,7 @@ object TalkCard:
             ),
             div(
               p(
-                speaker.name,
+                shortName(speaker.name),
                 className := "speaker-name"
               ),
               p(
@@ -64,8 +69,8 @@ object TalkCard:
           )
         },
         button(
-          className := "card-link classy-button classy-button-highlight",
-          s"More info ",
+          className  := "card-link classy-button classy-button-highlight",
+          aria.label := s"Go to ${talk.title}",
           GoTo(),
           Page.navigateTo(TalkPage(talk.slug))
         )

@@ -220,7 +220,8 @@ object SpeakersInfo:
   val didierPlaindoux = Speaker(
     name = "Didier Plaindoux",
     photo = Some("dPlaindoux.webp"),
-    description = "I'm a compulsive designer of strong-typed functional, logical and object-oriented programming languages! The rest of the time, I'm a freelance software developer who works very hard to produce usable and used solutions.",
+    description =
+      "I'm a compulsive designer of strong-typed functional, logical and object-oriented programming languages! The rest of the time, I'm a freelance software developer who works very hard to produce usable and used solutions.",
     job = "Senior Software Engineer",
     company = "Fungus (Freelance)",
     socials = List(
@@ -338,7 +339,8 @@ object SpeakersInfo:
   val matthieuBaechler = Speaker(
     name = "Matthieu Baechler",
     photo = Some("mBaechler.webp"),
-    description = "I’m a veteran backend developer, living in Ardèche and writing software as a contractor for a living. I wrote Java for years and I’m now mainly writing Scala and Elm on a daily basis. My domains of interest are FP, reactive programming, distributed architecture, CQRS/ES and performance analysis.",
+    description =
+      "I'm a veteran backend developer, living in Ardèche and writing software as a contractor for a living. I wrote Java for years and I'm now mainly writing Scala and Elm on a daily basis. My domains of interest are FP, reactive programming, distributed architecture, CQRS/ES and performance analysis.",
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/m_baechler"),
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/matthieu-baechler-12336011"),
@@ -352,13 +354,28 @@ object SpeakersInfo:
   val antoineBlondeau = Speaker(
     name = "Antoine Blondeau",
     photo = Some("aBlondeau.webp"),
-    description = "I'm a backend developer specialized in platform orchestration. I have experience with Python, Golang and I work with scala since around a year.",
+    description =
+      "I'm a backend developer specialized in platform orchestration. I have experience with Python, Golang and I work with scala since around a year.",
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/P4ndaFR"),
-      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/antblondeau/"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/antblondeau/")
     ),
     job = "Developer",
     company = "Clever Cloud",
+    confirmed = true
+  )
+
+  val jeanBaptiseKaiser = Speaker(
+    name = "Jean-Baptiste Kaiser",
+    photo = Some("jbKaiser.webp"),
+    description = "",
+    job = "Scala Developer",
+    company = "Clever Cloud",
+    socials = List(
+      Social(Social.Kind.Twitter, "https://twitter.com/ArendSyl"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/arendsyl"),
+      Social(Social.Kind.Github, "https://github.com/Arendsyl")
+    ),
     confirmed = true
   )
 
