@@ -11,6 +11,7 @@ lazy val root = project
   .in(file("."))
   .enablePlugins(ScalaJSPlugin)
   .settings(
+    name := "scalaio-website",
     libraryDependencies ++= Seq(
       "com.raquo"                               %%% "laminar"              % Dependencies.laminar,
       "com.raquo"                               %%% "waypoint"             % Dependencies.waypoint,
