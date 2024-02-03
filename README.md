@@ -2,7 +2,7 @@
 
 Note : `main` is deployed to https://preprod-scala-io.cleverapps.io/
 
-Previews on PR are availables with the bot.
+Previews on PR are available with the bot.
 
 
 ## Data
