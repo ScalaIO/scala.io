@@ -235,9 +235,9 @@ object TalksInfo:
       room = Room.One
     ),
     Talk(
-      title = "To be announced",
-      slug = "keynote-1",
-      description = "To be announced",
+      title = "Unwrapping IO: is it a path that you want to follow?",
+      slug = "unwrapping-io",
+      description = unwrapping_io,
       kind = Talk.Kind.Keynote,
       speakers = List(SpeakersInfo.adamWarski),
       category = Talk.Category.Effects,

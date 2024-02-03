@@ -39,11 +39,8 @@ case object TalkList extends SimpleViewWithDraft {
           className := "content",
           categories.flatMap: (category, talks) =>
             List(
-              h2(idAttr := category.slug, className := "content-title", category.name),
-              div(
-                talks.sortBy(_.title).map(TalkCard(_)),
-                className := "card-container"
-              )
+              h2(idAttr     := category.slug, className := "content-title", category.name),
+              div(className := "card-container", talks.sorted.map(TalkCard(_)))
             )
         )
       )

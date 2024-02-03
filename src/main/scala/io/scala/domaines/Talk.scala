@@ -75,6 +75,18 @@ case class Talk(
   def isKeynote: Boolean     = kind == Talk.Kind.Keynote
 
 object Talk:
+
+  given Ordering[Talk] = Ordering.by(talk => (talk.kind, talk.title))
+
+  // I think it is better to explicitly define ordering rather than to depend
+  // on enum values declaration order via ordinal field (one could inadvertently
+  // break the ordering just by reorganizing the declarations).
+  given Ordering[Kind] = Ordering.by:
+    case Kind.Lightning => 4
+    case Kind.Short     => 3
+    case Kind.Speech    => 2
+    case Kind.Keynote   => 1
+
   enum Kind:
     case Lightning, Short, Speech, Keynote
 
@@ -128,6 +140,8 @@ object Talk:
       case Modeling       => "category-modeling"
       case Cloud          => "category-cloud"
       case AI             => "category-ai"
+
+end Talk
 
 case class Break(
     day: ConfDay,

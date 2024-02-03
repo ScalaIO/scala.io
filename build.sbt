@@ -11,12 +11,13 @@ lazy val root = project
   .in(file("."))
   .enablePlugins(ScalaJSPlugin)
   .settings(
+    name := "scalaio-website",
     libraryDependencies ++= Seq(
-      "com.raquo"                               %%% "laminar"              % Dependencies.laminar,
-      "com.raquo"                               %%% "waypoint"             % Dependencies.waypoint,
-      "com.lihaoyi"                             %%% "upickle"              % Dependencies.upickle,
-      "org.scala-js"                            %%% "scalajs-dom"          % "2.4.0",
-      "org.foundweekends"                       %%% "knockoff"             % "0.9.0"
+      "com.raquo"         %%% "laminar"     % Dependencies.laminar,
+      "com.raquo"         %%% "waypoint"    % Dependencies.waypoint,
+      "com.lihaoyi"       %%% "upickle"     % Dependencies.upickle,
+      "org.scala-js"      %%% "scalajs-dom" % "2.4.0",
+      "org.foundweekends" %%% "knockoff"    % "0.9.0"
     ),
     scalaJSUseMainModuleInitializer := true,
     scalaJSLinkerConfig ~= {
@@ -29,9 +30,10 @@ lazy val root = project
     Compile / sourceGenerators += Def.task {
       val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "MarkdownSource.scala"
 
-      val markdowns: Seq[File] = ((Compile / resourceDirectory).value / "md").listFiles().filter(_.getName.endsWith(".md")).toList
+      val markdowns: Seq[File] =
+        ((Compile / resourceDirectory).value / "md").listFiles().filter(_.getName.endsWith(".md")).toList
 
-      def lines(lines: String*) = lines.mkString("\n")
+      def lines(lines: String*)         = lines.mkString("\n")
       def slugify(name: String): String = name.toLowerCase().replace("-", "_")
 
       val content: String = lines(
@@ -40,11 +42,11 @@ lazy val root = project
         "object MarkdownSource {",
         "",
         lines(markdowns.map(file => {
-          val name: String = slugify(file.getName.stripSuffix(".md"))
+          val name: String    = slugify(file.getName.stripSuffix(".md"))
           val content: String = "\"" * 3 + IO.read(file) + "\"" * 3
 
           s"""  val $name = $content"""
-        }) *),
+        })*),
         "}"
       )
 
