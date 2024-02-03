@@ -236,7 +236,7 @@ object TalksInfo:
     ),
     Talk(
       title = "Unwrapping IO: is it a path that you want to follow?",
-      slug = "keynote-1",
+      slug = "unwrapping-io",
       description = unwrapping_io,
       kind = Talk.Kind.Keynote,
       speakers = List(SpeakersInfo.adamWarski),
