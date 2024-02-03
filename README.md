@@ -36,7 +36,8 @@ The app wil be available at http://localhost:5173
 ## Fixing a speaker / talk information
 
 - Create a fork
-- Edit the content in `src/main/scala/io/scala/data`
+- Edit the content in `src/main/scala/io/scala/data/SpeakersInfo.scala` for speakers,
+or in `src/main/resources/md/<talk-slug>.md` for talks.
 - Open a PR
 
 You can use the following git commit message template:
