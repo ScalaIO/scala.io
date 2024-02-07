@@ -16,8 +16,8 @@ object Sponsor {
     case Gold
     case Silver
     case Community
-    case Partner
     case Love
+    case Partner
 
     def title: String = this match
       case Platinum  => "🎖️ Platinum 🎖️"

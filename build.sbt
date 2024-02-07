@@ -1,4 +1,4 @@
-import org.scalajs.linker.interface.ModuleSplitStyle.SmallModulesFor
+import org.scalajs.linker.interface.ModuleSplitStyle.SmallestModules
 
 ThisBuild / version       := "0.1.0"
 ThisBuild / scalaVersion  := "3.3.1"
@@ -22,7 +22,7 @@ lazy val root = project
     scalaJSUseMainModuleInitializer := true,
     scalaJSLinkerConfig ~= {
       _.withModuleKind(ModuleKind.ESModule)
-        .withModuleSplitStyle(SmallModulesFor(List("io.scala")))
+        .withModuleSplitStyle(SmallestModules)
         .withSourceMap(false)
     },
     publicFolderDev  := linkerOutputDirectory((Compile / fastLinkJS).value).getAbsolutePath,

@@ -10,7 +10,6 @@ object YurPlan:
         title          := "Tickets ScalaIO 2024",
         src            := "https://yurplan.com/events/Scala-IO-2024/115152/tickets/widget?wversion=1&culture=fr",
         className      := "yurplan-widget",
-        dataAttr("id") := "12404"
-      ),
-      scriptTag(src := "https://assets.yurplan.com/yurplan-v1/dist/widget.js", `type` := "text/javascript")
+        dataAttr("id") := "12404",
+      )
     )
