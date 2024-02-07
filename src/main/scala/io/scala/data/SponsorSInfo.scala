@@ -13,7 +13,7 @@ object SponsorSInfo:
     Sponsor(
       name = "Univalence",
       website = "https://univalence.io",
-      photo = "univalence-black.webp",
+      photo = "univalence.svg",
       rank = Sponsor.Rank.Love
     ),
     Sponsor(
@@ -31,7 +31,7 @@ object SponsorSInfo:
     Sponsor(
       name = "PSUG",
       website = "https://www.meetup.com/fr-FR/paris-scala-user-group-psug",
-      photo = "psug.webp",
+      photo = "psug.svg",
       rank = Sponsor.Rank.Partner,
       gridRow = 3
     ),

@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   version="1.0"
+   width="57.476013"
+   height="98.264313"
+   id="svg3246"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:dc="http://purl.org/dc/elements/1.1/">
+  <title
+     id="title4323">Paris Scala User Group Logo</title>
+  <metadata
+     id="metadata3094">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title>Paris Scala User Group Logo</dc:title>
+        <cc:license
+           rdf:resource="http://creativecommons.org/licenses/by/3.0/" />
+        <dc:date>2011-02-03</dc:date>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>David Bernard</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:description>logo pour le PSUG</dc:description>
+        <dc:contributor>
+          <cc:Agent>
+            <dc:title>based on scala logo for archlinux from http://xyne.archlinux.ca/img/arch_linux_programming_language_logos/</dc:title>
+          </cc:Agent>
+        </dc:contributor>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>scala ug</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License
+         rdf:about="http://creativecommons.org/licenses/by/3.0/">
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Reproduction" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#Distribution" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Notice" />
+        <cc:requires
+           rdf:resource="http://creativecommons.org/ns#Attribution" />
+        <cc:permits
+           rdf:resource="http://creativecommons.org/ns#DerivativeWorks" />
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+  <defs
+     id="defs2426">
+    <linearGradient
+       id="linearGradient4163">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop4165" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0.09230769;"
+         offset="1"
+         id="stop4167" />
+    </linearGradient>
+    <linearGradient
+       x1="112.49854"
+       y1="6.1372099"
+       x2="112.49853"
+       y2="129.3468"
+       id="path1082_2_"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(287,-83)">
+      <stop
+         id="stop193"
+         style="stop-color:#ffffff;stop-opacity:0"
+         offset="0" />
+      <stop
+         id="stop195"
+         style="stop-color:#ffffff;stop-opacity:0.27450982"
+         offset="1" />
+      <midPointStop
+         offset="0"
+         style="stop-color:#FFFFFF"
+         id="midPointStop197" />
+      <midPointStop
+         offset="0.5"
+         style="stop-color:#FFFFFF"
+         id="midPointStop199" />
+      <midPointStop
+         offset="1"
+         style="stop-color:#000000"
+         id="midPointStop201" />
+    </linearGradient>
+    <linearGradient
+       id="linearGradient4163-6">
+      <stop
+         style="stop-color:#000000;stop-opacity:1;"
+         offset="0"
+         id="stop4165-8" />
+      <stop
+         style="stop-color:#000000;stop-opacity:0.09230769;"
+         offset="1"
+         id="stop4167-2" />
+    </linearGradient>
+    <linearGradient
+       xlink:href="#linearGradient4163"
+       id="linearGradient4303"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(7.3807704,-32.350178)"
+       x1="78.196747"
+       y1="163.41843"
+       x2="135.8456"
+       y2="163.41843" />
+    <linearGradient
+       xlink:href="#linearGradient4163"
+       id="linearGradient4305"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(1.3879846,0,0,1.3879847,60.284332,-135.94551)"
+       x1="78.196747"
+       y1="163.41843"
+       x2="135.8456"
+       y2="163.41843" />
+    <linearGradient
+       xlink:href="#linearGradient4163-6"
+       id="linearGradient4307"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="translate(7.5615351,-41.688363)"
+       x1="78.196747"
+       y1="163.41843"
+       x2="135.8456"
+       y2="163.41843" />
+    <linearGradient
+       xlink:href="#path1082_2_"
+       id="linearGradient6022"
+       gradientUnits="userSpaceOnUse"
+       gradientTransform="matrix(-0.13422591,0,0,0.13421839,116.84473,15.975877)"
+       x1="541.33502"
+       y1="104.50665"
+       x2="606.91248"
+       y2="303.14029" />
+  </defs>
+  <path
+     style="fill:#c71b1e;fill-opacity:1;fill-rule:evenodd;stroke:none"
+     id="path2518"
+     d="M 29.432157,3.6816406e-7 C 27.556707,32.826634 11.955647,61.779057 0.82992023,81.251207 36.289437,68.336051 21.517457,68.54957 57.476007,81.251177 42.684297,61.663218 30.896017,34.428181 29.432157,3.6816406e-7 Z" />
+  <path
+     style="fill:#ffffff;fill-opacity:0.16568;fill-rule:evenodd;stroke:none"
+     id="path2522"
+     d="M 57.061017,80.629237 C 37.418187,68.705896 28.478237,16.025229 29.013857,0.81246837 31.457587,22.314893 44.835237,62.17419 57.061017,80.629237 Z" />
+  <path
+     style="fill:url(#linearGradient6022);fill-opacity:1;fill-rule:evenodd;stroke:none"
+     id="path2520"
+     d="m 29.451757,0.05845137 c -1.3706,15.94846463 -7.29098,36.65844263 -12.3262,48.74581263 7.18379,-4.047456 6.62462,-9.579261 20.69992,-4.553415 C 31.151917,27.414 31.095447,17.344264 29.451757,0.05845137 Z" />
+  <g
+     id="g4295"
+     transform="translate(-92.24429,-27.003534)">
+    <text
+       transform="scale(1.0838977,0.9225963)"
+       id="text3111-2"
+       y="135.50388"
+       x="84.723503"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:'Bitstream Vera Sans';letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient4303);fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="font-weight:bold;font-size:11.8981px;line-height:1.25;-inkscape-font-specification:'Bitstream Vera Sans Bold';fill:url(#linearGradient4303);fill-opacity:1"
+         y="135.50388"
+         x="84.723503"
+         id="tspan3113-6">Scala</tspan></text>
+    <text
+       transform="scale(0.78091482,1.2805494)"
+       id="text3111-2-8"
+       y="97.033333"
+       x="167.63484"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:'Bitstream Vera Sans';letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient4305);fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="font-weight:bold;font-size:16.5144px;line-height:1.25;-inkscape-font-specification:'Bitstream Vera Sans Bold';fill:url(#linearGradient4305);fill-opacity:1"
+         y="97.033333"
+         x="167.63484"
+         id="tspan3113-6-8">UG</tspan></text>
+    <text
+       transform="scale(1.0838977,0.9225963)"
+       id="text3111-2-7"
+       y="126.1657"
+       x="84.904266"
+       style="font-style:normal;font-weight:normal;line-height:0%;font-family:'Bitstream Vera Sans';letter-spacing:0px;word-spacing:0px;fill:url(#linearGradient4307);fill-opacity:1;stroke:none"
+       xml:space="preserve"><tspan
+         style="font-weight:bold;font-size:11.8981px;line-height:1.25;-inkscape-font-specification:'Bitstream Vera Sans Bold';fill:url(#linearGradient4307);fill-opacity:1"
+         y="126.1657"
+         x="84.904266"
+         id="tspan3113-6-1">Paris</tspan></text>
+  </g>
+  <g
+     id="g6572-9"
+     transform="matrix(1.6189318,0,0,1.6189318,-282.94078,-45.810579)">
+    <path
+       style="fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:none"
+       id="path2518-0-4"
+       d="m 186.17346,73.515669 v -0.0346 -4.16272 c 1.71037,-0.1118 3.95581,-0.37999 5.98131,-0.76062 -2.0255,-0.380642 -4.27094,-0.648828 -5.98131,-0.760633 v -4.162714 c 1.71223,-0.111927 3.961,-0.379329 5.98822,-0.760628 -2.0275,-0.38143 -4.27568,-0.655597 -5.98822,-0.767544 v -4.162713 c 4.05421,-0.265022 11.11901,-1.392127 11.11901,-2.855816 v 4.197288 c -0.27648,0.210982 -0.7022,0.432805 -1.23775,0.649992 0.76385,0.288935 1.23775,0.576303 1.23775,0.836691 v 4.197288 c -0.27844,0.212472 -0.71069,0.430867 -1.25158,0.649992 0.77166,0.290621 1.25158,0.574807 1.25158,0.836691 v 4.204206 c -1.22474,0.93458 -7.24751,2.35479 -10.99463,2.91936 z m 10.48976,-11.990273 c -0.0784,0.04694 -0.16479,0.09936 -0.25584,0.145211 0.0939,-0.04713 0.17532,-0.09692 0.25584,-0.145211 z m -7.4749,0.159041 c -0.19325,0.03304 -0.38854,0.06617 -0.58085,0.09681 0.19369,-0.03075 0.38621,-0.06363 0.58085,-0.09681 z m -1.41062,0.221274 c -0.2214,0.03138 -0.43983,0.06238 -0.65691,0.08989 0.21796,-0.02753 0.43458,-0.05848 0.65691,-0.08989 z m 8.60893,5.455782 c -0.0898,0.04455 -0.18943,0.08792 -0.29042,0.131381 0.0999,-0.04308 0.20141,-0.08724 0.29042,-0.131381 z m -7.21906,0.02073 c -0.18614,0.03185 -0.37484,0.06029 -0.5601,0.08989 0.18685,-0.02986 0.37236,-0.05773 0.5601,-0.08989 z m -1.38987,0.214359 c -0.2214,0.03146 -0.43983,0.06234 -0.65691,0.08989 0.21756,-0.02759 0.435,-0.05837 0.65691,-0.08989 z" />
+    <path
+       d="m 195.22879,60.201869 c -2.27113,0.922727 -5.70048,1.578912 -9.04695,1.920955 1.71628,0.112193 3.90852,0.405658 5.93948,0.788402 2.76604,-0.521113 4.34522,-1.028329 4.34522,-1.872665 0,-0.260389 -0.4739,-0.547757 -1.23775,-0.836692 z"
+       id="path3857-3-3"
+       style="fill:#c71b1e;fill-opacity:0.501961;fill-rule:evenodd;stroke:none" />
+    <path
+       d="m 195.34679,65.865367 c -2.27113,0.922727 -5.78513,1.58607 -9.1316,1.928113 1.71628,0.112193 3.8674,0.426515 5.89836,0.80926 2.76604,-0.521113 4.47099,-1.056345 4.47099,-1.900681 0,-0.260389 -0.4739,-0.547757 -1.23775,-0.836692 z"
+       id="path3857-3-1-4"
+       style="fill:#c71b1e;fill-opacity:0.501961;fill-rule:evenodd;stroke:none" />
+  </g>
+</svg>
