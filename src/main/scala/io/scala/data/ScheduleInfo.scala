@@ -141,43 +141,13 @@ object ScheduleInfo {
     ),
     Break(
       day = ConfDay.Thursday,
-      start = Time(11, 35),
-      kind = Break.Kind.Coffee
-    ),
-    Break(
-      day = ConfDay.Thursday,
       start = Time(12, 30),
       kind = Break.Kind.Lunch
     ),
     Break(
       day = ConfDay.Thursday,
-      start = Time(13, 55),
-      kind = Break.Kind.Coffee
-    ),
-    Break(
-      day = ConfDay.Thursday,
-      start = Time(14, 45),
-      kind = Break.Kind.Coffee
-    ),
-    Break(
-      day = ConfDay.Thursday,
-      start = Time(15, 35),
-      kind = Break.Kind.Coffee
-    ),
-    Break(
-      day = ConfDay.Thursday,
       start = Time(16, 25),
       kind = Break.Kind.Large
-    ),
-    Break(
-      day = ConfDay.Thursday,
-      start = Time(17, 25),
-      kind = Break.Kind.Coffee
-    ),
-    Break(
-      day = ConfDay.Thursday,
-      start = Time(18, 15),
-      kind = Break.Kind.Coffee
     ),
     Special(
       day = ConfDay.Thursday,
@@ -191,18 +161,8 @@ object ScheduleInfo {
     // ),
     Break(
       day = ConfDay.Friday,
-      start = Time(9, 45),
-      kind = Break.Kind.Coffee
-    ),
-    Break(
-      day = ConfDay.Friday,
       start = Time(10, 35),
       kind = Break.Kind.Large
-    ),
-    Break(
-      day = ConfDay.Friday,
-      start = Time(11, 35),
-      kind = Break.Kind.Coffee
     ),
     Break(
       day = ConfDay.Friday,
@@ -211,28 +171,8 @@ object ScheduleInfo {
     ),
     Break(
       day = ConfDay.Friday,
-      start = Time(13, 55),
-      kind = Break.Kind.Coffee
-    ),
-    Break(
-      day = ConfDay.Friday,
-      start = Time(14, 45),
-      kind = Break.Kind.Coffee
-    ),
-    Break(
-      day = ConfDay.Friday,
-      start = Time(15, 35),
-      kind = Break.Kind.Coffee
-    ),
-    Break(
-      day = ConfDay.Friday,
       start = Time(16, 25),
       kind = Break.Kind.Large
-    ),
-    Break(
-      day = ConfDay.Friday,
-      start = Time(16, 55),
-      kind = Break.Kind.Coffee
     ),
     Special(
       day = ConfDay.Friday,

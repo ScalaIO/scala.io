@@ -84,7 +84,7 @@ case object ScheduleView extends SimpleViewWithDraft {
 
   def computeTop(event: Event, count: Int, day: ConfDay) =
     val base = (event.start.toHour - minStart.toHour) * pxByHour
-    if day == ConfDay.Thursday then base + (count + 2) * 32
+    if day == ConfDay.Thursday then base + (count + 1) * 32
     else base + count * 32
 
   // ? We suppose that the events are sorted by starting time
@@ -106,7 +106,7 @@ case object ScheduleView extends SimpleViewWithDraft {
         renderTimeline(eventsByDay)
       ),
       div(
-        height := s"${(maxEnd.h - minStart.h) * (pxByHour + 60)}px",
+        height := s"${(maxEnd.h - minStart.h) * (pxByHour + 40)}px",
         ConfDay.values.map: day =>
           eventsByDay.get(day) match
             case None => div()
