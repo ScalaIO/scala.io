@@ -156,11 +156,6 @@ case object ScheduleView extends SimpleViewWithDraft {
     sectionTag(
       className := "container",
       Title("Schedule"),
-      p(
-        "The schedule will be available soon.",
-        className := "catch-phrase"
-      ),
-      Line(margin = 55),
       globalHours,
       Line(margin = 55),
       child <-- renderSchedule(eventsByDay)
