@@ -224,9 +224,9 @@ object TalksInfo:
       room = Room.One
     ),
     Talk(
-      title = "To be announced",
-      slug = "lightning-1",
-      description = "To be announced",
+      title = "Ukraine's Scala community building lessons",
+      slug = "ukraine-scala-community",
+      description = ukraine_scala_building_lessons,
       kind = Talk.Kind.Lightning,
       speakers = List(SpeakersInfo.olyaMazhara),
       category = Talk.Category.Community,
