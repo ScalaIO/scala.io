@@ -258,8 +258,8 @@ object TalksInfo:
     ),
     Talk(
       title = "Rex: Migration de Scala 2 à Scala 3",
-      slug = "rex-migration-scala-2-to-scala-3",
-      description = "To be announced",
+      slug = "rex-migration-scala-2-to-3",
+      description = rex_migration_scala_2_to_3,
       speakers = List(SpeakersInfo.antoineBlondeau, SpeakersInfo.jeanBaptiseKaiser),
       kind = Talk.Kind.Lightning,
       category = Talk.Category.ToolsEcosystem,
