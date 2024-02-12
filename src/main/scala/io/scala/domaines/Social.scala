@@ -13,6 +13,7 @@ case class Social(
     case Social.Kind.Linkedin => Linkedin()
     case Social.Kind.Github   => Github()
     case Social.Kind.Other    => Chain()
+    case Social.Kind.Gitlab   => Gitlab.render
 
   val linkName = kind match
     case Social.Kind.Other => url.split("://").last.stripSuffix("/")
@@ -22,16 +23,13 @@ object Social:
   given Ordering[Social] = Ordering.by(_.kind.ordinal)
 
   enum Kind:
-    case Twitter
-    case Linkedin
-    case Github
-    case Other
+    case Twitter, Linkedin, Github, Gitlab, Other
 
   def render(socials: List[Social], owner: String) = socials.sorted.map: social =>
     a(social.icon, href := social.url, aria.label := s"$owner's ${social.kind}")
 
   def renderWithAccount(socials: List[Social]) = socials.sorted.map:
-    case social @ (Social(Kind.Twitter, _) | Social(Kind.Github, _)) =>
+    case social @ (Social(Kind.Twitter | Kind.Github | Kind.Gitlab, _)) =>
       a(social.icon, href := social.url, span("@", social.linkName))
     case social @ (Social(Kind.Linkedin, _) | Social(Kind.Other, _)) =>
       a(social.icon, href := social.url, span(social.linkName))

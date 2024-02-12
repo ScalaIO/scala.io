@@ -176,7 +176,7 @@ object SpeakersInfo:
     company = "Disney Streaming Services",
     socials = List(
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/olivier-mélois-99234bbb"),
-      Social(Social.Kind.Other, "https://github.com/Baccata")
+      Social(Social.Kind.Github, "https://github.com/Baccata")
     ),
     confirmed = true
   )
@@ -243,7 +243,7 @@ object SpeakersInfo:
     company = "NuMind",
     socials = List(
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/françois-laroche-28406132"),
-      Social(Social.Kind.Other, "https://github.com/larochef")
+      Social(Social.Kind.Github, "https://github.com/larochef")
     ),
     confirmed = true
   )
@@ -375,6 +375,20 @@ object SpeakersInfo:
       Social(Social.Kind.Twitter, "https://twitter.com/ArendSyl"),
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/arendsyl"),
       Social(Social.Kind.Github, "https://github.com/Arendsyl")
+    ),
+    confirmed = true
+  )
+
+  val samuelBernard = Speaker(
+    name = "Samuel Bernard",
+    photo = Some("sBernard.webp"),
+    description = "After a PhD in Distributed Systems, Samuel left the academic world to be a software engineer in a fast growing scale-up. There he learned how to build cutting-edge softwares and data infrastructures. Over the years he refined his skills and became an expert in DevOps/DataOps and at managing tech teams. Samuel has been an early employee of Criteo, the Technology Innovation leader at S4M, co-founder & CTO at Make.org, and an independent coach/advisor of start-ups & data teams.",
+    job = "Co-Founder & CTO",
+    company = "NuMind",
+    socials = List(
+      Social(Social.Kind.Twitter, "https://twitter.com/TaXules"),
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/samuelbernardphd"),
+      Social(Social.Kind.Gitlab, "https://gitlab.com/samuel.bernard")
     ),
     confirmed = true
   )

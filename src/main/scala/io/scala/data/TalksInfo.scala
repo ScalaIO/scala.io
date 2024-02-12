@@ -196,7 +196,7 @@ object TalksInfo:
       title = "Utilisez l'intelligence artificielle dans vos programmes !",
       slug = "use-ai-in-your-programs",
       description = use_ai_in_programs,
-      speakers = List(SpeakersInfo.francoisLaroche),
+      speakers = List(SpeakersInfo.francoisLaroche, SpeakersInfo.samuelBernard),
       category = Talk.Category.AI,
       day = ConfDay.Friday,
       start = Time(11, 40),
