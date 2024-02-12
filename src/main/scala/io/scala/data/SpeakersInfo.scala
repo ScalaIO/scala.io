@@ -358,7 +358,7 @@ object SpeakersInfo:
       "I'm a backend developer specialized in platform orchestration. I have experience with Python, Golang and I work with scala since around a year.",
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/P4ndaFR"),
-      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/antblondeau/")
+      Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/antblondeau")
     ),
     job = "Developer",
     company = "Clever Cloud",
