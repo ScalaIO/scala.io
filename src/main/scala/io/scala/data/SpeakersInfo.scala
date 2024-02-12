@@ -237,7 +237,7 @@ object SpeakersInfo:
     photo = Some("fLaroche.webp"),
     description = """|Développeur scala depuis plusieurs années, je me passionne pour la performance des applications.
          |
-         |Je suis actuellement l'architecte de Make.org où je mets en place des applications haute disponibilité.
+         |Je suis actuellement développeur chez NuMind où nous aidons nos clients à entraîner et déployer des modèles d'intelligence artificielle.
          |""".stripMargin,
     job = "Tech Lead",
     company = "NuMind",
