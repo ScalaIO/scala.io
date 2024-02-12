@@ -27,6 +27,7 @@ make dev
 ```
 
 If this doesn't work try:
+
 - `make dev-scss` in one shell tab
 - `make dev-sbt` in a second shell tab
 - `make dev-vite` in a third shell tab
@@ -36,8 +37,11 @@ The app wil be available at http://localhost:5173
 ## Fixing a speaker / talk information
 
 - Create a fork
-- Edit the content in `src/main/scala/io/scala/data/SpeakersInfo.scala` for speakers,
-or in `src/main/resources/md/<talk-slug>.md` for talks.
+- Edit the content in:
+  - `src/main/scala/io/scala/data/SpeakersInfo.scala` for speakers' info
+  - `src/main/resources/md/<talk-slug>.md` for talks' content
+  - `src/main/scala/io/scala/data/TalksInfo.scala` for talks' info (speakers...)
+    - The description to provide is located in `io.scala.data.MarkdownSource.*` and is source-generated from the `<talk-slug>.md` file, with every `-` (dash) replaced by `_` (underscore)
 - Open a PR
 
 You can use the following git commit message template:
