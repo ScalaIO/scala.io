@@ -176,7 +176,7 @@ object SpeakersInfo:
     company = "Disney Streaming Services",
     socials = List(
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/olivier-mélois-99234bbb"),
-      Social(Social.Kind.Other, "https://github.com/Baccata")
+      Social(Social.Kind.Github, "https://github.com/Baccata")
     ),
     confirmed = true
   )
@@ -243,7 +243,7 @@ object SpeakersInfo:
     company = "NuMind",
     socials = List(
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/françois-laroche-28406132"),
-      Social(Social.Kind.Other, "https://github.com/larochef")
+      Social(Social.Kind.Github, "https://github.com/larochef")
     ),
     confirmed = true
   )
