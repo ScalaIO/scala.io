@@ -86,4 +86,4 @@ object OrgaInfo:
     )
   )
 
-  val allOrga = List(jonathanWinandy, marcKarassev, francoisSarradin, quentinAdam, lucasNouguier, warisRadji, jbKaiser)
+  val allOrga = List(jonathanWinandy, marcKarassev, quentinAdam, lucasNouguier, warisRadji, jbKaiser)
