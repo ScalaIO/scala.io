@@ -19,7 +19,7 @@ object SpeakerCard {
       className := "speaker-card",
       img(
         src       := speaker.photoPath,
-        className := "speaker-photo",
+        className := "photo",
         alt       := s"${speaker.name}'s profile picture"
       ),
       div(
@@ -32,18 +32,18 @@ object SpeakerCard {
               ),
               div(
                 Social.render(speaker.socials, speaker.name),
-                className := "speaker-socials"
+                className := "socials"
               )
             ),
-          className := "card-subtitle"
+          className := "subtitle"
         ),
         h2(
           speaker.name,
-          className := "card-title"
+          className := "title"
         ),
         p(speaker.job),
         p(speaker.company),
-        className := "speaker-information"
+        className := "body"
       ),
       linkToTalks(talksBySpeaker(speaker))
     )
@@ -51,7 +51,7 @@ object SpeakerCard {
   def linkToTalks(talks: Seq[Talk]) =
     talks.map { talk =>
       button(
-        className := "card-link classy-button classy-button-highlight",
+        className := "link classy-button classy-button-highlight",
         "See talk ", // ! Problem if >= 2 talks
         GoTo(),
         Page.navigateTo(TalkPage(talk.slug))

@@ -10,13 +10,13 @@ import io.scala.profilePlaceholder
 class SpeakerView(speaker: Speaker):
   def body: HtmlElement =
     div(
-      className := "person",
+      className := "speaker-view",
       Title.small(speaker.name),
       div(
-        className := "speaker-data",
+        className := "data",
         img(
           src       := speaker.photoPath,
-          className := "speaker-photo",
+          className := "photo",
           alt       := s"${speaker.name}'s profile picture"
         ),
         div(

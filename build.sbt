@@ -12,6 +12,7 @@ lazy val root = project
   .enablePlugins(ScalaJSPlugin)
   .settings(
     name := "scalaio-website",
+    // scalacOptions += "-Yexplicit-nulls",
     libraryDependencies ++= Seq(
       "com.raquo"         %%% "laminar"     % Dependencies.laminar,
       "com.raquo"         %%% "waypoint"    % Dependencies.waypoint,

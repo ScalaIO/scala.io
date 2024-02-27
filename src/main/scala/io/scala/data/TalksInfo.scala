@@ -221,7 +221,9 @@ object TalksInfo:
       category = Talk.Category.Algebra,
       day = ConfDay.Thursday,
       start = Time(9, 30),
-      room = Room.One
+      room = Room.One,
+      slides = Some("here"),
+      replay = Some("here")
     ),
     Talk(
       title = "Ukraine's Scala community building lessons",

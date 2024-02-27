@@ -1,0 +1,18 @@
+defaultSeverity: warning
+extends:
+    - stylelint-config-standard-scss
+    - stylelint-config-standard
+    - stylelint-config-recommended
+    - stylelint-config-sass-guidelines
+plugins:
+    - stylelint-scss
+
+rules:
+  at-rule-empty-line-before:
+    - always
+    - ignore:
+        - after-comment
+  block-no-empty: true
+  color-no-invalid-hex: true
+  declaration-block-no-duplicate-properties: true
+  declaration-block-no-shorthand-property-overrides: true

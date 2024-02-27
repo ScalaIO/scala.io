@@ -4,12 +4,10 @@
   width: 100%;
   background-color: vars.$text-color;
 }
-
 .line--contrasted {
   @extend .line;
   background-color: vars.$text-color-contrast;
 }
-
 .line--colored {
   @extend .line;
   background-color: vars.$main-color;

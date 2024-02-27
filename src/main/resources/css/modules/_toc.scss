@@ -1,0 +1,41 @@
+@use "../base/vars" as vars;
+@use "../base/mixins" as mixins;
+
+.with-toc {
+  display: flex;
+
+  .table-of-contents {
+    @media screen and (max-width: 920px) {
+      display: none;
+    }
+
+    .toc-content {
+      position: sticky;
+      top: 20px;
+      right: 20px;
+
+      > a,
+      h3 {
+        display: block;
+        margin-bottom: 16px;
+      }
+
+      > a > span {
+        position: relative;
+
+        @include mixins.belowBar(vars.$text-color, 100%, 1px);
+      }
+
+      > a:hover {
+        background-color: vars.$text-background-light;
+      }
+    }
+  }
+
+  .content {
+    flex: 1;
+  }
+  &.r-toc {
+    flex-direction: row-reverse;
+  }
+}

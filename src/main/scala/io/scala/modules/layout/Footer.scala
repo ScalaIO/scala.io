@@ -22,10 +22,8 @@ object Footer {
 
   private val newsletter: Div =
     div(
-      h3(
-        Lexicon.Footer.Newsletter.title,
-        className := "title-small"
-      ),
+      className := "newsletter",
+      h3(Lexicon.Footer.Newsletter.title),
       p(
         Lexicon.Footer.Newsletter.description,
         className := "description"
@@ -42,10 +40,8 @@ object Footer {
           nameAttr   := "EMAIL",
           aria.label := "Search"
         ),
-        ShinyButton(Lexicon.Footer.Newsletter.button),
-        className := "form"
-      ),
-      className := "newsletter"
+        ShinyButton(Lexicon.Footer.Newsletter.button)
+      )
     )
 
   def social(icon: SvgElement, url: String, name: String) = a(
@@ -55,7 +51,7 @@ object Footer {
   )
 
   lazy val render: HtmlElement = footerTag(
-    className := "footer",
+    className := "container",
     div(
       summary,
       newsletter,

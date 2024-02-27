@@ -10,6 +10,7 @@ import io.scala.views.IndexView
 import com.raquo.airstream.core.Signal
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.waypoint.*
+import org.scalajs.dom.console
 import org.scalajs.dom.document
 import org.scalajs.dom.html
 import upickle.default.*
@@ -19,7 +20,6 @@ import urldsl.vocabulary.{FromString, Printer, UrlMatching}
 import urldsl.vocabulary.FromString
 import urldsl.vocabulary.Printer
 import urldsl.vocabulary.UrlMatching
-import org.scalajs.dom.console
 
 sealed trait Draftable:
   def withDraft: Option[Boolean]
@@ -41,6 +41,8 @@ case object VenuePage extends Page:
   def title: String = "Venue"
 case class SchedulePage(withDraft: Option[Boolean] = None) extends Page with Draftable:
   def title: String = "Schedule"
+case object EventsPage extends Page:
+  def title: String = "Other events"
 case object FAQPage extends Page:
   def title: String = "FAQ"
 
@@ -52,6 +54,7 @@ object Page {
   given sponsorsCodec: ReadWriter[SponsorsPage.type] = macroRW
   given venueCodec: ReadWriter[VenuePage.type]       = macroRW
   given scheduleCodec: ReadWriter[SchedulePage]      = macroRW
+  given eventsCodec: ReadWriter[EventsPage.type]     = macroRW
   given faqCodec: ReadWriter[FAQPage.type]           = macroRW
 
   given pageArgBasicCodec: ReadWriter[Page] = macroRW
@@ -63,6 +66,7 @@ object Page {
     case "sponsors" => Right(SponsorsPage)
     case "venue"    => Right(VenuePage)
     case "schedule" => Right(SchedulePage())
+    case "events"   => Right(EventsPage)
     case "faq"      => Right(FAQPage)
     case _          => Left(DummyError.dummyError)
   }
@@ -74,6 +78,7 @@ object Page {
     case VenuePage       => "venue"
     case _: SchedulePage => "schedule"
     case FAQPage         => "faq"
+    case EventsPage      => "events"
     case _: IndexPage    => ""
   }
 
@@ -105,14 +110,17 @@ object Page {
     decode = args => SchedulePage(args),
     (root / "schedule" / endOfSegments) ? draftParam
   )
+  val eventsRoute = Route.static(
+    EventsPage,
+    root / "events" / endOfSegments
+  )
   val faqRoute = Route.static(
     FAQPage,
     root / "faq" / endOfSegments
   )
 
-
   val router = new Router[Page](
-    routes = List(indexRoute, talksRoute, talkRoute, sponsorsRoute, venueRoute, scheduleRoute, faqRoute),
+    routes = List(indexRoute, talksRoute, talkRoute, sponsorsRoute, venueRoute, scheduleRoute, eventsRoute, faqRoute),
     getPageTitle = page => page.title + " - ScalaIO",
     serializePage = page => write(page)(pageArgBasicCodec),
     deserializePage = pageStr => read(pageStr)(pageArgBasicCodec)
@@ -131,6 +139,7 @@ object Page {
       .collectStatic(SponsorsPage)(SponsorsList.render())
       .collectStatic(VenuePage)(VenueView.render())
       .collect[SchedulePage](arg => ScheduleView.render(arg.withDraft.getOrElse(false)))
+      .collectStatic(EventsPage)(EventsView.render())
       .collectStatic(FAQPage)(FAQView.render())
 
   def navigateTo(page: Page): Binder[HtmlElement] = Binder { el =>

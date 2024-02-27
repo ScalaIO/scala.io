@@ -7,14 +7,23 @@
     "start": "npx serve -l 8080 dist-prod -s",
     "dev": "npx vite",
     "build": "npx vite build",
-    "preview": "npx vite preview"
+    "preview": "npx vite preview",
+    "stylelint": "stylelint 'src/**/*.scss'",
+    "stylelint-fix": "stylelint 'src/**/*.scss' --fix"
   },
   "devDependencies": {
     "@scala-js/vite-plugin-scalajs": "1.0.0",
-    "sass": "^1.56.1",
-    "typescript": "4.6.2",
-    "vite": "^4.4.11",
-    "vite-plugin-html": "^3.2.0"
+    "sass": "^1.71.1",
+    "stylelint": "^16.2.1",
+    "stylelint-config-recommended": "^14.0.0",
+    "stylelint-config-sass-guidelines": "^11.0.0",
+    "stylelint-config-standard": "^36.0.0",
+    "stylelint-config-standard-scss": "^13.0.0",
+    "stylelint-sass-render-errors": "^3.2.1",
+    "stylelint-scss": "^6.1.0",
+    "typescript": "4.9.5",
+    "vite": "^5.1.4",
+    "vite-plugin-html": "^3.2.2"
   },
   "dependencies": {
     "serve": "^14.2.1"

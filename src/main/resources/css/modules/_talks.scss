@@ -1,0 +1,48 @@
+@use "../base/vars" as vars;
+
+.talks-list {
+  .card-container {
+    grid-template: auto / repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+  }
+
+  .body {
+    max-height: 200px;
+  }
+}
+
+.talk {
+  > .card-container {
+    grid-template: auto / repeat(auto-fill, minmax(min(650px, 100%), 1fr));
+    margin-bottom: 1rem;
+  }
+
+  @media screen and (min-width: vars.$desktop-width) {
+    .speaker {
+      flex: 1 1 45%;
+    }
+  }
+
+  .talk-description {
+    max-width: 900px;
+    margin-bottom: 2rem;
+  }
+
+  .links {
+    margin-top: 8px;
+
+    > div {
+      display: grid;
+      grid-template: auto / 64px 32px auto;
+    }
+
+    a {
+      color: vars.$main-color;
+    }
+  }
+  svg {
+    fill: vars.$main-color;
+    width: 24px;
+    vertical-align: top;
+    margin-right: 8px;
+  }
+}

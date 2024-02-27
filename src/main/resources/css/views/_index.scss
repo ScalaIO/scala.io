@@ -3,51 +3,6 @@
 @use "../base/mixins";
 
 .hero {
-  display: flex;
-  flex: 1;
-  align-items: center;
-  justify-content: space-evenly;
-  background-size: cover;
-  background-position: center;
-  position: relative;
-
-  .overlay {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    text-align: center;
-    gap: 32px;
-    background: rgba(0, 0, 0, 0.6);
-    color: #fff;
-    padding: vars.$spacing-medium;
-    position: absolute;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-  }
-
-  .title {
-    font-size: vars.$text-size-huge;
-    line-height: vars.$text-size-huge;
-    @include mixins.text-site(
-      vars.$laptop-width,
-      vars.$text-size-xxx-large,
-      vars.$text-size-xxx-large
-    );
-    @include mixins.text-site(
-      vars.$tablet-width,
-      vars.$text-size-xx-large,
-      vars.$text-size-xx-large
-    );
-    @include mixins.text-site(
-      vars.$mobile-width,
-      vars.$text-size-x-large,
-      vars.$text-size-x-large
-    );
-  }
-
   .event-date-location {
     font-size: vars.$text-size-large;
   }
@@ -56,7 +11,6 @@
     border-bottom: 1px solid vars.$text-color-contrast;
   }
 }
-
 .index {
   .tickets {
     margin-top: vars.$spacing-large;
@@ -80,7 +34,6 @@
         height: 100%;
       }
     }
-
     .group-ticket {
       border: 1px solid vars.$main-color;
       border-radius: 16px;
@@ -98,7 +51,6 @@
           font-size: small;
         }
       }
-
       h3 {
         font-size: x-large;
       }
@@ -120,11 +72,10 @@
       }
 
       a {
-        margin: 16px 0px;
+        margin: 16px 0;
       }
     }
   }
-
   .card-container {
     justify-items: center;
     grid-template: auto / repeat(auto-fill, minmax(min(250px, 100%), 1fr));

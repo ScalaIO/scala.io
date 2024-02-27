@@ -50,8 +50,8 @@ object Time:
   given Ordering[Time] = Ordering[(Int, Int)].on(t => (t.h, t.m))
 
 sealed trait Event:
-  def day: ConfDay
-  def start: Time
+  def day: ConfDay | Null
+  def start: Time | Null
   def render: Div
 
 sealed trait Durable:
@@ -66,7 +66,9 @@ case class Talk(
     room: Room | Null = null,
     start: Time | Null = null,
     speakers: List[Speaker],
-    category: Talk.Category
+    category: Talk.Category,
+    slides: Option[String] = None,
+    replay: Option[String] = None
 ) extends Event
     with Durable:
   lazy val renderDescription = TalksInfo.parseTalk(description).map(p(_))

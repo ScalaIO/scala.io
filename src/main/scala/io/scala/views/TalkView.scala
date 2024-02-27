@@ -19,9 +19,36 @@ object TalkView extends ReactiveView[TalkPage]:
         className := "page-title"
       ),
       div(
-        marginBottom := "2rem",
-        className := "paragraph talk-description",
-        children <-- talk.map(_.renderDescription)
+        className := "talk-description",
+        div(
+          className := "paragraph",
+          children <-- talk.map(_.renderDescription)
+        ),
+        div(
+          className := "links",
+          div(
+            span(
+              className := "slides-link",
+              "Slides"
+            ),
+            "👉",
+            a(
+              href <-- talk.map(_.slides.getOrElse("")),
+              child.text <-- talk.map(_.slides.getOrElse(""))
+            )
+          ),
+          div(
+            span(
+              className := "replay-link",
+              "Replay"
+            ),
+            "👉",
+            a(
+              href <-- talk.map(_.replay.getOrElse("")),
+              child.text <-- talk.map(_.replay.getOrElse(""))
+            )
+          )
+        )
       ),
       h1(
         child.text <-- talk.map(t => if t.speakers.size > 1 then "Speakers" else "Speaker"),
