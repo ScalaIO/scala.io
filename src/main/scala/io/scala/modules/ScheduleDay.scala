@@ -9,7 +9,7 @@ import org.scalajs.dom.HTMLDivElement
 import org.scalajs.dom.console
 
 val rooms = Room.values
-case class ScheduleDay(eventsList: Map[Time, Seq[Event]], startingTimes: Seq[Time]):
+case class ScheduleDay(eventsList: Map[Time, Seq[Act]], startingTimes: Seq[Time]):
   def body =
     startingTimes.map(time =>
       div(
@@ -33,12 +33,12 @@ case class ScheduleDay(eventsList: Map[Time, Seq[Event]], startingTimes: Seq[Tim
     )
 
 object ScheduleDay {
-  def apply(events: Seq[Event]) =
+  def apply(events: Seq[Act]) =
     val scheduledEvents = events
       .filter:
         case t: Talk => t.start != null && t.room != null
         case e       => e.start != null
-    val definedTalks: Map[Time, Seq[Event]] =
+    val definedTalks: Map[Time, Seq[Act]] =
       scheduledEvents.groupBy(_.start)
     val startingTimes = scheduledEvents
       .map(_.start)

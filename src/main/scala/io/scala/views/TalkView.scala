@@ -4,6 +4,7 @@ import io.scala.TalkPage
 import io.scala.data.TalksInfo.allTalks
 import io.scala.domaines.Talk
 import io.scala.modules.TalkKindTag
+import io.scala.modules.elements.Icon
 import io.scala.modules.elements.Title
 
 import com.raquo.laminar.api.L.{*, given}
@@ -26,28 +27,17 @@ object TalkView extends ReactiveView[TalkPage]:
         ),
         div(
           className := "links",
-          div(
-            span(
-              className := "slides-link",
-              "Slides"
-            ),
-            "👉",
-            a(
-              href <-- talk.map(_.slides.getOrElse("")),
-              child.text <-- talk.map(_.slides.getOrElse(""))
-            )
-          ),
-          div(
-            span(
-              className := "replay-link",
-              "Replay"
-            ),
-            "👉",
-            a(
-              href <-- talk.map(_.replay.getOrElse("")),
-              child.text <-- talk.map(_.replay.getOrElse(""))
-            )
-          )
+          child <-- talk.map:
+            _.slides
+              .map: slides =>
+                a(Icon("pdf"), href := slides.url, slides.url)
+              .getOrElse(emptyNode)
+          ,
+          child <-- talk.map:
+            _.replay
+              .map: replayUrl =>
+                a(Icon("youtube"), href := replayUrl, replayUrl)
+              .getOrElse(emptyNode)
         )
       ),
       h1(

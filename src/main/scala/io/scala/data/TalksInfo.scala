@@ -21,6 +21,8 @@ import knockoff.HeaderChunk
 import knockoff.LinkDefinitionChunk
 import org.scalajs.dom.console
 import scala.collection.mutable.{HashMap, Queue}
+import io.scala.modules.elements.SelfHosted
+import io.scala.modules.elements.WebHosted
 
 object TalksInfo:
   val parser = new ChunkParser
@@ -67,7 +69,8 @@ object TalksInfo:
       category = Talk.Category.Algebra,
       day = ConfDay.Friday,
       start = Time(15, 40),
-      room = Room.One
+      room = Room.One,
+      slides = Some(SelfHosted("chasing-arrows.pdf", 2024))
     ),
     Talk(
       title = "Data pipelines engineering made simple with Scala",
@@ -77,7 +80,8 @@ object TalksInfo:
       category = Talk.Category.DataEng,
       day = ConfDay.Friday,
       start = Time(9, 50),
-      room = Room.One
+      room = Room.One,
+      slides = Some(SelfHosted("data-pipeline.pptx", 2024))
     ),
     Talk(
       title = "Scala 3 Compiler Academy Journey",
@@ -87,7 +91,8 @@ object TalksInfo:
       category = Talk.Category.Community,
       day = ConfDay.Thursday,
       start = Time(15, 40),
-      room = Room.One
+      room = Room.One,
+      slides = Some(WebHosted("https://docs.google.com/presentation/d/1DPX8w7I07CIm7rU_z5TNJ_R_A7mf6_lZCMfIVBvrRpk/edit?usp=sharing"))
     ),
     Talk(
       title = "Unleashing Scalafix potential with custom rules",
@@ -97,7 +102,8 @@ object TalksInfo:
       category = Talk.Category.ToolsEcosystem,
       day = ConfDay.Thursday,
       start = Time(10, 50),
-      room = Room.One
+      room = Room.One,
+      slides = Some(SelfHosted("scalafix.pdf", 2024))
     ),
     Talk(
       title = "🌴 Youpi dansons la Kapoeira en testant nos Kafka streams 🕺 💃",
@@ -107,7 +113,8 @@ object TalksInfo:
       category = Talk.Category.DataEng,
       day = ConfDay.Thursday,
       start = Time(16, 40),
-      room = Room.One
+      room = Room.One,
+      slides = Some(WebHosted("https://jvauchel.github.io/kapoeira-dance/index-scalaio.html"))
     ),
     Talk(
       title = "Armored type safety with Iron",
@@ -117,7 +124,8 @@ object TalksInfo:
       category = Talk.Category.Modeling,
       day = ConfDay.Thursday,
       start = Time(11, 40),
-      room = Room.One
+      room = Room.One,
+      slides = Some(WebHosted("https://scalaio-2024.rlemaitre.com"))
     ),
     Talk(
       title = "Contravariance: intuition building from first principles",
@@ -127,7 +135,8 @@ object TalksInfo:
       category = Talk.Category.Modeling,
       day = ConfDay.Friday,
       start = Time(14, 50),
-      room = Room.One
+      room = Room.One,
+      slides = Some(SelfHosted("Contravariance.pdf", 2024))
     ),
     Talk(
       title = "Songwriting in Scala - Creating a DSL for writing Music with ADT's",
@@ -180,7 +189,8 @@ object TalksInfo:
       category = Talk.Category.ToolsEcosystem,
       day = ConfDay.Friday,
       start = Time(13, 30),
-      room = Room.One
+      room = Room.One,
+      slides = Some(SelfHosted("gallia-migration.pdf", 2024))
     ),
     Talk(
       title = "Types dépendants: de la théorie à la pratique",
@@ -200,7 +210,8 @@ object TalksInfo:
       category = Talk.Category.AI,
       day = ConfDay.Friday,
       start = Time(11, 40),
-      room = Room.One
+      room = Room.One,
+      replay = Some("https://www.youtube.com/watch?v=B3Mz-6e9B3s&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb")
     ),
     Talk(
       title = "My first year in Scala",
@@ -222,8 +233,8 @@ object TalksInfo:
       day = ConfDay.Thursday,
       start = Time(9, 30),
       room = Room.One,
-      slides = Some("here"),
-      replay = Some("here")
+      slides = Some(SelfHosted("GADTs-xavier-vw-woestyne.pdf", 2024)),
+      replay = Some("https://www.youtube.com/watch?v=r4c7xuVB9xA&ab_channel=ScalaIOFR")
     ),
     Talk(
       title = "Ukraine's Scala community building lessons",
@@ -234,7 +245,9 @@ object TalksInfo:
       category = Talk.Category.Community,
       day = ConfDay.Friday,
       start = Time(16, 40),
-      room = Room.One
+      room = Room.One,
+      slides = Some(SelfHosted("scala-community-building-lessons.pptx", 2024)),
+      replay = None
     ),
     Talk(
       title = "Unwrapping IO: is it a path that you want to follow?",
@@ -245,7 +258,8 @@ object TalksInfo:
       category = Talk.Category.Effects,
       day = ConfDay.Friday,
       start = Time(17, 0),
-      room = Room.One
+      room = Room.One,
+      slides = Some(WebHosted("https://adamw.github.io/unwrapping-io"))
     ),
     Talk(
       title = "When all the nails are trees, the hammer you need probably looks like a chainsaw",
@@ -256,7 +270,9 @@ object TalksInfo:
       kind = Talk.Kind.Short,
       day = ConfDay.Thursday,
       start = Time(13, 30),
-      room = Room.One
+      room = Room.One,
+      slides = Some(SelfHosted("Chainsaw.pdf", 2024)),
+      replay = None
     ),
     Talk(
       title = "Rex: Migration de Scala 2 à Scala 3",

@@ -23,20 +23,26 @@
   }
 
   .talk-description {
-    max-width: 900px;
     margin-bottom: 2rem;
   }
 
   .links {
+    display: flex;
+    flex-wrap: wrap;
+    row-gap: 16px;
+    column-gap: 64px;
     margin-top: 8px;
 
-    > div {
-      display: grid;
-      grid-template: auto / 64px 32px auto;
+    img {
+      width: 32px;
+      height: 32px;
     }
 
     a {
       color: vars.$main-color;
+      display: flex;
+      align-items: center;
+      gap: 8px
     }
   }
   svg {

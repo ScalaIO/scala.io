@@ -1,3 +1,4 @@
-.hero {
+.index .hero {
   background-image: url(../images/index-hero.webp);
+  flex: 1;
 }
