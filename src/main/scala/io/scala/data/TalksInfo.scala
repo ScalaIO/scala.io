@@ -157,7 +157,8 @@ object TalksInfo:
       category = Talk.Category.Cloud,
       day = ConfDay.Friday,
       start = Time(10, 50),
-      room = Room.One
+      room = Room.One,
+      slides = Some(SelfHosted("besom.pdf", 2024))
     ),
     Talk(
       title = "Introduction to Smithy/Smithy4s",
@@ -200,7 +201,8 @@ object TalksInfo:
       category = Talk.Category.Algebra,
       day = ConfDay.Friday,
       start = Time(14, 0),
-      room = Room.One
+      room = Room.One,
+      slides = Some(WebHosted("http://d.plaindoux.free.fr/talks/dependent-type/main.html"))
     ),
     Talk(
       title = "Utilisez l'intelligence artificielle dans vos programmes !",
@@ -221,7 +223,8 @@ object TalksInfo:
       category = Talk.Category.Community,
       day = ConfDay.Thursday,
       start = Time(17, 30),
-      room = Room.One
+      room = Room.One,
+      slides = Some(SelfHosted("first-year-scala.pdf", 2024))
     ),
     Talk(
       title = "Une autre introduction aux GADTs",

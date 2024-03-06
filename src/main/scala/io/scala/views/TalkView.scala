@@ -30,13 +30,13 @@ object TalkView extends ReactiveView[TalkPage]:
           child <-- talk.map:
             _.slides
               .map: slides =>
-                a(Icon("pdf"), href := slides.url, slides.url)
+                a(Icon("pdf"), href := slides.url, slides.url, target := "_blank")
               .getOrElse(emptyNode)
           ,
           child <-- talk.map:
             _.replay
               .map: replayUrl =>
-                a(Icon("youtube"), href := replayUrl, replayUrl)
+                a(Icon("youtube"), href := replayUrl, replayUrl, target := "_blank")
               .getOrElse(emptyNode)
         )
       ),
