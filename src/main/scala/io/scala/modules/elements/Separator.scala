@@ -5,7 +5,7 @@ import com.raquo.laminar.api.L.{*, given}
 object Separator {
   def apply(element: Element*): Div =
     div(
-      className := "separator",
+      className := "container separator",
       element
     )
 }

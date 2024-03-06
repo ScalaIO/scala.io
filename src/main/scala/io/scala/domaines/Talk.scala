@@ -11,6 +11,7 @@ import com.raquo.laminar.tags.HtmlTag
 import java.nio.file.Path
 import org.scalajs.dom
 import org.scalajs.dom.HTMLDivElement
+import io.scala.modules.elements.Slides
 
 sealed trait TalkInfo[A <: TalkInfo[A]]:
   def ordinal: Int
@@ -33,25 +34,9 @@ enum Room extends TalkInfo[Room]:
   case One
   def render = "Room " + this.ordinal
 
-case class Time(h: Int, m: Int) {
-  val toHour = h + m / 60.0
-  def render(tag: HtmlTag[dom.html.Element] = div) = tag(
-    span(
-      f"$h%02d",
-      className := "time_hour"
-    ),
-    span(
-      f"$m%02d",
-      className := "time_minute"
-    )
-  )
-}
-object Time:
-  given Ordering[Time] = Ordering[(Int, Int)].on(t => (t.h, t.m))
-
-sealed trait Event:
-  def day: ConfDay
-  def start: Time
+sealed trait Act:
+  def day: ConfDay | Null
+  def start: Time | Null
   def render: Div
 
 sealed trait Durable:
@@ -66,8 +51,10 @@ case class Talk(
     room: Room | Null = null,
     start: Time | Null = null,
     speakers: List[Speaker],
-    category: Talk.Category
-) extends Event
+    category: Talk.Category,
+    slides: Option[Slides] = None,
+    replay: Option[String] = None
+) extends Act
     with Durable:
   lazy val renderDescription = TalksInfo.parseTalk(description).map(p(_))
   def duration: Int          = kind.duration
@@ -148,7 +135,7 @@ case class Break(
     start: Time,
     kind: Break.Kind,
     overrideDuration: Option[Int] = None
-) extends Event
+) extends Act
     with Durable:
   def duration: Int = overrideDuration.getOrElse(kind.duration)
   def render =
@@ -174,7 +161,7 @@ case class Special(
     day: ConfDay,
     start: Time,
     kind: Special.Kind
-) extends Event:
+) extends Act:
   def render: ReactiveHtmlElement[HTMLDivElement] = kind match
     case Special.Kind.End            => div(className := "blank-card", Logo("#222222"))
     case Special.Kind.CommunityParty => div(className := s"blank-card community-party")

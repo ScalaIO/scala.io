@@ -1,0 +1,11 @@
+@use "../base/vars" as vars;
+
+.paragraph {
+  > p:not(:first-of-type) {
+    margin-top: 16px;
+  }
+
+  a {
+    color: vars.$main-color;
+  }
+}

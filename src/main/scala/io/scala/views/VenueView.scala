@@ -39,9 +39,7 @@ object VenueView extends SimpleView {
           backgroundImage := "url(../images/places/icilundi1.webp)",
           div(
             className := "overlay",
-            div(
-              h2(className := "title", "The Vault")
-            )
+            h2(className := "title", "The Vault")
           )
         )
       ),

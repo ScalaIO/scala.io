@@ -1,10 +1,9 @@
-@use "../base/vars";
+@use "../base/vars" as vars;
 
 .sponsors__buttons {
   display: flex;
   gap: vars.$spacing-x-small;
 }
-
 .sponsor-kind {
   display: flex;
   flex-direction: column;
@@ -20,7 +19,6 @@
     gap: 32px;
   }
 }
-
 %sponsor-logo {
   flex: 1;
 }
@@ -50,7 +48,6 @@
   @extend %sponsor-logo;
   height: 50px;
 }
-
 .sponsor-logo-love {
   @extend %sponsor-logo;
   height: 50px;

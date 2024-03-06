@@ -1,0 +1,50 @@
+@use "../base/vars" as vars;
+
+.events {
+  .list {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+
+    .event {
+      display: flex;
+
+      .hero {
+        min-width: 400px;
+        height: 200px;
+      }
+
+      .info {
+        img {
+          color: vars.$main-color;
+          width: 16px;
+          height: 16px;
+        }
+
+        span {
+          display: flex;
+          align-items: center;
+          gap: 8px;
+        }
+
+        span ~ p {
+          margin-top: 8px
+        }
+      }
+
+      &.normal {
+        div ~ div {
+          margin-left: 16px;
+        }
+      }
+
+      &.reverse {
+        flex-direction: row-reverse;
+        div + div {
+          margin-right: 16px;
+        }
+      }
+
+    }
+  }
+}

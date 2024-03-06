@@ -7,14 +7,8 @@ import org.scalajs.dom.html
 
 object Headband {
   lazy val render: Div = div(
-    span(
-      Lexicon.Headband.left,
-      className := "headband__information"
-    ),
-    span(
-      Lexicon.Headband.right,
-      className := "headband__information"
-    ),
+    span(Lexicon.Headband.left),
+    span(Lexicon.Headband.right),
     className := "headband"
   )
 }

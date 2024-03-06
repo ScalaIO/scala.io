@@ -18,13 +18,12 @@
     gap: 32px;
 
     > div {
-      flex:1;
+      flex: 1;
       display: flex;
       flex-direction: column;
       justify-content: space-between;
       min-width: min(350px, 100%);
     }
-
     .hero {
       min-height: 400px;
       max-height: 400px;

@@ -18,11 +18,11 @@
     border-top: 1px solid #ccc;
     padding-top: 16px;
     margin-top: 16px;
-  
+
     > div:first-child {
       margin-right: 16px;
     }
-  
+
     .talk-card,
     .blank-card {
       flex: 1;
@@ -30,7 +30,7 @@
     }
   }
 
-  .talk-card .card-footer {
+  .talk-card .footer {
     @media screen and (min-width: vars.$tablet-width) {
       flex-direction: row;
       justify-content: space-between;
@@ -41,11 +41,11 @@
     display: flex;
     justify-content: space-around;
   }
-  
+
   .tabs {
     align-items: center;
     position: sticky;
-    top: 0px;
+    top: 0;
     background-color: vars.$background-color;
     z-index: 10;
   }
@@ -82,7 +82,6 @@
     margin-right: 4px;
   }
 }
-
 .schedule.small {
   @extend %schedule;
 
@@ -98,8 +97,7 @@
       background-color: #ccc;
     }
   }
-
-  .card-body {
+  .body {
     max-height: 200px;
   }
 }
@@ -109,6 +107,8 @@
 
   display: grid;
   grid-template-columns: 100px 1fr 1fr;
+  width: min(100%, 1200px);
+  margin: 0 auto;
 
   .tabs {
     grid-column: span 2;
@@ -117,7 +117,6 @@
     justify-items: center;
     gap: 16px;
   }
-
   .times {
     position: relative;
 
@@ -146,14 +145,15 @@
       align-items: center;
     }
 
+    .presentation-short,
     .presentation-talk,
     .presentation-keynote {
-      .card-body p {
+      .body p {
         line-height: vars.$text-size-x-large;
         text-align: justify;
       }
     }
-    
+
     .presentation-short,
     .presentation-lightning {
       .line {
@@ -162,16 +162,12 @@
     }
 
     .presentation-lightning {
-      .card-body {
+      .body {
         display: none;
       }
     }
   }
-
-  width: min(100%, 1200px);
-  margin: 0 auto;
 }
-
 .time_hour {
   font-size: 1.5rem;
   margin-right: 0.25rem;

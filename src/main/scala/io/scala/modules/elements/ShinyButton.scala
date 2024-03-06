@@ -15,22 +15,9 @@ object ShinyButton {
       className := "shiny-button"
     )
 
-  def light(text: String): Button =
-    button(
-      text,
-      typ       := "submit",
-      className := "shiny-button-light"
-    )
-
   def link(text: String): Anchor =
     a(
       text,
       className := "shiny-button"
-    )
-
-  def linkLight(text: String): Anchor =
-    a(
-      text,
-      className := "shiny-button-light"
     )
 }

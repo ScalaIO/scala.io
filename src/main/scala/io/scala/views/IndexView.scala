@@ -16,7 +16,7 @@ case object IndexView extends GenericView {
   def render(withDraft: Boolean): HtmlElement =
     div(
       div(
-        className := "fullscreen",
+        className := "fullscreen index",
         Headband.render,
         child <-- Header.render,
         IndexView.hero
@@ -48,34 +48,34 @@ case object IndexView extends GenericView {
         "This edition brings us together in Nantes for two days, with a single-session structure and a large community space. With a great venue, wonderful speakers, and a lot of surprises, we are looking forward to meeting you there!"
       )
     ),
-    div(
-      className := "container",
-      Title("Tickets"),
-      div(
-        className := "tickets",
-        YurPlan()
-        // div(
-        //   className := "group-ticket",
-        //   Ticket(),
-        //   p("Group tickets"),
-        //   ticketPerks
-        //     .map(e =>
-        //       List(
-        //         e,
-        //         Line(margin = 10)
-        //       )
-        //     )
-        //     .flatten
-        //     .dropRight(1),
-        //   ShinyButton.linkLight("Email us!").amend(href := s"mailto:contact@scala.io"),
-        //   p(
-        //     className := "small",
-        //     "Style stolen from ",
-        //     u(a(href := "https://www.scalar-conf.com/tickets", "scalar-conf.com/tickets"))
-        //   )
-        // )
-      )
-    ),
+    // div(
+    //   className := "container",
+    //   Title("Tickets"),
+    //   div(
+    //     className := "tickets",
+    // YurPlan()
+    // div(
+    //   className := "group-ticket",
+    //   Ticket(),
+    //   p("Group tickets"),
+    //   ticketPerks
+    //     .map(e =>
+    //       List(
+    //         e,
+    //         Line(margin = 10)
+    //       )
+    //     )
+    //     .flatten
+    //     .dropRight(1),
+    //   ShinyButton.linkLight("Email us!").amend(href := s"mailto:contact@scala.io"),
+    //   p(
+    //     className := "small",
+    //     "Style stolen from ",
+    //     u(a(href := "https://www.scalar-conf.com/tickets", "scalar-conf.com/tickets"))
+    //   )
+    // )
+    //   )
+    // ),
     Separator(),
     speakerGallery(withDraft)
   )

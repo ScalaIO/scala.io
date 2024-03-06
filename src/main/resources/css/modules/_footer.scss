@@ -1,29 +1,13 @@
 @use "../base/vars";
 @use "../base/mixins";
+@use "../base/layout";
 
-.footer {
+footer {
   display: flex;
   flex-direction: column;
   background-color: vars.$secondary-color;
   color: vars.$text-color-contrast;
   gap: vars.$spacing-small;
-  padding: vars.$spacing-x-large vars.$spacing-huge;
-
-  @include mixins.padding-vh(
-    vars.$laptop-width,
-    vars.$spacing-x-large,
-    vars.$spacing-large
-  );
-  @include mixins.padding-vh(
-    vars.$tablet-width,
-    vars.$spacing-large,
-    vars.$spacing-medium
-  );
-  @include mixins.padding-vh(
-    vars.$mobile-width,
-    vars.$spacing-medium,
-    vars.$spacing-small
-  );
 
   .main {
     display: flex;
@@ -43,23 +27,17 @@
       line-height: 1.2;
     }
   }
-
   .newsletter {
     display: flex;
     flex-direction: column;
     justify-content: space-between;
+    text-align: right;
 
-    .title-small {
+    > h3 {
       font-size: vars.$text-size-large;
-      text-align: right;
     }
 
-    .description {
-      text-align: right;
-      font-weight: normal;
-    }
-
-    .form {
+    > form {
       display: flex;
       gap: vars.$spacing-x-small;
       justify-content: flex-end;
@@ -77,7 +55,6 @@
       }
     }
   }
-
   .others {
     display: flex;
     flex-direction: row;
@@ -88,18 +65,10 @@
       display: flex;
       align-items: center;
       column-gap: vars.$spacing-x-small;
+
       svg {
         display: block;
         height: vars.$footer-logo-height;
-      }
-
-      .twitter,
-      .linkedin__background {
-        fill: vars.$text-color-contrast;
-      }
-
-      .linkedin__foreground {
-        fill: vars.$secondary-color;
       }
     }
   }

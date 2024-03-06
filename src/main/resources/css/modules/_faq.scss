@@ -10,16 +10,18 @@
     list-style-type: disc;
     list-style-position: inside;
   }
+
   a {
     color: vars.$main-color;
   }
 
   .logos {
-    display: grid;
-    grid-template: auto / repeat(auto-fill, minmax(65px, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     justify-items: center;
     padding: 8px 32px;
     gap: 32px;
+
     img,
     svg {
       height: 64px;
@@ -29,11 +31,11 @@
       display: block;
     }
   }
-
   .organizers {
     display: grid;
     grid-template: auto / repeat(auto-fill, minmax(min(250px, 100%), 1fr));
     justify-items: start;
+
     .orga {
       display: flex;
       flex-direction: row;

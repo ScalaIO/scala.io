@@ -26,11 +26,11 @@ object TalkCard:
       className := s"talk-card ${talk.kind.toStyle}",
       div(
         h3(
-          className := "card-title",
+          className := "title",
           talk.title
         ),
         div(
-          className := "card-subtitle",
+          className := "subtitle",
           TalkKindTag(talk.kind),
           if talk.room != null then
             span(
@@ -42,34 +42,34 @@ object TalkCard:
       ),
       Line(margin = 16),
       div(
-        className := "card-body paragraph",
+        className := "body paragraph",
         talk.renderDescription
       ),
       Line(margin = 16),
       div(
-        className := "card-footer",
+        className := "footer",
         talk.speakers.map { speaker =>
           div(
-            className := "talk-speaker",
+            className := "speaker",
             img(
               src       := speaker.photoPath,
-              className := "speaker-photo",
+              className := "photo",
               alt       := s"${speaker.name}'s profile picture"
             ),
             div(
               p(
                 shortName(speaker.name),
-                className := "speaker-name"
+                className := "name"
               ),
               p(
                 speaker.company,
-                className := "speaker-company"
+                className := "company"
               )
             )
           )
         },
         button(
-          className  := "card-link classy-button classy-button-highlight",
+          className  := "link classy-button classy-button-highlight",
           aria.label := s"Go to ${talk.title}",
           GoTo(),
           Page.navigateTo(TalkPage(talk.slug))

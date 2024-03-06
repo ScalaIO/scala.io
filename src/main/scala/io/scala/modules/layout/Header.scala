@@ -32,7 +32,7 @@ object Header {
   private def navLink(name: String, page: Page): Anchor =
     a(
       name,
-      className := "header__navbar__link",
+      className := "link",
       Page.navigateTo(page)
     )
 
@@ -41,16 +41,17 @@ object Header {
     Lexicon.Header.sponsors -> SponsorsPage,
     Lexicon.Header.venue    -> VenuePage,
     Lexicon.Header.schedule -> SchedulePage(),
+    "Scala-FR events"          -> EventsPage,
     "FAQ"                   -> FAQPage
   )
 
   def links = div(
     linksPage.map(navLink _),
-    className := "navbar-links"
+    className := "links"
   )
   def mobileLinks = div(
     linksPage.map(navLink _),
-    className := "header__sidenav"
+    className := "sidenav"
   )
 
   val logo = button(
@@ -69,30 +70,25 @@ object Header {
     )
 
   def laptopPlusScreen = headerTag(
+    className := "navbar laptop",
     logo,
-    links,
-    buyTicket
+    links
   )
 
   def tabletScreen = headerTag(
-    className := "navbar-tablet-view",
-    div(
-      logo,
-      buyTicket,
-      className := "navbar-links-tablet"
-    ),
+    className := "navbar tablet",
+    div(logo),
     links
   )
 
   def mobileScreen = headerTag(
-    className := "navbar-links-mobile",
+    className := "navbar mobile",
     logo,
     div(
-      buyTicket,
       button(
         Burger(),
         onClick.stopImmediatePropagation.mapTo(!burgerClicked.now()) --> burgerClicked,
-        className  := "header__burger",
+        className  := "burger",
         aria.label := "menu"
       ),
       div(
@@ -100,8 +96,7 @@ object Header {
           case true  => mobileLinks
           case false => emptyNode
         }
-      ),
-      className := "navbar-links-mobile-buttons"
+      )
     )
   )
 }

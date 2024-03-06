@@ -7,90 +7,71 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
 
-.navbar-links,
-.navbar-links-tablet,
-.navbar-links-mobile {
-  display: flex;
-  align-items: center;
-}
-
-.navbar-links-tablet,
-.navbar-links-mobile {
-  justify-content: space-between;
-  width: 100%;
-}
-
-.navbar-links {
-  justify-content: center;
-}
-
-.navbar-links-mobile-buttons {
-  display: flex;
-  align-items: center;
-  gap: vars.$spacing-x-small;
-  color: #fff;
-}
-
-.navbar-tablet-view {
-  display: flex;
-  flex-direction: column;
-}
-
-.header__navbar__link {
-  text-transform: uppercase;
-  padding: vars.$spacing-x-small vars.$spacing-small;
-  vertical-align: middle;
-
-  &:hover {
-    background-color: vars.$main-color-darker;
-    border-bottom: 5px solid vars.$main-color;
-    cursor: pointer;
+  &.navbar {
+    display: flex;
   }
-}
 
-.header__call-to-action {
-  background-color: vars.$main-color;
-  border-radius: 10px;
-  padding: 5px 15px;
+  &.navbar.tablet {
+    flex-direction: column;
+    gap: 16px;
 
-  &:hover {
-    background-color: vars.$text-color-contrast;
+    > div:first-of-type {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+  }
+
+  &.navbar.mobile {
+    width: 100%;
+  }
+
+  .links {
+    display: flex;
+    justify-content: center;
+  }
+
+  .link {
+    text-transform: uppercase;
+    padding: vars.$spacing-x-small vars.$spacing-small;
+    vertical-align: middle;
+
+    &:hover {
+      background-color: vars.$main-color-darker;
+      border-bottom: 5px solid vars.$main-color;
+      cursor: pointer;
+      transition: background-color 0.5s, color 0.5s;
+
+      padding: 5px 15px;
+    }
+  }
+  .logo svg {
+    height: 32px;
+    margin: 5px 0;
+
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  .sidenav {
+    width: 128px;
+    position: fixed;
+    z-index: 1;
+    top: 82px;
+    right: 24px;
+    background-color: #e8e8e8;
     color: vars.$text-color;
-    cursor: pointer;
+    border-radius: 4px;
+
+    > a {
+      display: block;
+    }
   }
-
-  transition: background-color 0.5s, color 0.5s;
-}
-
-header .logo svg {
-  height: 32px;
-  margin: 5px 0px;
-
-  &:hover {
-    cursor: pointer;
-  }
-}
-
-.header__sidenav {
-  width: 128px;
-  position: fixed;
-  z-index: 1;
-  top: 82px;
-  right: 24px;
-  background-color: #e8e8e8;
-  color: vars.$text-color;
-  border-radius: 4px;
-
-  > a {
+  .burger {
     display: block;
+    width: 32px;
+    height: 32px;
+    margin: 6px 0;
   }
-}
-
-.header__burger {
-  display: block;
-  width: 32px;
-  height: 32px;
-  margin: 6px 0;
 }
