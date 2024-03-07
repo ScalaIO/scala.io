@@ -75,7 +75,9 @@ case object IndexView extends GenericView {
     //   )
     // ),
     Separator(),
-    speakerGallery(withDraft)
+    speakerGallery(withDraft),
+    Separator(),
+    yearlySponsors
   )
 
   // val ticketPerks = List(
@@ -101,6 +103,12 @@ case object IndexView extends GenericView {
         className := "card-container",
         speakers.map(SpeakerCard(_))
       )
+    )
+
+  lazy val yearlySponsors =
+    div(
+      className := "container",
+      span(className :="page-title", "Yearly sponsors")
     )
 
   lazy val hero: Div = div(

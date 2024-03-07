@@ -28,35 +28,7 @@ lazy val root = project
     },
     publicFolderDev  := linkerOutputDirectory((Compile / fastLinkJS).value).getAbsolutePath,
     publicFolderProd := linkerOutputDirectory((Compile / fullLinkJS).value).getAbsolutePath,
-    Compile / sourceGenerators += Def.task {
-      val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "MarkdownSource.scala"
-
-      val markdowns: Seq[File] =
-        ((Compile / resourceDirectory).value / "md").listFiles().filter(_.getName.endsWith(".md")).toList
-
-      def lines(lines: String*)         = lines.mkString("\n")
-      def slugify(name: String): String = name.toLowerCase().replace("-", "_")
-
-      val content: String = lines(
-        "package io.scala.data",
-        "",
-        "object MarkdownSource {",
-        "",
-        lines(markdowns.map(file => {
-          val name: String    = slugify(file.getName.stripSuffix(".md"))
-          val content: String = "\"" * 3 + IO.read(file) + "\"" * 3
-
-          s"""  val $name = $content"""
-        })*),
-        "}"
-      )
-
-      if (!file.exists() || IO.read(file) != content) {
-        IO.write(file, content)
-      }
-
-      Seq(file)
-    }.taskValue
+    Compile / sourceGenerators += talksSourceGenerator.taskValue
   )
 
 def linkerOutputDirectory(v: Attributed[org.scalajs.linker.interface.Report]): File = {
@@ -67,3 +39,37 @@ def linkerOutputDirectory(v: Attributed[org.scalajs.linker.interface.Report]): F
     )
   }
 }
+
+// TODO: on prod env, generate all sources. On dev env generate source from current year only (can use a build setting key)
+def talksSourceGenerator = Def.task {
+  val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "Talks.scala"
+
+  val markdowns: Seq[File] =
+    ((Compile / resourceDirectory).value / "talks" / "2024").listFiles().filter(_.getName.endsWith(".md")).toList
+
+  def lines(lines: String*)         = lines.mkString("\n")
+  def slugify(name: String): String = name.toLowerCase().replace("-", "_")
+
+  val content: String = lines(
+    "package io.scala.data",
+    "",
+    "object Talks {",
+    "",
+    lines(markdowns.map(file => {
+      val name: String    = slugify(file.getName.stripSuffix(".md"))
+      val content: String = "\"" * 3 + IO.read(file) + "\"" * 3
+
+      s"""  val $name = $content"""
+    })*),
+    "}"
+  )
+
+  if (!file.exists() || IO.read(file) != content) {
+    IO.write(file, content)
+  }
+
+  Seq(file)
+}
+
+//TODO: traverse the sponsors/YYYY.md file and extract the 2nd level title for value's name and list for value's value. A line iterator should allow to get the first line without computing the others
+def sponsorsSourceGenerator = ???
