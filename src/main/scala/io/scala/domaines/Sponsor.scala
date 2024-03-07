@@ -5,8 +5,8 @@ case class Sponsor(
     photo: String,
     website: String,
     rank: Sponsor.Rank,
-    gridCol: Int = 1,
-    gridRow: Int = 1
+    colSpan: Int,
+    rowSpan: Int
 ):
   def photoPath = s"images/sponsors/${photo}"
 
