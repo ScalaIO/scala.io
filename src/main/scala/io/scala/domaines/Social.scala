@@ -9,11 +9,11 @@ case class Social(
     url: String
 ):
   lazy val icon = kind match
-    case Social.Kind.Twitter  => Twitter()
-    case Social.Kind.Linkedin => Linkedin()
-    case Social.Kind.Github   => Github()
-    case Social.Kind.Other    => Chain()
-    case Social.Kind.Gitlab   => Gitlab.render
+    case Social.Kind.Twitter  => Icons.twitter
+    case Social.Kind.Linkedin => Icons.linkedin
+    case Social.Kind.Github   => Icons.github
+    case Social.Kind.Other    => Icons.chain
+    case Social.Kind.Gitlab   => Icons.gitlab
 
   val linkName = kind match
     case Social.Kind.Other => url.split("://").last.stripSuffix("/")

@@ -2,9 +2,7 @@ package io.scala
 package modules.layout
 
 import io.scala.modules.elements.ShinyButton
-import io.scala.svgs.Burger
 import io.scala.svgs.Icons
-import io.scala.svgs.Logo
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
 
@@ -62,7 +60,7 @@ object Header {
   val logo = button(
     className  := "logo",
     aria.label := "home page",
-    Logo.apply(),
+    Icons.logo(),
     Page.navigateTo(IndexPage())
   )
 
@@ -91,7 +89,7 @@ object Header {
     logo,
     div(
       button(
-        Burger(),
+        Icons.burger,
         onClick.stopImmediatePropagation.mapTo(!burgerClicked.now()) --> burgerClicked,
         className  := "burger",
         aria.label := "menu"
