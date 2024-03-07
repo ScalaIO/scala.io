@@ -6,6 +6,7 @@ object Chain:
   def apply() =
     svg(
       viewBox := "0 0 512 512",
+      fill    := "#ce0013",
       g(
         idAttr      := "SVGRepo_bgCarrier",
         strokeWidth := "0"
