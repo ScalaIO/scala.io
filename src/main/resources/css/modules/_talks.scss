@@ -33,22 +33,18 @@
     column-gap: 64px;
     margin-top: 8px;
 
-    img {
-      width: 32px;
-      height: 32px;
+    svg {
+      fill: vars.$main-color;
+      stroke: vars.$main-color;
+      width: 24px;
+      height: 24px;
     }
 
     a {
       color: vars.$main-color;
       display: flex;
       align-items: center;
-      gap: 8px
+      gap: 8px;
     }
-  }
-  svg {
-    fill: vars.$main-color;
-    width: 24px;
-    vertical-align: top;
-    margin-right: 8px;
   }
 }
