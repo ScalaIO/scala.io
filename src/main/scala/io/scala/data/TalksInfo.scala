@@ -29,7 +29,6 @@ object TalksInfo:
   import parser.{*, given}
   val textBlock = parser.emptyLine.* ~> parser.textBlock <~ parser.emptyLine.*
   val talk      = parser.phrase((parser.header ~ parser.emptyLine.?) ~> (parser.atxHeader.? ~ textBlock).+)
-  val linkRegex = """\[([^\[\]]+)\]\s*\(([^\(\)]+)\)""".r
 
   def parseTalk(md: String) =
     parser.parse(talk, md) match
@@ -48,7 +47,7 @@ object TalksInfo:
                   queue += a(href := next.group(2), target := "_blank", next.group(1), aria.label := next.group(2))
                   (queue, next.end)
             withLinks._1.enqueue(span(text.substring(withLinks._2)))
-      case fail: parser.NoSuccess =>
+      case _: parser.NoSuccess =>
         List(Queue(p("To be announced")))
 
   lazy val talksBySpeaker =
@@ -76,7 +75,7 @@ object TalksInfo:
     Talk(
       title = "Data pipelines engineering made simple with Scala",
       slug = "data-pipelines-simple",
-      description = data_pipepline,
+      description = data_pipeline,
       speakers = List(SpeakersInfo.raphaelClaude),
       category = Talk.Category.DataEng,
       day = ConfDay.Friday,

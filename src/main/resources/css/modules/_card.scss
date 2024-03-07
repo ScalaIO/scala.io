@@ -5,9 +5,11 @@ $card-padding: 16px;
 
 .card-container {
   display: grid;
-  gap: 64px;
+  column-gap: 32px;
+  row-gap: 64px;
   margin: 24px;
 }
+
 %card-base {
   position: relative;
   display: flex; // Needed for the shadow on hovering
