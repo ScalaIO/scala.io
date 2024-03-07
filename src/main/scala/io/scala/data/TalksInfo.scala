@@ -1,7 +1,7 @@
 package io.scala.data
 
 import io.scala.Lexicon.Footer.Newsletter.description
-import io.scala.data.MarkdownSource.*
+import io.scala.data.Talks.*
 import io.scala.data.SpeakersInfo.allSpeakers
 import io.scala.domaines.ConfDay
 import io.scala.domaines.Room
