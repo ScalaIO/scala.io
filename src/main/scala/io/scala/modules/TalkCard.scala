@@ -69,7 +69,7 @@ object TalkCard:
           )
         },
         button(
-          className  := "link classy-button classy-button-highlight",
+          className  := "link classy-button button-highlight",
           aria.label := s"Go to ${talk.title}",
           Icons.goTo,
           Page.navigateTo(TalkPage(talk.slug))

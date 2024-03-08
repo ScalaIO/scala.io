@@ -18,36 +18,37 @@
     gap: 32px;
   }
 }
-%sponsor-logo {
+
+.sponsor-logo {
   flex: 1;
+  
+  &.platinum {
+    height: 100px;
+  }
+  
+  &.gold {
+    height: 80px;
+  }
+  
+  &.silver {
+    height: 70px;
+  }
+  
+  &.partner {
+    height: 50px;
+  }
+  
+  &.community {
+    height: 50px;
+  }
+  
+  &.love {
+    height: 50px;
+  }
+  
+  &.yearly {
+    height: 80px;
+  }
 }
 
-.sponsor-logo-platinum {
-  @extend %sponsor-logo;
-  height: 100px;
-  fill: vars.$text-color;
-}
 
-.sponsor-logo-gold {
-  @extend %sponsor-logo;
-  height: 80px;
-}
-
-.sponsor-logo-silver {
-  @extend %sponsor-logo;
-  height: 70px;
-}
-
-.sponsor-logo-partner {
-  @extend %sponsor-logo;
-  height: 50px;
-}
-
-.sponsor-logo-community {
-  @extend %sponsor-logo;
-  height: 50px;
-}
-.sponsor-logo-love {
-  @extend %sponsor-logo;
-  height: 50px;
-}

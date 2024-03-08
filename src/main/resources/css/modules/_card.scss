@@ -7,7 +7,7 @@ $card-padding: 16px;
   display: grid;
   column-gap: 32px;
   row-gap: 64px;
-  margin: 24px;
+  margin: 2.5% 4%;
 }
 
 %card-base {
@@ -17,7 +17,7 @@ $card-padding: 16px;
   justify-content: space-between;
   align-items: stretch;
   transition: all 0.3s ease-in-out;
-  width: 100%;
+  width: 100%; // TODO: might be worth to add a specific class for the width
   padding: $card-padding;
 
   border-width: 1px;

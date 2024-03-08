@@ -18,6 +18,6 @@ object ClassyButton {
 
     element.amend(
       className                                   := "classy-button",
-      className.toggle("classy-button-highlight") := isImportant
+      className.toggle("button-highlight") := isImportant
     )
 }

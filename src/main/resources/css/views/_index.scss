@@ -76,8 +76,20 @@
       }
     }
   }
-  .card-container {
-    justify-items: center;
-    grid-template: auto / repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+
+  .yearly-sponsors {
+    .card-container {
+      display: flex;
+
+      .sponsor-card {
+        width: auto;
+      }
+    }
+  }
+
+  :not(.yearly-sponsors) {
+    .card-container {
+      grid-template: auto / repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+    }
   }
 }

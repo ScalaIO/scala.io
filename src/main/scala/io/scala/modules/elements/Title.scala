@@ -18,8 +18,8 @@ object Title {
   )
 
   def withSub(title: String, subtitle: HtmlElement) = div(
+    className := "page-title",
     h1(title),
-    subtitle.amend(className := "page-subtitle"),
-    className := "page-title"
+    subtitle.amend(className := "page-subtitle")
   )
 }
