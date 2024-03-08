@@ -11,7 +11,7 @@ object SponsorLogo {
       className := "sponsor-card",
       styleAttr := s"grid-column: span ${sponsor.colSpan}; grid-row: span ${sponsor.rowSpan}",
       img(
-        className := s"sponsor-logo-${sponsor.rank.css}",
+        className := s"sponsor-logo ${sponsor.rank.css}",
         src       := sponsor.photoPath,
         alt       := s"${sponsor.name} logo"
       ),

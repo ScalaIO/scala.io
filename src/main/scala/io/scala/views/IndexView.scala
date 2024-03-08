@@ -3,11 +3,14 @@ package io.scala.views
 import io.scala.Lexicon.Header.talks
 import io.scala.Page.*
 import io.scala.data.SpeakersInfo
+import io.scala.data.SponsorsInfo
+import io.scala.domaines.Sponsor
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
 import io.scala.modules.layout.*
 
 import com.raquo.laminar.api.L.{*, given}
+import io.scala.utils.ButtonKind
 
 case object IndexView extends GenericView {
 
@@ -46,48 +49,11 @@ case object IndexView extends GenericView {
         "This edition brings us together in Nantes for two days, with a single-session structure and a large community space. With a great venue, wonderful speakers, and a lot of surprises, we are looking forward to meeting you there!"
       )
     ),
-    // div(
-    //   className := "container",
-    //   Title("Tickets"),
-    //   div(
-    //     className := "tickets",
-    // YurPlan()
-    // div(
-    //   className := "group-ticket",
-    //   Ticket(),
-    //   p("Group tickets"),
-    //   ticketPerks
-    //     .map(e =>
-    //       List(
-    //         e,
-    //         Line(margin = 10)
-    //       )
-    //     )
-    //     .flatten
-    //     .dropRight(1),
-    //   ShinyButton.linkLight("Email us!").amend(href := s"mailto:contact@scala.io"),
-    //   p(
-    //     className := "small",
-    //     "Style stolen from ",
-    //     u(a(href := "https://www.scalar-conf.com/tickets", "scalar-conf.com/tickets"))
-    //   )
-    // )
-    //   )
-    // ),
     Separator(),
-    speakerGallery(withDraft),
+    yearlySponsors,
     Separator(),
-    yearlySponsors
+    speakerGallery(withDraft)
   )
-
-  // val ticketPerks = List(
-  //   h3("Ask for a group discount!"),
-  //   div(Check(), "access to 2 conference days"),
-  //   div(Check(), "access to the community party"),
-  //   div(Check(), "opportunity to meet Scala and FP experts"),
-  //   div(Check(), "(dev|tech)-friendly networking"),
-  //   div(Check(), "special offer for your team")
-  // )
 
   def speakerGallery(withDraft: Boolean) =
     val speakers =
@@ -95,10 +61,7 @@ case object IndexView extends GenericView {
       else SpeakersInfo.allSpeakers.filter(_.confirmed)
     div(
       className := "container speaker-gallery",
-      span(
-        className := "page-title",
-        "Speaker Gallery"
-      ),
+      Title("Speaker Gallery"),
       div(
         className := "card-container",
         speakers.map(SpeakerCard(_))
@@ -107,8 +70,18 @@ case object IndexView extends GenericView {
 
   lazy val yearlySponsors =
     div(
-      className := "container",
-      span(className :="page-title", "Yearly sponsors")
+      className := "container yearly-sponsors",
+      Title("Yearly sponsors"),
+      p("Find a nice sentence"),
+      div(
+        className := "card-container",
+        SponsorsInfo.allSponsors.filter(_.rank == Sponsor.Rank.Yearly).map(SponsorLogo(_))
+      ),
+      ClassyButton(
+        "Interested? Email us!",
+        ButtonKind.Href("mailto:contact@scala.io"),
+        true
+      )
     )
 
   lazy val hero: Div = div(
