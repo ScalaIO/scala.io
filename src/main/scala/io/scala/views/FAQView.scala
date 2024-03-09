@@ -14,7 +14,7 @@ object FAQView extends SimpleView {
   private def question(question: String, answer: String): HtmlElement = {
     div(
       className := "question",
-      h2(question),
+      h3(question),
       p(answer)
     )
   }
@@ -22,7 +22,7 @@ object FAQView extends SimpleView {
   private def question(question: String, answer: HtmlElement*): HtmlElement = {
     div(
       className := "question",
-      h2(question),
+      h3(question),
       answer
     )
   }
@@ -32,9 +32,9 @@ object FAQView extends SimpleView {
       className := "container faq",
       Title("Frequently Asked Questions"),
       div(),
-      Title.small("Common questions"),
+      Title.small("Common questions", idAttr := "common-questions"),
       commonQuestions,
-      Title.small("Speaker questions"),
+      Title.small("Speaker questions", idAttr := "speaker-questions"),
       speakerQuestions,
       Title("Who is behind Scala.IO?"),
       div(),
@@ -157,13 +157,22 @@ object FAQView extends SimpleView {
       )
     ),
     question(
-      "Will there be replays?",
+      "Do I need to sign something?",
       p(
-        "Yes, we will record the talks and make them available on our Youtube channel (",
-        a(href := "https://www.youtube.com/@scalaio", "https://www.youtube.com/@scalaio"),
-        ") after processing them (checking the sound, adding an intro frame at the start if the video, etc.)"
-      ),
-      p("We reference the video and slides on the website on your talk's page. So please, remember to send us the link/pdf of your slides :)")
+        "When your talk is selected, you just need to confirm you are willing to given your talk, and we send you a form about travel and expenses, and keep you updated when we announce your talk."
+      )
+    ),
+    question(
+      "Do I have a free ticket?",
+      p("Of course :)")
+    ),
+    question(
+      "What if I am selected and already bought tickets?",
+      p("You are reimbursed")
+    ),
+    question(
+      "And if I am not selected?",
+      p("You will receive a coupon for tickets")
     ),
     question(
       "Do you reimburse travel expenses?",
@@ -172,8 +181,15 @@ object FAQView extends SimpleView {
       )
     ),
     question(
-      "Do I have a free ticket?",
-      "Of course :)"
+      "Will there be replays?",
+      p(
+        "Yes, we will record the talks and make them available on our Youtube channel (",
+        a(href := "https://www.youtube.com/@scalaio", "https://www.youtube.com/@scalaio"),
+        ") after processing them (checking the sound, adding an intro frame at the start if the video, etc.)"
+      ),
+      p(
+        "We reference the video and slides on the website on your talk's page. So please, remember to send us the link/pdf of your slides :)"
+      )
     )
   )
 
