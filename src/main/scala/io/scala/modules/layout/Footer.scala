@@ -4,18 +4,16 @@ import io.scala.Lexicon
 import io.scala.modules.elements.Line
 import io.scala.modules.elements.LineKind
 import io.scala.modules.elements.ShinyButton
-import io.scala.svgs.Linkedin
-import io.scala.svgs.Logo
-import io.scala.svgs.Twitter
 
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom.html
+import io.scala.svgs.Icons
 
 object Footer {
   private val summary: Div =
     div(
-      Logo(),
+      Icons.logo(),
       p(Lexicon.Footer.Description.text, className := "description"),
       className := "summary"
     )
@@ -64,8 +62,8 @@ object Footer {
         className := "copyright"
       ),
       div(
-        social(Linkedin(), "https://www.linkedin.com/company/scala-io", "Linkedin ScalaIO"),
-        social(Twitter(), "https://twitter.com/ScalaIO_FR", "Twitter ScalaIO"),
+        social(Icons.linkedin, "https://www.linkedin.com/company/scala-io", "Linkedin ScalaIO"),
+        social(Icons.twitter, "https://twitter.com/ScalaIO_FR", "Twitter ScalaIO"),
         className := "social"
       ),
       className := "others"

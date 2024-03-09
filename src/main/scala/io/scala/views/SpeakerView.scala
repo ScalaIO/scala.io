@@ -1,11 +1,11 @@
 package io.scala.views
 
-import com.raquo.laminar.api.L.{*, given}
+import io.scala.domaines.{Social, Speaker}
 import io.scala.modules.elements.Title
-import io.scala.svgs.AtSign
-import io.scala.svgs.Suitcase
-import io.scala.domaines.{Speaker, Social}
 import io.scala.profilePlaceholder
+
+import com.raquo.laminar.api.L.{*, given}
+import io.scala.svgs.Icons
 
 class SpeakerView(speaker: Speaker):
   def body: HtmlElement =
@@ -20,14 +20,14 @@ class SpeakerView(speaker: Speaker):
           alt       := s"${speaker.name}'s profile picture"
         ),
         div(
-          className := "paragraph",
           div(
+            className := "svg-list",
             div(
-              Suitcase(),
+              Icons.suitecase,
               speaker.job
             ),
             div(
-              AtSign(),
+              Icons.atSign,
               speaker.company
             )
           ),

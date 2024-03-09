@@ -1,4 +1,5 @@
 @use "../base/vars";
+@use "../tools/animation";
 
 header {
   background-color: vars.$secondary-color;
@@ -32,11 +33,14 @@ header {
     justify-content: center;
   }
 
+  .accordion,
   .link {
     text-transform: uppercase;
     padding: vars.$spacing-x-small vars.$spacing-small;
     vertical-align: middle;
+  }
 
+  .link {
     &:hover {
       background-color: vars.$main-color-darker;
       border-bottom: 5px solid vars.$main-color;
@@ -54,6 +58,7 @@ header {
       cursor: pointer;
     }
   }
+
   .sidenav {
     width: 128px;
     position: fixed;

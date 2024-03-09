@@ -2,8 +2,6 @@ package io.scala.domaines
 
 import io.scala.data.TalksInfo
 import io.scala.modules.TalkCard
-import io.scala.svgs
-import io.scala.svgs.Logo
 
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
@@ -12,6 +10,7 @@ import java.nio.file.Path
 import org.scalajs.dom
 import org.scalajs.dom.HTMLDivElement
 import io.scala.modules.elements.Slides
+import io.scala.svgs.Icons
 
 sealed trait TalkInfo[A <: TalkInfo[A]]:
   def ordinal: Int
@@ -149,8 +148,8 @@ object Break:
       case Large  => "break-large"
       case Lunch  => "break-lunch"
     def toIcon = this match
-      case Large  => svgs.Chat()
-      case Lunch  => svgs.Food()
+      case Large  => Icons.chat
+      case Lunch  => Icons.food
     def duration = this match
       case Large  => 15
       case Lunch  => 60
@@ -163,7 +162,7 @@ case class Special(
     kind: Special.Kind
 ) extends Act:
   def render: ReactiveHtmlElement[HTMLDivElement] = kind match
-    case Special.Kind.End            => div(className := "blank-card", Logo("#222222"))
+    case Special.Kind.End            => div(className := "blank-card", Icons.logo("#222222"))
     case Special.Kind.CommunityParty => div(className := s"blank-card community-party")
 
 object Special:

@@ -3,7 +3,7 @@ package io.scala.domaines
 import io.scala.Lexicon.Footer.Newsletter.description
 
 import com.raquo.laminar.api.L.{svg => _, *, given}
-import io.scala.modules.elements.Icon
+import io.scala.svgs.Icons
 
 case class TimeRange(
     startDay: DayOfYear,
@@ -33,11 +33,11 @@ case class Event(
       className := "info",
       h2(name),
       span(
-        Icon("location"),
+        Icons.location,
         p(s"$town - $address")
       ),
       span(
-        Icon("clock"),
+        Icons.clock,
         p(s"${dateTime.startDay} ${dateTime.startHour} - ${dateTime.endDay} ${dateTime.endHour}")
       ),
       p(description)

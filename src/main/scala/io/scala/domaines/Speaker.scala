@@ -1,10 +1,5 @@
 package io.scala.domaines
 
-import io.scala.svgs.Chain
-import io.scala.svgs.Github
-import io.scala.svgs.Linkedin
-import io.scala.svgs.Twitter
-
 import com.raquo.laminar.api.L.{*, given}
 
 case class Speaker(

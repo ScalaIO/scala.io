@@ -5,9 +5,9 @@ import io.scala.data.OrgaInfo.allOrga
 import io.scala.domaines.Organizer
 import io.scala.domaines.Social
 import io.scala.modules.elements.Title
-import io.scala.svgs.Github
 
 import com.raquo.laminar.api.L.*
+import io.scala.svgs.Icons
 
 object FAQView extends SimpleView {
   private def question(question: String, answer: String): HtmlElement = {
@@ -106,7 +106,7 @@ object FAQView extends SimpleView {
         a(
           href     := "https://github.com/ScalaIO/scala.io",
           nameAttr := "Github",
-          Github()
+          Icons.github
         )
       ),
       question(

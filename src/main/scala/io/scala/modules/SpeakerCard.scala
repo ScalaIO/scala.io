@@ -4,7 +4,6 @@ package modules
 import io.scala.data.TalksInfo.{allTalks, talksBySpeaker}
 import io.scala.domaines.{Social, Speaker, Talk}
 import io.scala.modules.elements.ClassyButton
-import io.scala.svgs.GoTo
 
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.api.features.unitArrows
@@ -12,6 +11,7 @@ import org.scalajs.dom
 import org.scalajs.dom.console
 import org.scalajs.dom.html.Anchor
 import org.scalajs.dom.svg.{Path, SVG}
+import io.scala.svgs.Icons
 
 object SpeakerCard {
   def apply(speaker: Speaker) =
@@ -51,9 +51,9 @@ object SpeakerCard {
   def linkToTalks(talks: Seq[Talk]) =
     talks.map { talk =>
       button(
-        className := "link classy-button classy-button-highlight",
+        className := "link classy-button button-highlight",
         "See talk ", // ! Problem if >= 2 talks
-        GoTo(),
+        Icons.goTo,
         Page.navigateTo(TalkPage(talk.slug))
       )
     }

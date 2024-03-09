@@ -2,8 +2,7 @@ package io.scala
 package modules.layout
 
 import io.scala.modules.elements.ShinyButton
-import io.scala.svgs.Burger
-import io.scala.svgs.Logo
+import io.scala.svgs.Icons
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
 
@@ -41,13 +40,17 @@ object Header {
     Lexicon.Header.sponsors -> SponsorsPage,
     Lexicon.Header.venue    -> VenuePage,
     Lexicon.Header.schedule -> SchedulePage(),
-    "Scala-FR events"          -> EventsPage,
+    "Scala-FR events"       -> EventsPage,
     "FAQ"                   -> FAQPage
   )
 
   def links = div(
-    linksPage.map(navLink _),
-    className := "links"
+    className := "links",
+    span(
+      className := "accordion",
+      "CONFERENCE"
+    ),
+    linksPage.map(navLink _)
   )
   def mobileLinks = div(
     linksPage.map(navLink _),
@@ -57,7 +60,7 @@ object Header {
   val logo = button(
     className  := "logo",
     aria.label := "home page",
-    Logo.apply(),
+    Icons.logo(),
     Page.navigateTo(IndexPage())
   )
 
@@ -86,7 +89,7 @@ object Header {
     logo,
     div(
       button(
-        Burger(),
+        Icons.burger,
         onClick.stopImmediatePropagation.mapTo(!burgerClicked.now()) --> burgerClicked,
         className  := "burger",
         aria.label := "menu"
