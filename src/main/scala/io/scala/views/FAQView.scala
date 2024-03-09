@@ -143,7 +143,11 @@ object FAQView extends SimpleView {
         "We have a call for papers (CFP) whose link is available on the website. The talks are selected by the organizers plus a few external people."
       ),
       p(
-        "The selection process is based on the content of the talk and the appeal of the reviewer to the subject. Every reviewer emits a note on each talk and the talks are selected based on the average note. The grade is note the only criterion, we also take into account the diversity of the subjects"
+        "The selection process is based on the content of the talk and the appeal of the reviewer to the subject. Reviewer rank talks (between #1 and #5), can ask for precisions if needed. The global rank between talks is used to guide selection during overview in group sessions. We take into account diversity of subjects, and also give some room to \"experimental\" subjects, first time speakers..."
+      ),
+      p(
+        fontSize.small,
+        "There is a stratified, open ballot, exponentially weighted borda count to help with pre-selection"
       )
     ),
     question(
@@ -159,7 +163,7 @@ object FAQView extends SimpleView {
         a(href := "https://www.youtube.com/@scalaio", "https://www.youtube.com/@scalaio"),
         ") after processing them (checking the sound, adding an intro frame at the start if the video, etc.)"
       ),
-      p("We references the videos and slides on the website on your talk's page. So please, remember to send us the link/pdf :)")
+      p("We reference the video and slides on the website on your talk's page. So please, remember to send us the link/pdf of your slides :)")
     ),
     question(
       "Do you reimburse travel expenses?",
