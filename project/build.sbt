@@ -1,0 +1,1 @@
+libraryDependencies += "org.foundweekends" %% "knockoff"    % "0.9.0"

@@ -1,8 +1,8 @@
 package io.scala.data
 
 import io.scala.Lexicon.Footer.Newsletter.description
-import io.scala.data.Talks.*
-import io.scala.data.SpeakersInfo.allSpeakers
+import io.scala.data.TalksNantes2024.*
+import io.scala.data.SpeakersNantes2024.*
 import io.scala.domaines.ConfDay
 import io.scala.domaines.Room
 import io.scala.domaines.Speaker
@@ -25,31 +25,6 @@ import io.scala.modules.elements.SelfHosted
 import io.scala.modules.elements.WebHosted
 
 object TalksInfo:
-  val parser = new ChunkParser
-  import parser.{*, given}
-  val textBlock = parser.emptyLine.* ~> parser.textBlock <~ parser.emptyLine.*
-  val talk      = parser.phrase((parser.header ~ parser.emptyLine.?) ~> (parser.atxHeader.? ~ textBlock).+)
-
-  def parseTalk(md: String) =
-    parser.parse(talk, md) match
-      case parser.Success(result, next) =>
-        result.map:
-          case header ~ textBlock =>
-            val initialQueue: Queue[HtmlElement] =
-              Queue.from { header.map { case HeaderChunk(_, content) => h4(content) } }
-
-            val text = textBlock.content
-            val withLinks = linkRegex
-              .findAllMatchIn(text)
-              .foldLeft((initialQueue, 0)):
-                case ((queue, start), next) =>
-                  queue += span(text.substring(start, next.start))
-                  queue += a(href := next.group(2), target := "_blank", next.group(1), aria.label := next.group(2))
-                  (queue, next.end)
-            withLinks._1.enqueue(span(text.substring(withLinks._2)))
-      case _: parser.NoSuccess =>
-        List(Queue(p("To be announced")))
-
   lazy val talksBySpeaker =
     allTalks
       .foldLeft(HashMap.empty[Speaker, Set[Talk]].withDefaultValue(Set.empty)): (acc, next) =>
@@ -63,8 +38,8 @@ object TalksInfo:
     Talk(
       title = "Chasing Arrows, in Categories containing Functors and Monads",
       slug = "chasing-arrows-functors-monads",
-      description = chasing_arrows_functors_monads,
-      speakers = List(SpeakersInfo.jimNewton, SpeakersInfo.uliFahrenberg),
+      description = chasingArrowsFunctorsMonads,
+      speakers = ???,//List(jimNewton, uliFahrenberg),
       category = Talk.Category.Algebra,
       day = ConfDay.Friday,
       start = Time(15, 40),
@@ -75,8 +50,8 @@ object TalksInfo:
     Talk(
       title = "Data pipelines engineering made simple with Scala",
       slug = "data-pipelines-simple",
-      description = data_pipeline,
-      speakers = List(SpeakersInfo.raphaelClaude),
+      description = dataPipeline,
+      speakers = ???,//List(raphaelClaude),
       category = Talk.Category.DataEng,
       day = ConfDay.Friday,
       start = Time(9, 50),
@@ -87,8 +62,8 @@ object TalksInfo:
     Talk(
       title = "Scala 3 Compiler Academy Journey",
       slug = "scala-3-compiler-academy-journey",
-      description = compiler_academy,
-      speakers = List(SpeakersInfo.anatoliiKmetiuk),
+      description = compilerAcademy,
+      speakers = ???,//List(SpeakersInfo.anatoliiKmetiuk),
       category = Talk.Category.Community,
       day = ConfDay.Thursday,
       start = Time(15, 40),
@@ -99,8 +74,8 @@ object TalksInfo:
     Talk(
       title = "Unleashing Scalafix potential with custom rules",
       slug = "unleashing-scalafix-potential",
-      description = unleashing_scalafix,
-      speakers = List(SpeakersInfo.briceJaglin),
+      description = unleashingScalafix,
+      speakers = ???,//List(SpeakersInfo.briceJaglin),
       category = Talk.Category.ToolsEcosystem,
       day = ConfDay.Thursday,
       start = Time(10, 50),
@@ -111,8 +86,8 @@ object TalksInfo:
     Talk(
       title = "🌴 Youpi dansons la Kapoeira en testant nos Kafka streams 🕺 💃",
       slug = "kapoeira-with-kafka-streams",
-      description = kafka_streams,
-      speakers = List(SpeakersInfo.johannaVauchel, SpeakersInfo.mehdiRebiai),
+      description = kafkaStreams,
+      speakers = ???,//List(SpeakersInfo.johannaVauchel, SpeakersInfo.mehdiRebiai),
       category = Talk.Category.DataEng,
       day = ConfDay.Thursday,
       start = Time(16, 40),
@@ -123,8 +98,8 @@ object TalksInfo:
     Talk(
       title = "Armored type safety with Iron",
       slug = "armored-type-safety-with-iron",
-      description = armored_type_safety_iron,
-      speakers = List(SpeakersInfo.raphaelLemaitre, SpeakersInfo.valentinBergeron),
+      description = armoredTypeSafetyIron,
+      speakers = ???,//List(SpeakersInfo.raphaelLemaitre, SpeakersInfo.valentinBergeron),
       category = Talk.Category.Modeling,
       day = ConfDay.Thursday,
       start = Time(11, 40),
@@ -136,7 +111,7 @@ object TalksInfo:
       title = "Contravariance: intuition building from first principles",
       slug = "contravariance-intuition-building",
       description = contravariance,
-      speakers = List(SpeakersInfo.sophieCollard),
+      speakers = ???,//List(SpeakersInfo.sophieCollard),
       category = Talk.Category.Modeling,
       day = ConfDay.Friday,
       start = Time(14, 50),
@@ -147,9 +122,9 @@ object TalksInfo:
     Talk(
       title = "Songwriting in Scala - Creating a DSL for writing Music with ADT's",
       slug = "songwriting-in-scala-dsl-and-adt",
-      description = songwriting_music_adt,
+      description = songwritingMusicAdt,
       kind = Talk.Kind.Speech,
-      speakers = List(SpeakersInfo.paulMatthew),
+      speakers = ???,//List(SpeakersInfo.paulMatthew),
       category = Talk.Category.Modeling,
       day = ConfDay.Thursday,
       start = Time(14, 0),
@@ -159,8 +134,8 @@ object TalksInfo:
     Talk(
       title = "Hands-on Besom: Infrastructure-as-Code with Scala",
       slug = "hands-on-besom-iac-with-scala",
-      description = hands_on_besom,
-      speakers = List(SpeakersInfo.lukaszBialy),
+      description = handsOnBesom,
+      speakers = ???,//List(SpeakersInfo.lukaszBialy),
       category = Talk.Category.Cloud,
       day = ConfDay.Friday,
       start = Time(10, 50),
@@ -171,8 +146,8 @@ object TalksInfo:
     Talk(
       title = "Introduction to Smithy/Smithy4s",
       slug = "introduction-to-smithy-smithy4s",
-      description = intro_smithy4s,
-      speakers = List(SpeakersInfo.olivierMelois),
+      description = introSmithy4s,
+      speakers = ???,//List(SpeakersInfo.olivierMelois),
       kind = Talk.Kind.Speech,
       category = Talk.Category.Cloud,
       day = ConfDay.Thursday,
@@ -183,8 +158,8 @@ object TalksInfo:
     Talk(
       title = "Logic Meta-Programming for Functional Languages",
       slug = "logic-meta-programming-for-functional-languages",
-      description = logic_meta_prog,
-      speakers = List(SpeakersInfo.enzoCrance),
+      description = logicMetaProg,
+      speakers = ???,//List(SpeakersInfo.enzoCrance),
       category = Talk.Category.Algebra,
       day = ConfDay.Friday,
       start = Time(9, 0),
@@ -194,9 +169,9 @@ object TalksInfo:
     Talk(
       title = "Migrating Gallia to Scala 3: the good, the bad, and the very good.",
       slug = "migrating-gallia-to-scala-3",
-      description = migrating_gallia_to_scala_3,
+      description = migratingGalliaToScala3,
       kind = Talk.Kind.Short,
-      speakers = List(SpeakersInfo.anthonyCros),
+      speakers = ???,//List(SpeakersInfo.anthonyCros),
       category = Talk.Category.ToolsEcosystem,
       day = ConfDay.Friday,
       start = Time(13, 30),
@@ -207,8 +182,8 @@ object TalksInfo:
     Talk(
       title = "Types dépendants: de la théorie à la pratique",
       slug = "dependent-types-from-theory-to-practice",
-      description = dependant_types,
-      speakers = List(SpeakersInfo.didierPlaindoux),
+      description = dependantTypes,
+      speakers = ???,//List(SpeakersInfo.didierPlaindoux),
       category = Talk.Category.Algebra,
       day = ConfDay.Friday,
       start = Time(14, 0),
@@ -219,8 +194,8 @@ object TalksInfo:
     Talk(
       title = "Utilisez l'intelligence artificielle dans vos programmes !",
       slug = "use-ai-in-your-programs",
-      description = use_ai_in_programs,
-      speakers = List(SpeakersInfo.francoisLaroche, SpeakersInfo.samuelBernard),
+      description = useAiInPrograms,
+      speakers = ???,//List(SpeakersInfo.francoisLaroche, SpeakersInfo.samuelBernard),
       category = Talk.Category.AI,
       day = ConfDay.Friday,
       start = Time(11, 40),
@@ -230,8 +205,8 @@ object TalksInfo:
     Talk(
       title = "My first year in Scala",
       slug = "my-first-year-in-scala",
-      description = first_year_scala,
-      speakers = List(SpeakersInfo.monicaMcGuigan),
+      description = firstYearScala,
+      speakers = ???,//List(SpeakersInfo.monicaMcGuigan),
       category = Talk.Category.Community,
       day = ConfDay.Thursday,
       start = Time(17, 30),
@@ -242,9 +217,9 @@ object TalksInfo:
     Talk(
       title = "Une autre introduction aux GADTs",
       slug = "intro-to-gadts",
-      description = other_intro_gadts,
+      description = otherIntroGadts,
       kind = Talk.Kind.Keynote,
-      speakers = List(SpeakersInfo.xavierVdW),
+      speakers = ???,//List(SpeakersInfo.xavierVdW),
       category = Talk.Category.Algebra,
       day = ConfDay.Thursday,
       start = Time(9, 30),
@@ -255,9 +230,9 @@ object TalksInfo:
     Talk(
       title = "Ukraine's Scala community building lessons",
       slug = "ukraine-scala-community",
-      description = ukraine_scala_building_lessons,
+      description = ukraineScalaBuildingLessons,
       kind = Talk.Kind.Lightning,
-      speakers = List(SpeakersInfo.olyaMazhara),
+      speakers = ???,//List(SpeakersInfo.olyaMazhara),
       category = Talk.Category.Community,
       day = ConfDay.Friday,
       start = Time(16, 40),
@@ -268,9 +243,9 @@ object TalksInfo:
     Talk(
       title = "Unwrapping IO: is it a path that you want to follow?",
       slug = "unwrapping-io",
-      description = unwrapping_io,
+      description = unwrappingIo,
       kind = Talk.Kind.Keynote,
-      speakers = List(SpeakersInfo.adamWarski),
+      speakers = ???,//List(SpeakersInfo.adamWarski),
       category = Talk.Category.Effects,
       day = ConfDay.Friday,
       start = Time(17, 0),
@@ -281,8 +256,8 @@ object TalksInfo:
     Talk(
       title = "When all the nails are trees, the hammer you need probably looks like a chainsaw",
       slug = "nails-are-tree-need-chainsaw",
-      description = nails_trees_chainsaw,
-      speakers = List(SpeakersInfo.matthieuBaechler),
+      description = nailsTreesChainsaw,
+      speakers = ???,//List(SpeakersInfo.matthieuBaechler),
       category = Talk.Category.Algebra,
       kind = Talk.Kind.Short,
       day = ConfDay.Thursday,
@@ -294,8 +269,8 @@ object TalksInfo:
     Talk(
       title = "Rex: Migration de Scala 2 à Scala 3",
       slug = "rex-migration-scala-2-to-3",
-      description = rex_migration_scala_2_to_3,
-      speakers = List(SpeakersInfo.antoineBlondeau, SpeakersInfo.jeanBaptiseKaiser),
+      description = rexMigrationScala2To3,
+      speakers = ???,//List(SpeakersInfo.antoineBlondeau, SpeakersInfo.jeanBaptiseKaiser),
       kind = Talk.Kind.Lightning,
       category = Talk.Category.ToolsEcosystem,
       day = ConfDay.Thursday,

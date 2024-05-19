@@ -1,0 +1,63 @@
+/// Speakers-related tables
+Table speakers {
+  id uuit [pk]
+  name text [not null]
+  photo_rel_path text
+  description text
+  job text
+  company text
+  socials text [ref: < socials.url]
+}
+
+Table socials {
+  url text [pk]
+  kind text [ref: > social_kinds.name]
+}
+
+Table social_kinds {
+  name text [pk]
+}
+
+/// Talks-related tables
+Table categories {
+  name text [pk]
+}
+
+Table slides {
+  uri text [pk]
+  hosted_on enum (web, self)
+}
+
+Table talks {
+  id int [pk, increment]
+  title text [not null]
+  slug text [not null]
+  description text [not null]
+  day_number int
+  room_number int
+  start_time time
+  replay text
+  speakers uuid [ref: <> speakers.id]
+  category text [ref: > categories.name]
+  slides text [ref: > slides.uri]
+  event_id int [ref: > events.id]
+}
+
+/// Sponsors related tables
+Table sponsors {
+  id int [pk, increment]
+  name text [not null]
+  logo_rel_path text [not null]
+  website_ling text [not null]
+}
+
+/// Conferences & events related tables
+Table events {
+  id int [pk, increment]
+  name text
+  description text
+  datetime timestamp
+  location text
+  kind enum (conference, event)
+  sponsors int [ref: <> sponsors.id]
+}

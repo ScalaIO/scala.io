@@ -11,6 +11,7 @@ import org.scalajs.dom
 import org.scalajs.dom.HTMLDivElement
 import io.scala.modules.elements.Slides
 import io.scala.svgs.Icons
+import io.scala.data.parseDescription
 
 sealed trait TalkInfo[A <: TalkInfo[A]]:
   def ordinal: Int
@@ -55,7 +56,7 @@ case class Talk(
     replay: Option[String] = None
 ) extends Act
     with Durable:
-  lazy val renderDescription = TalksInfo.parseTalk(description).map(p(_))
+  lazy val renderDescription = parseDescription(description)("To be announced").map(p(_))
   def duration: Int          = kind.duration
   def render: Div            = TalkCard(this)
   def isKeynote: Boolean     = kind == Talk.Kind.Keynote

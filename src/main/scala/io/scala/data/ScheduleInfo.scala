@@ -4,18 +4,21 @@ import io.scala.data.TalksInfo.allTalks
 import io.scala.domaines.*
 import io.scala.domaines.Talk.Category
 
+import com.raquo.laminar.api.L.{*, given}
+
 import scala.util.Random
+import io.scala.domaines.{Talk, ConfDay, Special, Break, Speaker, Time}
 
 object ScheduleInfo {
   val blankSpeakers = Array(
     Speaker(
       name = "John Doe",
-      description = "To be scheduled",
+      bio = List(p("To be scheduled")),
       confirmed = true
     ),
     Speaker(
       name = "Jane Doe",
-      description = "To be scheduled",
+      bio = List(p("To be scheduled")),
       confirmed = true
     )
   )

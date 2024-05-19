@@ -1,12 +1,7 @@
-package io.scala.data
-
-import io.scala.domaines.Social
-import io.scala.domaines.Speaker
-
 import knockoff.ChunkParser
 import knockoff.HeaderChunk
 
-object SpeakersInfo:
+object TalkParser {
   val parser = new ChunkParser
   import parser.{*, given}
   val header      = parser.emptyLine ~> parser.header <~ parser.emptyLine
@@ -15,10 +10,10 @@ object SpeakersInfo:
   val speakerParser = header ~ bulletItems
 
   def speakerStringToObject(speaker: String): Speaker =
-    parser.parse(speakerParser, speaker) match
+    parser.parse(speakerParser, speaker) match {
       case Success(HeaderChunk(_, speakerName) ~ infos, bio) =>
         val infosMap =
-          infos.map { x => 
+          infos.map { x =>
             val (key, value) = x.content.splitAt(x.content.indexOf(":"))
             (key.trim(), value.drop(1).trim())
           }.toMap
@@ -34,8 +29,5 @@ object SpeakersInfo:
           confirmed = infosMap.get("confirmed").map(_ == "true").getOrElse(false)
         )
       case _ => ???
-
-  val allSpeakers: List[Speaker] = SpeakersNantes2024.allSpeakersNantes2024.map(speakerStringToObject)
-  allSpeakers.foreach(x => println(s"${x.name}, ${x.photo}, ${x.job}, ${x.company}"))
-    
-
+    }
+}

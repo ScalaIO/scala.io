@@ -1,13 +1,13 @@
 import org.scalajs.linker.interface.ModuleSplitStyle.SmallestModules
+import TalkParser
 
 ThisBuild / version       := "0.1.0"
 ThisBuild / scalaVersion  := "3.3.1"
 ThisBuild / versionScheme := Some("early-semver")
 
-
 val publicFolderDev  = taskKey[String]("Returns the compiled main.js parent path for dev")
 val publicFolderProd = taskKey[String]("Returns the compiled main.js parent path for production`")
-val currentYear = settingKey[String]("Current year (dev only)")
+val generateSource   = taskKey[Unit]("Generate sources from markdowns")
 
 lazy val root = project
   .in(file("."))
@@ -20,7 +20,8 @@ lazy val root = project
       "com.raquo"         %%% "waypoint"    % Dependencies.waypoint,
       "com.lihaoyi"       %%% "upickle"     % Dependencies.upickle,
       "org.scala-js"      %%% "scalajs-dom" % "2.4.0",
-      "org.foundweekends" %%% "knockoff"    % "0.9.0"
+      "org.foundweekends" %%% "knockoff"    % "0.9.0",
+      "org.typelevel"     %%% "fabric-core" % "1.14.3"
     ),
     scalaJSUseMainModuleInitializer := true,
     scalaJSLinkerConfig ~= {
@@ -30,9 +31,11 @@ lazy val root = project
     },
     publicFolderDev  := linkerOutputDirectory((Compile / fastLinkJS).value).getAbsolutePath,
     publicFolderProd := linkerOutputDirectory((Compile / fullLinkJS).value).getAbsolutePath,
-    Compile / currentYear := "2024",
-    Compile / sourceGenerators += talksSourceGenerator.taskValue,
-    Compile / sourceGenerators += sponsorsSourceGenerator.taskValue
+    Compile / sourceGenerators := List(
+      talksGenerator.taskValue,
+      sponsorsGenerator.taskValue,
+      speakersGenerator.taskValue
+    )
   )
 
 def linkerOutputDirectory(v: Attributed[org.scalajs.linker.interface.Report]): File = {
@@ -44,67 +47,96 @@ def linkerOutputDirectory(v: Attributed[org.scalajs.linker.interface.Report]): F
   }
 }
 
-def lines(lines: String*)               = lines.mkString("\n")
 def slugify(name: String): String       = name.toLowerCase().replace("-", "_")
 def listMarkdown(file: File): Seq[File] = file.listFiles().filter(_.getName.endsWith(".md")).toList
-
-// TODO: on prod env, generate all sources. On dev env generate source from current year only (can use a build setting key)
-def talksSourceGenerator = Def.task {
-  val outputFile = (Compile / sourceManaged).value / "io" / "scala" / "data" / "Talks.scala"
-  val markdowns: Seq[File] =
-    listMarkdown((Compile / resourceDirectory).value / "talks" / (Compile / currentYear).value)
-
-  val content: String =
-    s"""
-      |package io.scala.data
-      |object Talks {
-      |${lines(markdowns.map(file => {
-        val name: String    = slugify(file.getName.stripSuffix(".md"))
-        val content: String = "\"" * 3 + IO.read(file) + "\"" * 3
-
-        s"  val $name = $content"
-      })*)}
-      |}""".stripMargin
-
-  if (!outputFile.exists() || IO.read(outputFile) != content) {
-    IO.write(outputFile, content)
-  }
-
-  Seq(outputFile)
+def listFolder(file: File): Seq[File]   = file.listFiles().filter(_.isDirectory()).toList
+def capitalize(name: String): String    = name.split("-").map(_.capitalize).mkString
+def toCamelCase(name: String): String = {
+  val elements = name.split("-")
+  elements.head + elements.tail.map(capitalize).mkString
 }
 
-//TODO: traverse the sponsors/YYYY.md file and extract the 2nd level title for value's name and list for value's value. A line iterator should allow to get the first line without computing the others
-def sponsorsSourceGenerator = Def.task {
-  val outputFile = (Compile / sourceManaged).value / "io" / "scala" / "data" / "Sponsors.scala"
-  val markdowns: Seq[File] =
-    listMarkdown((Compile / resourceDirectory).value / "sponsors").filter(_.name.startsWith((Compile / currentYear).value))
+def managedSource(name: String, outputFile: File, markdowns: Seq[File], f: File => (String, String)): File = {
+  val (valNames, contents) = markdowns.map(f).unzip
   val content: String =
     s"""
       |package io.scala.data
+      |object $name {
+      |  ${contents.mkString("\n  ")}
       |
-      |import io.scala.domaines.Sponsor
-      |
-      |object Sponsors {
-      |
-      | val sponsorsMd = List(
-      |${lines(markdowns.map(file => {
-        val content: String = IO.read(file)
-        content
-          .split("##")
-          .drop(1)
-          .map { sponsor =>
-            val it = sponsor.linesIterator
-            it.next()
-            s"  ${"\"" * 3}${it.mkString("\n").trim()}${"\"" * 3}"
-          }
-          .mkString(",\n")
-      })*)}
-      |  )
-      |}""".stripMargin
+      |  val all$name = List(${valNames.mkString(", ")})
+      |}
+      |""".stripMargin
 
   if (!outputFile.exists() || IO.read(outputFile) != content) {
     IO.write(outputFile, content)
   }
 
-  Seq(outputFile)
+  outputFile
+}
+
+// TODO: on prod env, generate all sources. On dev env generate source from current year only (can use a build setting key)
+def talksGenerator = Def.task {
+  listFolder((Compile / resourceDirectory).value / "talks")
+    .map { folder =>
+      val name = s"Talks${capitalize(folder.name)}"
+      managedSource(
+        name,
+        (Compile / sourceManaged).value / "io" / "scala" / "data" / s"$name.scala",
+        listMarkdown(folder),
+        file => {
+          val name: String    = toCamelCase(file.base)
+          val content: String = "\"" * 3 + IO.read(file) + "\"" * 3
+
+          (name, s"val $name = $content")
+        }
+      )
+    }
+}
+
+def speakersGenerator = Def.task {
+  listFolder((Compile / resourceDirectory).value / "speakers")
+    .map { folder =>
+      val name = s"Speakers${capitalize(folder.name)}"
+      managedSource(
+        name,
+        (Compile / sourceManaged).value / "io" / "scala" / "data" / s"$name.scala",
+        listMarkdown(folder),
+        file => {
+          val name: String = toCamelCase(file.base)
+          val content: String =
+            s"""
+            |  ${"\"" * 3}
+            |  ${IO.readLines(file).mkString("  ||", "\n  |||", "")}
+            |  ${"\"" * 3}""".stripMargin
+
+          (name, s"val $name = $content.stripMargin")
+        }
+      )
+    }
+}
+
+def sponsorsGenerator = Def.task {
+  listMarkdown((Compile / resourceDirectory).value / "sponsors")
+    .map { md =>
+      val name = s"Sponsors${capitalize(md.base)}"
+      managedSource(
+        name,
+        (Compile / sourceManaged).value / "io" / "scala" / "data" / s"$name.scala",
+        Seq(md),
+        file => {
+          val content: String =
+            IO.read(file)
+              .split("##")
+              .drop(1)
+              .map { sponsor =>
+                val it = sponsor.linesIterator
+                it.next()
+                s"  ${"\"" * 3}${it.mkString("\n").trim()}${"\"" * 3}"
+              }
+              .mkString(",\n")
+          ("", s"val sponsors = List(\n$content\n)")
+        }
+      )
+    }
 }

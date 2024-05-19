@@ -1,15 +1,16 @@
 package io.scala.data
 
-import io.scala.domaines.Sponsor
+import io.scala.data.SponsorsNantes2024
 
 import knockoff.ChunkParser
+import io.scala.domaines.Sponsor
 
 object SponsorsInfo:
   val parser = new ChunkParser
   import parser.{*, given}
   val infoParser = (parser.textLine.filter(!_.content.startsWith("-"))).? ~ parser.bulletItem.*
 
-  val allSponsors = Sponsors.sponsorsMd.map: sponsorString =>
+  val allSponsors = SponsorsNantes2024.sponsors.map: sponsorString =>
     parser.parse(infoParser, sponsorString) match
       case parser.Success(result, _) =>
         val (colSpan, rowSpan) = result._1

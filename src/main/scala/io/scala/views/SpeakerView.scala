@@ -32,7 +32,7 @@ class SpeakerView(speaker: Speaker):
             )
           ),
           h2("Who am I"),
-          speaker.renderDescription,
+          speaker.bio,
           div(
             className := "socials",
             Social.renderWithAccount(speaker.socials)

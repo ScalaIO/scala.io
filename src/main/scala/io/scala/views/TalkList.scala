@@ -1,11 +1,11 @@
 package io.scala.views
 
 import io.scala.data.TalksInfo
-import io.scala.domaines.*
 import io.scala.modules.TalkCard
 import io.scala.modules.elements.*
 
 import com.raquo.laminar.api.L.{*, given}
+import io.scala.domaines.Talk
 
 case object TalkList extends SimpleViewWithDraft {
 

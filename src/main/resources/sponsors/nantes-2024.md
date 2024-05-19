@@ -1,4 +1,4 @@
-# Sponsors 2024
+# Sponsors Nantes 2024
 
 %colspan%:%rowspan% (integers)
 - %name%

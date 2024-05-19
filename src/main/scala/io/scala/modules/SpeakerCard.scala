@@ -1,7 +1,7 @@
 package io.scala
 package modules
 
-import io.scala.data.TalksInfo.{allTalks, talksBySpeaker}
+import io.scala.data.TalksInfo.talksBySpeaker
 import io.scala.domaines.{Social, Speaker, Talk}
 import io.scala.modules.elements.ClassyButton
 

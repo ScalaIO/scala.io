@@ -7,6 +7,7 @@ import com.raquo.laminar.nodes.ChildNode
 import org.scalajs.dom.Comment
 import org.scalajs.dom.HTMLDivElement
 import org.scalajs.dom.console
+import io.scala.domaines.{Talk, Act, Special, Break, Time}
 
 val rooms = Room.values
 case class ScheduleDay(eventsList: Map[Time, Seq[Act]], startingTimes: Seq[Time]):

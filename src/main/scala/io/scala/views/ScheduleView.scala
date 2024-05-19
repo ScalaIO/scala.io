@@ -17,6 +17,7 @@ import com.raquo.laminar.api.L.{*, given}
 import org.scalajs.dom.console
 import scala.collection.immutable.Queue
 import scala.collection.mutable
+import io.scala.domaines.{ConfDay, Act, Break, Durable, Time}
 
 case object ScheduleView extends SimpleViewWithDraft {
   val selectedDay: Var[ConfDay] = Var(ConfDay.Thursday)
