@@ -6,8 +6,6 @@ import io.scala.data.SpeakersInfo
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
 import io.scala.modules.layout.*
-import io.scala.svgs.Check
-import io.scala.svgs.Ticket
 
 import com.raquo.laminar.api.L.{*, given}
 
@@ -80,14 +78,14 @@ case object IndexView extends GenericView {
     speakerGallery(withDraft)
   )
 
-  val ticketPerks = List(
-    h3("Ask for a group discount!"),
-    div(Check(), "access to 2 conference days"),
-    div(Check(), "access to the community party"),
-    div(Check(), "opportunity to meet Scala and FP experts"),
-    div(Check(), "(dev|tech)-friendly networking"),
-    div(Check(), "special offer for your team")
-  )
+  // val ticketPerks = List(
+  //   h3("Ask for a group discount!"),
+  //   div(Check(), "access to 2 conference days"),
+  //   div(Check(), "access to the community party"),
+  //   div(Check(), "opportunity to meet Scala and FP experts"),
+  //   div(Check(), "(dev|tech)-friendly networking"),
+  //   div(Check(), "special offer for your team")
+  // )
 
   def speakerGallery(withDraft: Boolean) =
     val speakers =

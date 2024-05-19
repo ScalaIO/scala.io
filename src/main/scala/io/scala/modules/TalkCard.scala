@@ -3,13 +3,13 @@ package modules
 
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
-import io.scala.svgs.GoTo
 
 import com.raquo.laminar.api.L.{*, given}
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import elements.Line
 import org.scalajs.dom
 import org.scalajs.dom.{HTMLDivElement, HTMLSpanElement}
+import io.scala.svgs.Icons
 
 object TalkKindTag:
   def apply(kind: Talk.Kind): ReactiveHtmlElement[HTMLSpanElement] =
@@ -71,7 +71,7 @@ object TalkCard:
         button(
           className  := "link classy-button classy-button-highlight",
           aria.label := s"Go to ${talk.title}",
-          GoTo(),
+          Icons.goTo,
           Page.navigateTo(TalkPage(talk.slug))
         )
       )

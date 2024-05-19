@@ -18,18 +18,37 @@ $speaker-data-threshold: 650px;
       top: 20px;
     }
   }
+
+  svg {
+    width: 24px;
+    height: 24px;
+  }
+
+  .svg-list {
+    svg {
+      fill: vars.$main-color;
+      stroke: vars.$main-color;
+    }
+
+    > div {
+      display: flex;
+      align-items: center;
+      gap: 8px
+    }
+  }
+
   .socials {
     display: flex;
-    flex-direction: row;
     flex-wrap: wrap;
     gap: 1rem;
 
     a {
-      span {
-        line-height: 24px;
-      }
+      display: flex;
+      align-items: center;
+      gap: 8px;
     }
   }
+
   .data {
     display: flex;
     gap: vars.$spacing-large;
