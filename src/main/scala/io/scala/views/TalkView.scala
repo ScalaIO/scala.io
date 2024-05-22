@@ -1,13 +1,9 @@
 package io.scala.views
 
+import com.raquo.laminar.api.L._
 import io.scala.TalkPage
 import io.scala.data.TalksInfo.allTalks
-import io.scala.domaines.Talk
-import io.scala.modules.TalkKindTag
 import io.scala.svgs.Icons
-import io.scala.modules.elements.Title
-
-import com.raquo.laminar.api.L.{*, given}
 
 object TalkView extends ReactiveView[TalkPage]:
   def body(signal: Signal[TalkPage]): HtmlElement =

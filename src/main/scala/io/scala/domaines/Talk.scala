@@ -1,16 +1,13 @@
 package io.scala.domaines
 
+import com.raquo.laminar.api.L._
+import com.raquo.laminar.nodes.ReactiveHtmlElement
 import io.scala.data.TalksInfo
 import io.scala.modules.TalkCard
-
-import com.raquo.laminar.api.L.{*, given}
-import com.raquo.laminar.nodes.ReactiveHtmlElement
-import com.raquo.laminar.tags.HtmlTag
-import java.nio.file.Path
-import org.scalajs.dom
-import org.scalajs.dom.HTMLDivElement
 import io.scala.modules.elements.Slides
 import io.scala.svgs.Icons
+import org.scalajs.dom
+import org.scalajs.dom.HTMLDivElement
 
 sealed trait TalkInfo[A <: TalkInfo[A]]:
   def ordinal: Int

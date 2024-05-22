@@ -1,13 +1,11 @@
 package io.scala.modules.layout
 
+import com.raquo.laminar.api.L._
+import com.raquo.laminar.nodes.ReactiveHtmlElement
 import io.scala.Lexicon
 import io.scala.modules.elements.Line
 import io.scala.modules.elements.LineKind
 import io.scala.modules.elements.ShinyButton
-
-import com.raquo.laminar.api.L.{*, given}
-import com.raquo.laminar.nodes.ReactiveHtmlElement
-import org.scalajs.dom.html
 import io.scala.svgs.Icons
 
 object Footer {

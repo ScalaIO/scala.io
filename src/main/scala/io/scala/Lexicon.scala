@@ -1,7 +1,5 @@
 package io.scala
 
-import io.scala.domaines.Social
-import io.scala.domaines.Sponsor
 import io.scala.domaines.Time
 
 object Lexicon {

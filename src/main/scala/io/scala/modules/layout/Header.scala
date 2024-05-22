@@ -1,16 +1,13 @@
 package io.scala
 package modules.layout
 
+import com.raquo.laminar.api.L._
+import com.raquo.laminar.nodes.ReactiveHtmlElement
 import io.scala.modules.elements.ShinyButton
 import io.scala.svgs.Icons
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
-
-import com.raquo.laminar.api.L.{*, given}
-import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
-import org.scalajs.dom.UIEvent
-import org.scalajs.dom.html
 import org.scalajs.dom.window
 
 object Header {

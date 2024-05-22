@@ -1,25 +1,15 @@
 package io.scala
 
-import io.scala.data.SpeakersInfo
-import io.scala.data.TalksInfo
-import io.scala.domaines.Speaker
-import io.scala.domaines.TalkInfo
-import io.scala.views.*
+import com.raquo.laminar.api.L._
+import com.raquo.waypoint._
 import io.scala.views.IndexView
-
-import com.raquo.airstream.core.Signal
-import com.raquo.laminar.api.L.{*, given}
-import com.raquo.waypoint.*
-import org.scalajs.dom.console
+import io.scala.views._
 import org.scalajs.dom.document
 import org.scalajs.dom.html
-import upickle.default.*
+import upickle.default._
 import urldsl.errors.DummyError
-import urldsl.language.PathSegmentWithQueryParams
-import urldsl.vocabulary.{FromString, Printer, UrlMatching}
 import urldsl.vocabulary.FromString
 import urldsl.vocabulary.Printer
-import urldsl.vocabulary.UrlMatching
 
 sealed trait Draftable:
   def withDraft: Option[Boolean]

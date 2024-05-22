@@ -1,6 +1,6 @@
 package io.scala.modules.elements
 
-import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.api.L._
 
 enum LineKind:
   case Normal, Contrasted, Colored

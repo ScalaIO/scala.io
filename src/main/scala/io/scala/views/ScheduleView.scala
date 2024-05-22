@@ -1,20 +1,17 @@
 package io.scala.views
 
+import com.raquo.laminar.api.L._
 import io.scala.Lexicon
 import io.scala.data.ScheduleInfo
 import io.scala.data.ScheduleInfo.maxEnd
 import io.scala.data.ScheduleInfo.minStart
 import io.scala.data.ScheduleInfo.pxByHour
-import io.scala.data.TalksInfo
-import io.scala.domaines.*
-import io.scala.domaines.Break.Kind.max
-import io.scala.modules.*
-import io.scala.modules.elements.*
+import io.scala.domaines._
+import io.scala.modules._
+import io.scala.modules.elements._
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
 
-import com.raquo.laminar.api.L.{*, given}
-import org.scalajs.dom.console
 import scala.collection.immutable.Queue
 import scala.collection.mutable
 

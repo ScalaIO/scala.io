@@ -1,6 +1,6 @@
 package io.scala.domaines
 
-import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.api.L._
 
 case class Speaker(
     name: String,

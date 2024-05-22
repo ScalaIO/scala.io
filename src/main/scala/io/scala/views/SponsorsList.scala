@@ -1,11 +1,10 @@
 package io.scala.views
 
+import com.raquo.laminar.api.L._
+import com.raquo.laminar.nodes.ReactiveHtmlElement
 import io.scala.Lexicon
 import io.scala.data.SponsorSInfo
-import io.scala.modules.elements.*
-
-import com.raquo.laminar.api.L.{*, given}
-import com.raquo.laminar.nodes.ReactiveHtmlElement
+import io.scala.modules.elements._
 
 case object SponsorsList extends SimpleView {
   val sponsorList: Div = div(

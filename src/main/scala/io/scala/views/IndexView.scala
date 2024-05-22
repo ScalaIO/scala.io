@@ -1,13 +1,11 @@
 package io.scala.views
 
-import io.scala.Lexicon.Header.talks
-import io.scala.Page.*
+import com.raquo.laminar.api.L._
+import io.scala.Page._
 import io.scala.data.SpeakersInfo
 import io.scala.modules.SpeakerCard
-import io.scala.modules.elements.*
-import io.scala.modules.layout.*
-
-import com.raquo.laminar.api.L.{*, given}
+import io.scala.modules.elements._
+import io.scala.modules.layout._
 
 case object IndexView extends GenericView {
 

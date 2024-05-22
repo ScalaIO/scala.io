@@ -1,11 +1,7 @@
 package io.scala
 
-import io.scala.Page
-import io.scala.domaines.Break
-import io.scala.domaines.Talk
-import io.scala.domaines.Special
 
-import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.api.L._
 import org.scalajs.dom
 
 val profilePlaceholder = "/images/profile.webp"

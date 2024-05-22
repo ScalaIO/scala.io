@@ -3,7 +3,6 @@ package io.scala.utils
 import com.raquo.airstream.state.Var
 import org.scalajs.dom
 import org.scalajs.dom.UIEvent
-import org.scalajs.dom.console
 import org.scalajs.dom.window
 
 enum Screen:

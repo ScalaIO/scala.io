@@ -1,8 +1,7 @@
 package io.scala.domaines
 
-import io.scala.Lexicon.Footer.Newsletter.description
 
-import com.raquo.laminar.api.L.{svg => _, *, given}
+import com.raquo.laminar.api.L.{svg => _, _}
 import io.scala.svgs.Icons
 
 case class TimeRange(

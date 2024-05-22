@@ -1,10 +1,9 @@
 package io.scala.views
 
-import io.scala.domaines.{Social, Speaker}
+import com.raquo.laminar.api.L._
+import io.scala.domaines.Social
+import io.scala.domaines.Speaker
 import io.scala.modules.elements.Title
-import io.scala.profilePlaceholder
-
-import com.raquo.laminar.api.L.{*, given}
 import io.scala.svgs.Icons
 
 class SpeakerView(speaker: Speaker):

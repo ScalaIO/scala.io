@@ -1,12 +1,8 @@
 package io.scala.modules
 
-import io.scala.domaines.*
-
-import com.raquo.laminar.api.L.{*, given}
-import com.raquo.laminar.nodes.ChildNode
-import org.scalajs.dom.Comment
+import com.raquo.laminar.api.L._
+import io.scala.domaines._
 import org.scalajs.dom.HTMLDivElement
-import org.scalajs.dom.console
 
 val rooms = Room.values
 case class ScheduleDay(eventsList: Map[Time, Seq[Act]], startingTimes: Seq[Time]):

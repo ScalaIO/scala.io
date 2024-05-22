@@ -1,8 +1,8 @@
 package io.scala.data
 
 import io.scala.data.TalksInfo.allTalks
-import io.scala.domaines.*
 import io.scala.domaines.Talk.Category
+import io.scala.domaines._
 
 import scala.util.Random
 

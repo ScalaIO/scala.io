@@ -1,32 +1,25 @@
 package io.scala.data
 
-import io.scala.Lexicon.Footer.Newsletter.description
-import io.scala.data.MarkdownSource.*
-import io.scala.data.SpeakersInfo.allSpeakers
+import com.raquo.laminar.api.L._
+import com.raquo.laminar.nodes.ReactiveHtmlElement
+import io.scala.data.MarkdownSource._
 import io.scala.domaines.ConfDay
 import io.scala.domaines.Room
 import io.scala.domaines.Speaker
 import io.scala.domaines.Talk
 import io.scala.domaines.Time
-
-import com.raquo.laminar.api.L.{*, given}
-import com.raquo.laminar.defs.tags.HtmlTags
-import com.raquo.laminar.nodes.ReactiveHtmlElement
-import java.nio.file.Files
-import java.nio.file.Path
-import java.nio.file.Paths
+import io.scala.modules.elements.SelfHosted
+import io.scala.modules.elements.WebHosted
 import knockoff.Chunk
 import knockoff.ChunkParser
 import knockoff.HeaderChunk
-import knockoff.LinkDefinitionChunk
-import org.scalajs.dom.console
-import scala.collection.mutable.{HashMap, Queue}
-import io.scala.modules.elements.SelfHosted
-import io.scala.modules.elements.WebHosted
+
+import scala.collection.mutable.HashMap
+import scala.collection.mutable.Queue
 
 object TalksInfo:
   val parser = new ChunkParser
-  import parser.{*, given}
+  import parser.*
   val textBlock = parser.emptyLine.* ~> parser.textBlock <~ parser.emptyLine.*
   val talk      = parser.phrase((parser.header ~ parser.emptyLine.?) ~> (parser.atxHeader.? ~ textBlock).+)
   val linkRegex = """\[([^\[\]]+)\]\s*\(([^\(\)]+)\)""".r

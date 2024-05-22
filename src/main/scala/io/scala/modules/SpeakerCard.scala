@@ -1,16 +1,11 @@
 package io.scala
 package modules
 
-import io.scala.data.TalksInfo.{allTalks, talksBySpeaker}
-import io.scala.domaines.{Social, Speaker, Talk}
-import io.scala.modules.elements.ClassyButton
-
-import com.raquo.laminar.api.L.{*, given}
-import com.raquo.laminar.api.features.unitArrows
-import org.scalajs.dom
-import org.scalajs.dom.console
-import org.scalajs.dom.html.Anchor
-import org.scalajs.dom.svg.{Path, SVG}
+import com.raquo.laminar.api.L._
+import io.scala.data.TalksInfo.talksBySpeaker
+import io.scala.domaines.Social
+import io.scala.domaines.Speaker
+import io.scala.domaines.Talk
 import io.scala.svgs.Icons
 
 object SpeakerCard {

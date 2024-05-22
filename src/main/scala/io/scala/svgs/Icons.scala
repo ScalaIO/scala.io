@@ -1,6 +1,6 @@
 package io.scala.svgs
 
-import com.raquo.laminar.api.L.svg.{*, given}
+import com.raquo.laminar.api.L.svg._
 
 object Icons:
   def clock =

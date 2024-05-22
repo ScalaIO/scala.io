@@ -1,7 +1,7 @@
 package io.scala.domaines
 
+import com.raquo.laminar.api.L._
 import com.raquo.laminar.tags.HtmlTag
-import com.raquo.laminar.api.L.*
 import org.scalajs.dom
 
 case class DayOfYear(year: Int, month: Int, day: Int):

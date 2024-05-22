@@ -1,17 +1,8 @@
 package io.scala.views
 
-import io.scala.domaines.Social
-import io.scala.data.OrgaInfo.allOrga
-import io.scala.domaines.Organizer
-import io.scala.domaines.Social
-import io.scala.modules.elements.Title
-
-import com.raquo.laminar.api.L.*
-import io.scala.domaines.Event
-import io.scala.domaines.TimeRange
-import java.time.LocalDateTime
-import java.time.LocalDate
+import com.raquo.laminar.api.L._
 import io.scala.data.EventsList
+import io.scala.modules.elements.Title
 
 object EventsView extends SimpleView {
   override def body(): HtmlElement = {

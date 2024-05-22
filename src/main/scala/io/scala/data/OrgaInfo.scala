@@ -1,6 +1,5 @@
 package io.scala.data
 
-import io.scala.Lexicon.Footer.Newsletter.description
 import io.scala.domaines.Organizer
 import io.scala.domaines.Social
 

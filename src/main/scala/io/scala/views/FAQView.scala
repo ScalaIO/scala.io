@@ -1,13 +1,10 @@
 package io.scala.views
 
+import com.raquo.laminar.api.L._
 import io.scala.data.OrgaInfo.allOrga
 import io.scala.domaines.Organizer
 import io.scala.domaines.Social
 import io.scala.modules.elements.Title
-
-import com.raquo.laminar.api.L.*
-import org.scalajs.dom.MouseEvent
-import org.scalajs.dom.html
 import io.scala.svgs.Icons.github
 
 object FAQView extends SimpleView {

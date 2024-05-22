@@ -1,9 +1,7 @@
 package io.scala.modules.elements
 
-import com.raquo.laminar.api.L.{*, given}
-import io.scala.domaines.Speaker
+import com.raquo.laminar.api.L._
 import io.scala.domaines.Sponsor
-import org.scalajs.dom.console
 object SponsorLogo {
   def apply(sponsor: Sponsor) =
     a(

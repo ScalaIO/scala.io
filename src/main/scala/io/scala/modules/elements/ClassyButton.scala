@@ -1,9 +1,8 @@
 package io.scala.modules.elements
 
-import io.scala.utils.ButtonKind
-
-import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.api.L._
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import io.scala.utils.ButtonKind
 import org.scalajs.dom.HTMLElement
 
 object ClassyButton {

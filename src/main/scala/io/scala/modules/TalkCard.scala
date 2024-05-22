@@ -1,15 +1,15 @@
 package io.scala
 package modules
 
-import io.scala.domaines.Speaker
-import io.scala.domaines.Talk
-
-import com.raquo.laminar.api.L.{*, given}
+import com.raquo.laminar.api.L._
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import elements.Line
-import org.scalajs.dom
-import org.scalajs.dom.{HTMLDivElement, HTMLSpanElement}
+import io.scala.domaines.Talk
 import io.scala.svgs.Icons
+import org.scalajs.dom
+import org.scalajs.dom.HTMLDivElement
+import org.scalajs.dom.HTMLSpanElement
+
+import elements.Line
 
 object TalkKindTag:
   def apply(kind: Talk.Kind): ReactiveHtmlElement[HTMLSpanElement] =
