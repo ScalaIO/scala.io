@@ -9,7 +9,7 @@ val publicFolderProd = taskKey[String]("Returns the compiled main.js parent path
 
 lazy val root = project
   .in(file("."))
-  .enablePlugins(ScalaJSPlugin)
+  .enablePlugins(ScalaJSPlugin, ScalablyTypedConverterPlugin)
   .settings(
     name := "scalaio-website",
     // scalacOptions += "-Yexplicit-nulls",
@@ -22,12 +22,18 @@ lazy val root = project
     ),
     scalaJSUseMainModuleInitializer := true,
     scalaJSLinkerConfig ~= {
-      _.withModuleKind(ModuleKind.ESModule)
+      _.withModuleKind(ModuleKind.CommonJSModule)
         .withModuleSplitStyle(SmallestModules)
         .withSourceMap(false)
     },
     publicFolderDev  := linkerOutputDirectory((Compile / fastLinkJS).value).getAbsolutePath,
     publicFolderProd := linkerOutputDirectory((Compile / fullLinkJS).value).getAbsolutePath,
+    Compile / npmDependencies ++= Seq(
+      "@fortawesome/fontawesome-svg-core"   -> "^6.5.2",
+      "@fortawesome/free-brands-svg-icons"  -> "^6.5.2",
+      "@fortawesome/free-regular-svg-icons" -> "^6.5.2",
+      "@fortawesome/free-solid-svg-icons"   -> "^6.5.2"
+    ),
     Compile / sourceGenerators += Def.task {
       val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "MarkdownSource.scala"
 
