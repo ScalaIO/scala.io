@@ -2,13 +2,13 @@ package io.scala.views
 
 import com.raquo.laminar.api.L._
 import io.scala.data.EventsList
-import io.scala.modules.elements.Title
+import io.scala.modules.elements.Titles
 
 object EventsView extends SimpleView {
   override def body(): HtmlElement = {
     sectionTag(
       className := "container events",
-      Title("Other events"),
+      Titles("Other events"),
       div(
         className := "list",
         EventsList.eventsList.zipWithIndex.map: (event, index) =>

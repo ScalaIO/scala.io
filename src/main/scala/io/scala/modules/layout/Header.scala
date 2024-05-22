@@ -38,7 +38,8 @@ object Header {
     Lexicon.Header.venue    -> VenuePage,
     Lexicon.Header.schedule -> SchedulePage(),
     "Scala-FR events"       -> EventsPage,
-    "FAQ"                   -> FAQPage
+    "FAQ"                   -> FAQPage,
+    "CoC"                   -> CoCPage
   )
 
   def links = div(
@@ -47,10 +48,10 @@ object Header {
       className := "accordion",
       "CONFERENCE"
     ),
-    linksPage.map(navLink _)
+    linksPage.map(navLink(_, _))
   )
   def mobileLinks = div(
-    linksPage.map(navLink _),
+    linksPage.map(navLink(_, _)),
     className := "sidenav"
   )
 

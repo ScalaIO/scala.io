@@ -26,7 +26,7 @@ case object ScheduleView extends SimpleViewWithDraft {
         hours.map(_.render(span))
       )
     div(
-      Title.small("Hours"),
+      Titles.medium("Hours"),
       div(
         className := "hours",
         div(
@@ -152,7 +152,7 @@ case object ScheduleView extends SimpleViewWithDraft {
   def bodyContent(eventsByDay: Map[ConfDay, List[Act]]): HtmlElement =
     sectionTag(
       className := "container",
-      Title("Schedule"),
+      Titles("Schedule"),
       globalHours,
       Line(margin = 55),
       child <-- renderSchedule(eventsByDay)

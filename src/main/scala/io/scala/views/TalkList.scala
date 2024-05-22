@@ -29,7 +29,7 @@ case object TalkList extends SimpleViewWithDraft {
     val categories = sortedCategories(allTalks)
     sectionTag(
       className := "container talks-list",
-      Title("Talks"),
+      Titles("Talks"),
       Line(margin = 55),
       div(
         className := "with-toc r-toc",

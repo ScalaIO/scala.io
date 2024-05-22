@@ -1,7 +1,6 @@
 package io.scala.views
 
 import com.raquo.laminar.api.L._
-import io.scala.Page._
 import io.scala.data.SpeakersInfo
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements._
@@ -25,7 +24,7 @@ case object IndexView extends GenericView {
     className := "index",
     div(
       className := "container description",
-      Title("Exchanging Ideas"),
+      Titles("Exchanging Ideas"),
       p("""
           Scala.IO is a conference for people having
            interest in the Scala ecosystem or simply
@@ -36,7 +35,7 @@ case object IndexView extends GenericView {
         """The conference is organized by Scala supporters from the community,
           | and provides a great opportunity to meet with other enthusiasts and practitioners.""".stripMargin,
         "You can find the videos of the past editions (200+) on our ",
-        a(className := "basic-link", href := "https://www.youtube.com/@scalaio/videos", "YouTube channel"),
+        Links.flat(ref = "https://www.youtube.com/@scalaio/videos", content = "YouTube channel"),
         "."
       ),
       br(),
@@ -44,46 +43,9 @@ case object IndexView extends GenericView {
         "This edition brings us together in Nantes for two days, with a single-session structure and a large community space. With a great venue, wonderful speakers, and a lot of surprises, we are looking forward to meeting you there!"
       )
     ),
-    // div(
-    //   className := "container",
-    //   Title("Tickets"),
-    //   div(
-    //     className := "tickets",
-    // YurPlan()
-    // div(
-    //   className := "group-ticket",
-    //   Ticket(),
-    //   p("Group tickets"),
-    //   ticketPerks
-    //     .map(e =>
-    //       List(
-    //         e,
-    //         Line(margin = 10)
-    //       )
-    //     )
-    //     .flatten
-    //     .dropRight(1),
-    //   ShinyButton.linkLight("Email us!").amend(href := s"mailto:contact@scala.io"),
-    //   p(
-    //     className := "small",
-    //     "Style stolen from ",
-    //     u(a(href := "https://www.scalar-conf.com/tickets", "scalar-conf.com/tickets"))
-    //   )
-    // )
-    //   )
-    // ),
     Separator(),
     speakerGallery(withDraft)
   )
-
-  // val ticketPerks = List(
-  //   h3("Ask for a group discount!"),
-  //   div(Check(), "access to 2 conference days"),
-  //   div(Check(), "access to the community party"),
-  //   div(Check(), "opportunity to meet Scala and FP experts"),
-  //   div(Check(), "(dev|tech)-friendly networking"),
-  //   div(Check(), "special offer for your team")
-  // )
 
   def speakerGallery(withDraft: Boolean) =
     val speakers =

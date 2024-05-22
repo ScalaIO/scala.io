@@ -2,18 +2,20 @@ package io.scala.views
 
 import com.raquo.laminar.api.L._
 import io.scala.modules.elements.Line
-import io.scala.modules.elements.Title
+import io.scala.modules.elements.Titles
+import io.scala.modules.elements.Lists
+import io.scala.modules.elements.Links
 
 object VenueView extends SimpleView {
 
   def body(): HtmlElement = sectionTag(
     className := "container venue",
-    Title("Our Venue"),
+    Titles("Our Venue"),
     div(
       className := "paragraph",
       p(
         """Situated in the vibrant center of Nantes, """,
-        a(className := "basic-link", href := "https://icilundi.fr/lieux/le-palace/", "the Palace", target := "_blank"),
+        Links.flat(ref = "https://icilundi.fr/lieux/le-palace/", content = "the Palace", targt = "_blank"),
         """ is an ideal hub for collaboration
           |and knowledge sharing. It offers a comfortable and nurturing work environment tailored for startups,
           | teams from major corporate innovation departments, accelerators, educational institutions, and investors.
@@ -70,7 +72,7 @@ object VenueView extends SimpleView {
         )
       )
     ),
-    Title("Access to the conference"),
+    Titles("Access to the conference"),
     p(
       """
         |The conference is located in the heart of Nantes, France,
@@ -86,8 +88,7 @@ object VenueView extends SimpleView {
       """
         |We recommend the following hotels:
         |""".stripMargin,
-      ul(
-        className := "basic-list",
+      Lists.innerDiscs(
         li(
           u(
             a(
@@ -130,21 +131,19 @@ object VenueView extends SimpleView {
         |Note : Some participants will be arriving by train (Train Number 8863) at 8:54 am on Thursday morning. We are currently exploring options to expedite the transfer from the train station to the conference venue.
         |If this applies to you, we kindly request that you
         |""".stripMargin,
-      a(className := "basic-link", href := "mailto:contact@scala.io", "send us an email for further coordination.")
+      Links.flat(ref = "mailto:contact@scala.io", content = "send us an email for further coordination.")
     ),
     h2("Arriving from Nantes Train Station"),
     h3("Walking (25 minutes)"),
     h3("By Bus (7 minutes + 4 minutes walk downhill)"),
-    ul(
-      className := "basic-list",
+    Lists.innerDiscs(
       li("Reach the south exit of the train station (also called Bus/Taxi exit);"),
       li("In front of the exit, purchase a bus ticket and board the C3 line in the direction \"Armor\";"),
       li("Get off at the \"Copernic\" bus stop;"),
       li("Walk down to the venue;")
     ),
     h3("By tramway (9 minutes + 5 minutes walk uphill)"),
-    ul(
-      className := "basic-list",
+    Lists.innerDiscs(
       li("Reach the north exit of the train station (also called the \"Nantes Centre\" exit);"),
       li("In front of the exit, cross the railway and purchase a ticket at the dispenser;"),
       li("Board Tramway Line 1 in the direction of \"François Mitterrand/Jamet\";"),
@@ -154,14 +153,12 @@ object VenueView extends SimpleView {
     //
     h2("Arriving from Nantes Atlantique Airport"),
     p("The airport is unusually close to the city center (less than 10km):"),
-    ul(
-      className := "basic-list",
+    Lists.innerDiscs(
       li("20 minutes by car/taxi (depending on traffic);"),
       li("40 minutes by public transportation (bus + tramway);")
     ),
     h3("With public transportation"),
-    ul(
-      className := "basic-list",
+    Lists.innerDiscs(
       li(
         "Reach the airport shuttle \"Navette Aéroport\" departure place, located in the middle of the outside area behind the taxi lane;"
       ),
@@ -172,8 +169,7 @@ object VenueView extends SimpleView {
       li("Walk down to the venue;")
     ),
     h3("With taxi or private driver"),
-    ul(
-      className := "basic-list",
+    Lists.innerDiscs(
       li("A taxi from their lane is around 40€ for the transfer;"),
       li("Uber, Bolt, and some other private driver services operate in the area of Nantes;")
     ),

@@ -15,11 +15,14 @@
 // Modules
 @use "modules/card";
 @use "modules/classy_button";
+@use "modules/coc";
 @use "modules/faq";
 @use "modules/footer";
 @use "modules/headband";
 @use "modules/header";
 @use "modules/line";
+@use "modules/links";
+@use "modules/lists";
 @use "modules/overlay";
 @use "modules/paragraph";
 @use "modules/separator";
@@ -80,17 +83,12 @@ h4 {
   margin-bottom: vars.$spacing-small;
 }
 
-.basic-link {
-  text-decoration: underline;
-  cursor: pointer;
-}
 .small-note {
   font-size: vars.$text-size-small;
   color: vars.$text-color-light;
   font-style: italic;
 }
 
-.basic-list {
-  list-style-type: disc;
-  margin-left: 2em;
+* ~ p {
+  margin-top: 1rem;
 }

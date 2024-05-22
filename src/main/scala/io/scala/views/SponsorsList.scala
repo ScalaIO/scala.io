@@ -38,7 +38,7 @@ case object SponsorsList extends SimpleView {
   def body(): HtmlElement = {
     sectionTag(
       className := "container",
-      Title("Sponsors"),
+      Titles("Sponsors"),
       p(
         Lexicon.Sponsors.catchPhrase,
         className := "catch-phrase"

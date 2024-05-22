@@ -1,25 +1,19 @@
 package io.scala.views
 
-import com.raquo.laminar.api.L._
 import io.scala.data.OrgaInfo.allOrga
 import io.scala.domaines.Organizer
 import io.scala.domaines.Social
-import io.scala.modules.elements.Title
+import io.scala.modules.elements.{Titles, Links}
 import io.scala.svgs.Icons.github
 
-object FAQView extends SimpleView {
-  private def question(question: String, answer: String): HtmlElement = {
-    div(
-      className := "question",
-      h3(question),
-      p(answer)
-    )
-  }
+import com.raquo.laminar.api.L._
+import io.scala.modules.elements.Lists
 
+object FAQView extends SimpleView {
   private def question(question: String, answer: HtmlElement*): HtmlElement = {
     div(
       className := "question",
-      h3(question),
+      Titles.small(question),
       answer
     )
   }
@@ -27,17 +21,17 @@ object FAQView extends SimpleView {
   override def body(): HtmlElement = {
     sectionTag(
       className := "container faq",
-      Title("Frequently Asked Questions"),
+      Titles("Frequently Asked Questions"),
       div(),
-      Title.small("Common questions", idAttr := "common-questions"),
+      Titles.medium("Common questions", idAttr := "common-questions"),
       commonQuestions,
-      Title.small("Speaker questions", idAttr := "speaker-questions"),
+      Titles.medium("Speaker questions", idAttr := "speaker-questions"),
       speakerQuestions,
-      Title("Who is behind Scala.IO?"),
+      Titles("Who is behind Scala.IO?"),
       div(),
-      Title.small("Representatives"),
+      Titles.medium("Representatives"),
       organizersList(allOrga.filter(_.representative)),
-      Title.small("Organizers"),
+      Titles.medium("Organizers"),
       organizersList(allOrga.filterNot(_.representative))
     )
   }
@@ -45,90 +39,81 @@ object FAQView extends SimpleView {
   lazy val commonQuestions = List(
     question(
       "Why 2023-10 was cancelled?",
-      "It was difficult to get sponsorship to close the budget, that's why we had to work on a new format for this edition."
+      p("It was difficult to get sponsorship to close the budget, that's why we had to work on a new format for this edition.")
     ),
     question(
       "Why Nantes?",
-      """The conference was in Paris (2013, 2014, 2022) and Lyon (2016, 2017, 2018, 2019).
-          |The organisers are in majority familiar with Nantes, Clever Cloud and _icilundi offered to facilitate hosting the event.""".stripMargin
-    ),
-    question(
-      "Is there a Code of Conduct?",
-      """We had a Code of Conduct, the new one is lighter : 'please be nice', 'we are here to exchange idea and appreciate a shared moment', 'if there is something disturbing, we will take care of it'.
-          |
-          |We are not avoiding the idea of a CoC and it was discussed with others in the community. Writing something is not the same thing are making sure everyone is welcomed.
-          |So we moved to a more convergent approach,
-          | in continuity with the quality of our event.
-          |""".stripMargin
+      p("""The conference was in Paris (2013, 2014, 2022) and Lyon (2016, 2017, 2018, 2019).
+          |The organisers are in majority familiar with Nantes, Clever Cloud and _icilundi offered to facilitate hosting the event.""".stripMargin)
     ),
     question(
       "Do you reimburse tickets?",
-      "We would prefer not to, however you can always send us an email. We always reimbursed tickets if needed."
+      p("We would prefer not to, however you can always send us an email. We always reimbursed tickets if needed.")
     ),
     question(
       "Can I have a receipt?",
-      "In the confirmation email, there is a link to download it. If you can't find it, send us an email and we will send you a new one."
+      p("In the confirmation email, there is a link to download it. If you can't find it, send us an email and we will send you a new one.")
     ),
     question(
       "What did you use to build this website?",
-      ul(
+      Lists.innerDiscs(
         li(
           "Source code: ",
-          a(href := "https://scala-lang.org", "Scala 3"),
+          Links.highlighted(ref= "https://scala-lang.org", content = "Scala 3"),
           " with ",
-          a(href := "https://www.scala-js.org", "Scala.js"),
+          Links.highlighted(ref= "https://www.scala-js.org", content = "Scala.js"),
           " to compile Scala to JavaScript and ",
-          a(href := "https://laminar.dev", "Laminar"),
+          Links.highlighted(ref= "https://laminar.dev", content = "Laminar"),
           " to build a reactive UI."
         ),
         li(
           "Hosting: ",
-          a(href := "https://github.com/ScalaIO/scala.io", "Github repository"),
+          Links.highlighted(ref= "https://github.com/ScalaIO/scala.io", content = "Github repository"),
           " for the source code and ",
-          a(href := "https://www.clever-cloud.com", "Clever Cloud"),
+          Links.highlighted(ref= "https://www.clever-cloud.com", content = "Clever Cloud"),
           " for the website"
         )
       )
     ),
     div(
       className := "logos",
-      a(
-        href     := "https://www.scala-js.org",
-        nameAttr := "Scala.js",
-        img(
+      Links.highlighted(
+        ref     = "https://www.scala-js.org",
+        name = "Scala.js",
+        content = img(
           src := "logos/scalajs.svg",
           alt := "Scala.js logo"
         )
       ),
-      a(
-        href     := "https://laminar.dev",
-        nameAttr := "Laminar",
-        img(
+      Links.highlighted(
+        ref= "https://laminar.dev",
+        name= "Laminar",
+        content = img(
           src := "logos/laminar.webp",
           alt := "Laminar logo"
         )
       ),
-      a(
-        href     := "https://www.clever-cloud.com",
-        nameAttr := "Clever Cloud",
-        img(
+      Links.highlighted(
+        ref= "https://www.clever-cloud.com",
+        name= "Clever Cloud",
+        content = img(
           src := "logos/clever.svg",
           alt := "Clever Cloud logo"
         )
       ),
-      a(
-        href     := "https://github.com/ScalaIO/scala.io",
-        nameAttr := "Github",
-        github
+      Links.highlighted(
+        ref= "https://github.com/ScalaIO/scala.io",
+        name= "Github",
+        content = github
       )
     ),
     question(
       "I found a bug / an error on the website, what should I do?",
       p(
         "Feel free to open an issue us on the ",
-        a(href := "https://github.com/ScalaIO/scala.io/issues/new", "Github repository"),
+        Links.highlighted(ref= "https://github.com/ScalaIO/scala.io/issues/new", content = "Github repository"),
         " or send us an email at ",
-        a(href := "mailto:contact@scala.io", "contact@scala.io")
+        Links.highlighted(ref= "mailto:contact@scala.io", content = "contact@scala.io")
       )
     )
   )
@@ -181,7 +166,7 @@ object FAQView extends SimpleView {
       "Will there be replays?",
       p(
         "Yes, we will record the talks and make them available on our Youtube channel (",
-        a(href := "https://www.youtube.com/@scalaio", "https://www.youtube.com/@scalaio"),
+        Links.highlighted(ref= "https://www.youtube.com/@scalaio", "https://www.youtube.com/@scalaio"),
         ") after processing them (checking the sound, adding an intro frame at the start if the video, etc.)"
       ),
       p(

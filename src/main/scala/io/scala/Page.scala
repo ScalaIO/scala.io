@@ -35,6 +35,8 @@ case object EventsPage extends Page:
   def title: String = "Other events"
 case object FAQPage extends Page:
   def title: String = "FAQ"
+case object CoCPage extends Page:
+  def title: String = "Code of Conduct"
 
 object Page {
 
@@ -58,6 +60,7 @@ object Page {
     case "schedule" => Right(SchedulePage())
     case "events"   => Right(EventsPage)
     case "faq"      => Right(FAQPage)
+    case "coc"      => Right(CoCPage)
     case _          => Left(DummyError.dummyError)
   }
 
@@ -69,6 +72,7 @@ object Page {
     case _: SchedulePage => "schedule"
     case FAQPage         => "faq"
     case EventsPage      => "events"
+    case CoCPage         => "coc"
     case _: IndexPage    => ""
   }
 
@@ -108,9 +112,13 @@ object Page {
     FAQPage,
     root / "faq" / endOfSegments
   )
+  val cocRoute = Route.static(
+    CoCPage,
+    root / "code-of-conduct" / endOfSegments
+  )
 
   val router = new Router[Page](
-    routes = List(indexRoute, talksRoute, talkRoute, sponsorsRoute, venueRoute, scheduleRoute, eventsRoute, faqRoute),
+    routes = List(indexRoute, talksRoute, talkRoute, sponsorsRoute, venueRoute, scheduleRoute, eventsRoute, faqRoute, cocRoute),
     getPageTitle = page => page.title + " - ScalaIO",
     serializePage = page => write(page)(pageArgBasicCodec),
     deserializePage = pageStr => read(pageStr)(pageArgBasicCodec)
@@ -131,6 +139,7 @@ object Page {
       .collect[SchedulePage](arg => ScheduleView.render(arg.withDraft.getOrElse(false)))
       .collectStatic(EventsPage)(EventsView.render())
       .collectStatic(FAQPage)(FAQView.render())
+      .collectStatic(CoCPage)(CoCView.render())
 
   def navigateTo(page: Page): Binder[HtmlElement] = Binder { el =>
     val isLinkElement = el.ref.isInstanceOf[html.Anchor]

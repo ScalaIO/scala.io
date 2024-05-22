@@ -3,14 +3,14 @@ package io.scala.views
 import com.raquo.laminar.api.L._
 import io.scala.domaines.Social
 import io.scala.domaines.Speaker
-import io.scala.modules.elements.Title
+import io.scala.modules.elements.Titles
 import io.scala.svgs.Icons
 
 class SpeakerView(speaker: Speaker):
   def body: HtmlElement =
     div(
       className := "speaker-view",
-      Title.small(speaker.name),
+      Titles.medium(speaker.name),
       div(
         className := "data",
         img(

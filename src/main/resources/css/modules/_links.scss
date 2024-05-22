@@ -1,0 +1,10 @@
+@use "../base/vars";
+
+.link-flat {
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.link-highlight {
+  color: vars.$main-color;
+}
