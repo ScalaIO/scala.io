@@ -1,13 +1,31 @@
 @use "../base/vars";
 @use "../base/mixins";
 
+@mixin border-shadow($color, $opacity: 0.75) {
+  &:after {
+    box-shadow: 0px 8px 16px rgba($color, $opacity);
+  }
+}
+@mixin border-style($border-color-light, $border-color-highlight) {
+  border-width: 1px;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: $border-color-light;
+  &:hover {
+    border-color: $border-color-highlight;
+  }
+  @include border-shadow($border-color-light);
+}
+
 $card-padding: 16px;
 
 .card-container {
   display: grid;
-  gap: 64px;
-  margin: 24px;
+  grid-template-columns: auto auto auto;
+  gap: 2rem;
+  margin: 2rem;
 }
+
 %card-base {
   position: relative;
   display: flex; // Needed for the shadow on hovering
@@ -17,10 +35,6 @@ $card-padding: 16px;
   transition: all 0.3s ease-in-out;
   width: 100%;
   padding: $card-padding;
-
-  border-width: 1px;
-  border-style: solid;
-  border-radius: 10px;
 
   &:after {
     margin-left: -1 * $card-padding;
@@ -39,8 +53,6 @@ $card-padding: 16px;
     justify-content: space-between;
     align-items: center;
   }
-
-  @include mixins.border-style(vars.$main-color, vars.$main-color-lighter);
 }
 %card-effects {
   &:after {
@@ -88,9 +100,17 @@ span.presentation-keynote {
   color: vars.$prez-keynote-color;
   background-color: rgba(206, 0, 19, 0.1);
 }
+
+.card-blank {
+  @extend %card-base;
+  @extend %card-effects;
+
+  @include border-shadow(vars.$text-color-light, 0.8);
+}
+
 .blank-card {
   @extend %card-base;
-  @include mixins.border-style(vars.$text-color-light, vars.$text-color);
+  @include border-style(vars.$text-color-light, vars.$text-color);
 
   height: vars.$spacing-xxx-huge;
 
@@ -102,6 +122,12 @@ span.presentation-keynote {
     width: 100%;
   }
 }
+
+.talk-card,
+.speaker-card {
+  @include border-style(vars.$main-color, vars.$main-color-lighter);
+}
+
 .talk-card {
   @extend %card-base;
   @extend %card-effects;
@@ -162,25 +188,25 @@ span.presentation-keynote {
   }
 
   &.presentation-lightning {
-    @include mixins.border-style(
+    @include border-style(
       vars.$prez-lightning-color,
       vars.$prez-lightning-color
     );
   }
 
   &.presentation-short {
-    @include mixins.border-style(
+    @include border-style(
       vars.$prez-short-color,
       vars.$prez-short-color
     );
   }
 
   &.presentation-talk {
-    @include mixins.border-style(vars.$prez-talk-color, vars.$prez-talk-color);
+    @include border-style(vars.$prez-talk-color, vars.$prez-talk-color);
   }
 
   &.presentation-keynote {
-    @include mixins.border-style(
+    @include border-style(
       vars.$prez-keynote-color,
       vars.$prez-keynote-color
     );

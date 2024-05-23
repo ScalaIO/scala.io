@@ -12,13 +12,12 @@ object CoCView extends SimpleView:
   override def body(): HtmlElement = sectionTag(
     className := "container coc",
     Titles.withSub("Scala-FR Code of Conduct (SFCoC)", p("Version 0.1.0")),
-    div(),
     Paragraphs.description(
       "This Code of Conduct is heavily inspired form ",
       Links.highlighted(
-        "https://www.functionalscala.com/code-of-conduct",
-        "Functional Scala",
-        nameAttr := "Functional Scala"
+        href     := "https://www.functionalscala.com/code-of-conduct",
+        nameAttr := "Functional Scala",
+        "Functional Scala"
       )
     ),
     Titles.medium("Introduction"),

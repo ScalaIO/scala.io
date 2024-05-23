@@ -5,16 +5,6 @@
   }
 }
 
-@mixin border-style($border-color-light, $border-color-highlight) {
-  border-color: $border-color-light;
-  &:after {
-    box-shadow: 0px 8px 16px rgba($border-color-light, 0.75);
-  }
-  &:hover {
-    border-color: $border-color-highlight;
-  }
-}
-
 @mixin belowBar($bar-color, $bar-width, $bar-height) {
   &:before {
     content: "";

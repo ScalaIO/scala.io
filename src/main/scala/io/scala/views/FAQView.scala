@@ -4,19 +4,28 @@ import io.scala.data.OrgaInfo.allOrga
 import io.scala.domaines.Organizer
 import io.scala.domaines.Social
 import io.scala.modules.elements.{Links, Titles}
+import io.scala.modules.elements.Cards
 import io.scala.modules.elements.Lists
+import io.scala.modules.elements.Paragraphs
 import io.scala.svgs.Icons.github
 
 import com.raquo.laminar.api.L._
+import com.raquo.laminar.nodes.ReactiveElement
+import org.scalajs.dom.HTMLDivElement
 
 object FAQView extends SimpleView {
-  private def question(question: String, answer: HtmlElement*): HtmlElement = {
-    div(
-      className := "question",
+  private def question(question: String, answer: Modifier[ReactiveElement[HTMLDivElement]]*): HtmlElement = {
+    Cards.shadowed(
       Titles.small(question),
-      answer
+      div(answer)
     )
   }
+
+  extension (element: HtmlElement)
+    def withGridSizes(row: Int, col: Int): HtmlElement =
+      element.amend(
+        styleAttr := s"grid-row: span $row; grid-column: span $col;"
+      )
 
   override def body(): HtmlElement = {
     sectionTag(
@@ -36,7 +45,12 @@ object FAQView extends SimpleView {
     )
   }
 
-  lazy val commonQuestions = List(
+  lazy val commonQuestions = Cards.container(
+    question(
+      "Is there a Code of Conduct (CoC) ?",
+      p("Yes, you can find it ", Links.highlightedInPlace(href := "/code-of-conduct", "here")),
+      Paragraphs.description("For any violation of the CoC, please fill in the form available on the CoC page.")
+    ),
     question(
       "Why 2023-10 was cancelled?",
       p(
@@ -79,40 +93,40 @@ object FAQView extends SimpleView {
           Links.highlighted(href := "https://www.clever-cloud.com", "Clever Cloud"),
           " for the website"
         )
+      ),
+      div(
+        className := "logos",
+        Links.highlighted(
+          href     := "https://www.scala-js.org",
+          nameAttr := "Scala.js",
+          img(
+            src := "logos/scalajs.svg",
+            alt := "Scala.js logo"
+          )
+        ),
+        Links.highlighted(
+          href     := "https://laminar.dev",
+          nameAttr := "Laminar",
+          img(
+            src := "logos/laminar.webp",
+            alt := "Laminar logo"
+          )
+        ),
+        Links.highlighted(
+          href     := "https://www.clever-cloud.com",
+          nameAttr := "Clever Cloud",
+          img(
+            src := "logos/clever.svg",
+            alt := "Clever Cloud logo"
+          )
+        ),
+        Links.highlighted(
+          href     := "https://github.com/ScalaIO/scala.io",
+          nameAttr := "Github",
+          github
+        )
       )
-    ),
-    div(
-      className := "logos",
-      Links.highlighted(
-        href     := "https://www.scala-js.org",
-        nameAttr := "Scala.js",
-        img(
-          src := "logos/scalajs.svg",
-          alt := "Scala.js logo"
-        )
-      ),
-      Links.highlighted(
-        href     := "https://laminar.dev",
-        nameAttr := "Laminar",
-        img(
-          src := "logos/laminar.webp",
-          alt := "Laminar logo"
-        )
-      ),
-      Links.highlighted(
-        href     := "https://www.clever-cloud.com",
-        nameAttr := "Clever Cloud",
-        img(
-          src := "logos/clever.svg",
-          alt := "Clever Cloud logo"
-        )
-      ),
-      Links.highlighted(
-        href     := "https://github.com/ScalaIO/scala.io",
-        nameAttr := "Github",
-        github
-      )
-    ),
+    ).withGridSizes(2, 1),
     question(
       "I found a bug / an error on the website, what should I do?",
       p(
@@ -124,7 +138,7 @@ object FAQView extends SimpleView {
     )
   )
 
-  lazy val speakerQuestions = List(
+  lazy val speakerQuestions = Cards.container(
     question(
       "How are the talks selected?",
       p(
@@ -137,7 +151,7 @@ object FAQView extends SimpleView {
         fontSize.small,
         "There is a stratified, open ballot, exponentially weighted borda count to help with pre-selection"
       )
-    ),
+    ).withGridSizes(1, 2),
     question(
       "How will I be notified if my talk is selected?",
       p(
@@ -149,18 +163,6 @@ object FAQView extends SimpleView {
       p(
         "When your talk is selected, you just need to confirm you are willing to given your talk, and we send you a form about travel and expenses, and keep you updated when we announce your talk."
       )
-    ),
-    question(
-      "Do I have a free ticket?",
-      p("Of course :)")
-    ),
-    question(
-      "What if I am selected and already bought tickets?",
-      p("You are reimbursed")
-    ),
-    question(
-      "And if I am not selected?",
-      p("You will receive a coupon for tickets")
     ),
     question(
       "Do you reimburse travel expenses?",
@@ -178,6 +180,18 @@ object FAQView extends SimpleView {
       p(
         "We reference the video and slides on the website on your talk's page. So please, remember to send us the link/pdf of your slides :)"
       )
+    ),
+      question (
+        "Do I have a free ticket?",
+        p("Of course :)")
+      ),
+    question(
+      "What if I am selected and already bought tickets?",
+      p("You are reimbursed")
+    ),
+    question(
+      "And if I am not selected?",
+      p("You will receive a coupon for tickets")
     )
   )
 
