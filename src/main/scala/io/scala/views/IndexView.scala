@@ -35,7 +35,7 @@ case object IndexView extends GenericView {
         """The conference is organized by Scala supporters from the community,
           | and provides a great opportunity to meet with other enthusiasts and practitioners.""".stripMargin,
         "You can find the videos of the past editions (200+) on our ",
-        Links.flat(ref = "https://www.youtube.com/@scalaio/videos", content = "YouTube channel"),
+        Links.highlighted(href := "https://www.youtube.com/@scalaio/videos", "YouTube channel"),
         "."
       ),
       br(),

@@ -3,11 +3,11 @@ package io.scala.views
 import io.scala.data.OrgaInfo.allOrga
 import io.scala.domaines.Organizer
 import io.scala.domaines.Social
-import io.scala.modules.elements.{Titles, Links}
+import io.scala.modules.elements.{Links, Titles}
+import io.scala.modules.elements.Lists
 import io.scala.svgs.Icons.github
 
 import com.raquo.laminar.api.L._
-import io.scala.modules.elements.Lists
 
 object FAQView extends SimpleView {
   private def question(question: String, answer: HtmlElement*): HtmlElement = {
@@ -39,12 +39,16 @@ object FAQView extends SimpleView {
   lazy val commonQuestions = List(
     question(
       "Why 2023-10 was cancelled?",
-      p("It was difficult to get sponsorship to close the budget, that's why we had to work on a new format for this edition.")
+      p(
+        "It was difficult to get sponsorship to close the budget, that's why we had to work on a new format for this edition."
+      )
     ),
     question(
       "Why Nantes?",
-      p("""The conference was in Paris (2013, 2014, 2022) and Lyon (2016, 2017, 2018, 2019).
-          |The organisers are in majority familiar with Nantes, Clever Cloud and _icilundi offered to facilitate hosting the event.""".stripMargin)
+      p(
+        """The conference was in Paris (2013, 2014, 2022) and Lyon (2016, 2017, 2018, 2019).
+          |The organisers are in majority familiar with Nantes, Clever Cloud and _icilundi offered to facilitate hosting the event.""".stripMargin
+      )
     ),
     question(
       "Do you reimburse tickets?",
@@ -52,25 +56,27 @@ object FAQView extends SimpleView {
     ),
     question(
       "Can I have a receipt?",
-      p("In the confirmation email, there is a link to download it. If you can't find it, send us an email and we will send you a new one.")
+      p(
+        "In the confirmation email, there is a link to download it. If you can't find it, send us an email and we will send you a new one."
+      )
     ),
     question(
       "What did you use to build this website?",
       Lists.innerDiscs(
         li(
           "Source code: ",
-          Links.highlighted(ref= "https://scala-lang.org", content = "Scala 3"),
+          Links.highlighted(href := "https://scala-lang.org", "Scala 3"),
           " with ",
-          Links.highlighted(ref= "https://www.scala-js.org", content = "Scala.js"),
+          Links.highlighted(href := "https://www.scala-js.org", "Scala.js"),
           " to compile Scala to JavaScript and ",
-          Links.highlighted(ref= "https://laminar.dev", content = "Laminar"),
+          Links.highlighted(href := "https://laminar.dev", "Laminar"),
           " to build a reactive UI."
         ),
         li(
           "Hosting: ",
-          Links.highlighted(ref= "https://github.com/ScalaIO/scala.io", content = "Github repository"),
+          Links.highlighted(href := "https://github.com/ScalaIO/scala.io", "Github repository"),
           " for the source code and ",
-          Links.highlighted(ref= "https://www.clever-cloud.com", content = "Clever Cloud"),
+          Links.highlighted(href := "https://www.clever-cloud.com", "Clever Cloud"),
           " for the website"
         )
       )
@@ -78,42 +84,42 @@ object FAQView extends SimpleView {
     div(
       className := "logos",
       Links.highlighted(
-        ref     = "https://www.scala-js.org",
-        name = "Scala.js",
-        content = img(
+        href     := "https://www.scala-js.org",
+        nameAttr := "Scala.js",
+        img(
           src := "logos/scalajs.svg",
           alt := "Scala.js logo"
         )
       ),
       Links.highlighted(
-        ref= "https://laminar.dev",
-        name= "Laminar",
-        content = img(
+        href     := "https://laminar.dev",
+        nameAttr := "Laminar",
+        img(
           src := "logos/laminar.webp",
           alt := "Laminar logo"
         )
       ),
       Links.highlighted(
-        ref= "https://www.clever-cloud.com",
-        name= "Clever Cloud",
-        content = img(
+        href     := "https://www.clever-cloud.com",
+        nameAttr := "Clever Cloud",
+        img(
           src := "logos/clever.svg",
           alt := "Clever Cloud logo"
         )
       ),
       Links.highlighted(
-        ref= "https://github.com/ScalaIO/scala.io",
-        name= "Github",
-        content = github
+        href     := "https://github.com/ScalaIO/scala.io",
+        nameAttr := "Github",
+        github
       )
     ),
     question(
       "I found a bug / an error on the website, what should I do?",
       p(
         "Feel free to open an issue us on the ",
-        Links.highlighted(ref= "https://github.com/ScalaIO/scala.io/issues/new", content = "Github repository"),
+        Links.highlighted(href := "https://github.com/ScalaIO/scala.io/issues/new", "Github repository"),
         " or send us an email at ",
-        Links.highlighted(ref= "mailto:contact@scala.io", content = "contact@scala.io")
+        Links.highlighted(href := "mailto:contact@scala.io", "contact@scala.io")
       )
     )
   )
@@ -166,7 +172,7 @@ object FAQView extends SimpleView {
       "Will there be replays?",
       p(
         "Yes, we will record the talks and make them available on our Youtube channel (",
-        Links.highlighted(ref= "https://www.youtube.com/@scalaio", "https://www.youtube.com/@scalaio"),
+        Links.highlighted(href := "https://www.youtube.com/@scalaio", "https://www.youtube.com/@scalaio"),
         ") after processing them (checking the sound, adding an intro frame at the start if the video, etc.)"
       ),
       p(

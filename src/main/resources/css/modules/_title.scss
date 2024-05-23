@@ -25,7 +25,7 @@
   font-size: 36px;
   line-height: 42px;
   margin-bottom: 8px;
-  font-weight: bold;
+  font-weight: 500;
   display: inline-block;
   position: relative;
 
@@ -47,4 +47,12 @@
   font-weight: bold;
   margin-right: 12px;
   color: vars.$main-color;
+}
+
+h1 ~ h2 {
+  margin-top: 3rem;
+}
+
+h2 ~ h3 {
+  margin-top: 2rem;
 }

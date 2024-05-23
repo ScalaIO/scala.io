@@ -1,9 +1,24 @@
+@mixin list-item-spacing($spacing) {
+  li {
+    margin-bottom: $spacing;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+$list-item-spacing: 0.25rem;
+
 .list-flat {
   margin-left: 2rem;
+  @include list-item-spacing($list-item-spacing);
 }
 
 .list-inner-discs {
   list-style-type: disc;
   margin-left: 2rem;
   list-style-position: inside;
+
+  @include list-item-spacing($list-item-spacing);
 }

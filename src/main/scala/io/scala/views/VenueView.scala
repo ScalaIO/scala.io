@@ -15,7 +15,7 @@ object VenueView extends SimpleView {
       className := "paragraph",
       p(
         """Situated in the vibrant center of Nantes, """,
-        Links.flat(ref = "https://icilundi.fr/lieux/le-palace/", content = "the Palace", targt = "_blank"),
+        Links.flat(href := "https://icilundi.fr/lieux/le-palace/", "the Palace"),
         """ is an ideal hub for collaboration
           |and knowledge sharing. It offers a comfortable and nurturing work environment tailored for startups,
           | teams from major corporate innovation departments, accelerators, educational institutions, and investors.
@@ -131,7 +131,7 @@ object VenueView extends SimpleView {
         |Note : Some participants will be arriving by train (Train Number 8863) at 8:54 am on Thursday morning. We are currently exploring options to expedite the transfer from the train station to the conference venue.
         |If this applies to you, we kindly request that you
         |""".stripMargin,
-      Links.flat(ref = "mailto:contact@scala.io", content = "send us an email for further coordination.")
+      Links.flat(href := "mailto:contact@scala.io", "send us an email for further coordination.")
     ),
     h2("Arriving from Nantes Train Station"),
     h3("Walking (25 minutes)"),

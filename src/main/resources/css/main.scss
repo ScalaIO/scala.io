@@ -67,18 +67,6 @@ body {
   min-height: 100vh;
 }
 
-h2 {
-  font-weight: vars.$text-bold-weight;
-  font-size: vars.$text-size-large;
-}
-h3 {
-  font-weight: vars.$text-bold-weight;
-  font-size: vars.$text-size-medium;
-}
-h4 {
-  font-weight: vars.$text-bold-weight;
-  font-size: vars.$text-size-medium;
-}
 .catch-phrase {
   margin-bottom: vars.$spacing-small;
 }
@@ -87,8 +75,4 @@ h4 {
   font-size: vars.$text-size-small;
   color: vars.$text-color-light;
   font-style: italic;
-}
-
-* ~ p {
-  margin-top: 1rem;
 }
