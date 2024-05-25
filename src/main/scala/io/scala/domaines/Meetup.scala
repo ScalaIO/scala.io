@@ -1,49 +1,50 @@
 package io.scala.domaines
 
-import java.time.LocalDate
-import java.time.LocalTime
+import io.scala.data.MeetupsInfo
+import io.scala.modules.elements.Cards
+import io.scala.modules.elements.Links
+import io.scala.modules.elements.Paragraphs
+import io.scala.modules.elements.Titles
 
 import com.raquo.laminar.api.L._
+import java.time.LocalDate
+import java.time.LocalTime
+import io.scala.modules.elements.Lists
 
 case class Meetup(
     basicInfo: Meetup.BasicInfo,
     talks: List[Meetup.Talk]
 ):
   def render: HtmlElement =
-    div(
-      className := "meetup",
-      div(
-        className := "basic-info",
-        h2(basicInfo.name),
-        p(basicInfo.date.toString),
-        p(s"${basicInfo.startTime} - ${basicInfo.endTime}"),
-        p(basicInfo.location),
-        basicInfo.link.fold(span())(link => a(href := link, "More info"))
+    Cards.withMedia(
+      header = div(
+        Titles.small(basicInfo.name),
+        Paragraphs.description(s"${basicInfo.date} @ ${basicInfo.startTime} - ${basicInfo.endTime}"),
+        Paragraphs.description(basicInfo.location)
       ),
-      div(
-        className := "talks",
+      body = Lists.innerDiscs(
         talks.map { talk =>
-          div(
-            className := "talk",
-            h3(talk.title),
-            div(
-              className := "speaker",
-              talk.speaker.map { case (name, role) =>
-                div(
-                  className := "speaker",
-                  p(name),
-                  p(role)
-                )
-              }
-            ),
-            p(talk.description)
+          li(
+            Titles.paragraph(talk.title),
+            Lists.flat(
+              talk.speaker.map { case (name, link) =>
+                li(Links.flat(href := link, name))
+              }*
+            )
           )
-        }
-      )
-    
+        }*
+      ),
+      footer = basicInfo.link.fold(div())(link => Links.highlighted(href := link, "Learn more"))
     )
 
 object Meetup:
+  given Ordering[Meetup] = Ordering.by(_.basicInfo.date)
+
+  def apply(content: String): Meetup =
+    MeetupsInfo.parseText(content).getOrElse(Meetup.empty)
+
+  def empty = new Meetup(BasicInfo.empty, List.empty)
+
   case class BasicInfo(
       name: String,
       date: LocalDate,
@@ -64,4 +65,4 @@ object Meetup:
   )
 
   object Talk:
-    def empty = Talk("", List.empty, "")
+    def empty = Talk("TBA", List.empty, "")

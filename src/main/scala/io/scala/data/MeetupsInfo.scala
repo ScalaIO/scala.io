@@ -1,19 +1,19 @@
 package io.scala.data
 
 import io.scala.domaines.Meetup
+import knockoff.Chunk
+import knockoff.HeaderChunk
+import org.scalajs.dom.console
 
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
-import knockoff.Chunk
-import knockoff.HeaderChunk
-import org.scalajs.dom.console
 
 object MeetupsInfo:
   import Parsers.parser.*
   val frenchDateFormatter = DateTimeFormatter.ofPattern("dd/MM/yyyy")
   val frenchTimeFormatter = DateTimeFormatter.ofPattern("HH:mm")
-  val sectionParser       = Parsers.headerN(3) ~ (Parsers.list ~ Parsers.textBlock.+).?
+  val sectionParser       = Parsers.headerN(3) ~ (Parsers.list ~ (Parsers.textBlock - Parsers.header).+).?
 
   def dateParser(str: String) =
     val dateTimeSep          = str.indexOf("|")
@@ -63,6 +63,9 @@ object MeetupsInfo:
       }
     }
 
-  def meetupParser = (basicInfo ~ talks) ^^ { case basicInfo ~ talks =>
-    Meetup(basicInfo, talks)
-  }
+  def parseText(source: String) = Parsers.parser.parse(
+    (basicInfo ~ talks) ^^ { case basicInfo ~ talks =>
+      Meetup(basicInfo, talks)
+    },
+    source
+  )

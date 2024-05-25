@@ -8,9 +8,9 @@ New Scala/FP meetup in Montpellier, launched both as part of the Scala Ambassado
 
 ## Talks
 
-### TBA 1
+### TBA
 
-### TBA 2
+### TBA
 
 ### FullStack Scala development
 

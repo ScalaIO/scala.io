@@ -22,3 +22,17 @@ object Cards:
       body,
       footer
     )
+
+  def withMedia(
+    header: ReactiveHtmlElement[HTMLElement] = div(),
+    media: ReactiveHtmlElement[HTMLElement] = div(),
+    body: ReactiveHtmlElement[HTMLElement] = div(),
+    footer: ReactiveHtmlElement[HTMLElement] = div()
+  ) =
+    div(
+      className := "card-blank",
+      header,
+      media,
+      body,
+      footer
+    )
