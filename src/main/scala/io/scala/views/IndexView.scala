@@ -12,7 +12,6 @@ case object IndexView extends GenericView {
     div(
       div(
         className := "fullscreen index",
-        Headband.render,
         child <-- Header.render,
         IndexView.hero
       ),
@@ -55,7 +54,7 @@ case object IndexView extends GenericView {
       className := "container speaker-gallery",
       span(
         className := "page-title",
-        "Speaker Gallery"
+        "Speaker Gallery (Nantes 2024)"
       ),
       div(
         className := "card-container",
@@ -70,16 +69,16 @@ case object IndexView extends GenericView {
       h2(className := "title", "Connecting Scala Enthusiasts!"),
       h3(
         className := "event-date-location",
-        "15th-16th February 2024 - ",
+        "November 2024 - ",
         span(
           className := "event-town",
-          "Nantes"
+          "Paris"
         ),
         " @ ",
         a(
           className := "event-location",
           href      := "/venue",
-          "Le Palace"
+          "Epitech"
         )
       )
     )

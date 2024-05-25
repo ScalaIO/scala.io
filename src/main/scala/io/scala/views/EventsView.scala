@@ -25,8 +25,9 @@ object EventsView extends SimpleView {
           .send(backend)
       .foreach(response =>
         response.onComplete {
-          case Success(value) => events.update(_ + Meetup(value.body))
-          case _              => console.error("Error while fetching events")
+          case Success(value) =>
+            events.update(_ + Meetup(value.body))
+          case _ => console.error("Error while fetching events")
         }
       )
 
