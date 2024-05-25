@@ -48,7 +48,7 @@ object CoCView extends SimpleView:
         "Don't be rude, it just makes things worse for everybody (not just the people involved)"
       ),
       li(
-        Titles.paragraph("No Doxing"),
+        Titles.paragraph("No doxing"),
         "Do not publish details of members that you learn about. It is a criminal act in France"
       ),
       li(

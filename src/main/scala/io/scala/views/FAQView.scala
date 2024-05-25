@@ -49,7 +49,10 @@ object FAQView extends SimpleView {
     question(
       "Is there a Code of Conduct (CoC) ?",
       p("Yes, you can find it ", Links.highlightedInPlace(href := "/code-of-conduct", "here")),
-      Paragraphs.description("For any violation of the CoC, please fill in the form available on the CoC page.")
+      Paragraphs.description(
+        "For any violation of the CoC, please fill in ",
+        Links.highlighted(href := "https://forms.gle/cVTtNzPF77f4TsJW7", "this form")
+      )
     ),
     question(
       "Why 2023-10 was cancelled?",
@@ -72,6 +75,15 @@ object FAQView extends SimpleView {
       "Can I have a receipt?",
       p(
         "In the confirmation email, there is a link to download it. If you can't find it, send us an email and we will send you a new one."
+      )
+    ),
+    question(
+      "I found a bug / an error on the website, what should I do?",
+      p(
+        "Feel free to open an issue us on the ",
+        Links.highlighted(href := "https://github.com/ScalaIO/scala.io/issues/new", "Github repository"),
+        " or send us an email at ",
+        Links.highlighted(href := "mailto:contact@scala.io", "contact@scala.io")
       )
     ),
     question(
@@ -126,16 +138,7 @@ object FAQView extends SimpleView {
           github
         )
       )
-    ).withGridSizes(2, 1),
-    question(
-      "I found a bug / an error on the website, what should I do?",
-      p(
-        "Feel free to open an issue us on the ",
-        Links.highlighted(href := "https://github.com/ScalaIO/scala.io/issues/new", "Github repository"),
-        " or send us an email at ",
-        Links.highlighted(href := "mailto:contact@scala.io", "contact@scala.io")
-      )
-    )
+    ).withGridSizes(1, 3)
   )
 
   lazy val speakerQuestions = Cards.container(
@@ -153,15 +156,15 @@ object FAQView extends SimpleView {
       )
     ).withGridSizes(1, 2),
     question(
-      "How will I be notified if my talk is selected?",
-      p(
-        "We will send you an email to the address you used to submit your talk. But please keep in mind that if you don't answer to our emails, within 2 weeks, we will consider that you declined the invitation. We will then contact the next speaker in the list."
-      )
-    ),
-    question(
       "Do I need to sign something?",
       p(
         "When your talk is selected, you just need to confirm you are willing to given your talk, and we send you a form about travel and expenses, and keep you updated when we announce your talk."
+      )
+    ),
+    question(
+      "How will I be notified if my talk is selected?",
+      p(
+        "We will send you an email to the address you used to submit your talk. But please keep in mind that if you don't answer to our emails, within 2 weeks, we will consider that you declined the invitation. We will then contact the next speaker in the list."
       )
     ),
     question(
@@ -173,18 +176,15 @@ object FAQView extends SimpleView {
     question(
       "Will there be replays?",
       p(
-        "Yes, we will record the talks and make them available on our Youtube channel (",
-        Links.highlighted(href := "https://www.youtube.com/@scalaio", "https://www.youtube.com/@scalaio"),
-        ") after processing them (checking the sound, adding an intro frame at the start if the video, etc.)"
-      ),
-      p(
-        "We reference the video and slides on the website on your talk's page. So please, remember to send us the link/pdf of your slides :)"
+        "Records of talks will be available on our Youtube channel (",
+        Links.highlighted(href := "https://www.youtube.com/@scalaio", "@scalaio"),
+        ") after processing them (checking the sound, adding an intro frame at the start if the video, etc.). We reference the video and slides on the website on your talk's page. So please, remember to send us the link/pdf of your slides :)"
       )
     ),
-      question (
-        "Do I have a free ticket?",
-        p("Of course :)")
-      ),
+    question(
+      "Do I have a free ticket?",
+      p("Of course :)")
+    ),
     question(
       "What if I am selected and already bought tickets?",
       p("You are reimbursed")

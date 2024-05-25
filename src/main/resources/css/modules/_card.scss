@@ -39,6 +39,14 @@ $card-padding: 16px;
   &:after {
     margin-left: -1 * $card-padding;
     margin-top: -1 * $card-padding;
+    content: "";
+    position: absolute;
+    z-index: -1;
+    width: 100%;
+    height: 100%;
+    opacity: 0.2;
+    border-radius: 10px;
+    transition: opacity 0.3s ease-in-out;
   }
 
   .title {
@@ -54,26 +62,16 @@ $card-padding: 16px;
     align-items: center;
   }
 }
-%card-effects {
-  &:after {
-    content: "";
-    position: absolute;
-    z-index: -1;
-    width: 100%;
-    height: 100%;
-    opacity: 0.2;
-    border-radius: 10px;
-    transition: opacity 0.3s ease-in-out;
-  }
 
+%card-effects {
   &:hover {
     transform: translateY(-5px);
-  }
-
-  &:hover::after {
-    opacity: 1;
+    &:after {
+      opacity: 1;
+    }
   }
 }
+
 span.presentation-lightning,
 span.presentation-short,
 span.presentation-talk,
@@ -103,7 +101,6 @@ span.presentation-keynote {
 
 .card-blank {
   @extend %card-base;
-  @extend %card-effects;
 
   @include border-shadow(vars.$text-color-light, 0.8);
 }

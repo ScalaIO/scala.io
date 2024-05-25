@@ -1,7 +1,5 @@
 package io.scala.data
 
-import com.raquo.laminar.api.L._
-import com.raquo.laminar.nodes.ReactiveHtmlElement
 import io.scala.data.MarkdownSource._
 import io.scala.domaines.ConfDay
 import io.scala.domaines.Room
@@ -10,47 +8,47 @@ import io.scala.domaines.Talk
 import io.scala.domaines.Time
 import io.scala.modules.elements.SelfHosted
 import io.scala.modules.elements.WebHosted
+
+import com.raquo.laminar.api.L._
+import com.raquo.laminar.nodes.ReactiveHtmlElement
 import knockoff.Chunk
 import knockoff.ChunkParser
 import knockoff.HeaderChunk
-
-import scala.collection.mutable.HashMap
-import scala.collection.mutable.Queue
+import scala.collection.immutable.Queue
 
 object TalksInfo:
-  val parser = new ChunkParser
-  import parser.*
-  val textBlock = parser.emptyLine.* ~> parser.textBlock <~ parser.emptyLine.*
-  val talk      = parser.phrase((parser.header ~ parser.emptyLine.?) ~> (parser.atxHeader.? ~ textBlock).+)
-  val linkRegex = """\[([^\[\]]+)\]\s*\(([^\(\)]+)\)""".r
+  import Parsers.parser.*
+  val talk      = Parsers.parser.phrase(Parsers.header ~> (Parsers.header.? ~ Parsers.textBlock).+)
 
   def parseTalk(md: String) =
-    parser.parse(talk, md) match
-      case parser.Success(result, next) =>
+    Parsers.parser.parse(talk, md) match
+      case Parsers.parser.Success(result, next) =>
         result.map:
           case header ~ textBlock =>
             val initialQueue: Queue[HtmlElement] =
               Queue.from { header.map { case HeaderChunk(_, content) => h4(content) } }
 
             val text = textBlock.content
-            val withLinks = linkRegex
+            val withLinks = Parsers.linkRegex
               .findAllMatchIn(text)
               .foldLeft((initialQueue, 0)):
                 case ((queue, start), next) =>
-                  queue += span(text.substring(start, next.start))
-                  queue += a(href := next.group(2), target := "_blank", next.group(1), aria.label := next.group(2))
-                  (queue, next.end)
+                  (
+                    queue
+                      .enqueue(span(text.substring(start, next.start)))
+                      .enqueue(
+                        a(href := next.group(2), target := "_blank", next.group(1), aria.label := next.group(2))
+                      ),
+                    next.end
+                  )
             withLinks._1.enqueue(span(text.substring(withLinks._2)))
-      case fail: parser.NoSuccess =>
+      case _ =>
         List(Queue(p("To be announced")))
 
   lazy val talksBySpeaker =
     allTalks
-      .foldLeft(HashMap.empty[Speaker, Set[Talk]].withDefaultValue(Set.empty)): (acc, next) =>
-        next.speakers.foreach: speaker =>
-          acc(speaker) += next
-        acc
-      .toMap
+      .foldLeft(Map.empty[Speaker, Set[Talk]].withDefaultValue(Set.empty)): (acc, next) =>
+        acc ++ next.speakers.map(_ -> (acc(next.speakers.head) + next))
       .mapValues(_.toList.sortBy(_.title))
 
   lazy val allTalks = List(
@@ -64,7 +62,8 @@ object TalksInfo:
       start = Time(15, 40),
       room = Room.One,
       slides = Some(SelfHosted("chasing-arrows.pdf", 2024)),
-      replay = Some("https://www.youtube.com/watch?v=KFhhR6tSy_0&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=12&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=KFhhR6tSy_0&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=12&pp=iAQB")
     ),
     Talk(
       title = "Data pipelines engineering made simple with Scala",
@@ -76,7 +75,8 @@ object TalksInfo:
       start = Time(9, 50),
       room = Room.One,
       slides = Some(SelfHosted("data-pipeline.pptx", 2024)),
-      replay = Some("https://www.youtube.com/watch?v=gS6zOfqUHVs&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=8&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=gS6zOfqUHVs&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=8&pp=iAQB")
     ),
     Talk(
       title = "Scala 3 Compiler Academy Journey",
@@ -87,8 +87,13 @@ object TalksInfo:
       day = ConfDay.Thursday,
       start = Time(15, 40),
       room = Room.One,
-      slides = Some(WebHosted("https://docs.google.com/presentation/d/1DPX8w7I07CIm7rU_z5TNJ_R_A7mf6_lZCMfIVBvrRpk/edit?usp=sharing")),
-      replay = Some("https://www.youtube.com/watch?v=wmuVcCSsk-4&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=9&pp=iAQB")
+      slides = Some(
+        WebHosted(
+          "https://docs.google.com/presentation/d/1DPX8w7I07CIm7rU_z5TNJ_R_A7mf6_lZCMfIVBvrRpk/edit?usp=sharing"
+        )
+      ),
+      replay =
+        Some("https://www.youtube.com/watch?v=wmuVcCSsk-4&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=9&pp=iAQB")
     ),
     Talk(
       title = "Unleashing Scalafix potential with custom rules",
@@ -100,7 +105,8 @@ object TalksInfo:
       start = Time(10, 50),
       room = Room.One,
       slides = Some(SelfHosted("scalafix.pdf", 2024)),
-      replay = Some("https://www.youtube.com/watch?v=qexJYvo2EwY&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=15&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=qexJYvo2EwY&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=15&pp=iAQB")
     ),
     Talk(
       title = "🌴 Youpi dansons la Kapoeira en testant nos Kafka streams 🕺 💃",
@@ -112,7 +118,8 @@ object TalksInfo:
       start = Time(16, 40),
       room = Room.One,
       slides = Some(WebHosted("https://jvauchel.github.io/kapoeira-dance/index-scalaio.html")),
-      replay = Some("https://www.youtube.com/watch?v=BUQFj2jrGj8&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=5&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=BUQFj2jrGj8&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=5&pp=iAQB")
     ),
     Talk(
       title = "Armored type safety with Iron",
@@ -124,7 +131,8 @@ object TalksInfo:
       start = Time(11, 40),
       room = Room.One,
       slides = Some(WebHosted("https://scalaio-2024.rlemaitre.com")),
-      replay = Some("https://www.youtube.com/watch?v=I3BvpzFVBto&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=6&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=I3BvpzFVBto&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=6&pp=iAQB")
     ),
     Talk(
       title = "Contravariance: intuition building from first principles",
@@ -136,7 +144,8 @@ object TalksInfo:
       start = Time(14, 50),
       room = Room.One,
       slides = Some(SelfHosted("Contravariance.pdf", 2024)),
-      replay = Some("https://www.youtube.com/watch?v=A7t3b0kymFM&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=13&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=A7t3b0kymFM&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=13&pp=iAQB")
     ),
     Talk(
       title = "Songwriting in Scala - Creating a DSL for writing Music with ADT's",
@@ -148,7 +157,8 @@ object TalksInfo:
       day = ConfDay.Thursday,
       start = Time(14, 0),
       room = Room.One,
-      replay = Some("https://www.youtube.com/watch?v=Mr6TtLRU5LM&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=4&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=Mr6TtLRU5LM&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=4&pp=iAQB")
     ),
     Talk(
       title = "Hands-on Besom: Infrastructure-as-Code with Scala",
@@ -160,7 +170,8 @@ object TalksInfo:
       start = Time(10, 50),
       room = Room.One,
       slides = Some(SelfHosted("besom.pdf", 2024)),
-      replay = Some("https://www.youtube.com/watch?v=J0vXLHN8YpA&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=7&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=J0vXLHN8YpA&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=7&pp=iAQB")
     ),
     Talk(
       title = "Introduction to Smithy/Smithy4s",
@@ -172,7 +183,8 @@ object TalksInfo:
       day = ConfDay.Thursday,
       start = Time(14, 50),
       room = Room.One,
-      replay = Some("https://www.youtube.com/watch?v=UorOxZTJDxg&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=10&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=UorOxZTJDxg&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=10&pp=iAQB")
     ),
     Talk(
       title = "Logic Meta-Programming for Functional Languages",
@@ -183,7 +195,8 @@ object TalksInfo:
       day = ConfDay.Friday,
       start = Time(9, 0),
       room = Room.One,
-      replay = Some("https://www.youtube.com/watch?v=K3babGnXfEI&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=2&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=K3babGnXfEI&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=2&pp=iAQB")
     ),
     Talk(
       title = "Migrating Gallia to Scala 3: the good, the bad, and the very good.",
@@ -196,7 +209,8 @@ object TalksInfo:
       start = Time(13, 30),
       room = Room.One,
       slides = Some(SelfHosted("gallia-migration.pdf", 2024)),
-      replay = Some("https://www.youtube.com/watch?v=DzjvFx5YYik&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=14&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=DzjvFx5YYik&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=14&pp=iAQB")
     ),
     Talk(
       title = "Types dépendants: de la théorie à la pratique",
@@ -208,7 +222,8 @@ object TalksInfo:
       start = Time(14, 0),
       room = Room.One,
       slides = Some(WebHosted("http://d.plaindoux.free.fr/talks/dependent-type/main.html")),
-      replay = Some("https://www.youtube.com/watch?v=bYcdxB3Iukc&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=4&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=bYcdxB3Iukc&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=4&pp=iAQB")
     ),
     Talk(
       title = "Utilisez l'intelligence artificielle dans vos programmes !",
@@ -231,7 +246,8 @@ object TalksInfo:
       start = Time(17, 30),
       room = Room.One,
       slides = Some(SelfHosted("first-year-scala.pdf", 2024)),
-      replay = Some("https://www.youtube.com/watch?v=Jyn2l1nhwZE&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=3&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=Jyn2l1nhwZE&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=3&pp=iAQB")
     ),
     Talk(
       title = "Une autre introduction aux GADTs",
@@ -257,7 +273,8 @@ object TalksInfo:
       start = Time(16, 40),
       room = Room.One,
       slides = Some(SelfHosted("scala-community-building-lessons.pptx", 2024)),
-      replay = Some("https://www.youtube.com/watch?v=6skPn0evEE8&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=11&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=6skPn0evEE8&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=11&pp=iAQB")
     ),
     Talk(
       title = "Unwrapping IO: is it a path that you want to follow?",
@@ -270,7 +287,8 @@ object TalksInfo:
       start = Time(17, 0),
       room = Room.One,
       slides = Some(WebHosted("https://adamw.github.io/unwrapping-io")),
-      replay = Some("https://www.youtube.com/watch?v=qR_Od7qbacs&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=1&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=qR_Od7qbacs&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=1&pp=iAQB")
     ),
     Talk(
       title = "When all the nails are trees, the hammer you need probably looks like a chainsaw",
@@ -283,7 +301,8 @@ object TalksInfo:
       start = Time(13, 30),
       room = Room.One,
       slides = Some(SelfHosted("Chainsaw.pdf", 2024)),
-      replay = Some("https://www.youtube.com/watch?v=0unlHZmNYkw&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=5&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=0unlHZmNYkw&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=5&pp=iAQB")
     ),
     Talk(
       title = "Rex: Migration de Scala 2 à Scala 3",
@@ -295,6 +314,7 @@ object TalksInfo:
       day = ConfDay.Thursday,
       start = Time(18, 20),
       room = Room.One,
-      replay = Some("https://www.youtube.com/watch?v=jGGTqCmwArI&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=3&pp=iAQB")
+      replay =
+        Some("https://www.youtube.com/watch?v=jGGTqCmwArI&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=3&pp=iAQB")
     )
   )
