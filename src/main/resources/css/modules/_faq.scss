@@ -15,7 +15,11 @@
 
     img,
     svg {
-      height: 64px;
+      height: 54px;
+
+      @media screen and (min-width: 342) {
+        height: 64px;
+      }
     }
 
     a {

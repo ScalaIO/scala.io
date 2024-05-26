@@ -18,10 +18,19 @@
 }
 
 $card-padding: 16px;
+$container-gap: 2rem;
 
 .card-container {
   display: grid;
-  grid-template-columns: auto auto auto;
+  gap: $container-gap;
+  margin: 2rem;
+}
+
+.card-container-flex {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+
   gap: 2rem;
   margin: 2rem;
 }
@@ -32,13 +41,10 @@ $card-padding: 16px;
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
-  transition: all 0.3s ease-in-out;
   width: 100%;
   padding: $card-padding;
 
   &:after {
-    margin-left: -1 * $card-padding;
-    margin-top: -1 * $card-padding;
     content: "";
     position: absolute;
     z-index: -1;
@@ -64,6 +70,7 @@ $card-padding: 16px;
 }
 
 %card-effects {
+  transition: all 0.3s ease-in-out;
   &:hover {
     transform: translateY(-5px);
     &:after {
@@ -101,8 +108,16 @@ span.presentation-keynote {
 
 .card-blank {
   @extend %card-base;
-
   @include border-shadow(vars.$text-color-light, 0.8);
+
+  flex-basis: 100%;
+
+  @media screen and (min-width: vars.$tablet-width) {
+    flex-basis: calc(50% - #{$container-gap});
+  }
+  @media screen and (min-width: vars.$desktop-width) {
+    flex-basis: calc(33.3333% - #{$container-gap});
+  }
 }
 
 .blank-card {
@@ -121,7 +136,18 @@ span.presentation-keynote {
 }
 
 .talk-card,
-.speaker-card {
+.speaker-card,
+.card-blank,
+.sponsor-card {
+  &::after {
+    margin-left: -1 * $card-padding;
+    margin-top: -1 * $card-padding;
+  }
+}
+
+.talk-card,
+.speaker-card,
+.sponsor-card {
   @include border-style(vars.$main-color, vars.$main-color-lighter);
 }
 
@@ -192,10 +218,7 @@ span.presentation-keynote {
   }
 
   &.presentation-short {
-    @include border-style(
-      vars.$prez-short-color,
-      vars.$prez-short-color
-    );
+    @include border-style(vars.$prez-short-color, vars.$prez-short-color);
   }
 
   &.presentation-talk {
@@ -203,10 +226,7 @@ span.presentation-keynote {
   }
 
   &.presentation-keynote {
-    @include border-style(
-      vars.$prez-keynote-color,
-      vars.$prez-keynote-color
-    );
+    @include border-style(vars.$prez-keynote-color, vars.$prez-keynote-color);
   }
 }
 .speaker-card {
@@ -242,6 +262,7 @@ span.presentation-keynote {
     }
   }
 }
+
 .link {
   display: flex;
   justify-content: end;
@@ -253,6 +274,7 @@ span.presentation-keynote {
     margin-left: 4px;
   }
 }
+
 .sponsor-card {
   @extend %card-base;
   @extend %card-effects;

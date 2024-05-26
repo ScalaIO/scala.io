@@ -43,10 +43,6 @@ object Header {
 
   def links = div(
     className := "links",
-    span(
-      className := "accordion",
-      "CONFERENCE"
-    ),
     linksPage.map(navLink(_, _))
   )
   def mobileLinks = div(

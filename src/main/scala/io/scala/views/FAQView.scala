@@ -26,6 +26,9 @@ object FAQView extends SimpleView {
       element.amend(
         styleAttr := s"grid-row: span $row; grid-column: span $col;"
       )
+    def withFlexGrow(grow: Int, basis: Int = -1): HtmlElement =
+      if basis == -1 then element.amend(styleAttr := s"flex: $grow $grow;")
+      else element.amend(styleAttr                := s"flex: $grow $grow $basis%;")
 
   override def body(): HtmlElement = {
     sectionTag(
@@ -45,7 +48,7 @@ object FAQView extends SimpleView {
     )
   }
 
-  lazy val commonQuestions = Cards.container(
+  lazy val commonQuestions = Cards.containerFlex(
     question(
       "Is there a Code of Conduct (CoC) ?",
       p("Yes, you can find it ", Links.highlightedInPlace(href := "/code-of-conduct", "here")),
@@ -138,10 +141,10 @@ object FAQView extends SimpleView {
           github
         )
       )
-    ).withGridSizes(1, 3)
+    ).withFlexGrow(2)
   )
 
-  lazy val speakerQuestions = Cards.container(
+  lazy val speakerQuestions = Cards.containerFlex(
     question(
       "How are the talks selected?",
       p(
@@ -154,7 +157,7 @@ object FAQView extends SimpleView {
         fontSize.small,
         "There is a stratified, open ballot, exponentially weighted borda count to help with pre-selection"
       )
-    ).withGridSizes(1, 2),
+    ).withFlexGrow(2, 100),
     question(
       "Do I need to sign something?",
       p(
