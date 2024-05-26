@@ -79,5 +79,5 @@ object TalkToMd:
           |""".stripMargin
     Files.write(talkPathOut, content.getBytes)
 
-@main def migrateTalksToMd =
+def migrateTalksToMd =
   TalksInfo.allTalks.foreach(TalkToMd.talkToMd)

@@ -13,6 +13,7 @@
 @use "views/schedule";
 
 // Modules
+@use "modules/buttons";
 @use "modules/card";
 @use "modules/coc";
 @use "modules/faq";
@@ -20,12 +21,11 @@
 @use "modules/headband";
 @use "modules/header";
 @use "modules/line";
-@use "modules/links";
 @use "modules/lists";
 @use "modules/overlay";
 @use "modules/paragraph";
 @use "modules/separator";
-@use "modules/buttons";
+@use "modules/links";
 @use "modules/speaker";
 @use "modules/talks";
 @use "modules/title";
