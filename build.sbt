@@ -7,15 +7,18 @@ ThisBuild / versionScheme := Some("early-semver")
 
 val publicFolderDev  = taskKey[String]("Returns the compiled main.js parent path for dev")
 val publicFolderProd = taskKey[String]("Returns the compiled main.js parent path for production`")
-val eventLister      = taskKey[File]("List all events markdown files")
+val eventLister      = taskKey[Seq[File]]("List all events markdown files")
+val confLister       = taskKey[Seq[File]]("List all events markdown files")
 
 lazy val root = project
   .in(file("."))
   .enablePlugins(ScalaJSPlugin)
   .settings(
     name := "scalaio-website",
-    // scalacOptions += "-Yexplicit-nulls",
-    scalacOptions += "-Wunused:all",
+    scalacOptions ++= Seq(
+      // "-Yexplicit-nulls",
+      "-Wunused:all"
+    ),
     libraryDependencies ++= Seq(
       "com.raquo"                     %%% "laminar"           % Dependencies.laminar,
       "com.raquo"                     %%% "waypoint"          % Dependencies.waypoint,
@@ -32,49 +35,46 @@ lazy val root = project
         .withModuleSplitStyle(SmallestModules)
         .withSourceMap(false)
     },
+    confLister       := confListing().value,
     publicFolderDev  := linkerOutputDirectory((Compile / fastLinkJS).value).getAbsolutePath,
     publicFolderProd := linkerOutputDirectory((Compile / fullLinkJS).value).getAbsolutePath,
-    Compile / sourceGenerators += eventListing().taskValue,
-    Compile / sourceGenerators += Def.task {
-      val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "MarkdownSource.scala"
-
-      val markdowns: Seq[File] = listMarkdown((Compile / resourceDirectory).value / "md")
-
-      val content: String = lines(
-        "package io.scala.data",
-        "",
-        "object MarkdownSource {",
-        "",
-        lines(markdowns.map(file => {
-          val name: String    = slugify(file.getName.stripSuffix(".md"))
-          val content: String = "\"" * 3 + IO.read(file) + "\"" * 3
-
-          s"""  val $name = $content"""
-        })*),
-        "}"
-      )
-
-      if (!file.exists() || IO.read(file) != content) {
-        IO.write(file, content)
-      }
-
-      Seq(file)
-    }.taskValue
+    Compile / sourceGenerators ++= Seq(eventListing().taskValue, confListing().taskValue),
   )
 
-def lines(lines: String*)               = lines.mkString("\n")
-def slugify(name: String): String       = name.toLowerCase().replace("-", "_")
-def listMarkdown(file: File): Seq[File] = file.listFiles().filter(_.getName.endsWith(".md")).toList
+def lines(lines: String*)                = lines.mkString("\n")
+def slugify(name: String): String        = name.toLowerCase().replace("-", "_")
+def listMarkdowns(file: File): Seq[File] = file.listFiles().filter(_.getName.endsWith(".md")).toList
+def listFolders(file: File): Seq[File]   = file.listFiles().filter(_.isDirectory()).toList
 
 def eventListing() = Def.task {
   val file   = (Compile / sourceManaged).value / "io" / "scala" / "data" / "EventFilesName.scala"
-  val events = listMarkdown(new File("./public/scalafr-meetups"))
+  val events = listMarkdowns(new File("./public/scalafr-meetups"))
   val content =
     s"""|package io.scala.data
        |
        |object EventFilesName:
        |  val names = List(${events.map(file => s""""${file.getName()}"""").mkString(",")})
        |""".stripMargin
+
+  if (!file.exists() || IO.read(file) != content) {
+    IO.write(file, content)
+  }
+  Seq(file)
+}
+
+def confListing() = Def.task {
+  val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "ConfFilesName.scala"
+  val conferences = listFolders(new File("./public/conferences")).map { folder =>
+    val talks = listMarkdowns(folder).filter(_.getName != "conference.md")
+    s"""|  val ${folder.getName()} = List(${talks.map(file => "\"" * 3 + IO.read(file) + "\"" * 3).mkString(",")})"""
+  }
+
+  val content =
+    s"""|package io.scala.data
+        |
+        |object ConfFilesName {
+        ${conferences.mkString("\n")}
+        |}""".stripMargin
 
   if (!file.exists() || IO.read(file) != content) {
     IO.write(file, content)

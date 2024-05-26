@@ -1,11 +1,13 @@
 package io.scala.modules
 
-import com.raquo.laminar.api.L._
-import io.scala.domaines._
+import io.scala.domaines.*
+import io.scala.modules.syntax.*
+import com.raquo.laminar.api.L.*
+import java.time.LocalTime
 import org.scalajs.dom.HTMLDivElement
 
 val rooms = Room.values
-case class ScheduleDay(eventsList: Map[Time, Seq[Act]], startingTimes: Seq[Time]):
+case class ScheduleDay(eventsList: Map[LocalTime, Seq[Act]], startingTimes: Seq[LocalTime]):
   def body =
     startingTimes.map(time =>
       div(
@@ -16,10 +18,9 @@ case class ScheduleDay(eventsList: Map[Time, Seq[Act]], startingTimes: Seq[Time]
           .map { events =>
             rooms.map(room =>
               events._2
-                .find {
-                  case t: Talk               => t.room == room
+                .find:
+                  case t: Talk            => t.info.room == room.toString()
                   case _: Break | _: Special => true // ! Will cause problem for multi-track events
-                }
                 .map(_.render)
                 .getOrElse(div(className := "blank-card"))
             )
@@ -32,12 +33,12 @@ object ScheduleDay {
   def apply(events: Seq[Act]) =
     val scheduledEvents = events
       .filter:
-        case t: Talk => t.start != null && t.room != null
-        case e       => e.start != null
-    val definedTalks: Map[Time, Seq[Act]] =
-      scheduledEvents.groupBy(_.start)
+        case t: Talk => t.time != null && t.info.room != null
+        case e       => e.time != null
+    val definedTalks: Map[LocalTime, Seq[Act]] =
+      scheduledEvents.groupBy(_.time)
     val startingTimes = scheduledEvents
-      .map(_.start)
+      .map(_.time)
       .distinct
       .sorted
 

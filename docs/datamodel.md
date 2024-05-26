@@ -5,12 +5,12 @@
 ```md
 # <title>
 
-- kind: (Lightning|Short|Talk|Keynote)
-- category: <String>
-- dateTime: <date> | <time>
-- room: <Int>
-- slides: <url>
-- replay: <url>
+- Kind: (Lightning|Short|Talk|Keynote)
+- Category: <String>
+- DateTime: <date> | <time>
+- Room: <Int>
+- Slides: <url>
+- Replay: <url>
 
 ## Abstract
 
@@ -22,7 +22,7 @@
 
 - photoRelPath: <url> # relative path to the image from the `public` folder
 - job: <String> @ <String>
-- confirmed # optional. A confirmed talk will appear on the website without the `?withDraft=true` query param
+- confirmed: true # optional. A confirmed talk will appear on the website without the `?withDraft=true` query param
 
 #### Links
 

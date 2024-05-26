@@ -1,11 +1,12 @@
 # Songwriting in Scala - Creating a DSL for writing Music with ADT's
 
-- kind: Talk
-- category: Modeling
-- dateTime: 15-02-2024 | 14:0
-- room: 0
-- slides: 
-- replay: https://www.youtube.com/watch?v=Mr6TtLRU5LM&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=4&pp=iAQB
+- Kind: Talk
+- Slug: songwriting-in-scala-dsl-and-adt
+- Category: Modeling
+- DateTime: 2024-02-15T14:00
+- Room: 0
+- Slides: 
+- Replay: https://www.youtube.com/watch?v=Mr6TtLRU5LM&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=4&pp=iAQB
 
 ## Abstract
 
@@ -23,7 +24,7 @@ Topics covered:
 
 - photoRelPath: /images/profiles/nantes2024/pMatthews.webp
 - job: Backend Scala Developer @ ClearScore
-- confirmed
+- confirmed: true
 
 #### Links
 

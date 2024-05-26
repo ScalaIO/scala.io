@@ -1,11 +1,12 @@
 # When all the nails are trees, the hammer you need probably looks like a chainsaw
 
-- kind: Short
-- category: Algebra
-- dateTime: 15-02-2024 | 13:30
-- room: 0
-- slides: https://scala.io/slides/2024/Chainsaw.pdf
-- replay: https://www.youtube.com/watch?v=0unlHZmNYkw&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=5&pp=iAQB
+- Kind: Short
+- Slug: nails-are-tree-need-chainsaw
+- Category: Algebra
+- DateTime: 2024-02-15T13:30
+- Room: 0
+- Slides: https://scala.io/slides/2024/Chainsaw.pdf
+- Replay: https://www.youtube.com/watch?v=0unlHZmNYkw&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=5&pp=iAQB
 
 ## Abstract
 
@@ -24,7 +25,7 @@ the process and how it helped me solved my problems with less pain.
 
 - photoRelPath: /images/profiles/nantes2024/mBaechler.webp
 - job: Developer @ Freelancer
-- confirmed
+- confirmed: true
 
 #### Links
 

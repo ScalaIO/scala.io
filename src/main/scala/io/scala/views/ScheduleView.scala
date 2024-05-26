@@ -1,22 +1,26 @@
 package io.scala.views
 
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
 import io.scala.Lexicon
 import io.scala.data.ScheduleInfo
 import io.scala.data.ScheduleInfo.maxEnd
 import io.scala.data.ScheduleInfo.minStart
 import io.scala.data.ScheduleInfo.pxByHour
-import io.scala.domaines._
-import io.scala.modules._
-import io.scala.modules.elements._
+import io.scala.domaines.*
+import io.scala.modules.*
+import io.scala.modules.syntax.*
+import io.scala.modules.elements.*
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
 
+import java.time.DayOfWeek
+
 import scala.collection.immutable.Queue
 import scala.collection.mutable
+import java.time.LocalTime
 
 case object ScheduleView extends SimpleViewWithDraft {
-  val selectedDay: Var[ConfDay] = Var(ConfDay.Thursday)
+  val selectedDay: Var[DayOfWeek] = Var(DayOfWeek.MONDAY)
 
   lazy val globalHours: Div =
     def renderHours(name: String, hours: Seq[Time]) =
@@ -43,12 +47,12 @@ case object ScheduleView extends SimpleViewWithDraft {
       )
     )
 
-  def renderSmall(eventsByDay: Map[ConfDay, List[Act]]) =
+  def renderSmall(eventsByDay: Map[DayOfWeek, List[Act]]) =
     div(
       className := "schedule small",
       div(
         className := "tabs",
-        ConfDay.values.map { day =>
+        eventsByDay.keySet.toSeq.map { day =>
           div(
             button(
               onClick --> { _ => selectedDay.set(day) },
@@ -62,7 +66,7 @@ case object ScheduleView extends SimpleViewWithDraft {
         }
       ),
       div(
-        ConfDay.values.map { day =>
+        eventsByDay.keySet.toSeq.map { day =>
           div(
             className := "content",
             display <-- selectedDay.signal.map { d =>
@@ -79,19 +83,19 @@ case object ScheduleView extends SimpleViewWithDraft {
       )
     )
 
-  def computeTop(event: Act, count: Int, day: ConfDay) =
-    val base = (event.start.toHour - minStart.toHour) * pxByHour
-    if day == ConfDay.Thursday then base + (count + 1) * 32
+  def computeTop(event: Act, count: Int, day: DayOfWeek) =
+    val base = (event.time.getHour - minStart.toHour) * pxByHour
+    if day == DayOfWeek.THURSDAY then base + (count + 1) * 32
     else base + count * 32
 
   // ? We suppose that the events are sorted by starting time
-  def renderLarge(eventsByDay: Map[ConfDay, List[Act]]) =
+  def renderLarge(eventsByDay: Map[DayOfWeek, List[Act]]) =
     div(
       className := "schedule large",
       div(),
       div(
         className := "tabs",
-        ConfDay.values.map: day =>
+        eventsByDay.keySet.toSeq.map: day =>
           div(
             className := "tab",
             h2(day.toString()),
@@ -104,7 +108,7 @@ case object ScheduleView extends SimpleViewWithDraft {
       ),
       div(
         height := s"${(maxEnd.h - minStart.h) * (pxByHour + 40)}px",
-        ConfDay.values.map: day =>
+        eventsByDay.keySet.toSeq.map: day =>
           eventsByDay.get(day) match
             case None => div()
             case Some(events) =>
@@ -116,24 +120,24 @@ case object ScheduleView extends SimpleViewWithDraft {
       )
     )
 
-  def renderTimeline(eventsByDay: Map[ConfDay, Seq[Act]]) =
-    val inserted = mutable.Set.empty[Time]
-    ConfDay.values.flatMap: day => // ? Needed for each day to advance independently in the timeline
+  def renderTimeline(eventsByDay: Map[DayOfWeek, Seq[Act]]) =
+    val inserted = mutable.Set.empty[LocalTime]
+    eventsByDay.keySet.toSeq.flatMap: day => // ? Needed for each day to advance independently in the timeline
       eventsByDay
         .get(day)
         .getOrElse(Seq())
         .foldLeft(Queue.empty[Element]): (acc, event) =>
           event match
             case b: Break if b.kind != Break.Kind.Lunch => acc :+ span()
-            case e: Act if inserted.contains(e.start) => acc :+ span()
+            case e: Act if inserted.contains(e.time) => acc :+ span()
             case _ =>
-              inserted.add(event.start)
+              inserted.add(event.time)
               acc :+
-                event.start
+                event.time
                   .render()
                   .amend(top := s"${computeTop(event, acc.length, day)}px")
 
-  def placeCard(event: Act, index: Int, day: ConfDay): Div =
+  def placeCard(event: Act, index: Int, day: DayOfWeek): Div =
     val duration = event match
       case d: Durable => d.duration
       case _          => 15
@@ -143,13 +147,13 @@ case object ScheduleView extends SimpleViewWithDraft {
       height    := s"${duration / 60.0 * pxByHour}px"
     )
 
-  def renderSchedule(eventsByDay: Map[ConfDay, List[Act]]) =
+  def renderSchedule(eventsByDay: Map[DayOfWeek, List[Act]]) =
     screenVar.signal.map {
       case Screen.Desktop => renderLarge(eventsByDay)
       case _              => renderSmall(eventsByDay)
     }
 
-  def bodyContent(eventsByDay: Map[ConfDay, List[Act]]): HtmlElement =
+  def bodyContent(eventsByDay: Map[DayOfWeek, List[Act]]): HtmlElement =
     sectionTag(
       className := "container",
       Titles("Schedule"),
@@ -159,10 +163,10 @@ case object ScheduleView extends SimpleViewWithDraft {
     )
 
   def body(withDraft: Boolean): HtmlElement =
-    val eventsByDay: Map[ConfDay, List[Act]] =
+    val eventsByDay: Map[DayOfWeek, List[Act]] =
       ScheduleInfo.schedule
         .filter(_.day != null)
         .groupBy { _.day }
-        .map((k, v) => (k, v.sortBy(_.start)))
+        .map((k, v) => (k, v.sortBy(_.time)))
     bodyContent(eventsByDay)
 }

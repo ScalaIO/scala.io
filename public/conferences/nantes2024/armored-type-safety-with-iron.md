@@ -1,11 +1,12 @@
 # Armored type safety with Iron
 
-- kind: Talk
-- category: Modeling
-- dateTime: 15-02-2024 | 11:40
-- room: 0
-- slides: https://scalaio-2024.rlemaitre.com
-- replay: https://www.youtube.com/watch?v=I3BvpzFVBto&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=6&pp=iAQB
+- Kind: Talk
+- Slug: armored-type-safety-with-iron
+- Category: Modeling
+- DateTime: 2024-02-15T11:40
+- Room: 0
+- Slides: https://scalaio-2024.rlemaitre.com
+- Replay: https://www.youtube.com/watch?v=I3BvpzFVBto&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=6&pp=iAQB
 
 ## Abstract
 
@@ -23,7 +24,7 @@ In this talk, we’ll show first the different technique we can use to apply con
 
 - photoRelPath: /images/profiles/nantes2024/rLemaitre.webp
 - job: Senior Staff Engineer @ Ledger
-- confirmed
+- confirmed: true
 
 #### Links
 
@@ -46,7 +47,7 @@ My interests span from software development to history and technology, where I e
 
 - photoRelPath: /images/profiles/nantes2024/vBergeron.webp
 - job: Engineering team lead @ Ledger
-- confirmed
+- confirmed: true
 
 #### Links
 

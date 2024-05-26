@@ -2,7 +2,7 @@ package io.scala.views
 
 import com.raquo.laminar.api.L._
 import io.scala.domaines.Social
-import io.scala.domaines.Speaker
+import io.scala.domaines.Talk.Speaker
 import io.scala.modules.elements.Titles
 import io.scala.svgs.Icons
 
@@ -14,7 +14,7 @@ class SpeakerView(speaker: Speaker):
       div(
         className := "data",
         img(
-          src       := speaker.photoPath,
+          src       := speaker.photoRelPath,
           className := "photo",
           alt       := s"${speaker.name}'s profile picture"
         ),
@@ -25,13 +25,13 @@ class SpeakerView(speaker: Speaker):
               Icons.suitecase,
               speaker.job
             ),
-            div(
-              Icons.atSign,
-              speaker.company
-            )
+            // div(
+            //   Icons.atSign,
+            //   speaker.company
+            // )
           ),
           h2("Who am I"),
-          speaker.renderDescription,
+          speaker.renderBio,
           div(
             className := "socials",
             Social.renderWithAccount(speaker.socials)

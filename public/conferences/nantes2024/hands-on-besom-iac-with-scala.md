@@ -1,11 +1,12 @@
 # Hands-on Besom: Infrastructure-as-Code with Scala
 
-- kind: Talk
-- category: Cloud
-- dateTime: 16-02-2024 | 10:50
-- room: 0
-- slides: https://scala.io/slides/2024/besom.pdf
-- replay: https://www.youtube.com/watch?v=J0vXLHN8YpA&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=7&pp=iAQB
+- Kind: Talk
+- Slug: hands-on-besom-iac-with-scala
+- Category: Cloud
+- DateTime: 2024-02-16T10:50
+- Room: 0
+- Slides: https://scala.io/slides/2024/besom.pdf
+- Replay: https://www.youtube.com/watch?v=J0vXLHN8YpA&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=7&pp=iAQB
 
 ## Abstract
 
@@ -17,7 +18,7 @@ In my talk I will briefly introduce Besom, a Pulumi SDK for Scala and then swift
 
 - photoRelPath: /images/profiles/nantes2024/lBialy.webp
 - job: Software Engineer @ VirtusLab
-- confirmed
+- confirmed: true
 
 #### Links
 

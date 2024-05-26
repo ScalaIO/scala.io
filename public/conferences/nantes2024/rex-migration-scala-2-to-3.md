@@ -1,11 +1,12 @@
 # Rex: Migration de Scala 2 à Scala 3
 
-- kind: Lightning
-- category: ToolsEcosystem
-- dateTime: 15-02-2024 | 18:20
-- room: 0
-- slides: 
-- replay: https://www.youtube.com/watch?v=jGGTqCmwArI&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=3&pp=iAQB
+- Kind: Lightning
+- Slug: rex-migration-scala-2-to-3
+- Category: ToolsEcosystem
+- DateTime: 2024-02-15T18:20
+- Room: 0
+- Slides: 
+- Replay: https://www.youtube.com/watch?v=jGGTqCmwArI&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=3&pp=iAQB
 
 ## Abstract
 
@@ -26,7 +27,7 @@ tout ça dans le but d'accéder au trésor : Scala 3.
 
 - photoRelPath: /images/profiles/nantes2024/aBlondeau.webp
 - job: Developer @ Clever Cloud
-- confirmed
+- confirmed: true
 
 #### Links
 
@@ -40,7 +41,7 @@ I'm a backend developer specialized in platform orchestration. I have experience
 
 - photoRelPath: /images/profiles/nantes2024/jbKaiser.webp
 - job: Scala Developer @ Clever Cloud
-- confirmed
+- confirmed: true
 
 #### Links
 

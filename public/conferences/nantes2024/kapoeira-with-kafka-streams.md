@@ -1,11 +1,12 @@
 # 🌴 Youpi dansons la Kapoeira en testant nos Kafka streams 🕺 💃
 
-- kind: Talk
-- category: DataEng
-- dateTime: 15-02-2024 | 16:40
-- room: 0
-- slides: https://jvauchel.github.io/kapoeira-dance/index-scalaio.html
-- replay: https://www.youtube.com/watch?v=BUQFj2jrGj8&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=5&pp=iAQB
+- Kind: Talk
+- Slug: kapoeira-with-kafka-streams
+- Category: DataEng
+- DateTime: 2024-02-15T16:40
+- Room: 0
+- Slides: https://jvauchel.github.io/kapoeira-dance/index-scalaio.html
+- Replay: https://www.youtube.com/watch?v=BUQFj2jrGj8&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=5&pp=iAQB
 
 ## Abstract
 
@@ -27,7 +28,7 @@ Si vous êtes intéressés, nous serons ravis de récolter vos retours et vos co
 
 - photoRelPath: /images/profiles/nantes2024/jVauchel.webp
 - job: Data Engineer @ Lectra
-- confirmed
+- confirmed: true
 
 #### Links
 
@@ -42,7 +43,7 @@ Diplômée de l'INSA de Rouen spécialité Génie Mathématique, j'ai commencé 
 
 - photoRelPath: /images/profiles/nantes2024/mRebiai.webp
 - job: Data Engineer, Tech Lead @ Lectra
-- confirmed
+- confirmed: true
 
 #### Links
 

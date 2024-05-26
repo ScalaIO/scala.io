@@ -1,11 +1,12 @@
 # Ukraine's Scala community building lessons
 
-- kind: Lightning
-- category: Community
-- dateTime: 16-02-2024 | 16:40
-- room: 0
-- slides: https://scala.io/slides/2024/scala-community-building-lessons.pptx
-- replay: https://www.youtube.com/watch?v=6skPn0evEE8&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=11&pp=iAQB
+- Kind: Lightning
+- Slug: ukraine-scala-community
+- Category: Community
+- DateTime: 2024-02-16T16:40
+- Room: 0
+- Slides: https://scala.io/slides/2024/scala-community-building-lessons.pptx
+- Replay: https://www.youtube.com/watch?v=6skPn0evEE8&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=11&pp=iAQB
 
 ## Abstract
 
@@ -21,7 +22,7 @@ Discover our presence at conferences, active engagement in programs such as Goog
 
 - photoRelPath: /images/profiles/nantes2024/oMazhara.webp
 - job: Software Engineer @ Intellias
-- confirmed
+- confirmed: true
 
 #### Links
 

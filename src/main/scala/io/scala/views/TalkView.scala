@@ -1,18 +1,19 @@
 package io.scala.views
 
-import com.raquo.laminar.api.L._
 import io.scala.TalkPage
 import io.scala.data.TalksInfo.allTalks
 import io.scala.svgs.Icons
 
+import com.raquo.laminar.api.L._
+
 object TalkView extends ReactiveView[TalkPage]:
   def body(signal: Signal[TalkPage]): HtmlElement =
     val talk = signal.map: args =>
-      allTalks.find(_.slug == args.slug).get
+      allTalks.find(_.info.slug == args.slug).get
     sectionTag(
       className := "container talk",
       h1( // TODO: reuse Title(name: String)
-        child.text <-- talk.map(_.title),
+        child.text <-- talk.map(_.info.title),
         className := "page-title"
       ),
       div(
@@ -24,13 +25,13 @@ object TalkView extends ReactiveView[TalkPage]:
         div(
           className := "links",
           child <-- talk.map:
-            _.slides
+            _.info.slides
               .map: slides =>
-                a(Icons.pdf, href := slides.url, slides.url, target := "_blank")
+                a(Icons.pdf, href := slides, slides, target := "_blank")
               .getOrElse(emptyNode)
           ,
           child <-- talk.map:
-            _.replay
+            _.info.replay
               .map: replayUrl =>
                 a(Icons.youtube, href := replayUrl, replayUrl, target := "_blank")
               .getOrElse(emptyNode)

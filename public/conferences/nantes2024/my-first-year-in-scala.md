@@ -1,11 +1,12 @@
 # My first year in Scala
 
-- kind: Talk
-- category: Community
-- dateTime: 15-02-2024 | 17:30
-- room: 0
-- slides: https://scala.io/slides/2024/first-year-scala.pdf
-- replay: https://www.youtube.com/watch?v=Jyn2l1nhwZE&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=3&pp=iAQB
+- Kind: Talk
+- Slug: my-first-year-in-scala
+- Category: Community
+- DateTime: 2024-02-15T17:30
+- Room: 0
+- Slides: https://scala.io/slides/2024/first-year-scala.pdf
+- Replay: https://www.youtube.com/watch?v=Jyn2l1nhwZE&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=3&pp=iAQB
 
 ## Abstract
 
@@ -27,7 +28,7 @@ By the end of this talk, I hope that newcomers will feel less alone and more opt
 
 - photoRelPath: /images/profiles/nantes2024/mMcGuigan.webp
 - job: Software Engineer @ JP Morgan
-- confirmed
+- confirmed: true
 
 #### Links
 
@@ -38,4 +39,3 @@ By the end of this talk, I hope that newcomers will feel less alone and more opt
 Monica is a junior Scala developer at JP Morgan, working in a team who aims to improve understanding of the banks’ data and data models.
 
 She began her programming journey using C#, then onto a mixture C++, JavaScript and TypeScript throughout her undergraduate Physics degree. She now writes Scala full time in her current position. Monica is also passionate about encouraging those who do not have a Computer Science background into software development roles, as she has been able to apply her transferable problem-solving skills from a scientific discipline to programming and is really enjoying it!
-

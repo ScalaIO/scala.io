@@ -1,11 +1,12 @@
 # Unwrapping IO: is it a path that you want to follow?
 
-- kind: Keynote
-- category: Effects
-- dateTime: 16-02-2024 | 17:0
-- room: 0
-- slides: https://adamw.github.io/unwrapping-io
-- replay: https://www.youtube.com/watch?v=qR_Od7qbacs&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=1&pp=iAQB
+- Kind: Keynote
+- Slug: unwrapping-io
+- Category: Effects
+- DateTime: 2024-02-16T17:00
+- Room: 0
+- Slides: https://adamw.github.io/unwrapping-io
+- Replay: https://www.youtube.com/watch?v=qR_Od7qbacs&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=1&pp=iAQB
 
 ## Abstract
 
@@ -23,7 +24,7 @@ We will compare both the low-level aspects, as well as take a look at structured
 
 - photoRelPath: /images/profiles/nantes2024/aWarski.webp
 - job: Co-founder @ SoftwareMill
-- confirmed
+- confirmed: true
 
 #### Links
 
@@ -36,4 +37,3 @@ We will compare both the low-level aspects, as well as take a look at structured
 I am one of the co-founders of SoftwareMill, where I code mainly using Scala and other interesting technologies. I am involved in open-source projects, such as sttp, MacWire, Quicklens, ElasticMQ and others. I have been a speaker at major conferences, such as JavaOne, LambdaConf, Devoxx and ScalaDays.
 
 Apart from writing closed- and open-source software, in my free time I try to read the Internet on various (functional) programming-related subjects. Any ideas or insights usually end up with a blog (https://softwaremill.com/blog)
-

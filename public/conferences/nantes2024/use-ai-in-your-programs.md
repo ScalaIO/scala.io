@@ -1,11 +1,12 @@
 # Utilisez l'intelligence artificielle dans vos programmes !
 
-- kind: Talk
-- category: AI
-- dateTime: 16-02-2024 | 11:40
-- room: 0
-- slides: 
-- replay: https://www.youtube.com/watch?v=B3Mz-6e9B3s&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb
+- Kind: Talk
+- Slug: use-ai-in-your-programs
+- Category: AI
+- DateTime: 2024-02-16T11:40
+- Room: 0
+- Slides: 
+- Replay: https://www.youtube.com/watch?v=B3Mz-6e9B3s&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb
 
 ## Abstract
 
@@ -19,7 +20,7 @@ Une fois ceci fait, je souhaite montrer comment utiliser un modèle en utilisant
 
 - photoRelPath: /images/profiles/nantes2024/fLaroche.webp
 - job: Tech Lead @ NuMind
-- confirmed
+- confirmed: true
 
 #### Links
 
@@ -36,7 +37,7 @@ Je suis actuellement développeur chez NuMind où nous aidons nos clients à ent
 
 - photoRelPath: /images/profiles/nantes2024/sBernard.webp
 - job: Co-Founder & CTO @ NuMind
-- confirmed
+- confirmed: true
 
 #### Links
 

@@ -1,11 +1,12 @@
 # Types dépendants: de la théorie à la pratique
 
-- kind: Talk
-- category: Algebra
-- dateTime: 16-02-2024 | 14:0
-- room: 0
-- slides: http://d.plaindoux.free.fr/talks/dependent-type/main.html
-- replay: https://www.youtube.com/watch?v=bYcdxB3Iukc&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=4&pp=iAQB
+- Kind: Talk
+- Slug: dependent-types-from-theory-to-practice
+- Category: Algebra
+- DateTime: 2024-02-16T14:00
+- Room: 0
+- Slides: http://d.plaindoux.free.fr/talks/dependent-type/main.html
+- Replay: https://www.youtube.com/watch?v=bYcdxB3Iukc&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=4&pp=iAQB
 
 ## Abstract
 
@@ -23,7 +24,7 @@ Nous aborderons: le type fonctionnel dépendant, la paire dépendante, le type s
 
 - photoRelPath: /images/profiles/nantes2024/dPlaindoux.webp
 - job: Senior Software Engineer @ Fungus (Freelance)
-- confirmed
+- confirmed: true
 
 #### Links
 

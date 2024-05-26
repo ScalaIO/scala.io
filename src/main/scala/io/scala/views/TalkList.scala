@@ -2,15 +2,17 @@ package io.scala.views
 
 import com.raquo.laminar.api.L._
 import io.scala.data.TalksInfo
-import io.scala.domaines._
+import io.scala.domaines.{Talk => Talk, _}
 import io.scala.modules.TalkCard
 import io.scala.modules.elements._
 
+import org.scalajs.dom.console
+
 case object TalkList extends SimpleViewWithDraft {
 
-  private def sortedCategories(talks: List[Talk]): List[(Talk.Category, List[Talk])] =
+  private def sortedCategories(talks: List[Talk]): List[(String, List[Talk])] =
     talks
-      .groupBy(_.category)
+      .groupBy(_.info.category)
       .toList
       .sortWith:
         case ((cat1, talks1), (cat2, talks2)) =>
@@ -23,9 +25,10 @@ case object TalkList extends SimpleViewWithDraft {
             // 2nd criterion: categories with more talks
             case (_, _, false) => talks1.size > talks2.size
             // 3rd criterion: lexicographic order
-            case (_, _, true) => cat1.name < cat2.name
+            case (_, _, true) => cat1.compareTo(cat2) >= 0
 
   private def bodyContent(allTalks: List[Talk]) =
+    console.log("allTalks", allTalks)
     val categories = sortedCategories(allTalks)
     sectionTag(
       className := "container talks-list",
@@ -38,7 +41,7 @@ case object TalkList extends SimpleViewWithDraft {
           className := "content",
           categories.flatMap: (category, talks) =>
             List(
-              h2(idAttr     := category.slug, className := "content-title", category.name),
+              h2(idAttr     := category, className := "content-title", category),
               div(className := "card-container", talks.sorted.map(TalkCard(_)))
             )
         )
@@ -49,7 +52,7 @@ case object TalkList extends SimpleViewWithDraft {
     if withDraft then bodyContent(TalksInfo.allTalks)
     else bodyContent(TalksInfo.allTalks.filter(_.speakers.forall(_.confirmed)))
 
-  private def stickScroll(sortedCategories: List[Talk.Category]) =
+  private def stickScroll(sortedCategories: List[String]) =
     div(
       className := "table-of-contents",
       idAttr    := "talks-cat-toc",
@@ -58,8 +61,8 @@ case object TalkList extends SimpleViewWithDraft {
         h3("Navigation"),
         sortedCategories.map: cat =>
           a(
-            href := s"#${cat.slug}",
-            span(cat.name)
+            href := s"#${cat}",
+            span(cat)
           )
       )
     )

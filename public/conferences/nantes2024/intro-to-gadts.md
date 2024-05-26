@@ -1,11 +1,12 @@
 # Une autre introduction aux GADTs
 
-- kind: Keynote
-- category: Algebra
-- dateTime: 15-02-2024 | 9:30
-- room: 0
-- slides: https://scala.io/slides/2024/GADTs-xavier-vw-woestyne.pdf
-- replay: https://www.youtube.com/watch?v=r4c7xuVB9xA&ab_channel=ScalaIOFR
+- Kind: Keynote
+- Slug: intro-to-gadts
+- Category: Algebra
+- DateTime: 2024-02-15T09:30
+- Room: 0
+- Slides: https://scala.io/slides/2024/GADTs-xavier-vw-woestyne.pdf
+- Replay: https://www.youtube.com/watch?v=r4c7xuVB9xA&ab_channel=ScalaIOFR
 
 ## Abstract
 
@@ -17,7 +18,7 @@ Les GADTs et Scala, c’est une très longue histoire de “je t’aime, moi non
 
 - photoRelPath: /images/profiles/nantes2024/xVdW.webp
 - job: Software Engineer @ The Funkyworkers
-- confirmed
+- confirmed: true
 
 #### Links
 

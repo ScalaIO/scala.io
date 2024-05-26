@@ -1,11 +1,12 @@
 # Migrating Gallia to Scala 3: the good, the bad, and the very good.
 
-- kind: Short
-- category: ToolsEcosystem
-- dateTime: 16-02-2024 | 13:30
-- room: 0
-- slides: https://scala.io/slides/2024/gallia-migration.pdf
-- replay: https://www.youtube.com/watch?v=DzjvFx5YYik&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=14&pp=iAQB
+- Kind: Short
+- Slug: migrating-gallia-to-scala-3
+- Category: ToolsEcosystem
+- DateTime: 2024-02-16T13:30
+- Room: 0
+- Slides: https://scala.io/slides/2024/gallia-migration.pdf
+- Replay: https://www.youtube.com/watch?v=DzjvFx5YYik&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=14&pp=iAQB
 
 ## Abstract
 
@@ -21,7 +22,7 @@ I will briefly introduce how certain features [worked before](https://github.com
 
 - photoRelPath: /images/profiles/nantes2024/aCros.webp
 - job: Software Architect @ Self-employed
-- confirmed
+- confirmed: true
 
 #### Links
 

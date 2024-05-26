@@ -41,7 +41,7 @@ object Meetup:
   given Ordering[Meetup] = Ordering.by(_.basicInfo.date)
 
   def apply(content: String): Meetup =
-    MeetupsInfo.parseText(content).getOrElse(Meetup.empty)
+    MeetupsInfo.fromText(content).getOrElse(Meetup.empty)
 
   def empty = new Meetup(BasicInfo.empty, List.empty)
 
@@ -57,6 +57,8 @@ object Meetup:
 
   object BasicInfo:
     def empty = BasicInfo("", LocalDate.MIN, LocalTime.MIN, LocalTime.MIN, "", None, List.empty)
+    def apply(name: String, dateTime: (LocalDate, LocalTime, LocalTime), location: String, link: Option[String], description: List[String]): BasicInfo =
+      BasicInfo(name, dateTime._1, dateTime._2, dateTime._3, location, link, description)
 
   case class Talk(
       title: String,

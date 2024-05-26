@@ -1,11 +1,12 @@
 # Unleashing Scalafix potential with custom rules
 
-- kind: Talk
-- category: ToolsEcosystem
-- dateTime: 15-02-2024 | 10:50
-- room: 0
-- slides: https://scala.io/slides/2024/scalafix.pdf
-- replay: https://www.youtube.com/watch?v=qexJYvo2EwY&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=15&pp=iAQB
+- Kind: Talk
+- Slug: unleashing-scalafix-potential
+- Category: ToolsEcosystem
+- DateTime: 2024-02-15T10:50
+- Room: 0
+- Slides: https://scala.io/slides/2024/scalafix.pdf
+- Replay: https://www.youtube.com/watch?v=qexJYvo2EwY&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=15&pp=iAQB
 
 ## Abstract
 
@@ -21,7 +22,7 @@ In this talk, we will [demystify AST traversal and semantic information lookup](
 
 - photoRelPath: /images/profiles/nantes2024/bJaglin.webp
 - job: Staff Engineer @ Swile
-- confirmed
+- confirmed: true
 
 #### Links
 

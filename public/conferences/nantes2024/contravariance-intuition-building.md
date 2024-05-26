@@ -1,27 +1,28 @@
 # Contravariance: intuition building from first principles
 
-- kind: Talk
-- category: Modeling
-- dateTime: 16-02-2024 | 14:50
-- room: 0
-- slides: https://scala.io/slides/2024/Contravariance.pdf
-- replay: https://www.youtube.com/watch?v=A7t3b0kymFM&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=13&pp=iAQB
+- Kind: Talk
+- Slug: contravariance-intuition-building
+- Category: Modeling
+- DateTime: 2024-02-16T14:50
+- Room: 0
+- Slides: https://scala.io/slides/2024/Contravariance.pdf
+- Replay: https://www.youtube.com/watch?v=A7t3b0kymFM&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=13&pp=iAQB
 
 ## Abstract
 
-## Summary
+### Summary
 
 Contravariance throws many developers off the first time they run into it. This talk will equip the audience with an intuitive understanding of contravariance and the tools for working out from first principles whether a type parameter should be covariant or contravariant.
 
-## Objective
+### Objective
 
 The goal of this talk is to help the audience build an intuition for contravariance from first principles, instead of relying on memorised shortcuts such as “input type parameters tend to be contravariant and output type parameters covariant”.
 
-## Prerequisites
+### Prerequisites
 
 This talks is designed for beginner to intermediate Scala developers. Attendees need to be familiar with subtyping and typeclasses. An understanding of covariance would be beneficial but is not required as we’ll cover it in the talk.
 
-## Talk outline
+### Talk outline
 
 We’ll begin by working with an Animal type hierarchy and some PetRescue and PetClinic typeclasses. By working out what can be substituted for what, we’ll begin building up intuition for covariance and contravariance. We’ll then test this intuition by working through a second example involving JsonDecoder and JsonEncoder typeclasses.
 
@@ -31,7 +32,7 @@ We’ll begin by working with an Animal type hierarchy and some PetRescue and Pe
 
 - photoRelPath: /images/profiles/nantes2024/sCollard.webp
 - job: Lead Software Engineer @ JPMorgan
-- confirmed
+- confirmed: true
 
 #### Links
 

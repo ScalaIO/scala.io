@@ -1,6 +1,6 @@
 # Scala Meetup
 
-- Date: 14/06/2024 | 16:00-20:00
+- Date: 14-06-2024 | 16:00-20:00
 - Location: Teads, Montpellier
 - Link: [meetup.com](https://www.meetup.com/lambdaplage/events/301018120)
 

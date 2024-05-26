@@ -1,11 +1,12 @@
 # Scala 3 Compiler Academy Journey
 
-- kind: Talk
-- category: Community
-- dateTime: 15-02-2024 | 15:40
-- room: 0
-- slides: https://docs.google.com/presentation/d/1DPX8w7I07CIm7rU_z5TNJ_R_A7mf6_lZCMfIVBvrRpk/edit?usp=sharing
-- replay: https://www.youtube.com/watch?v=wmuVcCSsk-4&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=9&pp=iAQB
+- Kind: Talk
+- Slug: scala-3-compiler-academy-journey
+- Category: Community
+- DateTime: 2024-02-15T15:40
+- Room: 0
+- Slides: https://docs.google.com/presentation/d/1DPX8w7I07CIm7rU_z5TNJ_R_A7mf6_lZCMfIVBvrRpk/edit?usp=sharing
+- Replay: https://www.youtube.com/watch?v=wmuVcCSsk-4&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=9&pp=iAQB
 
 ## Abstract
 
@@ -19,7 +20,7 @@ Now, two years later, with the format fleshed out and the lessons learnt, I’d 
 
 - photoRelPath: /images/profiles/nantes2024/toli.webp
 - job: Compiler engineer and community manager @ Scala Center, EPFL
-- confirmed
+- confirmed: true
 
 #### Links
 

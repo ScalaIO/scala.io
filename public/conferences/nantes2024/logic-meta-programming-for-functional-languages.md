@@ -1,11 +1,12 @@
 # Logic Meta-Programming for Functional Languages
 
-- kind: Talk
-- category: Algebra
-- dateTime: 16-02-2024 | 9:0
-- room: 0
-- slides: 
-- replay: https://www.youtube.com/watch?v=K3babGnXfEI&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=2&pp=iAQB
+- Kind: Talk
+- Slug: logic-meta-programming-for-functional-languages
+- Category: Algebra
+- DateTime: 2024-02-16T09:00
+- Room: 0
+- Slides: 
+- Replay: https://www.youtube.com/watch?v=K3babGnXfEI&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=2&pp=iAQB
 
 ## Abstract
 
@@ -17,7 +18,7 @@ Since the beginning of the 21st century, the functional programming paradigm, wh
 
 - photoRelPath: /images/profiles/nantes2024/eCrance.webp
 - job: PhD Student @ INRIA
-- confirmed
+- confirmed: true
 
 #### Links
 

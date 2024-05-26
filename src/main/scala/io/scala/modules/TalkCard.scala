@@ -1,15 +1,15 @@
 package io.scala
 package modules
 
-import com.raquo.laminar.api.L._
-import com.raquo.laminar.nodes.ReactiveHtmlElement
 import io.scala.domaines.Talk
 import io.scala.svgs.Icons
+
+import com.raquo.laminar.api.L._
+import com.raquo.laminar.nodes.ReactiveHtmlElement
+import elements.Line
 import org.scalajs.dom
 import org.scalajs.dom.HTMLDivElement
 import org.scalajs.dom.HTMLSpanElement
-
-import elements.Line
 
 object TalkKindTag:
   def apply(kind: Talk.Kind): ReactiveHtmlElement[HTMLSpanElement] =
@@ -23,19 +23,19 @@ object TalkCard:
 
   def apply(talk: Talk): ReactiveHtmlElement[HTMLDivElement] =
     div(
-      className := s"talk-card ${talk.kind.toStyle}",
+      className := s"talk-card ${talk.info.kind.toStyle}",
       div(
         h3(
           className := "title",
-          talk.title
+          talk.info.title
         ),
         div(
           className := "subtitle",
-          TalkKindTag(talk.kind),
-          if talk.room != null then
+          TalkKindTag(talk.info.kind),
+          if talk.info.room != null then
             span(
               className := "room",
-              talk.room.render
+              talk.info.room
             )
           else emptyNode
         )
@@ -52,7 +52,7 @@ object TalkCard:
           div(
             className := "speaker",
             img(
-              src       := speaker.photoPath,
+              src       := speaker.photoRelPath,
               className := "photo",
               alt       := s"${speaker.name}'s profile picture"
             ),
@@ -62,7 +62,7 @@ object TalkCard:
                 className := "name"
               ),
               p(
-                speaker.company,
+                speaker.job,
                 className := "company"
               )
             )
@@ -70,9 +70,9 @@ object TalkCard:
         },
         button(
           className  := "link classy-button highlight",
-          aria.label := s"Go to ${talk.title}",
+          aria.label := s"Go to ${talk.info.title}",
           Icons.goTo,
-          Page.navigateTo(TalkPage(talk.slug))
+          Page.navigateTo(TalkPage(talk.info.slug))
         )
       )
     )

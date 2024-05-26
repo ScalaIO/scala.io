@@ -1,11 +1,12 @@
 # Data pipelines engineering made simple with Scala
 
-- kind: Talk
-- category: DataEng
-- dateTime: 16-02-2024 | 9:50
-- room: 0
-- slides: https://scala.io/slides/2024/data-pipeline.pptx
-- replay: https://www.youtube.com/watch?v=gS6zOfqUHVs&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=8&pp=iAQB
+- Kind: Talk
+- Slug: data-pipelines-simple
+- Category: DataEng
+- DateTime: 2024-02-16T09:50
+- Room: 0
+- Slides: https://scala.io/slides/2024/data-pipeline.pptx
+- Replay: https://www.youtube.com/watch?v=gS6zOfqUHVs&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=8&pp=iAQB
 
 ## Abstract
 
@@ -17,7 +18,7 @@ Most organizations have data pipelines and those are growing by the minute. But 
 
 - photoRelPath: /images/profiles/nantes2024/rClaude.webp
 - job: Staff Dev Lead @ Criteo
-- confirmed
+- confirmed: true
 
 #### Links
 
