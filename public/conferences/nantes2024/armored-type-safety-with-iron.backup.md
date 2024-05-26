@@ -1,20 +1,13 @@
-# Scala.IO Nantes 2024
+# Armored type safety with Iron
 
-- Date: 15/06/2024 - 16/06/2024
-- Location: Nantes @ _icilundi
-
-## Talks
-
-### Armored type safety with Iron
-
-- slug: armored-type-safety-with-iron
+- kind: Talk
 - category: Modeling
-- dateTime: 15/06/2024 | 11:40
-- room: 1
+- dateTime: 15-02-2024 | 11:40
+- room: 0
 - slides: https://scalaio-2024.rlemaitre.com
 - replay: https://www.youtube.com/watch?v=I3BvpzFVBto&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=6&pp=iAQB
 
-#### Abstract
+## Abstract
 
 When designing an application, we often ends up with domain specific types, that all behold constraints that we try to enforce as much as possible : an age is positive, a delivery date can’t be in the past, etc. Modeling the data right is a part of the success of scala and functional programming in general, but it also brings either boilerplate (we have to do again and again validation), or rely purely on conventions.
 
@@ -24,23 +17,22 @@ Iron is, a type constraint library that allow us to have a safe, declarative and
 
 In this talk, we’ll show first the different technique we can use to apply constraints is our domains. Then, we’ll present Iron, its features, extensions, and integrations. We’ll finish by showcasing a fully-integrated constraint-enforcing app.
 
-#### Speakers
+## Speakers
 
-##### Information
+### Raphaël Lemaitre
 
-- name: Raphaël Lemaître
-- photoRelPath: rLemaitre.webp
+- photoRelPath: /images/profiles/nantes2024/rLemaitre.webp
 - job: Senior Staff Engineer @ Ledger
-- confirmed: true
+- confirmed
 
-##### Links
+#### Links
 
 - [Twitter](https://twitter.com/rlemaitre)
 - [Linkedin](https://www.linkedin.com/in/rlemaitre)
 - [Github](https://github.com/rlemaitre)
 - [Other](https://rlemaitre.com)
 
-##### Bio
+#### Bio
 
 Bonjour! I'm Raphaël Lemaitre, a seasoned programmer passionate about crafting efficient and sustainable technology. Since embarking on my career journey in 2000, I've been deeply involved in the realm of software development, with a focus on JVM languages like Java and Scala. My technical proficiency includes functional programming, database technologies such as PostgreSQL and Cassandra, along with system design.
 
@@ -49,3 +41,18 @@ Currently, in my role as a Back-end Senior Staff Engineer at Ledger, I concentra
 Beyond my professional pursuits, I'm an enthusiastic golfer, an escape game enthusiast, and a proud father. I firmly believe in the power of continuous learning and sharing knowledge, which led me to create a blog for exchanging ideas, particularly focusing on ADHD strategies for developers.
 
 My interests span from software development to history and technology, where I eagerly engage in conversations that ignite curiosity and foster innovation. Join me in exploring the dynamic landscape of technology, as we seek to build more efficient, maintainable, and impactful technological solutions.
+
+### Valentin Bergeron
+
+- photoRelPath: /images/profiles/nantes2024/vBergeron.webp
+- job: Engineering team lead @ Ledger
+- confirmed
+
+#### Links
+
+- [Twitter](https://twitter.com/__vberg)
+- [Github](https://github.com/vbergeron)
+
+#### Bio
+
+Currently Engineering team lead @Ledger, I like Scala, making programming languages, and joking about python
