@@ -1,9 +1,7 @@
 package io.scala.domaines
 
-import io.scala.data.TalksInfo
 import io.scala.data.parsers.Parsers
 import io.scala.modules.TalkCard
-import io.scala.modules.elements.Slides
 import io.scala.svgs.Icons
 
 import com.raquo.laminar.api.L._
@@ -19,10 +17,6 @@ sealed trait TalkInfo[A <: TalkInfo[A]]:
 
 object TalkInfo:
   given [A <: TalkInfo[A]]: Ordering[A] = Ordering[Int].on(_.ordinal)
-
-enum Room extends TalkInfo[Room]:
-  case One
-  def render = "Room " + this.ordinal
 
 sealed trait Act:
   def day: DayOfWeek | Null
@@ -48,6 +42,13 @@ case class Talk(
   def isKeynote: Boolean             = info.kind == Talk.Kind.Keynote
 
 object Talk:
+  opaque type Room = String
+  extension (room: Room)
+    def show: String = s"Room $room"
+  object Room:
+    def empty = "TBD"
+    def apply(room: String): Room = room
+
   def empty               = Talk(BasicInfo.empty, "To be announced", List.empty)
   given Ordering[Talk] = Ordering.by(talk => (talk.info.kind, talk.info.title))
   given Ordering[Kind] = Ordering.by:
@@ -69,7 +70,7 @@ object Talk:
       kind: Kind,
       category: String,
       dateTime: LocalDateTime,
-      room: String = "", // TODO: reuse String | Null
+      room: Room = "", // TODO: reuse String | Null
       slides: Option[String] = None,
       replay: Option[String] = None
   )
@@ -121,8 +122,7 @@ case class Special(
   val time: LocalTime | Null = dateTime.toLocalTime
   def render: ReactiveHtmlElement[HTMLDivElement] = kind match
     case Special.Kind.End            => div(className := "blank-card", Icons.logo("#222222"))
-    case Special.Kind.CommunityParty => div(className := s"blank-card community-party")
 }
 object Special:
   enum Kind:
-    case End, CommunityParty
+    case End

@@ -23,11 +23,11 @@ case object ScheduleView extends SimpleViewWithDraft {
   val selectedDay: Var[DayOfWeek] = Var(DayOfWeek.MONDAY)
 
   lazy val globalHours: Div =
-    def renderHours(name: String, hours: Seq[Time]) =
+    def renderHours(name: String, hours: Seq[LocalTime]) =
       div(
         className := "row",
         span(name),
-        hours.map(_.render(span))
+        hours.map(_.render())
       )
     div(
       Titles.medium("Hours"),
@@ -84,7 +84,7 @@ case object ScheduleView extends SimpleViewWithDraft {
     )
 
   def computeTop(event: Act, count: Int, day: DayOfWeek) =
-    val base = (event.time.getHour - minStart.toHour) * pxByHour
+    val base = (event.time.toHour - minStart.toHour) * pxByHour
     if day == DayOfWeek.THURSDAY then base + (count + 1) * 32
     else base + count * 32
 
@@ -107,7 +107,7 @@ case object ScheduleView extends SimpleViewWithDraft {
         renderTimeline(eventsByDay)
       ),
       div(
-        height := s"${(maxEnd.h - minStart.h) * (pxByHour + 40)}px",
+        height := s"${(maxEnd.toHour - minStart.toHour) * (pxByHour + 40)}px",
         eventsByDay.keySet.toSeq.map: day =>
           eventsByDay.get(day) match
             case None => div()

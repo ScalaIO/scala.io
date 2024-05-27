@@ -4,6 +4,7 @@ import io.scala.data.TalksInfo.allTalks
 import io.scala.domaines._
 
 import java.time.LocalDateTime
+import java.time.LocalTime
 
 object ScheduleInfo {
   val breaks = List(
@@ -42,8 +43,8 @@ object ScheduleInfo {
     )
   )
 
-  val minStart           = Time(9, 0)
-  val maxEnd             = Time(19, 0)
+  val minStart           = LocalTime.of(9, 0)
+  val maxEnd             = LocalTime.of(19, 0)
   val pxByHour           = 600
   lazy val schedule      = allTalks ++ breaks
 }

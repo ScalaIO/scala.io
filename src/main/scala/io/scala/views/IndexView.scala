@@ -78,7 +78,7 @@ case object IndexView extends GenericView {
         a(
           className := "event-location",
           href      := "/venue",
-          "Epitech"
+          "Epita"
         )
       )
     )

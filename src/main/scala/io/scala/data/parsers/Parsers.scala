@@ -1,8 +1,9 @@
 package io.scala.data.parsers
 
 import io.scala.domaines.Meetup
-import io.scala.domaines.Talk
 import io.scala.domaines.Social
+import io.scala.domaines.Talk
+import io.scala.modules.elements.Links
 
 import com.raquo.laminar.api.L.*
 import java.time.LocalDate
@@ -14,7 +15,6 @@ import knockoff.ChunkParser
 import knockoff.HeaderChunk
 import org.scalajs.dom.console
 import scala.collection.immutable.Queue
-import io.scala.modules.elements.Links
 
 object Parsers:
   val parser = new ChunkParser
@@ -89,25 +89,27 @@ object Parsers:
         }
       }
 
-    def parseText(source: String) = parser.parse(
-      (basicInfo ~ talks) ^^ { case basicInfo ~ talks =>
-        Meetup(basicInfo, talks)
-      },
-      source
-    )
+    def fromText(source: String): Meetup = parser
+      .parse(
+        (basicInfo ~ talks) ^^ { case basicInfo ~ talks =>
+          Meetup(basicInfo, talks)
+        },
+        source
+      )
+      .getOrElse(Meetup.empty)
 
   object ConferenceTalk:
     private def basicInfo =
       headerN(1) ~ list map {
         case HeaderChunk(_, name) ~ practicalInfo =>
-          val infoMap  = listToMap(practicalInfo, ":")
+          val infoMap = listToMap(practicalInfo, ":")
           Talk.BasicInfo(
             name,
             infoMap("Slug"),
             Talk.Kind.valueOf(infoMap("Kind")),
             infoMap("Category"),
             LocalDateTime.parse(infoMap("DateTime"), dateTimeFormatter),
-            infoMap.get("Room").getOrElse(null),
+            Talk.Room(infoMap.get("Room").getOrElse(null)),
             infoMap.get("Slides"),
             infoMap.get("Replay")
           )
@@ -149,7 +151,9 @@ object Parsers:
         Talk(basicInfo, description, speakers)
     }
 
-    def fromText(source: String) = parser.parse(talkParser, source)
+    def fromText(source: String): Talk = parser.parse(talkParser, source) match
+      case Success(talk, _) => talk
+      case failure => Talk.empty
 
   object Description:
     val talk =

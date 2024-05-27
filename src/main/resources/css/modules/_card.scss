@@ -45,6 +45,8 @@ $container-gap: 2rem;
   padding: $card-padding;
 
   &:after {
+    margin-left: -1 * $card-padding;
+    margin-top: -1 * $card-padding;
     content: "";
     position: absolute;
     z-index: -1;
@@ -135,17 +137,6 @@ span.presentation-keynote {
   }
 }
 
-.talk-card,
-.speaker-card,
-.card-blank,
-.sponsor-card {
-  &::after {
-    margin-left: -1 * $card-padding;
-    margin-top: -1 * $card-padding;
-  }
-}
-
-.talk-card,
 .speaker-card,
 .sponsor-card {
   @include border-style(vars.$main-color, vars.$main-color-lighter);

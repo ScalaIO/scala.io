@@ -11,4 +11,4 @@ object TalksInfo:
         acc ++ next.speakers.map(_ -> (acc(next.speakers.head) + next))
       .mapValues(_.toList.sortBy(_.info.title))
 
-  lazy val allTalks: List[Talk] = ConfFilesName.nantes2024.map(Parsers.ConferenceTalk.fromText(_).get)
+  lazy val allTalks: List[Talk] = ConfFilesName.nantes2024.map(Parsers.ConferenceTalk.fromText(_))

@@ -1,6 +1,5 @@
 package io.scala.domaines
 
-import io.scala.data.MeetupsInfo
 import io.scala.modules.elements.Cards
 import io.scala.modules.elements.Links
 import io.scala.modules.elements.Paragraphs
@@ -10,6 +9,7 @@ import com.raquo.laminar.api.L._
 import java.time.LocalDate
 import java.time.LocalTime
 import io.scala.modules.elements.Lists
+import io.scala.data.parsers.Parsers
 
 case class Meetup(
     basicInfo: Meetup.BasicInfo,
@@ -41,7 +41,7 @@ object Meetup:
   given Ordering[Meetup] = Ordering.by(_.basicInfo.date)
 
   def apply(content: String): Meetup =
-    MeetupsInfo.fromText(content).getOrElse(Meetup.empty)
+    Parsers.MeetupTalk.fromText(content)
 
   def empty = new Meetup(BasicInfo.empty, List.empty)
 

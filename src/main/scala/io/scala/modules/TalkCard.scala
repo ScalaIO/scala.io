@@ -13,7 +13,7 @@ import org.scalajs.dom.HTMLSpanElement
 
 object TalkKindTag:
   def apply(kind: Talk.Kind): ReactiveHtmlElement[HTMLSpanElement] =
-    span(kind.toString, className := kind.toStyle)
+    span(kind.toString, className := kind.toStyle, marginLeft := "4px")
 
 object TalkCard:
   def shortName(name: String) =
@@ -27,15 +27,15 @@ object TalkCard:
       div(
         h3(
           className := "title",
-          talk.info.title
+          talk.info.title,
+          TalkKindTag(talk.info.kind),
         ),
         div(
           className := "subtitle",
-          TalkKindTag(talk.info.kind),
-          if talk.info.room != null then
+          if talk.info.room.show != null then
             span(
               className := "room",
-              talk.info.room
+              talk.info.room.show
             )
           else emptyNode
         )
