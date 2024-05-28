@@ -1,12 +1,12 @@
-package io.scala.views
+package io.scala.app.talks
 
-import com.raquo.laminar.api.L._
-import io.scala.data.TalksInfo
+import io.scala.data.TalksHistory
 import io.scala.domaines.{Talk => Talk, _}
 import io.scala.modules.TalkCard
 import io.scala.modules.elements._
+import io.scala.views.SimpleViewWithDraft
 
-import org.scalajs.dom.console
+import com.raquo.laminar.api.L._
 
 case object TalkList extends SimpleViewWithDraft {
 
@@ -28,7 +28,6 @@ case object TalkList extends SimpleViewWithDraft {
             case (_, _, true) => cat1.compareTo(cat2) >= 0
 
   private def bodyContent(allTalks: List[Talk]) =
-    console.log("allTalks", allTalks)
     val categories = sortedCategories(allTalks)
     sectionTag(
       className := "container talks-list",
@@ -48,9 +47,10 @@ case object TalkList extends SimpleViewWithDraft {
       )
     )
 
-  override def body(withDraft: Boolean): HtmlElement =
-    if withDraft then bodyContent(TalksInfo.allTalks)
-    else bodyContent(TalksInfo.allTalks.filter(_.speakers.forall(_.confirmed)))
+  override def body(withDraft: Boolean, conference: Option[String]): HtmlElement =
+    val allTalks = TalksHistory.talksForConf(conference)
+    if withDraft then bodyContent(allTalks)
+    else bodyContent(allTalks.filter(_.speakers.forall(_.confirmed)))
 
   private def stickScroll(sortedCategories: List[String]) =
     div(

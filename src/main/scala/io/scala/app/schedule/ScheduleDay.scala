@@ -1,4 +1,4 @@
-package io.scala.modules
+package io.scala.app.schedule
 
 import io.scala.domaines.*
 import io.scala.modules.syntax.*

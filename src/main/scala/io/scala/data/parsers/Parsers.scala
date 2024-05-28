@@ -2,6 +2,7 @@ package io.scala.data.parsers
 
 import io.scala.domaines.Meetup
 import io.scala.domaines.Social
+import io.scala.domaines.Sponsor
 import io.scala.domaines.Talk
 import io.scala.modules.elements.Links
 
@@ -153,7 +154,7 @@ object Parsers:
 
     def fromText(source: String): Talk = parser.parse(talkParser, source) match
       case Success(talk, _) => talk
-      case failure => Talk.empty
+      case failure          => Talk.empty
 
   object Description:
     val talk =
@@ -183,3 +184,30 @@ object Parsers:
               withLinks._1.enqueue(span(text.substring(withLinks._2)))
         case _ =>
           List(Queue(p("To be announced")))
+
+  object ConferenceSponsor:
+    val sponsor     = headerN(2) ~> bulletItem.+ ~ textBlock.?
+    val sponsorFile = headerN(1) ~> sponsor.+
+
+    def fromText(source: String): List[Sponsor] =
+      parser
+        .parse(sponsorFile, source)
+        .map:
+          _.map:
+            case List(name, link, logo, rank) ~ dimensions =>
+              val Array(colSpan, rowSpan) = dimensions
+                .map {
+                  _.content.split(":").map(_.trim.toInt)
+                }
+                .getOrElse(Array(1, 1))
+
+              Sponsor(
+                name.content.trim,
+                link.content.trim,
+                logo.content.trim,
+                Sponsor.Rank.valueOf(rank.content.trim),
+                colSpan,
+                rowSpan
+              )
+            case _ => Sponsor.empty
+        .getOrElse(List())

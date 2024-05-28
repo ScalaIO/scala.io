@@ -1,15 +1,15 @@
 package io.scala
 package modules
 
-import com.raquo.laminar.api.L._
-import io.scala.data.TalksInfo.talksBySpeaker
 import io.scala.domaines.Social
+import io.scala.domaines.Talk
 import io.scala.domaines.Talk.Speaker
 import io.scala.svgs.Icons
-import io.scala.domaines.Talk
+
+import com.raquo.laminar.api.L._
 
 object SpeakerCard {
-  def apply(speaker: Speaker) =
+  def apply(speaker: Speaker, talkInfo: Talk.BasicInfo) =
     div(
       className := "speaker-card",
       img(
@@ -19,17 +19,14 @@ object SpeakerCard {
       ),
       div(
         div(
-          talksBySpeaker(speaker).flatMap: talk =>
-            Array(
-              span(
-                talk.info.kind.toString,
-                className := talk.info.kind.toStyle
-              ),
-              div(
-                Social.render(speaker.socials, speaker.name),
-                className := "socials"
-              )
-            ),
+          span(
+            talkInfo.kind.toString,
+            className := talkInfo.kind.toStyle
+          ),
+          div(
+            Social.render(speaker.socials, speaker.name),
+            className := "socials"
+          ),
           className := "subtitle"
         ),
         h2(
@@ -40,16 +37,14 @@ object SpeakerCard {
         // p(speaker.company), //TODO: re-add company as a separate field
         className := "body"
       ),
-      linkToTalks(talksBySpeaker(speaker))
+      linkToTalks(talkInfo)
     )
 
-  def linkToTalks(talks: Seq[Talk]) =
-    talks.map { talk =>
-      button(
-        className := "link classy-button highlight",
-        "See talk ", // ! Problem if >= 2 talks
-        Icons.goTo,
-        Page.navigateTo(TalkPage(talk.info.slug))
-      )
-    }
+  def linkToTalks(info: Talk.BasicInfo) =
+    button(
+      className := "link classy-button highlight",
+      "See talk ", // ! Problem if >= 2 talks
+      Icons.goTo,
+      Page.navigateTo(TalkPage(info.slug))
+    )
 }

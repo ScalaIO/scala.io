@@ -1,4 +1,4 @@
-package io.scala.views
+package io.scala.app.faq
 
 import io.scala.data.OrgaInfo.allOrga
 import io.scala.domaines.Organizer
@@ -12,6 +12,7 @@ import io.scala.svgs.Icons.github
 import com.raquo.laminar.api.L._
 import com.raquo.laminar.nodes.ReactiveElement
 import org.scalajs.dom.HTMLDivElement
+import io.scala.views.SimpleView
 
 object FAQView extends SimpleView {
   private def question(question: String, answer: Modifier[ReactiveElement[HTMLDivElement]]*): HtmlElement = {

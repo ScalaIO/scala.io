@@ -1,15 +1,16 @@
-package io.scala.views
+package io.scala.app.talks
 
 import io.scala.TalkPage
-import io.scala.data.TalksInfo.allTalks
 import io.scala.svgs.Icons
 
 import com.raquo.laminar.api.L._
+import io.scala.data.TalksHistory
+import io.scala.views.ReactiveView
 
 object TalkView extends ReactiveView[TalkPage]:
   def body(signal: Signal[TalkPage]): HtmlElement =
     val talk = signal.map: args =>
-      allTalks.find(_.info.slug == args.slug).get
+      TalksHistory.talksForConf(None).find(_.info.slug == args.slug).get
     sectionTag(
       className := "container talk",
       h1( // TODO: reuse Title(name: String)

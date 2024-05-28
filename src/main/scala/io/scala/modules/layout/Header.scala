@@ -34,7 +34,7 @@ object Header {
 
   private val linksPage: Seq[(String, Page)] = Seq(
     Lexicon.Header.talks    -> TalksPage(),
-    Lexicon.Header.sponsors -> SponsorsPage,
+    Lexicon.Header.sponsors -> SponsorsPage(),
     Lexicon.Header.venue    -> VenuePage,
     Lexicon.Header.schedule -> SchedulePage(),
     "Scala-FR events"       -> EventsPage,

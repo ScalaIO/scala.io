@@ -1,10 +1,10 @@
 package io.scala.views
 
 import com.raquo.laminar.api.L._
-import io.scala.data.SpeakersInfo
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements._
 import io.scala.modules.layout._
+import io.scala.data.TalksHistory
 
 case object IndexView extends GenericView {
 
@@ -47,9 +47,13 @@ case object IndexView extends GenericView {
   )
 
   def speakerGallery(withDraft: Boolean) =
-    val speakers =
-      if withDraft then SpeakersInfo.allSpeakers
-      else SpeakersInfo.allSpeakers.filter(_.confirmed)
+    val speakers = TalksHistory
+    .talksForConf(Some("nantes-2024"))
+    .filter(_.speakers.forall(_.confirmed))
+    .flatMap: talk =>
+      talk.speakers.map((_, talk.info))
+    .sortBy(_._1.name)
+
     div(
       className := "container speaker-gallery",
       span(
@@ -58,7 +62,7 @@ case object IndexView extends GenericView {
       ),
       div(
         className := "card-container",
-        speakers.map(SpeakerCard(_))
+        speakers.map(SpeakerCard(_, _))
       )
     )
 

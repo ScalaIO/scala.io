@@ -18,13 +18,13 @@ trait SimpleView extends GenericView:
     )
 
 trait SimpleViewWithDraft extends GenericView:
-  def body(withDraft: Boolean): HtmlElement
+  def body(withDraft: Boolean, conference: Option[String]): HtmlElement
 
-  final def render(withDraft: Boolean): HtmlElement =
+  final def render(withDraft: Boolean, conference: Option[String]): HtmlElement =
     div(
       className := "fullscreen",
       child <-- Header.render,
-      body(withDraft).amend(flex := "1"),
+      body(withDraft, conference).amend(flex := "1"),
       Footer.render
     )
 

@@ -38,7 +38,7 @@ lazy val root = project
     confLister       := confListing().value,
     publicFolderDev  := linkerOutputDirectory((Compile / fastLinkJS).value).getAbsolutePath,
     publicFolderProd := linkerOutputDirectory((Compile / fullLinkJS).value).getAbsolutePath,
-    Compile / sourceGenerators ++= Seq(eventListing().taskValue, confListing().taskValue),
+    Compile / sourceGenerators ++= Seq(eventListing().taskValue, confListing().taskValue, sponsorListing().taskValue)
   )
 
 def lines(lines: String*)                = lines.mkString("\n")
@@ -66,7 +66,8 @@ def confListing() = Def.task {
   val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "ConfFilesName.scala"
   val conferences = listFolders(new File("./public/conferences")).map { folder =>
     val talks = listMarkdowns(folder).filter(_.getName != "conference.md")
-    s"""|  val ${folder.getName()} = List(${talks.map(file => "\"" * 3 + IO.read(file) + "\"" * 3).mkString(",")})"""
+    s"""|  def ${folder
+        .getName()}: List[String] = List(${talks.map(file => "\"" * 3 + IO.read(file) + "\"" * 3).mkString(",")})"""
   }
 
   val content =
@@ -74,6 +75,25 @@ def confListing() = Def.task {
         |
         |object ConfFilesName {
         ${conferences.mkString("\n")}
+        |}""".stripMargin
+
+  if (!file.exists() || IO.read(file) != content) {
+    IO.write(file, content)
+  }
+  Seq(file)
+}
+
+def sponsorListing() = Def.task {
+  val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "SponsorsMd.scala"
+  val sponsors = listMarkdowns(new File("./public/sponsors")).map { md =>
+    s"""|  def ${md.base}: String = ${"\"" * 3 + IO.read(md) + "\"" * 3}"""
+  }
+
+  val content =
+    s"""|package io.scala.data
+        |
+        |object SponsorsMd {
+        ${sponsors.mkString("\n")}
         |}""".stripMargin
 
   if (!file.exists() || IO.read(file) != content) {

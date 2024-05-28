@@ -1,6 +1,5 @@
-package io.scala.views
+package io.scala.app.schedule
 
-import com.raquo.laminar.api.L.*
 import io.scala.Lexicon
 import io.scala.data.ScheduleInfo
 import io.scala.data.ScheduleInfo.maxEnd
@@ -8,16 +7,17 @@ import io.scala.data.ScheduleInfo.minStart
 import io.scala.data.ScheduleInfo.pxByHour
 import io.scala.domaines.*
 import io.scala.modules.*
-import io.scala.modules.syntax.*
 import io.scala.modules.elements.*
+import io.scala.modules.syntax.*
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
+import io.scala.views.SimpleViewWithDraft
 
+import com.raquo.laminar.api.L.*
 import java.time.DayOfWeek
-
+import java.time.LocalTime
 import scala.collection.immutable.Queue
 import scala.collection.mutable
-import java.time.LocalTime
 
 case object ScheduleView extends SimpleViewWithDraft {
   val selectedDay: Var[DayOfWeek] = Var(DayOfWeek.MONDAY)
@@ -129,7 +129,7 @@ case object ScheduleView extends SimpleViewWithDraft {
         .foldLeft(Queue.empty[Element]): (acc, event) =>
           event match
             case b: Break if b.kind != Break.Kind.Lunch => acc :+ span()
-            case e: Act if inserted.contains(e.time) => acc :+ span()
+            case e: Act if inserted.contains(e.time)    => acc :+ span()
             case _ =>
               inserted.add(event.time)
               acc :+
@@ -162,7 +162,7 @@ case object ScheduleView extends SimpleViewWithDraft {
       child <-- renderSchedule(eventsByDay)
     )
 
-  def body(withDraft: Boolean): HtmlElement =
+  def body(withDraft: Boolean, conference: Option[String]): HtmlElement =
     val eventsByDay: Map[DayOfWeek, List[Act]] =
       ScheduleInfo.schedule
         .filter(_.day != null)

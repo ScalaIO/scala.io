@@ -1,9 +1,10 @@
-package io.scala.views
+package io.scala.app.faq
 
 import io.scala.modules.elements.Links
 import io.scala.modules.elements.Lists
 import io.scala.modules.elements.Paragraphs
 import io.scala.modules.elements.Titles
+import io.scala.views.SimpleView
 
 import com.raquo.laminar.api.L._
 import com.raquo.laminar.modifiers.RenderableText

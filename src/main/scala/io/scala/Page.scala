@@ -1,9 +1,14 @@
 package io.scala
 
+import io.scala.views._
+import io.scala.views.IndexView
+
+import app.faq._
+import app.schedule.ScheduleView
+import app.talks.TalkList
+import app.talks.TalkView
 import com.raquo.laminar.api.L._
 import com.raquo.waypoint._
-import io.scala.views.IndexView
-import io.scala.views._
 import org.scalajs.dom.document
 import org.scalajs.dom.html
 import upickle.default._
@@ -13,6 +18,10 @@ import urldsl.vocabulary.Printer
 
 sealed trait Draftable:
   def withDraft: Option[Boolean]
+sealed trait Routeable:
+  def conference: Option[String]
+object Routeable:
+  def fallback: String = "paris-2024"
 
 sealed trait Slugify:
   def slug: String
@@ -21,15 +30,21 @@ sealed trait Page:
 
 case class IndexPage(withDraft: Option[Boolean] = None) extends Page with Draftable:
   def title: String = "Home"
-case class TalksPage(withDraft: Option[Boolean] = None) extends Page with Draftable:
+case class TalksPage(withDraft: Option[Boolean] = None, conference: Option[String] = None)
+    extends Page
+    with Draftable
+    with Routeable:
   def title: String = "Talks"
 case class TalkPage(slug: String) extends Page with Slugify:
   def title: String = s"Talk - $slug"
-case object SponsorsPage extends Page:
+case class SponsorsPage(conference: Option[String] = None) extends Page with Routeable:
   def title: String = "Sponsors"
 case object VenuePage extends Page:
   def title: String = "Venue"
-case class SchedulePage(withDraft: Option[Boolean] = None) extends Page with Draftable:
+case class SchedulePage(withDraft: Option[Boolean] = None, conference: Option[String] = None)
+    extends Page
+    with Draftable
+    with Routeable:
   def title: String = "Schedule"
 case object EventsPage extends Page:
   def title: String = "Other events"
@@ -40,22 +55,23 @@ case object CoCPage extends Page:
 
 object Page {
 
-  given indexCodec: ReadWriter[IndexPage]            = macroRW
-  given talksCodec: ReadWriter[TalksPage]            = macroRW
-  given talkCodec: ReadWriter[TalkPage]              = macroRW
-  given sponsorsCodec: ReadWriter[SponsorsPage.type] = macroRW
-  given venueCodec: ReadWriter[VenuePage.type]       = macroRW
-  given scheduleCodec: ReadWriter[SchedulePage]      = macroRW
-  given eventsCodec: ReadWriter[EventsPage.type]     = macroRW
-  given faqCodec: ReadWriter[FAQPage.type]           = macroRW
+  given indexCodec: ReadWriter[IndexPage]        = macroRW
+  given talksCodec: ReadWriter[TalksPage]        = macroRW
+  given talkCodec: ReadWriter[TalkPage]          = macroRW
+  given sponsorsCodec: ReadWriter[SponsorsPage]  = macroRW
+  given venueCodec: ReadWriter[VenuePage.type]   = macroRW
+  given scheduleCodec: ReadWriter[SchedulePage]  = macroRW
+  given eventsCodec: ReadWriter[EventsPage.type] = macroRW
+  given faqCodec: ReadWriter[FAQPage.type]       = macroRW
 
   given pageArgBasicCodec: ReadWriter[Page] = macroRW
 
   val draftParam = param[Boolean]("withDraft").?
+  val conferenceParam = param[String]("conference").?
 
   given FromString[Page, DummyError] = {
     case "talks"    => Right(TalksPage())
-    case "sponsors" => Right(SponsorsPage)
+    case "sponsors" => Right(SponsorsPage())
     case "venue"    => Right(VenuePage)
     case "schedule" => Right(SchedulePage())
     case "events"   => Right(EventsPage)
@@ -67,7 +83,7 @@ object Page {
   given Printer[Page] = {
     case _: TalksPage    => "talks"
     case t: TalkPage     => s"talks/${t.slug}"
-    case SponsorsPage    => "sponsors"
+    case _: SponsorsPage => "sponsors"
     case VenuePage       => "venue"
     case _: SchedulePage => "schedule"
     case FAQPage         => "faq"
@@ -81,19 +97,20 @@ object Page {
     decode = args => IndexPage(args),
     (root / endOfSegments) ? draftParam
   )
-  val talksRoute = Route.onlyQuery[TalksPage, Option[Boolean]](
-    encode = x => x.withDraft,
-    decode = args => TalksPage(args),
-    (root / "talks" / endOfSegments) ? draftParam
+  val talksRoute = Route.onlyQuery[TalksPage, (Option[Boolean], Option[String])](
+    encode = x => (x.withDraft, x.conference),
+    decode = TalksPage(_, _),
+    (root / "talks" / endOfSegments) ? draftParam & conferenceParam
   )
   val talkRoute = Route[TalkPage, String](
     encode = x => x.slug,
     decode = args => TalkPage(args),
-    root / "talks" / segment[String] / endOfSegments
+    (root / "talks" / segment[String] / endOfSegments)
   )
-  val sponsorsRoute = Route.static(
-    SponsorsPage,
-    root / "sponsors" / endOfSegments
+  val sponsorsRoute = Route.onlyQuery[SponsorsPage, Option[String]](
+    encode = x => x.conference,
+    decode = args => SponsorsPage(args),
+    (root / "sponsors" / endOfSegments) ? param[String]("conference").?
   )
   val venueRoute = Route.static(
     VenuePage,
@@ -118,7 +135,17 @@ object Page {
   )
 
   val router = new Router[Page](
-    routes = List(indexRoute, talksRoute, talkRoute, sponsorsRoute, venueRoute, scheduleRoute, eventsRoute, faqRoute, cocRoute),
+    routes = List(
+      indexRoute,
+      talksRoute,
+      talkRoute,
+      sponsorsRoute,
+      venueRoute,
+      scheduleRoute,
+      eventsRoute,
+      faqRoute,
+      cocRoute
+    ),
     getPageTitle = page => page.title + " - ScalaIO",
     serializePage = page => write(page)(pageArgBasicCodec),
     deserializePage = pageStr => read(pageStr)(pageArgBasicCodec)
@@ -129,14 +156,15 @@ object Page {
     override def relativeUrlForPage(page: Page): String = super.relativeUrlForPage(page).replaceAll("\\?$", "")
   }
 
+  // TODO: use collectSignal as much as possible to avoid recreating the whole components
   val splitter: SplitRender[Page, HtmlElement] =
     SplitRender(router.currentPageSignal)
       .collect[IndexPage](args => IndexView.render(args.withDraft.getOrElse(false)))
-      .collect[TalksPage](args => TalkList.render(args.withDraft.getOrElse(false)))
+      .collect[TalksPage](args => TalkList.render(args.withDraft.getOrElse(false), args.conference))
       .collectSignal[TalkPage](args => TalkView.render(args))
-      .collectStatic(SponsorsPage)(SponsorsList.render())
+      .collect[SponsorsPage](args => SponsorsList.render(false, args.conference))
       .collectStatic(VenuePage)(VenueView.render())
-      .collect[SchedulePage](arg => ScheduleView.render(arg.withDraft.getOrElse(false)))
+      .collect[SchedulePage](arg => ScheduleView.render(arg.withDraft.getOrElse(false), arg.conference))
       .collectStatic(EventsPage)(EventsView.render())
       .collectStatic(FAQPage)(FAQView.render())
       .collectStatic(CoCPage)(CoCView.render())

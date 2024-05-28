@@ -75,7 +75,7 @@ object Talk:
       replay: Option[String] = None
   )
   object BasicInfo:
-    def empty = BasicInfo("", "", Kind.Talk, "", LocalDateTime.MIN)
+    def empty = BasicInfo("Malformed talk info", "", Kind.Talk, "", LocalDateTime.MIN)
 
   case class Speaker(
       name: String,
@@ -88,7 +88,7 @@ object Talk:
     def renderBio = bio.split("\n").map(p(_))
 
   object Speaker:
-    def empty = Speaker("", "", "")
+    def empty = Speaker("Malformed speaker", "", "")
 
 case class Break(
     dateTime: LocalDateTime,

@@ -1,4 +1,4 @@
-package io.scala.views
+package io.scala.app.talks
 
 import com.raquo.laminar.api.L._
 import io.scala.domaines.Social

@@ -11,29 +11,15 @@ case class Sponsor(
   def photoPath = s"images/sponsors/${photo}"
 
 object Sponsor {
-  enum Rank:
-    case Platinum
-    case Gold
-    case Silver
-    case Community
-    case Love
-    case Partner
+  enum Rank(val title: String, val css: String):
+    case Platinum  extends Rank("🎖️ Platinum 🎖️", "platinum")
+    case Gold      extends Rank("🥇 Gold 🥇", "gold")
+    case Silver    extends Rank("🥈 Silver 🥈", "silver")
+    case Community extends Rank("👥 Community 👥", "community")
+    case Love      extends Rank("❤️ J'aime Scala ❤️", "love")
+    case Partner   extends Rank("🤝 Partner 🤝", "partner")
 
-    def title: String = this match
-      case Platinum  => "🎖️ Platinum 🎖️"
-      case Gold      => "🥇 Gold 🥇"
-      case Silver    => "🥈 Silver 🥈"
-      case Community => "👥 Community 👥"
-      case Love      => "❤️ J'aime Scala ❤️"
-      case Partner   => "🤝 Partner 🤝"
-
-    def css: String = this match
-      case Platinum  => "platinum"
-      case Gold      => "gold"
-      case Silver    => "silver"
-      case Community => "community"
-      case Love      => "love"
-      case Partner   => "partner"
+  def empty = Sponsor("Malformed sponsor", "", "", Rank.Partner)
 
   object Rank:
     given Ordering[Rank] = Ordering[Int].on(_.ordinal)
