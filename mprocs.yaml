@@ -1,6 +1,6 @@
 procs:
   sass:
-    shell: "npx sass --watch src/main/resources/css/main.scss src/main/resources/css/output.css"
+    shell: "npx sass --watch public/assets/css/main.scss public/assets/css/output.css"
   sbtn:
     shell: "sbtn"
   vite:
