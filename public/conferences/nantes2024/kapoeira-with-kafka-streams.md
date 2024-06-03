@@ -10,6 +10,7 @@
 
 ## Abstract
 
+```
 Avec le monde de la Data en perpétuelle croissance, l’outil Open Source Apache Kafka est devenu incontournable grâce à ces capacités de collecte, de traitement temps réel, de stockage et d’analyse de données.
 
 Mais comment facilement tester toutes ces opérations dans un environnement d’intégration ? La solution Open Source Kapoeira tente de répondre à cette problématique.
@@ -21,6 +22,7 @@ C’est à l’aide d’un langage simple et normalisé basé sur Gherkin, qu’
 Burger Quiz 🍔 : venez découvrir Kapoeira à travers une démo live testant un Kafka Stream qui fabrique des hamburgers !
 
 Si vous êtes intéressés, nous serons ravis de récolter vos retours et vos contributions pour nous aider à améliorer cet outil.
+```
 
 ## Speakers
 
@@ -38,7 +40,10 @@ Si vous êtes intéressés, nous serons ravis de récolter vos retours et vos co
 
 #### Bio
 
+```
 Diplômée de l'INSA de Rouen spécialité Génie Mathématique, j'ai commencé à travailler pour des applications 3D (aménagement intérieur, imagerie médicale, simulateur de vêtements). En 2021 je me suis reconvertie pour devenir Ingénieure Data, dans l'entreprise Lectra à Bordeaux, où je développe des pipelines de données en Scala via Kafka et Snowflake. J'aime former, vulgariser des concepts et partager avec mes collègues ou lors de conférences, des connaissances ou des retours d'expérience. Je suis adepte du sketchnoting et de la facilitation graphique.
+```
+
 ### Mehdi Rebiai
 
 - photoRelPath: /images/profiles/nantes2024/mRebiai.webp
@@ -52,7 +57,10 @@ Diplômée de l'INSA de Rouen spécialité Génie Mathématique, j'ai commencé 
 
 #### Bio
 
+```
 Développeur depuis bientôt 20 ans, d'abord du Java puis un peu de front, puis beaucoup d'intégration continue et d'automatisation.
-Désormais je suis Tech Lead Data chez Lectra : beaucoup de Scala et de Kafka.
-Je participe également au projet Open Source Kapoeira : https://github.com/lectra-tech/kapoeira
 
+Désormais je suis Tech Lead Data chez Lectra : beaucoup de Scala et de Kafka.
+
+Je participe également au projet Open Source Kapoeira : https://github.com/lectra-tech/kapoeira
+```

@@ -10,6 +10,9 @@
     flex-direction: row;
     justify-content: space-evenly;
     gap: 32px;
+    &::after {
+      margin-left: 0px;
+    }
   }
 
   .timeslot {
@@ -140,9 +143,26 @@
       width: calc(100% - 32px);
     }
 
+    .break-large {
+      &::after {
+        margin-left: 0px;
+      }
+    }
+
+    .end-day {
+      &::after {
+        margin-left: 0px;
+      }
+    }
+
     .break-lunch {
       flex-direction: column;
       align-items: center;
+
+      &::after {
+        margin-left: 0px;
+        margin-top: 0px;
+      }
     }
 
     .presentation-short,

@@ -10,6 +10,7 @@
 
 ## Abstract
 
+```
 ### Summary
 
 Contravariance throws many developers off the first time they run into it. This talk will equip the audience with an intuitive understanding of contravariance and the tools for working out from first principles whether a type parameter should be covariant or contravariant.
@@ -25,6 +26,7 @@ This talks is designed for beginner to intermediate Scala developers. Attendees 
 ### Talk outline
 
 We’ll begin by working with an Animal type hierarchy and some PetRescue and PetClinic typeclasses. By working out what can be substituted for what, we’ll begin building up intuition for covariance and contravariance. We’ll then test this intuition by working through a second example involving JsonDecoder and JsonEncoder typeclasses.
+```
 
 ## Speakers
 
@@ -40,4 +42,6 @@ We’ll begin by working with an Animal type hierarchy and some PetRescue and Pe
 
 #### Bio
 
+```
 Sophie is a software engineer and ex-data scientist with a fondness for strongly typed functional languages. She has worked with Scala for the past 8 years and more recently delved into frontend development using Elm. She is a Lead Software Engineer at JPMorgan where she works on the Model-driven Engineering Platform. Her academic background is in Environmental Engineering (BEng) and Renewable Energy (MSc).
+```

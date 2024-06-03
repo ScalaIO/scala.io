@@ -1,14 +1,18 @@
 package io.scala.app.talks
 
+import io.scala.TalksPage
 import io.scala.data.TalksHistory
+import io.scala.data.TalksHistory.getConfName
 import io.scala.domaines.{Talk => Talk, _}
 import io.scala.modules.TalkCard
 import io.scala.modules.elements._
+import io.scala.views.ReactiveView
 import io.scala.views.SimpleViewWithDraft
 
 import com.raquo.laminar.api.L._
+import scala.collection.immutable.Queue
 
-case object TalkList extends SimpleViewWithDraft {
+case object TalkList extends ReactiveView[TalksPage] {
 
   private def sortedCategories(talks: List[Talk]): List[(String, List[Talk])] =
     talks
@@ -27,30 +31,38 @@ case object TalkList extends SimpleViewWithDraft {
             // 3rd criterion: lexicographic order
             case (_, _, true) => cat1.compareTo(cat2) >= 0
 
-  private def bodyContent(allTalks: List[Talk]) =
-    val categories = sortedCategories(allTalks)
+  override def body(args: Signal[TalksPage]): HtmlElement =
+    def talksForConf(conference: Option[String], draft: Boolean) =
+      if draft then TalksHistory.talksForConf(conference)
+      else TalksHistory.talksForConf(conference).filter(_.speakers.forall(_.confirmed))
+
     sectionTag(
       className := "container talks-list",
       Titles("Talks"),
       Line(margin = 55),
       div(
         className := "with-toc r-toc",
-        stickScroll(categories.map(_._1)),
-        div(
-          className := "content",
-          categories.flatMap: (category, talks) =>
-            List(
-              h2(idAttr     := category, className := "content-title", category),
-              div(className := "card-container", talks.sorted.map(TalkCard(_)))
+        children <-- args.map { arg =>
+          val categories =
+            sortedCategories(talksForConf(arg.conference, arg.withDraft.getOrElse(false)))
+          List(
+            stickScroll(categories.map(_._1)),
+            div(
+              className := "content",
+              categories
+                .foldLeft(Queue.empty[HtmlElement]) { case (acc, (category, talks)) =>
+                  acc
+                    .enqueue(h2(idAttr := category, className := "content-title", category))
+                    .enqueue(
+                      div(className := "card-container", talks.sorted.map(TalkCard(_, getConfName(arg.conference))))
+                    )
+                }
+                .toSeq
             )
-        )
+          )
+        }
       )
     )
-
-  override def body(withDraft: Boolean, conference: Option[String]): HtmlElement =
-    val allTalks = TalksHistory.talksForConf(conference)
-    if withDraft then bodyContent(allTalks)
-    else bodyContent(allTalks.filter(_.speakers.forall(_.confirmed)))
 
   private def stickScroll(sortedCategories: List[String]) =
     div(

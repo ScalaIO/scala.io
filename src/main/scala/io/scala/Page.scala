@@ -28,14 +28,14 @@ sealed trait Slugify:
 sealed trait Page:
   def title: String
 
-case class IndexPage(withDraft: Option[Boolean] = None) extends Page with Draftable:
+case class IndexPage(withDraft: Option[Boolean] = None, conference: Option[String] = None) extends Page with Draftable with Routeable:
   def title: String = "Home"
 case class TalksPage(withDraft: Option[Boolean] = None, conference: Option[String] = None)
     extends Page
     with Draftable
     with Routeable:
   def title: String = "Talks"
-case class TalkPage(slug: String) extends Page with Slugify:
+case class TalkPage(conference: String, slug: String) extends Page with Slugify:
   def title: String = s"Talk - $slug"
 case class SponsorsPage(conference: Option[String] = None) extends Page with Routeable:
   def title: String = "Sponsors"
@@ -92,19 +92,24 @@ object Page {
     case _: IndexPage    => ""
   }
 
-  val indexRoute = Route.onlyQuery[IndexPage, Option[Boolean]](
-    encode = x => x.withDraft,
-    decode = args => IndexPage(args),
-    (root / endOfSegments) ? draftParam
+  val indexRoute = Route.onlyQuery[IndexPage, (Option[Boolean], Option[String])](
+    encode = x => (x.withDraft, x.conference),
+    decode = IndexPage(_, _),
+    (root / endOfSegments) ? draftParam & conferenceParam
   )
   val talksRoute = Route.onlyQuery[TalksPage, (Option[Boolean], Option[String])](
     encode = x => (x.withDraft, x.conference),
     decode = TalksPage(_, _),
     (root / "talks" / endOfSegments) ? draftParam & conferenceParam
   )
-  val talkRoute = Route[TalkPage, String](
+  val talkRoute = Route[TalkPage, (String, String)](
+    encode = x => (x.conference, x.slug),
+    decode = TalkPage(_, _),
+    (root / "talks" / segment[String] / segment[String] / endOfSegments)
+  )
+  val legacyTalkRoute = Route[TalkPage, String](
     encode = x => x.slug,
-    decode = args => TalkPage(args),
+    decode = TalkPage("nantes-2024", _),
     (root / "talks" / segment[String] / endOfSegments)
   )
   val sponsorsRoute = Route.onlyQuery[SponsorsPage, Option[String]](
@@ -139,6 +144,7 @@ object Page {
       indexRoute,
       talksRoute,
       talkRoute,
+      legacyTalkRoute,
       sponsorsRoute,
       venueRoute,
       scheduleRoute,
@@ -159,10 +165,10 @@ object Page {
   // TODO: use collectSignal as much as possible to avoid recreating the whole components
   val splitter: SplitRender[Page, HtmlElement] =
     SplitRender(router.currentPageSignal)
-      .collect[IndexPage](args => IndexView.render(args.withDraft.getOrElse(false)))
-      .collect[TalksPage](args => TalkList.render(args.withDraft.getOrElse(false), args.conference))
+      .collectSignal[IndexPage](args => IndexView.render(args))
+      .collectSignal[TalksPage](args => TalkList.render(args))
       .collectSignal[TalkPage](args => TalkView.render(args))
-      .collect[SponsorsPage](args => SponsorsList.render(false, args.conference))
+      .collectSignal[SponsorsPage](args => SponsorsList.render(args))
       .collectStatic(VenuePage)(VenueView.render())
       .collect[SchedulePage](arg => ScheduleView.render(arg.withDraft.getOrElse(false), arg.conference))
       .collectStatic(EventsPage)(EventsView.render())

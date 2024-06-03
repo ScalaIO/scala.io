@@ -10,7 +10,7 @@ import io.scala.views.ReactiveView
 object TalkView extends ReactiveView[TalkPage]:
   def body(signal: Signal[TalkPage]): HtmlElement =
     val talk = signal.map: args =>
-      TalksHistory.talksForConf(None).find(_.info.slug == args.slug).get
+      TalksHistory.talksForConf(Some(args.conference)).find(_.info.slug == args.slug).get
     sectionTag(
       className := "container talk",
       h1( // TODO: reuse Title(name: String)

@@ -9,7 +9,7 @@ import io.scala.svgs.Icons
 import com.raquo.laminar.api.L._
 
 object SpeakerCard {
-  def apply(speaker: Speaker, talkInfo: Talk.BasicInfo) =
+  def apply(speaker: Speaker, talkInfo: Talk.BasicInfo, conference: String) =
     div(
       className := "speaker-card",
       img(
@@ -24,7 +24,7 @@ object SpeakerCard {
             className := talkInfo.kind.toStyle
           ),
           div(
-            Social.render(speaker.socials, speaker.name),
+            Social.renderIcons(speaker.socials, speaker.name),
             className := "socials"
           ),
           className := "subtitle"
@@ -37,14 +37,14 @@ object SpeakerCard {
         // p(speaker.company), //TODO: re-add company as a separate field
         className := "body"
       ),
-      linkToTalks(talkInfo)
+      linkToTalks(talkInfo, conference)
     )
 
-  def linkToTalks(info: Talk.BasicInfo) =
+  def linkToTalks(info: Talk.BasicInfo, conference: String) =
     button(
       className := "link classy-button highlight",
       "See talk ", // ! Problem if >= 2 talks
       Icons.goTo,
-      Page.navigateTo(TalkPage(info.slug))
+      Page.navigateTo(TalkPage(conference, info.slug))
     )
 }

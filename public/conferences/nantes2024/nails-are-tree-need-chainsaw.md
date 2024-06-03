@@ -10,6 +10,7 @@
 
 ## Abstract
 
+```
 For the last months, most of the problems I had to solve at work have been about trees.
 
 Initially, I tried to solve the problems the way other similar problems are solved in the codebase and it was painful.
@@ -18,6 +19,7 @@ Then I looked for better tools and discovered [Rose Trees](https://en.wikipedia.
 
 In this talk, I will show you with some code and drawings what I learnt in
 the process and how it helped me solved my problems with less pain.
+```
 
 ## Speakers
 
@@ -35,4 +37,6 @@ the process and how it helped me solved my problems with less pain.
 
 #### Bio
 
+```
 I'm a veteran backend developer, living in Ardèche and writing software as a contractor for a living. I wrote Java for years and I'm now mainly writing Scala and Elm on a daily basis. My domains of interest are FP, reactive programming, distributed architecture, CQRS/ES and performance analysis.
+```

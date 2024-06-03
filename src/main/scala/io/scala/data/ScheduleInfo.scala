@@ -45,5 +45,5 @@ object ScheduleInfo {
   val minStart           = LocalTime.of(9, 0)
   val maxEnd             = LocalTime.of(19, 0)
   val pxByHour           = 600
-  lazy val schedule      = TalksHistory.talksForConf(None) ++ breaks
+  lazy val schedule      = TalksHistory.talksForConf(None)
 }

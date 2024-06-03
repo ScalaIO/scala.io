@@ -23,14 +23,14 @@ class SpeakerView(speaker: Speaker):
             className := "svg-list",
             div(
               Icons.suitecase,
-              speaker.job
+              speaker.jobTitle
             ),
-            // div(
-            //   Icons.atSign,
-            //   speaker.company
-            // )
+            div(
+              Icons.atSign,
+              speaker.company
+            )
           ),
-          h2("Who am I"),
+          Titles.small("Who am I"),
           speaker.renderBio,
           div(
             className := "socials",

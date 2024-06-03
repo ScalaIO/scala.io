@@ -20,7 +20,7 @@ trait SimpleView extends GenericView:
 trait SimpleViewWithDraft extends GenericView:
   def body(withDraft: Boolean, conference: Option[String]): HtmlElement
 
-  final def render(withDraft: Boolean, conference: Option[String]): HtmlElement =
+  def render(withDraft: Boolean, conference: Option[String]): HtmlElement =
     div(
       className := "fullscreen",
       child <-- Header.render,
@@ -28,10 +28,13 @@ trait SimpleViewWithDraft extends GenericView:
       Footer.render
     )
 
+trait EmptyReactiveView[A] extends GenericView:
+  def render(signal: Signal[A]): HtmlElement
+
 trait ReactiveView[A] extends GenericView:
   def body(signal: Signal[A]): HtmlElement
 
-  final def render(signal: Signal[A]): HtmlElement =
+  def render(signal: Signal[A]): HtmlElement =
     div(
       className := "fullscreen",
       child <-- Header.render,

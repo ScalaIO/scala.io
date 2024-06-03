@@ -6,8 +6,8 @@ import io.scala.domaines.Talk
 
 import scala.collection.mutable.{HashMap => MutableMap}
 
+val current = "paris-2024"
 object TalksHistory:
-  val current = "paris-2024"
   private val historyMap =
     Map(
       "nantes-2024" -> ConfFilesName.nantes2024,
@@ -23,10 +23,12 @@ object TalksHistory:
         .map(Parsers.ConferenceTalk.fromText)
 
   def talksForConf(confName: Option[String]): List[Talk] =
-    cachedTalks(confName.getOrElse(current))
+    cachedTalks(getConfName(confName))
+
+  inline def getConfName(confName: Option[String]): String =
+    confName.getOrElse(current)
 
 object SponsorsHistory:
-  val current = "paris-2024"
   private val sponsorsMap =
     Map(
       "nantes-2024" -> SponsorsMd.nantes2024,

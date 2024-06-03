@@ -10,9 +10,11 @@
 
 ## Abstract
 
+```
 Le but de ce talk est de donner une bonne compréhension de ce qu’il est possible de faire avec les modèles NLP, notamment ceux issus de BERT, qui peuvent être utilisés par des programmes sans avoir besoin de se connecter à des apis externes. L’idée est de présenter la chaîne de traitement, que ce soit en amont ou en aval de l’appel au modèle et l’utilisation du résultat.
 
 Une fois ceci fait, je souhaite montrer comment utiliser un modèle en utilisant la bibliothèque DJL, en utilisant pyTorch, et montrer l’implémentation des différentes briques.
+```
 
 ## Speakers
 
@@ -29,9 +31,11 @@ Une fois ceci fait, je souhaite montrer comment utiliser un modèle en utilisant
 
 #### Bio
 
+```
 Développeur scala depuis plusieurs années, je me passionne pour la performance des applications.
 
 Je suis actuellement développeur chez NuMind où nous aidons nos clients à entraîner et déployer des modèles d'intelligence artificielle.
+```
 
 ### Samuel Bernard
 
@@ -47,4 +51,6 @@ Je suis actuellement développeur chez NuMind où nous aidons nos clients à ent
 
 #### Bio
 
+```
 After a PhD in Distributed Systems, Samuel left the academic world to be a software engineer in a fast growing scale-up. There he learned how to build cutting-edge softwares and data infrastructures. Over the years he refined his skills and became an expert in DevOps/DataOps and at managing tech teams. Samuel has been an early employee of Criteo, the Technology Innovation leader at S4M, co-founder & CTO at Make.org, and an independent coach/advisor of start-ups & data teams.
+```

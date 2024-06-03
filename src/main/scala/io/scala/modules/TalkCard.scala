@@ -21,7 +21,7 @@ object TalkCard:
       case Array(first, last) => s"${first.charAt(0)}. $last"
       case _                  => name
 
-  def apply(talk: Talk): ReactiveHtmlElement[HTMLDivElement] =
+  def apply(talk: Talk, conference: String): ReactiveHtmlElement[HTMLDivElement] =
     div(
       className := s"talk-card ${talk.info.kind.toStyle}",
       div(
@@ -72,7 +72,7 @@ object TalkCard:
           className  := "link classy-button highlight",
           aria.label := s"Go to ${talk.info.title}",
           Icons.goTo,
-          Page.navigateTo(TalkPage(talk.info.slug))
+          Page.navigateTo(TalkPage(conference, talk.info.slug))
         )
       )
     )

@@ -10,6 +10,7 @@
 
 ## Abstract
 
+```
 Depuis plus de 10 ans, Clever Cloud utilise Scala pour le développement 
 de ses applications. 
 En particulier un logiciel regroupant les API de dizaines de produits.
@@ -20,6 +21,7 @@ des contributions d'une douzaine de personnes à été migré en Scala 3 en déb
 Embarquez avec nous dans cette aventure périlleuse qui a malmené 
 notre radeau à travers les rapides en évitant les rochers, 
 tout ça dans le but d'accéder au trésor : Scala 3.
+```
 
 ## Speakers
 
@@ -36,7 +38,10 @@ tout ça dans le but d'accéder au trésor : Scala 3.
 
 #### Bio
 
+```
 I'm a backend developer specialized in platform orchestration. I have experience with Python, Golang and I work with scala since around a year.
+```
+
 ### Jean-Baptiste Kaiser
 
 - photoRelPath: /images/profiles/nantes2024/jbKaiser.webp
@@ -50,5 +55,3 @@ I'm a backend developer specialized in platform orchestration. I have experience
 - [Github](https://github.com/Arendsyl)
 
 #### Bio
-
-

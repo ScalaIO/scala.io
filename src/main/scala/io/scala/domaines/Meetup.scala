@@ -1,15 +1,14 @@
 package io.scala.domaines
 
+import com.raquo.laminar.api.L._
+import io.scala.data.parsers.Parsers
 import io.scala.modules.elements.Cards
 import io.scala.modules.elements.Links
+import io.scala.modules.elements.Lists
 import io.scala.modules.elements.Paragraphs
 import io.scala.modules.elements.Titles
 
-import com.raquo.laminar.api.L._
-import java.time.LocalDate
-import java.time.LocalTime
-import io.scala.modules.elements.Lists
-import io.scala.data.parsers.Parsers
+import java.time.LocalDateTime
 
 case class Meetup(
     basicInfo: Meetup.BasicInfo,
@@ -19,7 +18,7 @@ case class Meetup(
     Cards.withMedia(
       header = div(
         Titles.small(basicInfo.name),
-        Paragraphs.description(s"${basicInfo.date} @ ${basicInfo.startTime} - ${basicInfo.endTime}"),
+        Paragraphs.description(s"${basicInfo.start} - ${basicInfo.end}"),
         Paragraphs.description(basicInfo.location)
       ),
       body = Lists.innerDiscs(
@@ -38,7 +37,7 @@ case class Meetup(
     )
 
 object Meetup:
-  given Ordering[Meetup] = Ordering.by(_.basicInfo.date)
+  given Ordering[Meetup] = Ordering.by(_.basicInfo.start)
 
   def apply(content: String): Meetup =
     Parsers.MeetupTalk.fromText(content)
@@ -47,18 +46,17 @@ object Meetup:
 
   case class BasicInfo(
       name: String,
-      date: LocalDate,
-      startTime: LocalTime,
-      endTime: LocalTime,
+      start: LocalDateTime,
+      end: LocalDateTime,
       location: String,
       link: Option[String],
-      description: List[String]
+      description: String
   )
 
   object BasicInfo:
-    def empty = BasicInfo("", LocalDate.MIN, LocalTime.MIN, LocalTime.MIN, "", None, List.empty)
-    def apply(name: String, dateTime: (LocalDate, LocalTime, LocalTime), location: String, link: Option[String], description: List[String]): BasicInfo =
-      BasicInfo(name, dateTime._1, dateTime._2, dateTime._3, location, link, description)
+    def empty = BasicInfo("", LocalDateTime.MIN, LocalDateTime.MIN, "", None, "")
+    def apply(name: String, dateTime: (LocalDateTime, LocalDateTime), location: String, link: Option[String], description: String): BasicInfo =
+      BasicInfo(name, dateTime._1, dateTime._2, location, link, description)
 
   case class Talk(
       title: String,
