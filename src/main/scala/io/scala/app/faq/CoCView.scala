@@ -12,7 +12,8 @@ import com.raquo.laminar.modifiers.RenderableText
 object CoCView extends SimpleView:
   override def body(): HtmlElement = sectionTag(
     className := "container coc",
-    Titles.withSub("Scala-FR Code of Conduct (SFCoC)", p("Version 0.1.0")),
+    Titles.withSub("Scala-FR Code of Conduct (SFCoC)", p("Version 0.0.1"),
+    ),
     Paragraphs.description(
       "This Code of Conduct is heavily inspired form ",
       Links.highlighted(
@@ -36,7 +37,7 @@ object CoCView extends SimpleView:
       "We strongly encourage members to assume the best in every interaction; to be open, honest, and empathic in all communication; and to demonstrate politeness and professional courtesy in every situation."
     ),
     Paragraphs.description(
-      "We welcome any closed group of members to engage in any conduct for which there is explicit and unanimous mutual consent. In the absence of such consent, we impose the following restrictions on conduct, which are further clarified by the Glossary:"
+      "We welcome any closed group of members to engage in any conduct for which there is explicit and unanimous mutual consent. In the absence of such consent, we impose the following restrictions on conduct (which aren't standards for everyone, unfortunately):"
     ),
     Lists.flat(
       li(
@@ -75,18 +76,10 @@ object CoCView extends SimpleView:
       "Violators may be asked to apologize or to undergo training, counseling, or mediation as a condition of continued participation. They may also be banned from the community, at the sole discretion of the arbiter. In no case will the consequence exceed banishment, unless the violation is also governed by separate contractual agreements or local laws. We reserve the right to re-evaluate a previously imposed consequence."
     ),
     Paragraphs.description(
-      Titles.paragraph("Social Rehabilitation"),
-      "We will only banish individuals for a pre-determined time (To be determined yet). After that time, the individual may reinstated. For the first banishment, the individual may be reinstated at his request after a certain amount of time. The required duration is at our sole discretion. In any case, for the individual's request to be considered, they must have demonstrated a commitment to the terms and conditions of SFCoC."
-    ),
-    Paragraphs.description(
       Titles.paragraph("Confidentiality"),
       "We reserve the right to publicly share information about any violation that results in banishment, including personally identifiable information on the violator, limited to name and online identities. In all other cases, we will keep incidents and the identities of aggrieved and accused confidential to the extent this confidentiality is fully respected by all parties."
     ),
-    Paragraphs.description(
-      Titles.paragraph("Reporting Requirements"),
-      "Incidents that happen while actively participating in the community must be reported to us within 15 days by aggrieved members (we will investigate third-party reports at our sole discretion). Incidents involving doxxing or retaliation must be reported to us within 5 years of their occurrence. Information that any individual believes may affect our view of the qualifications of an individual may be reported at any time."
-    ),
-    Titles.medium("Our pledge"),
+    Titles.small("Our pledge"),
     p("We pledge that we will make reasonable efforts on"),
     Lists.flat(
       li(
@@ -157,15 +150,6 @@ object CoCView extends SimpleView:
     ),
     Titles.small("Glossary"),
     Paragraphs.description(
-      Titles.paragraph("Accused"),
-      "We define accused to be any member who has been attributed a violation by an aggrieved member."
-    ),
-    Paragraphs.description(
-      Titles.paragraph("Aggrieved"),
-      "We define aggrieved as suffered from one or more of the holds defined in ",
-      Links.highlightedInPlace(href := "#community-conduct", "Community Conduct")
-    ),
-    Paragraphs.description(
       Titles.paragraph("Arbiter"),
       "We define arbiter to be one or more persons designated by us to resolve an incident report."
     ),
@@ -190,10 +174,6 @@ object CoCView extends SimpleView:
       "We define conduct to include all and only observable actions of people, and to explicitly exclude all personal attributes."
     ),
     Paragraphs.description(
-      Titles.paragraph("Criminal Conduct"),
-      "We define criminal conduct to be any conduct that is illegal under the laws of the governing jurisdiction. Explicitly excluded from criminal conduct is any illegal conduct in which those directly and immediately impacted by the conduct are legally adults and do not consider themselves to be victims (including recreational use of drugs, consensual prostitution, failure of adults to wear seat belts, and the like)."
-    ),
-    Paragraphs.description(
       Titles.paragraph("Destructive Individual"),
       "We define destructive individual to be any individual that we intentionally label destructive, and for whom one or more of the following we believe to hold:"
     ),
@@ -209,19 +189,11 @@ object CoCView extends SimpleView:
       )
     ),
     Paragraphs.description(
-      Titles.paragraph("Doxxing"),
-      "We define doxxing to be the unauthorized publication of any personal attributes of identified members learned while actively participating and not previously known to the public."
-    ),
-    Paragraphs.description(
       Titles.paragraph("Harassment"),
       "We define harassment to be any interaction with someone who does not consent to the interaction. For interactions of a professional nature, you may assume consent for the first interaction, until the recipient communicates otherwise (examples include handshakes, looking at someone who is speaking, providing feedback). For all other interactions, you must assume non-consent until the person clearly and unambiguously communicates otherwise (examples include persistent gaze at someone who is not speaking, sexual interactions of any kind)."
     ),
     Paragraphs
       .description(Titles.paragraph("Incident"), "We define incident to be any possible infringement of SFCoC."),
-    Paragraphs.description(
-      Titles.paragraph("Interaction"),
-      "We define interaction to be any one-on-one communication, physical contact (with person or property), close proximity, or persistent gaze. Explicitly excluded from this definition is opt-in, broadcast-based communication within the community."
-    ),
     Paragraphs.description(
       Titles.paragraph("Members"),
       "We define a member of the community to be any qualified individual who participates in the community."
@@ -243,10 +215,6 @@ object CoCView extends SimpleView:
       "Explicitly excluded from professional sabotage is all harmful but truthful communication that is exclusively motivated by and communicated in terms of the member's inability to fulfill their professional duties."
     ),
     Paragraphs.description(
-      Titles.paragraph("Prying"),
-      "We define prying to be any unauthorized attempt (whether legal or illegal) to ascertain the communication of semi-private forms of communication (including phone calls, direct messages, texts, private conversations), or to ascertain content on private devices or private channels of communication belonging to other members, where unauthorized means the individual prying does not have explicit permission from the owner of said device or by the authors of said communication."
-    ),
-    Paragraphs.description(
       Titles.paragraph("Qualified Individual"),
       "We define qualified individual to be any individual for whom the following hold:",
       Lists.innerDiscs(
@@ -260,28 +228,8 @@ object CoCView extends SimpleView:
       "We define the qualifications of an individual to be the minimal set of properties sufficient to determine whether the individual is a qualified individual."
     ),
     Paragraphs.description(
-      Titles.paragraph("Retaliation"),
-      "We define retaliation to be the imposition of any negative consequence on a member for their unofficial resolution or reporting of an incident, or for their participation in such resolution or reporting (including participation as arbiter), where negative consequence is defined as any consequence that does or is intended to have the effect of harming the member's career."
-    ),
-    Paragraphs.description(
-      Titles.paragraph("Insulting"),
-      "We define insulting as any communication of the idea that any personal attribute of any person is inferior, including all personal insults and ad hominem. Explicitly excluded from insulting is all communication of the idea that objective, falsifiable statements espoused by a member are inconsistent, unsupported, or falsified, as well as communication of the idea that some personal attributes offer an advantage or disadvantage in obtaining specified measurable objectives."
-    ),
-    Paragraphs.description(
       Titles.paragraph("Violation"),
       "We define violation to be any actual infringement of SFCoC as determined by an arbiter."
-    ),
-    Paragraphs.description(
-      Titles.paragraph("Violator"),
-      "We define violator to be any accused member who has broken the terms and conditions of SFCoC, as determined by an arbiter."
-    ),
-    Paragraphs.description(
-      Titles.paragraph("Unprofessional Conduct"),
-      "We define unprofessional conduct to be any conduct that qualifies as harassing, prying, or insulting for individuals who are actively participating, and any conduct that qualifies as doxxing or retaliating."
-    ),
-    Paragraphs.description(
-      Titles.paragraph("Unqualified Individual"),
-      "We define unqualified individual to be any individual that is not a qualified individual."
     ),
     Paragraphs.description(
       Titles.paragraph("We"),
