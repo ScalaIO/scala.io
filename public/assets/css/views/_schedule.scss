@@ -1,0 +1,228 @@
+@use "../base/vars";
+@use "../base/mixins";
+
+%schedule {
+  display: flex;
+  flex-direction: column;
+
+  .blank-card {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    gap: 32px;
+    &::after {
+      margin-left: 0px;
+    }
+  }
+
+  .timeslot {
+    display: flex;
+    flex-wrap: wrap;
+    border-top: 1px solid #ccc;
+    padding-top: 16px;
+    margin-top: 16px;
+
+    > div:first-child {
+      margin-right: 16px;
+    }
+
+    .talk-card,
+    .blank-card {
+      flex: 1;
+      min-width: min(250px, 100%);
+    }
+  }
+
+  .talk-card .footer {
+    @media screen and (min-width: vars.$tablet-width) {
+      flex-direction: row;
+      justify-content: space-between;
+    }
+  }
+
+  > div {
+    display: flex;
+    justify-content: space-around;
+  }
+
+  .tabs {
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: vars.$background-color;
+    z-index: 10;
+  }
+
+  .tabs > div {
+    flex: 1 1 0;
+    max-width: max-content;
+  }
+
+  .tabs h2,
+  .tabs button {
+    float: left;
+    padding: 8px;
+  }
+
+  .content {
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 32px;
+  }
+
+  .classy-button {
+    padding: 8px 16px;
+  }
+
+  .break > span {
+    display: flex;
+    align-items: center;
+  }
+
+  .break > span > span:first-child {
+    font-size: xx-large;
+    margin-right: 4px;
+  }
+}
+.schedule.small {
+  @extend %schedule;
+
+  .tab h2,
+  .tab button {
+    transition: 0.3s;
+
+    &:hover {
+      background-color: #ddd;
+    }
+
+    &:active {
+      background-color: #ccc;
+    }
+  }
+  .body {
+    max-height: 200px;
+  }
+}
+
+.schedule.large {
+  @extend %schedule;
+
+  display: grid;
+  grid-template-columns: 100px 1fr 1fr;
+  width: min(100%, 1200px);
+  margin: 0 auto;
+
+  .tabs {
+    grid-column: span 2;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    justify-items: center;
+    gap: 16px;
+  }
+  .times {
+    position: relative;
+
+    div {
+      position: absolute;
+    }
+  }
+
+  .times + div {
+    grid-column: span 2;
+    display: flex;
+  }
+
+  .content {
+    flex: 1;
+    position: relative;
+    margin: 16px 0;
+
+    .event {
+      position: absolute;
+      width: calc(100% - 32px);
+    }
+
+    .break-large {
+      &::after {
+        margin-left: 0px;
+      }
+    }
+
+    .end-day {
+      &::after {
+        margin-left: 0px;
+      }
+    }
+
+    .break-lunch {
+      flex-direction: column;
+      align-items: center;
+
+      &::after {
+        margin-left: 0px;
+        margin-top: 0px;
+      }
+    }
+
+    .presentation-short,
+    .presentation-talk,
+    .presentation-keynote {
+      .body p {
+        line-height: vars.$text-size-x-large;
+        text-align: justify;
+      }
+    }
+
+    .presentation-short,
+    .presentation-lightning {
+      .line {
+        display: none;
+      }
+    }
+
+    .presentation-lightning {
+      .body {
+        display: none;
+      }
+    }
+  }
+}
+.time_hour {
+  font-size: 1.5rem;
+  margin-right: 0.25rem;
+}
+
+.time_minute {
+  font-size: 1rem;
+}
+
+%hours-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.hours {
+  @extend %hours-grid;
+  text-align: right;
+
+  @media screen and (min-width: vars.$mobile-width) {
+    text-align: left;
+  }
+
+  .row,
+  .column-header {
+    grid-column: span 3;
+    @extend %hours-grid;
+  }
+
+  .row {
+    > span:first-child {
+      font-size: larger;
+    }
+  }
+
+  .column-header {
+    font-size: x-large;
+  }
+}

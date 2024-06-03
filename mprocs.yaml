@@ -1,0 +1,7 @@
+procs:
+  sass:
+    shell: "npx sass --watch public/assets/css/main.scss public/assets/css/output.css"
+  sbtn:
+    shell: "sbtn"
+  vite:
+    shell: "pnpm run dev"

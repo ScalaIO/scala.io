@@ -1,19 +1,19 @@
 package io.scala
 package modules
 
-import com.raquo.laminar.api.L._
-import com.raquo.laminar.nodes.ReactiveHtmlElement
 import io.scala.domaines.Talk
 import io.scala.svgs.Icons
+
+import com.raquo.laminar.api.L._
+import com.raquo.laminar.nodes.ReactiveHtmlElement
+import elements.Line
 import org.scalajs.dom
 import org.scalajs.dom.HTMLDivElement
 import org.scalajs.dom.HTMLSpanElement
 
-import elements.Line
-
 object TalkKindTag:
   def apply(kind: Talk.Kind): ReactiveHtmlElement[HTMLSpanElement] =
-    span(kind.toString, className := kind.toStyle)
+    span(kind.toString, className := kind.toStyle, marginLeft := "4px")
 
 object TalkCard:
   def shortName(name: String) =
@@ -21,21 +21,21 @@ object TalkCard:
       case Array(first, last) => s"${first.charAt(0)}. $last"
       case _                  => name
 
-  def apply(talk: Talk): ReactiveHtmlElement[HTMLDivElement] =
+  def apply(talk: Talk, conference: String): ReactiveHtmlElement[HTMLDivElement] =
     div(
-      className := s"talk-card ${talk.kind.toStyle}",
+      className := s"talk-card ${talk.info.kind.toStyle}",
       div(
         h3(
           className := "title",
-          talk.title
+          talk.info.title,
+          TalkKindTag(talk.info.kind),
         ),
         div(
           className := "subtitle",
-          TalkKindTag(talk.kind),
-          if talk.room != null then
+          if talk.info.room.show != null then
             span(
               className := "room",
-              talk.room.render
+              talk.info.room.show
             )
           else emptyNode
         )
@@ -52,7 +52,7 @@ object TalkCard:
           div(
             className := "speaker",
             img(
-              src       := speaker.photoPath,
+              src       := speaker.photoRelPath,
               className := "photo",
               alt       := s"${speaker.name}'s profile picture"
             ),
@@ -62,17 +62,17 @@ object TalkCard:
                 className := "name"
               ),
               p(
-                speaker.company,
+                speaker.job,
                 className := "company"
               )
             )
           )
         },
         button(
-          className  := "link classy-button classy-button-highlight",
-          aria.label := s"Go to ${talk.title}",
+          className  := "link classy-button highlight",
+          aria.label := s"Go to ${talk.info.title}",
           Icons.goTo,
-          Page.navigateTo(TalkPage(talk.slug))
+          Page.navigateTo(TalkPage(conference, talk.info.slug))
         )
       )
     )

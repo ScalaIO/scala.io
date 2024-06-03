@@ -1,7 +1,7 @@
 package io.scala.data
 
-import io.scala.domaines.Event
+import io.scala.domaines.Meetup
 
 
 object EventsList:
-  val eventsList: List[Event] = List()
+  val eventsList: List[Meetup] = List()

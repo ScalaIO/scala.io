@@ -1,6 +1,6 @@
 package io.scala
 
-import io.scala.domaines.Time
+import java.time.LocalTime
 
 object Lexicon {
   object Headband:
@@ -31,11 +31,11 @@ object Lexicon {
       "https://docs.google.com/presentation/d/1nZ_6r4r0M1VZNBUE41DtnKr6FVdjFyoWF-zbJ1BtdSw/edit?usp=sharing"
 
   object Schedule:
-    val opening        = Array(Time(7, 45), Time(7, 45))
-    val firstTalk      = Array(Time(9, 30), Time(9, 0))
-    val lunch          = Array(Time(12, 30), Time(12, 30))
-    val endOfTalks     = Array(Time(18, 35), Time(18, 0))
-    val communityParty = Array(Time(19, 30))
+    val opening        = Array(LocalTime.of(7, 45), LocalTime.of(7, 45))
+    val firstTalk      = Array(LocalTime.of(9, 30), LocalTime.of(9, 0))
+    val lunch          = Array(LocalTime.of(12, 30), LocalTime.of(12, 30))
+    val endOfTalks     = Array(LocalTime.of(18, 35), LocalTime.of(18, 0))
+    val communityParty = Array(LocalTime.of(19, 30))
 
   object Venue {
     val catchPhrase = "A cosy place in the heart of Nantes"

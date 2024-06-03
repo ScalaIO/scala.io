@@ -2,7 +2,7 @@ package io.scala.modules.elements
 
 import com.raquo.laminar.api.L._
 
-trait Slides:
+sealed trait Slides:
   def url: String
 
 case class WebHosted(url: String) extends Slides

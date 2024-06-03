@@ -1,0 +1,45 @@
+@use "../base/vars";
+
+.classy-button {
+  color: vars.$text-color;
+
+  font-weight: 500;
+  border-radius: 4px;
+  padding: 10px 24px;
+  transition: background-color 0.5s, color 0.5s;
+
+  &:hover {
+    background-color: vars.$text-color;
+    color: vars.$text-color-contrast;
+    cursor: pointer;
+  }
+
+  &.highlight {
+    border: 1px solid vars.$main-color;
+    color: vars.$main-color;
+
+    &:hover {
+      background-color: vars.$main-color;
+      color: vars.$text-color-contrast;
+    }
+  }
+}
+
+.shiny-button {
+  background-color: vars.$main-color;
+  padding: vars.$spacing-x-small vars.$spacing-small;
+  border-radius: 4px;
+  text-transform: uppercase;
+  transition: background-color 0.5s, color 0.5s;
+
+  &:hover {
+    background-color: vars.$text-color-contrast;
+    color: vars.$text-color;
+  }
+}
+
+#buy-ticket {
+  @media screen and (max-width: vars.$mobile-width) {
+    margin: 4px 8px;
+  }
+}
