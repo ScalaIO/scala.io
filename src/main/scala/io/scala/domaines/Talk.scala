@@ -1,13 +1,18 @@
 package io.scala.domaines
 
+import io.scala.data.parsers.Parsers
+import io.scala.modules.TalkCard
+import io.scala.svgs.Icons
+
 import com.raquo.laminar.api.L._
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import io.scala.data.TalksInfo
-import io.scala.modules.TalkCard
-import io.scala.modules.elements.Slides
-import io.scala.svgs.Icons
+import java.time.DayOfWeek
+import java.time.LocalDateTime
+import java.time.LocalTime
 import org.scalajs.dom
 import org.scalajs.dom.HTMLDivElement
+import io.scala.data.current
+import io.scala.modules.elements.Paragraphs
 
 sealed trait TalkInfo[A <: TalkInfo[A]]:
   def ordinal: Int
@@ -15,153 +20,115 @@ sealed trait TalkInfo[A <: TalkInfo[A]]:
 object TalkInfo:
   given [A <: TalkInfo[A]]: Ordering[A] = Ordering[Int].on(_.ordinal)
 
-enum ConfDay extends TalkInfo[ConfDay] {
-  case Thursday, Friday
-
-  override def toString(): String =
-    this match
-      case ConfDay.Thursday => "Thursday 15 Feb."
-      case ConfDay.Friday   => "Friday 16 Feb."
-
-  def toId: String = "day" + this.ordinal
-}
-
-enum Room extends TalkInfo[Room]:
-  case One
-  def render = "Room " + this.ordinal
-
 sealed trait Act:
-  def day: ConfDay | Null
-  def start: Time | Null
+  def day: DayOfWeek | Null
+  def time: LocalTime | Null
   def render: Div
 
 sealed trait Durable:
   def duration: Int
 
 case class Talk(
-    title: String = "",
-    slug: String,
+    info: Talk.BasicInfo,
     description: String,
-    kind: Talk.Kind = Kind.Speech,
-    day: ConfDay | Null = null,
-    room: Room | Null = null,
-    start: Time | Null = null,
-    speakers: List[Speaker],
-    category: Talk.Category,
-    slides: Option[Slides] = None,
-    replay: Option[String] = None
+    speakers: List[Talk.Speaker]
 ) extends Act
     with Durable:
-  lazy val renderDescription = TalksInfo.parseTalk(description).map(p(_))
-  def duration: Int          = kind.duration
-  def render: Div            = TalkCard(this)
-  def isKeynote: Boolean     = kind == Talk.Kind.Keynote
+  lazy val renderDescription = Parsers.Description.parseTalk(description).map(Paragraphs.description(_))
+
+  def dateTime: LocalDateTime | Null = info.dateTime
+  val day                            = info.dateTime.getDayOfWeek
+  val time                           = info.dateTime.toLocalTime
+  def duration: Int                  = info.kind.duration
+  def render: Div                    = TalkCard(this, current)
+  def isKeynote: Boolean             = info.kind == Talk.Kind.Keynote
 
 object Talk:
-
-  given Ordering[Talk] = Ordering.by(talk => (talk.kind, talk.title))
-
-  // I think it is better to explicitly define ordering rather than to depend
-  // on enum values declaration order via ordinal field (one could inadvertently
-  // break the ordering just by reorganizing the declarations).
+  opaque type Room = String
+  extension (room: Room)
+    def show: String = s"Room $room"
+  object Room:
+    def empty = "TBD"
+    def apply(room: String): Room = room
+    
+  def empty               = Talk(BasicInfo.empty, "To be announced", List.empty)
+  given Ordering[Talk] = Ordering.by(talk => (talk.info.kind, talk.info.title))
   given Ordering[Kind] = Ordering.by:
     case Kind.Lightning => 4
     case Kind.Short     => 3
-    case Kind.Speech    => 2
+    case Kind.Talk      => 2
     case Kind.Keynote   => 1
 
-  enum Kind:
-    case Lightning, Short, Speech, Keynote
+  enum Kind(val toStyle: String, val duration: Int):
+    case Lightning extends Kind("presentation-lightning", 15)
+    case Short     extends Kind("presentation-short", 25)
+    case Talk      extends Kind("presentation-talk", 45)
+    case Keynote   extends Kind("presentation-keynote", 60)
+  end Kind
 
-    override def toString = this match
-      case Speech    => "Talk"
-      case Short     => "Short"
-      case Keynote   => "Keynote"
-      case Lightning => "Lightning"
+  case class BasicInfo(
+      title: String,
+      slug: String,
+      kind: Kind,
+      category: String,
+      dateTime: LocalDateTime,
+      room: Room = "", // TODO: reuse String | Null
+      slides: Option[String] = None,
+      replay: Option[String] = None
+  )
+  object BasicInfo:
+    def empty = BasicInfo("Malformed talk info", "", Kind.Talk, "", LocalDateTime.MIN)
 
-    def toStyle = this match
-      case Speech    => "presentation-talk"
-      case Short     => "presentation-short"
-      case Keynote   => "presentation-keynote"
-      case Lightning => "presentation-lightning"
+  case class Speaker(
+      name: String,
+      photoRelPath: String,
+      job: String,
+      confirmed: Boolean = false,
+      socials: List[Social] = List.empty,
+      bio: String = ""
+  ):
+    lazy val (jobTitle, company) = 
+      val parsed = job.splitAt(job.indexOf("@"))
+      (parsed._1.trim, parsed._2.drop(1).trim)
 
-    def duration = this match
-      case Speech    => 45
-      case Short     => 25
-      case Keynote   => 60
-      case Lightning => 15
+    def renderBio = bio.split("\n").map(Paragraphs.description(_))
 
-  enum Category:
-    case Algebra, Effects, ToolsEcosystem, Community, Cloud, Modeling, DataEng, AI
-
-    def slug: String = this match
-      case Algebra        => "dash-of-algebra"
-      case DataEng        => "data-engineering"
-      case Community      => "community"
-      case ToolsEcosystem => "tools-and-ecosystem"
-      case Effects        => "effects-system"
-      case Modeling       => "modeling"
-      case Cloud          => "cloud"
-      case AI             => "artificial-intelligence"
-
-    def name: String = this match
-      case Algebra        => "A Dash of Algebra"
-      case DataEng        => "Data Engineering"
-      case Community      => "Community"
-      case ToolsEcosystem => "Tools & Ecosystems"
-      case Effects        => "Concurrent programming"
-      case Modeling       => "Modeling"
-      case Cloud          => "Cloud"
-      case AI             => "Artificial Intelligence"
-
-    def toStyle: String = this match
-      case Algebra        => "category-algebra"
-      case DataEng        => "category-data"
-      case Community      => "category-community"
-      case ToolsEcosystem => "category-tools"
-      case Effects        => "category-effects"
-      case Modeling       => "category-modeling"
-      case Cloud          => "category-cloud"
-      case AI             => "category-ai"
-
-end Talk
+  object Speaker:
+    def empty = Speaker("Malformed speaker", "", "")
 
 case class Break(
-    day: ConfDay,
-    start: Time,
+    dateTime: LocalDateTime,
     kind: Break.Kind,
     overrideDuration: Option[Int] = None
 ) extends Act
     with Durable:
-  def duration: Int = overrideDuration.getOrElse(kind.duration)
+  def duration: Int          = overrideDuration.getOrElse(kind.duration)
+  val day: DayOfWeek | Null  = dateTime.getDayOfWeek
+  val time: LocalTime | Null = dateTime.toLocalTime
   def render =
-    div(className := s"blank-card break ${kind.toStyle}", kind.toIcon, span(span(duration), span("min")), kind.toIcon)
+    div(className := s"blank-card break ${kind.style}", kind.icon, span(span(duration), span("min")), kind.icon)
 
 object Break:
-  enum Kind:
-    case Large, Lunch
+  enum Kind(val style: String, val duration: Int):
+    case Large extends Kind("break-large", 15)
+    case Lunch extends Kind("break-lunch", 60)
 
-    def toStyle = this match
-      case Large  => "break-large"
-      case Lunch  => "break-lunch"
-    def toIcon = this match
-      case Large  => Icons.chat
-      case Lunch  => Icons.food
-    def duration = this match
-      case Large  => 15
-      case Lunch  => 60
+    def icon = this match
+      case Large => Icons.chat
+      case Lunch => Icons.food
+
   object Kind:
     val max: Int = Kind.values.map(_.duration).max
 
 case class Special(
-    day: ConfDay,
-    start: Time,
+    dateTime: LocalDateTime,
     kind: Special.Kind
-) extends Act:
+) extends Act {
+  val day: DayOfWeek | Null  = dateTime.getDayOfWeek
+  val time: LocalTime | Null = dateTime.toLocalTime
   def render: ReactiveHtmlElement[HTMLDivElement] = kind match
-    case Special.Kind.End            => div(className := "blank-card", Icons.logo("#222222"))
-    case Special.Kind.CommunityParty => div(className := s"blank-card community-party")
-
+    case Special.Kind.End            => div(className := "blank-card end-day", Icons.logo("#222222"))
+}
 object Special:
   enum Kind:
-    case End, CommunityParty
+    case End

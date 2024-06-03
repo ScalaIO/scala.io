@@ -2,6 +2,7 @@ package io.scala.domaines
 
 import com.raquo.laminar.api.L._
 import io.scala.svgs._
+import io.scala.modules.elements.Links
 
 case class Social(
     kind: Social.Kind,
@@ -24,11 +25,11 @@ object Social:
   enum Kind:
     case Twitter, Linkedin, Github, Gitlab, Other
 
-  def render(socials: List[Social], owner: String) = socials.sorted.map: social =>
+  def renderIcons(socials: List[Social], owner: String) = socials.sorted.map: social =>
     a(social.icon, href := social.url, aria.label := s"$owner's ${social.kind}")
 
   def renderWithAccount(socials: List[Social]) = socials.sorted.map:
     case social @ (Social(Kind.Twitter | Kind.Github | Kind.Gitlab, _)) =>
-      a(social.icon, href := social.url, span("@", social.linkName))
+      Links.highlighted(social.icon, href := social.url, span("@", social.linkName))
     case social @ (Social(Kind.Linkedin, _) | Social(Kind.Other, _)) =>
-      a(social.icon, href := social.url, span(social.linkName))
+      Links.highlighted(social.icon, href := social.url, span(social.linkName))

@@ -34,7 +34,7 @@ object Header {
 
   private val linksPage: Seq[(String, Page)] = Seq(
     Lexicon.Header.talks    -> TalksPage(),
-    Lexicon.Header.sponsors -> SponsorsPage,
+    Lexicon.Header.sponsors -> SponsorsPage(),
     Lexicon.Header.venue    -> VenuePage,
     Lexicon.Header.schedule -> SchedulePage(),
     "Scala-FR events"       -> EventsPage,
@@ -43,10 +43,6 @@ object Header {
 
   def links = div(
     className := "links",
-    span(
-      className := "accordion",
-      "CONFERENCE"
-    ),
     linksPage.map(navLink(_, _))
   )
   def mobileLinks = div(

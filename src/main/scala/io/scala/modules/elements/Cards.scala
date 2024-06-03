@@ -11,6 +11,12 @@ object Cards:
       elements
     )
 
+  def containerFlex(elements: ReactiveHtmlElement[HTMLElement]*) =
+    div(
+      className := "card-container-flex",
+      elements
+    )
+
   def shadowed(
     header: ReactiveHtmlElement[HTMLElement] = div(),
     body: ReactiveHtmlElement[HTMLElement] = div(),
