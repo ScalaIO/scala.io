@@ -7,7 +7,6 @@ import io.scala.domaines.{Talk => Talk, _}
 import io.scala.modules.TalkCard
 import io.scala.modules.elements._
 import io.scala.views.ReactiveView
-import io.scala.views.SimpleViewWithDraft
 
 import com.raquo.laminar.api.L._
 import scala.collection.immutable.Queue
