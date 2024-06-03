@@ -23,7 +23,7 @@ jobs:
         max_attempts: 3
         command: |
           npm install
-          npx sass src/main/resources/css/main.scss src/main/resources/css/output.css
+          npx sass public/assets/css/main.scss public/assets/css/output.css
           sbt "compile; fullLinkJS"
           npm run build
     - name: Deploy the website in preproduction
