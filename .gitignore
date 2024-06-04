@@ -42,4 +42,4 @@ metals.sbt
 # Project specific
 dist/
 output.css.map
-output.css
+/public/assets/css/output.css
