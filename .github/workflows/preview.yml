@@ -72,7 +72,7 @@ jobs:
       - name: Build static website
         run: |
           npm install
-          npx sass public/assets/css/main.scss public/assets/css/output.css
+          npx sass src/main/resources/css/main.scss src/main/resources/css/output.css
           sbt "compile; fullLinkJS"
           npm run build
           mv dist dist-prod
@@ -124,7 +124,7 @@ jobs:
       - name: Build static website
         run: |
           npm install
-          npx sass public/assets/css/main.scss public/assets/css/output.css
+          npx sass src/main/resources/css/main.scss src/main/resources/css/output.css
           sbt "compile; fullLinkJS"
           npm run build
           mv dist dist-prod
