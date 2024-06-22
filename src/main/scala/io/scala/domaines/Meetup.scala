@@ -1,14 +1,14 @@
 package io.scala.domaines
 
 import com.raquo.laminar.api.L._
+import java.time.LocalDateTime
+
 import io.scala.data.parsers.Parsers
 import io.scala.modules.elements.Cards
 import io.scala.modules.elements.Links
 import io.scala.modules.elements.Lists
 import io.scala.modules.elements.Paragraphs
 import io.scala.modules.elements.Titles
-
-import java.time.LocalDateTime
 
 case class Meetup(
     basicInfo: Meetup.BasicInfo,
@@ -49,14 +49,18 @@ object Meetup:
       start: LocalDateTime,
       end: LocalDateTime,
       location: String,
-      link: Option[String],
-      description: String
+      link: Option[String]
   )
 
   object BasicInfo:
-    def empty = BasicInfo("", LocalDateTime.MIN, LocalDateTime.MIN, "", None, "")
-    def apply(name: String, dateTime: (LocalDateTime, LocalDateTime), location: String, link: Option[String], description: String): BasicInfo =
-      BasicInfo(name, dateTime._1, dateTime._2, location, link, description)
+    def empty = BasicInfo("", LocalDateTime.MIN, LocalDateTime.MIN, "", None)
+    def apply(
+        name: String,
+        dateTime: (LocalDateTime, LocalDateTime),
+        location: String,
+        link: Option[String]
+    ): BasicInfo =
+      BasicInfo(name, dateTime._1, dateTime._2, location, link)
 
   case class Talk(
       title: String,

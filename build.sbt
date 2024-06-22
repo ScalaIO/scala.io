@@ -53,7 +53,7 @@ def eventListing() = Def.task {
     s"""|package io.scala.data
        |
        |object EventFilesName:
-       |  val names = List(${events.map(file => s""""${file.getName()}"""").mkString(",")})
+       |  val events = List(${events.map(file => "\"" * 3 + IO.read(file) + "\"" * 3).mkString(",")})
        |""".stripMargin
 
   if (!file.exists() || IO.read(file) != content) {

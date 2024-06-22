@@ -4,15 +4,15 @@
 - Location: Teads, Montpellier
 - Link: [meetup.com](https://www.meetup.com/lambdaplage/events/301018120)
 
-```
-New Scala/FP meetup in Montpellier, launched both as part of the Scala Ambassador program and for the Scala community.
-```
-
 ## Talks
 
-### TBA
+### CVEs on github
 
-### TBA
+- [Olivier Abdesselam](https://www.linkedin.com/in/olivier-abdesselam/)
+
+```
+How to monitor and fix scala CVEs on your github repository
+```
 
 ### FullStack Scala development
 

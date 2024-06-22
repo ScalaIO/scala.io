@@ -1,7 +1,9 @@
 package io.scala.domaines
 
+import io.scala.data.current
 import io.scala.data.parsers.Parsers
 import io.scala.modules.TalkCard
+import io.scala.modules.elements.Paragraphs
 import io.scala.svgs.Icons
 
 import com.raquo.laminar.api.L._
@@ -11,8 +13,6 @@ import java.time.LocalDateTime
 import java.time.LocalTime
 import org.scalajs.dom
 import org.scalajs.dom.HTMLDivElement
-import io.scala.data.current
-import io.scala.modules.elements.Paragraphs
 
 sealed trait TalkInfo[A <: TalkInfo[A]]:
   def ordinal: Int
@@ -45,13 +45,12 @@ case class Talk(
 
 object Talk:
   opaque type Room = String
-  extension (room: Room)
-    def show: String = s"Room $room"
+  extension (room: Room) def show: String = s"Room $room"
   object Room:
-    def empty = "TBD"
+    def empty                     = "TBD"
     def apply(room: String): Room = room
-    
-  def empty               = Talk(BasicInfo.empty, "To be announced", List.empty)
+
+  def empty            = Talk(BasicInfo.empty, "To be announced", List.empty)
   given Ordering[Talk] = Ordering.by(talk => (talk.info.kind, talk.info.title))
   given Ordering[Kind] = Ordering.by:
     case Kind.Lightning => 4
@@ -87,17 +86,17 @@ object Talk:
       socials: List[Social] = List.empty,
       bio: String = ""
   ):
-    lazy val (jobTitle, company) = 
+    lazy val (jobTitle, company) =
       val parsed = job.splitAt(job.indexOf("@"))
       (parsed._1.trim, parsed._2.drop(1).trim)
 
-    def renderBio = bio.split("\n").map(Paragraphs.description(_))
+    def renderBio = bio.split("\n")
 
   object Speaker:
     def empty = Speaker("Malformed speaker", "", "")
 
 case class Break(
-    dateTime: LocalDateTime,
+    dateTime: LocalDateTime | Null,
     kind: Break.Kind,
     overrideDuration: Option[Int] = None
 ) extends Act
@@ -127,7 +126,7 @@ case class Special(
   val day: DayOfWeek | Null  = dateTime.getDayOfWeek
   val time: LocalTime | Null = dateTime.toLocalTime
   def render: ReactiveHtmlElement[HTMLDivElement] = kind match
-    case Special.Kind.End            => div(className := "blank-card end-day", Icons.logo("#222222"))
+    case Special.Kind.End => div(className := "blank-card end-day", Icons.logo("#222222"))
 }
 object Special:
   enum Kind:

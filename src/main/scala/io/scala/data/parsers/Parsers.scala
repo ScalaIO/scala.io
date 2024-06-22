@@ -1,11 +1,5 @@
 package io.scala.data.parsers
 
-import io.scala.domaines.Meetup
-import io.scala.domaines.Social
-import io.scala.domaines.Sponsor
-import io.scala.domaines.Talk
-import io.scala.modules.elements.Links
-
 import com.raquo.laminar.api.L.*
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME
@@ -14,6 +8,16 @@ import knockoff.ChunkParser
 import knockoff.HeaderChunk
 import org.scalajs.dom.console
 import scala.collection.immutable.Queue
+
+import io.scala.domaines.Meetup
+import io.scala.domaines.Social
+import io.scala.domaines.Sponsor
+import io.scala.domaines.Talk
+import io.scala.modules.elements.Links
+
+val linkExtractorRegex = """\(([^\(\)]+)\)""".r
+def extractLink(link: String) =
+  linkExtractorRegex.findFirstMatchIn(link).map(_.group(1))
 
 object Parsers:
   val parser = new ChunkParser
@@ -28,7 +32,7 @@ object Parsers:
       ~> ((parser.textLine <~ parser.emptyLine.?) - parser.regex("```".r)).+
       <~ parser.regex("""```\n""".r)
 
-  val description   = codeBlock <~ emptyLine.?
+  val description     = codeBlock <~ emptyLine.?
   def headerN(n: Int) = header.filter { case HeaderChunk(`n`, _) => true; case _ => false } <~ emptyLine.?
 
   def listToMap(list: List[Chunk], sep: String): Map[String, String] =
@@ -51,18 +55,17 @@ object Parsers:
       )
 
     def basicInfo =
-      headerN(1) ~ list ~ description map {
-        case HeaderChunk(_, name) ~ practicalInfo ~ description =>
+      headerN(1) ~ list map {
+        case HeaderChunk(_, name) ~ practicalInfo =>
           val infoMap = listToMap(practicalInfo, ":")
           Meetup.BasicInfo(
             name,
             dateParser(infoMap("Date")),
             infoMap("Location"),
-            infoMap.get("Link"),
-            description.map(_.content).mkString("\n")
+            infoMap.get("Link").flatMap(extractLink)
           )
         case chunk =>
-          console.log(s"Error while parsing ${chunk._1._1.content}")
+          console.log(s"Error while parsing ${chunk._1.content}")
           Meetup.BasicInfo.empty
       }
 
