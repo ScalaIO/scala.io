@@ -1,20 +1,20 @@
 package io.scala
 
-import io.scala.views._
-import io.scala.views.IndexView
-
-import app.faq._
+import app.faq.*
 import app.schedule.ScheduleView
 import app.talks.TalkList
 import app.talks.TalkView
-import com.raquo.laminar.api.L._
-import com.raquo.waypoint._
+import com.raquo.laminar.api.L.*
+import com.raquo.waypoint.*
 import org.scalajs.dom.document
 import org.scalajs.dom.html
-import upickle.default._
+import upickle.default.*
 import urldsl.errors.DummyError
 import urldsl.vocabulary.FromString
 import urldsl.vocabulary.Printer
+
+import io.scala.views.*
+import io.scala.views.IndexView
 
 sealed trait Draftable:
   def withDraft: Option[Boolean]
@@ -28,7 +28,10 @@ sealed trait Slugify:
 sealed trait Page:
   def title: String
 
-case class IndexPage(withDraft: Option[Boolean] = None, conference: Option[String] = None) extends Page with Draftable with Routeable:
+case class IndexPage(withDraft: Option[Boolean] = None, conference: Option[String] = None)
+    extends Page
+    with Draftable
+    with Routeable:
   def title: String = "Home"
 case class TalksPage(withDraft: Option[Boolean] = None, conference: Option[String] = None)
     extends Page
@@ -66,7 +69,7 @@ object Page {
 
   given pageArgBasicCodec: ReadWriter[Page] = macroRW
 
-  val draftParam = param[Boolean]("withDraft").?
+  val draftParam      = param[Boolean]("withDraft").?
   val conferenceParam = param[String]("conference").?
 
   given FromString[Page, DummyError] = {

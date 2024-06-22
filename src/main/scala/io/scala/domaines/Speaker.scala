@@ -1,6 +1,6 @@
 package io.scala.domaines
 
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
 
 case class Speaker(
     name: String,
@@ -12,4 +12,4 @@ case class Speaker(
     confirmed: Boolean
 ):
   def renderDescription = description.split("\n").map(p(_))
-  def photoPath = photo.fold(io.scala.profilePlaceholder)(path => s"/images/profiles/$path")
+  def photoPath         = photo.fold(io.scala.profilePlaceholder)(path => s"/images/profiles/$path")

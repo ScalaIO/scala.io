@@ -1,5 +1,11 @@
 package io.scala.app.schedule
 
+import com.raquo.laminar.api.L.*
+import java.time.DayOfWeek
+import java.time.LocalTime
+import scala.collection.immutable.Queue
+import scala.collection.mutable
+
 import io.scala.Lexicon
 import io.scala.data.ScheduleInfo
 import io.scala.data.ScheduleInfo.maxEnd
@@ -12,12 +18,6 @@ import io.scala.modules.syntax.*
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
 import io.scala.views.SimpleViewWithDraft
-
-import com.raquo.laminar.api.L.*
-import java.time.DayOfWeek
-import java.time.LocalTime
-import scala.collection.immutable.Queue
-import scala.collection.mutable
 
 case object ScheduleView extends SimpleViewWithDraft {
   val selectedDay: Var[DayOfWeek] = Var(DayOfWeek.THURSDAY)

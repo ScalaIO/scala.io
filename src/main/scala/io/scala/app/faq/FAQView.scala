@@ -1,17 +1,18 @@
 package io.scala.app.faq
 
+import com.raquo.laminar.api.L.*
+import com.raquo.laminar.nodes.ReactiveElement
+import org.scalajs.dom.HTMLDivElement
+
 import io.scala.data.OrgaInfo.allOrga
 import io.scala.domaines.Organizer
 import io.scala.domaines.Social
-import io.scala.modules.elements.{Links, Titles}
 import io.scala.modules.elements.Cards
+import io.scala.modules.elements.Links
 import io.scala.modules.elements.Lists
 import io.scala.modules.elements.Paragraphs
+import io.scala.modules.elements.Titles
 import io.scala.svgs.Icons.github
-
-import com.raquo.laminar.api.L._
-import com.raquo.laminar.nodes.ReactiveElement
-import org.scalajs.dom.HTMLDivElement
 import io.scala.views.SimpleView
 
 object FAQView extends SimpleView {

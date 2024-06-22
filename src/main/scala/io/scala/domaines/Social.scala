@@ -1,8 +1,9 @@
 package io.scala.domaines
 
-import com.raquo.laminar.api.L._
-import io.scala.svgs._
+import com.raquo.laminar.api.L.*
+
 import io.scala.modules.elements.Links
+import io.scala.svgs.*
 
 case class Social(
     kind: Social.Kind,

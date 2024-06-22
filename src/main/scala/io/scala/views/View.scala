@@ -1,10 +1,10 @@
 package io.scala.views
 
-import com.raquo.laminar.api.L._
-import io.scala.modules.layout._
+import com.raquo.laminar.api.L.*
 
-trait GenericView {
-}
+import io.scala.modules.layout.*
+
+trait GenericView {}
 
 trait SimpleView extends GenericView:
   def body(): HtmlElement

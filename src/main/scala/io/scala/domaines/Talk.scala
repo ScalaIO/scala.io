@@ -1,18 +1,18 @@
 package io.scala.domaines
 
-import io.scala.data.current
-import io.scala.data.parsers.Parsers
-import io.scala.modules.TalkCard
-import io.scala.modules.elements.Paragraphs
-import io.scala.svgs.Icons
-
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.LocalTime
 import org.scalajs.dom
 import org.scalajs.dom.HTMLDivElement
+
+import io.scala.data.current
+import io.scala.data.parsers.Parsers
+import io.scala.modules.TalkCard
+import io.scala.modules.elements.Paragraphs
+import io.scala.svgs.Icons
 
 sealed trait TalkInfo[A <: TalkInfo[A]]:
   def ordinal: Int

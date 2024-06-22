@@ -1,7 +1,8 @@
 package io.scala.modules.layout
 
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+
 import io.scala.Lexicon
 import io.scala.modules.elements.Line
 import io.scala.modules.elements.LineKind
@@ -42,7 +43,7 @@ object Footer {
 
   def social(icon: SvgElement, url: String, name: String) = a(
     icon,
-    href := url,
+    href       := url,
     aria.label := name
   )
 

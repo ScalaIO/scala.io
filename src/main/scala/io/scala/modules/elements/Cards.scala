@@ -1,6 +1,6 @@
 package io.scala.modules.elements
 
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom.HTMLElement
 
@@ -18,9 +18,9 @@ object Cards:
     )
 
   def shadowed(
-    header: ReactiveHtmlElement[HTMLElement] = div(),
-    body: ReactiveHtmlElement[HTMLElement] = div(),
-    footer: ReactiveHtmlElement[HTMLElement] = div()
+      header: ReactiveHtmlElement[HTMLElement] = div(),
+      body: ReactiveHtmlElement[HTMLElement] = div(),
+      footer: ReactiveHtmlElement[HTMLElement] = div()
   ) =
     div(
       className := "card-blank",
@@ -30,10 +30,10 @@ object Cards:
     )
 
   def withMedia(
-    header: ReactiveHtmlElement[HTMLElement] = div(),
-    media: ReactiveHtmlElement[HTMLElement] = div(),
-    body: ReactiveHtmlElement[HTMLElement] = div(),
-    footer: ReactiveHtmlElement[HTMLElement] = div()
+      header: ReactiveHtmlElement[HTMLElement] = div(),
+      media: ReactiveHtmlElement[HTMLElement] = div(),
+      body: ReactiveHtmlElement[HTMLElement] = div(),
+      footer: ReactiveHtmlElement[HTMLElement] = div()
   ) =
     div(
       className := "card-blank",

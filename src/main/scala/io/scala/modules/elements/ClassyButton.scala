@@ -1,9 +1,10 @@
 package io.scala.modules.elements
 
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import io.scala.utils.ButtonKind
 import org.scalajs.dom.HTMLElement
+
+import io.scala.utils.ButtonKind
 
 object ClassyButton {
   def apply(
@@ -16,7 +17,7 @@ object ClassyButton {
       case ButtonKind.Href(link) => a(text, href := link, target := "_blank")
 
     element.amend(
-      className                                   := "classy-button",
+      className                     := "classy-button",
       className.toggle("highlight") := isImportant
     )
 }

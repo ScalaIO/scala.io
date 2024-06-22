@@ -1,19 +1,18 @@
 package io.scala.app.faq
 
+import com.raquo.laminar.api.L.*
+import com.raquo.laminar.modifiers.RenderableText
+
 import io.scala.modules.elements.Links
 import io.scala.modules.elements.Lists
 import io.scala.modules.elements.Paragraphs
 import io.scala.modules.elements.Titles
 import io.scala.views.SimpleView
 
-import com.raquo.laminar.api.L._
-import com.raquo.laminar.modifiers.RenderableText
-
 object CoCView extends SimpleView:
   override def body(): HtmlElement = sectionTag(
     className := "container coc",
-    Titles.withSub("Scala-FR Code of Conduct (SFCoC)", p("Version 0.0.1"),
-    ),
+    Titles.withSub("Scala-FR Code of Conduct (SFCoC)", p("Version 0.0.1")),
     Paragraphs.description(
       "This Code of Conduct is heavily inspired form ",
       Links.highlighted(

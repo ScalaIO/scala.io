@@ -1,6 +1,7 @@
 package io.scala.modules.elements
 
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
+
 import io.scala.domaines.Sponsor
 object SponsorLogo {
   def apply(sponsor: Sponsor) =
@@ -10,8 +11,8 @@ object SponsorLogo {
         alt       := s"${sponsor.name} logo",
         className := s"sponsor-logo-${sponsor.rank.css}"
       ),
-      href   := sponsor.website,
-      target := "_blank",
+      href      := sponsor.website,
+      target    := "_blank",
       className := "sponsor-card"
     )
 }

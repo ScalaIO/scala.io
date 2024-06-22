@@ -1,15 +1,15 @@
 package io.scala
 package modules
 
-import io.scala.domaines.Talk
-import io.scala.svgs.Icons
-
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import elements.Line
 import org.scalajs.dom
 import org.scalajs.dom.HTMLDivElement
 import org.scalajs.dom.HTMLSpanElement
+
+import io.scala.domaines.Talk
+import io.scala.svgs.Icons
 
 object TalkKindTag:
   def apply(kind: Talk.Kind): ReactiveHtmlElement[HTMLSpanElement] =
@@ -28,7 +28,7 @@ object TalkCard:
         h3(
           className := "title",
           talk.info.title,
-          TalkKindTag(talk.info.kind),
+          TalkKindTag(talk.info.kind)
         ),
         div(
           className := "subtitle",

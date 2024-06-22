@@ -1,6 +1,7 @@
 package io.scala.app.talks
 
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
+
 import io.scala.domaines.Social
 import io.scala.domaines.Talk.Speaker
 import io.scala.modules.elements.Titles

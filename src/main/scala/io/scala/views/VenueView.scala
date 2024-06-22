@@ -1,10 +1,11 @@
 package io.scala.views
 
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
+
 import io.scala.modules.elements.Line
-import io.scala.modules.elements.Titles
-import io.scala.modules.elements.Lists
 import io.scala.modules.elements.Links
+import io.scala.modules.elements.Lists
+import io.scala.modules.elements.Titles
 
 object VenueView extends SimpleView {
 

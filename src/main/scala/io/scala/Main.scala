@@ -1,7 +1,6 @@
 package io.scala
 
-
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
 import org.scalajs.dom
 
 val profilePlaceholder = "/images/profile.webp"

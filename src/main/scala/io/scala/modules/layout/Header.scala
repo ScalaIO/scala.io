@@ -1,14 +1,15 @@
 package io.scala
 package modules.layout
 
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import org.scalajs.dom
+import org.scalajs.dom.window
+
 import io.scala.modules.elements.ShinyButton
 import io.scala.svgs.Icons
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
-import org.scalajs.dom
-import org.scalajs.dom.window
 
 object Header {
   var burgerClicked = Var(false)

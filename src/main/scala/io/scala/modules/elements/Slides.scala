@@ -1,6 +1,6 @@
 package io.scala.modules.elements
 
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
 
 sealed trait Slides:
   def url: String

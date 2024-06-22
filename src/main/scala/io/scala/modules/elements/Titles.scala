@@ -1,9 +1,9 @@
 package io.scala.modules.elements
 
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import org.scalajs.dom.HTMLHeadingElement
 import org.scalajs.dom.HTMLElement
+import org.scalajs.dom.HTMLHeadingElement
 
 object Titles:
   def apply(name: String, modifiers: Modifier[ReactiveHtmlElement[HTMLHeadingElement]]*) = h1(
@@ -23,7 +23,7 @@ object Titles:
     className := "small-title",
     modifiers
   )
-  
+
   def withSub(title: String, subtitle: HtmlElement) = div(
     h1(title),
     subtitle.amend(className := "page-subtitle"),
@@ -35,4 +35,3 @@ object Titles:
     className := "paragraph-title",
     modifiers
   )
-

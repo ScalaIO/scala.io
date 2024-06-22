@@ -1,15 +1,15 @@
 package io.scala.app.talks
 
+import com.raquo.laminar.api.L.*
+import scala.collection.immutable.Queue
+
 import io.scala.TalksPage
 import io.scala.data.TalksHistory
 import io.scala.data.TalksHistory.getConfName
-import io.scala.domaines.{Talk => Talk, _}
+import io.scala.domaines.*
 import io.scala.modules.TalkCard
-import io.scala.modules.elements._
+import io.scala.modules.elements.*
 import io.scala.views.ReactiveView
-
-import com.raquo.laminar.api.L._
-import scala.collection.immutable.Queue
 
 case object TalkList extends ReactiveView[TalksPage] {
 

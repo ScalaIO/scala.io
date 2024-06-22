@@ -1,6 +1,6 @@
 package io.scala.domaines
 
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
 import java.time.LocalDateTime
 
 import io.scala.data.parsers.Parsers

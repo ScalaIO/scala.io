@@ -1,10 +1,10 @@
 package io.scala.app.talks
 
-import io.scala.TalkPage
-import io.scala.svgs.Icons
+import com.raquo.laminar.api.L.*
 
-import com.raquo.laminar.api.L._
+import io.scala.TalkPage
 import io.scala.data.TalksHistory
+import io.scala.svgs.Icons
 import io.scala.views.ReactiveView
 
 object TalkView extends ReactiveView[TalkPage]:

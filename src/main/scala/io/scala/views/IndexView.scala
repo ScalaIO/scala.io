@@ -1,11 +1,12 @@
 package io.scala.views
 
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
+
 import io.scala.IndexPage
 import io.scala.data.TalksHistory
 import io.scala.modules.SpeakerCard
-import io.scala.modules.elements._
-import io.scala.modules.layout._
+import io.scala.modules.elements.*
+import io.scala.modules.layout.*
 
 case object IndexView extends EmptyReactiveView[IndexPage] {
 
@@ -47,12 +48,12 @@ case object IndexView extends EmptyReactiveView[IndexPage] {
 
   def speakerGallery(args: Signal[IndexPage]) =
     def speakers(conf: Option[String]) =
-        TalksHistory
-          .talksForConf(conf)
-          .filter(_.speakers.forall(_.confirmed))
-          .flatMap: talk =>
-            talk.speakers.map((_, talk.info))
-          .sortBy(_._1.name)
+      TalksHistory
+        .talksForConf(conf)
+        .filter(_.speakers.forall(_.confirmed))
+        .flatMap: talk =>
+          talk.speakers.map((_, talk.info))
+        .sortBy(_._1.name)
 
     div(
       className := "container speaker-gallery",

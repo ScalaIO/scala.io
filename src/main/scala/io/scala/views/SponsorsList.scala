@@ -1,12 +1,12 @@
 package io.scala.views
 
+import com.raquo.laminar.api.L.*
+import com.raquo.laminar.nodes.ReactiveHtmlElement
+
 import io.scala.Lexicon
 import io.scala.SponsorsPage
 import io.scala.data.SponsorsHistory
-import io.scala.modules.elements._
-
-import com.raquo.laminar.api.L._
-import com.raquo.laminar.nodes.ReactiveHtmlElement
+import io.scala.modules.elements.*
 
 case object SponsorsList extends ReactiveView[SponsorsPage] {
   def body(args: Signal[SponsorsPage]): HtmlElement = {

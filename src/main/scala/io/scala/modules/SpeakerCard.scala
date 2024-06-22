@@ -1,12 +1,12 @@
 package io.scala
 package modules
 
+import com.raquo.laminar.api.L.*
+
 import io.scala.domaines.Social
 import io.scala.domaines.Talk
 import io.scala.domaines.Talk.Speaker
 import io.scala.svgs.Icons
-
-import com.raquo.laminar.api.L._
 
 object SpeakerCard {
   def apply(speaker: Speaker, talkInfo: Talk.BasicInfo, conference: String) =

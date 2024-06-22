@@ -1,6 +1,6 @@
 package io.scala.modules.elements
 
-import com.raquo.laminar.api.L._
+import com.raquo.laminar.api.L.*
 
 object Separator {
   def apply(element: Element*): Div =

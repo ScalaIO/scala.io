@@ -1,9 +1,9 @@
 package io.scala.data
 
-import io.scala.domaines._
-
 import java.time.LocalDateTime
 import java.time.LocalTime
+
+import io.scala.domaines.*
 
 object ScheduleInfo {
   val breaks = List(
@@ -42,8 +42,8 @@ object ScheduleInfo {
     )
   )
 
-  val minStart           = LocalTime.of(9, 0)
-  val maxEnd             = LocalTime.of(19, 0)
-  val pxByHour           = 600
-  lazy val schedule      = TalksHistory.talksForConf(None)
+  val minStart      = LocalTime.of(9, 0)
+  val maxEnd        = LocalTime.of(19, 0)
+  val pxByHour      = 600
+  lazy val schedule = TalksHistory.talksForConf(None)
 }
