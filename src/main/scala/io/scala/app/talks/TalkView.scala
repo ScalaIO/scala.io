@@ -27,14 +27,16 @@ object TalkView extends ReactiveView[TalkPage]:
           className := "links",
           child <-- talk.map:
             _.info.slides
-              .map: slides =>
-                a(Icons.pdf, href := slides, slides, target := "_blank")
+              .collect:
+                case slides if slides.size > 0 =>
+                  a(Icons.pdf, href := slides, "Slides", target := "_blank")
               .getOrElse(emptyNode)
           ,
           child <-- talk.map:
             _.info.replay
-              .map: replayUrl =>
-                a(Icons.youtube, href := replayUrl, replayUrl, target := "_blank")
+              .collect:
+                case replayUrl if replayUrl.size > 0 =>
+                  a(Icons.youtube, href := replayUrl, "Replay", target := "_blank")
               .getOrElse(emptyNode)
         )
       ),
