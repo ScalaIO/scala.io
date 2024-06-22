@@ -2,15 +2,15 @@ package io.scala.views
 
 import com.raquo.laminar.api.L.*
 
-import io.scala.data.EventFilesName
-import io.scala.domaines.Meetup
+import io.scala.data.EventsData
+import io.scala.models.Meetup
 import io.scala.modules.elements.Containers
 import io.scala.modules.elements.Titles
 
 object EventsView extends SimpleView {
 
   lazy val events =
-    EventFilesName.events
+    EventsData.events
       .map: event =>
         Meetup(event)
       .sorted

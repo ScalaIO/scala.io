@@ -8,7 +8,7 @@ import org.scalajs.dom
 import org.scalajs.dom.HTMLDivElement
 import org.scalajs.dom.HTMLSpanElement
 
-import io.scala.domaines.Talk
+import io.scala.models.Talk
 import io.scala.svgs.Icons
 
 object TalkKindTag:

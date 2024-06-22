@@ -4,7 +4,7 @@ import com.raquo.laminar.api.L.*
 import java.time.LocalTime
 import org.scalajs.dom.HTMLDivElement
 
-import io.scala.domaines.*
+import io.scala.models.{Act, Break, Special, Talk}
 import io.scala.modules.syntax.*
 
 case class ScheduleDay(eventsList: Map[LocalTime, Seq[Act]], startingTimes: Seq[LocalTime], rooms: Seq[Talk.Room]):

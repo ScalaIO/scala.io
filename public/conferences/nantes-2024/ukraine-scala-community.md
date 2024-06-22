@@ -22,7 +22,7 @@ Discover our presence at conferences, active engagement in programs such as Goog
 
 ### Olya Mazhara
 
-- photoRelPath: /images/profiles/nantes2024/oMazhara.webp
+- photoRelPath: /images/profiles/nantes-2024/oMazhara.webp
 - job: Software Engineer @ Intellias
 - confirmed: true
 

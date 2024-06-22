@@ -3,15 +3,15 @@ package io.scala.data
 import scala.collection.mutable.HashMap as MutableMap
 
 import io.scala.data.parsers.Parsers
-import io.scala.domaines.Sponsor
-import io.scala.domaines.Talk
+import io.scala.models.Sponsor
+import io.scala.models.Talk
 
 val current = "paris-2024"
 object TalksHistory:
   private val historyMap =
     Map(
-      "nantes-2024" -> ConfFilesName.nantes2024,
-      "paris-2024"  -> ConfFilesName.paris2024
+      "nantes-2024" -> TalksData.nantes_2024,
+      "paris-2024"  -> TalksData.paris_2024
     )
 
   private val cachedTalks = MutableMap
@@ -31,8 +31,8 @@ object TalksHistory:
 object SponsorsHistory:
   private val sponsorsMap =
     Map(
-      "nantes-2024" -> SponsorsMd.nantes2024,
-      "paris-2024"  -> SponsorsMd.paris2024
+      "nantes-2024" -> SponsorsData.nantes_2024,
+      "paris-2024"  -> SponsorsData.paris_2024
     )
 
   private val cachedSponsors = MutableMap

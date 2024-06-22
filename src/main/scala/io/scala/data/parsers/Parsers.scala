@@ -9,10 +9,10 @@ import knockoff.HeaderChunk
 import org.scalajs.dom.console
 import scala.collection.immutable.Queue
 
-import io.scala.domaines.Meetup
-import io.scala.domaines.Social
-import io.scala.domaines.Sponsor
-import io.scala.domaines.Talk
+import io.scala.models.Meetup
+import io.scala.models.Social
+import io.scala.models.Sponsor
+import io.scala.models.Talk
 import io.scala.modules.elements.Links
 
 val linkExtractorRegex = """\(([^\(\)]+)\)""".r

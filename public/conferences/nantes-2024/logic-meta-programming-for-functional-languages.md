@@ -5,7 +5,7 @@
 - Category: Algebra
 - DateTime: 2024-02-16T09:00
 - Room: 0
-- Slides: 
+- Slides:
 - Replay: https://www.youtube.com/watch?v=K3babGnXfEI&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=2&pp=iAQB
 
 ## Abstract
@@ -18,7 +18,7 @@ Since the beginning of the 21st century, the functional programming paradigm, wh
 
 ### Enzo Crance
 
-- photoRelPath: /images/profiles/nantes2024/eCrance.webp
+- photoRelPath: /images/profiles/nantes-2024/eCrance.webp
 - job: PhD Student @ INRIA
 - confirmed: true
 

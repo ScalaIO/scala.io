@@ -20,6 +20,12 @@ object Titles:
 
   def small(title: String, modifiers: Modifier[ReactiveHtmlElement[HTMLHeadingElement]]*) = h3(
     title,
+    className := "small-title bold",
+    modifiers
+  )
+
+  def smallThin(title: String, modifiers: Modifier[ReactiveHtmlElement[HTMLHeadingElement]]*) = h3(
+    title,
     className := "small-title",
     modifiers
   )

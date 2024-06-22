@@ -1,4 +1,4 @@
-package io.scala.domaines
+package io.scala.models
 
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement

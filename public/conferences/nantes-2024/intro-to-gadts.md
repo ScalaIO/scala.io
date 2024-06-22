@@ -18,7 +18,7 @@ Les GADTs et Scala, c’est une très longue histoire de “je t’aime, moi non
 
 ### Xavier Van de Woestyne
 
-- photoRelPath: /images/profiles/nantes2024/xVdW.webp
+- photoRelPath: /images/profiles/nantes-2024/xVdW.webp
 - job: Software Engineer @ The Funkyworkers
 - confirmed: true
 

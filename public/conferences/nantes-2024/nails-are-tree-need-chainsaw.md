@@ -25,7 +25,7 @@ the process and how it helped me solved my problems with less pain.
 
 ### Matthieu Baechler
 
-- photoRelPath: /images/profiles/nantes2024/mBaechler.webp
+- photoRelPath: /images/profiles/nantes-2024/mBaechler.webp
 - job: Developer @ Freelancer
 - confirmed: true
 

@@ -7,7 +7,7 @@
 // object SpeakersInfo:
 //   val jimNewton = Speaker(
 //     name = "Jim Newton",
-//     photo = Some("nantes2024/jim.webp"),
+//     photo = Some("nantes-2024/jim.webp"),
 //     description = """|Jim Newton is a junior researcher professor at EPITA (Paris), working in the automata research group at EPITA Research Lab.  He holds a PhD in Computer Science from Sorbonne Université.
 //                      |Jim has 35+ years of experience in professional Lisp programming in the IC/VLSI design sector, at Cypress Semiconductor, Intel, and Cadence Design Systems.
 //                      |Jim has been programming off and on in Scala for about 5 years.
@@ -22,7 +22,7 @@
 //   )
 //   val uliFahrenberg = Speaker(
 //     name = "Uli Fahrenberg",
-//     photo = Some("nantes2024/uli.webp"),
+//     photo = Some("nantes-2024/uli.webp"),
 //     description = """|Ulrich (Uli) Fahrenberg is professor at EPITA Rennes and head of the automata research group at LRE, EPITA Paris. He holds a PhD in mathematics from Aalborg University and has worked at Aalborg University, IRISA Rennes, and at École polytechnique.
 //          |
 //          |Fahrenberg works in algebraic topology, concurrency theory, real-time verification, categorical foundations, and general quantitative verification. He has published more than 100 papers in computer science and mathematics. He has been a member of numerous program committees and is steering committee co-chair of the RAMiCS conferences and member of the steering committee of the GETCO conferences.
@@ -38,7 +38,7 @@
 
 //   val raphaelClaude = Speaker(
 //     name = "Raphael Claude",
-//     photo = Some("nantes2024/rClaude.webp"),
+//     photo = Some("nantes-2024/rClaude.webp"),
 //     description =
 //       "Staff Dev Lead at Criteo Developer & Site Reliability Engineer that mainly worked with the JVM and Hadoop ecosystem over the last decade.",
 //     job = "Staff Dev Lead",
@@ -51,7 +51,7 @@
 
 //   val anatoliiKmetiuk = Speaker(
 //     name = "Anatolii Kmetiuk",
-//     photo = Some("nantes2024/toli.webp"),
+//     photo = Some("nantes-2024/toli.webp"),
 //     job = "Compiler engineer and community manager",
 //     description =
 //       "Lawyer turned Scala Engineer for the past 10 years. Started as a Scala and Machine Learning freelancer for 5 years followed by another 4 years at EPFL at the Scala 3 core team in the roles of compiler engineer and community manager.",
@@ -67,7 +67,7 @@
 
 //   val briceJaglin = Speaker(
 //     name = "Brice Jaglin",
-//     photo = Some("nantes2024/bJaglin.webp"),
+//     photo = Some("nantes-2024/bJaglin.webp"),
 //     description =
 //       "I am the main maintainer of Scalafix since 2020, after I discovered the potential of using custom rules in a modular monolith at work and started contributing to the project to make that easier. Currently a Staff Engineer at Swile, I no longer use Scala on a day-to-day basis but I continue to maintain Scalafix on my free time as I have yet to find such a powerful tool in another ecosystem!",
 //     job = "Staff Engineer",
@@ -81,7 +81,7 @@
 
 //   val johannaVauchel = Speaker(
 //     name = "Johanna Vauchel",
-//     photo = Some("nantes2024/jVauchel.webp"),
+//     photo = Some("nantes-2024/jVauchel.webp"),
 //     description =
 //       "Diplômée de l'INSA de Rouen spécialité Génie Mathématique, j'ai commencé à travailler pour des applications 3D (aménagement intérieur, imagerie médicale, simulateur de vêtements). En 2021 je me suis reconvertie pour devenir Ingénieure Data, dans l'entreprise Lectra à Bordeaux, où je développe des pipelines de données en Scala via Kafka et Snowflake. J'aime former, vulgariser des concepts et partager avec mes collègues ou lors de conférences, des connaissances ou des retours d'expérience. Je suis adepte du sketchnoting et de la facilitation graphique.",
 //     job = "Data Engineer",
@@ -96,7 +96,7 @@
 
 //   val mehdiRebiai = Speaker(
 //     name = "Mehdi Rebiai",
-//     photo = Some("nantes2024/mRebiai.webp"),
+//     photo = Some("nantes-2024/mRebiai.webp"),
 //     description =
 //       """|Développeur depuis bientôt 20 ans, d'abord du Java puis un peu de front, puis beaucoup d'intégration continue et d'automatisation.
 //       |Désormais je suis Tech Lead Data chez Lectra : beaucoup de Scala et de Kafka.
@@ -113,7 +113,7 @@
 
 //   val valentinBergeron = Speaker(
 //     name = "Valentin Bergeron",
-//     photo = Some("nantes2024/vBergeron.webp"),
+//     photo = Some("nantes-2024/vBergeron.webp"),
 //     description =
 //       "Currently Engineering team lead @Ledger, I like Scala, making programming languages, and joking about python",
 //     job = "Engineering team lead",
@@ -127,7 +127,7 @@
 
 //   val sophieCollard = Speaker(
 //     name = "Sophie Collard",
-//     photo = Some("nantes2024/sCollard.webp"),
+//     photo = Some("nantes-2024/sCollard.webp"),
 //     description =
 //       "Sophie is a software engineer and ex-data scientist with a fondness for strongly typed functional languages. She has worked with Scala for the past 8 years and more recently delved into frontend development using Elm. She is a Lead Software Engineer at JPMorgan where she works on the Model-driven Engineering Platform. Her academic background is in Environmental Engineering (BEng) and Renewable Energy (MSc).",
 //     job = "Lead Software Engineer",
@@ -140,7 +140,7 @@
 
 //   val paulMatthew = Speaker(
 //     name = "Paul Matthews",
-//     photo = Some("nantes2024/pMatthews.webp"),
+//     photo = Some("nantes-2024/pMatthews.webp"),
 //     description = """|I'm currently a backend Scala developer at ClearScore with a focus on functional programming.
 //          |
 //          |I completed a BSc in Computer Science at the Uni of Hertfordshire in 2020 with first class honours and prior to this have a background in the music industry as a signed recording artist, record producer and audio engineer with credits including number 1 chart positions and platinum and gold sales.
@@ -156,7 +156,7 @@
 
 //   val lukaszBialy = Speaker(
 //     name = "Łukasz Biały",
-//     photo = Some("nantes2024/lBialy.webp"),
+//     photo = Some("nantes-2024/lBialy.webp"),
 //     description =
 //       "Polyglot full-stack developer and functional programming enthusiast. PSE & Scala Developer Advocate @ VirtusLab. Values quality over quantity. Permanent learner with a severe information dependency problem. Enjoys conversations about philosophy and all things related to mind's inner workings. Loves mountains, biking and hiking.",
 //     job = "Software Engineer",
@@ -169,7 +169,7 @@
 
 //   val olivierMelois = Speaker(
 //     name = "Olivier Mélois",
-//     photo = Some("nantes2024/oMelois.webp"),
+//     photo = Some("nantes-2024/oMelois.webp"),
 //     description =
 //       """|My name is Olivier Mélois. I have been using Scala as my main language for since 2013. I maintain weaver-test and smithy4s, and have contribute to many libraries and tools, from ammonite to cats-effect.
 //          |
@@ -186,7 +186,7 @@
 
 //   val enzoCrance = Speaker(
 //     name = "Enzo Crance",
-//     photo = Some("nantes2024/eCrance.webp"),
+//     photo = Some("nantes-2024/eCrance.webp"),
 //     description =
 //       "PhD in Computer Science @ Inria 🇫🇷 Meta-programming for Coq, formal proof automation Functional programming enjoyer",
 //     job = "PhD Student",
@@ -201,7 +201,7 @@
 
 //   val anthonyCros = Speaker(
 //     name = "Anthony Cros",
-//     photo = Some("nantes2024/aCros.webp"),
+//     photo = Some("nantes-2024/aCros.webp"),
 //     description = """|I am an independent software engineer/architect with 20 years of professional coding experience (see LinkedIn). My focus is on data transformations (especially big data), domain modeling, software architecture in general, and bioinformatics.
 //          |
 //          |My past experiences primarily include work in the biomedical field, with positions held at the Ontario Institute for Cancer Research, the Hospital for Sick Children in Toronto, the Children's Hospital of Philadelphia, the BF2I lab (INSA Lyon), and the bacteriology lab at UCBL (Lyon). I also worked for a short period of time in the telecom industry, although a less exciting venture for my tastes.
@@ -222,7 +222,7 @@
 
 //   val didierPlaindoux = Speaker(
 //     name = "Didier Plaindoux",
-//     photo = Some("nantes2024/dPlaindoux.webp"),
+//     photo = Some("nantes-2024/dPlaindoux.webp"),
 //     description =
 //       "I'm a compulsive designer of strong-typed functional, logical and object-oriented programming languages! The rest of the time, I'm a freelance software developer who works very hard to produce usable and used solutions.",
 //     job = "Senior Software Engineer",
@@ -237,7 +237,7 @@
 
 //   val francoisLaroche = Speaker(
 //     name = "François Laroche",
-//     photo = Some("nantes2024/fLaroche.webp"),
+//     photo = Some("nantes-2024/fLaroche.webp"),
 //     description = """|Développeur scala depuis plusieurs années, je me passionne pour la performance des applications.
 //          |
 //          |Je suis actuellement développeur chez NuMind où nous aidons nos clients à entraîner et déployer des modèles d'intelligence artificielle.
@@ -253,7 +253,7 @@
 
 //   val raphaelLemaitre = Speaker(
 //     name = "Raphaël Lemaitre",
-//     photo = Some("nantes2024/rLemaitre.webp"),
+//     photo = Some("nantes-2024/rLemaitre.webp"),
 //     description =
 //       """|Bonjour! I'm Raphaël Lemaitre, a seasoned programmer passionate about crafting efficient and sustainable technology. Since embarking on my career journey in 2000, I've been deeply involved in the realm of software development, with a focus on JVM languages like Java and Scala. My technical proficiency includes functional programming, database technologies such as PostgreSQL and Cassandra, along with system design.
 //          |
@@ -276,7 +276,7 @@
 
 //   val olyaMazhara = Speaker(
 //     name = "Olya Mazhara",
-//     photo = Some("nantes2024/oMazhara.webp"),
+//     photo = Some("nantes-2024/oMazhara.webp"),
 //     description =
 //       """|Scala has been my coding playground for about 5 wonderful years. While I've never taken the stage at conferences, I'm an avid attendee, soaking up the vibrant energy of the Scala community. My journey includes sharing the love for Scala by teaching courses at the university and organising cozy Scala meet-ups with friends. I even celebrated a birthday at one of our Scala gatherings, making it a memorable affair.
 //          |
@@ -293,7 +293,7 @@
 
 //   val adamWarski = Speaker(
 //     name = "Adam Warski",
-//     photo = Some("nantes2024/aWarski.webp"),
+//     photo = Some("nantes-2024/aWarski.webp"),
 //     description =
 //       """|I am one of the co-founders of SoftwareMill, where I code mainly using Scala and other interesting technologies. I am involved in open-source projects, such as sttp, MacWire, Quicklens, ElasticMQ and others. I have been a speaker at major conferences, such as JavaOne, LambdaConf, Devoxx and ScalaDays.
 //          |
@@ -311,7 +311,7 @@
 
 //   val xavierVdW = Speaker(
 //     name = "Xavier Van de Woestyne",
-//     photo = Some("nantes2024/xVdW.webp"),
+//     photo = Some("nantes-2024/xVdW.webp"),
 //     description =
 //       "I love programming languages (like OCaml, Elm, Elixir/Erlang, IO, Haskell and Scala), Types systems and Web programming.",
 //     job = "Software Engineer",
@@ -326,7 +326,7 @@
 
 //   val monicaMcGuigan = Speaker(
 //     name = "Monica McGuigan",
-//     photo = Some("nantes2024/mMcGuigan.webp"),
+//     photo = Some("nantes-2024/mMcGuigan.webp"),
 //     description = """|Monica is a junior Scala developer at JP Morgan, working in a team who aims to improve understanding of the banks’ data and data models.
 //          |
 //          |She began her programming journey using C#, then onto a mixture C++, JavaScript and TypeScript throughout her undergraduate Physics degree. She now writes Scala full time in her current position. Monica is also passionate about encouraging those who do not have a Computer Science background into software development roles, as she has been able to apply her transferable problem-solving skills from a scientific discipline to programming and is really enjoying it!
@@ -341,7 +341,7 @@
 
 //   val matthieuBaechler = Speaker(
 //     name = "Matthieu Baechler",
-//     photo = Some("nantes2024/mBaechler.webp"),
+//     photo = Some("nantes-2024/mBaechler.webp"),
 //     description =
 //       "I'm a veteran backend developer, living in Ardèche and writing software as a contractor for a living. I wrote Java for years and I'm now mainly writing Scala and Elm on a daily basis. My domains of interest are FP, reactive programming, distributed architecture, CQRS/ES and performance analysis.",
 //     socials = List(
@@ -356,7 +356,7 @@
 
 //   val antoineBlondeau = Speaker(
 //     name = "Antoine Blondeau",
-//     photo = Some("nantes2024/aBlondeau.webp"),
+//     photo = Some("nantes-2024/aBlondeau.webp"),
 //     description =
 //       "I'm a backend developer specialized in platform orchestration. I have experience with Python, Golang and I work with scala since around a year.",
 //     socials = List(
@@ -370,7 +370,7 @@
 
 //   val jeanBaptiseKaiser = Speaker(
 //     name = "Jean-Baptiste Kaiser",
-//     photo = Some("nantes2024/jbKaiser.webp"),
+//     photo = Some("nantes-2024/jbKaiser.webp"),
 //     description = "",
 //     job = "Scala Developer",
 //     company = "Clever Cloud",
@@ -384,7 +384,7 @@
 
 //   val samuelBernard = Speaker(
 //     name = "Samuel Bernard",
-//     photo = Some("nantes2024/sBernard.webp"),
+//     photo = Some("nantes-2024/sBernard.webp"),
 //     description = "After a PhD in Distributed Systems, Samuel left the academic world to be a software engineer in a fast growing scale-up. There he learned how to build cutting-edge softwares and data infrastructures. Over the years he refined his skills and became an expert in DevOps/DataOps and at managing tech teams. Samuel has been an early employee of Criteo, the Technology Innovation leader at S4M, co-founder & CTO at Make.org, and an independent coach/advisor of start-ups & data teams.",
 //     job = "Co-Founder & CTO",
 //     company = "NuMind",

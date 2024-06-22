@@ -3,6 +3,8 @@ package io.scala.views
 import com.raquo.laminar.api.L.*
 
 import io.scala.IndexPage
+import io.scala.Page
+import io.scala.VenuePage
 import io.scala.data.TalksHistory
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
@@ -84,7 +86,7 @@ case object IndexView extends EmptyReactiveView[IndexPage] {
         " @ ",
         a(
           className := "event-location",
-          href      := "/venue",
+          Page.navigateTo(VenuePage),
           "Epita"
         )
       )

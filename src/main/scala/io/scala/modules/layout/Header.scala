@@ -37,9 +37,9 @@ object Header {
     Lexicon.Header.talks    -> TalksPage(),
     Lexicon.Header.sponsors -> SponsorsPage(),
     Lexicon.Header.venue    -> VenuePage,
-    Lexicon.Header.schedule -> SchedulePage(),
-    "Scala-FR events"       -> EventsPage,
-    "FAQ"                   -> FAQPage
+    // Lexicon.Header.schedule -> SchedulePage(),
+    "Scala-FR events" -> EventsPage,
+    "FAQ"             -> FAQPage
   )
 
   def links = div(

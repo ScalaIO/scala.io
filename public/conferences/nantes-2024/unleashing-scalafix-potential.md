@@ -22,7 +22,7 @@ In this talk, we will [demystify AST traversal and semantic information lookup](
 
 ### Brice Jaglin
 
-- photoRelPath: /images/profiles/nantes2024/bJaglin.webp
+- photoRelPath: /images/profiles/nantes-2024/bJaglin.webp
 - job: Staff Engineer @ Swile
 - confirmed: true
 

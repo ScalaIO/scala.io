@@ -1,7 +1,7 @@
 package io.scala.data
 
-import io.scala.domaines.Organizer
-import io.scala.domaines.Social
+import io.scala.models.Organizer
+import io.scala.models.Social
 
 object OrgaInfo:
   val jonathanWinandy = Organizer(

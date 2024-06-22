@@ -3,9 +3,9 @@ package modules
 
 import com.raquo.laminar.api.L.*
 
-import io.scala.domaines.Social
-import io.scala.domaines.Talk
-import io.scala.domaines.Talk.Speaker
+import io.scala.models.Social
+import io.scala.models.Talk
+import io.scala.models.Talk.Speaker
 import io.scala.svgs.Icons
 
 object SpeakerCard {

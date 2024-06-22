@@ -32,7 +32,7 @@ We’ll begin by working with an Animal type hierarchy and some PetRescue and Pe
 
 ### Sophie Collard
 
-- photoRelPath: /images/profiles/nantes2024/sCollard.webp
+- photoRelPath: /images/profiles/nantes-2024/sCollard.webp
 - job: Lead Software Engineer @ JPMorgan
 - confirmed: true
 
