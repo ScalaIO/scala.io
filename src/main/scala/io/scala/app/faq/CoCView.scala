@@ -31,6 +31,14 @@ object CoCView extends SimpleView:
     Paragraphs.description(
       "In service of this purpose, we open the community to all qualified individuals and we require that all members refrain from unprofessional conduct. Except as otherwise noted, we do not impose any ideology onto members, nor do we restrict participation based on people's personal attributes or their conduct in other communities."
     ),
+    Titles.small("Scope"),
+    Paragraphs.description(
+      "SFCoC applies to all members of the community at all times in any French community space, including",
+      Lists.flat(
+        li(Titles.paragraph("Physical spaces"), "such as meetups, conferences, and workplaces"),
+        li(Titles.paragraph("Virtual spaces"), "such as the Scala-FR discord server")
+      )
+    ),
     Titles.medium("Community Conduct", idAttr := "community-conduct"),
     Paragraphs.description(
       "We strongly encourage members to assume the best in every interaction; to be open, honest, and empathic in all communication; and to demonstrate politeness and professional courtesy in every situation."
@@ -64,7 +72,7 @@ object CoCView extends SimpleView:
     Titles.small("Resolution"),
     Paragraphs.description(
       Titles.paragraph("Unofficial Resolution"),
-      "For unofficial resolution, we encourage aggrieved members to speak to accused members directly, using the language of non-violent communication (NVC). At the request of an aggrieved member, we will appoint a mediator who can facilitate an unofficial resolution and serve as a witness for subsequent reporting."
+      "We encourage as much as possible this resolution mode where aggrieved members speak to accused members directly, using the language of non-violent communication (NVC). At the request of an aggrieved member, we will appoint a mediator who can facilitate an unofficial resolution and serve as a witness for subsequent reporting."
     ),
     Paragraphs.description(
       Titles.paragraph("Official Resolution"),
