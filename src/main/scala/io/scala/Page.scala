@@ -156,8 +156,8 @@ object Page {
       cocRoute
     ),
     getPageTitle = page => page.title + " - ScalaIO",
-    serializePage = page => write(page)(pageArgBasicCodec),
-    deserializePage = pageStr => read(pageStr)(pageArgBasicCodec)
+    serializePage = page => write(page)(using pageArgBasicCodec),
+    deserializePage = pageStr => read(pageStr)(using pageArgBasicCodec)
   )(
     popStateEvents = windowEvents(_.onPopState),
     owner = unsafeWindowOwner
