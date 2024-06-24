@@ -3,7 +3,7 @@ package io.scala.data
 import java.time.LocalDateTime
 import java.time.LocalTime
 
-import io.scala.domaines.*
+import io.scala.models.{Break, Special}
 
 object ScheduleInfo {
   val breaks = List(

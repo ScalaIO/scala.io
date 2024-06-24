@@ -16,8 +16,3 @@ object Links:
       content: Modifier[ReactiveHtmlElement[HTMLAnchorElement]]*
   ) =
     a(className := "link-highlight", content, target := "_blank")
-
-  def highlightedInPlace(
-      content: Modifier[ReactiveHtmlElement[HTMLAnchorElement]]*
-  ) =
-    a(className := "link-highlight", content, target := "_self")

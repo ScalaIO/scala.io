@@ -35,10 +35,15 @@ lazy val root = project
         .withModuleSplitStyle(SmallestModules)
         .withSourceMap(false)
     },
-    confLister       := confListing().value,
+    confLister       := talksListing().value,
     publicFolderDev  := linkerOutputDirectory((Compile / fastLinkJS).value).getAbsolutePath,
     publicFolderProd := linkerOutputDirectory((Compile / fullLinkJS).value).getAbsolutePath,
-    Compile / sourceGenerators ++= Seq(eventListing().taskValue, confListing().taskValue, sponsorListing().taskValue)
+    Compile / sourceGenerators ++= Seq(
+      eventListing().taskValue,
+      talksListing().taskValue,
+      sponsorListing().taskValue,
+      confListing().taskValue
+    )
   )
 
 def lines(lines: String*)                = lines.mkString("\n")
@@ -47,12 +52,12 @@ def listMarkdowns(file: File): Seq[File] = file.listFiles().filter(_.getName.end
 def listFolders(file: File): Seq[File]   = file.listFiles().filter(_.isDirectory()).toList
 
 def eventListing() = Def.task {
-  val file   = (Compile / sourceManaged).value / "io" / "scala" / "data" / "EventFilesName.scala"
+  val file   = (Compile / sourceManaged).value / "io" / "scala" / "data" / "EventsData.scala"
   val events = listMarkdowns(new File("./public/scalafr-meetups"))
   val content =
     s"""|package io.scala.data
        |
-       |object EventFilesName:
+       |object EventsData:
        |  val events = List(${events.map(file => "\"" * 3 + IO.read(file) + "\"" * 3).mkString(",")})
        |""".stripMargin
 
@@ -63,18 +68,42 @@ def eventListing() = Def.task {
 }
 
 def confListing() = Def.task {
-  val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "ConfFilesName.scala"
+  val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "ConfsData.scala"
   val conferences = listFolders(new File("./public/conferences")).map { folder =>
-    val talks = listMarkdowns(folder).filter(_.getName != "conference.md")
-    s"""|  def ${folder
-        .getName()}: List[String] = List(${talks.map(file => "\"" * 3 + IO.read(file) + "\"" * 3).mkString(",")})"""
+    val conference = listMarkdowns(folder).find(_.getName == "conference.md").get
+    val folderSlug = slugify(folder.getName)
+    folderSlug -> s"""|  def ${folderSlug}: String = ${"\"" * 3 + IO.read(conference) + "\"" * 3}"""
   }
 
   val content =
     s"""|package io.scala.data
         |
-        |object ConfFilesName {
-        ${conferences.mkString("\n")}
+        |object ConfsData {
+        ${conferences.map(_._2).mkString("\n")}
+        |  def all: Seq[String] = Seq(${conferences.map(x => s""""${x._1}"""").mkString(",")})
+        |}""".stripMargin
+
+  if (!file.exists() || IO.read(file) != content) {
+    IO.write(file, content)
+  }
+  Seq(file)
+}
+
+def talksListing() = Def.task {
+  val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "TalksData.scala"
+  val talksByConf = listFolders(new File("./public/conferences")).map { folder =>
+    val talks = listMarkdowns(folder).filter(_.getName != "conference.md")
+    s"""|  def ${slugify(
+        folder
+          .getName()
+      )}: List[String] = List(${talks.map(file => "\"" * 3 + IO.read(file) + "\"" * 3).mkString(",")})"""
+  }
+
+  val content =
+    s"""|package io.scala.data
+        |
+        |object TalksData {
+        ${talksByConf.mkString("\n")}
         |}""".stripMargin
 
   if (!file.exists() || IO.read(file) != content) {
@@ -84,15 +113,15 @@ def confListing() = Def.task {
 }
 
 def sponsorListing() = Def.task {
-  val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "SponsorsMd.scala"
+  val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "SponsorsData.scala"
   val sponsors = listMarkdowns(new File("./public/sponsors")).map { md =>
-    s"""|  def ${md.base}: String = ${"\"" * 3 + IO.read(md) + "\"" * 3}"""
+    s"""|  def ${slugify(md.base)}: String = ${"\"" * 3 + IO.read(md) + "\"" * 3}"""
   }
 
   val content =
     s"""|package io.scala.data
         |
-        |object SponsorsMd {
+        |object SponsorsData {
         ${sponsors.mkString("\n")}
         |}""".stripMargin
 

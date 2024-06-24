@@ -5,21 +5,21 @@
 - Category: ToolsEcosystem
 - DateTime: 2024-02-15T18:20
 - Room: 0
-- Slides: 
+- Slides:
 - Replay: https://www.youtube.com/watch?v=jGGTqCmwArI&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=3&pp=iAQB
 
 ## Abstract
 
 ```
-Depuis plus de 10 ans, Clever Cloud utilise Scala pour le développement 
-de ses applications. 
+Depuis plus de 10 ans, Clever Cloud utilise Scala pour le développement
+de ses applications.
 En particulier un logiciel regroupant les API de dizaines de produits.
 
-Développé à l'origine en Scala 2, ce projet, ayant grossi de manière organique en recevant 
+Développé à l'origine en Scala 2, ce projet, ayant grossi de manière organique en recevant
 des contributions d'une douzaine de personnes à été migré en Scala 3 en début d'année.
 
-Embarquez avec nous dans cette aventure périlleuse qui a malmené 
-notre radeau à travers les rapides en évitant les rochers, 
+Embarquez avec nous dans cette aventure périlleuse qui a malmené
+notre radeau à travers les rapides en évitant les rochers,
 tout ça dans le but d'accéder au trésor : Scala 3.
 ```
 
@@ -27,7 +27,7 @@ tout ça dans le but d'accéder au trésor : Scala 3.
 
 ### Antoine Blondeau
 
-- photoRelPath: /images/profiles/nantes2024/aBlondeau.webp
+- photoRelPath: /images/profiles/nantes-2024/aBlondeau.webp
 - job: Developer @ Clever Cloud
 - confirmed: true
 
@@ -44,7 +44,7 @@ I'm a backend developer specialized in platform orchestration. I have experience
 
 ### Jean-Baptiste Kaiser
 
-- photoRelPath: /images/profiles/nantes2024/jbKaiser.webp
+- photoRelPath: /images/profiles/nantes-2024/jbKaiser.webp
 - job: Scala Developer @ Clever Cloud
 - confirmed: true
 

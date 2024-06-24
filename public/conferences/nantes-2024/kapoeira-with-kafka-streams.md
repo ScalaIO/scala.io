@@ -28,7 +28,7 @@ Si vous êtes intéressés, nous serons ravis de récolter vos retours et vos co
 
 ### Johanna Vauchel
 
-- photoRelPath: /images/profiles/nantes2024/jVauchel.webp
+- photoRelPath: /images/profiles/nantes-2024/jVauchel.webp
 - job: Data Engineer @ Lectra
 - confirmed: true
 
@@ -46,7 +46,7 @@ Diplômée de l'INSA de Rouen spécialité Génie Mathématique, j'ai commencé 
 
 ### Mehdi Rebiai
 
-- photoRelPath: /images/profiles/nantes2024/mRebiai.webp
+- photoRelPath: /images/profiles/nantes-2024/mRebiai.webp
 - job: Data Engineer, Tech Lead @ Lectra
 - confirmed: true
 

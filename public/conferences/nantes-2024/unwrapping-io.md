@@ -24,7 +24,7 @@ We will compare both the low-level aspects, as well as take a look at structured
 
 ### Adam Warski
 
-- photoRelPath: /images/profiles/nantes2024/aWarski.webp
+- photoRelPath: /images/profiles/nantes-2024/aWarski.webp
 - job: Co-founder @ SoftwareMill
 - confirmed: true
 

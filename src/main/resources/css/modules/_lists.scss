@@ -22,3 +22,20 @@ $list-item-spacing: 0.25rem;
 
   @include list-item-spacing($list-item-spacing);
 }
+
+.list-pipes {
+  margin-left: 0;
+
+  li {
+    display: inline;
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+
+    &:first-child {
+      margin-left: 0;
+    }
+    &:last-child {
+      margin-right: 0;
+    }
+  }
+}

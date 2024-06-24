@@ -4,9 +4,11 @@ import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveElement
 import org.scalajs.dom.HTMLDivElement
 
+import io.scala.CoCPage
+import io.scala.Page
 import io.scala.data.OrgaInfo.allOrga
-import io.scala.domaines.Organizer
-import io.scala.domaines.Social
+import io.scala.models.Organizer
+import io.scala.models.Social
 import io.scala.modules.elements.Cards
 import io.scala.modules.elements.Links
 import io.scala.modules.elements.Lists
@@ -53,7 +55,7 @@ object FAQView extends SimpleView {
   lazy val commonQuestions = Cards.containerFlex(
     question(
       "Is there a Code of Conduct (CoC) ?",
-      p("Yes, you can find it ", Links.highlightedInPlace(href := "/code-of-conduct", "here")),
+      p("Yes, you can find it ", Links.highlighted("here", Page.navigateTo(CoCPage))),
       Paragraphs.description(
         "For any violation of the CoC, please fill in ",
         Links.highlighted(href := "https://forms.gle/cVTtNzPF77f4TsJW7", "this form")

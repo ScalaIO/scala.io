@@ -1,4 +1,4 @@
-package io.scala.domaines
+package io.scala.models
 
 case class Sponsor(
     name: String,

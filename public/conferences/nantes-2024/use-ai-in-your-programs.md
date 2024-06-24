@@ -5,7 +5,7 @@
 - Category: AI
 - DateTime: 2024-02-16T11:40
 - Room: 0
-- Slides: 
+- Slides:
 - Replay: https://www.youtube.com/watch?v=B3Mz-6e9B3s&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb
 
 ## Abstract
@@ -20,7 +20,7 @@ Une fois ceci fait, je souhaite montrer comment utiliser un modèle en utilisant
 
 ### François Laroche
 
-- photoRelPath: /images/profiles/nantes2024/fLaroche.webp
+- photoRelPath: /images/profiles/nantes-2024/fLaroche.webp
 - job: Tech Lead @ NuMind
 - confirmed: true
 
@@ -39,7 +39,7 @@ Je suis actuellement développeur chez NuMind où nous aidons nos clients à ent
 
 ### Samuel Bernard
 
-- photoRelPath: /images/profiles/nantes2024/sBernard.webp
+- photoRelPath: /images/profiles/nantes-2024/sBernard.webp
 - job: Co-Founder & CTO @ NuMind
 - confirmed: true
 

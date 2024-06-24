@@ -20,7 +20,7 @@ Now, two years later, with the format fleshed out and the lessons learnt, I’d 
 
 ### Anatolii Kmetiuk
 
-- photoRelPath: /images/profiles/nantes2024/toli.webp
+- photoRelPath: /images/profiles/nantes-2024/toli.webp
 - job: Compiler engineer and community manager @ Scala Center, EPFL
 - confirmed: true
 

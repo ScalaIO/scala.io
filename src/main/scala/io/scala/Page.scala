@@ -165,6 +165,8 @@ object Page {
     override def relativeUrlForPage(page: Page): String = super.relativeUrlForPage(page).replaceAll("\\?$", "")
   }
 
+  def current = router.currentPageSignal.now()
+
   // TODO: use collectSignal as much as possible to avoid recreating the whole components
   val splitter: SplitRender[Page, HtmlElement] =
     SplitRender(router.currentPageSignal)

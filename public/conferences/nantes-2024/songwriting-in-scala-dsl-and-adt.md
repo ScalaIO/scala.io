@@ -5,7 +5,7 @@
 - Category: Modeling
 - DateTime: 2024-02-15T14:00
 - Room: 0
-- Slides: 
+- Slides:
 - Replay: https://www.youtube.com/watch?v=Mr6TtLRU5LM&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=4&pp=iAQB
 
 ## Abstract
@@ -24,14 +24,14 @@ Topics covered:
 
 ### Paul Matthews
 
-- photoRelPath: /images/profiles/nantes2024/pMatthews.webp
+- photoRelPath: /images/profiles/nantes-2024/pMatthews.webp
 - job: Backend Scala Developer @ ClearScore
 - confirmed: true
 
 #### Links
 
 - [Linkedin](https://www.linkedin.com/in/matthews-paul)
-- [Other](https://en.wikipedia.org/wiki/Paul_Matthews_(musician))
+- [Other](<https://en.wikipedia.org/wiki/Paul_Matthews_(musician)>)
 
 #### Bio
 

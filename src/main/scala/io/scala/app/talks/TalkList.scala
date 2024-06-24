@@ -6,7 +6,7 @@ import scala.collection.immutable.Queue
 import io.scala.TalksPage
 import io.scala.data.TalksHistory
 import io.scala.data.TalksHistory.getConfName
-import io.scala.domaines.*
+import io.scala.models.Talk
 import io.scala.modules.TalkCard
 import io.scala.modules.elements.*
 import io.scala.views.ReactiveView

@@ -43,11 +43,10 @@ object Lexicon {
 
   object Footer {
     object Description {
-      val text = "Scala is an association founded in 2013 by Scala supporters for Scala enthusiasts."
+      val text = "ScalaIO is an association founded in 2013 by Scala supporters for Scala enthusiasts."
     }
 
     object Newsletter {
-      val title       = "Newsletter"
       val description = "Be the first to know about our news !"
       val button      = "Subscribe"
     }

@@ -11,7 +11,7 @@ import io.scala.data.ScheduleInfo
 import io.scala.data.ScheduleInfo.maxEnd
 import io.scala.data.ScheduleInfo.minStart
 import io.scala.data.ScheduleInfo.pxByHour
-import io.scala.domaines.*
+import io.scala.models.{Act, Break, Durable}
 import io.scala.modules.*
 import io.scala.modules.elements.*
 import io.scala.modules.syntax.*

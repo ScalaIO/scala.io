@@ -18,7 +18,7 @@ In my talk I will briefly introduce Besom, a Pulumi SDK for Scala and then swift
 
 ### Łukasz Biały
 
-- photoRelPath: /images/profiles/nantes2024/lBialy.webp
+- photoRelPath: /images/profiles/nantes-2024/lBialy.webp
 - job: Software Engineer @ VirtusLab
 - confirmed: true
 

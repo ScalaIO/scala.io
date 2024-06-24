@@ -5,7 +5,7 @@
 - Category: Cloud
 - DateTime: 2024-02-15T14:50
 - Room: 0
-- Slides: 
+- Slides:
 - Replay: https://www.youtube.com/watch?v=UorOxZTJDxg&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=10&pp=iAQB
 
 ## Abstract
@@ -24,7 +24,7 @@ This talk will serve as an introduction to the Smithy IDL, and a demo of what is
 
 ### Olivier Mélois
 
-- photoRelPath: /images/profiles/nantes2024/oMelois.webp
+- photoRelPath: /images/profiles/nantes-2024/oMelois.webp
 - job: Principal Engineer @ Disney Streaming Services
 - confirmed: true
 
