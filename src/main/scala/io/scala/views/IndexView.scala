@@ -78,7 +78,7 @@ case object IndexView extends EmptyReactiveView[IndexPage] {
       h2(className := "title", "Connecting Scala Enthusiasts!"),
       h3(
         className := "event-date-location",
-        "November 2024 - ",
+        "07 & 08 November 2024 - ",
         span(
           className := "event-town",
           "Paris"
