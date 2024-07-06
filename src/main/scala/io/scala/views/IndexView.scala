@@ -39,7 +39,7 @@ case object IndexView extends EmptyReactiveView[IndexPage] {
           ),
           br(),
           p(
-            "This edition brings us together in Nantes for two days, with a single-session structure and a large community space. With a great venue, wonderful speakers, and a lot of surprises, we are looking forward to meeting you there!"
+            "This edition brings us together in Paris for two days, with a multi-session structure and a large community space. With a great venue, wonderful speakers, and a lot of surprises, we are looking forward to meeting you there!"
           )
         ),
         Separator(),
