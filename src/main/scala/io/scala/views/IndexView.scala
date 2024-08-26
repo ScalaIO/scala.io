@@ -43,6 +43,8 @@ case object IndexView extends EmptyReactiveView[IndexPage] {
           )
         ),
         Separator(),
+        tickets,
+        Separator(),
         speakerGallery(args)
       ),
       Footer.render
@@ -59,10 +61,7 @@ case object IndexView extends EmptyReactiveView[IndexPage] {
 
     div(
       className := "container speaker-gallery",
-      span(
-        className := "page-title",
-        "Speaker Gallery"
-      ),
+      Titles("Speaker Gallery"),
       div(
         className := "card-container",
         children <-- args.map:
@@ -90,6 +89,28 @@ case object IndexView extends EmptyReactiveView[IndexPage] {
           "Epita"
         )
       )
+    )
+  )
+
+  lazy val tickets: Div = div(
+    className := "container",
+    Titles("Tickets"),
+    a(
+      title                      := "Online ticketing",
+      href                       := "https://www.billetweb.fr/shop.php?event=scalaio-paris-2024-epita",
+      className                  := "shop_frame",
+      target                     := "_blank",
+      dataAttr("src")            := "https://www.billetweb.fr/shop.php?event=scalaio-paris-2024-epita",
+      dataAttr("max-width")      := "100%",
+      dataAttr("initial-height") := "600",
+      dataAttr("scrolling")      := "no",
+      dataAttr("id")             := "scalaio-paris-2024-epita",
+      dataAttr("resize")         := "1",
+      "Online ticketing"
+    ),
+    scriptTag(
+      `type` := "text/javascript",
+      src    := "https://www.billetweb.fr/js/export.js"
     )
   )
 }
