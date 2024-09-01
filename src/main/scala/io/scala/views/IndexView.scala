@@ -102,7 +102,7 @@ case object IndexView extends EmptyReactiveView[IndexPage] {
       target                     := "_blank",
       dataAttr("src")            := "https://www.billetweb.fr/shop.php?event=scalaio-paris-2024-epita",
       dataAttr("max-width")      := "100%",
-      dataAttr("initial-height") := "600",
+      dataAttr("initial-height") := "1000",
       dataAttr("scrolling")      := "no",
       dataAttr("id")             := "scalaio-paris-2024-epita",
       dataAttr("resize")         := "1",
