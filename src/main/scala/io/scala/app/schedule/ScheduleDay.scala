@@ -28,17 +28,17 @@ object ScheduleDay {
   def apply(events: Seq[Act]) =
     val scheduledEvents = events
       .filter:
-        case t: Talk => t.time != null && t.info.room.show != null
-        case e       => e.time != null
-    val talksByTime: Map[LocalTime, Seq[Act]] = scheduledEvents.groupBy(_.time)
+        case t: Talk => t.time.isDefined && t.info.room.map(_.show != null).getOrElse(false)
+        case e       => e.time.isDefined
+    val talksByTime: Map[LocalTime, Seq[Act]] = scheduledEvents.groupBy(_.time.get)
     val startingTimes = scheduledEvents
-      .map(_.time)
+      .map(_.time.get)
       .distinct
       .sorted
     val rooms = events
       .foldLeft(Set.empty[Talk.Room]): (acc, event) =>
         event match
-          case t: Talk => acc + t.info.room
+          case t: Talk if t.info.room.isDefined => acc + t.info.room.get
           case _       => acc
       .toSeq
       .sortBy(_.show)

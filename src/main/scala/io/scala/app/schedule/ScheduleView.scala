@@ -84,7 +84,7 @@ case object ScheduleView extends SimpleViewWithDraft {
     )
 
   def computeTop(event: Act, count: Int, day: DayOfWeek) =
-    val base = (event.time.toHour - minStart.toHour) * pxByHour
+    val base = (event.time.get.toHour - minStart.toHour) * pxByHour
     if day == DayOfWeek.THURSDAY then base + (count + 1) * 32
     else base + count * 32
 
@@ -129,11 +129,11 @@ case object ScheduleView extends SimpleViewWithDraft {
         .foldLeft(Queue.empty[Element]): (acc, event) =>
           event match
             case b: Break if b.kind != Break.Kind.Lunch => acc :+ span()
-            case e: Act if inserted.contains(e.time)    => acc :+ span()
+            case e: Act if inserted.contains(e.time.get)    => acc :+ span()
             case _ =>
-              inserted.add(event.time)
+              inserted.add(event.time.get)
               acc :+
-                event.time
+                event.time.get
                   .render()
                   .amend(top := s"${computeTop(event, acc.length, day)}px")
 
@@ -159,7 +159,7 @@ case object ScheduleView extends SimpleViewWithDraft {
       ScheduleInfo.schedule
         .filter(_.day != null)
         .groupBy { _.day }
-        .map((k, v) => (k, v.sortBy(_.time)))
+        .map((k, v) => (k.get, v.sortBy(_.time.get)))
 
     sectionTag(
       className := "container",

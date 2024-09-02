@@ -106,8 +106,8 @@ object Parsers:
             infoMap("Slug"),
             Talk.Kind.valueOf(infoMap("Kind")),
             infoMap("Category"),
-            LocalDateTime.parse(infoMap("DateTime"), ISO_LOCAL_DATE_TIME),
-            Talk.Room(infoMap.get("Room").getOrElse(null)),
+            infoMap.get("DateTime").map(LocalDateTime.parse(_, ISO_LOCAL_DATE_TIME)),
+            infoMap.get("Room").map(Talk.Room(_)),
             infoMap.get("Slides"),
             infoMap.get("Replay")
           )
@@ -134,7 +134,7 @@ object Parsers:
             infoMap("job"),
             infoMap.get("confirmed").map(_.toBoolean).getOrElse(false),
             socialsMap.map { case (name, link) =>
-              Social(Social.Kind.valueOf(name), link)
+              Social(Social.Kind.valueOf(name), link.stripSuffix("/"))
             }.toList,
             bio.getOrElse(List()).map(_.content).mkString("\n")
           )

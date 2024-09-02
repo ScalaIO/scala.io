@@ -17,7 +17,9 @@ lazy val root = project
     name := "scalaio-website",
     scalacOptions ++= Seq(
       // "-Yexplicit-nulls",
-      "-Wunused:all"
+      "-Wunused:all",
+      "-Ylog:checkReentrant+"
+
     ),
     libraryDependencies ++= Seq(
       "com.raquo"                     %%% "laminar"           % Dependencies.laminar,

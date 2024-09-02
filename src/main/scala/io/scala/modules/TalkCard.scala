@@ -32,10 +32,10 @@ object TalkCard:
         ),
         div(
           className := "subtitle",
-          if talk.info.room.show != null then
+          if talk.info.room.map(_.show != null).getOrElse(false) then
             span(
               className := "room",
-              talk.info.room.show
+              talk.info.room.get.show
             )
           else emptyNode
         )
