@@ -167,15 +167,14 @@ object Page {
 
   def current = router.currentPageSignal.now()
 
-  // TODO: use collectSignal as much as possible to avoid recreating the whole components
   val splitter: SplitRender[Page, HtmlElement] =
     SplitRender(router.currentPageSignal)
-      .collectSignal[IndexPage](args => IndexView.render(args))
-      .collectSignal[TalksPage](args => TalkList.render(args))
-      .collectSignal[TalkPage](args => TalkView.render(args))
-      .collectSignal[SponsorsPage](args => SponsorsList.render(args))
+      .collectSignal[IndexPage](IndexView.render)
+      .collectSignal[TalksPage](TalkList.render)
+      .collectSignal[TalkPage](TalkView.render)
+      .collectSignal[SponsorsPage](SponsorsList.render)
       .collectStatic(VenuePage)(VenueView.render())
-      .collect[SchedulePage](arg => ScheduleView.render(arg.withDraft.getOrElse(false), arg.conference))
+      .collectSignal[SchedulePage](ScheduleView.render)
       .collectStatic(EventsPage)(EventsView.render())
       .collectStatic(FAQPage)(FAQView.render())
       .collectStatic(CoCPage)(CoCView.render())

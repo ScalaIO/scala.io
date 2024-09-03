@@ -3,6 +3,7 @@
 
 header {
   background-color: vars.$secondary-color;
+  height: vars.$header-height;
   color: vars.$text-color-contrast;
   padding: 16px 24px;
   display: flex;
@@ -11,17 +12,6 @@ header {
 
   &.navbar {
     display: flex;
-  }
-
-  &.navbar.tablet {
-    flex-direction: column;
-    gap: 16px;
-
-    > div:first-of-type {
-      display: flex;
-      justify-content: space-between;
-      width: 100%;
-    }
   }
 
   &.navbar.mobile {

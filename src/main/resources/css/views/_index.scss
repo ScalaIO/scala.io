@@ -3,6 +3,7 @@
 @use "../base/mixins";
 
 .hero {
+  height: calc(100dvh - vars.$header-height);
   .event-date-location {
     font-size: vars.$text-size-large;
   }

@@ -21,9 +21,8 @@ object Header {
 
   lazy val render =
     screenVar.signal.map {
-      case Screen.Mobile => mobileScreen
-      case Screen.Tablet => tabletScreen
-      case _             => laptopPlusScreen
+      case Screen.Laptop | Screen.Desktop => laptopPlusScreen
+      case _                              => mobileScreen
     }
 
   private def navLink(name: String, page: Page): Anchor =
@@ -69,12 +68,6 @@ object Header {
   def laptopPlusScreen = headerTag(
     className := "navbar laptop",
     logo,
-    links
-  )
-
-  def tabletScreen = headerTag(
-    className := "navbar tablet",
-    div(logo),
     links
   )
 

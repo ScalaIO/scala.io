@@ -4,6 +4,7 @@ import com.raquo.airstream.state.Var
 import org.scalajs.dom
 import org.scalajs.dom.UIEvent
 import org.scalajs.dom.window
+import org.scalajs.dom.console
 
 enum Screen:
   case Mobile, Tablet, Laptop, Desktop
@@ -18,5 +19,6 @@ object Screen:
 
   window.onresize = { _ =>
     val newScreen = width
+    console.log(s"Screen resized to $newScreen")
     if newScreen != screenVar.now() then screenVar.set(newScreen)
   }

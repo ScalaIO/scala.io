@@ -19,7 +19,6 @@
 @use "modules/containers";
 @use "modules/faq";
 @use "modules/footer";
-@use "modules/headband";
 @use "modules/header";
 @use "modules/line";
 @use "modules/lists";
@@ -60,11 +59,6 @@ body {
   color: vars.$text-color;
   line-height: 1.6;
   background: vars.$background-color;
-}
-.fullscreen {
-  display: flex;
-  flex-direction: column;
-  min-height: 100svh;
 }
 
 .catch-phrase {

@@ -8,19 +8,14 @@ import io.scala.VenuePage
 import io.scala.data.TalksHistory
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
-import io.scala.modules.layout.*
 
-case object IndexView extends EmptyReactiveView[IndexPage] {
+case object IndexView extends ReactiveView[IndexPage] {
 
-  override def render(args: Signal[IndexPage]): HtmlElement =
+  override def body(args: Signal[IndexPage]): HtmlElement =
     div(
-      div(
-        className := "fullscreen index",
-        child <-- Header.render,
-        IndexView.hero
-      ),
+      className := "index",
+      IndexView.hero,
       sectionTag(
-        className := "index",
         div(
           className := "container description",
           Titles("Exchanging Ideas"),
@@ -46,8 +41,7 @@ case object IndexView extends EmptyReactiveView[IndexPage] {
         tickets,
         Separator(),
         speakerGallery(args)
-      ),
-      Footer.render
+      )
     )
 
   def speakerGallery(args: Signal[IndexPage]) =
@@ -65,7 +59,7 @@ case object IndexView extends EmptyReactiveView[IndexPage] {
       div(
         className := "card-container",
         children <-- args.map: page =>
-            speakers(page.conference).map(SpeakerCard(_, _, TalksHistory.getConfName(page.conference)))
+          speakers(page.conference).map(SpeakerCard(_, _, TalksHistory.getConfName(page.conference)))
       )
     )
 

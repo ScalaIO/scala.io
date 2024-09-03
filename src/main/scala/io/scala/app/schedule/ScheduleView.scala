@@ -17,9 +17,10 @@ import io.scala.modules.elements.*
 import io.scala.modules.syntax.*
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
-import io.scala.views.SimpleViewWithDraft
+import io.scala.views.ReactiveView
+import io.scala.SchedulePage
 
-case object ScheduleView extends SimpleViewWithDraft {
+case object ScheduleView extends ReactiveView[SchedulePage] {
   val selectedDay: Var[DayOfWeek] = Var(DayOfWeek.THURSDAY)
 
   lazy val globalHours: Div =
@@ -154,7 +155,7 @@ case object ScheduleView extends SimpleViewWithDraft {
       case _              => renderSmall(eventsByDay, sortedDays)
     }
 
-  def body(withDraft: Boolean, conference: Option[String]): HtmlElement =
+  def body(signal: Signal[SchedulePage]): HtmlElement =
     val eventsByDay: Map[DayOfWeek, List[Act]] =
       ScheduleInfo.schedule
         .groupBy { _.day }
