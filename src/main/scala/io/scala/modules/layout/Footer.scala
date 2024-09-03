@@ -2,7 +2,6 @@ package io.scala.modules.layout
 
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import org.scalajs.dom.console
 
 import io.scala.IndexPage
 import io.scala.Lexicon
@@ -18,6 +17,7 @@ import io.scala.modules.elements.Lists
 import io.scala.modules.elements.ShinyButton
 import io.scala.modules.elements.Titles
 import io.scala.svgs.Icons
+
 object Footer {
   private lazy val summary: Div =
     div(

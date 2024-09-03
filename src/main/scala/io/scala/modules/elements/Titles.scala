@@ -2,7 +2,6 @@ package io.scala.modules.elements
 
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import org.scalajs.dom.HTMLElement
 import org.scalajs.dom.HTMLHeadingElement
 
 object Titles:
@@ -34,10 +33,4 @@ object Titles:
     h1(title),
     subtitle.amend(className := "page-subtitle"),
     className := "page-title"
-  )
-
-  def paragraph(title: String, modifiers: Modifier[ReactiveHtmlElement[HTMLElement]]*) = strong(
-    title,
-    className := "paragraph-title",
-    modifiers
   )

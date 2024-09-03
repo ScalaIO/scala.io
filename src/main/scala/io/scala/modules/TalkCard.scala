@@ -32,12 +32,7 @@ object TalkCard:
         ),
         div(
           className := "subtitle",
-          if talk.info.room.map(_.show != null).getOrElse(false) then
-            span(
-              className := "room",
-              talk.info.room.get.show
-            )
-          else emptyNode
+          talk.info.room.fold(emptyNode)(room => span(className := "room", room.show))
         )
       ),
       Line(margin = 16),

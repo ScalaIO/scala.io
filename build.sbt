@@ -2,7 +2,7 @@ import java.io.File
 import org.scalajs.linker.interface.ModuleSplitStyle.SmallestModules
 
 ThisBuild / version       := "0.1.0"
-ThisBuild / scalaVersion  := "3.4.2"
+ThisBuild / scalaVersion  := "3.5.0"
 ThisBuild / versionScheme := Some("early-semver")
 
 val publicFolderDev  = taskKey[String]("Returns the compiled main.js parent path for dev")
@@ -18,7 +18,6 @@ lazy val root = project
     scalacOptions ++= Seq(
       // "-Yexplicit-nulls",
       "-Wunused:all",
-      "-Ylog:checkReentrant+"
 
     ),
     libraryDependencies ++= Seq(

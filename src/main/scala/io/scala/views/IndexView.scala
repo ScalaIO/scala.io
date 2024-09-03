@@ -54,7 +54,7 @@ case object IndexView extends EmptyReactiveView[IndexPage] {
     def speakers(conf: Option[String]) =
       TalksHistory
         .talksForConf(conf)
-        .filter(_.speakers.forall(_.confirmed))
+        .filter(_.speakers.forall(_.confirmed)) // TODO: move the confirmed to the talk level
         .flatMap: talk =>
           talk.speakers.map((_, talk.info))
         .sortBy(_._1.name)
@@ -64,9 +64,8 @@ case object IndexView extends EmptyReactiveView[IndexPage] {
       Titles("Speaker Gallery"),
       div(
         className := "card-container",
-        children <-- args.map:
-          case IndexPage(draft, conf) =>
-            speakers(conf).map(SpeakerCard(_, _, TalksHistory.getConfName(conf)))
+        children <-- args.map: page =>
+            speakers(page.conference).map(SpeakerCard(_, _, TalksHistory.getConfName(page.conference)))
       )
     )
 
@@ -78,16 +77,9 @@ case object IndexView extends EmptyReactiveView[IndexPage] {
       h3(
         className := "event-date-location",
         "07 & 08 November 2024 - ",
-        span(
-          className := "event-town",
-          "Paris"
-        ),
+        span(className := "event-town", "Paris"),
         " @ ",
-        a(
-          className := "event-location",
-          Page.navigateTo(VenuePage),
-          "Epita"
-        )
+        a(className := "event-location", Page.navigateTo(VenuePage), "Epita")
       )
     )
   )

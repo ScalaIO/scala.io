@@ -23,8 +23,8 @@ case class Meetup(
       ),
       body = Lists.innerDiscs(
         talks.map { talk =>
-          li(
-            Titles.paragraph(talk.title),
+          Lists.titledItem(
+            talk.title,
             Lists.flat(
               talk.speaker.map { case (name, link) =>
                 li(Links.flat(href := link, name))

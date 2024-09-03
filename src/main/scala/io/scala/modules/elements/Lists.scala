@@ -23,3 +23,9 @@ object Lists:
       className := "list-pipes",
       elements.flatMap(Seq(_, span("|"))).dropRight(1)
     )
+
+  def titledItem(title: String, content: Modifier[ReactiveHtmlElement[HTMLLIElement]]) =
+    li(
+      strong(title, className := "list-title"),
+      content
+    )

@@ -10,3 +10,10 @@ object Paragraphs:
       className := "paragraph",
       content
     )
+
+  def withTitle(title: String, content: Modifier[ReactiveHtmlElement[HTMLParagraphElement]]*) =
+    p(
+      className := "paragraph",
+      strong(title, className := "paragraph-title"),
+      content
+    )

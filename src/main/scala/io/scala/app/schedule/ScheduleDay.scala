@@ -28,7 +28,7 @@ object ScheduleDay {
   def apply(events: Seq[Act]) =
     val scheduledEvents = events
       .filter:
-        case t: Talk => t.time.isDefined && t.info.room.map(_.show != null).getOrElse(false)
+        case t: Talk => t.time.isDefined && t.info.room.isDefined
         case e       => e.time.isDefined
     val talksByTime: Map[LocalTime, Seq[Act]] = scheduledEvents.groupBy(_.time.get)
     val startingTimes = scheduledEvents
