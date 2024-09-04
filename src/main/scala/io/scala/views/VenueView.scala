@@ -11,7 +11,7 @@ object VenueView extends SimpleView {
     Titles("Our Venue"),
     div("For this edition, we are invited by EPITA, on their site 'Kremlin-Bicêtre'"),
     img(
-      src := "public/images/places/epita-kb.jpeg"
+      src := "images/places/epita-kb.jpeg"
     ),
     br(),
     Titles("Access"),
