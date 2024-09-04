@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: how-functional-is-direct-style
 - Category: Other
+- confirmed: true
 
 ## Abstract
 
@@ -20,7 +21,6 @@ We’ll investigate what functional programming is at its core, how it relates t
 
 - photoRelPath: /images/profiles/paris-2024/aWarski.webp
 - job: Co-founder @ SoftwareMill
-- confirmed: true
 
 #### Links
 

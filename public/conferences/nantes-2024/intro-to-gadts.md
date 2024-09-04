@@ -3,6 +3,7 @@
 - Kind: Keynote
 - Slug: intro-to-gadts
 - Category: Algebra
+- confirmed: true
 - DateTime: 2024-02-15T09:30
 - Room: 0
 - Slides: https://scala.io/slides/2024/GADTs-xavier-vw-woestyne.pdf
@@ -20,7 +21,6 @@ Les GADTs et Scala, c’est une très longue histoire de “je t’aime, moi non
 
 - photoRelPath: /images/profiles/nantes-2024/xVdW.webp
 - job: Software Engineer @ The Funkyworkers
-- confirmed: true
 
 #### Links
 

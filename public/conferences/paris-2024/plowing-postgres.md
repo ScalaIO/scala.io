@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: plowing-postgres-and-unearthing-hidden-gems
 - Category: Other
+- confirmed: true
 
 ## Abstract
 

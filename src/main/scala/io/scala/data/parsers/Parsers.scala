@@ -106,6 +106,7 @@ object Parsers:
             infoMap("Slug"),
             Talk.Kind.valueOf(infoMap("Kind")),
             infoMap("Category"),
+            infoMap.get("confirmed").map(_.toBoolean).getOrElse(false),
             infoMap.get("DateTime").map(LocalDateTime.parse(_, ISO_LOCAL_DATE_TIME)),
             infoMap.get("Room").map(Talk.Room(_)),
             infoMap.get("Slides"),
@@ -132,7 +133,6 @@ object Parsers:
             name,
             infoMap("photoRelPath"),
             infoMap("job"),
-            infoMap.get("confirmed").map(_.toBoolean).getOrElse(false),
             socialsMap.map { case (name, link) =>
               Social(Social.Kind.valueOf(name), link.stripSuffix("/"))
             }.toList,

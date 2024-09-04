@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: unleashing-scalafix-potential
 - Category: ToolsEcosystem
+- confirmed: true
 - DateTime: 2024-02-15T10:50
 - Room: 0
 - Slides: https://scala.io/slides/2024/scalafix.pdf
@@ -24,7 +25,6 @@ In this talk, we will [demystify AST traversal and semantic information lookup](
 
 - photoRelPath: /images/profiles/nantes-2024/bJaglin.webp
 - job: Staff Engineer @ Swile
-- confirmed: true
 
 #### Links
 

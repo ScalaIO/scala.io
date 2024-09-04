@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: scala-performance-when-you-should-betray-fp-principles
 - Category: Other
+- confirmed: true
 
 ## Abstract
 
@@ -18,7 +19,6 @@ Of course, Iâ€™ll bring a few benchmarks to show the differences. And while weâ€
 
 - photoRelPath: /images/profiles/paris-2024/gRenoux.webp
 - job: Staff Engineer @ DataDome
-- confirmed: true
 
 #### Links
 

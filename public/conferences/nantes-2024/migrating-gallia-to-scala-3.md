@@ -3,6 +3,7 @@
 - Kind: Short
 - Slug: migrating-gallia-to-scala-3
 - Category: ToolsEcosystem
+- confirmed: true
 - DateTime: 2024-02-16T13:30
 - Room: 0
 - Slides: https://scala.io/slides/2024/gallia-migration.pdf
@@ -24,7 +25,6 @@ I will briefly introduce how certain features [worked before](https://github.com
 
 - photoRelPath: /images/profiles/nantes-2024/aCros.webp
 - job: Software Architect @ Self-employed
-- confirmed: true
 
 #### Links
 

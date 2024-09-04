@@ -36,12 +36,12 @@ case class Talk(
     with Durable:
   lazy val renderDescription = Parsers.Description.parseTalk(description).map(Paragraphs.description(_))
 
-  def dateTime: Option[LocalDateTime] = info.dateTime
-  val day                            = info.dateTime.map(_.getDayOfWeek)
-  val time                           = info.dateTime.map(_.toLocalTime)
-  def duration: Int                  = info.kind.duration
-  def render: Div                    = TalkCard(this, current)
-  def isKeynote: Boolean             = info.kind == Talk.Kind.Keynote
+  def dateTime      = info.dateTime
+  val day           = info.dateTime.map(_.getDayOfWeek)
+  val time          = info.dateTime.map(_.toLocalTime)
+  def duration: Int = info.kind.duration
+  def render: Div   = TalkCard(this, current)
+  def isKeynote     = info.kind == Talk.Kind.Keynote
 
 object Talk:
   opaque type Room = String
@@ -70,19 +70,19 @@ object Talk:
       slug: String,
       kind: Kind,
       category: String,
+      confirmed: Boolean,
       dateTime: Option[LocalDateTime],
       room: Option[Room] = None, // TODO: reuse String | Null
       slides: Option[String] = None,
       replay: Option[String] = None
   )
   object BasicInfo:
-    def empty = BasicInfo("Malformed talk info", "", Kind.Talk, "", None)
+    def empty = BasicInfo("Malformed talk info", "", Kind.Talk, "", false, None)
 
   case class Speaker(
       name: String,
       photoRelPath: String,
       job: String,
-      confirmed: Boolean = false,
       socials: List[Social] = List.empty,
       bio: String = ""
   ):
@@ -101,9 +101,9 @@ case class Break(
     overrideDuration: Option[Int] = None
 ) extends Act
     with Durable:
-  def duration: Int          = overrideDuration.getOrElse(kind.duration)
-  val day  = dateTime.map(_.getDayOfWeek)
-  val time = dateTime.map(_.toLocalTime)
+  def duration: Int = overrideDuration.getOrElse(kind.duration)
+  val day           = dateTime.map(_.getDayOfWeek)
+  val time          = dateTime.map(_.toLocalTime)
   def render =
     div(className := s"blank-card break ${kind.style}", kind.icon, span(span(duration), span("min")), kind.icon)
 

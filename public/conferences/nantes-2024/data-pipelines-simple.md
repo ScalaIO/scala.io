@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: data-pipelines-simple
 - Category: DataEng
+- confirmed: true
 - DateTime: 2024-02-16T09:50
 - Room: 0
 - Slides: https://scala.io/slides/2024/data-pipeline.pptx
@@ -20,7 +21,6 @@ Most organizations have data pipelines and those are growing by the minute. But 
 
 - photoRelPath: /images/profiles/nantes-2024/rClaude.webp
 - job: Staff Dev Lead @ Criteo
-- confirmed: true
 
 #### Links
 

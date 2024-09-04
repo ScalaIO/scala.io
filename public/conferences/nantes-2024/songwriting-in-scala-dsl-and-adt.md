@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: songwriting-in-scala-dsl-and-adt
 - Category: Modeling
+- confirmed: true
 - DateTime: 2024-02-15T14:00
 - Room: 0
 - Slides:
@@ -26,7 +27,6 @@ Topics covered:
 
 - photoRelPath: /images/profiles/nantes-2024/pMatthews.webp
 - job: Backend Scala Developer @ ClearScore
-- confirmed: true
 
 #### Links
 

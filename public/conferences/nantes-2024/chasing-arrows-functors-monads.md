@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: chasing-arrows-functors-monads
 - Category: Algebra
+- confirmed: true
 - DateTime: 2024-02-16T15:40
 - Room: 0
 - Slides: https://scala.io/slides/2024/chasing-arrows.pdf
@@ -29,7 +30,6 @@ This ScalaIO talk will be a overview of the EPITA CT4P course, with emphasis on 
 
 - photoRelPath: /images/profiles/nantes-2024/jim.webp
 - job: Researcher @ EPITA Le Kremlin-Bicêtre
-- confirmed: true
 
 #### Links
 
@@ -50,7 +50,6 @@ Jim has been programming off and on in Scala for about 5 years.
 
 - photoRelPath: /images/profiles/nantes-2024/uli.webp
 - job: @ EPITA Rennes
-- confirmed: true
 
 #### Links
 

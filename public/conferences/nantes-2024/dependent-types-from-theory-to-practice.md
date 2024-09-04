@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: dependent-types-from-theory-to-practice
 - Category: Algebra
+- confirmed: true
 - DateTime: 2024-02-16T14:00
 - Room: 0
 - Slides: http://d.plaindoux.free.fr/talks/dependent-type/main.html
@@ -26,7 +27,6 @@ Nous aborderons: le type fonctionnel dépendant, la paire dépendante, le type s
 
 - photoRelPath: /images/profiles/nantes-2024/dPlaindoux.webp
 - job: Senior Software Engineer @ Fungus (Freelance)
-- confirmed: true
 
 #### Links
 
