@@ -10,6 +10,7 @@ import org.scalajs.dom.HTMLDivElement
 
 import io.scala.data.current
 import io.scala.data.parsers.Parsers
+import io.scala.extensions.*
 import io.scala.modules.TalkCard
 import io.scala.modules.elements.Paragraphs
 import io.scala.svgs.Icons
@@ -20,9 +21,10 @@ sealed trait TalkInfo[A <: TalkInfo[A]]:
 object TalkInfo:
   given [A <: TalkInfo[A]]: Ordering[A] = Ordering[Int].on(_.ordinal)
 
+type CompleteAct = Act & { val time: LocalTime; val day: DayOfWeek }
 sealed trait Act:
-  def day: Option[DayOfWeek]
-  def time: Option[LocalTime]
+  def day: DayOfWeek | Null
+  def time: LocalTime | Null
   def render: Div
 
 sealed trait Durable:
@@ -36,12 +38,11 @@ case class Talk(
     with Durable:
   lazy val renderDescription = Parsers.Description.parseTalk(description).map(Paragraphs.description(_))
 
-  def dateTime: Option[LocalDateTime] = info.dateTime
-  val day                            = info.dateTime.map(_.getDayOfWeek)
-  val time                           = info.dateTime.map(_.toLocalTime)
-  def duration: Int                  = info.kind.duration
-  def render: Div                    = TalkCard(this, current)
-  def isKeynote: Boolean             = info.kind == Talk.Kind.Keynote
+  val day           = info.dateTime.nullMap(_.getDayOfWeek)
+  val time          = info.dateTime.nullMap(_.toLocalTime)
+  def duration: Int = info.kind.duration
+  def render: Div   = TalkCard(this, current)
+  def isKeynote     = info.kind == Talk.Kind.Keynote
 
 object Talk:
   opaque type Room = String
@@ -49,6 +50,7 @@ object Talk:
   object Room:
     def empty                     = "TBD"
     def apply(room: String): Room = room
+    given Ordering[Room]          = Ordering.String.on(_.show)
 
   def empty            = Talk(BasicInfo.empty, "To be announced", List.empty)
   given Ordering[Talk] = Ordering.by(talk => (talk.info.kind, talk.info.title))
@@ -70,19 +72,29 @@ object Talk:
       slug: String,
       kind: Kind,
       category: String,
-      dateTime: Option[LocalDateTime],
-      room: Option[Room] = None, // TODO: reuse String | Null
-      slides: Option[String] = None,
-      replay: Option[String] = None
+      confirmed: Boolean,
+      dateTime: LocalDateTime | Null,
+      room: Room | Null, // TODO: reuse String | Null
+      slides: BasicInfo.Slides = None,
+      replay: BasicInfo.Replay = None
   )
   object BasicInfo:
-    def empty = BasicInfo("Malformed talk info", "", Kind.Talk, "", None)
+    def empty = BasicInfo("Malformed talk info", "", Kind.Talk, "", false, null, null)
+
+    opaque type Slides = Option[String]
+    object Slides:
+      extension (slides: Slides) inline def fold[A](ifEmpty: => A)(f: String => A): A = slides.fold(ifEmpty)(f)
+      inline def apply(opt: Option[String]): Slides = opt.filter(_.size > 0)
+
+    opaque type Replay = Option[String]
+    object Replay:
+      extension (replay: Replay) inline def fold[A](ifEmpty: => A)(f: String => A): A = replay.fold(ifEmpty)(f)
+      inline def apply(opt: Option[String]): Replay = opt.filter(_.size > 0)
 
   case class Speaker(
       name: String,
       photoRelPath: String,
       job: String,
-      confirmed: Boolean = false,
       socials: List[Social] = List.empty,
       bio: String = ""
   ):
@@ -96,14 +108,14 @@ object Talk:
     def empty = Speaker("Malformed speaker", "", "")
 
 case class Break(
-    dateTime: Option[LocalDateTime],
+    dateTime: LocalDateTime,
     kind: Break.Kind,
     overrideDuration: Option[Int] = None
 ) extends Act
     with Durable:
-  def duration: Int          = overrideDuration.getOrElse(kind.duration)
-  val day  = dateTime.map(_.getDayOfWeek)
-  val time = dateTime.map(_.toLocalTime)
+  def duration: Int = overrideDuration.getOrElse(kind.duration)
+  val day           = dateTime.nullMap(_.getDayOfWeek)
+  val time          = dateTime.nullMap(_.toLocalTime)
   def render =
     div(className := s"blank-card break ${kind.style}", kind.icon, span(span(duration), span("min")), kind.icon)
 
@@ -120,11 +132,11 @@ object Break:
     val max: Int = Kind.values.map(_.duration).max
 
 case class Special(
-    dateTime: Option[LocalDateTime],
+    dateTime: LocalDateTime,
     kind: Special.Kind
 ) extends Act {
-  val day  = dateTime.map(_.getDayOfWeek)
-  val time = dateTime.map(_.toLocalTime)
+  val day  = dateTime.nullMap(_.getDayOfWeek)
+  val time = dateTime.nullMap(_.toLocalTime)
   def render: ReactiveHtmlElement[HTMLDivElement] = kind match
     case Special.Kind.End => div(className := "blank-card end-day", Icons.logo("#222222"))
 }

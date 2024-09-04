@@ -3,6 +3,7 @@
 - Kind: Lightning
 - Slug: rex-migration-scala-2-to-3
 - Category: ToolsEcosystem
+- confirmed: true
 - DateTime: 2024-02-15T18:20
 - Room: 0
 - Slides:
@@ -29,7 +30,6 @@ tout ça dans le but d'accéder au trésor : Scala 3.
 
 - photoRelPath: /images/profiles/nantes-2024/aBlondeau.webp
 - job: Developer @ Clever Cloud
-- confirmed: true
 
 #### Links
 

@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: armored-type-safety-with-iron
 - Category: Modeling
+- confirmed: true
 - DateTime: 2024-02-15T11:40
 - Room: 0
 - Slides: https://scalaio-2024.rlemaitre.com
@@ -26,7 +27,6 @@ In this talk, we’ll show first the different technique we can use to apply con
 
 - photoRelPath: /images/profiles/nantes-2024/rLemaitre.webp
 - job: Senior Staff Engineer @ Ledger
-- confirmed: true
 
 #### Links
 
@@ -51,7 +51,6 @@ My interests span from software development to history and technology, where I e
 
 - photoRelPath: /images/profiles/nantes-2024/vBergeron.webp
 - job: Engineering team lead @ Ledger
-- confirmed: true
 
 #### Links
 

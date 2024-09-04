@@ -19,10 +19,12 @@ object EventsView extends SimpleView {
     sectionTag(
       className := "container events",
       Titles("Other events"),
-      Containers.flexCards(events.zipWithIndex.map { (ev, idx) =>
-        if idx % 2 == 0 then ev.render.amend(className := "normal")
-        else ev.render.amend(className := "reverse")
-      })
+      Containers.flexCards {
+        events.zipWithIndex.map { case (ev, idx) =>
+          if idx % 2 == 0 then ev.render.amend(className := "normal")
+          else ev.render.amend(className := "reverse")
+        }
+      }
     )
   }
 }

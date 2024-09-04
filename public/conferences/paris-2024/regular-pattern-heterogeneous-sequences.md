@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: recognizing-regular-patterns-in-heterogeneous-sequences
 - Category: Other
+- confirmed: true
 
 ## Abstract
 
@@ -44,7 +45,6 @@ The project is available [here](https://github.com/jimka2001/scala-rte)
 
 - photoRelPath: /images/profiles/paris-2024/jim.webp
 - job: Researcher @ EPITA Le Kremlin-Bicêtre
-- confirmed: true
 
 #### Links
 

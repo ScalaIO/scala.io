@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: use-ai-in-your-programs
 - Category: AI
+- confirmed: true
 - DateTime: 2024-02-16T11:40
 - Room: 0
 - Slides:
@@ -22,7 +23,6 @@ Une fois ceci fait, je souhaite montrer comment utiliser un modèle en utilisant
 
 - photoRelPath: /images/profiles/nantes-2024/fLaroche.webp
 - job: Tech Lead @ NuMind
-- confirmed: true
 
 #### Links
 
@@ -41,7 +41,6 @@ Je suis actuellement développeur chez NuMind où nous aidons nos clients à ent
 
 - photoRelPath: /images/profiles/nantes-2024/sBernard.webp
 - job: Co-Founder & CTO @ NuMind
-- confirmed: true
 
 #### Links
 

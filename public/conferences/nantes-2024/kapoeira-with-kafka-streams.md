@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: kapoeira-with-kafka-streams
 - Category: DataEng
+- confirmed: true
 - DateTime: 2024-02-15T16:40
 - Room: 0
 - Slides: https://jvauchel.github.io/kapoeira-dance/index-scalaio.html
@@ -30,7 +31,6 @@ Si vous êtes intéressés, nous serons ravis de récolter vos retours et vos co
 
 - photoRelPath: /images/profiles/nantes-2024/jVauchel.webp
 - job: Data Engineer @ Lectra
-- confirmed: true
 
 #### Links
 

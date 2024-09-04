@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: my-first-year-in-scala
 - Category: Community
+- confirmed: true
 - DateTime: 2024-02-15T17:30
 - Room: 0
 - Slides: https://scala.io/slides/2024/first-year-scala.pdf
@@ -30,7 +31,6 @@ By the end of this talk, I hope that newcomers will feel less alone and more opt
 
 - photoRelPath: /images/profiles/nantes-2024/mMcGuigan.webp
 - job: Software Engineer @ JP Morgan
-- confirmed: true
 
 #### Links
 

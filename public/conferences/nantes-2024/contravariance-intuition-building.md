@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: contravariance-intuition-building
 - Category: Modeling
+- confirmed: true
 - DateTime: 2024-02-16T14:50
 - Room: 0
 - Slides: https://scala.io/slides/2024/Contravariance.pdf
@@ -34,7 +35,6 @@ We’ll begin by working with an Animal type hierarchy and some PetRescue and Pe
 
 - photoRelPath: /images/profiles/nantes-2024/sCollard.webp
 - job: Lead Software Engineer @ JPMorgan
-- confirmed: true
 
 #### Links
 

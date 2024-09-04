@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: scala-3-compiler-academy-journey
 - Category: Community
+- confirmed: true
 - DateTime: 2024-02-15T15:40
 - Room: 0
 - Slides: https://docs.google.com/presentation/d/1DPX8w7I07CIm7rU_z5TNJ_R_A7mf6_lZCMfIVBvrRpk/edit?usp=sharing
@@ -22,7 +23,6 @@ Now, two years later, with the format fleshed out and the lessons learnt, I’d 
 
 - photoRelPath: /images/profiles/nantes-2024/toli.webp
 - job: Compiler engineer and community manager @ Scala Center, EPFL
-- confirmed: true
 
 #### Links
 

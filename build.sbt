@@ -16,7 +16,7 @@ lazy val root = project
   .settings(
     name := "scalaio-website",
     scalacOptions ++= Seq(
-      // "-Yexplicit-nulls",
+      "-Yexplicit-nulls",
       "-Wunused:all",
 
     ),

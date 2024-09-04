@@ -3,6 +3,7 @@
 - Kind: Lightning
 - Slug: ukraine-scala-community
 - Category: Community
+- confirmed: true
 - DateTime: 2024-02-16T16:40
 - Room: 0
 - Slides: https://scala.io/slides/2024/scala-community-building-lessons.pptx
@@ -24,7 +25,6 @@ Discover our presence at conferences, active engagement in programs such as Goog
 
 - photoRelPath: /images/profiles/nantes-2024/oMazhara.webp
 - job: Software Engineer @ Intellias
-- confirmed: true
 
 #### Links
 

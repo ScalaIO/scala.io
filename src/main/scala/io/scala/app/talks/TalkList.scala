@@ -33,7 +33,7 @@ case object TalkList extends ReactiveView[TalksPage] {
   override def body(args: Signal[TalksPage]): HtmlElement =
     def talksForConf(conference: Option[String], draft: Boolean) =
       if draft then TalksHistory.talksForConf(conference)
-      else TalksHistory.talksForConf(conference).filter(_.speakers.forall(_.confirmed))
+      else TalksHistory.talksForConf(conference).filter(_.info.confirmed)
 
     sectionTag(
       className := "container talks-list",

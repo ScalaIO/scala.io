@@ -17,23 +17,13 @@ case object IndexView extends ReactiveView[IndexPage] {
       IndexView.hero,
       sectionTag(
         div(
-          className := "container description",
+          className := "container",
           Titles("Exchanging Ideas"),
-          p("""
-                Scala.IO is a conference for people having
-                 interest in the Scala ecosystem or simply
-                 being curious about the language, usages.
-
-                """),
-          p(
-            """The conference is organized by Scala supporters from the community,
-                | and provides a great opportunity to meet with other enthusiasts and practitioners.""".stripMargin,
-            "You can find the videos of the past editions (200+) on our ",
-            Links.highlighted(href := "https://www.youtube.com/@scalaio/videos", "YouTube channel"),
-            "."
+          Paragraphs.description(
+            "Scala.IO is a conference for people having interest in the Scala ecosystem or simply being curious about the language, usages. The conference is organized by Scala supporters from the community, and provides a great opportunity to meet with other enthusiasts and practitioners. You can find the videos of the past editions (200+) on our ",
+            Links.highlighted(href := "https://www.youtube.com/@scalaio/videos", "YouTube channel")
           ),
-          br(),
-          p(
+          Paragraphs.description(
             "This edition brings us together in Paris for two days, with a multi-session structure and a large community space. With a great venue, wonderful speakers, and a lot of surprises, we are looking forward to meeting you there!"
           )
         ),
@@ -48,7 +38,7 @@ case object IndexView extends ReactiveView[IndexPage] {
     def speakers(conf: Option[String]) =
       TalksHistory
         .talksForConf(conf)
-        .filter(_.speakers.forall(_.confirmed)) // TODO: move the confirmed to the talk level
+        .filter(_.info.confirmed)
         .flatMap: talk =>
           talk.speakers.map((_, talk.info))
         .sortBy(_._1.name)

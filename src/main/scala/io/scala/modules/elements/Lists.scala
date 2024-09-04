@@ -21,7 +21,7 @@ object Lists:
   def pipes(elements: ReactiveHtmlElement[HTMLElement]*) =
     ul(
       className := "list-pipes",
-      elements.flatMap(Seq(_, span("|"))).dropRight(1)
+      elements.map(li(_))
     )
 
   def titledItem(title: String, content: Modifier[ReactiveHtmlElement[HTMLLIElement]]) =

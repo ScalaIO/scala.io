@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: introduction-to-smithy-smithy4s
 - Category: Cloud
+- confirmed: true
 - DateTime: 2024-02-15T14:50
 - Room: 0
 - Slides:
@@ -26,7 +27,6 @@ This talk will serve as an introduction to the Smithy IDL, and a demo of what is
 
 - photoRelPath: /images/profiles/nantes-2024/oMelois.webp
 - job: Principal Engineer @ Disney Streaming Services
-- confirmed: true
 
 #### Links
 

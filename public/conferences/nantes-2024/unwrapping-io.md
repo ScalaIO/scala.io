@@ -3,6 +3,7 @@
 - Kind: Keynote
 - Slug: unwrapping-io
 - Category: Effects
+- confirmed: true
 - DateTime: 2024-02-16T17:00
 - Room: 0
 - Slides: https://adamw.github.io/unwrapping-io
@@ -26,7 +27,6 @@ We will compare both the low-level aspects, as well as take a look at structured
 
 - photoRelPath: /images/profiles/nantes-2024/aWarski.webp
 - job: Co-founder @ SoftwareMill
-- confirmed: true
 
 #### Links
 

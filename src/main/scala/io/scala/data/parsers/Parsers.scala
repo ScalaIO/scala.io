@@ -14,6 +14,7 @@ import io.scala.models.Social
 import io.scala.models.Sponsor
 import io.scala.models.Talk
 import io.scala.modules.elements.Links
+import io.scala.extensions.*
 
 val linkExtractorRegex = """\(([^\(\)]+)\)""".r
 def extractLink(link: String) =
@@ -106,10 +107,11 @@ object Parsers:
             infoMap("Slug"),
             Talk.Kind.valueOf(infoMap("Kind")),
             infoMap("Category"),
-            infoMap.get("DateTime").map(LocalDateTime.parse(_, ISO_LOCAL_DATE_TIME)),
-            infoMap.get("Room").map(Talk.Room(_)),
-            infoMap.get("Slides"),
-            infoMap.get("Replay")
+            infoMap.get("confirmed").map(_.toBoolean).getOrElse(false),
+            infoMap.getOrElse("DateTime", null).nullMap(LocalDateTime.parse(_, ISO_LOCAL_DATE_TIME)),
+            infoMap.getOrElse("Room", null).nullMap(Talk.Room(_)),
+            Talk.BasicInfo.Slides(infoMap.get("Slides")),
+            Talk.BasicInfo.Replay(infoMap.get("Replay"))
           )
         case chunk =>
           console.log(s"Error while parsing ${chunk._1.content}")
@@ -132,7 +134,6 @@ object Parsers:
             name,
             infoMap("photoRelPath"),
             infoMap("job"),
-            infoMap.get("confirmed").map(_.toBoolean).getOrElse(false),
             socialsMap.map { case (name, link) =>
               Social(Social.Kind.valueOf(name), link.stripSuffix("/"))
             }.toList,

@@ -3,6 +3,7 @@
 - Kind: Short
 - Slug: nails-are-tree-need-chainsaw
 - Category: Algebra
+- confirmed: true
 - DateTime: 2024-02-15T13:30
 - Room: 0
 - Slides: https://scala.io/slides/2024/Chainsaw.pdf
@@ -27,7 +28,6 @@ the process and how it helped me solved my problems with less pain.
 
 - photoRelPath: /images/profiles/nantes-2024/mBaechler.webp
 - job: Developer @ Freelancer
-- confirmed: true
 
 #### Links
 

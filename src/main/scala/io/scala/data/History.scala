@@ -1,10 +1,10 @@
 package io.scala.data
 
-import scala.collection.mutable.HashMap as MutableMap
-
 import io.scala.data.parsers.Parsers
 import io.scala.models.Sponsor
 import io.scala.models.Talk
+
+import scala.collection.mutable.HashMap as MutableMap
 
 val current = "paris-2024"
 object TalksHistory:

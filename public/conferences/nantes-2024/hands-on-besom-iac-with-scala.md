@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: hands-on-besom-iac-with-scala
 - Category: Cloud
+- confirmed: true
 - DateTime: 2024-02-16T10:50
 - Room: 0
 - Slides: https://scala.io/slides/2024/besom.pdf
@@ -20,7 +21,6 @@ In my talk I will briefly introduce Besom, a Pulumi SDK for Scala and then swift
 
 - photoRelPath: /images/profiles/nantes-2024/lBialy.webp
 - job: Software Engineer @ VirtusLab
-- confirmed: true
 
 #### Links
 

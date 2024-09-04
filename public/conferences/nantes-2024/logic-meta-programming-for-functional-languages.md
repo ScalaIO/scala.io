@@ -3,6 +3,7 @@
 - Kind: Talk
 - Slug: logic-meta-programming-for-functional-languages
 - Category: Algebra
+- confirmed: true
 - DateTime: 2024-02-16T09:00
 - Room: 0
 - Slides:
@@ -20,7 +21,6 @@ Since the beginning of the 21st century, the functional programming paradigm, wh
 
 - photoRelPath: /images/profiles/nantes-2024/eCrance.webp
 - job: PhD Student @ INRIA
-- confirmed: true
 
 #### Links
 
