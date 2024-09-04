@@ -3,6 +3,10 @@ name: Clever Cloud Review App on Pull Requests
 # description: Deploy, sync and delete review apps on Clever Cloud for every pull request
 
 on:
+  workflow_run:
+    workflows: ["Build"]
+    types:
+      - completed
   pull_request_target:
     types: [opened, closed, synchronize, reopened]
     branches: [main]

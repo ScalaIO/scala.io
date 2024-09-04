@@ -1,0 +1,54 @@
+name: Build
+
+on:
+  workflow_call:
+    secrets:
+      GIT_EMAIL:
+        required: true
+      GIT_NAME:
+        required: true
+
+jobs:
+  checkout:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+  compile-scalajs:
+    name: Compile Scala to JS
+    needs: checkout
+    runs-on: ubuntu-latest
+    steps:
+      - uses: coursier/setup-action@v1.3.4
+        with:
+          jvm: adoptium:1.17.0.7
+          apps: sbt
+      - name: Compile Scala to JS
+        run: sbt "compile; fullLinkJS"
+
+  compile-scss:
+    name: Compile SCSS to CSS
+    needs: checkout
+    runs-on: ubuntu-latest
+    steps:
+      - name: Compile SCSS to CSS
+        run: |
+          npm install
+          npx sass src/main/resources/css/main.scss src/main/resources/css/output.css
+  build:
+    name: Build the website
+    needs:
+      - compile-scalajs
+      - compile-scss
+    runs-on: ubuntu-latest
+    steps:
+    - name: Build static website
+      run: |
+        npm run build
+        cp robots.txt dist-prod/robots.txt
+        git config --global user.email ${{ secrets.GIT_EMAIL }}
+        git config --global user.name ${{ secrets.GIT_NAME }}
+        git add .
+        git commit -m "chore: forward changed to preprod"

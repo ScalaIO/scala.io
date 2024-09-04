@@ -9,32 +9,12 @@ jobs:
     name: Deploy the website in preproduction
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
+    - uses: ./.github/workflows/build.yml@main
       with:
-        fetch-depth: 0
-    - uses: coursier/setup-action@v1.3.4
+        secrets: inherit
+    - uses: ./.github/workflows/push-cc.yml@main
       with:
-        jvm: adoptium:1.17.0.7
-        apps: sbt
-    - name: Build static website
-      uses: nick-fields/retry@v2
-      with:
-        timeout_minutes: 5
-        max_attempts: 3
-        command: |
-          npm install
-          npx sass src/main/resources/css/main.scss src/main/resources/css/output.css
-          sbt "compile; fullLinkJS"
-          npm run build
-    - name: Deploy the website in preproduction
-      run: |
-        npm install -g clever-tools 
-        mv dist dist-prod
-        cp robots.txt dist-prod/robots.txt
-        git config --global user.email ${{ secrets.GIT_EMAIL }}
-        git config --global user.name ${{ secrets.GIT_NAME }}
-        git add .
-        git commit -m "chore: forward changed to preprod"
-        clever login --token ${{ secrets.CLEVER_TOKEN }} --secret ${{ secrets.CLEVER_SECRET }}
-        clever link ${{ secrets.CLEVER_APP_ID_PREPROD}}
-        clever deploy --force
+        secrets:
+          CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
+          CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
+          CLEVER_APP_ID: ${{ secrets.CLEVER_APP_ID }}
