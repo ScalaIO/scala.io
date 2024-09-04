@@ -128,6 +128,7 @@ jobs:
           sbt "compile; fullLinkJS"
           npm run build
           mv dist dist-prod
+          cp robots.txt dist-prod/robots.txt
           git config --global user.email ${{ secrets.GIT_EMAIL }}
           git config --global user.name ${{ secrets.GIT_NAME }}
           git add .
