@@ -4,36 +4,36 @@ on:
   workflow_dispatch:
 
 jobs:
-  deploy:
-    name: Deploy the website in production
+  build-deploy:
+    name: Build & deploy the website
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v4
-      with:
-        fetch-depth: 0
-    - uses: coursier/setup-action@v1.3.4
-      with:
-        jvm: adoptium:1.17.0.7
-        apps: sbt
-    - name: Build static website
-      uses: nick-fields/retry@v2
-      with:
-        timeout_minutes: 5
-        max_attempts: 3
-        command: |
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: coursier/setup-action@v1.3.4
+        with:
+          jvm: adoptium:1.17.0.7
+          apps: sbt
+      - name: Compile
+        run: |
+          sbt "compile; fullLinkJS"
           npm install
           npx sass src/main/resources/css/main.scss src/main/resources/css/output.css
-          sbt "compile; fullLinkJS"
+      - name: Build website
+        run: |
           npm run build
-    - name: Deploy the website in production
-      run: |
-        npm install -g clever-tools 
-        mv dist dist-prod
-        cp robots.txt dist-prod/robots.txt
-        git config --global user.email ${{ secrets.GIT_EMAIL }}
-        git config --global user.name ${{ secrets.GIT_NAME }}
-        git add .
-        git commit -m "chore: forward changed to prod"
-        clever login --token ${{ secrets.CLEVER_TOKEN }} --secret ${{ secrets.CLEVER_SECRET }}
-        clever link ${{ secrets.CLEVER_APP_ID_PROD}}
-        clever deploy --force
+          mv dist dist-prod
+          cp robots.txt dist-prod/robots.txt
+      - name: Commit changes
+        run: |
+          git config --global user.email ${{ secrets.GIT_EMAIL }}
+          git config --global user.name ${{ secrets.GIT_NAME }}
+          git add .
+          git commit -m "chore: forward changed to preprod"
+      - name: Deploy to Clever Cloud
+        run: |
+          npm install -g clever-tools 
+          clever login --token ${{ secrets.CLEVER_TOKEN }} --secret ${{ secrets.CLEVER_SECRET }}
+          clever link ${{ secrets.CLEVER_APP_ID_PROD}}
+          clever deploy --force
