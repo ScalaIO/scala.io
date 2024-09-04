@@ -2,7 +2,6 @@ package io.scala.modules.layout
 
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-
 import io.scala.IndexPage
 import io.scala.Lexicon
 import io.scala.Page
@@ -67,8 +66,7 @@ object Footer {
                       case talks: TalksPage       => talks.copy(conference = Some(linkKey))
                       case sponsors: SponsorsPage => sponsors.copy(conference = Some(linkKey))
                       case page                   => TalksPage(conference = Some(linkKey))
-                  },
-                  href := s"?conference=${key.replace("_", "-")}"
+                  }
                 )
             )
           }*

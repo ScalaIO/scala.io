@@ -179,7 +179,7 @@ object Page {
       .collectStatic(FAQPage)(FAQView.render())
       .collectStatic(CoCPage)(CoCView.render())
 
-  def navigateTo(page: Page): Binder[HtmlElement] = Binder { el =>
+  def navigateTo(page: => Page): Binder[HtmlElement] = Binder { el =>
     val isLinkElement = el.ref.isInstanceOf[html.Anchor]
     if (isLinkElement) {
       el.amend(href(router.absoluteUrlForPage(page)))

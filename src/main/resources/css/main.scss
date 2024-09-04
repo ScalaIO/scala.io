@@ -61,6 +61,12 @@ body {
   background: vars.$background-color;
 }
 
+#app > div {
+  display: flex;
+  flex-direction: column;
+  min-height: 100lvh;
+}
+
 .catch-phrase {
   margin-bottom: vars.$spacing-small;
 }
