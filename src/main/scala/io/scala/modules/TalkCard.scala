@@ -10,6 +10,7 @@ import org.scalajs.dom.HTMLSpanElement
 
 import io.scala.models.Talk
 import io.scala.svgs.Icons
+import io.scala.extensions.*
 
 object TalkKindTag:
   def apply(kind: Talk.Kind): ReactiveHtmlElement[HTMLSpanElement] =
@@ -32,7 +33,7 @@ object TalkCard:
         ),
         div(
           className := "subtitle",
-          talk.info.room.fold(emptyNode)(room => span(className := "room", room.show))
+          talk.info.room.nullFold(emptyNode)(room => span(className := "room", room.show))
         )
       ),
       Line(margin = 16),

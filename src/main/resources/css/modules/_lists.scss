@@ -28,8 +28,13 @@ $list-item-spacing: 0.25rem;
 
   li {
     display: inline;
-    margin-right: 0.5rem;
     margin-left: 0.5rem;
+    &:not(:first-child) {
+      &::before {
+        content: '|';
+        margin-right: 0.5rem;
+      }
+    }
 
     &:first-child {
       margin-left: 0;

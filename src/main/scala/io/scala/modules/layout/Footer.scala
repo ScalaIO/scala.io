@@ -66,7 +66,7 @@ object Footer {
                       case index: IndexPage       => index.copy(conference = Some(linkKey))
                       case talks: TalksPage       => talks.copy(conference = Some(linkKey))
                       case sponsors: SponsorsPage => sponsors.copy(conference = Some(linkKey))
-                      case page                   => page
+                      case page                   => TalksPage(conference = Some(linkKey))
                   },
                   href := s"?conference=${key.replace("_", "-")}"
                 )
