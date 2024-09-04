@@ -13,8 +13,7 @@ jobs:
       with:
         secrets: inherit
     - uses: ./.github/workflows/push-cc.yml@main
-      with:
-        secrets:
-          CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
-          CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
-          CLEVER_APP_ID: ${{ secrets.CLEVER_APP_ID }}
+      env:
+        CLEVER_TOKEN: ${{ secrets.CLEVER_TOKEN }}
+        CLEVER_SECRET: ${{ secrets.CLEVER_SECRET }}
+        CLEVER_APP_ID: ${{ secrets.CLEVER_APP_ID_PREPROD }}
