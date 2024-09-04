@@ -6,7 +6,7 @@ on:
 
 jobs:
   build:
-    name: Compile Scala to JS
+    name: Build the website
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -16,12 +16,13 @@ jobs:
         with:
           jvm: adoptium:1.17.0.7
           apps: sbt
-      - name: Compile Scala to JS
+      - name: Compile
         run: |
           npm install
           npx sass src/main/resources/css/main.scss src/main/resources/css/output.css
           sbt "compile; fullLinkJS"
           npm run build
+          mv dist dist-prod
           cp robots.txt dist-prod/robots.txt
           git config --global user.email ${{ secrets.GIT_EMAIL }}
           git config --global user.name ${{ secrets.GIT_NAME }}
