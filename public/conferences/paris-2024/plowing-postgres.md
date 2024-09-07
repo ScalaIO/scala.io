@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: plowing-postgres-and-unearthing-hidden-gems
-- Category: Other
+- Category: Data
 - confirmed: true
 
 ## Abstract

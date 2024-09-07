@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: scary-stuff-less-metaprogramming-in-scala3
-- Category: Other
+- Category: Metaprog
 - confirmed: true
 
 ## Abstract

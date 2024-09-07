@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: embracing-failure-web-development-with-scala
-- Category: Other
+- Category: Web
 - confirmed: true
 
 ## Abstract

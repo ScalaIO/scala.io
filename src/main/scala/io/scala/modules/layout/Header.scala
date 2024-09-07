@@ -6,7 +6,7 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 import org.scalajs.dom.window
 
-import io.scala.modules.elements.ShinyButton
+import io.scala.modules.elements.Links
 import io.scala.svgs.Icons
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
@@ -57,8 +57,8 @@ object Header {
     Page.navigateTo(IndexPage())
   )
 
-  val buyTicket = ShinyButton
-    .link(Lexicon.Header.buyTicket)
+  val buyTicket = Links
+    .shiny(Lexicon.Header.buyTicket)
     .amend(
       idAttr := "buy-ticket",
       href   := "https://yurplan.com/events/Scala-IO-2024/115152",

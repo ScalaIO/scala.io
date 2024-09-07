@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: escaping-false-dichotomy-with-sanely-automatic-derivation
-- Category: Other
+- Category: Metaprog
 - confirmed: true
 
 ## Abstract

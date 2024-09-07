@@ -13,9 +13,9 @@ import io.scala.modules.elements.Line
 import io.scala.modules.elements.LineKind
 import io.scala.modules.elements.Links
 import io.scala.modules.elements.Lists
-import io.scala.modules.elements.ShinyButton
 import io.scala.modules.elements.Titles
 import io.scala.svgs.Icons
+import io.scala.modules.elements.Buttons
 
 object Footer {
   private lazy val summary: Div =
@@ -45,7 +45,7 @@ object Footer {
           nameAttr   := "EMAIL",
           aria.label := "Search"
         ),
-        ShinyButton(Lexicon.Footer.Newsletter.button)
+        Buttons.shiny(Lexicon.Footer.Newsletter.button)
       )
     )
 

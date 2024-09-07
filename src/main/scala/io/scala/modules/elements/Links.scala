@@ -16,3 +16,9 @@ object Links:
       content: Modifier[ReactiveHtmlElement[HTMLAnchorElement]]*
   ) =
     a(className := "link-highlight", content, target := "_blank")
+
+  def shiny(text: String): Anchor =
+    a(
+      text,
+      className := "shiny-button"
+    )

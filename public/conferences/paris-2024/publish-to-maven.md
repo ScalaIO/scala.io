@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: joyful-and-secure-publishing-to-maven-central
-- Category: Other
+- Category: Ecosystem
 - confirmed: true
 
 ## Abstract

@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: how-functional-is-direct-style
-- Category: Other
+- Category: Language
 - confirmed: true
 
 ## Abstract

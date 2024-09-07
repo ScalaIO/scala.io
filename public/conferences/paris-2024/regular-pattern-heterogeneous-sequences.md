@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: recognizing-regular-patterns-in-heterogeneous-sequences
-- Category: Other
+- Category: Type System
 - confirmed: true
 
 ## Abstract

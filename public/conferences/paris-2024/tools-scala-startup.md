@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: tools-for-scala-startups
-- Category: Other
+- Category: Ecosystem
 - confirmed: true
 
 ## Abstract

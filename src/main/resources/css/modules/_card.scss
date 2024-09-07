@@ -153,6 +153,7 @@ span.presentation-keynote {
   }
 
   .body {
+    flex-grow: 1;
     padding: 0 $card-padding;
     overflow-y: scroll;
 
@@ -161,20 +162,14 @@ span.presentation-keynote {
       height: 2px;
     }
   }
-  .footer {
+
+  .speakers {
     display: flex;
     flex-wrap: wrap;
-    align-items: end;
-    width: 100%;
-    gap: 8px;
-
-    .classy-button {
-      padding-left: 8px;
-      padding-right: 8px;
-      padding-top: 10px;
-      padding-bottom: 10px;
-    }
+    gap: 1rem;
+    margin-bottom: 1rem;
   }
+
   .room {
     color: vars.$text-color-light;
     font-size: medium;
