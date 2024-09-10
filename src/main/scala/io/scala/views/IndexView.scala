@@ -1,7 +1,6 @@
 package io.scala.views
 
 import com.raquo.laminar.api.L.*
-
 import io.scala.IndexPage
 import io.scala.Page
 import io.scala.VenuePage
@@ -69,6 +68,7 @@ case object IndexView extends ReactiveView[IndexPage] {
   )
 
   lazy val tickets: Div = div(
+    idAttr("tickets"),
     className := "container",
     Titles("Tickets"),
     a(
