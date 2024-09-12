@@ -4,7 +4,7 @@ import com.raquo.laminar.api.L.*
 import io.scala.IndexPage
 import io.scala.Page
 import io.scala.VenuePage
-import io.scala.data.TalksHistory
+import io.scala.data.SessionsHistory
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
 
@@ -35,8 +35,8 @@ case object IndexView extends ReactiveView[IndexPage] {
 
   def speakerGallery(args: Signal[IndexPage]) =
     def speakers(conf: Option[String]) =
-      TalksHistory
-        .talksForConf(conf)
+      SessionsHistory
+        .sessionsForConf(conf)
         .filter(_.info.confirmed)
         .flatMap: talk =>
           talk.speakers.map((_, talk.info))
@@ -48,7 +48,7 @@ case object IndexView extends ReactiveView[IndexPage] {
       div(
         className := "card-container",
         children <-- args.map: page =>
-          speakers(page.conference).map(SpeakerCard(_, _, TalksHistory.getConfName(page.conference)))
+          speakers(page.conference).map(SpeakerCard(_, _, SessionsHistory.getConfName(page.conference)))
       )
     )
 

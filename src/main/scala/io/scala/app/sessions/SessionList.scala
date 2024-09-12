@@ -1,20 +1,20 @@
-package io.scala.app.talks
+package io.scala.app.sessions
 
 import com.raquo.laminar.api.L.*
 import scala.collection.immutable.Queue
 
-import io.scala.TalksPage
-import io.scala.data.TalksHistory
-import io.scala.data.TalksHistory.getConfName
+import io.scala.SessionsPage
+import io.scala.data.SessionsHistory
+import io.scala.data.SessionsHistory.getConfName
 import io.scala.models.Session
-import io.scala.modules.TalkCard
+import io.scala.modules.SessionCard
 import io.scala.modules.elements.*
 import io.scala.views.ReactiveView
 
-case object TalkList extends ReactiveView[TalksPage] {
+case object SessionList extends ReactiveView[SessionsPage] {
 
-  private def sortedCategories(talks: List[Session]): List[(String, List[Session])] =
-    talks
+  private def sortedCategories(sessions: List[Session]): List[(String, List[Session])] =
+    sessions
       .groupBy(_.info.category)
       .toList
       .sortWith:
@@ -30,14 +30,14 @@ case object TalkList extends ReactiveView[TalksPage] {
             // 3rd criterion: lexicographic order
             case (_, _, true) => cat1.compareTo(cat2) >= 0
 
-  override def body(args: Signal[TalksPage]): HtmlElement =
+  override def body(args: Signal[SessionsPage]): HtmlElement =
     def talksForConf(conference: Option[String], draft: Boolean) =
-      if draft then TalksHistory.talksForConf(conference)
-      else TalksHistory.talksForConf(conference).filter(_.info.confirmed)
+      if draft then SessionsHistory.sessionsForConf(conference)
+      else SessionsHistory.sessionsForConf(conference).filter(_.info.confirmed)
 
     sectionTag(
-      className := "container talks-list",
-      Titles("Talks"),
+      className := "container talks-list", // TODO: rename CSS also
+      Titles("Sessions"),
       Line(margin = 55),
       div(
         className := "with-toc r-toc",
@@ -53,7 +53,7 @@ case object TalkList extends ReactiveView[TalksPage] {
                   acc
                     .enqueue(h2(idAttr := category, className := "content-title", category))
                     .enqueue(
-                      div(className := "card-container", talks.sorted.map(TalkCard(_, getConfName(arg.conference))))
+                      div(className := "card-container", talks.sorted.map(SessionCard(_, getConfName(arg.conference))))
                     )
                 }
                 .toSeq

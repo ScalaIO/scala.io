@@ -16,8 +16,8 @@ object ScheduleInfo {
   val maxEnd                            = LocalTime.of(19, 0)
   val pxByHour                          = 600
   lazy val schedule: Seq[Act] =
-    TalksHistory
-      .talksForConf(None)
+    SessionsHistory
+      .sessionsForConf(None)
       .keepAs:
         case t: Session if t.info.dateTime.isDefined => t.asInstanceOf[Session & TimeDefinedTalk]
 }

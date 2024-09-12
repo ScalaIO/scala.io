@@ -45,6 +45,6 @@ object SpeakerCard {
       className := "link classy-button highlight",
       "See talk ", // ! Problem if >= 2 talks
       Icons.goTo,
-      Page.navigateTo(TalkPage(conference, info.slug))
+      Page.navigateTo(SessionPage(conference, info.slug))
     )
 }

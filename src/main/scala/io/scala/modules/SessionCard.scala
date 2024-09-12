@@ -14,40 +14,41 @@ import io.scala.svgs.Icons
 import io.scala.modules.elements.Buttons
 import io.scala.modules.elements.Buttons.important
 
-object TalkKindTag:
+object SessionKindTag:
   def apply(kind: Session.Kind): ReactiveHtmlElement[HTMLSpanElement] =
     span(kind.toString, className := kind.toStyle, marginLeft := "4px")
 
-object TalkCard:
-  def shortName(name: String) =
+object SessionCard:
+
+  private def shortName(name: String) =
     name.split(" ", 2) match
       case Array(first, last) => s"${first.charAt(0)}. $last"
       case _                  => name
 
-  def apply(talk: Session, conference: String): ReactiveHtmlElement[HTMLDivElement] =
+  def apply(session: Session, conference: String): ReactiveHtmlElement[HTMLDivElement] =
     div(
-      className := s"talk-card ${talk.info.kind.toStyle}",
+      className := s"talk-card ${session.info.kind.toStyle}", // TODO: rename CSS also
       div(
         h3(
           className := "title",
-          talk.info.title,
-          TalkKindTag(talk.info.kind)
+          session.info.title,
+          SessionKindTag(session.info.kind)
         ),
         div(
           className := "subtitle",
-          talk.info.room.nullFold(emptyNode)(room => span(className := "room", room.show))
+          session.info.room.nullFold(emptyNode)(room => span(className := "room", room.show))
         )
       ),
       Line(margin = 4),
       div(
         className := "body paragraph",
-        talk.renderDescription
+        session.renderDescription
       ),
       Line(margin = 4),
       div(
         div(
           className := "speakers",
-          talk.speakers.map { speaker =>
+            session.speakers.map { speaker =>
             div(
               className := "speaker",
               img(
@@ -71,8 +72,10 @@ object TalkCard:
         Buttons.classyNew(
           Icons.goTo,
           className  := "link",
-          aria.label := s"Go to ${talk.info.title}",
-          Page.navigateTo(TalkPage(conference, talk.info.slug))
+          aria.label := s"Go to ${session.info.title}",
+          Page.navigateTo(SessionPage(conference, session.info.slug))
         ).important
       )
     )
+    
+end SessionCard

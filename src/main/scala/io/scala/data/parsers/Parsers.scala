@@ -97,7 +97,7 @@ object Parsers:
       )
       .getOrElse(Meetup.empty)
 
-  object ConferenceTalk:
+  object ConferenceSession:
     def basicInfo =
       headerN(1) ~ list map {
         case HeaderChunk(_, name) ~ practicalInfo =>
@@ -146,11 +146,11 @@ object Parsers:
 
     def speakersParser = (headerN(2) ~> speakerParser.+)
 
-    val talkParser = basicInfo ~ abstractParser ~ speakersParser map { case basicInfo ~ description ~ speakers =>
+    val sessionParser = basicInfo ~ abstractParser ~ speakersParser map { case basicInfo ~ description ~ speakers =>
       Session(basicInfo, description, speakers)
     }
 
-    def fromText(source: String): Session = parser.parse(talkParser, source) match
+    def fromText(source: String): Session = parser.parse(sessionParser, source) match
       case Success(talk, _) => talk
       case failure          => Session.empty
 

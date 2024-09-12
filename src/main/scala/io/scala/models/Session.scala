@@ -11,7 +11,7 @@ import org.scalajs.dom.{HTMLDivElement, HTMLParagraphElement, SVGSVGElement}
 import io.scala.data.current
 import io.scala.data.parsers.Parsers
 import io.scala.extensions.*
-import io.scala.modules.TalkCard
+import io.scala.modules.SessionCard
 import io.scala.modules.elements.Paragraphs
 import io.scala.svgs.Icons
 
@@ -35,7 +35,7 @@ case class Session(
   val day: DayOfWeek     = info.dateTime.nullMap(_.getDayOfWeek)
   val time: LocalTime    = info.dateTime.nullMap(_.toLocalTime)
   def duration: Int      = info.kind.duration
-  def render: Div        = TalkCard(this, current)
+  def render: Div        = SessionCard(this, current)
   def isKeynote: Boolean = info.kind == Session.Kind.Keynote
 
 object Session:

@@ -2,8 +2,8 @@ package io.scala
 
 import app.faq.*
 import app.schedule.ScheduleView
-import app.talks.TalkList
-import app.talks.TalkView
+import app.sessions.SessionList
+import app.sessions.SessionView
 import com.raquo.laminar.api.L.*
 import com.raquo.waypoint.*
 import org.scalajs.dom.document
@@ -33,13 +33,13 @@ case class IndexPage(withDraft: Option[Boolean] = None, conference: Option[Strin
     with Draftable
     with Routeable:
   def title: String = "Home"
-case class TalksPage(withDraft: Option[Boolean] = None, conference: Option[String] = None)
+case class SessionsPage(withDraft: Option[Boolean] = None, conference: Option[String] = None)
     extends Page
     with Draftable
     with Routeable:
-  def title: String = "Talks"
-case class TalkPage(conference: String, slug: String) extends Page with Slugify:
-  def title: String = s"Talk - $slug"
+  def title: String = "Sessions"
+case class SessionPage(conference: String, slug: String) extends Page with Slugify:
+  def title: String = s"Session - $slug"
 case class SponsorsPage(conference: Option[String] = None) extends Page with Routeable:
   def title: String = "Sponsors"
 case object VenuePage extends Page:
@@ -59,8 +59,8 @@ case object CoCPage extends Page:
 object Page {
 
   given indexCodec: ReadWriter[IndexPage]        = macroRW
-  given talksCodec: ReadWriter[TalksPage]        = macroRW
-  given talkCodec: ReadWriter[TalkPage]          = macroRW
+  given sessionsCodec: ReadWriter[SessionsPage]  = macroRW
+  given sessionCodec: ReadWriter[SessionPage]    = macroRW
   given sponsorsCodec: ReadWriter[SponsorsPage]  = macroRW
   given venueCodec: ReadWriter[VenuePage.type]   = macroRW
   given scheduleCodec: ReadWriter[SchedulePage]  = macroRW
@@ -73,7 +73,7 @@ object Page {
   val conferenceParam = param[String]("conference").?
 
   given FromString[Page, DummyError] = {
-    case "talks"    => Right(TalksPage())
+    case "sessions" => Right(SessionsPage())
     case "sponsors" => Right(SponsorsPage())
     case "venue"    => Right(VenuePage)
     case "schedule" => Right(SchedulePage())
@@ -84,8 +84,8 @@ object Page {
   }
 
   given Printer[Page] = {
-    case _: TalksPage    => "talks"
-    case t: TalkPage     => s"talks/${t.slug}"
+    case _: SessionsPage => "sessions"
+    case s: SessionPage  => s"sessions/${s.slug}"
     case _: SponsorsPage => "sponsors"
     case VenuePage       => "venue"
     case _: SchedulePage => "schedule"
@@ -100,20 +100,20 @@ object Page {
     decode = IndexPage(_, _),
     (root / endOfSegments) ? draftParam & conferenceParam
   )
-  val talksRoute = Route.onlyQuery[TalksPage, (Option[Boolean], Option[String])](
+  val sessionsRoute = Route.onlyQuery[SessionsPage, (Option[Boolean], Option[String])](
     encode = x => (x.withDraft, x.conference),
-    decode = TalksPage(_, _),
-    (root / "talks" / endOfSegments) ? draftParam & conferenceParam
+    decode = SessionsPage(_, _),
+    (root / "sessions" / endOfSegments) ? draftParam & conferenceParam
   )
-  val talkRoute = Route[TalkPage, (String, String)](
+  val sessionRoute = Route[SessionPage, (String, String)](
     encode = x => (x.conference, x.slug),
-    decode = TalkPage(_, _),
-    (root / "talks" / segment[String] / segment[String] / endOfSegments)
+    decode = SessionPage(_, _),
+    (root / "sessions" / segment[String] / segment[String] / endOfSegments)
   )
-  val legacyTalkRoute = Route[TalkPage, String](
+  val legacySessionRoute = Route[SessionPage, String](
     encode = x => x.slug,
-    decode = TalkPage("nantes-2024", _),
-    (root / "talks" / segment[String] / endOfSegments)
+    decode = SessionPage("nantes-2024", _),
+    (root / "sessions" / segment[String] / endOfSegments)
   )
   val sponsorsRoute = Route.onlyQuery[SponsorsPage, Option[String]](
     encode = x => x.conference,
@@ -145,9 +145,9 @@ object Page {
   val router = new Router[Page](
     routes = List(
       indexRoute,
-      talksRoute,
-      talkRoute,
-      legacyTalkRoute,
+      sessionsRoute,
+      sessionRoute,
+      legacySessionRoute,
       sponsorsRoute,
       venueRoute,
       scheduleRoute,
@@ -170,8 +170,8 @@ object Page {
   val splitter: SplitRender[Page, HtmlElement] =
     SplitRender(router.currentPageSignal)
       .collectSignal[IndexPage](IndexView.render)
-      .collectSignal[TalksPage](TalkList.render)
-      .collectSignal[TalkPage](TalkView.render)
+      .collectSignal[SessionsPage](SessionList.render)
+      .collectSignal[SessionPage](SessionView.render)
       .collectSignal[SponsorsPage](SponsorsList.render)
       .collectStatic(VenuePage)(VenueView.render())
       .collectSignal[SchedulePage](ScheduleView.render)

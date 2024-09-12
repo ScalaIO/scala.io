@@ -1,4 +1,4 @@
-package io.scala.app.talks
+package io.scala.app.sessions
 
 import com.raquo.laminar.api.L.*
 
