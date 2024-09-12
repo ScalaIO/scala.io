@@ -15,8 +15,6 @@ object ScheduleInfo {
   val minStart                          = LocalTime.of(9, 0)
   val maxEnd                            = LocalTime.of(19, 0)
   val pxByHour                          = 600
-  val foo: List[Talk & TimeDefinedTalk] = ???
-  val bar: List[Act]                    = foo
   lazy val schedule: Seq[Act] =
     TalksHistory
       .talksForConf(None)
