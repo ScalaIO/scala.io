@@ -84,12 +84,12 @@ object Talk:
     opaque type Slides = Option[String]
     object Slides:
       extension (slides: Slides) inline def fold[A](ifEmpty: => A)(f: String => A): A = slides.fold(ifEmpty)(f)
-      inline def apply(opt: Option[String]): Slides                                   = opt.filter(_.size > 0)
+      inline def apply(opt: Option[String]): Slides                                   = opt.filter(_.nonEmpty)
 
     opaque type Replay = Option[String]
     object Replay:
       extension (replay: Replay) inline def fold[A](ifEmpty: => A)(f: String => A): A = replay.fold(ifEmpty)(f)
-      inline def apply(opt: Option[String]): Replay                                   = opt.filter(_.size > 0)
+      inline def apply(opt: Option[String]): Replay                                   = opt.filter(_.nonEmpty)
 
   case class Speaker(
       name: String,
