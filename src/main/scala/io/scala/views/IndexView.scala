@@ -63,7 +63,8 @@ case object IndexView extends ReactiveView[IndexPage] {
         span(className := "event-town", "Paris"),
         " @ ",
         a(className := "event-location", Page.navigateTo(VenuePage), "Epita")
-      )
+      ),
+      a(href := "#tickets", className := "shiny-button", "Tickets"),
     )
   )
 
