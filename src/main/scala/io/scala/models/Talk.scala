@@ -15,12 +15,6 @@ import io.scala.modules.TalkCard
 import io.scala.modules.elements.Paragraphs
 import io.scala.svgs.Icons
 
-sealed trait TalkInfo[A <: TalkInfo[A]]:
-  def ordinal: Int
-
-object TalkInfo:
-  given [A <: TalkInfo[A]]: Ordering[A] = Ordering[Int].on(_.ordinal)
-
 sealed trait Act:
   def day: DayOfWeek
   def time: LocalTime
