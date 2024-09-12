@@ -3,7 +3,6 @@ package io.scala.app.schedule
 import com.raquo.laminar.api.L.*
 import io.scala.models.Act
 import io.scala.models.Break
-import io.scala.models.CompleteAct
 import io.scala.models.Special
 import io.scala.models.Talk
 import io.scala.modules.syntax.*
@@ -28,7 +27,7 @@ case class ScheduleDay(eventsList: Map[LocalTime, Seq[Act]], startingTimes: Seq[
     yield div(className := "timeslot", time.render(), cards)
 
 object ScheduleDay {
-  def apply(events: Seq[CompleteAct]) =
+  def apply(events: Seq[Act]) =
     val talksByTime: Map[LocalTime, Seq[Act]] = events.groupBy(_.time)
     val startingTimes                         = events.map(_.time).distinct.sorted
     val rooms: Seq[Talk.Room] = events.collect{ case t: Talk if t.info.room != null => t.info.room.nn }.distinct.sorted

@@ -21,10 +21,9 @@ sealed trait TalkInfo[A <: TalkInfo[A]]:
 object TalkInfo:
   given [A <: TalkInfo[A]]: Ordering[A] = Ordering[Int].on(_.ordinal)
 
-type CompleteAct = Act & { val time: LocalTime; val day: DayOfWeek }
 sealed trait Act:
-  def day: DayOfWeek | Null
-  def time: LocalTime | Null
+  def day: DayOfWeek
+  def time: LocalTime
   def render: Div
 
 sealed trait Durable:
