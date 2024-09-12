@@ -9,13 +9,13 @@ import org.scalajs.dom.HTMLDivElement
 import org.scalajs.dom.HTMLSpanElement
 
 import io.scala.extensions.*
-import io.scala.models.Talk
+import io.scala.models.Session
 import io.scala.svgs.Icons
 import io.scala.modules.elements.Buttons
 import io.scala.modules.elements.Buttons.important
 
 object TalkKindTag:
-  def apply(kind: Talk.Kind): ReactiveHtmlElement[HTMLSpanElement] =
+  def apply(kind: Session.Kind): ReactiveHtmlElement[HTMLSpanElement] =
     span(kind.toString, className := kind.toStyle, marginLeft := "4px")
 
 object TalkCard:
@@ -24,7 +24,7 @@ object TalkCard:
       case Array(first, last) => s"${first.charAt(0)}. $last"
       case _                  => name
 
-  def apply(talk: Talk, conference: String): ReactiveHtmlElement[HTMLDivElement] =
+  def apply(talk: Session, conference: String): ReactiveHtmlElement[HTMLDivElement] =
     div(
       className := s"talk-card ${talk.info.kind.toStyle}",
       div(

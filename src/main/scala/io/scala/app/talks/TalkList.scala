@@ -6,14 +6,14 @@ import scala.collection.immutable.Queue
 import io.scala.TalksPage
 import io.scala.data.TalksHistory
 import io.scala.data.TalksHistory.getConfName
-import io.scala.models.Talk
+import io.scala.models.Session
 import io.scala.modules.TalkCard
 import io.scala.modules.elements.*
 import io.scala.views.ReactiveView
 
 case object TalkList extends ReactiveView[TalksPage] {
 
-  private def sortedCategories(talks: List[Talk]): List[(String, List[Talk])] =
+  private def sortedCategories(talks: List[Session]): List[(String, List[Session])] =
     talks
       .groupBy(_.info.category)
       .toList

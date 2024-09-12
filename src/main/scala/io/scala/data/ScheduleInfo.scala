@@ -6,7 +6,7 @@ import java.time.LocalTime
 
 import io.scala.extensions.*
 import io.scala.models.Act
-import io.scala.models.Talk
+import io.scala.models.Session
 
 type TimeDefinedTalk = { val dateTime: LocalDateTime; val time: LocalTime; val day: DayOfWeek }
 object ScheduleInfo {
@@ -19,5 +19,5 @@ object ScheduleInfo {
     TalksHistory
       .talksForConf(None)
       .keepAs:
-        case t: Talk if t.info.dateTime.isDefined => t.asInstanceOf[Talk & TimeDefinedTalk]
+        case t: Session if t.info.dateTime.isDefined => t.asInstanceOf[Session & TimeDefinedTalk]
 }

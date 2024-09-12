@@ -23,10 +23,10 @@ sealed trait Act:
 sealed trait Durable:
   def duration: Int
 
-case class Talk(
-    info: Talk.BasicInfo,
+case class Session(
+    info: Session.BasicInfo,
     description: String,
-    speakers: List[Talk.Speaker]
+    speakers: List[Session.Speaker]
 ) extends Act
     with Durable:
   lazy val renderDescription: List[ReactiveHtmlElement[HTMLParagraphElement]] =
@@ -36,9 +36,9 @@ case class Talk(
   val time: LocalTime    = info.dateTime.nullMap(_.toLocalTime)
   def duration: Int      = info.kind.duration
   def render: Div        = TalkCard(this, current)
-  def isKeynote: Boolean = info.kind == Talk.Kind.Keynote
+  def isKeynote: Boolean = info.kind == Session.Kind.Keynote
 
-object Talk:
+object Session:
   opaque type Room = String
   extension (room: Room) def show: String = s"Room $room"
   object Room:
@@ -46,8 +46,8 @@ object Talk:
     def apply(room: String): Room = room
     given Ordering[Room]          = Ordering.String.on(_.show)
 
-  def empty: Talk      = Talk(BasicInfo.empty, "To be announced", List.empty)
-  given Ordering[Talk] = Ordering.by(talk => (talk.info.kind, talk.info.title))
+  def empty: Session      = Session(BasicInfo.empty, "To be announced", List.empty)
+  given Ordering[Session] = Ordering.by(talk => (talk.info.kind, talk.info.title))
   given Ordering[Kind] = Ordering.by:
     case Kind.Lightning => 4
     case Kind.Short     => 3

@@ -2,7 +2,7 @@ package io.scala.data
 
 import io.scala.data.parsers.Parsers
 import io.scala.models.Sponsor
-import io.scala.models.Talk
+import io.scala.models.Session
 
 import scala.collection.mutable.HashMap as MutableMap
 
@@ -15,14 +15,14 @@ object TalksHistory:
     )
 
   private val cachedTalks = MutableMap
-    .empty[String, List[Talk]]
+    .empty[String, List[Session]]
     .withDefault:
       historyMap
         .get(_)
         .getOrElse(historyMap(current))
         .map(Parsers.ConferenceTalk.fromText)
 
-  def talksForConf(confName: Option[String]): List[Talk] =
+  def talksForConf(confName: Option[String]): List[Session] =
     cachedTalks(getConfName(confName))
 
   inline def getConfName(confName: Option[String]): String =

@@ -4,12 +4,12 @@ package modules
 import com.raquo.laminar.api.L.*
 
 import io.scala.models.Social
-import io.scala.models.Talk
-import io.scala.models.Talk.Speaker
+import io.scala.models.Session
+import io.scala.models.Session.Speaker
 import io.scala.svgs.Icons
 
 object SpeakerCard {
-  def apply(speaker: Speaker, talkInfo: Talk.BasicInfo, conference: String) =
+  def apply(speaker: Speaker, talkInfo: Session.BasicInfo, conference: String) =
     div(
       className := "speaker-card",
       img(
@@ -40,7 +40,7 @@ object SpeakerCard {
       linkToTalks(talkInfo, conference)
     )
 
-  def linkToTalks(info: Talk.BasicInfo, conference: String) =
+  def linkToTalks(info: Session.BasicInfo, conference: String) =
     button(
       className := "link classy-button highlight",
       "See talk ", // ! Problem if >= 2 talks
