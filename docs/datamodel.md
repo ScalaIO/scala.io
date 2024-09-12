@@ -5,7 +5,7 @@
 ```md
 # <title>
 
-- Kind: (Lightning|Short|Talk|Keynote)
+- Kind: (Keynote|Lightning|Short|Talk|Workshop)
 - Category: <String>
 - DateTime: <date> | <time>
 - Room: <Int>

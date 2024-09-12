@@ -49,8 +49,9 @@ object Session:
   def empty: Session      = Session(BasicInfo.empty, "To be announced", List.empty)
   given Ordering[Session] = Ordering.by(talk => (talk.info.kind, talk.info.title))
   given Ordering[Kind] = Ordering.by:
-    case Kind.Lightning => 4
-    case Kind.Short     => 3
+    case Kind.Lightning => 5
+    case Kind.Short     => 4
+    case Kind.Workshop  => 3
     case Kind.Talk      => 2
     case Kind.Keynote   => 1
 
@@ -59,6 +60,7 @@ object Session:
     case Short     extends Kind("presentation-short", 25)
     case Talk      extends Kind("presentation-talk", 45)
     case Keynote   extends Kind("presentation-keynote", 60)
+    case Workshop  extends Kind("workshop", 150)
   end Kind
 
   case class BasicInfo(
