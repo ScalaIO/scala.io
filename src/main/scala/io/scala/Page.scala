@@ -105,15 +105,25 @@ object Page {
     decode = SessionsPage(_, _),
     (root / "sessions" / endOfSegments) ? draftParam & conferenceParam
   )
+  private val legacyTalksRoute = Route.onlyQuery(
+    encode = (x: SessionsPage) => (x.withDraft, x.conference),
+    decode = SessionsPage(_, _),
+    (root / "talks" / endOfSegments) ? draftParam & conferenceParam,
+  )
   val sessionRoute = Route[SessionPage, (String, String)](
     encode = x => (x.conference, x.slug),
     decode = SessionPage(_, _),
     (root / "sessions" / segment[String] / segment[String] / endOfSegments)
   )
-  val legacySessionRoute = Route[SessionPage, String](
+  private val legacyTalkRoute = Route(
+    encode = (x: SessionPage) => (x.conference, x.slug),
+    decode = SessionPage(_, _),
+    root / "talks" / segment[String] / segment[String] / endOfSegments,
+  )
+  private val legacyNantesTalkRoute = Route[SessionPage, String](
     encode = x => x.slug,
     decode = SessionPage("nantes-2024", _),
-    (root / "sessions" / segment[String] / endOfSegments)
+    root / "talks" / segment[String] / endOfSegments,
   )
   val sponsorsRoute = Route.onlyQuery[SponsorsPage, Option[String]](
     encode = x => x.conference,
@@ -146,8 +156,10 @@ object Page {
     routes = List(
       indexRoute,
       sessionsRoute,
+      legacyTalksRoute,
       sessionRoute,
-      legacySessionRoute,
+      legacyTalkRoute,
+      legacyNantesTalkRoute,
       sponsorsRoute,
       venueRoute,
       scheduleRoute,
