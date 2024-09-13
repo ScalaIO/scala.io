@@ -2,7 +2,7 @@
 
 - Kind: Workshop
 - Slug: building-robust-applications-with-kyo
-- Category: Other
+- Category: Effect Systems
 - confirmed: true
 
 ## Abstract
