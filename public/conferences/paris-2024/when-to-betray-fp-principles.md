@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: scala-performance-when-you-should-betray-fp-principles
-- Category: Other
+- Category: Language
 - confirmed: true
 
 ## Abstract

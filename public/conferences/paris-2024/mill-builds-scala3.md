@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: mill-builds-in-scala-3-a-migration-story
-- Category: Other
+- Category: Ecosystem
 - confirmed: true
 
 ## Abstract

@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: full-stack-scala-the-easy-way
-- Category: Other
+- Category: Web
 - confirmed: true
 
 ## Abstract

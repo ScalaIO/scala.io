@@ -8,9 +8,10 @@ import org.scalajs.dom
 import org.scalajs.dom.HTMLDivElement
 import org.scalajs.dom.HTMLSpanElement
 
+import io.scala.extensions.*
 import io.scala.models.Talk
 import io.scala.svgs.Icons
-import io.scala.extensions.*
+import io.scala.modules.elements.Buttons
 
 object TalkKindTag:
   def apply(kind: Talk.Kind): ReactiveHtmlElement[HTMLSpanElement] =
@@ -36,38 +37,41 @@ object TalkCard:
           talk.info.room.nullFold(emptyNode)(room => span(className := "room", room.show))
         )
       ),
-      Line(margin = 16),
+      Line(margin = 4),
       div(
         className := "body paragraph",
         talk.renderDescription
       ),
-      Line(margin = 16),
+      Line(margin = 4),
       div(
-        className := "footer",
-        talk.speakers.map { speaker =>
-          div(
-            className := "speaker",
-            img(
-              src       := speaker.photoRelPath,
-              className := "photo",
-              alt       := s"${speaker.name}'s profile picture"
-            ),
+        div(
+          className := "speakers",
+          talk.speakers.map { speaker =>
             div(
-              p(
-                shortName(speaker.name),
-                className := "name"
+              className := "speaker",
+              img(
+                src       := speaker.photoRelPath,
+                className := "photo",
+                alt       := s"${speaker.name}'s profile picture"
               ),
-              p(
-                speaker.job,
-                className := "company"
+              div(
+                p(
+                  shortName(speaker.name),
+                  className := "name"
+                ),
+                p(
+                  speaker.job,
+                  className := "company"
+                )
               )
             )
-          )
-        },
-        button(
-          className  := "link classy-button highlight",
-          aria.label := s"Go to ${talk.info.title}",
+          }
+        ),
+        Buttons.classyNew(
+          true,
           Icons.goTo,
+          className  := "link",
+          aria.label := s"Go to ${talk.info.title}",
           Page.navigateTo(TalkPage(conference, talk.info.slug))
         )
       )

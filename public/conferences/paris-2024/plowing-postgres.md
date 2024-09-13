@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: plowing-postgres-and-unearthing-hidden-gems
-- Category: Other
+- Category: Data
 - confirmed: true
 
 ## Abstract
@@ -28,6 +28,7 @@ Join to learn more about applying functional principle to schema modeling and ha
 #### Links
 
 - [Twitter](https://twitter.com/__vberg)
+- [Linkedin](https://www.linkedin.com/in/valentinbergeron)
 - [Github](https://github.com/vbergeron)
 
 #### Bio

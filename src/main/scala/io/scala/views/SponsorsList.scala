@@ -19,7 +19,7 @@ case object SponsorsList extends ReactiveView[SponsorsPage] {
       ),
       div(
         a(
-          ClassyButton(Lexicon.Sponsors.callToAction),
+          Buttons.classy(Lexicon.Sponsors.callToAction),
           href   := "mailto:contact@scala.io",
           target := "_blank"
         ),
