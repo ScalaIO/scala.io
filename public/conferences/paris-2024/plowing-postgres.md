@@ -28,6 +28,7 @@ Join to learn more about applying functional principle to schema modeling and ha
 #### Links
 
 - [Twitter](https://twitter.com/__vberg)
+- [Linkedin](https://www.linkedin.com/in/valentinbergeron)
 - [Github](https://github.com/vbergeron)
 
 #### Bio

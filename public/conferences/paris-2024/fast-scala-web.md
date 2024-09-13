@@ -16,7 +16,7 @@ The FastScala web framework is based on anonymous and secure callbacks from the 
 ### David Miguel Antunes
 
 - photoRelPath: /images/profiles/paris-2024/dAntunes.webp
-- job: Scala Developer @ Scala Academy
+- job: Scala Developer & founder @ Scala Academy
 
 #### Links
 

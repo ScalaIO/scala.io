@@ -16,7 +16,7 @@ Have you ever been confused by implicits in Scala? I most certainly have. I stru
 ### Magda Stożek
 
 - photoRelPath: /images/profiles/paris-2024/mStozek.webp
-- job: Senior Software developer @ SoftwareMill
+- job: Senior Scala engineer @ SoftwareMill
 
 #### Links
 
