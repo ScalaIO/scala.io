@@ -10,9 +10,9 @@ import org.scalajs.dom.HTMLSpanElement
 
 import io.scala.extensions.*
 import io.scala.models.Session
-import io.scala.svgs.Icons
 import io.scala.modules.elements.Buttons
 import io.scala.modules.elements.Buttons.important
+import io.scala.svgs.Icons
 
 object SessionKindTag:
   def apply(kind: Session.Kind): ReactiveHtmlElement[HTMLSpanElement] =
@@ -48,7 +48,7 @@ object SessionCard:
       div(
         div(
           className := "speakers",
-            session.speakers.map { speaker =>
+          session.speakers.map { speaker =>
             div(
               className := "speaker",
               img(
@@ -62,20 +62,23 @@ object SessionCard:
                   className := "name"
                 ),
                 p(
-                  speaker.job,
-                  className := "company"
+                  speaker.jobTitle,
+                  if speaker.company.nonEmpty then s" @ ${speaker.company}" else "",
+                  className := "job"
                 )
               )
             )
           }
         ),
-        Buttons.classyNew(
-          Icons.goTo,
-          className  := "link",
-          aria.label := s"Go to ${session.info.title}",
-          Page.navigateTo(SessionPage(conference, session.info.slug))
-        ).important
+        Buttons
+          .classyNew(
+            Icons.goTo,
+            className  := "link",
+            aria.label := s"Go to ${session.info.title}",
+            Page.navigateTo(SessionPage(conference, session.info.slug))
+          )
+          .important
       )
     )
-    
+
 end SessionCard

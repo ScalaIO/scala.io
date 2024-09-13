@@ -95,8 +95,9 @@ object Session:
       bio: String = ""
   ):
     lazy val (jobTitle, company) =
-      val parsed = job.splitAt(job.indexOf("@"))
-      (parsed._1.trim, parsed._2.drop(1).trim)
+      job.split("@") match
+        case Array(j)    => (j.trim, "")
+        case Array(j, c) => (j.trim, c.trim)
 
     def renderBio: Array[String] = bio.split("\n")
 
