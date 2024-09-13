@@ -22,7 +22,7 @@ The technique is used in the Libretto project for pattern matching on domain-lev
 ### Tomas Mikula
 
 - photoRelPath: /images/profiles/paris-2024/tMikula.webp
-- job: Lead Scala developer @
+- job: Lead Scala developer
 
 #### Links
 
