@@ -36,12 +36,12 @@ lazy val root = project
         .withModuleSplitStyle(SmallestModules)
         .withSourceMap(false)
     },
-    confLister       := talksListing().value,
+    confLister       := sessionsListing().value,
     publicFolderDev  := linkerOutputDirectory((Compile / fastLinkJS).value).getAbsolutePath,
     publicFolderProd := linkerOutputDirectory((Compile / fullLinkJS).value).getAbsolutePath,
     Compile / sourceGenerators ++= Seq(
       eventListing().taskValue,
-      talksListing().taskValue,
+      sessionsListing().taskValue,
       sponsorListing().taskValue,
       confListing().taskValue
     )
@@ -90,21 +90,21 @@ def confListing() = Def.task {
   Seq(file)
 }
 
-def talksListing() = Def.task {
-  val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "TalksData.scala"
-  val talksByConf = listFolders(new File("./public/conferences")).map { folder =>
-    val talks = listMarkdowns(folder).filter(_.getName != "conference.md")
+def sessionsListing() = Def.task {
+  val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "SessionsData.scala"
+  val sessionsByConf = listFolders(new File("./public/conferences")).map { folder =>
+    val sessions = listMarkdowns(folder).filter(_.getName != "conference.md")
     s"""|  def ${slugify(
         folder
           .getName()
-      )}: List[String] = List(${talks.map(file => "\"" * 3 + IO.read(file) + "\"" * 3).mkString(",")})"""
+      )}: List[String] = List(${sessions.map(file => "\"" * 3 + IO.read(file) + "\"" * 3).mkString(",")})"""
   }
 
   val content =
     s"""|package io.scala.data
         |
-        |object TalksData {
-        ${talksByConf.mkString("\n")}
+        |object SessionsData {
+        ${sessionsByConf.mkString("\n")}
         |}""".stripMargin
 
   if (!file.exists() || IO.read(file) != content) {

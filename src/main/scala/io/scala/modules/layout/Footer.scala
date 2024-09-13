@@ -2,11 +2,12 @@ package io.scala.modules.layout
 
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+
 import io.scala.IndexPage
 import io.scala.Lexicon
 import io.scala.Page
+import io.scala.SessionsPage
 import io.scala.SponsorsPage
-import io.scala.TalksPage
 import io.scala.data.ConfsData
 import io.scala.modules.elements.Containers
 import io.scala.modules.elements.Line
@@ -63,9 +64,9 @@ object Footer {
                   Page.navigateTo {
                     Page.current match
                       case index: IndexPage       => index.copy(conference = Some(linkKey))
-                      case talks: TalksPage       => talks.copy(conference = Some(linkKey))
+                      case talks: SessionsPage    => talks.copy(conference = Some(linkKey))
                       case sponsors: SponsorsPage => sponsors.copy(conference = Some(linkKey))
-                      case page                   => TalksPage(conference = Some(linkKey))
+                      case page                   => SessionsPage(conference = Some(linkKey))
                   }
                 )
             )

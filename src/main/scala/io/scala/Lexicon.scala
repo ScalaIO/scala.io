@@ -8,7 +8,7 @@ object Lexicon {
     val right = "10th years edition"
 
   object Header:
-    val talks     = "Talks"
+    val sessions  = "Sessions"
     val sponsors  = "Sponsors"
     val venue     = "Venue"
     val schedule  = "Schedule"

@@ -2,28 +2,28 @@ package io.scala.data
 
 import io.scala.data.parsers.Parsers
 import io.scala.models.Sponsor
-import io.scala.models.Talk
+import io.scala.models.Session
 
 import scala.collection.mutable.HashMap as MutableMap
 
 val current = "paris-2024"
-object TalksHistory:
+object SessionsHistory:
   private val historyMap =
     Map(
-      "nantes-2024" -> TalksData.nantes_2024,
-      "paris-2024"  -> TalksData.paris_2024
+      "nantes-2024" -> SessionsData.nantes_2024,
+      "paris-2024"  -> SessionsData.paris_2024
     )
 
-  private val cachedTalks = MutableMap
-    .empty[String, List[Talk]]
+  private val cachedSessions = MutableMap
+    .empty[String, List[Session]]
     .withDefault:
       historyMap
         .get(_)
         .getOrElse(historyMap(current))
-        .map(Parsers.ConferenceTalk.fromText)
+        .map(Parsers.ConferenceSession.fromText)
 
-  def talksForConf(confName: Option[String]): List[Talk] =
-    cachedTalks(getConfName(confName))
+  def sessionsForConf(confName: Option[String]): List[Session] =
+    cachedSessions(getConfName(confName))
 
   inline def getConfName(confName: Option[String]): String =
     confName.getOrElse(current)

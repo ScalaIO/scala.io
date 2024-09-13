@@ -6,8 +6,7 @@ import java.time.LocalTime
 
 import io.scala.extensions.*
 import io.scala.models.Act
-import io.scala.models.CompleteAct
-import io.scala.models.Talk
+import io.scala.models.Session
 
 type TimeDefinedTalk = { val dateTime: LocalDateTime; val time: LocalTime; val day: DayOfWeek }
 object ScheduleInfo {
@@ -16,11 +15,9 @@ object ScheduleInfo {
   val minStart                          = LocalTime.of(9, 0)
   val maxEnd                            = LocalTime.of(19, 0)
   val pxByHour                          = 600
-  val foo: List[Talk & TimeDefinedTalk] = ???
-  val bar: List[CompleteAct]            = foo
-  lazy val schedule: Seq[CompleteAct] =
-    TalksHistory
-      .talksForConf(None)
+  lazy val schedule: Seq[Act] =
+    SessionsHistory
+      .sessionsForConf(None)
       .keepAs:
-        case t: Talk if t.info.dateTime.isDefined => t.asInstanceOf[Talk & TimeDefinedTalk]
+        case t: Session if t.info.dateTime.isDefined => t.asInstanceOf[Session & TimeDefinedTalk]
 }

@@ -13,7 +13,6 @@ import io.scala.data.ScheduleInfo.maxEnd
 import io.scala.data.ScheduleInfo.minStart
 import io.scala.data.ScheduleInfo.pxByHour
 import io.scala.models.{Act, Break, Durable}
-import io.scala.models.CompleteAct
 import io.scala.modules.*
 import io.scala.modules.elements.*
 import io.scala.modules.syntax.*
@@ -49,7 +48,7 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       )
     )
 
-  def renderSmall(eventsByDay: Map[DayOfWeek, Seq[CompleteAct]], sortedDays: Seq[DayOfWeek]) =
+  def renderSmall(eventsByDay: Map[DayOfWeek, Seq[Act]], sortedDays: Seq[DayOfWeek]) =
     div(
       className := "schedule small",
       div(
@@ -85,13 +84,13 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       )
     )
 
-  def computeTop(event: CompleteAct, count: Int, day: DayOfWeek) =
+  def computeTop(event: Act, count: Int, day: DayOfWeek) =
     val base = (event.time.toHour - minStart.toHour) * pxByHour
     if day == DayOfWeek.THURSDAY then base + (count + 1) * 32
     else base + count * 32
 
   // ? We suppose that the events are sorted by starting time
-  def renderLarge(eventsByDay: Map[DayOfWeek, Seq[CompleteAct]], sortedDays: Seq[DayOfWeek]) =
+  def renderLarge(eventsByDay: Map[DayOfWeek, Seq[Act]], sortedDays: Seq[DayOfWeek]) =
     div(
       className := "schedule large",
       div(),
@@ -122,7 +121,7 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       )
     )
 
-  def renderTimeline(eventsByDay: Map[DayOfWeek, Seq[CompleteAct]]) =
+  def renderTimeline(eventsByDay: Map[DayOfWeek, Seq[Act]]) =
     val inserted = mutable.Set.empty[LocalTime]
     eventsByDay.keySet.toSeq.flatMap: day => // ? Needed for each day to advance independently in the timeline
       eventsByDay
@@ -139,7 +138,7 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
                   .render()
                   .amend(top := s"${computeTop(event, acc.length, day)}px")
 
-  def placeCard(event: CompleteAct, index: Int, day: DayOfWeek): Div =
+  def placeCard(event: Act, index: Int, day: DayOfWeek): Div =
     val duration = event match
       case d: Durable => d.duration
       case _          => 15
@@ -149,7 +148,7 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       height    := s"${duration / 60.0 * pxByHour}px"
     )
 
-  def renderSchedule(eventsByDay: Map[DayOfWeek, Seq[CompleteAct]]) =
+  def renderSchedule(eventsByDay: Map[DayOfWeek, Seq[Act]]) =
     val sortedDays = eventsByDay.keys.toSeq.sorted
     screenVar.signal.map {
       case Screen.Desktop => renderLarge(eventsByDay, sortedDays)
@@ -157,7 +156,7 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
     }
 
   def body(signal: Signal[SchedulePage]): HtmlElement =
-    val eventsByDay: Map[DayOfWeek, Seq[CompleteAct]] =
+    val eventsByDay: Map[DayOfWeek, Seq[Act]] =
       ScheduleInfo.schedule
         .groupBy { _.day }
         .map((k, v) => (k, v.sortBy(_.time)))

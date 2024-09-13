@@ -12,7 +12,7 @@ import scala.collection.immutable.Queue
 import io.scala.models.Meetup
 import io.scala.models.Social
 import io.scala.models.Sponsor
-import io.scala.models.Talk
+import io.scala.models.Session
 import io.scala.modules.elements.Links
 import io.scala.extensions.*
 
@@ -97,25 +97,25 @@ object Parsers:
       )
       .getOrElse(Meetup.empty)
 
-  object ConferenceTalk:
+  object ConferenceSession:
     def basicInfo =
       headerN(1) ~ list map {
         case HeaderChunk(_, name) ~ practicalInfo =>
           val infoMap = listToMap(practicalInfo, ":")
-          Talk.BasicInfo(
+          Session.BasicInfo(
             name,
             infoMap("Slug"),
-            Talk.Kind.valueOf(infoMap("Kind")),
+            Session.Kind.valueOf(infoMap("Kind")),
             infoMap("Category"),
             infoMap.get("confirmed").map(_.toBoolean).getOrElse(false),
             infoMap.getOrElse("DateTime", null).nullMap(LocalDateTime.parse(_, ISO_LOCAL_DATE_TIME)),
-            infoMap.getOrElse("Room", null).nullMap(Talk.Room(_)),
-            Talk.BasicInfo.Slides(infoMap.get("Slides")),
-            Talk.BasicInfo.Replay(infoMap.get("Replay"))
+            infoMap.getOrElse("Room", null).nullMap(Session.Room(_)),
+            Session.BasicInfo.Slides(infoMap.get("Slides")),
+            Session.BasicInfo.Replay(infoMap.get("Replay"))
           )
         case chunk =>
           console.log(s"Error while parsing ${chunk._1.content}")
-          Talk.BasicInfo.empty
+          Session.BasicInfo.empty
       }
 
     def abstractParser = headerN(2) ~> description map (_.map(_.content).mkString("\n"))
@@ -130,7 +130,7 @@ object Parsers:
                 link.group(1) -> link.group(2)
               }
             }
-          Talk.Speaker(
+          Session.Speaker(
             name,
             infoMap("photoRelPath"),
             infoMap("job"),
@@ -141,18 +141,18 @@ object Parsers:
           )
         case chunk =>
           console.log(s"Error while parsing ${chunk._1._1._1._1._1.content}")
-          Talk.Speaker.empty
+          Session.Speaker.empty
       }
 
     def speakersParser = (headerN(2) ~> speakerParser.+)
 
-    val talkParser = basicInfo ~ abstractParser ~ speakersParser map { case basicInfo ~ description ~ speakers =>
-      Talk(basicInfo, description, speakers)
+    val sessionParser = basicInfo ~ abstractParser ~ speakersParser map { case basicInfo ~ description ~ speakers =>
+      Session(basicInfo, description, speakers)
     }
 
-    def fromText(source: String): Talk = parser.parse(talkParser, source) match
+    def fromText(source: String): Session = parser.parse(sessionParser, source) match
       case Success(talk, _) => talk
-      case failure          => Talk.empty
+      case failure          => Session.empty
 
   object Description:
     val talk =

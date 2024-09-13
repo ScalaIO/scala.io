@@ -1,9 +1,9 @@
-package io.scala.app.talks
+package io.scala.app.sessions
 
 import com.raquo.laminar.api.L.*
 
 import io.scala.models.Social
-import io.scala.models.Talk.Speaker
+import io.scala.models.Session.Speaker
 import io.scala.modules.elements.Titles
 import io.scala.svgs.Icons
 
