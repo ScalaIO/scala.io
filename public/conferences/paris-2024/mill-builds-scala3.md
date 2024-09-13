@@ -16,7 +16,7 @@ Mill is a popular build tool used in Scala projects, where build definitions are
 ### Jamie Thompson
 
 - photoRelPath: /images/profiles/paris-2024/jThompson.webp
-- job: Contributor @ Scala 3 compiler
+- job: Scala 3 compiler contributor
 
 #### Links
 
