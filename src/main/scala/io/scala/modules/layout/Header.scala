@@ -6,7 +6,6 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 import org.scalajs.dom.window
 
-import io.scala.modules.elements.Links
 import io.scala.svgs.Icons
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
@@ -56,14 +55,6 @@ object Header {
     Icons.logo(),
     Page.navigateTo(IndexPage())
   )
-
-  val buyTicket = Links
-    .shiny(Lexicon.Header.buyTicket)
-    .amend(
-      idAttr := "buy-ticket",
-      href   := "https://yurplan.com/events/Scala-IO-2024/115152",
-      target := "_blank"
-    )
 
   def laptopPlusScreen = headerTag(
     className := "navbar laptop",

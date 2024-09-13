@@ -12,6 +12,7 @@ import io.scala.extensions.*
 import io.scala.models.Talk
 import io.scala.svgs.Icons
 import io.scala.modules.elements.Buttons
+import io.scala.modules.elements.Buttons.important
 
 object TalkKindTag:
   def apply(kind: Talk.Kind): ReactiveHtmlElement[HTMLSpanElement] =
@@ -68,11 +69,10 @@ object TalkCard:
           }
         ),
         Buttons.classyNew(
-          true,
           Icons.goTo,
           className  := "link",
           aria.label := s"Go to ${talk.info.title}",
           Page.navigateTo(TalkPage(conference, talk.info.slug))
-        )
+        ).important
       )
     )

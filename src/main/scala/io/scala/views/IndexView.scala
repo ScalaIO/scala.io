@@ -64,7 +64,7 @@ case object IndexView extends ReactiveView[IndexPage] {
         " @ ",
         a(className := "event-location", Page.navigateTo(VenuePage), "Epita")
       ),
-      a(href := "#tickets", className := "shiny-button", "Tickets"),
+      Links.button("Get your ticket", "#tickets")(padding := "16px 24px"),
     )
   )
 

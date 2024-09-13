@@ -26,7 +26,7 @@ Whether you’re a seasoned Scala developer or just getting started, this sessio
 
 #### Links
 
-- [Twitter](https://twitter.com/rlemaitre)
+- [Twitter](https://x.com/scaladdict)
 - [Linkedin](https://www.linkedin.com/in/rlemaitre)
 - [Github](https://github.com/rlemaitre)
 - [Other](https://rlemaitre.com)

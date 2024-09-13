@@ -2,39 +2,31 @@ package io.scala.modules.elements
 
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import org.scalajs.dom.HTMLButtonElement
-import org.scalajs.dom.HTMLElement
-
 import io.scala.utils.ButtonKind
+import org.scalajs.dom.HTMLButtonElement
 
 object Buttons:
-  def classyNew(
-      isImportant: Boolean = true,
-      modifier: Modifier[ReactiveHtmlElement[HTMLButtonElement]]*
-  ) =
+  type Button = ReactiveHtmlElement[HTMLButtonElement]
+  extension (b: Button) inline def important = b.amend(className := "highlight")
+
+  def classyNew(modifier: Modifier[Button]*) =
     button(
-      className                     := "classy-button",
-      className.toggle("highlight") := isImportant,
+      className := "classy-button",
       modifier
     )
 
   def classy(
       text: String,
-      kind: ButtonKind = ButtonKind.Submit,
-      isImportant: Boolean = true
+      kind: ButtonKind = ButtonKind.Submit
   ) =
-    val element: ReactiveHtmlElement[HTMLElement] = kind match
-      case ButtonKind.Submit     => button(text, typ := "submit")
-      case ButtonKind.Href(link) => a(text, href := link, target := "_blank")
+    kind match
+      case ButtonKind.Submit     => button(text, typ := "submit", className := "classy-button")
+      case ButtonKind.Href(link) => a(text, href := link, target := "_blank", className := "classy-button")
 
-    element.amend(
-      className                     := "classy-button",
-      className.toggle("highlight") := isImportant
-    )
-
-  def shiny(text: String): Button =
+  def shiny(text: String, modifiers: Modifier[Button]*): Button =
     button(
       text,
       typ       := "submit",
-      className := "shiny-button"
+      className := "shiny-button",
+      modifiers
     )

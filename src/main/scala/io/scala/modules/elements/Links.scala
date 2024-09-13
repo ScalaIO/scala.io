@@ -3,22 +3,23 @@ package io.scala.modules.elements
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom.HTMLAnchorElement
+import org.scalajs.dom.HTMLButtonElement
 
 object Links:
+  type Anchor     = ReactiveHtmlElement[HTMLAnchorElement]
+  type Button     = ReactiveHtmlElement[HTMLButtonElement]
   type LinkTarget = "_blank" | "_self" | "_parent" | "_top"
 
-  def flat(
-      content: Modifier[ReactiveHtmlElement[HTMLAnchorElement]]*
-  ) =
-    a(content, target := "_blank")
+  def flat(modifiers: Modifier[Anchor]*) =
+    a(modifiers, target := "_blank")
 
-  def highlighted(
-      content: Modifier[ReactiveHtmlElement[HTMLAnchorElement]]*
-  ) =
-    a(className := "link-highlight", content, target := "_blank")
+  def highlighted(modifiers: Modifier[Anchor]*) =
+    a(className := "link-highlight", modifiers, target := "_blank")
 
-  def shiny(text: String): Anchor =
+  def button(text: String, targetUrl: String, anchorModifiers: Modifier[Anchor]*)(buttonModifiers: Modifier[Button]*): Anchor =
     a(
-      text,
-      className := "shiny-button"
+      href := targetUrl,
+      target := "_blank",
+      Buttons.shiny(text, buttonModifiers),
+      anchorModifiers
     )
