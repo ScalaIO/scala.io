@@ -4,18 +4,21 @@ import com.raquo.laminar.api.L.*
 
 import io.scala.SessionPage
 import io.scala.data.SessionsHistory
+import io.scala.models.Session
 import io.scala.modules.elements.Paragraphs
 import io.scala.modules.elements.Titles
 import io.scala.svgs.Icons
 import io.scala.views.ReactiveView
 
 object SessionView extends ReactiveView[SessionPage]:
+
   def body(signal: Signal[SessionPage]): HtmlElement =
-    val sessionSignal = signal.map: args =>
+    val sessionSignal = signal.map: sessionPage =>
       SessionsHistory
-        .sessionsForConf(Some(args.conference))
-        .find(_.info.slug == args.slug)
-        .get // FIXME: urgh... should display an error instead
+        .sessionsForConf(sessionPage.conference)
+        .getOrElse(List.empty)
+        .find(_.info.slug == sessionPage.slug)
+        .getOrElse(notFoundTalk)
     sectionTag(
       className := "container talk",
       children <-- sessionSignal.map: session =>
@@ -39,3 +42,19 @@ object SessionView extends ReactiveView[SessionPage]:
           )
         )
     )
+
+  private val notFoundTalk = Session(
+    Session.BasicInfo(
+      title = "404 talk not found",
+      slug = "404-talk-not-found",
+      Session.Kind.Talk,
+      category = "non-existent",
+      confirmed = false,
+      dateTime = null,
+      room = null
+    ),
+    description = "This session or conference does not exist.",
+    speakers = List.empty
+  )
+
+end SessionView

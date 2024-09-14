@@ -105,6 +105,7 @@ object Page {
     decode = SessionsPage(_, _),
     (root / "sessions" / endOfSegments) ? draftParam & conferenceParam
   )
+  // maintain old /talks?conference=<conference> links
   private val legacyTalksRoute = Route.onlyQuery(
     encode = (x: SessionsPage) => (x.withDraft, x.conference),
     decode = SessionsPage(_, _),
@@ -115,11 +116,13 @@ object Page {
     decode = SessionPage(_, _),
     (root / "sessions" / segment[String] / segment[String] / endOfSegments)
   )
+  // maintain old /talks/<conference>/<slug> links
   private val legacyTalkRoute = Route(
     encode = (x: SessionPage) => (x.conference, x.slug),
     decode = SessionPage(_, _),
     root / "talks" / segment[String] / segment[String] / endOfSegments,
   )
+  // maintain links of Nantes 2024 edition: scala.io/talks/<slug>
   private val legacyNantesTalkRoute = Route[SessionPage, String](
     encode = x => x.slug,
     decode = SessionPage("nantes-2024", _),

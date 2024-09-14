@@ -1,49 +1,42 @@
 package io.scala.data
 
 import io.scala.data.parsers.Parsers
-import io.scala.models.Sponsor
 import io.scala.models.Session
+import io.scala.models.Sponsor
 
-import scala.collection.mutable.HashMap as MutableMap
+// TODO: propagate usage of Event type instead of raw strings
+enum Event(val sessions: List[Session], val sponsors: List[Sponsor]):
+  case `nantes-2024` extends Event(
+    SessionsData.nantes_2024.map(Parsers.ConferenceSession.fromText),
+    Parsers.ConferenceSponsor.fromText(SponsorsData.nantes_2024),
+  )
+  case `paris-2024` extends Event(
+    SessionsData.paris_2024.map(Parsers.ConferenceSession.fromText),
+    Parsers.ConferenceSponsor.fromText(SponsorsData.paris_2024),
+  )
 
-val current = "paris-2024"
+object Event:
+  val Current: Event = Event.`paris-2024`
+  // makes me want to use enumeratum again...
+  def withName(name: String): Option[Event] =
+    Event.values.find(_.toString == name)
+  def withNameOrCurrent(name: String): Event =
+    withName(name).getOrElse(Current)
+  def withNameOrCurrent(maybeName: Option[String]): Event =
+    maybeName.flatMap(Event.withName).getOrElse(Current)
+
 object SessionsHistory:
-  private val historyMap =
-    Map(
-      "nantes-2024" -> SessionsData.nantes_2024,
-      "paris-2024"  -> SessionsData.paris_2024
-    )
-
-  private val cachedSessions = MutableMap
-    .empty[String, List[Session]]
-    .withDefault:
-      historyMap
-        .get(_)
-        .getOrElse(historyMap(current))
-        .map(Parsers.ConferenceSession.fromText)
 
   def sessionsForConf(confName: Option[String]): List[Session] =
-    cachedSessions(getConfName(confName))
+    Event.withNameOrCurrent(confName).sessions
+
+  def sessionsForConf(confName: String): Option[List[Session]] =
+    Event.withName(confName).map(_.sessions)
 
   inline def getConfName(confName: Option[String]): String =
-    confName.getOrElse(current)
+    confName.getOrElse(Event.Current.toString)
 
 object SponsorsHistory:
-  private val sponsorsMap =
-    Map(
-      "nantes-2024" -> SponsorsData.nantes_2024,
-      "paris-2024"  -> SponsorsData.paris_2024
-    )
-
-  private val cachedSponsors = MutableMap
-    .empty[String, List[Sponsor]]
-    .withDefault { key =>
-      Parsers.ConferenceSponsor.fromText {
-        sponsorsMap
-          .get(key)
-          .getOrElse(sponsorsMap(current))
-      }
-    }
 
   def sponsorsForConf(confName: Option[String]): List[Sponsor] =
-    cachedSponsors(confName.getOrElse(current))
+    confName.flatMap(Event.withName).getOrElse(Event.Current).sponsors
