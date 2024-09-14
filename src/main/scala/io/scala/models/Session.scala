@@ -8,7 +8,7 @@ import java.time.LocalTime
 import org.scalajs.dom
 import org.scalajs.dom.{HTMLDivElement, HTMLParagraphElement, SVGSVGElement}
 
-import io.scala.data.current
+import io.scala.data.Event
 import io.scala.data.parsers.Parsers
 import io.scala.extensions.*
 import io.scala.modules.SessionCard
@@ -35,7 +35,7 @@ case class Session(
   val day: DayOfWeek     = info.dateTime.nullMap(_.getDayOfWeek)
   val time: LocalTime    = info.dateTime.nullMap(_.toLocalTime)
   def duration: Int      = info.kind.duration
-  def render: Div        = SessionCard(this, current)
+  def render: Div        = SessionCard(this, Event.Current.toString)
   def isKeynote: Boolean = info.kind == Session.Kind.Keynote
 
 object Session:
