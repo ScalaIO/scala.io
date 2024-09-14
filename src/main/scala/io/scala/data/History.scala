@@ -1,10 +1,10 @@
 package io.scala.data
 
-import io.scala.data.parsers.Parsers
-import io.scala.models.Sponsor
-import io.scala.models.Session
-
 import scala.collection.mutable.HashMap as MutableMap
+
+import io.scala.data.parsers.Parsers
+import io.scala.models.Session
+import io.scala.models.Sponsor
 
 val current = "paris-2024"
 object SessionsHistory:
@@ -24,6 +24,9 @@ object SessionsHistory:
 
   def sessionsForConf(confName: Option[String]): List[Session] =
     cachedSessions(getConfName(confName))
+
+  def sessionsForConf(confName: String): Option[List[Session]] =
+    cachedSessions.get(confName)
 
   inline def getConfName(confName: Option[String]): String =
     confName.getOrElse(current)
