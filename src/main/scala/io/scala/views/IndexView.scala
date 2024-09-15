@@ -1,6 +1,8 @@
 package io.scala.views
 
 import com.raquo.laminar.api.L.*
+import scala.collection.SortedMap
+
 import io.scala.IndexPage
 import io.scala.Page
 import io.scala.VenuePage
@@ -35,12 +37,16 @@ case object IndexView extends ReactiveView[IndexPage] {
 
   def speakerGallery(args: Signal[IndexPage]) =
     def speakers(conf: Option[String]) =
-      SessionsHistory
-        .sessionsForConf(conf)
-        .filter(_.info.confirmed)
-        .flatMap: talk =>
-          talk.speakers.map((_, talk.info))
-        .sortBy(_._1.name)
+      SortedMap
+        .from(
+          SessionsHistory
+            .sessionsForConf(conf)
+            .filter(_.info.confirmed)
+            .flatMap: talk =>
+              talk.speakers.map((_, talk.info))
+            .groupMap(_._1)(_._2)
+        )
+        .toSeq
 
     div(
       className := "container speaker-gallery",
@@ -64,7 +70,7 @@ case object IndexView extends ReactiveView[IndexPage] {
         " @ ",
         a(className := "event-location", Page.navigateTo(VenuePage), "Epita")
       ),
-      Links.button("Get your ticket", "#tickets")(padding := "16px 24px"),
+      Links.button("Get your ticket", "#tickets")(padding := "16px 24px")
     )
   )
 

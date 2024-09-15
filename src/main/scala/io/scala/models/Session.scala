@@ -102,7 +102,8 @@ object Session:
     def renderBio: Array[String] = bio.split("\n")
 
   object Speaker:
-    def empty: Speaker = Speaker("Malformed speaker", "", "")
+    def empty: Speaker      = Speaker("Malformed speaker", "", "")
+    given Ordering[Speaker] = Ordering.by(_.name)
 
 case class Break(
     dateTime: LocalDateTime,

@@ -44,10 +44,9 @@ case class SponsorsPage(conference: Option[String] = None) extends Page with Rou
   def title: String = "Sponsors"
 case object VenuePage extends Page:
   def title: String = "Venue"
-case class SchedulePage(withDraft: Option[Boolean] = None, conference: Option[String] = None)
+case class SchedulePage(withDraft: Option[Boolean] = None)
     extends Page
-    with Draftable
-    with Routeable:
+    with Draftable:
   def title: String = "Schedule"
 case object EventsPage extends Page:
   def title: String = "Other events"
@@ -58,14 +57,14 @@ case object CoCPage extends Page:
 
 object Page {
 
-  given indexCodec: ReadWriter[IndexPage]        = macroRW
-  given sessionsCodec: ReadWriter[SessionsPage]  = macroRW
-  given sessionCodec: ReadWriter[SessionPage]    = macroRW
-  given sponsorsCodec: ReadWriter[SponsorsPage]  = macroRW
-  given venueCodec: ReadWriter[VenuePage.type]   = macroRW
-  given scheduleCodec: ReadWriter[SchedulePage]  = macroRW
-  given eventsCodec: ReadWriter[EventsPage.type] = macroRW
-  given faqCodec: ReadWriter[FAQPage.type]       = macroRW
+  given ReadWriter[IndexPage]        = macroRW
+  given ReadWriter[SessionsPage]  = macroRW
+  given ReadWriter[SessionPage]    = macroRW
+  given ReadWriter[SponsorsPage]  = macroRW
+  given ReadWriter[VenuePage.type]   = macroRW
+  given ReadWriter[SchedulePage]  = macroRW
+  given ReadWriter[EventsPage.type] = macroRW
+  given ReadWriter[FAQPage.type]       = macroRW
 
   given pageArgBasicCodec: ReadWriter[Page] = macroRW
 

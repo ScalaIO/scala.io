@@ -2,12 +2,14 @@ package io.scala.modules.elements
 
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import io.scala.utils.ButtonKind
 import org.scalajs.dom.HTMLButtonElement
+
+import io.scala.utils.ButtonKind
 
 object Buttons:
   type Button = ReactiveHtmlElement[HTMLButtonElement]
-  extension (b: Button) inline def important = b.amend(className := "highlight")
+  extension (b: Button)
+    inline def important            = b.amend(className := "highlight")
 
   def classyNew(modifier: Modifier[Button]*) =
     button(
