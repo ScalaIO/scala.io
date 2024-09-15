@@ -1,24 +1,26 @@
 package io.scala.app.schedule
 
 import com.raquo.laminar.api.L.*
-import java.time.DayOfWeek
-import java.time.LocalTime
-import scala.collection.immutable.Queue
-import scala.collection.mutable
-
 import io.scala.Lexicon
 import io.scala.SchedulePage
 import io.scala.data.ScheduleInfo
 import io.scala.data.ScheduleInfo.maxEnd
 import io.scala.data.ScheduleInfo.minStart
 import io.scala.data.ScheduleInfo.pxByHour
-import io.scala.models.{Act, Break, Durable}
+import io.scala.models.Act
+import io.scala.models.Durable
 import io.scala.modules.*
 import io.scala.modules.elements.*
+import io.scala.modules.layout.Tabs
 import io.scala.modules.syntax.*
 import io.scala.utils.Screen
 import io.scala.utils.Screen.screenVar
 import io.scala.views.ReactiveView
+
+import java.time.DayOfWeek
+import java.time.LocalTime
+import scala.collection.SortedMap
+import scala.collection.immutable.Queue
 
 case object ScheduleView extends ReactiveView[SchedulePage] {
   val selectedDay: Var[DayOfWeek] = Var(DayOfWeek.THURSDAY)
@@ -48,55 +50,23 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       )
     )
 
-  def renderSmall(eventsByDay: Map[DayOfWeek, Seq[Act]], sortedDays: Seq[DayOfWeek]) =
-    div(
-      className := "schedule small",
-      div(
-        className := "tabs",
-        sortedDays.map { day =>
-          div(
-            button(
-              onClick --> { _ => selectedDay.set(day) },
-              h2(day.toString())
-            ),
-            Line(margin = 8, size = 3, kind = LineKind.Colored).amend {
-              display <-- selectedDay.signal.map: d =>
-                if d == day then "flex" else "none"
-            }
-          )
-        }
-      ),
-      div(
-        sortedDays.map { day =>
-          div(
-            className := "content",
-            display <-- selectedDay.signal.map { d =>
-              if d == day then "flex"
-              else "none"
-            },
-            children <-- selectedDay.signal.map {
-              case d if d == day =>
-                ScheduleDay(eventsByDay.get(day).getOrElse(Seq.empty)).body
-              case _ => Seq(emptyNode)
-            }
-          )
-        }
-      )
-    )
+  def renderSmall(eventsByDay: SortedMap[DayOfWeek, List[Act]]) =
+    Tabs(eventsByDay.toSeq.map:
+      case (day, events) => (day, ScheduleDay(events))
+    ).amend(className := "schedule small")
 
-  def computeTop(event: Act, count: Int, day: DayOfWeek) =
-    val base = (event.time.toHour - minStart.toHour) * pxByHour
-    if day == DayOfWeek.THURSDAY then base + (count + 1) * 32
-    else base + count * 32
+  def computeTop(time: LocalTime, count: Int) =
+    (time.toHour - minStart.toHour) * pxByHour
 
   // ? We suppose that the events are sorted by starting time
-  def renderLarge(eventsByDay: Map[DayOfWeek, Seq[Act]], sortedDays: Seq[DayOfWeek]) =
+  // Will be removed as there is not enough space to display both days with multiple tracks. Keeping it for the timeline mechanism.
+  def renderLarge(eventsByDay: SortedMap[DayOfWeek, Seq[Act]]) =
     div(
       className := "schedule large",
       div(),
       div(
         className := "tabs",
-        sortedDays.map: day =>
+        eventsByDay.keySet.toSeq.map: day =>
           div(
             className := "tab",
             h2(day.toString()),
@@ -109,7 +79,7 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       ),
       div(
         height := s"${(maxEnd.toHour - minStart.toHour) * (pxByHour + 40)}px",
-        sortedDays.map: day =>
+        eventsByDay.keySet.toSeq.map: day =>
           eventsByDay
             .get(day)
             .fold(div()): events =>
@@ -121,22 +91,14 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       )
     )
 
-  def renderTimeline(eventsByDay: Map[DayOfWeek, Seq[Act]]) =
-    val inserted = mutable.Set.empty[LocalTime]
-    eventsByDay.keySet.toSeq.flatMap: day => // ? Needed for each day to advance independently in the timeline
-      eventsByDay
-        .get(day)
-        .getOrElse(Seq())
-        .foldLeft(Queue.empty[Element]): (acc, event) =>
-          event match
-            case b: Break if b.kind != Break.Kind.Lunch => acc :+ span()
-            case e: Act if inserted.contains(e.time)    => acc :+ span()
-            case _ =>
-              inserted.add(event.time)
-              acc :+
-                event.time
-                  .render()
-                  .amend(top := s"${computeTop(event, acc.length, day)}px")
+  def renderTimeline(eventsByDay: SortedMap[DayOfWeek, Seq[Act]]) =
+    eventsByDay.values
+      .flatMap(_.distinctBy(_.time).map(_.time))
+      .foldLeft(Queue.empty[Element]): (acc, time) =>
+        acc :+
+          time
+            .render()
+            .amend(top := s"${computeTop(time, acc.length)}px")
 
   def placeCard(event: Act, index: Int, day: DayOfWeek): Div =
     val duration = event match
@@ -144,22 +106,19 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       case _          => 15
     event.render.amend(
       className := "event",
-      top       := s"${computeTop(event, index, day)}px",
+      top       := s"${computeTop(event.time, index)}px",
       height    := s"${duration / 60.0 * pxByHour}px"
     )
 
-  def renderSchedule(eventsByDay: Map[DayOfWeek, Seq[Act]]) =
-    val sortedDays = eventsByDay.keys.toSeq.sorted
+  def renderSchedule(eventsByDay: SortedMap[DayOfWeek, List[Act]]) =
     screenVar.signal.map {
-      case Screen.Desktop => renderLarge(eventsByDay, sortedDays)
-      case _              => renderSmall(eventsByDay, sortedDays)
+      // case Screen.Desktop => renderLarge(eventsByDay)
+      case _ => renderSmall(eventsByDay)
     }
 
   def body(signal: Signal[SchedulePage]): HtmlElement =
-    val eventsByDay: Map[DayOfWeek, Seq[Act]] =
-      ScheduleInfo.schedule
-        .groupBy { _.day }
-        .map((k, v) => (k, v.sortBy(_.time)))
+    val eventsByDay =
+      SortedMap.from(ScheduleInfo.blankSchedule.groupBy(a => a.day))
 
     sectionTag(
       className := "container",

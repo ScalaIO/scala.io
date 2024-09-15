@@ -25,6 +25,7 @@ object SessionCard:
       case Array(first, last) => s"${first.charAt(0)}. $last"
       case _                  => name
 
+  // Remove the dependency on `conference` by having it injected in Session.Basic info for better reusability
   def apply(session: Session, conference: String): ReactiveHtmlElement[HTMLDivElement] =
     div(
       className := s"talk-card ${session.info.kind.toStyle}", // TODO: rename CSS also

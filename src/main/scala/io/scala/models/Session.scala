@@ -75,7 +75,7 @@ object Session:
       replay: BasicInfo.Replay = None
   )
   object BasicInfo:
-    def empty: BasicInfo = BasicInfo("Malformed talk info", "", Kind.Talk, "", false, null, null)
+    def empty: BasicInfo = BasicInfo("Malformed talk info", "", Kind.Talk, "", false, LocalDateTime.MIN, Room("none"))
 
     opaque type Slides = Option[String]
     object Slides:

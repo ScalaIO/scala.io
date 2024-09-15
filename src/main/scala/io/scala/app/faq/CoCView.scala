@@ -1,7 +1,6 @@
 package io.scala.app.faq
 
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.modifiers.RenderableText
 
 import io.scala.modules.elements.Links
 import io.scala.modules.elements.Lists

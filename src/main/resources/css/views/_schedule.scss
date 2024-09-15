@@ -1,10 +1,6 @@
 @use "../base/vars";
-@use "../base/mixins";
 
 %schedule {
-  display: flex;
-  flex-direction: column;
-
   .blank-card {
     display: flex;
     flex-direction: row;
@@ -40,39 +36,11 @@
     }
   }
 
-  > div {
-    display: flex;
-    justify-content: space-around;
-  }
-
-  .tabs {
-    align-items: center;
-    position: sticky;
-    top: 0;
-    background-color: vars.$background-color;
-    z-index: 10;
-  }
-
-  .tabs > div {
-    flex: 1 1 0;
-    max-width: max-content;
-  }
-
-  .tabs h2,
-  .tabs button {
-    float: left;
-    padding: 8px;
-  }
-
   .content {
     padding: 1rem;
     display: flex;
     flex-direction: column;
     gap: 32px;
-  }
-
-  .classy-button {
-    padding: 8px 16px;
   }
 
   .break > span {
@@ -85,26 +53,45 @@
     margin-right: 4px;
   }
 }
+
 .schedule.small {
   @extend %schedule;
 
-  .tab h2,
-  .tab button {
-    transition: 0.3s;
+  .track-room {
+    font-size: 1.5rem;
+    text-align: center;
+  }
 
-    &:hover {
-      background-color: #ddd;
+  .timeslot-time {
+    text-align: end;
+
+    .hour {
+      font-size: 1.5rem;
+      margin-right: 0.25rem;
     }
-
-    &:active {
-      background-color: #ccc;
+    
+    .minute {
+      font-size: 1rem;
     }
   }
-  .body {
-    max-height: 200px;
+
+  .timeslot-talks {
+    grid-column: 2 / span 3;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+  }
+
+  @media screen and (min-width: vars.$tablet-width) {
+    .timeslot-talks {
+      grid-column: 2 / span 3;
+      flex-direction: row;
+    }
+    
   }
 }
 
+// To be removed. Keeping it for the timeline mechanism
 .schedule.large {
   @extend %schedule;
 
@@ -187,14 +174,6 @@
       }
     }
   }
-}
-.time_hour {
-  font-size: 1.5rem;
-  margin-right: 0.25rem;
-}
-
-.time_minute {
-  font-size: 1rem;
 }
 
 %hours-grid {

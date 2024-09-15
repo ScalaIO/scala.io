@@ -1,0 +1,51 @@
+@use "../base/vars";
+
+.tabs-outer {
+  display: flex;
+  flex-direction: column;
+
+  .tabs-header {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background-color: vars.$background-color;
+    z-index: 10;
+    font-size: 2em;
+
+    & > div {
+      flex: 1 1 0;
+      max-width: max-content;
+    }
+
+    .tab h2,
+    .tab button {
+      float: left;
+      padding: 8px;
+      transition: 0.3s;
+
+      &:hover {
+        background-color: #ddd;
+      }
+
+      &:active {
+        background-color: #ccc;
+      }
+    }
+  }
+
+  .tabs-content {
+    .tab-content {
+      padding: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 32px;
+    }
+  }
+
+
+  .body {
+    max-height: 200px;
+  }
+}

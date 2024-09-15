@@ -7,12 +7,13 @@ extension (time: LocalTime)
   def toHour = time.getHour() + time.getMinute() / 60.0
 
   def render() = div(
+    className := "timeslot-time",
     span(
       f"${time.getHour()}%02d",
-      className := "time_hour"
+      className := "hour"
     ),
     span(
       f"${time.getMinute()}%02d",
-      className := "time_minute"
+      className := "minute"
     )
   )

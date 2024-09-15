@@ -1,7 +1,6 @@
 package io.scala.app.schedule
 
 import com.raquo.laminar.api.L.*
-import java.time.LocalTime
 import org.scalajs.dom.HTMLDivElement
 
 import io.scala.models.Act
@@ -10,28 +9,41 @@ import io.scala.models.Session
 import io.scala.models.Special
 import io.scala.modules.syntax.*
 
-case class ScheduleDay(eventsList: Map[LocalTime, Seq[Act]], startingTimes: Seq[LocalTime], rooms: Seq[Session.Room]):
-  def body =
-    for
-      time   <- startingTimes
-      events <- eventsList
-      if events._1 == time
+object ScheduleDay {
+  def apply(events: List[Act]) =
+    val talksByTime = events.groupBy(_.time).toList.sortBy(_._1)
+    val rooms: List[Session.Room] =
+      events.collect { case t: Session => t.info.room.nn }.distinct.sorted
+
+    val elements = for
+      (time, events) <- talksByTime
       cards = rooms.map(room =>
-        events._2
+        events
           .find:
             case t: Session            => t.info.room == room
             case _: Break | _: Special => true // ! Will cause problem for multi-track events
           .map(_.render)
           .getOrElse(div(className := "blank-card"))
       )
-    yield div(className := "timeslot", time.render(), cards)
+      completeLine = cards.appendedAll(List.fill(rooms.size - cards.size)(div()))
+      talks = div(
+        className := "timeslot-talks",
+        completeLine
+      )
+      timeSlot <- List(time.render(), talks)
+    yield timeSlot
 
-object ScheduleDay {
-  def apply(events: Seq[Act]) =
-    val talksByTime: Map[LocalTime, Seq[Act]] = events.groupBy(_.time)
-    val startingTimes                         = events.map(_.time).distinct.sorted
-    val rooms: Seq[Session.Room] =
-      events.collect { case t: Session if t.info.room != null => t.info.room.nn }.distinct.sorted
-
-    new ScheduleDay(talksByTime, startingTimes, rooms)
+    List(
+      div(
+        // Will extract it to CSS file later in the PR :)
+        styleAttr :=
+          s"""|display: grid;
+            |grid-template-columns: 3em repeat(${rooms.size}, 1fr);
+            |width: 100%;
+            |row-gap: 2em;
+            |column-gap: 1em;
+            |""".stripMargin,
+        elements
+      )
+    )
 }
