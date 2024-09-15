@@ -9,8 +9,8 @@ import io.scala.data.SessionsHistory.getConfName
 import io.scala.models.Session
 import io.scala.modules.SessionCard
 import io.scala.modules.elements.*
-import io.scala.views.ReactiveView
 import io.scala.modules.layout.Tabs
+import io.scala.views.ReactiveView
 
 case object SessionList extends ReactiveView[SessionsPage] {
 
@@ -62,8 +62,12 @@ case object SessionList extends ReactiveView[SessionsPage] {
         className := "with-toc r-toc",
         child <-- args.map { arg =>
           val (workshopsByCategory, talksByCategory) =
-            talksForConf(arg.conference, arg.withDraft.getOrElse(false)).partition(_._1.kind == Session.Kind.Workshop)
-          val tabs = List("Talks" -> tabBody(sortedCategories(talksByCategory), arg), "Workshops" -> tabBody(sortedCategories(workshopsByCategory), arg))
+            talksForConf(arg.conference, arg.withDraft.getOrElse(false))
+              .partition(_._1.kind == Session.Kind.Workshop)
+          val tabs = List(
+            "Talks"     -> tabBody(sortedCategories(talksByCategory), arg),
+            "Workshops" -> tabBody(sortedCategories(workshopsByCategory), arg)
+          )
           Tabs(tabs, tabContentModifier = flexDirection.rowReverse)
         }
       )
