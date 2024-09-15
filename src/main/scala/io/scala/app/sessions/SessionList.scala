@@ -10,26 +10,45 @@ import io.scala.models.Session
 import io.scala.modules.SessionCard
 import io.scala.modules.elements.*
 import io.scala.views.ReactiveView
+import io.scala.modules.layout.Tabs
 
 case object SessionList extends ReactiveView[SessionsPage] {
 
-  private def sortedCategories(sessions: List[Session]): List[(String, List[Session])] =
-    sessions
-      .groupBy(_.info.category)
-      .toList
-      .sortWith:
-        case ((cat1, talks1), (cat2, talks2)) =>
-          val cat1HasKeynote = talks1.exists(_.isKeynote)
-          val cat2HasKeynote = talks2.exists(_.isKeynote)
-          (cat1HasKeynote, cat2HasKeynote, talks1.size == talks2.size) match
-            // 1st criterion: categories with keynotes
-            case (false, true, _) => false
-            case (true, false, _) => true
-            // 2nd criterion: categories with more talks
-            case (_, _, false) => talks1.size > talks2.size
-            // 3rd criterion: lexicographic order
-            case (_, _, true) => cat1.compareTo(cat2) >= 0
+  given Ordering[(String, List[Session])] =
+    case ((cat1, talks1), (cat2, talks2)) =>
+      val cat1HasKeynote = talks1.exists(_.isKeynote)
+      val cat2HasKeynote = talks2.exists(_.isKeynote)
+      (cat1HasKeynote, cat2HasKeynote, talks1.size == talks2.size) match
+        // 1st criterion: categories with keynotes
+        case (false, true, _) => 1
+        case (true, false, _) => -1
+        // 2nd criterion: categories with more talks
+        case (_, _, false) =>
+          if (talks2.size > talks1.size) 1
+          else if (talks1.size > talks2.size) -1
+          else 0
+        // 3rd criterion: lexicographic order
+        case (_, _, true) => cat1.compareTo(cat2)
 
+  private def sortedCategories(sessions: List[Session]): List[(String, List[Session])] =
+    sessions.groupBy(_.info.category).toList.sorted
+
+  def tabBody(categories: List[(String, List[Session])], sessionArg: SessionsPage) =
+    List(
+      stickScroll(categories.map(_._1)),
+      div(
+        className := "toc-content",
+        categories
+          .foldLeft(Queue.empty[HtmlElement]) { case (acc, (category, talks)) =>
+            acc
+              .enqueue(h2(idAttr := category, className := "content-title", category))
+              .enqueue(
+                div(className := "card-container", talks.sorted.map(SessionCard(_, getConfName(sessionArg.conference))))
+              )
+          }
+          .toSeq
+      )
+    )
   override def body(args: Signal[SessionsPage]): HtmlElement =
     def talksForConf(conference: Option[String], draft: Boolean) =
       if draft then SessionsHistory.sessionsForConf(conference)
@@ -41,24 +60,11 @@ case object SessionList extends ReactiveView[SessionsPage] {
       Line(margin = 55),
       div(
         className := "with-toc r-toc",
-        children <-- args.map { arg =>
-          val categories =
-            sortedCategories(talksForConf(arg.conference, arg.withDraft.getOrElse(false)))
-          List(
-            stickScroll(categories.map(_._1)),
-            div(
-              className := "content",
-              categories
-                .foldLeft(Queue.empty[HtmlElement]) { case (acc, (category, talks)) =>
-                  acc
-                    .enqueue(h2(idAttr := category, className := "content-title", category))
-                    .enqueue(
-                      div(className := "card-container", talks.sorted.map(SessionCard(_, getConfName(arg.conference))))
-                    )
-                }
-                .toSeq
-            )
-          )
+        child <-- args.map { arg =>
+          val (workshopsByCategory, talksByCategory) =
+            talksForConf(arg.conference, arg.withDraft.getOrElse(false)).partition(_._1.kind == Session.Kind.Workshop)
+          val tabs = List("Talks" -> tabBody(sortedCategories(talksByCategory), arg), "Workshops" -> tabBody(sortedCategories(workshopsByCategory), arg))
+          Tabs(tabs, tabContentModifier = flexDirection.rowReverse)
         }
       )
     )

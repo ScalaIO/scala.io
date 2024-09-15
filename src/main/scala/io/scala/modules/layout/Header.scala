@@ -35,7 +35,7 @@ object Header {
     Lexicon.Header.sessions -> SessionsPage(),
     Lexicon.Header.sponsors -> SponsorsPage(),
     Lexicon.Header.venue    -> VenuePage,
-    // Lexicon.Header.schedule -> SchedulePage(),
+    Lexicon.Header.schedule -> SchedulePage(),
     "Scala-FR events" -> EventsPage,
     "FAQ"             -> FAQPage
   )

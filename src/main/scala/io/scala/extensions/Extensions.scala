@@ -16,5 +16,5 @@ extension [T](x: T | Null)
   inline def nullFold[U](ifNull: => U)(f: T => U): U = 
     if x == null then ifNull else f(x)
 
-extension [T](xs: Seq[T])
-  def keepAs[U](f: PartialFunction[T, T & U]): Seq[T & U] = xs.collect(f)
+extension [T](xs: List[T])
+  def keepAs[U](f: PartialFunction[T, T & U]): List[T & U] = xs.collect(f)
