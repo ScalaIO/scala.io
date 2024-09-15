@@ -3,13 +3,14 @@ package modules
 
 import com.raquo.laminar.api.L.*
 
-import io.scala.models.Social
 import io.scala.models.Session
 import io.scala.models.Session.Speaker
-import io.scala.svgs.Icons
+import io.scala.models.Social
+import io.scala.modules.elements.Buttons
+import io.scala.modules.elements.Buttons.*
 
 object SpeakerCard {
-  def apply(speaker: Speaker, talkInfo: Session.BasicInfo, conference: String) =
+  def apply(speaker: Speaker, talksInfo: List[Session.BasicInfo], conference: String) =
     div(
       className := "speaker-card",
       img(
@@ -19,9 +20,11 @@ object SpeakerCard {
       ),
       div(
         div(
-          span(
-            talkInfo.kind.toString,
-            className := talkInfo.kind.toStyle
+          talksInfo.map(info =>
+            span(
+              info.kind.toString,
+              className := info.kind.toStyle
+            )
           ),
           div(
             Social.renderIcons(speaker.socials, speaker.name),
@@ -37,14 +40,24 @@ object SpeakerCard {
         // p(speaker.company), //TODO: re-add company as a separate field
         className := "body"
       ),
-      linkToTalks(talkInfo, conference)
+      linksToTalks(talksInfo, conference)
     )
 
-  def linkToTalks(info: Session.BasicInfo, conference: String) =
-    button(
-      className := "link classy-button highlight",
-      "See talk ", // ! Problem if >= 2 talks
-      Icons.goTo,
-      Page.navigateTo(SessionPage(conference, info.slug))
+  def linksToTalks(infos: List[Session.BasicInfo], conference: String) =
+    def linkButton(text: String, info: Session.BasicInfo) =
+      Buttons
+        .classyNew(className := "link", text, Page.navigateTo(SessionPage(conference, info.slug)))
+        .important
+
+    div(
+      display.flex,
+      flexDirection.row,
+      infos match
+        case Nil         => emptyNode
+        case head :: Nil => linkButton("Talk", head)
+        case _ =>
+          infos.zipWithIndex.map:
+            case (info, idx) =>
+              linkButton(s"Talk ${idx + 1}", info)
     )
 }
