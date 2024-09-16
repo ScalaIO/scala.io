@@ -32,12 +32,8 @@ object SpeakerCard {
           ),
           className := "subtitle"
         ),
-        h2(
-          speaker.name,
-          className := "title"
-        ),
-        p(speaker.job),
-        // p(speaker.company), //TODO: re-add company as a separate field
+        h2(speaker.name, className := "card-title"),
+        p(speaker.job, className := "job"),
         className := "body"
       ),
       linksToTalks(talksInfo, conference)

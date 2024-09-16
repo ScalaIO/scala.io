@@ -1,22 +1,18 @@
 @use "../base/vars";
+@use "../base/mixins";
 @use "../tools/animation";
 
 header {
-  background-color: vars.$secondary-color;
-  height: vars.$header-height;
-  color: vars.$text-color-contrast;
-  padding: 16px 24px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 
-  &.navbar {
-    display: flex;
-  }
+  height: vars.$header-height;
+  font-size: 0.8em;
+  padding: 1em 1.5em;
 
-  &.navbar.mobile {
-    width: 100%;
-  }
+  color: vars.$text-color-contrast;
+  background-color: vars.$secondary-color;
 
   .links {
     display: flex;
@@ -26,18 +22,13 @@ header {
   .accordion,
   .link {
     text-transform: uppercase;
-    padding: vars.$spacing-x-small vars.$spacing-small;
-    vertical-align: middle;
+    padding: 0.5em 1em;
   }
 
   .link {
     &:hover {
-      background-color: vars.$main-color-darker;
-      border-bottom: 5px solid vars.$main-color;
-      cursor: pointer;
-      transition: background-color 0.5s, color 0.5s;
-
-      padding: 5px 15px;
+      background-color: vars.$main-color;
+      transition: all 0.5s, color 0.5s;
     }
   }
   .logo svg {

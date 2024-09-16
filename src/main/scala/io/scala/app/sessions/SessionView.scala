@@ -1,10 +1,10 @@
 package io.scala.app.sessions
 
 import com.raquo.laminar.api.L.*
-
 import io.scala.SessionPage
 import io.scala.data.SessionsHistory
 import io.scala.models.Session
+import io.scala.modules.elements.Containers
 import io.scala.modules.elements.Paragraphs
 import io.scala.modules.elements.Titles
 import io.scala.svgs.Icons
@@ -36,10 +36,7 @@ object SessionView extends ReactiveView[SessionPage]:
             )
           ),
           Titles(if session.speakers.size > 1 then "Speakers" else "Speaker"),
-          div(
-            className := "card-container",
-            session.speakers.map(SpeakerView(_).body)
-          )
+          Containers.gridCards(session.speakers.map(SpeakerView(_).body))
         )
     )
 

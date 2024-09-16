@@ -55,7 +55,7 @@ object OrgaInfo:
   val lucasNouguier = Organizer(
     name = "Lucas Nouguier",
     photo = Some("lNouguier.webp"),
-    job = "Student @ Polytech Montpellier",
+    job = "Software Engineer @ Teads",
     misc = Some("Main website maintainer"),
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/LucasNouguier"),

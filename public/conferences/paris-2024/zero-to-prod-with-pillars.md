@@ -4,6 +4,8 @@
 - Slug: from-zero-to-prod-faster-with-pillars
 - Category: Ecosystem
 - confirmed: true
+- DateTime: 2024-11-07T09:50
+- Room: 0
 
 ## Abstract
 

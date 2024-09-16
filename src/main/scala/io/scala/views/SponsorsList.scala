@@ -13,10 +13,7 @@ case object SponsorsList extends ReactiveView[SponsorsPage] {
     sectionTag(
       className := "container",
       Titles("Sponsors"),
-      p(
-        Lexicon.Sponsors.catchPhrase,
-        className := "catch-phrase"
-      ),
+      p(Lexicon.Sponsors.catchPhrase),
       div(
         a(
           Buttons.classy(Lexicon.Sponsors.callToAction),
@@ -29,7 +26,7 @@ case object SponsorsList extends ReactiveView[SponsorsPage] {
         // ),
         className := "sponsors__buttons"
       ),
-      Line(margin = 55),
+      Line(margin = 4, sizeUnit = "rem"),
       div(
         className := "container",
         children <-- args.map(arg =>
@@ -43,7 +40,7 @@ case object SponsorsList extends ReactiveView[SponsorsPage] {
                 div(
                   className := "container sponsor-kind",
                   h2(
-                    className := "title",
+                    className := "card-title",
                     s"${rank.title}"
                   ),
                   div(
@@ -54,7 +51,7 @@ case object SponsorsList extends ReactiveView[SponsorsPage] {
                       )
                   )
                 ),
-                Line.separator(width = 100, height = 2)
+                Line.separator(width = 6, height = 2)
               )
             }
             .dropRight(1)

@@ -70,7 +70,7 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
           div(
             className := "tab",
             h2(day.toString()),
-            Line(margin = 8, size = 3, kind = LineKind.Colored)
+            Line(margin = 0.5, size = 3, kind = LineKind.Colored)
           ),
       ),
       div(
@@ -124,7 +124,7 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       className := "container",
       Titles("Schedule"),
       globalHours,
-      Line(margin = 55),
+      Line(margin = 4, sizeUnit = "rem"),
       child <-- renderSchedule(eventsByDay)
     )
 }

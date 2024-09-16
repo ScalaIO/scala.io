@@ -41,9 +41,9 @@ case object SessionList extends ReactiveView[SessionsPage] {
         categories
           .foldLeft(Queue.empty[HtmlElement]) { case (acc, (category, talks)) =>
             acc
-              .enqueue(h2(idAttr := category, className := "content-title", category))
+              .enqueue(Titles.medium(category, idAttr := category))
               .enqueue(
-                div(className := "card-container", talks.sorted.map(SessionCard(_, getConfName(sessionArg.conference))))
+                Containers.gridCards(talks.sorted.map(SessionCard(_, getConfName(sessionArg.conference))))
               )
           }
           .toSeq
@@ -57,7 +57,7 @@ case object SessionList extends ReactiveView[SessionsPage] {
     sectionTag(
       className := "container talks-list", // TODO: rename CSS also
       Titles("Sessions"),
-      Line(margin = 55),
+      Line(margin = 4, sizeUnit = "rem"),
       div(
         className := "with-toc r-toc",
         child <-- args.map { arg =>
@@ -78,7 +78,7 @@ case object SessionList extends ReactiveView[SessionsPage] {
       className := "table-of-contents",
       idAttr    := "talks-cat-toc",
       div(
-        className := "toc-content",
+        className := "toc-navigation",
         h3("Navigation"),
         sortedCategories.map: cat =>
           a(

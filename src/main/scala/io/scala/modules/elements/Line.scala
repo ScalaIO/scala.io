@@ -5,14 +5,14 @@ import com.raquo.laminar.api.L.*
 enum LineKind:
   case Normal, Contrasted, Colored
 
-type SizeUnit = "px" | "em" | "rem" | "vh" | "vw" | "%"
+type SizeUnit = "em" | "rem"
 
 object Line {
   import LineKind.*
-  def apply(margin: Int = 0, size: Int = 1, sizeUnit: SizeUnit = "px", kind: LineKind = Normal): HtmlElement =
+  def apply(margin: Float = 0, size: Float = 1, sizeUnit: SizeUnit = "em", kind: LineKind = Normal): HtmlElement =
     val line = hr(
       className := "line",
-      styleAttr := s"margin: ${margin}px 0; height: ${size}px;"
+      styleAttr := s"margin: ${margin}$sizeUnit 0; height: ${size}px;"
     )
     kind match
       case Normal     => line
@@ -22,6 +22,6 @@ object Line {
   def separator(vMargin: Int = 0, width: Int = 0, height: Int = 1) =
     hr(
       className := "line--colored",
-      styleAttr := s"margin: ${vMargin}px auto; height: ${height}px; width: ${width}%; border-radius: 8px"
+      styleAttr := s"margin: ${vMargin}rem auto; height: ${height}px; width: ${width}%; border-radius: 8px"
     )
 }
