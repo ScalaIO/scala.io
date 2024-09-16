@@ -83,12 +83,7 @@ object Footer {
   def render: HtmlElement = footerTag(
     className := "container",
     Containers.flex(
-      Containers
-        .flexCards(
-          stableElements._1,
-          editions,
-          flexDirection.column
-        ),
+      Containers.flex(stableElements._1, editions, flexDirection.column),
       stableElements._2
     ),
     stableElements._3

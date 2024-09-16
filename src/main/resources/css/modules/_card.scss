@@ -152,14 +152,13 @@ span.workshop {
   @extend %card-effects;
 
   .card-title {
-    height: 3em;
+    height: 3.5em;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2; /* Restrict to 2 lines */
+    -webkit-box-orient: vertical;
     overflow: hidden;
     text-overflow: ellipsis;
-    white-space: nowrap;
-    // display: -webkit-box;
-    // line-clamp: 2;
-    // -webkit-line-clamp: 2; /* Restrict to 2 lines */
-    // -webkit-box-orient: vertical;
   }
 
   .subtitle {
