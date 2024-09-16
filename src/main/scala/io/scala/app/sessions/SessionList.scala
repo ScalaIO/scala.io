@@ -66,7 +66,7 @@ case object SessionList extends ReactiveView[SessionsPage] {
               .partition(_._1.kind == Session.Kind.Workshop)
           val tabs = List(
             "Talks"     -> tabBody(sortedCategories(talksByCategory), arg),
-            "Workshops" -> tabBody(sortedCategories(workshopsByCategory), arg)
+            "Workshops" -> workshopsByCategory.map(SessionCard(_, getConfName(arg.conference)))
           )
           Tabs(tabs, tabContentModifier = flexDirection.rowReverse)
         }

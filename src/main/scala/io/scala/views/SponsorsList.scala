@@ -39,10 +39,7 @@ case object SponsorsList extends ReactiveView[SponsorsPage] {
               List(
                 div(
                   className := "container sponsor-kind",
-                  h2(
-                    className := "card-title",
-                    s"${rank.title}"
-                  ),
+                  Titles.small(s"${rank.title}"),
                   div(
                     className := s"card-container ${rank.css}",
                     sponsors.map: sponsor =>

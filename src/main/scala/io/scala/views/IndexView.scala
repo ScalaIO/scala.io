@@ -1,16 +1,16 @@
 package io.scala.views
 
 import com.raquo.laminar.api.L.*
+import org.scalajs.dom.{document}
+import scala.collection.SortedMap
 
 import io.scala.IndexPage
 import io.scala.Page
 import io.scala.VenuePage
 import io.scala.data.SessionsHistory
 import io.scala.extensions.withBinder
-import io.scala.extensions.withLink
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
-import scala.collection.SortedMap
 
 case object IndexView extends ReactiveView[IndexPage] {
 
@@ -70,7 +70,10 @@ case object IndexView extends ReactiveView[IndexPage] {
         "07 & 08 November 2024 - Paris @ ",
         u("Epita").withBinder(VenuePage)
       ),
-      Buttons.shiny("Get your ticket", padding := "16px 24px").withLink("#tickets", idAttr := "#tickets")
+      Buttons
+        .shiny("Get your ticket", padding := "16px 24px", onClick --> { _ =>
+            document.getElementById("tickets").scrollIntoView()
+          })
     )
   )
 
