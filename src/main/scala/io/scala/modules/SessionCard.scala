@@ -2,11 +2,7 @@ package io.scala
 package modules
 
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.nodes.ReactiveHtmlElement
 import elements.Line
-import org.scalajs.dom
-import org.scalajs.dom.HTMLDivElement
-import org.scalajs.dom.HTMLSpanElement
 
 import io.scala.extensions.*
 import io.scala.models.Session
@@ -15,7 +11,7 @@ import io.scala.modules.elements.Buttons.important
 import io.scala.svgs.Icons
 
 object SessionKindTag:
-  def apply(kind: Session.Kind): ReactiveHtmlElement[HTMLSpanElement] =
+  def apply(kind: Session.Kind): Span =
     span(kind.toString, className := kind.toStyle, marginLeft := "4px")
 
 object SessionCard:
@@ -26,12 +22,12 @@ object SessionCard:
       case _                  => name
 
   // Remove the dependency on `conference` by having it injected in Session.Basic info for better reusability
-  def apply(session: Session, conference: String): ReactiveHtmlElement[HTMLDivElement] =
+  def apply(session: Session, conference: String): Div =
     div(
       className := s"talk-card ${session.info.kind.toStyle}", // TODO: rename CSS also
       div(
         h3(
-          className := "title",
+          className := "card-title",
           session.info.title,
           SessionKindTag(session.info.kind)
         ),
@@ -40,13 +36,14 @@ object SessionCard:
           session.info.room.nullFold(emptyNode)(room => span(className := "room", room.show))
         )
       ),
-      Line(margin = 4),
+      Line(margin = 0.25),
       div(
         className := "body paragraph",
         session.renderDescription
       ),
-      Line(margin = 4),
+      Line(margin = 0.25),
       div(
+        className := "card-footer",
         div(
           className := "speakers",
           session.speakers.map { speaker =>
@@ -78,7 +75,7 @@ object SessionCard:
             aria.label := s"Go to ${session.info.title}",
             Page.navigateTo(SessionPage(conference, session.info.slug))
           )
-          .important
+          .important.amend(display.block, width.percent := 100)
       )
     )
 

@@ -54,9 +54,14 @@
     background-color: vars.$main-color-darker;
   }
 }
+
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   font-family: sans-serif;
-  font-size: vars.$text-size-medium;
+  font-size: 18px;
   color: vars.$text-color;
   line-height: 1.6;
   background: vars.$background-color;
@@ -66,14 +71,4 @@ body {
   display: flex;
   flex-direction: column;
   min-height: 100lvh;
-}
-
-.catch-phrase {
-  margin-bottom: vars.$spacing-small;
-}
-
-.small-note {
-  font-size: vars.$text-size-small;
-  color: vars.$text-color-light;
-  font-style: italic;
 }

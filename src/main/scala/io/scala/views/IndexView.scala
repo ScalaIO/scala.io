@@ -1,12 +1,14 @@
 package io.scala.views
 
 import com.raquo.laminar.api.L.*
+import org.scalajs.dom.{document}
 import scala.collection.SortedMap
 
 import io.scala.IndexPage
 import io.scala.Page
 import io.scala.VenuePage
 import io.scala.data.SessionsHistory
+import io.scala.extensions.withBinder
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
 
@@ -62,15 +64,16 @@ case object IndexView extends ReactiveView[IndexPage] {
     className := "hero",
     div(
       className := "overlay",
-      h2(className := "title", "Connecting Scala Enthusiasts!"),
-      h3(
+      Titles.main("Connecting Scala Enthusiasts!"),
+      h2(
         className := "event-date-location",
-        "07 & 08 November 2024 - ",
-        span(className := "event-town", "Paris"),
-        " @ ",
-        a(className := "event-location", Page.navigateTo(VenuePage), "Epita")
+        "07 & 08 November 2024 - Paris @ ",
+        u("Epita").withBinder(VenuePage)
       ),
-      Links.button("Get your ticket", "#tickets")(padding := "16px 24px")
+      Buttons
+        .shiny("Get your ticket", padding := "16px 24px", onClick --> { _ =>
+            document.getElementById("tickets").scrollIntoView()
+          })
     )
   )
 

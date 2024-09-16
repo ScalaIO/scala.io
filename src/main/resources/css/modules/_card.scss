@@ -17,13 +17,13 @@
   @include border-shadow($border-color-light);
 }
 
-$card-padding: 16px;
-$container-gap: 2rem;
+$card-padding: 1em;
+$container-gap: 2em;
 
 .card-container {
   display: grid;
   gap: $container-gap;
-  margin: 2rem;
+  margin: 2em;
 }
 
 .card-container-flex {
@@ -31,8 +31,8 @@ $container-gap: 2rem;
   flex-wrap: wrap;
   justify-content: space-between;
 
-  gap: 2rem;
-  margin: 2rem;
+  gap: 2em;
+  margin: 2em;
 }
 
 %card-base {
@@ -57,7 +57,7 @@ $container-gap: 2rem;
     transition: opacity 0.3s ease-in-out;
   }
 
-  .title {
+  .card-title {
     text-shadow: 4px 4px 3px rgba(0, 0, 0, 0.1);
     margin-bottom: 4px;
     font-weight: 700;
@@ -86,10 +86,10 @@ span.presentation-short,
 span.presentation-talk,
 span.workshop,
 span.presentation-keynote {
-  font-size: vars.$text-size-small;
+  font-size: 0.66em;
   text-transform: uppercase;
   border-radius: 10px;
-  padding: 4px;
+  padding: 6px;
 }
 
 span.presentation-lightning {
@@ -151,6 +151,16 @@ span.workshop {
   @extend %card-base;
   @extend %card-effects;
 
+  .card-title {
+    height: 3.5em;
+    display: -webkit-box;
+    line-clamp: 2;
+    -webkit-line-clamp: 2; /* Restrict to 2 lines */
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
   .subtitle {
     span {
       padding: 4px;
@@ -158,6 +168,7 @@ span.workshop {
   }
 
   .body {
+    font-size: 0.8em;
     flex-grow: 1;
     padding: 0 $card-padding;
     overflow-y: scroll;
@@ -168,36 +179,35 @@ span.workshop {
     }
   }
 
-  .speakers {
+  .card-footer,
+  .speakers,
+  .speaker {
     display: flex;
-    flex-wrap: wrap;
     gap: 1rem;
-    margin-bottom: 1rem;
+  }
+
+  .card-footer {
+    flex-direction: column;
+  }
+
+  .speakers {
+    flex-direction: row;
+    flex-wrap: wrap;
   }
 
   .room {
     color: vars.$text-color-light;
-    font-size: medium;
-    text-align: right;
   }
+
   .speaker {
-    display: flex;
-    align-items: center;
-
     .photo {
-      height: 48px;
-      width: 48px;
-      border-radius: 18px;
-      margin-right: 8px;
-      object-fit: cover;
-    }
-
-    .name {
-      font-size: medium;
+      height: 3em;
+      width: 3em;
+      border-radius: 1em;
     }
 
     .job {
-      font-size: small;
+      font-size: 0.75em;
     }
   }
 
@@ -231,16 +241,13 @@ span.workshop {
   min-width: 128px;
   max-width: 250px;
   flex-basis: 100%;
+  gap: 1em;
 
   .photo {
     background-color: #ecebeb;
     border-radius: 10px 10px 0 0;
     object-fit: cover;
     max-height: 220px;
-  }
-
-  .body {
-    margin-top: 20px;
   }
 
   .subtitle {

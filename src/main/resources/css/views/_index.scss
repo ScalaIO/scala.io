@@ -2,17 +2,29 @@
 @use "../base/vars";
 @use "../base/mixins";
 
-.hero {
-  height: calc(100lvh - vars.$header-height);
-  .event-date-location {
-    font-size: vars.$text-size-large;
+.index {
+  .hero {
+    height: calc(100lvh - vars.$header-height);
+    font-size: 2em;
+    line-height: 1em;
+  
+    @media screen and (min-width: vars.$mobile-width) {
+      font-size: 3em;
+    }
+    @media screen and (min-width: vars.$laptop-width) {
+      font-size: 4em;
+    }
+  
+    .event-date-location {
+      font-size: 0.66em;
+    }
+
+    button {
+      font-size: 0.5em;
+    }
   }
 
-  .event-location {
-    border-bottom: 1px solid vars.$text-color-contrast;
-  }
-}
-.index {
+
   .tickets {
     margin-top: vars.$spacing-large;
     display: flex;
@@ -80,5 +92,9 @@
   .card-container {
     justify-items: center;
     grid-template: auto / repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+
+    .job {
+      font-size: 0.8em;
+    }
   }
 }

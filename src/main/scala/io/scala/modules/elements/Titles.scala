@@ -11,6 +11,8 @@ object Titles:
     modifiers
   )
 
+  def main(title: String) = h1(title, className := "title")
+
   def medium(title: String, modifiers: Modifier[ReactiveHtmlElement[HTMLHeadingElement]]*) = h2(
     title,
     className := "content-title",

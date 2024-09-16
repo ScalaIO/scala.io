@@ -21,7 +21,7 @@ object Tabs:
               onClick --> { _ => selection.set(element._1) },
               h2(element._1.toString())
             ),
-            Line(margin = 8, size = 3, kind = LineKind.Colored).amend {
+            Line(margin = 0.5, size = 3, kind = LineKind.Colored).amend {
               display <-- selection.signal.map { selected =>
                 if selected == element._1 then "flex" else "none"
               }

@@ -9,7 +9,7 @@
       display: none;
     }
 
-    .toc-content {
+    .toc-navigation {
       position: sticky;
       top: 20px;
       right: 20px;
@@ -33,6 +33,9 @@
   }
 
   .toc-content {
+    :not(:first-of-type(h2)) {
+      margin-top: 2em;
+    }
     flex: 1;
   }
   &.r-toc {

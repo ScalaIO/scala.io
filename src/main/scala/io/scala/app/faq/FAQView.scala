@@ -10,6 +10,7 @@ import io.scala.data.OrgaInfo.allOrga
 import io.scala.models.Organizer
 import io.scala.models.Social
 import io.scala.modules.elements.Cards
+import io.scala.modules.elements.Containers
 import io.scala.modules.elements.Links
 import io.scala.modules.elements.Lists
 import io.scala.modules.elements.Paragraphs
@@ -52,7 +53,7 @@ object FAQView extends SimpleView {
     )
   }
 
-  lazy val commonQuestions = Cards.containerFlex(
+  lazy val commonQuestions = Containers.flexCards(
     question(
       "Is there a Code of Conduct (CoC) ?",
       p("Yes, you can find it ", Links.highlighted("here", Page.navigateTo(CoCPage))),
@@ -148,7 +149,7 @@ object FAQView extends SimpleView {
     ).withFlexGrow(2)
   )
 
-  lazy val speakerQuestions = Cards.containerFlex(
+  lazy val speakerQuestions = Containers.flexCards(
     question(
       "How are the talks selected?",
       p(
@@ -202,22 +203,26 @@ object FAQView extends SimpleView {
     )
   )
 
-  def organizersList(orgs: List[Organizer]): Div = div(
-    className := "card-container organizers",
-    orgs.map: org =>
-      div(
-        className := "orga",
-        img(
-          className := "photo",
-          src       := org.photoPath,
-          alt       := s"${org.name}'s profile picture"
-        ),
-        div(
-          p(org.name),
-          p(org.job),
-          org.misc.map(misc => p(misc)),
-          Social.renderIcons(org.socials, org.name)
-        )
+  def organizersList(orgs: List[Organizer]): Div =
+    Containers
+      .gridCards(
+        orgs.map { org =>
+          div(
+            className := "orga",
+            img(
+              className := "photo",
+              src       := org.photoPath,
+              alt       := s"${org.name}'s profile picture"
+            ),
+            div(
+              p(org.name),
+              p(org.job, className := "job"),
+              org.misc.map(misc => p(misc, className := "job")),
+              Social.renderIcons(org.socials, org.name)
+            )
+          )
+        }
       )
-  )
+      .amend(className := "organizers")
+
 }

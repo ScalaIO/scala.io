@@ -15,26 +15,25 @@
 
     img,
     svg {
-      height: 54px;
+      height: 3em;
 
       @media screen and (min-width: 342) {
-        height: 64px;
+        height: 4em;
       }
-    }
-
-    a {
-      display: block;
     }
   }
   .organizers {
-    display: grid;
-    grid-template: auto / repeat(auto-fill, minmax(min(250px, 100%), 1fr));
     justify-items: start;
+    grid-template: auto / repeat(auto-fill, minmax(280px, 1fr));
 
     .orga {
       display: flex;
       flex-direction: row;
       width: auto;
+
+      .job {
+        font-size: 0.8em;
+      }
 
       .photo {
         height: 100%;

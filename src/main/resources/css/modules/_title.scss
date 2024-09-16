@@ -2,8 +2,8 @@
 @use "../base/mixins" as mixins;
 
 .page-title {
-  font-size: 50px;
-  line-height: vars.$title-line-height;
+  font-size: 3em;
+  line-height: 1.5em;
   display: inline-block;
   position: relative;
   margin-bottom: 32px;
@@ -16,13 +16,13 @@
 }
 
 .page-subtitle {
-  font-size: 24px;
+  font-size: 1.5rem;
   line-height: 30px;
   margin-bottom: 4px;
 }
 
 .content-title {
-  font-size: 36px;
+  font-size: 2.5em;
   line-height: 42px;
   margin-bottom: 8px;
   font-weight: 500;
@@ -37,9 +37,7 @@
 }
 
 .small-title {
-  font-size: 24px;
-  line-height: 30px;
-  margin-bottom: 4px;
+  font-size: 1.5em;
 }
 
 .bold-title {

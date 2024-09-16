@@ -9,6 +9,7 @@ import io.scala.Page
 import io.scala.SessionsPage
 import io.scala.SponsorsPage
 import io.scala.data.ConfsData
+import io.scala.modules.elements.Buttons
 import io.scala.modules.elements.Containers
 import io.scala.modules.elements.Line
 import io.scala.modules.elements.LineKind
@@ -16,7 +17,6 @@ import io.scala.modules.elements.Links
 import io.scala.modules.elements.Lists
 import io.scala.modules.elements.Titles
 import io.scala.svgs.Icons
-import io.scala.modules.elements.Buttons
 
 object Footer {
   private lazy val summary: Div =
@@ -83,14 +83,8 @@ object Footer {
   def render: HtmlElement = footerTag(
     className := "container",
     Containers.flex(
-      Containers
-        .flex(
-          stableElements._1,
-          editions,
-          flexDirection.column
-        ),
-      stableElements._2,
-      justifyContent.spaceBetween
+      Containers.flex(stableElements._1, editions, flexDirection.column),
+      stableElements._2
     ),
     stableElements._3
   )

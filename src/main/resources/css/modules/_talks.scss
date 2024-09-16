@@ -2,7 +2,7 @@
 
 .talks-list {
   .card-container {
-    grid-template: auto / repeat(auto-fill, minmax(min(280px, 100%), 1fr));
+    grid-template: auto / repeat(auto-fill, minmax(280px, 1fr));
   }
 
   .body {

@@ -1,5 +1,8 @@
 package io.scala.extensions
 
+import com.raquo.laminar.api.L.*
+import io.scala.Page
+
 extension [T](x: T | Null)
   inline def isEmpty = x == null
   inline def isDefined = x != null
@@ -18,3 +21,7 @@ extension [T](x: T | Null)
 
 extension [T](xs: List[T])
   def keepAs[U](f: PartialFunction[T, T & U]): List[T & U] = xs.collect(f)
+
+extension [T](x: HtmlElement)
+  inline def withBinder(page: Page) = a(x, Page.navigateTo(page))
+  inline def withLink(ref: String, modifiers: Modifier[Anchor]*) = a(x, href := ref, target := "_blank", modifiers)
