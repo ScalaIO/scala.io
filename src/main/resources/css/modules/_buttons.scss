@@ -27,9 +27,8 @@
 
 .shiny-button {
   background-color: vars.$main-color;
-  padding: vars.$spacing-x-small vars.$spacing-small;
+  padding: 1rem 2rem;
   border-radius: 4px;
-  text-transform: uppercase;
   transition: background-color 0.5s, color 0.5s;
 
   &:hover {

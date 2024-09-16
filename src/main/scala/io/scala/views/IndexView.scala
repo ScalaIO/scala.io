@@ -71,7 +71,7 @@ case object IndexView extends ReactiveView[IndexPage] {
         u("Epita").withBinder(VenuePage)
       ),
       Buttons
-        .shiny("Get your ticket", padding := "16px 24px", onClick --> { _ =>
+        .shiny("Get your ticket!", onClick --> { _ =>
             document.getElementById("tickets").scrollIntoView()
           })
     )
