@@ -21,6 +21,7 @@ extension [T](x: T | Null)
 
 extension [T](xs: List[T])
   def keepAs[U](f: PartialFunction[T, T & U]): List[T & U] = xs.collect(f)
+  def filterWhen(p: Boolean)(f: T => Boolean): List[T] = if p then xs.filter(f) else xs
 
 extension [T](x: HtmlElement)
   inline def withBinder(page: Page) = a(x, Page.navigateTo(page))

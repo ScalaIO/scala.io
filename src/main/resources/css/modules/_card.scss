@@ -86,9 +86,6 @@ span.presentation-short,
 span.presentation-talk,
 span.workshop,
 span.presentation-keynote {
-  position: absolute;
-  top: 0;
-  right: 0;
   font-size: 0.66em;
   text-transform: uppercase;
   border-radius: 0 10px 0 10px;
@@ -97,8 +94,7 @@ span.presentation-keynote {
 
 @mixin tagColors($color, $background) {
   color: $color;
-  border-left: 1px solid $color;
-  border-bottom: 1px solid $color;
+  border-color: $color;
   background-color: $background
 }
 span.presentation-lightning {
