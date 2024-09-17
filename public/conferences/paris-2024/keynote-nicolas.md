@@ -2,7 +2,7 @@
 
 - Kind: Keynote
 - Slug: programming-a-language
-- Category: Algebra
+- Category: Language
 - confirmed: true
 - DateTime: 2024-11-08T09:30
 - Room: 0
