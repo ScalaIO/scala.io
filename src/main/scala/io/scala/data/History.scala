@@ -1,6 +1,7 @@
 package io.scala.data
 
-import io.scala.IndexPage
+import io.scala.Draftable
+import io.scala.Routeable
 import io.scala.data.parsers.Parsers
 import io.scala.extensions.filterWhen
 import io.scala.models.Session
@@ -31,11 +32,14 @@ object Event:
 
 object SessionsHistory:
 
-  def sessionsForConf(indexArgs: IndexPage): List[Session] =
+  def sessionsForConf(args: Routeable & Draftable): List[Session] =
     Event
-      .withNameOrCurrent(indexArgs.conference)
+      .withNameOrCurrent(args.conference)
       .sessions
-      .filterWhen(indexArgs.withDraft.fold(true)(!_))(_.info.confirmed)
+      .filterWhen(args.withDraft.fold(true)(!_))(_.info.confirmed)
+
+  def sessionsForSchedule: List[Session] =
+    Event.Current.sessions.filter(_.info.confirmed)
 
   def sessionsForConf(confName: String): Option[List[Session]] =
     Event.withName(confName).map(_.sessions)

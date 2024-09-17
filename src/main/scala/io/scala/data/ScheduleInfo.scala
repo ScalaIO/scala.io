@@ -36,7 +36,7 @@ object ScheduleInfo {
 
   lazy val schedule: List[Act] =
     SessionsHistory
-      .sessionsForConf(None)
+      .sessionsForSchedule
       .keepAs:
         case t: Session if t.info.dateTime.isDefined => t.asInstanceOf[Session & TimeDefinedTalk]
 }

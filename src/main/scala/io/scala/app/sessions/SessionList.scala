@@ -50,10 +50,6 @@ case object SessionList extends ReactiveView[SessionsPage] {
       )
     )
   override def body(args: Signal[SessionsPage]): HtmlElement =
-    def talksForConf(conference: Option[String], draft: Boolean) =
-      if draft then SessionsHistory.sessionsForConf(conference)
-      else SessionsHistory.sessionsForConf(conference).filter(_.info.confirmed)
-
     sectionTag(
       className := "container talks-list", // TODO: rename CSS also
       Titles("Sessions"),
@@ -62,7 +58,7 @@ case object SessionList extends ReactiveView[SessionsPage] {
         className := "with-toc r-toc",
         child <-- args.map { arg =>
           val (workshopsByCategory, talksByCategory) =
-            talksForConf(arg.conference, arg.withDraft.getOrElse(false))
+            SessionsHistory.sessionsForConf(arg)
               .partition(_._1.kind == Session.Kind.Workshop)
           val tabs = List(
             "Talks" -> tabBody(sortedCategories(talksByCategory), arg),
