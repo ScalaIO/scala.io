@@ -1,9 +1,6 @@
 package io.scala.views
 
 import com.raquo.laminar.api.L.*
-import org.scalajs.dom.{document}
-import scala.collection.SortedMap
-
 import io.scala.IndexPage
 import io.scala.Page
 import io.scala.VenuePage
@@ -11,6 +8,9 @@ import io.scala.data.SessionsHistory
 import io.scala.extensions.withBinder
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
+import org.scalajs.dom.document
+
+import scala.collection.SortedMap
 
 case object IndexView extends ReactiveView[IndexPage] {
 
@@ -38,12 +38,11 @@ case object IndexView extends ReactiveView[IndexPage] {
     )
 
   def speakerGallery(args: Signal[IndexPage]) =
-    def speakers(conf: Option[String]) =
+    def speakers(indexArgs: IndexPage) =
       SortedMap
         .from(
           SessionsHistory
-            .sessionsForConf(conf)
-            .filter(_.info.confirmed)
+            .sessionsForConf(indexArgs)
             .flatMap: talk =>
               talk.speakers.map((_, talk.info))
             .groupMap(_._1)(_._2)
@@ -56,7 +55,7 @@ case object IndexView extends ReactiveView[IndexPage] {
       div(
         className := "card-container",
         children <-- args.map: page =>
-          speakers(page.conference).map(SpeakerCard(_, _, SessionsHistory.getConfName(page.conference)))
+          speakers(page).map(SpeakerCard(_, _, SessionsHistory.getConfName(page.conference)))
       )
     )
 
