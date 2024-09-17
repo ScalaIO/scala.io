@@ -1,4 +1,4 @@
-# Hands-on tools for Scala
+# Hands-on Scala Products
 
 - Kind: Workshop
 - Slug: tools-for-scala-workshop
