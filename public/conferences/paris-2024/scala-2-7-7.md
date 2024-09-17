@@ -3,7 +3,7 @@
 - Kind: Talk
 - Slug: welcome-to-scala-2.7.7-in-2024
 - Category: Language
-- confirmed: false
+- confirmed: true
 
 ## Abstract
 
