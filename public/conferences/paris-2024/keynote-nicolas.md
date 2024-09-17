@@ -7,7 +7,6 @@
 - DateTime: 2024-11-08T09:30
 - Room: 0
 
-
 ## Abstract
 
 ```
@@ -44,5 +43,3 @@ by focusing on practical applications.
 
 Nicolas is also the author and sole maintainer of a few useful OSS libraries, such as [kantan.csv](https://nrinaudo.github.io/kantan.csv/).
 ```
-
-
