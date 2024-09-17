@@ -86,31 +86,35 @@ span.presentation-short,
 span.presentation-talk,
 span.workshop,
 span.presentation-keynote {
+  position: absolute;
+  top: 0;
+  right: 0;
   font-size: 0.66em;
   text-transform: uppercase;
-  border-radius: 10px;
-  padding: 6px;
+  border-radius: 0 10px 0 10px;
+  padding: 0.25em;
 }
 
+@mixin tagColors($color, $background) {
+  color: $color;
+  border-left: 1px solid $color;
+  border-bottom: 1px solid $color;
+  background-color: $background
+}
 span.presentation-lightning {
-  color: vars.$prez-lightning-color;
-  background-color: rgba(0, 163, 0, 0.1);
+  @include tagColors(vars.$prez-lightning-color, rgba(0, 163, 0, 0.1));
 }
 span.presentation-short {
-  color: vars.$prez-short-color;
-  background-color: rgba(140, 0, 206, 0.1);
+  @include tagColors(vars.$prez-short-color, rgba(140, 0, 206, 0.1));
 }
 span.presentation-talk {
-  color: vars.$prez-talk-color;
-  background-color: rgba(0, 107, 206, 0.1);
+  @include tagColors(vars.$prez-talk-color, rgba(0, 107, 206, 0.1));
 }
 span.presentation-keynote {
-  color: vars.$prez-keynote-color;
-  background-color: rgba(206, 0, 19, 0.1);
+  @include tagColors(vars.$prez-keynote-color, rgba(206, 0, 19, 0.1));
 }
 span.workshop {
-  color: vars.$prez-workshop-color;
-  background-color: rgba(255, 140, 0, 0.1);
+  @include tagColors(vars.$prez-workshop-color, rgba(255, 140, 0, 0.1));
 }
 
 .card-blank {
