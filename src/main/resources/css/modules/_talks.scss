@@ -8,6 +8,19 @@
   .body {
     max-height: 200px;
   }
+
+  span.presentation-lightning,
+  span.presentation-short,
+  span.presentation-talk,
+  span.workshop,
+  span.presentation-keynote {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0 10px 0 10px;
+    border-left: 1px dotted;
+    border-bottom: 1px dotted;
+  }
 }
 
 .talk {
