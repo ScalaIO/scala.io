@@ -23,7 +23,7 @@ software whose purpose I'm  not an expert on, but I do have access to experts.
 
 ### Nicolas Rinaudo
 
-- photoRelPath: /images/profiles/paris-2024/nRinaudo.webp
+- photoRelPath: /images/profiles/paris-2024/nRinaudo.jpeg
 - job: VP of Engineering @ J.P. Morgan
 
 #### Links
