@@ -51,7 +51,7 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
   def renderSmall(eventsByDay: SortedMap[DayOfWeek, List[Act]]) =
     Tabs(eventsByDay.toSeq.map:
       case (day, events) => (day, ScheduleDay(events))
-    ).amend(className := "schedule small")
+    ).render.amend(className := "schedule small")
 
   def computeTop(time: LocalTime, count: Int) =
     (time.toHour - minStart.toHour) * pxByHour

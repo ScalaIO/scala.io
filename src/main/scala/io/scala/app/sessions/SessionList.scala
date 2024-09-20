@@ -67,7 +67,7 @@ case object SessionList extends ReactiveView[SessionsPage] {
             Containers.gridCards(workshopsByCategory.map(SessionCard(_, getConfName(arg.conference))))
           
         )
-        Tabs(tabs)
+        Tabs(tabs).render
       }
     )
 
