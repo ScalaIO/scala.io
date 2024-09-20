@@ -12,7 +12,7 @@ object Main {
 
   def main(args: Array[String]): Unit = {
     val app = div(
-      child <-- Header.render,
+      Header.render,
       child <-- Page.splitter.signal,
       Footer.render
     )

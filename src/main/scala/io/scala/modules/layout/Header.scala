@@ -6,49 +6,10 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 import org.scalajs.dom.window
 
+import io.scala.modules.elements.Links
 import io.scala.svgs.Icons
-import io.scala.utils.Screen
-import io.scala.utils.Screen.screenVar
 
 object Header {
-  var burgerClicked = Var(false)
-  window.onclick = _ =>
-    burgerClicked.update {
-      case true  => false
-      case false => false
-    }
-
-  lazy val render =
-    screenVar.signal.map {
-      case Screen.Laptop | Screen.Desktop => laptopPlusScreen
-      case _                              => mobileScreen
-    }
-
-  private def navLink(name: String, page: Page): Anchor =
-    a(
-      name,
-      className := "link",
-      Page.navigateTo(page)
-    )
-
-  private val linksPage: Seq[(String, Page)] = Seq(
-    Lexicon.Header.sessions -> SessionsPage(),
-    Lexicon.Header.sponsors -> SponsorsPage(),
-    Lexicon.Header.venue    -> VenuePage,
-    Lexicon.Header.schedule -> SchedulePage(),
-    "Scala-FR events" -> EventsPage,
-    "FAQ"             -> FAQPage
-  )
-
-  def links = div(
-    className := "links",
-    linksPage.map(navLink(_, _))
-  )
-  def mobileLinks = div(
-    linksPage.map(navLink(_, _)),
-    className := "sidenav"
-  )
-
   val logo = button(
     className  := "logo",
     aria.label := "home page",
@@ -56,16 +17,33 @@ object Header {
     Page.navigateTo(IndexPage())
   )
 
-  def laptopPlusScreen = headerTag(
-    className := "navbar laptop",
-    logo,
-    links
+  val burgerClicked = Var(false)
+  window.onclick = _ => burgerClicked.set(false)
+
+  def render =
+    headerTag(
+      logo,
+      inlineLinks.amend(media := "screen and (min-width: 768px)"),
+      burgerMenu.amend(media  := "screen and (max-width: 768px)")
+    )
+
+  private val linksPage: Seq[(String, Page)] = Seq(
+    "Sessions"        -> SessionsPage(),
+    "Sponsors"        -> SponsorsPage(),
+    "Venue"           -> VenuePage,
+    "Schedule"        -> SchedulePage(),
+    "Scala-FR events" -> EventsPage,
+    "FAQ"             -> FAQPage
   )
 
-  def mobileScreen = headerTag(
-    className := "navbar mobile",
-    logo,
+  inline def inlineLinks = div(
+    className := "links inline",
+    linksPage.map(Links.innerPage)
+  )
+
+  def burgerMenu =
     div(
+      className := "links burger",
       button(
         Icons.burger,
         onClick.stopImmediatePropagation.mapTo(!burgerClicked.now()) --> burgerClicked,
@@ -73,11 +51,12 @@ object Header {
         aria.label := "menu"
       ),
       div(
-        child <-- burgerClicked.signal.map {
-          case true  => mobileLinks
-          case false => emptyNode
+        className := "sidenav",
+        linksPage.map(Links.innerPage),
+        display <-- burgerClicked.signal.map {
+          case true  => "block"
+          case false => "none"
         }
       )
     )
-  )
 }

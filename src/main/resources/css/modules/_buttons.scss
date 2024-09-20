@@ -36,9 +36,3 @@
     color: vars.$text-color;
   }
 }
-
-#buy-ticket {
-  @media screen and (max-width: vars.$mobile-width) {
-    margin: 4px 8px;
-  }
-}

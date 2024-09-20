@@ -37,6 +37,7 @@ case class Session(
   def duration: Int      = info.kind.duration
   def render: Div        = SessionCard(this, Event.Current.toString)
   def isKeynote: Boolean = info.kind == Session.Kind.Keynote
+  def isWorkshop: Boolean = info.kind == Session.Kind.Workshop
 
 object Session:
   opaque type Room = String

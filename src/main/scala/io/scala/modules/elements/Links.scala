@@ -4,11 +4,15 @@ import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom.HTMLAnchorElement
 import org.scalajs.dom.HTMLButtonElement
+import io.scala.Page
 
 object Links:
   type Anchor     = ReactiveHtmlElement[HTMLAnchorElement]
   type Button     = ReactiveHtmlElement[HTMLButtonElement]
   type LinkTarget = "_blank" | "_self" | "_parent" | "_top"
+
+  def innerPage(text: String, page: Page) =
+    a(text, Page.navigateTo(page))
 
   def flat(modifiers: Modifier[Anchor]*) =
     a(modifiers, target := "_blank")

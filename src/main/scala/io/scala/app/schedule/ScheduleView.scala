@@ -13,8 +13,6 @@ import io.scala.modules.*
 import io.scala.modules.elements.*
 import io.scala.modules.layout.Tabs
 import io.scala.modules.syntax.*
-import io.scala.utils.Screen
-import io.scala.utils.Screen.screenVar
 import io.scala.views.ReactiveView
 
 import java.time.DayOfWeek
@@ -110,12 +108,6 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       height    := s"${duration / 60.0 * pxByHour}px"
     )
 
-  def renderSchedule(eventsByDay: SortedMap[DayOfWeek, List[Act]]) =
-    screenVar.signal.map {
-      // case Screen.Desktop => renderLarge(eventsByDay)
-      case _ => renderSmall(eventsByDay)
-    }
-
   def body(signal: Signal[SchedulePage]): HtmlElement =
     val eventsByDay =
       SortedMap.from(ScheduleInfo.blankSchedule.groupBy(a => a.day))
@@ -125,6 +117,6 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       Titles("Schedule"),
       globalHours,
       Line(margin = 4, sizeUnit = "rem"),
-      child <-- renderSchedule(eventsByDay)
+      renderSmall(eventsByDay)
     )
 }

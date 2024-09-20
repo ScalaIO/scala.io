@@ -33,17 +33,15 @@ object ScheduleDay {
       timeSlot <- List(time.render(), talks)
     yield timeSlot
 
-    List(
-      div(
-        // Will extract it to CSS file later in the PR :)
-        styleAttr :=
-          s"""|display: grid;
+    div(
+      // Will extract it to CSS file later in the PR :)
+      styleAttr :=
+        s"""|display: grid;
             |grid-template-columns: 3em repeat(${rooms.size}, 1fr);
             |width: 100%;
             |row-gap: 2em;
             |column-gap: 1em;
             |""".stripMargin,
-        elements
-      )
+      elements
     )
 }

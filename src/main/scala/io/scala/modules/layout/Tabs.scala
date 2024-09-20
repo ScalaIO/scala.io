@@ -8,9 +8,10 @@ import io.scala.modules.elements.LineKind
 /* Provide a tabbed interface. The tab content must be calculated by the caller for better flexibility (e.g. allow usage of several display layouts)
  */
 object Tabs:
-  def apply[T](tabElements: Seq[(T, Seq[HtmlElement])], tabContentModifier: Modifier[Div]*) =
+  def apply[T](tabElements: Seq[(T, HtmlElement)]) =
     val selection = Var(tabElements.head._1)
     div(
+      // media --> ???,
       className := "tabs-outer",
       div(
         className := "tabs-header",
@@ -38,12 +39,11 @@ object Tabs:
               if selected == element._1 then "flex"
               else "none"
             },
-            children <-- selection.signal.map {
+            child <-- selection.signal.map {
               case selected if selected == element._1 =>
                 element._2
-              case _ => List(emptyNode)
+              case _ => emptyNode
             },
-            tabContentModifier,
           )
         }
       )

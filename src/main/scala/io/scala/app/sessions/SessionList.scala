@@ -33,8 +33,9 @@ case object SessionList extends ReactiveView[SessionsPage] {
   private def sortedCategories(sessions: List[Session]): List[(String, List[Session])] =
     sessions.groupBy(_.info.category).toList.sorted
 
-  def tabBody(categories: List[(String, List[Session])], sessionArg: SessionsPage) =
-    List(
+  def tabWithTOC(categories: List[(String, List[Session])], sessionArg: SessionsPage) =
+    div(
+      className := "with-toc r-toc",
       stickScroll(categories.map(_._1)),
       div(
         className := "toc-content",
@@ -54,21 +55,20 @@ case object SessionList extends ReactiveView[SessionsPage] {
       className := "container talks-list", // TODO: rename CSS also
       Titles("Sessions"),
       Line(margin = 4, sizeUnit = "rem"),
-      div(
-        className := "with-toc r-toc",
-        child <-- args.map { arg =>
-          val (workshopsByCategory, talksByCategory) =
-            SessionsHistory.sessionsForConf(arg)
-              .partition(_._1.kind == Session.Kind.Workshop)
-          val tabs = List(
-            "Talks" -> tabBody(sortedCategories(talksByCategory), arg),
-            "Workshops" -> Seq(
-              Containers.gridCards(workshopsByCategory.map(SessionCard(_, getConfName(arg.conference))))
-            )
-          )
-          Tabs(tabs, tabContentModifier = flexDirection.rowReverse)
-        }
-      )
+      child <-- args.map { arg =>
+        val (workshopsByCategory, talksByCategory) =
+          SessionsHistory.sessionsForConf(arg).partition(_.isWorkshop)
+        val tabs = List(
+          "Keynotes" ->
+            Containers.gridCards(talksByCategory.filter(_.isKeynote).map(SessionCard(_, getConfName(arg.conference))))
+          ,
+          "Talks" -> tabWithTOC(sortedCategories(talksByCategory), arg),
+          "Workshops" -> 
+            Containers.gridCards(workshopsByCategory.map(SessionCard(_, getConfName(arg.conference))))
+          
+        )
+        Tabs(tabs)
+      }
     )
 
   private def stickScroll(sortedCategories: List[String]) =

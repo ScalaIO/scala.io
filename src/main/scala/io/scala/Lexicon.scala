@@ -7,13 +7,6 @@ object Lexicon {
     val left  = "February 15th-16th 2024 @ Nantes"
     val right = "10th years edition"
 
-  object Header:
-    val sessions  = "Sessions"
-    val sponsors  = "Sponsors"
-    val venue     = "Venue"
-    val schedule  = "Schedule"
-    val buyTicket = "Get your ticket"
-
   object Speakers:
     val catchPhrase  = "Become a ScalaIO 2024 speakers sharing what you love with the community."
     val callToAction = "Become a speaker"
