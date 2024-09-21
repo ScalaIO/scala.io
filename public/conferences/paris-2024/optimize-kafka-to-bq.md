@@ -18,6 +18,9 @@ I will explore how our team developed a custom solution to address the escalatin
 - photoRelPath: /images/profiles/paris-2024/dAmorosi.webp
 - job: Big Data Engineer @ Adevinta
 
+I am a Big Data Engineer with extensive experience in building large-scale data systems and streaming architectures. Currently at Adevinta, in a central team responsible for building custom solutions for the company's data platform. With a background in computer engineering, I have been part of projects in different domains ranging from energy to space technology. I found in Scala an elegant way to express concepts quickly and efficiently, which improved my daily programming life.
+
+
 #### Links
 
 - [Linkedin](https://www.linkedin.com/in/dario-amorosi-019317151)
