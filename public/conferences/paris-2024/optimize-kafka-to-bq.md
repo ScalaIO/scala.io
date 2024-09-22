@@ -25,5 +25,5 @@ I will explore how our team developed a custom solution to address the escalatin
 #### Bio
 
 ```
-I will introduce the basic components that are part of the architecture of the application, so I do not foresee a problem for anyone. Same goes for ZIO, I will not go deep into the ZIO basics, but I will have an overview where it is needed to make the talk be for everyone. I have been working with Scala for 3 years and using it together with ZIO in production for 2 years to build large scale applications and complex systems. I will also give the talk at the following meetup https://www.eventbrite.com/e/amsterdam-scala-matters-meet-up-tickets-1003400607227 We are in the process of making the application open source to share the code with everyone.
+I am a Big Data Engineer with extensive experience in building large-scale data systems and streaming architectures. Currently at Adevinta, in a central team responsible for building custom solutions for the company's data platform. With a background in computer engineering, I have been part of projects in different domains ranging from energy to space technology. I found in Scala an elegant way to express concepts quickly and efficiently, which improved my daily programming life.
 ```
