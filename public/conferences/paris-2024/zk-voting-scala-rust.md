@@ -4,6 +4,8 @@
 - Slug: zk-voting-in-scala-and-rust
 - Category: Security
 - confirmed: false
+- DateTime: 2024-11-08T10:15:00
+- Room: B
 
 ## Abstract
 

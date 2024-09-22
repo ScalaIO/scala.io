@@ -69,25 +69,41 @@
       font-size: 1.5rem;
       margin-right: 0.25rem;
     }
-    
+
     .minute {
       font-size: 1rem;
     }
   }
 
-  .timeslot-talks {
-    grid-column: 2 / span 3;
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
+  .day-view {
+    display: grid;
+    grid-template-columns: 3em 1fr;
+    width: 100%;
+    row-gap: 2em;
+    column-gap: 1em;
   }
 
-  @media screen and (min-width: vars.$tablet-width) {
-    .timeslot-talks {
-      grid-column: 2 / span 3;
-      flex-direction: row;
+  .timeslot-talks {
+    display: grid;
+    grid-template: auto / 1fr;
+    gap: 1em;
+
+    .presentation-keynote {
+      grid-column: span 3;
     }
-    
+
+    .break {
+      grid-column: span 2;
+    }
+
+    .end-day {
+      grid-column: span 3;
+    }
+
+    @media screen and (min-width: vars.$tablet-width) {
+      grid-template: auto / repeat(3, 1fr);
+      
+    }
   }
 }
 

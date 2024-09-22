@@ -6,8 +6,10 @@ import java.time.LocalTime
 
 import io.scala.extensions.*
 import io.scala.models.Act
+import io.scala.models.Break
 import io.scala.models.Session
 import io.scala.models.Session.Room
+import io.scala.models.Special
 
 type TimeDefinedTalk = { val dateTime: LocalDateTime; val time: LocalTime; val day: DayOfWeek }
 object ScheduleInfo {
@@ -35,8 +37,30 @@ object ScheduleInfo {
     )
 
   lazy val schedule: List[Act] =
-    SessionsHistory
-      .sessionsForSchedule
+    val sessions = SessionsHistory.sessionsForSchedule
       .keepAs:
-        case t: Session if t.info.dateTime.isDefined => t.asInstanceOf[Session & TimeDefinedTalk]
+        case t: Session if t.info.dateTime.isDefined && t.info.room.isDefined =>
+          t.asInstanceOf[Session & TimeDefinedTalk]
+    val danielWorkshop = sessions
+      .find(_.info.title == "Hands-on Scala Products")
+      .map(w => w.copy(info = w.info.copy(dateTime = LocalDateTime.of(2024, 11, 8, 13, 30))))
+      .get
+    val allSessions = danielWorkshop +: sessions
+    allSessions ++ List(
+      Break.from(Break.Kind.Large, 0, 10, 30),
+      Break.from(Break.Kind.Large, 0, 11, 30),
+      Break.from(Break.Kind.Lunch, 0, 12, 30),
+      Break.from(Break.Kind.Large, 0, 14, 45),
+      Break.from(Break.Kind.Large, 0, 15, 45),
+      Break.from(Break.Kind.Large, 0, 16, 45),
+      Special.from(Special.Kind.End, 0, 18, 0),
+      Break.from(Break.Kind.Large, 1, 10, 0),
+      Break.from(Break.Kind.Large, 1, 11, 0),
+      Break.from(Break.Kind.Large, 1, 12, 0),
+      Break.from(Break.Kind.Large, 1, 14, 45),
+      Break.from(Break.Kind.Large, 1, 14, 45),
+      Break.from(Break.Kind.Large, 1, 15, 45),
+      Break.from(Break.Kind.Large, 1, 16, 45),
+      Special.from(Special.Kind.End, 1, 18, 15)
+    )
 }

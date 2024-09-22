@@ -5,28 +5,28 @@ import org.scalajs.dom.window
 
 import io.scala.modules.elements.Line
 import io.scala.modules.elements.LineKind
+import io.scala.svgs.Icons
 
 /* Provide a tabbed interface. The tab content must be calculated by the caller for better flexibility (e.g. allow usage of several display layouts)
  */
 class Tabs[T](elements: Seq[(T, HtmlElement)]):
-  val (heads, bodies) = elements.unzip
-  val selection       = Var(heads.head)
+  val selection       = Var(elements.head._1)
   val dropdownClicked = Var(false)
   window.onclick = _ => dropdownClicked.set(false)
 
   def headersFull =
     div(
       className := "tabs-header inline",
-      heads.map { element =>
+      elements.map { e =>
         div(
           className := "tab",
           button(
-            onClick --> { _ => selection.set(element) },
-            h2(element.toString())
+            onClick --> { _ => selection.set(e._1) },
+            h2(e._1.toString())
           ),
           Line(margin = 0.5, size = 3, kind = LineKind.Colored).amend {
             display <-- selection.signal.map { selected =>
-              if selected == element then "flex" else "none"
+              if selected == e._1 then "flex" else "none"
             }
           }
         )
@@ -38,15 +38,17 @@ class Tabs[T](elements: Seq[(T, HtmlElement)]):
       className := "tabs-header dropdown",
       button(
         className := "dropdown-btn",
+        className.toggle("svg-rotate") <-- dropdownClicked,
         onClick.stopImmediatePropagation.mapTo(!dropdownClicked.now()) --> dropdownClicked,
-        child <-- selection.signal.map(_.toString())
+        child <-- selection.signal.map(_.toString()),
+        Icons.down
       ),
       div(
         className := "dropdown-content",
-        heads.map { element =>
+        elements.map { e =>
           button(
-            onClick --> { _ => selection.set(element) },
-            element.toString()
+            onClick --> { _ => selection.set(e._1) },
+            e._1.toString()
           )
         },
         display <-- dropdownClicked.signal.map {

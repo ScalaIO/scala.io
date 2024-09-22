@@ -4,6 +4,8 @@
 - Slug: welcome-to-scala-2.7.7-in-2024
 - Category: Language
 - confirmed: true
+- DateTime: 2024-11-08T13:30:00
+- Room: A
 
 ## Abstract
 

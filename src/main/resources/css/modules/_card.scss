@@ -95,7 +95,7 @@ span.presentation-keynote {
 @mixin tagColors($color, $background) {
   color: $color;
   border-color: $color;
-  background-color: $background
+  background-color: $background;
 }
 span.presentation-lightning {
   @include tagColors(vars.$prez-lightning-color, rgba(0, 163, 0, 0.1));
@@ -129,7 +129,10 @@ span.workshop {
 
 .blank-card {
   @extend %card-base;
-  @include border-style(vars.$text-color-light, vars.$text-color);
+
+  &.with-border {
+    @include border-style(vars.$text-color-light, vars.$text-color);
+  }
 
   height: vars.$spacing-xxx-huge;
 

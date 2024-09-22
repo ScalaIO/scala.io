@@ -4,6 +4,8 @@
 - Slug: calculating-is-funnier-than-guessing
 - Category: Language
 - confirmed: true
+- DateTime: 2024-11-07T10:45:00
+- Room: B
 
 ## Abstract
 

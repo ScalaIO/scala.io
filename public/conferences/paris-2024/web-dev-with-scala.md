@@ -4,6 +4,8 @@
 - Slug: embracing-failure-web-development-with-scala
 - Category: Web
 - confirmed: true
+- DateTime: 2024-11-08T16:00:00
+- Room: B
 
 ## Abstract
 

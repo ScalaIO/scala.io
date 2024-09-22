@@ -33,14 +33,15 @@ object SpeakerCard {
           className := "subtitle"
         ),
         h2(speaker.name, className := "card-title"),
-        p(speaker.job, className := "job"),
+        p(speaker.job, className   := "job"),
         className := "body"
       ),
       linksToTalks(talksInfo, conference)
     )
 
   def linksToTalks(infos: List[Session.BasicInfo], conference: String) =
-    def linkButton(text: String, info: Session.BasicInfo) =
+    def linkButton(info: Session.BasicInfo) =
+      val text = if info.kind == Session.Kind.Workshop then "Workshop" else "Talk"
       Buttons
         .classyNew(className := "link", text, Page.navigateTo(SessionPage(conference, info.slug)))
         .important
@@ -50,10 +51,7 @@ object SpeakerCard {
       flexDirection.row,
       infos match
         case Nil         => emptyNode
-        case head :: Nil => linkButton("Talk", head)
-        case _ =>
-          infos.zipWithIndex.map:
-            case (info, idx) =>
-              linkButton(s"Talk ${idx + 1}", info)
+        case head :: Nil => linkButton(head)
+        case _           => infos.map(linkButton)
     )
 }

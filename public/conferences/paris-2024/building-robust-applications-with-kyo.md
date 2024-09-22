@@ -4,6 +4,8 @@
 - Slug: building-robust-applications-with-kyo
 - Category: Effect Systems
 - confirmed: true
+- DateTime: 2024-11-07T10:45:00
+- Room: C
 
 ## Abstract
 

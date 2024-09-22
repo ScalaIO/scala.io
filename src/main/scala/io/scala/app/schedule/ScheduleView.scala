@@ -1,6 +1,11 @@
 package io.scala.app.schedule
 
 import com.raquo.laminar.api.L.*
+import java.time.DayOfWeek
+import java.time.LocalTime
+import scala.collection.SortedMap
+import scala.collection.immutable.Queue
+
 import io.scala.Lexicon
 import io.scala.SchedulePage
 import io.scala.data.ScheduleInfo
@@ -14,11 +19,6 @@ import io.scala.modules.elements.*
 import io.scala.modules.layout.Tabs
 import io.scala.modules.syntax.*
 import io.scala.views.ReactiveView
-
-import java.time.DayOfWeek
-import java.time.LocalTime
-import scala.collection.SortedMap
-import scala.collection.immutable.Queue
 
 case object ScheduleView extends ReactiveView[SchedulePage] {
   val selectedDay: Var[DayOfWeek] = Var(DayOfWeek.THURSDAY)
@@ -49,8 +49,9 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
     )
 
   def renderSmall(eventsByDay: SortedMap[DayOfWeek, List[Act]]) =
-    Tabs(eventsByDay.toSeq.map:
-      case (day, events) => (day, ScheduleDay(events))
+    Tabs(
+      eventsByDay.toSeq.map:
+        case (day, events) => (day, ScheduleDay(events))
     ).render.amend(className := "schedule small")
 
   def computeTop(time: LocalTime, count: Int) =
@@ -110,13 +111,15 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
 
   def body(signal: Signal[SchedulePage]): HtmlElement =
     val eventsByDay =
-      SortedMap.from(ScheduleInfo.blankSchedule.groupBy(a => a.day))
+      signal.map: args =>
+        if args.withDraft.exists(d => d) then SortedMap.from(ScheduleInfo.schedule.groupBy(_.day))
+        else SortedMap.from(ScheduleInfo.blankSchedule.groupBy(_.day))
 
     sectionTag(
       className := "container",
       Titles("Schedule"),
       globalHours,
       Line(margin = 4, sizeUnit = "rem"),
-      renderSmall(eventsByDay)
+      child <-- eventsByDay.map(renderSmall)
     )
 }

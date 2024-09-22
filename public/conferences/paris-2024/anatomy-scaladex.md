@@ -4,6 +4,8 @@
 - Slug: anatomy-of-scaladex
 - Category: Ecosystem
 - confirmed: true
+- DateTime: 2024-11-08T13:30
+- Room: B
 
 ## Abstract
 

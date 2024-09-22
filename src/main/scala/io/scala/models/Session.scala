@@ -19,6 +19,10 @@ sealed trait Act:
   def day: DayOfWeek
   def time: LocalTime
   def render: Div
+  def isKeynote: Boolean
+  def isBreak: Boolean
+object Act:
+  given Ordering[Act] = Ordering.by(act => (act.day, act.time))
 
 sealed trait Durable:
   def duration: Int
@@ -32,12 +36,13 @@ case class Session(
   lazy val renderDescription: List[ReactiveHtmlElement[HTMLParagraphElement]] =
     Parsers.Description.parseTalk(description).map(Paragraphs.description(_))
 
-  val day: DayOfWeek     = info.dateTime.nullMap(_.getDayOfWeek)
-  val time: LocalTime    = info.dateTime.nullMap(_.toLocalTime)
-  def duration: Int      = info.kind.duration
-  def render: Div        = SessionCard(this, Event.Current.toString)
-  def isKeynote: Boolean = info.kind == Session.Kind.Keynote
+  val day: DayOfWeek      = info.dateTime.nullMap(_.getDayOfWeek)
+  val time: LocalTime     = info.dateTime.nullMap(_.toLocalTime)
+  def duration: Int       = info.kind.duration
+  def render: Div         = SessionCard(this, Event.Current.toString)
+  def isKeynote: Boolean  = info.kind == Session.Kind.Keynote
   def isWorkshop: Boolean = info.kind == Session.Kind.Workshop
+  def isBreak: Boolean = false
 
 object Session:
   opaque type Room = String
@@ -117,8 +122,14 @@ case class Break(
   val time: LocalTime = dateTime.nullMap(_.toLocalTime)
   def render: Div =
     div(className := s"blank-card break ${kind.style}", kind.icon, span(span(duration), span("min")), kind.icon)
+  def isKeynote: Boolean = false
+  def isBreak: Boolean = true
 
 object Break:
+  def from(kind: Break.Kind, day: Int, hour: Int, minute: Int): Break =
+    val dateTime = LocalDateTime.of(2024, 11, 7 + day, hour, minute)
+    Break(dateTime, kind)
+
   enum Kind(val style: String, val duration: Int):
     case Large extends Kind("break-large", 15)
     case Lunch extends Kind("break-lunch", 60)
@@ -137,8 +148,14 @@ case class Special(
   val day: DayOfWeek  = dateTime.nullMap(_.getDayOfWeek)
   val time: LocalTime = dateTime.nullMap(_.toLocalTime)
   def render: ReactiveHtmlElement[HTMLDivElement] = kind match
-    case Special.Kind.End => div(className := "blank-card end-day", Icons.logo("#222222"))
+    case Special.Kind.End => div(className := "blank-card with-border end-day", Icons.logo("#222222"))
+  def isKeynote: Boolean = false
+  def isBreak: Boolean = true
 }
 object Special:
+  def from(kind: Special.Kind, day: Int, hour: Int, minute: Int): Special =
+    val dateTime = LocalDateTime.of(2024, 11, 7 + day, hour, minute)
+    Special(dateTime, kind)
+
   enum Kind:
     case End

@@ -4,8 +4,8 @@
 - Slug: programming-a-language
 - Category: Language
 - confirmed: true
-- DateTime: 2024-11-08T09:30
-- Room: 0
+- DateTime: 2024-11-07T09:30
+- Room: A
 
 ## Abstract
 

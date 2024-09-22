@@ -4,6 +4,8 @@
 - Slug: scala-pattern-matching-for-deeply-embedded-dsl
 - Category: Language
 - confirmed: true
+- DateTime: 2024-11-07T16:00:00
+- Room: B
 
 ## Abstract
 
