@@ -16,25 +16,20 @@ case object SessionList extends ReactiveView[SessionsPage] {
 
   given Ordering[(String, List[Session])] =
     case ((cat1, talks1), (cat2, talks2)) =>
-      val cat1HasKeynote = talks1.exists(_.isKeynote)
-      val cat2HasKeynote = talks2.exists(_.isKeynote)
-      (cat1HasKeynote, cat2HasKeynote, talks1.size == talks2.size) match
-        // 1st criterion: categories with keynotes
-        case (false, true, _) => 1
-        case (true, false, _) => -1
-        // 2nd criterion: categories with more talks
-        case (_, _, false) =>
-          if (talks2.size > talks1.size) 1
-          else if (talks1.size > talks2.size) -1
-          else 0
-        // 3rd criterion: lexicographic order
-        case (_, _, true) => cat1.compareTo(cat2)
+      val (cat1HasKeynote, cat2HasKeynote) = (talks1.exists(_.isKeynote), talks2.exists(_.isKeynote))
+      val sizeComparison                   = talks1.size.compareTo(talks2.size)
+
+      if !cat1HasKeynote && cat2HasKeynote then 1
+      else if cat1HasKeynote && !cat2HasKeynote then -1
+      else if sizeComparison != 0 then -sizeComparison
+      else cat1.compareTo(cat2)
 
   private def sortedCategories(sessions: List[Session]): List[(String, List[Session])] =
     sessions.groupBy(_.info.category).toList.sorted
 
-  def tabBody(categories: List[(String, List[Session])], sessionArg: SessionsPage) =
-    List(
+  def tabWithTOC(categories: List[(String, List[Session])], sessionArg: SessionsPage) =
+    div(
+      className := "with-toc r-toc",
       stickScroll(categories.map(_._1)),
       div(
         className := "toc-content",
@@ -54,21 +49,18 @@ case object SessionList extends ReactiveView[SessionsPage] {
       className := "container talks-list", // TODO: rename CSS also
       Titles("Sessions"),
       Line(margin = 4, sizeUnit = "rem"),
-      div(
-        className := "with-toc r-toc",
-        child <-- args.map { arg =>
-          val (workshopsByCategory, talksByCategory) =
-            SessionsHistory.sessionsForConf(arg)
-              .partition(_._1.kind == Session.Kind.Workshop)
-          val tabs = List(
-            "Talks" -> tabBody(sortedCategories(talksByCategory), arg),
-            "Workshops" -> Seq(
-              Containers.gridCards(workshopsByCategory.map(SessionCard(_, getConfName(arg.conference))))
-            )
-          )
-          Tabs(tabs, tabContentModifier = flexDirection.rowReverse)
-        }
-      )
+      child <-- args.map { arg =>
+        val (workshopsByCategory, talksByCategory) =
+          SessionsHistory.sessionsForConf(arg).partition(_.isWorkshop)
+        val tabs = List(
+          "Keynotes" ->
+            Containers.gridCards(talksByCategory.filter(_.isKeynote).map(SessionCard(_, getConfName(arg.conference)))),
+          "Talks" -> tabWithTOC(sortedCategories(talksByCategory.filter(!_.isKeynote)), arg),
+          "Workshops" ->
+            Containers.gridCards(workshopsByCategory.map(SessionCard(_, getConfName(arg.conference))))
+        )
+        Tabs(tabs).render
+      }
     )
 
   private def stickScroll(sortedCategories: List[String]) =

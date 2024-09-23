@@ -1,49 +1,69 @@
 package io.scala.modules.layout
 
 import com.raquo.laminar.api.L.*
+import org.scalajs.dom.window
 
-import io.scala.modules.elements.Line
-import io.scala.modules.elements.LineKind
+import io.scala.modules.elements.Buttons
+import io.scala.svgs.Icons
 
 /* Provide a tabbed interface. The tab content must be calculated by the caller for better flexibility (e.g. allow usage of several display layouts)
  */
-object Tabs:
-  def apply[T](tabElements: Seq[(T, Seq[HtmlElement])], tabContentModifier: Modifier[Div]*) =
-    val selection = Var(tabElements.head._1)
+class Tabs[T](elements: Seq[(T, HtmlElement)]):
+  val selection       = Var(elements.head._1)
+  val dropdownClicked = Var(false)
+  window.addEventListener(
+    "click",
+    _ => dropdownClicked.set(false)
+  )
+
+  def headersFull =
+    div(
+      className := "tabs-header inline",
+      elements.map { e =>
+        button(
+          className := "tab",
+          onClick --> { _ => selection.set(e._1) },
+          h2(e._1.toString()),
+          className.toggle("underlined") <-- selection.signal.map(_ == e._1)
+        )
+      }
+    )
+
+  def headersMobile =
+    Buttons.dropdown("tabs-header")(
+      className.toggle("svg-rotate") <-- dropdownClicked,
+      onClick.stopImmediatePropagation.mapTo(!dropdownClicked.now()) --> dropdownClicked,
+      child <-- selection.signal.map(_.toString()),
+      Icons.down
+    )(
+      elements.map { e =>
+        button(
+          onClick.mapTo(e._1) --> selection,
+          e._1.toString()
+        )
+      },
+      className.toggle("show-flex") <-- dropdownClicked
+    )
+
+  def render =
     div(
       className := "tabs-outer",
-      div(
-        className := "tabs-header",
-        tabElements.map { element =>
-          div(
-            className := "tab",
-            button(
-              onClick --> { _ => selection.set(element._1) },
-              h2(element._1.toString())
-            ),
-            Line(margin = 0.5, size = 3, kind = LineKind.Colored).amend {
-              display <-- selection.signal.map { selected =>
-                if selected == element._1 then "flex" else "none"
-              }
-            }
-          )
-        }
-      ),
+      headersFull,
+      headersMobile,
       div(
         className := "tabs-content",
-        tabElements.map { element =>
+        elements.map { element =>
           div(
             className := "tab-content",
             display <-- selection.signal.map { selected =>
               if selected == element._1 then "flex"
               else "none"
             },
-            children <-- selection.signal.map {
+            child <-- selection.signal.map {
               case selected if selected == element._1 =>
                 element._2
-              case _ => List(emptyNode)
-            },
-            tabContentModifier,
+              case _ => emptyNode
+            }
           )
         }
       )

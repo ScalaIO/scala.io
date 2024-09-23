@@ -10,40 +10,41 @@ import io.scala.models.Special
 import io.scala.modules.syntax.*
 
 object ScheduleDay {
-  def apply(events: List[Act]) =
-    val talksByTime = events.groupBy(_.time).toList.sortBy(_._1)
+  extension (events: List[Act])
+    def toTimeslotLine(rooms: List[Session.Room]) =
+      events match
+        case List(k: Session) if k.isKeynote => List(k.render)
+        case List(b: Break)                  => List(b.render)
+        case List(s: Special)                => List(s.render)
+        case evs =>
+          rooms.map(room =>
+            evs
+              .find:
+                case t: Session            => t.info.room == room
+                case _: Break | _: Special => true // ! Will cause problem for multi-track events
+              .map(_.render)
+              .getOrElse(div(className := "blank-card"))
+          )
+
+  def apply(eventsOfDay: List[Act]) =
+    val talksByTime = eventsOfDay.groupBy(_.time).toList.sortBy(_._1)
     val rooms: List[Session.Room] =
-      events.collect { case t: Session => t.info.room.nn }.distinct.sorted
+      eventsOfDay
+        .collect { case t: Session => t.info.room.nn }
+        .distinct
+        .sorted
 
     val elements = for
       (time, events) <- talksByTime
-      cards = rooms.map(room =>
-        events
-          .find:
-            case t: Session            => t.info.room == room
-            case _: Break | _: Special => true // ! Will cause problem for multi-track events
-          .map(_.render)
-          .getOrElse(div(className := "blank-card"))
-      )
-      completeLine = cards.appendedAll(List.fill(rooms.size - cards.size)(div()))
       talks = div(
         className := "timeslot-talks",
-        completeLine
+        events.toTimeslotLine(rooms)
       )
       timeSlot <- List(time.render(), talks)
     yield timeSlot
 
-    List(
-      div(
-        // Will extract it to CSS file later in the PR :)
-        styleAttr :=
-          s"""|display: grid;
-            |grid-template-columns: 3em repeat(${rooms.size}, 1fr);
-            |width: 100%;
-            |row-gap: 2em;
-            |column-gap: 1em;
-            |""".stripMargin,
-        elements
-      )
+    div(
+      className := "day-view",
+      elements
     )
 }

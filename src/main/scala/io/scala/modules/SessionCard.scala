@@ -15,7 +15,6 @@ object SessionKindTag:
     span(kind.toString, className := kind.toStyle, marginLeft := "4px")
 
 object SessionCard:
-
   private def shortName(name: String) =
     name.split(" ", 2) match
       case Array(first, last) => s"${first.charAt(0)}. $last"
@@ -33,7 +32,8 @@ object SessionCard:
         ),
         div(
           className := "subtitle",
-          session.info.room.nullFold(emptyNode)(room => span(className := "room", room.show))
+          session.info.room.nullFold(span())(room => span(className := "room", room.show)),
+          span(s"${session.info.kind.duration}min")
         )
       ),
       Line(margin = 0.25),
@@ -75,7 +75,8 @@ object SessionCard:
             aria.label := s"Go to ${session.info.title}",
             Page.navigateTo(SessionPage(conference, session.info.slug))
           )
-          .important.amend(display.block, width.percent := 100)
+          .important
+          .amend(display.block, width.percent := 100)
       )
     )
 

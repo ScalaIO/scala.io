@@ -4,6 +4,8 @@
 - Slug: tools-for-scala-workshop
 - Category: Ecosystem
 - confirmed: true
+- DateTime: 2024-11-08T09:15:00
+- Room: C
 
 ## Abstract
 

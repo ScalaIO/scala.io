@@ -7,9 +7,7 @@ import org.scalajs.dom.HTMLButtonElement
 import io.scala.utils.ButtonKind
 
 object Buttons:
-  type Button = ReactiveHtmlElement[HTMLButtonElement]
-  extension (b: Button)
-    inline def important            = b.amend(className := "highlight")
+  extension (b: Button) inline def important = b.amend(className := "highlight")
 
   def classyNew(modifier: Modifier[Button]*) =
     button(
@@ -31,4 +29,14 @@ object Buttons:
       typ       := "submit",
       className := "shiny-button",
       modifiers
+    )
+
+  def dropdown(cls: String)(buttonsModifiers: Modifier[Button]*)(menuContent: Modifier[Div]*): HtmlElement =
+    div(
+      className := s"dropdown $cls",
+      button(className := "dropdown-btn", buttonsModifiers),
+      div(
+        className := "dropdown-content",
+        menuContent
+      )
     )

@@ -4,6 +4,8 @@
 - Slug: mill-builds-in-scala-3-a-migration-story
 - Category: Ecosystem
 - confirmed: true
+- DateTime: 2024-11-08T09:15:00
+- Room: B
 
 ## Abstract
 

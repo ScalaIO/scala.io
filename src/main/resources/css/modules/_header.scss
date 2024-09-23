@@ -17,47 +17,52 @@ header {
   .links {
     display: flex;
     justify-content: center;
+    text-align: center;
+    align-items: center;
+
+    &.inline {
+      display: none;
+    }
+
+    @media screen and (min-width: 900px) {
+      &.inline {
+        display: block;
+      }
+      &.dropdown {
+        display: none;
+      }
+    }
   }
 
-  .accordion,
-  .link {
+  a {
     text-transform: uppercase;
     padding: 0.5em 1em;
-  }
 
-  .link {
     &:hover {
       background-color: vars.$main-color;
       transition: all 0.5s, color 0.5s;
     }
   }
+
   .logo svg {
     height: 32px;
     margin: 5px 0;
-
-    &:hover {
-      cursor: pointer;
-    }
   }
 
-  .sidenav {
-    width: 128px;
-    position: fixed;
-    z-index: 1;
-    top: 82px;
-    right: 24px;
-    background-color: #e8e8e8;
-    color: vars.$text-color;
-    border-radius: 4px;
-
-    > a {
-      display: block;
+  .dropdown {
+    > button {
+      width: 2em;
+      height: 2em;
     }
-  }
-  .burger {
-    display: block;
-    width: 32px;
-    height: 32px;
-    margin: 6px 0;
+
+    .dropdown-content {
+      right: 1.5em;
+      top: 4em;
+      border-radius: 1em;
+      
+      > a {
+        display: block;
+      }
+    }
   }
 }

@@ -13,18 +13,38 @@
     top: 0;
     background-color: vars.$background-color;
     z-index: 10;
-    font-size: 1.5em;
+    font-size: 2.5em;
 
-    @media screen and (min-width: vars.$mobile-width) {
-      font-size: 2.5em;
+    &.inline {
+      display: none;
     }
 
-    & > div {
-      flex: 1 1 0;
-      max-width: max-content;
+    &.dropdown {
+      display: inline-block;
+      > button {
+        svg {
+          width: 0.5em;
+          rotate: 90deg;
+          transition: transform 0.5s ease;
+        }
+      }
+      .svg-rotate {
+        svg {
+          transform: rotate(-90deg);
+        }
+      }
     }
 
-    .tab button {
+    @media screen and (min-width: vars.$tablet-width) {
+      &.inline {
+        display: flex;
+      }
+      &.dropdown {
+        display: none;
+      }
+    }
+
+    .tab {
       float: left;
       padding: 8px;
       transition: 0.3s;
@@ -46,7 +66,6 @@
       gap: 2em;
     }
   }
-
 
   .body {
     max-height: 200px;

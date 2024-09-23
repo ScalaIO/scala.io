@@ -4,6 +4,8 @@
 - Slug: recognizing-regular-patterns-in-heterogeneous-sequences
 - Category: Type System
 - confirmed: true
+- DateTime: 2024-11-07T16:00:00
+- Room: A
 
 ## Abstract
 

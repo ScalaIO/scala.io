@@ -1,6 +1,8 @@
 package io.scala.views
 
 import com.raquo.laminar.api.L.*
+import org.scalajs.dom.document
+
 import io.scala.IndexPage
 import io.scala.Page
 import io.scala.VenuePage
@@ -8,9 +10,6 @@ import io.scala.data.SessionsHistory
 import io.scala.extensions.withBinder
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
-import org.scalajs.dom.document
-
-import scala.collection.SortedMap
 
 case object IndexView extends ReactiveView[IndexPage] {
 
@@ -39,15 +38,14 @@ case object IndexView extends ReactiveView[IndexPage] {
 
   def speakerGallery(args: Signal[IndexPage]) =
     def speakers(indexArgs: IndexPage) =
-      SortedMap
-        .from(
-          SessionsHistory
-            .sessionsForConf(indexArgs)
-            .flatMap: talk =>
-              talk.speakers.map((_, talk.info))
-            .groupMap(_._1)(_._2)
-        )
+      SessionsHistory
+        .sessionsForConf(indexArgs)
+        .flatMap: talk =>
+          talk.speakers.map((_, talk.info))
+        .groupMap(_._1)(_._2)
+        .mapValues(_.sortBy(_.kind))
         .toSeq
+        .sortBy(_._1)
 
     div(
       className := "container speaker-gallery",
@@ -70,9 +68,10 @@ case object IndexView extends ReactiveView[IndexPage] {
         u("Epita").withBinder(VenuePage)
       ),
       Buttons
-        .shiny("Get your ticket!", onClick --> { _ =>
-            document.getElementById("tickets").scrollIntoView()
-          })
+        .shiny(
+          "Get your ticket!",
+          onClick --> { _ => document.getElementById("tickets").scrollIntoView() }
+        )
     )
   )
 

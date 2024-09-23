@@ -39,7 +39,7 @@ object SessionsHistory:
       .filterWhen(args.withDraft.fold(true)(!_))(_.info.confirmed)
 
   def sessionsForSchedule: List[Session] =
-    Event.Current.sessions.filter(_.info.confirmed)
+    Event.Current.sessions
 
   def sessionsForConf(confName: String): Option[List[Session]] =
     Event.withName(confName).map(_.sessions)
