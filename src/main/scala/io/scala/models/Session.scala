@@ -42,7 +42,7 @@ case class Session(
   def render: Div         = SessionCard(this, Event.Current.toString)
   def isKeynote: Boolean  = info.kind == Session.Kind.Keynote
   def isWorkshop: Boolean = info.kind == Session.Kind.Workshop
-  def isBreak: Boolean = false
+  def isBreak: Boolean    = false
 
 object Session:
   opaque type Room = String
@@ -123,7 +123,7 @@ case class Break(
   def render: Div =
     div(className := s"blank-card break ${kind.style}", kind.icon, span(span(duration), span("min")), kind.icon)
   def isKeynote: Boolean = false
-  def isBreak: Boolean = true
+  def isBreak: Boolean   = true
 
 object Break:
   def from(kind: Break.Kind, day: Int, hour: Int, minute: Int): Break =
@@ -150,7 +150,7 @@ case class Special(
   def render: ReactiveHtmlElement[HTMLDivElement] = kind match
     case Special.Kind.End => div(className := "blank-card with-border end-day", Icons.logo("#222222"))
   def isKeynote: Boolean = false
-  def isBreak: Boolean = true
+  def isBreak: Boolean   = true
 }
 object Special:
   def from(kind: Special.Kind, day: Int, hour: Int, minute: Int): Special =

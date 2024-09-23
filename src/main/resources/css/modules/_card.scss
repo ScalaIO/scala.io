@@ -165,6 +165,8 @@ span.workshop {
   }
 
   .subtitle {
+    color: vars.$text-color-light;
+    font-weight: bold;
     span {
       padding: 4px;
     }
@@ -196,10 +198,6 @@ span.workshop {
   .speakers {
     flex-direction: row;
     flex-wrap: wrap;
-  }
-
-  .room {
-    color: vars.$text-color-light;
   }
 
   .speaker {

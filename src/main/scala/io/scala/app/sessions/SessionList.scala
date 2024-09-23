@@ -55,7 +55,7 @@ case object SessionList extends ReactiveView[SessionsPage] {
         val tabs = List(
           "Keynotes" ->
             Containers.gridCards(talksByCategory.filter(_.isKeynote).map(SessionCard(_, getConfName(arg.conference)))),
-          "Talks" -> tabWithTOC(sortedCategories(talksByCategory), arg),
+          "Talks" -> tabWithTOC(sortedCategories(talksByCategory.filter(!_.isKeynote)), arg),
           "Workshops" ->
             Containers.gridCards(workshopsByCategory.map(SessionCard(_, getConfName(arg.conference))))
         )
