@@ -27,8 +27,8 @@ object Header {
   def render =
     headerTag(
       logo,
-      inlineLinks.amend(media := "screen and (min-width: 768px)"),
-      burgerMenu.amend(media  := "screen and (max-width: 768px)")
+      inlineLinks,
+      burgerMenu
     )
 
   private val linksPage: Seq[(String, Page)] = Seq(
