@@ -13,16 +13,15 @@
     top: 0;
     background-color: vars.$background-color;
     z-index: 10;
-    font-size: 1.5em;
+    font-size: 2.5em;
+
+    &.inline {
+      display: none;
+    }
 
     &.dropdown {
+      display: inline-block;
       > button {
-        display: flex;
-        align-items: center;
-        gap: 0.25em;
-        padding: 0 0.25em;
-        position: relative;
-
         svg {
           width: 0.5em;
           rotate: 90deg;
@@ -32,19 +31,6 @@
       .svg-rotate {
         svg {
           transform: rotate(-90deg);
-        }
-      }
-
-      .dropdown-content {
-        position: absolute;
-        z-index: 99;
-        background-color: #e8e8e8;
-        flex-direction: column;
-        align-items: start;
-
-        > button {
-          margin-left: 0.5em;
-          font-size: 0.75em;
         }
       }
     }
@@ -58,25 +44,7 @@
       }
     }
 
-    @media screen and (max-width: vars.$tablet-width) {
-      &.inline {
-        display: none;
-      }
-      &.dropdown {
-        display: inline-block;
-      }
-    }
-
-    @media screen and (min-width: vars.$mobile-width) {
-      font-size: 2.5em;
-    }
-
-    & > div {
-      flex: 1 1 0;
-      max-width: max-content;
-    }
-
-    .tab button {
+    .tab {
       float: left;
       padding: 8px;
       transition: 0.3s;

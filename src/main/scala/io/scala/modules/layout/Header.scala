@@ -6,6 +6,7 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
 import org.scalajs.dom.window
 
+import io.scala.modules.elements.Buttons
 import io.scala.modules.elements.Links
 import io.scala.svgs.Icons
 
@@ -18,7 +19,10 @@ object Header {
   )
 
   val burgerClicked = Var(false)
-  window.onclick = _ => burgerClicked.set(false)
+  window.addEventListener(
+    "click",
+    _ => burgerClicked.set(false)
+  )
 
   def render =
     headerTag(
@@ -42,21 +46,11 @@ object Header {
   )
 
   def burgerMenu =
-    div(
-      className := "links burger",
-      button(
-        Icons.burger,
-        onClick.stopImmediatePropagation.mapTo(!burgerClicked.now()) --> burgerClicked,
-        className  := "burger",
-        aria.label := "menu"
-      ),
-      div(
-        className := "sidenav",
-        linksPage.map(Links.innerPage),
-        display <-- burgerClicked.signal.map {
-          case true  => "block"
-          case false => "none"
-        }
-      )
+    Buttons.dropdown("links")(
+      Icons.burger,
+      onClick.stopImmediatePropagation.mapTo(!burgerClicked.now()) --> burgerClicked
+    )(
+      linksPage.map(Links.innerPage),
+      className.toggle("show-block") <-- burgerClicked
     )
 }

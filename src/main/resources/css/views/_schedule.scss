@@ -1,6 +1,6 @@
 @use "../base/vars";
 
-%schedule {
+.schedule {
   .blank-card {
     display: flex;
     flex-direction: row;
@@ -52,27 +52,10 @@
     font-size: xx-large;
     margin-right: 4px;
   }
-}
-
-.schedule.small {
-  @extend %schedule;
 
   .track-room {
     font-size: 1.5rem;
     text-align: center;
-  }
-
-  .timeslot-time {
-    text-align: end;
-
-    .hour {
-      font-size: 1.5rem;
-      margin-right: 0.25rem;
-    }
-
-    .minute {
-      font-size: 1rem;
-    }
   }
 
   .day-view {
@@ -102,122 +85,39 @@
 
     @media screen and (min-width: vars.$tablet-width) {
       grid-template: auto / repeat(3, 1fr);
-      
     }
   }
-}
-
-// To be removed. Keeping it for the timeline mechanism
-.schedule.large {
-  @extend %schedule;
-
-  display: grid;
-  grid-template-columns: 100px 1fr 1fr;
-  width: min(100%, 1200px);
-  margin: 0 auto;
-
-  .tabs {
-    grid-column: span 2;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    justify-items: center;
-    gap: 16px;
-  }
-  .times {
-    position: relative;
-
-    div {
-      position: absolute;
-    }
-  }
-
-  .times + div {
-    grid-column: span 2;
-    display: flex;
-  }
-
-  .content {
-    flex: 1;
-    position: relative;
-    margin: 16px 0;
-
-    .event {
-      position: absolute;
-      width: calc(100% - 32px);
-    }
-
-    .break-large {
-      &::after {
-        margin-left: 0px;
-      }
-    }
-
-    .end-day {
-      &::after {
-        margin-left: 0px;
-      }
-    }
-
-    .break-lunch {
-      flex-direction: column;
-      align-items: center;
-
-      &::after {
-        margin-left: 0px;
-        margin-top: 0px;
-      }
-    }
-
-    .presentation-short,
-    .presentation-talk,
-    .presentation-keynote {
-      .body p {
-        line-height: vars.$text-size-x-large;
-        text-align: justify;
-      }
-    }
-
-    .presentation-short,
-    .presentation-lightning {
-      .line {
-        display: none;
-      }
-    }
-
-    .presentation-lightning {
-      .body {
-        display: none;
-      }
-    }
-  }
-}
-
-%hours-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
 }
 
 .hours {
-  @extend %hours-grid;
   text-align: right;
+  font-size: 1.25em;
 
   @media screen and (min-width: vars.$mobile-width) {
-    text-align: left;
+    font-size: 1.5em;
   }
-
-  .row,
-  .column-header {
-    grid-column: span 3;
-    @extend %hours-grid;
+  @media screen and (min-width: vars.$tablet-width) {
+    font-size: 2em;
   }
 
   .row {
-    > span:first-child {
-      font-size: larger;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+
+    > span {
+      font-size: 0.8em;
     }
   }
+}
 
-  .column-header {
-    font-size: x-large;
+.time {
+  text-align: end;
+
+  .hour {
+    margin-right: 0.25em;
+  }
+
+  .minute {
+    font-size: 0.666em;
   }
 }
