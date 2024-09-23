@@ -22,16 +22,16 @@ class Tabs[T](elements: Seq[(T, HtmlElement)]):
       elements.map { e =>
         button(
           className := "tab",
-          onClick --> { _ => selection.set(e._1) },
+          onClick.mapTo(e._1) --> selection,
           h2(e._1.toString()),
-          className.toggle("underlined") <-- selection.signal.map(_ == e._1)
+          className("underlined") <-- selection.signal.map(_ == e._1)
         )
       }
     )
 
   def headersMobile =
-    Buttons.dropdown("tabs-header")(
-      className.toggle("svg-rotate") <-- dropdownClicked,
+    Buttons.dropdown("tabs-header", dropdownClicked.signal)(
+      className("svg-rotate") <-- dropdownClicked,
       onClick.stopImmediatePropagation.mapTo(!dropdownClicked.now()) --> dropdownClicked,
       child <-- selection.signal.map(_.toString()),
       Icons.down
@@ -41,8 +41,7 @@ class Tabs[T](elements: Seq[(T, HtmlElement)]):
           onClick.mapTo(e._1) --> selection,
           e._1.toString()
         )
-      },
-      className.toggle("show-flex") <-- dropdownClicked
+      }
     )
 
   def render =
@@ -53,18 +52,9 @@ class Tabs[T](elements: Seq[(T, HtmlElement)]):
       div(
         className := "tabs-content",
         elements.map { element =>
-          div(
-            className := "tab-content",
-            display <-- selection.signal.map { selected =>
-              if selected == element._1 then "flex"
-              else "none"
-            },
-            child <-- selection.signal.map {
-              case selected if selected == element._1 =>
-                element._2
-              case _ => emptyNode
-            }
-          )
+          child(
+            div(className := "tab-content", element._2)
+          ) <-- selection.signal.map(_ == element._1)
         }
       )
     )

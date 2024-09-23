@@ -31,12 +31,16 @@ object Buttons:
       modifiers
     )
 
-  def dropdown(cls: String)(buttonsModifiers: Modifier[Button]*)(menuContent: Modifier[Div]*): HtmlElement =
+  def dropdown(cls: String, openSignal: Signal[Boolean])(
+      buttonsModifiers: Modifier[Button]*
+  )(menuContent: Modifier[Div]*): HtmlElement =
     div(
       className := s"dropdown $cls",
       button(className := "dropdown-btn", buttonsModifiers),
-      div(
-        className := "dropdown-content",
-        menuContent
-      )
+      child(
+        div(
+          className := "dropdown-content",
+          menuContent
+        )
+      ) <-- openSignal
     )

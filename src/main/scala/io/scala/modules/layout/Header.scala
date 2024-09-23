@@ -46,11 +46,10 @@ object Header {
   )
 
   def burgerMenu =
-    Buttons.dropdown("links")(
+    Buttons.dropdown("links", burgerClicked.signal)(
       Icons.burger,
       onClick.stopImmediatePropagation.mapTo(!burgerClicked.now()) --> burgerClicked
     )(
       linksPage.map(Links.innerPage),
-      className.toggle("show-block") <-- burgerClicked
     )
 }

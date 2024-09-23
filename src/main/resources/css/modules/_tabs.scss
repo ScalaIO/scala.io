@@ -21,6 +21,13 @@
 
     &.dropdown {
       display: inline-block;
+
+      .dropdown-content {
+        display: flex;
+        flex-direction: column;
+        align-items: start;
+      }
+
       > button {
         svg {
           width: 0.5em;
