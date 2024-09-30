@@ -5,11 +5,12 @@ import org.scalajs.dom.window
 
 import io.scala.modules.elements.Buttons
 import io.scala.svgs.Icons
+import io.scala.extensions.nullGetOrElse
 
 /* Provide a tabbed interface. The tab content must be calculated by the caller for better flexibility (e.g. allow usage of several display layouts)
  */
-class Tabs[T](elements: Seq[(T, HtmlElement)]):
-  val selection       = Var(elements.head._1)
+class Tabs[T](elements: Seq[(T, HtmlElement)], renderHeader: T => String, default: T | Null = null):
+  val selection       = Var(default.nullGetOrElse(elements.head._1))
   val dropdownClicked = Var(false)
   window.addEventListener(
     "click",
@@ -23,7 +24,7 @@ class Tabs[T](elements: Seq[(T, HtmlElement)]):
         button(
           className := "tab",
           onClick.mapTo(e._1) --> selection,
-          h2(e._1.toString()),
+          h2(renderHeader(e._1)),
           className("underlined") <-- selection.signal.map(_ == e._1)
         )
       }

@@ -32,7 +32,9 @@ object SessionCard:
         ),
         div(
           className := "subtitle",
-          session.info.room.nullFold(span())(room => span(className := "room", room.show)),
+          // session.info.room.nullFold(span())(room => span(className := "room", room.show)),
+          // hide the room for now, can be see in the draft schedule
+          span(),
           span(s"${session.info.kind.duration}min")
         )
       ),

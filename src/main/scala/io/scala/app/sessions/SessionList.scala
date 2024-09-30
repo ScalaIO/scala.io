@@ -44,6 +44,7 @@ case object SessionList extends ReactiveView[SessionsPage] {
           .toSeq
       )
     )
+
   override def body(args: Signal[SessionsPage]): HtmlElement =
     sectionTag(
       className := "container talks-list", // TODO: rename CSS also
@@ -53,13 +54,13 @@ case object SessionList extends ReactiveView[SessionsPage] {
         val (workshopsByCategory, talksByCategory) =
           SessionsHistory.sessionsForConf(arg).partition(_.isWorkshop)
         val tabs = List(
-          "Keynotes" ->
+          Session.Kind.Keynote ->
             Containers.gridCards(talksByCategory.filter(_.isKeynote).map(SessionCard(_, getConfName(arg.conference)))),
-          "Talks" -> tabWithTOC(sortedCategories(talksByCategory.filter(!_.isKeynote)), arg),
-          "Workshops" ->
+          Session.Kind.Talk -> tabWithTOC(sortedCategories(talksByCategory.filter(!_.isKeynote)), arg),
+          Session.Kind.Workshop ->
             Containers.gridCards(workshopsByCategory.map(SessionCard(_, getConfName(arg.conference))))
         )
-        Tabs(tabs).render
+        Tabs(tabs, h => h.toPlural, Session.Kind.Talk).render
       }
     )
 
