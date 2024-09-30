@@ -35,7 +35,10 @@ object SessionView extends ReactiveView[SessionPage]:
                 a(Icons.youtube, href := replayUrl, "Replay", target := "_blank")
             )
           ),
-          Titles(if session.speakers.size > 1 then "Speakers" else "Speaker"),
+          Titles(
+            if session.speakers.size > 1 then "Speakers" else "Speaker",
+            idAttr("speaker"),
+          ),
           Containers.gridCards(session.speakers.map(SpeakerView(_).body))
         )
     )
