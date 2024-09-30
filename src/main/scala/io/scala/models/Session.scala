@@ -67,6 +67,8 @@ object Session:
     case Talk      extends Kind("presentation-talk", 45)
     case Keynote   extends Kind("presentation-keynote", 60)
     case Workshop  extends Kind("workshop", 150)
+
+    def toPlural: String = s"${this.toString()}s"
   end Kind
 
   case class BasicInfo(

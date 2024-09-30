@@ -44,7 +44,7 @@ case object SessionList extends ReactiveView[SessionsPage] {
           .toSeq
       )
     )
-  
+
   override def body(args: Signal[SessionsPage]): HtmlElement =
     sectionTag(
       className := "container talks-list", // TODO: rename CSS also
@@ -60,7 +60,7 @@ case object SessionList extends ReactiveView[SessionsPage] {
           Session.Kind.Workshop ->
             Containers.gridCards(workshopsByCategory.map(SessionCard(_, getConfName(arg.conference))))
         )
-        Tabs(tabs, Session.Kind.Talk).render
+        Tabs(tabs, h => h.toPlural, Session.Kind.Talk).render
       }
     )
 
