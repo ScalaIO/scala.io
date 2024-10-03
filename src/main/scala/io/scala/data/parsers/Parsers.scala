@@ -100,7 +100,7 @@ object Parsers:
   object ConferenceSession:
     def basicInfo =
       headerN(1) ~ list map {
-        case HeaderChunk(_, name) ~ practicalInfo =>
+        case HeaderChunk(_, title) ~ practicalInfo =>
           val infoMap         = listToMap(practicalInfo, ":")
           val kind            = Session.Kind.valueOf(infoMap("Kind"))
           val slug            = infoMap("Slug")
@@ -111,9 +111,13 @@ object Parsers:
           val replay          = Session.BasicInfo.Replay(infoMap.get("Replay"))
           val dateTimesOption = infoMap.getOrElse("DateTime", null).nullMap(parseDateTime)
           val baseInfo =
-            Session.BasicInfo(name, slug, kind, category, confirmed, null, room, slides, replay)
+            Session.BasicInfo(title, slug, kind, category, confirmed, null, room, slides, replay)
           dateTimesOption.nullFold(List(baseInfo)): dateTimes =>
-            dateTimes.map(dateTime => baseInfo.copy(dateTime = dateTime))
+            dateTimes.zipWithIndex.map {
+              case (dateTime, _) if dateTimes.size == 1 => baseInfo.copy(dateTime = dateTime)
+              case (dateTime, idx) =>
+                baseInfo.copy(title = s"${baseInfo.title} ${idx + 1}/${dateTimes.size}", dateTime = dateTime)
+            }
 
         case chunk =>
           console.log(s"Error while parsing ${chunk._1.content}")
