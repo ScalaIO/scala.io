@@ -17,8 +17,7 @@ lazy val root = project
     name := "scalaio-website",
     scalacOptions ++= Seq(
       "-Yexplicit-nulls",
-      "-Wunused:all",
-
+      "-Wunused:all"
     ),
     libraryDependencies ++= Seq(
       "com.raquo"                     %%% "laminar"           % Dependencies.laminar,
@@ -28,7 +27,9 @@ lazy val root = project
       "org.foundweekends"             %%% "knockoff"          % "0.9.0",
       "com.softwaremill.sttp.tapir"   %%% "tapir-sttp-client" % "1.10.7",
       "com.softwaremill.sttp.client4" %%% "core"              % "4.0.0-M14",
-      "io.github.cquiroz" %%% "scala-java-time" % "2.5.0" // implementations of java.time classes for Scala.JS
+      "io.github.cquiroz" %%% "scala-java-time" % "2.5.0", // implementations of java.time classes for Scala.JS
+      "org.scalactic"     %%% "scalactic"       % "3.2.19",
+      "org.scalatest"     %%% "scalatest"       % "3.2.19" % "test"
     ),
     scalaJSUseMainModuleInitializer := true,
     scalaJSLinkerConfig ~= {

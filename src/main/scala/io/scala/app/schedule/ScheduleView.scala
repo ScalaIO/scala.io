@@ -46,7 +46,7 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       )
     )
 
-  def renderSmall(eventsByDay: SortedMap[DayOfWeek, List[Act]]) =
+  def render(eventsByDay: SortedMap[DayOfWeek, List[Act]]) =
     Tabs(
       eventsByDay.toSeq.map:
         case (day, events) => (day, ScheduleDay(events)),
@@ -58,9 +58,9 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
 
   def body(signal: Signal[SchedulePage]): HtmlElement =
     val eventsByDay =
-      signal.map: args =>
-        if args.withDraft.exists(d => d) then SortedMap.from(ScheduleInfo.schedule.groupBy(_.day))
-        else SortedMap.from(ScheduleInfo.blankSchedule.groupBy(_.day))
+      signal.map:
+        case SchedulePage(Some(true)) => SortedMap.from(ScheduleInfo.schedule.groupBy(_.startingDay))
+        case _ => SortedMap.from(ScheduleInfo.blankSchedule.groupBy(_.startingDay))
 
     sectionTag(
       className := "container",
@@ -68,6 +68,6 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       div(),
       globalHours,
       Line(margin = 4, sizeUnit = "rem"),
-      child <-- eventsByDay.map(renderSmall)
+      child <-- eventsByDay.map(render)
     )
 }

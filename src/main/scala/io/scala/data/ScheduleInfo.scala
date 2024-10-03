@@ -37,16 +37,11 @@ object ScheduleInfo {
     )
 
   lazy val schedule: List[Act] =
-    val sessions = SessionsHistory.sessionsForSchedule
-      .keepAs:
-        case t: Session if t.info.dateTime.isDefined && t.info.room.isDefined =>
-          t.asInstanceOf[Session & TimeDefinedTalk]
-    val danielWorkshop = sessions
-      .find(_.info.title == "Hands-on Scala Products")
-      .map(w => w.copy(info = w.info.copy(dateTime = LocalDateTime.of(2024, 11, 8, 13, 30))))
-      .get
-    val allSessions = danielWorkshop +: sessions
-    allSessions ++ List(
+    val sessions: List[Session] = SessionsHistory.sessionsForSchedule
+      .foldLeft(List.empty):
+        case (acc, act @ Session.IsScheduled()) => act +: acc
+        case (acc, _)                           => acc
+    sessions ++ List(
       Break.from(Break.Kind.Large, 0, 10, 30),
       Break.from(Break.Kind.Large, 0, 11, 30),
       Break.from(Break.Kind.Lunch, 0, 12, 30),
