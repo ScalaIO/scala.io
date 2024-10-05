@@ -11,12 +11,12 @@ import io.scala.models.Sponsor
 enum Event(val sessions: List[Session], val sponsors: List[Sponsor]):
   case `nantes-2024`
       extends Event(
-        SessionsData.nantes_2024.map(Parsers.ConferenceSession.fromText),
+        SessionsData.nantes_2024.flatMap(Parsers.ConferenceSession.fromText),
         Parsers.ConferenceSponsor.fromText(SponsorsData.nantes_2024)
       )
   case `paris-2024`
       extends Event(
-        SessionsData.paris_2024.map(Parsers.ConferenceSession.fromText),
+        SessionsData.paris_2024.flatMap(Parsers.ConferenceSession.fromText),
         Parsers.ConferenceSponsor.fromText(SponsorsData.paris_2024)
       )
 

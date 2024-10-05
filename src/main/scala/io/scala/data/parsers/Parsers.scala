@@ -9,12 +9,12 @@ import knockoff.HeaderChunk
 import org.scalajs.dom.console
 import scala.collection.immutable.Queue
 
+import io.scala.extensions.*
 import io.scala.models.Meetup
+import io.scala.models.Session
 import io.scala.models.Social
 import io.scala.models.Sponsor
-import io.scala.models.Session
 import io.scala.modules.elements.Links
-import io.scala.extensions.*
 
 val linkExtractorRegex = """\(([^\(\)]+)\)""".r
 def extractLink(link: String) =
@@ -98,25 +98,34 @@ object Parsers:
       .getOrElse(Meetup.empty)
 
   object ConferenceSession:
-    def basicInfo =
+    def basicInfos =
       headerN(1) ~ list map {
-        case HeaderChunk(_, name) ~ practicalInfo =>
-          val infoMap = listToMap(practicalInfo, ":")
-          Session.BasicInfo(
-            name,
-            infoMap("Slug"),
-            Session.Kind.valueOf(infoMap("Kind")),
-            infoMap("Category"),
-            infoMap.get("confirmed").map(_.toBoolean).getOrElse(false),
-            infoMap.getOrElse("DateTime", null).nullMap(LocalDateTime.parse(_, ISO_LOCAL_DATE_TIME)),
-            infoMap.getOrElse("Room", null).nullMap(Session.Room(_)),
-            Session.BasicInfo.Slides(infoMap.get("Slides")),
-            Session.BasicInfo.Replay(infoMap.get("Replay"))
-          )
+        case HeaderChunk(_, title) ~ practicalInfo =>
+          val infoMap         = listToMap(practicalInfo, ":")
+          val kind            = Session.Kind.valueOf(infoMap("Kind"))
+          val slug            = infoMap("Slug")
+          val category        = infoMap("Category")
+          val confirmed       = infoMap.get("confirmed").map(_.toBoolean).getOrElse(false)
+          val room            = infoMap.getOrElse("Room", null).nullMap(Session.Room(_))
+          val slides          = Session.BasicInfo.Slides(infoMap.get("Slides"))
+          val replay          = Session.BasicInfo.Replay(infoMap.get("Replay"))
+          val dateTimesOption = infoMap.getOrElse("DateTime", null).nullMap(parseDateTime)
+          val baseInfo =
+            Session.BasicInfo(title, slug, kind, category, confirmed, null, room, slides, replay)
+          dateTimesOption.nullFold(List(baseInfo)): dateTimes =>
+            dateTimes.zipWithIndex.map {
+              case (dateTime, _) if dateTimes.size == 1 => baseInfo.copy(dateTime = dateTime)
+              case (dateTime, idx) =>
+                baseInfo.copy(title = s"${baseInfo.title} ${idx + 1}/${dateTimes.size}", dateTime = dateTime)
+            }
+
         case chunk =>
           console.log(s"Error while parsing ${chunk._1.content}")
-          Session.BasicInfo.empty
+          List(Session.BasicInfo.empty)
       }
+
+    def parseDateTime(str: String): List[LocalDateTime] =
+      str.split("\\|").map(LocalDateTime.parse(_, ISO_LOCAL_DATE_TIME)).toList
 
     def abstractParser = headerN(2) ~> description map (_.map(_.content).mkString("\n"))
 
@@ -146,13 +155,13 @@ object Parsers:
 
     def speakersParser = (headerN(2) ~> speakerParser.+)
 
-    val sessionParser = basicInfo ~ abstractParser ~ speakersParser map { case basicInfo ~ description ~ speakers =>
-      Session(basicInfo, description, speakers)
+    val sessionParser = basicInfos ~ abstractParser ~ speakersParser map { case basicInfos ~ description ~ speakers =>
+      basicInfos.map(Session(_, description, speakers))
     }
 
-    def fromText(source: String): Session = parser.parse(sessionParser, source) match
-      case Success(talk, _) => talk
-      case failure          => Session.empty
+    def fromText(source: String): List[Session] = parser.parse(sessionParser, source) match
+      case Success(talks, _) => talks
+      case failure           => List(Session.empty)
 
   object Description:
     val talk =

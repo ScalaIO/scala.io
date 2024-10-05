@@ -1,12 +1,15 @@
 package io.scala.models
 
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.nodes.{ReactiveHtmlElement, ReactiveSvgElement}
+import com.raquo.laminar.nodes.ReactiveHtmlElement
+import com.raquo.laminar.nodes.ReactiveSvgElement
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.LocalTime
 import org.scalajs.dom
-import org.scalajs.dom.{HTMLDivElement, HTMLParagraphElement, SVGSVGElement}
+import org.scalajs.dom.HTMLDivElement
+import org.scalajs.dom.HTMLParagraphElement
+import org.scalajs.dom.SVGSVGElement
 
 import io.scala.data.Event
 import io.scala.data.parsers.Parsers
@@ -16,13 +19,15 @@ import io.scala.modules.elements.Paragraphs
 import io.scala.svgs.Icons
 
 sealed trait Act:
-  def day: DayOfWeek
-  def time: LocalTime
+  def dateTime: LocalDateTime | Null
   def render: Div
   def isKeynote: Boolean
   def isBreak: Boolean
+
+  lazy val startingTime = dateTime.nullMap(_.toLocalTime)
+  lazy val startingDay  = dateTime.nullMap(_.getDayOfWeek)
 object Act:
-  given Ordering[Act] = Ordering.by(act => (act.day, act.time))
+  given Ordering[Act] = Ordering.by(_.startingTime)
 
 sealed trait Durable:
   def duration: Int
@@ -36,8 +41,7 @@ case class Session(
   lazy val renderDescription: List[ReactiveHtmlElement[HTMLParagraphElement]] =
     Parsers.Description.parseTalk(description).map(Paragraphs.description(_))
 
-  val day: DayOfWeek      = info.dateTime.nullMap(_.getDayOfWeek)
-  val time: LocalTime     = info.dateTime.nullMap(_.toLocalTime)
+  export info.dateTime
   def duration: Int       = info.kind.duration
   def render: Div         = SessionCard(this, Event.Current.toString)
   def isKeynote: Boolean  = info.kind == Session.Kind.Keynote
@@ -45,14 +49,18 @@ case class Session(
   def isBreak: Boolean    = false
 
 object Session:
+  def empty: Session = Session(BasicInfo.empty, "To be announced", List.empty)
+  object IsScheduled:
+    def unapply(s: Session): Boolean =
+      if s.info.room.isDefined && s.dateTime.isDefined then true
+      else false
+
   opaque type Room = String
   extension (room: Room) def show: String = s"Room $room"
   object Room:
-    def empty                     = "TBD"
     def apply(room: String): Room = room
     given Ordering[Room]          = Ordering.String.on(_.show)
 
-  def empty: Session      = Session(BasicInfo.empty, "To be announced", List.empty)
   given Ordering[Session] = Ordering.by(talk => (talk.info.kind, talk.info.title))
   given Ordering[Kind] = Ordering.by:
     case Kind.Lightning => 5
@@ -78,7 +86,7 @@ object Session:
       category: String,
       confirmed: Boolean,
       dateTime: LocalDateTime | Null,
-      room: Room | Null, // TODO: reuse String | Null
+      room: Room | Null,
       slides: BasicInfo.Slides = None,
       replay: BasicInfo.Replay = None
   )

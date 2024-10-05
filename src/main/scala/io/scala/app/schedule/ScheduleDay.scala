@@ -27,7 +27,7 @@ object ScheduleDay {
           )
 
   def apply(eventsOfDay: List[Act]) =
-    val talksByTime = eventsOfDay.groupBy(_.time).toList.sortBy(_._1)
+    val talksByTime = eventsOfDay.groupBy(_.startingTime).toList.sortBy(_._1)
     val rooms: List[Session.Room] =
       eventsOfDay
         .collect { case t: Session => t.info.room.nn }
