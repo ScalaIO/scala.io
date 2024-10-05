@@ -5,7 +5,6 @@
 - Category: Code
 - confirmed: true
 
-
 ## Abstract
 
 ```
@@ -23,16 +22,15 @@ a more expressive language.
 
 ### Xavier Van de Woestyne
 
-- photoRelPath: /images/profiles/paris-2024/xVanDeWoestsyne.jpg
+- photoRelPath: /images/profiles/paris-2024/xVanDeWoestyne.webp
 - job: OCaml Software Engineering at Tarides
 
 #### Links
 
-- [twitter](https://twitter.com/vdwxv)
-- [website](https://xvw.lol/)
-- [github](https://github.com/xvw)
-- [mastodon](https://merveilles.town/@xvw)
-
+- [Twitter](https://twitter.com/vdwxv)
+- [Other](https://xvw.lol/)
+- [Github](https://github.com/xvw)
+- [Other](https://merveilles.town/@xvw)
 
 #### Bio
 
