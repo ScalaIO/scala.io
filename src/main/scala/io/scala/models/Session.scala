@@ -27,7 +27,7 @@ sealed trait Act:
   lazy val startingTime = dateTime.nullMap(_.toLocalTime)
   lazy val startingDay  = dateTime.nullMap(_.getDayOfWeek)
 object Act:
-  given Ordering[Act] = Ordering.by { _.startingTime }
+  given Ordering[Act] = Ordering.by(_.startingTime)
 
 sealed trait Durable:
   def duration: Int
