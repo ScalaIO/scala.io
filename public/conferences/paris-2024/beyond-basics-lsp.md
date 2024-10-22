@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: beyond-basics-lsp
-- Category: Code
+- Category: Scala & Friends
 - confirmed: true
 
 ## Abstract

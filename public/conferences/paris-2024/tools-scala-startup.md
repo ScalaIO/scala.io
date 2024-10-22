@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: tools-for-scala-startups
-- Category: Ecosystem
+- Category: Tools & Ecosystem
 - confirmed: true
 - DateTime: 2024-11-07T11:45:00
 - Room: B

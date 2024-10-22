@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: from-zero-to-prod-faster-with-pillars
-- Category: Ecosystem
+- Category: Tools & Ecosystem
 - confirmed: true
 - DateTime: 2024-11-07T10:45:00
 - Room: A

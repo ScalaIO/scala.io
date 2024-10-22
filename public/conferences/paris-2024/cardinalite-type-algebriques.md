@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: cardinality-algebraic-types-count-to-test
-- Category: Testing
+- Category: Algebra
 - confirmed: false
 
 ## Abstract

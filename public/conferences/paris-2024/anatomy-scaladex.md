@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: anatomy-of-scaladex
-- Category: Ecosystem
+- Category: Tools & Ecosystem
 - confirmed: true
 - DateTime: 2024-11-08T13:30
 - Room: B

@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: escaping-false-dichotomy-with-sanely-automatic-derivation
-- Category: Metaprog
+- Category: Language
 - confirmed: true
 - DateTime: 2024-11-07T15:00:00
 - Room: B
