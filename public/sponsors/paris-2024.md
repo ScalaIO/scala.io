@@ -1,5 +1,14 @@
 # Sponsors Paris 2024
 
+
+## Clever Cloud
+
+- Clever Cloud
+- clever.svg
+- https://www.clever-cloud.com/
+- Gold
+1:1
+
 ## ledger
 
 - Ledger
