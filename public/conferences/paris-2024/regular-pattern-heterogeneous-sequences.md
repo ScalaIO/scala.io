@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: recognizing-regular-patterns-in-heterogeneous-sequences
-- Category: Type System
+- Category: Algebra
 - confirmed: true
 - DateTime: 2024-11-07T16:00:00
 - Room: A

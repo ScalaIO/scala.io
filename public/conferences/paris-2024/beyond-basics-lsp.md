@@ -2,20 +2,13 @@
 
 - Kind: Talk
 - Slug: beyond-basics-lsp
-- Category: Code
+- Category: Scala & Friends
 - confirmed: true
 
 ## Abstract
 
 ```
-LSP has greatly standardised the behaviour of IDEs, in a good direction: we can provide, de-facto,
-decent language support in editors supporting LSP. But it also imposes a standardisation that often
-assumes that all languages behave like TypeScript. In this presentation, I'll introduce you to Merlin,
-the IDE service library for OCaml, and cover the custom features (via code-action and custom-request)
-that enhance the OCaml development experience (covering expression destructuring, expression construction,
-search by types (à la hoogle, directly in the IDE), type enclosures etc.). The aim of the presentation was
-to show how to go beyond the default features offered by LSP and offer a development experience adapted to
-a more expressive language.
+LSP has greatly standardised the behaviour of IDEs, in a good direction: we can provide, de-facto, decent language support in editors supporting LSP. But it also imposes a standardisation that often assumes that all languages behave like TypeScript. In this presentation, I'll introduce you to Merlin, the IDE service library for OCaml, and cover the custom features (via code-action and custom-request) that enhance the OCaml development experience (covering expression destructuring, expression construction, search by types (à la hoogle, directly in the IDE), type enclosures etc.). The aim of the presentation was to show how to go beyond the default features offered by LSP and offer a development experience adapted to a more expressive language.
 ```
 
 ## Speakers

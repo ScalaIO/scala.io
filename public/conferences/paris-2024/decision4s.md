@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: decisions4s-conditionals-higher-kinded-data-scala-3
-- Category: Ecosystem
+- Category: Language
 - confirmed: true
 - DateTime: 2024-11-08T15:00:00
 - Room: A
