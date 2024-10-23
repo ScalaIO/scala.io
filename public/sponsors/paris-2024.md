@@ -4,7 +4,7 @@
 ## Clever Cloud
 
 - Clever Cloud
-- clevercloud.svg
+- clever.svg
 - https://www.clever-cloud.com/
 - Gold
 1:1
