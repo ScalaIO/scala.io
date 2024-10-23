@@ -15,6 +15,7 @@ object Sponsor {
     case Platinum  extends Rank("🎖️ Platinum 🎖️", "platinum")
     case Gold      extends Rank("🥇 Gold 🥇", "gold")
     case Silver    extends Rank("🥈 Silver 🥈", "silver")
+    case Bronze    extends Rank("🥉 Bronze 🥉", "silver")
     case Community extends Rank("👥 Community 👥", "community")
     case Love      extends Rank("❤️ J'aime Scala ❤️", "love")
     case Partner   extends Rank("🤝 Partner 🤝", "partner")
