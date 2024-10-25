@@ -87,11 +87,12 @@ object Session:
       confirmed: Boolean,
       dateTime: LocalDateTime | Null,
       room: Room | Null,
+      `#`: Int | Null,
       slides: BasicInfo.Slides = None,
       replay: BasicInfo.Replay = None
   )
   object BasicInfo:
-    def empty: BasicInfo = BasicInfo("Malformed talk info", "", Kind.Talk, "", false, LocalDateTime.MIN, Room("none"))
+    def empty: BasicInfo = BasicInfo("Malformed talk info", "", Kind.Talk, "", false, LocalDateTime.MIN, Room("none"), null)
 
     opaque type Slides = Option[String]
     object Slides:

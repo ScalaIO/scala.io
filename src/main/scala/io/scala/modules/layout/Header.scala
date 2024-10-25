@@ -27,22 +27,28 @@ object Header {
   def render =
     headerTag(
       logo,
-      inlineLinks,
-      burgerMenu
+      div(
+        display.flex,
+        alignItems.center,
+        inlineLinks,
+        burgerMenu,
+        Links.button("Tickets", "https://www.billetweb.fr/scalaio-paris-2024-epita")(padding := "0.5rem 0.5rem")
+      )
     )
 
-  private val linksPage: Seq[(String, Page)] = Seq(
-    "Sessions"        -> SessionsPage(),
-    "Sponsors"        -> SponsorsPage(),
-    "Venue"           -> VenuePage,
-    "Schedule"        -> SchedulePage(),
-    "Scala-FR events" -> EventsPage,
-    "FAQ"             -> FAQPage
-  )
+  private def links =
+    Seq(
+      "Sessions"        -> SessionsPage(),
+      "Sponsors"        -> SponsorsPage(),
+      "Venue"           -> VenuePage,
+      "Schedule"        -> SchedulePage(),
+      "Scala-FR events" -> EventsPage,
+      "FAQ"             -> FAQPage
+    ).map(Links.innerPage)
 
   inline def inlineLinks = div(
     className := "links inline",
-    linksPage.map(Links.innerPage)
+    links,
   )
 
   def burgerMenu =
@@ -50,6 +56,6 @@ object Header {
       Icons.burger,
       onClick.stopImmediatePropagation.mapTo(!burgerClicked.now()) --> burgerClicked
     )(
-      linksPage.map(Links.innerPage),
+      links
     )
 }
