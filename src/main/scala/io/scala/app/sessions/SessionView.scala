@@ -1,6 +1,7 @@
 package io.scala.app.sessions
 
 import com.raquo.laminar.api.L.*
+
 import io.scala.SessionPage
 import io.scala.data.SessionsHistory
 import io.scala.models.Session
@@ -37,7 +38,7 @@ object SessionView extends ReactiveView[SessionPage]:
           ),
           Titles(
             if session.speakers.size > 1 then "Speakers" else "Speaker",
-            idAttr("speaker"),
+            idAttr("speaker")
           ),
           Containers.gridCards(session.speakers.map(SpeakerView(_).body))
         )
@@ -51,7 +52,8 @@ object SessionView extends ReactiveView[SessionPage]:
       category = "non-existent",
       confirmed = false,
       dateTime = null,
-      room = null
+      room = null,
+      `#` = null
     ),
     description = "This session or conference does not exist.",
     speakers = List.empty

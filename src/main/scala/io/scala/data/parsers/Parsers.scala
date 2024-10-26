@@ -111,13 +111,11 @@ object Parsers:
           val replay          = Session.BasicInfo.Replay(infoMap.get("Replay"))
           val dateTimesOption = infoMap.getOrElse("DateTime", null).nullMap(parseDateTime)
           val baseInfo =
-            Session.BasicInfo(title, slug, kind, category, confirmed, null, room, slides, replay)
-          dateTimesOption.nullFold(List(baseInfo)): dateTimes =>
-            dateTimes.zipWithIndex.map {
-              case (dateTime, _) if dateTimes.size == 1 => baseInfo.copy(dateTime = dateTime)
-              case (dateTime, idx) =>
-                baseInfo.copy(title = s"${baseInfo.title} ${idx + 1}/${dateTimes.size}", dateTime = dateTime)
-            }
+            Session.BasicInfo(title, slug, kind, category, confirmed, null, room, null, slides, replay)
+          dateTimesOption.nullFold(List(baseInfo)):
+            case dateTime :: Nil => List(baseInfo.copy(dateTime = dateTime, `#` = null))
+            case dateTimes =>
+              dateTimes.zipWithIndex.map { case (dateTime, idx) => baseInfo.copy(dateTime = dateTime, `#` = idx + 1) }
 
         case chunk =>
           console.log(s"Error while parsing ${chunk._1.content}")

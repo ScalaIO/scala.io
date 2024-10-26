@@ -27,7 +27,8 @@ object SessionCard:
       div(
         h3(
           className := "card-title",
-          session.info.title,
+          if (session.info.`#` != null) then s"${session.info.title} #${session.info.`#`}"
+          else session.info.title,
           SessionKindTag(session.info.kind)
         ),
         div(
