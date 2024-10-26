@@ -36,6 +36,7 @@ header {
 
   a {
     text-transform: uppercase;
+    border-radius: 0.5em;
     padding: 0.5em 0.5em;
 
     &:hover {
@@ -60,7 +61,7 @@ header {
       top: 4em;
       border-radius: 1em;
       display: block;
-      
+
       > a {
         display: block;
       }

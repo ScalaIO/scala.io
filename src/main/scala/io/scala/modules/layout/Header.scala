@@ -32,7 +32,7 @@ object Header {
         alignItems.center,
         inlineLinks,
         burgerMenu,
-        Links.button("Tickets", "https://www.scala.io/#tickets")(padding := "0.5rem 0.5rem")
+        Buttons.shiny("Tickets", marginLeft := "0.5em" , padding := "0.5rem 0.5rem", Page.navigateTo(IndexPage(), Some("tickets")))
       )
     )
 
@@ -44,11 +44,11 @@ object Header {
       "Schedule"        -> SchedulePage(),
       "Scala-FR events" -> EventsPage,
       "FAQ"             -> FAQPage
-    ).map(Links.innerPage)
+    ).map(Links.innerPage(_, _))
 
   inline def inlineLinks = div(
     className := "links inline",
-    links,
+    links
   )
 
   def burgerMenu =

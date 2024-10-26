@@ -11,8 +11,8 @@ object Links:
   type Button     = ReactiveHtmlElement[HTMLButtonElement]
   type LinkTarget = "_blank" | "_self" | "_parent" | "_top"
 
-  def innerPage(text: String, page: Page) =
-    a(text, Page.navigateTo(page))
+  def innerPage(text: String, page: Page, modifiers: Modifier[Anchor]*) =
+    a(text, Page.navigateTo(page), modifiers)
 
   def flat(modifiers: Modifier[Anchor]*) =
     a(modifiers, target := "_blank")
