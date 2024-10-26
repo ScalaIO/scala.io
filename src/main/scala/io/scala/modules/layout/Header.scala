@@ -44,7 +44,7 @@ object Header {
       "Schedule"        -> SchedulePage(),
       "Scala-FR events" -> EventsPage,
       "FAQ"             -> FAQPage
-    ).map(Links.innerPage(_, _))
+    ).map(Links.innerPage)
 
   inline def inlineLinks = div(
     className := "links inline",
