@@ -55,6 +55,10 @@
   }
 }
 
+.grayed-out {
+  filter: grayscale(100%);
+}
+
 html {
   scroll-behavior: smooth;
 }

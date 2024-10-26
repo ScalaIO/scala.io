@@ -16,6 +16,16 @@ import io.scala.models.Social
 import io.scala.models.Sponsor
 import io.scala.modules.elements.Links
 
+extension (chunks: List[Chunk])
+  def asMap(sep: String = ":"): Map[String, String] =
+    chunks
+      .map: chunk =>
+        val sepIdx = chunk.content.indexOf(sep)
+        val key    = chunk.content.take(sepIdx).trim
+        val value  = chunk.content.drop(sepIdx + 1).trim
+        key -> value
+      .toMap
+
 val linkExtractorRegex = """\(([^\(\)]+)\)""".r
 def extractLink(link: String) =
   linkExtractorRegex.findFirstMatchIn(link).map(_.group(1))
@@ -32,18 +42,11 @@ object Parsers:
     (parser.regex("""```\n""".r))
       ~> ((parser.textLine <~ parser.emptyLine.?) - parser.regex("```".r)).+
       <~ parser.regex("""```\n""".r)
+  val frontMatterDelimiter = parser.regex("""---""".r) <~ emptyLine.?
+  val frontMatter = frontMatterDelimiter ~> (parser.textLine - frontMatterDelimiter).+ <~ frontMatterDelimiter <~ emptyLine.?
 
   val description     = codeBlock <~ emptyLine.?
   def headerN(n: Int) = header.filter { case HeaderChunk(`n`, _) => true; case _ => false } <~ emptyLine.?
-
-  def listToMap(list: List[Chunk], sep: String): Map[String, String] =
-    list
-      .map: chunk =>
-        val sepIdx = chunk.content.indexOf(sep)
-        val key    = chunk.content.take(sepIdx).trim
-        val value  = chunk.content.drop(sepIdx + 1).trim
-        key -> value
-      .toMap
 
   object MeetupTalk:
     val talkParser = headerN(3) ~ (list ~ description).? <~ emptyLine.?
@@ -58,7 +61,7 @@ object Parsers:
     def basicInfo =
       headerN(1) ~ list map {
         case HeaderChunk(_, name) ~ practicalInfo =>
-          val infoMap = listToMap(practicalInfo, ":")
+          val infoMap = practicalInfo.asMap()
           Meetup.BasicInfo(
             name,
             dateParser(infoMap("Date")),
@@ -98,10 +101,16 @@ object Parsers:
       .getOrElse(Meetup.empty)
 
   object ConferenceSession:
+    def cancellation =
+      frontMatter.map { frontMatter =>
+        val frontMatterMap = frontMatter.asMap()
+        frontMatterMap.get("cancelled")
+      }
+
     def basicInfos =
       headerN(1) ~ list map {
         case HeaderChunk(_, title) ~ practicalInfo =>
-          val infoMap         = listToMap(practicalInfo, ":")
+          val infoMap         = practicalInfo.asMap()
           val kind            = Session.Kind.valueOf(infoMap("Kind"))
           val slug            = infoMap("Slug")
           val category        = infoMap("Category")
@@ -130,7 +139,7 @@ object Parsers:
     def speakerParser =
       headerN(3) ~ list ~ headerN(4) ~ list ~ headerN(4) ~ description.? map {
         case HeaderChunk(_, name) ~ info ~ HeaderChunk(4, "Links") ~ socials ~ HeaderChunk(4, "Bio") ~ bio =>
-          val infoMap = listToMap(info, ":")
+          val infoMap = info.asMap()
           val socialsMap =
             socials.flatMap { chunk =>
               linkRegex.findFirstMatchIn(chunk.content).map { link =>
@@ -153,8 +162,8 @@ object Parsers:
 
     def speakersParser = (headerN(2) ~> speakerParser.+)
 
-    val sessionParser = basicInfos ~ abstractParser ~ speakersParser map { case basicInfos ~ description ~ speakers =>
-      basicInfos.map(Session(_, description, speakers))
+    val sessionParser = cancellation.? ~ basicInfos ~ abstractParser ~ speakersParser map { case cancellation ~basicInfos ~ description ~ speakers =>
+      basicInfos.map(Session(_, description, speakers, cancellation.getOrElse(None)))
     }
 
     def fromText(source: String): List[Session] = parser.parse(sessionParser, source) match

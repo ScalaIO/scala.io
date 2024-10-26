@@ -16,12 +16,9 @@ case object SessionList extends ReactiveView[SessionsPage] {
 
   given Ordering[(String, List[Session])] =
     case ((cat1, talks1), (cat2, talks2)) =>
-      val (cat1HasKeynote, cat2HasKeynote) = (talks1.exists(_.isKeynote), talks2.exists(_.isKeynote))
-      val sizeComparison                   = talks1.size.compareTo(talks2.size)
-
-      if !cat1HasKeynote && cat2HasKeynote then 1
-      else if cat1HasKeynote && !cat2HasKeynote then -1
-      else if sizeComparison != 0 then -sizeComparison
+      val sizeComparison = talks1.size.compareTo(talks2.size)
+      
+      if sizeComparison != 0 then -sizeComparison
       else cat1.compareTo(cat2)
 
   private def sortedCategories(sessions: List[Session]): List[(String, List[Session])] =
