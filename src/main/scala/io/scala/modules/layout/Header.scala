@@ -32,7 +32,7 @@ object Header {
         alignItems.center,
         inlineLinks,
         burgerMenu,
-        Links.button("Tickets", "https://www.billetweb.fr/scalaio-paris-2024-epita")(padding := "0.5rem 0.5rem")
+        Links.button("Tickets", "https://www.scala.io/#tickets")(padding := "0.5rem 0.5rem")
       )
     )
 
