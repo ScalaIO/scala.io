@@ -1,5 +1,5 @@
 ---
-cancelled: Speaker's personal reasons
+cancelled: Unfortunately, Raphaël is unable to attend the conference; we wish him a speedy recovery.
 ---
 
 # From Zero to Production Faster Than Your Average Meeting with Pillars
