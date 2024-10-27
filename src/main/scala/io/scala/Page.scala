@@ -44,9 +44,7 @@ case class SponsorsPage(conference: Option[String] = None) extends Page with Rou
   def title: String = "Sponsors"
 case object VenuePage extends Page:
   def title: String = "Venue"
-case class SchedulePage(withDraft: Option[Boolean] = None)
-    extends Page
-    with Draftable:
+case class SchedulePage(withDraft: Option[Boolean] = None) extends Page with Draftable:
   def title: String = "Schedule"
 case object EventsPage extends Page:
   def title: String = "Other events"
@@ -57,14 +55,14 @@ case object CoCPage extends Page:
 
 object Page {
 
-  given ReadWriter[IndexPage]        = macroRW
-  given ReadWriter[SessionsPage]  = macroRW
-  given ReadWriter[SessionPage]    = macroRW
-  given ReadWriter[SponsorsPage]  = macroRW
-  given ReadWriter[VenuePage.type]   = macroRW
-  given ReadWriter[SchedulePage]  = macroRW
+  given ReadWriter[IndexPage]       = macroRW
+  given ReadWriter[SessionsPage]    = macroRW
+  given ReadWriter[SessionPage]     = macroRW
+  given ReadWriter[SponsorsPage]    = macroRW
+  given ReadWriter[VenuePage.type]  = macroRW
+  given ReadWriter[SchedulePage]    = macroRW
   given ReadWriter[EventsPage.type] = macroRW
-  given ReadWriter[FAQPage.type]       = macroRW
+  given ReadWriter[FAQPage.type]    = macroRW
 
   given pageArgBasicCodec: ReadWriter[Page] = macroRW
 
@@ -108,7 +106,7 @@ object Page {
   private val legacyTalksRoute = Route.onlyQuery(
     encode = (x: SessionsPage) => (x.withDraft, x.conference),
     decode = SessionsPage(_, _),
-    (root / "talks" / endOfSegments) ? draftParam & conferenceParam,
+    (root / "talks" / endOfSegments) ? draftParam & conferenceParam
   )
   val sessionRoute = Route[SessionPage, (String, String)](
     encode = x => (x.conference, x.slug),
@@ -119,13 +117,13 @@ object Page {
   private val legacyTalkRoute = Route(
     encode = (x: SessionPage) => (x.conference, x.slug),
     decode = SessionPage(_, _),
-    root / "talks" / segment[String] / segment[String] / endOfSegments,
+    root / "talks" / segment[String] / segment[String] / endOfSegments
   )
   // maintain links of Nantes 2024 edition: scala.io/talks/<slug>
   private val legacyNantesTalkRoute = Route[SessionPage, String](
     encode = x => x.slug,
     decode = SessionPage("nantes-2024", _),
-    root / "talks" / segment[String] / endOfSegments,
+    root / "talks" / segment[String] / endOfSegments
   )
   val sponsorsRoute = Route.onlyQuery[SponsorsPage, Option[String]](
     encode = x => x.conference,
@@ -193,7 +191,7 @@ object Page {
       .collectStatic(FAQPage)(FAQView.render())
       .collectStatic(CoCPage)(CoCView.render())
 
-  def navigateTo(page: => Page): Binder[HtmlElement] = Binder { el =>
+  def navigateTo(page: => Page, selector: Option[String] = None): Binder[HtmlElement] = Binder { el =>
     val isLinkElement = el.ref.isInstanceOf[html.Anchor]
     if (isLinkElement) {
       el.amend(href(router.absoluteUrlForPage(page)))
@@ -208,8 +206,12 @@ object Page {
       .preventDefault
       --> { _ =>
         router.pushState(page)
-        document.body.scrollTop = 0;            // For Safari
-        document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+        selector match
+          case None =>
+            document.body.scrollTop = 0;            // For Safari
+            document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+          case Some(value) =>
+            document.getElementById(value).scrollIntoView()
       }).bind(el)
   }
 }

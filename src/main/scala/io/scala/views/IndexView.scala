@@ -41,9 +41,9 @@ case object IndexView extends ReactiveView[IndexPage] {
       SessionsHistory
         .sessionsForConf(indexArgs)
         .flatMap: talk =>
-          talk.speakers.map((_, talk.info))
+          talk.speakers.map((_, talk))
         .groupMap(_._1)(_._2)
-        .mapValues(_.distinctBy(_.kind).sortBy(_.kind))
+        .mapValues(_.distinctBy(_.info.kind).sortBy(_.info.kind))
         .toSeq
         .sortBy(_._1)
 

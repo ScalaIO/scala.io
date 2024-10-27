@@ -1,11 +1,13 @@
+---
+cancelled: Unfortunately, Raphaël is unable to attend the conference; we wish him a speedy recovery.
+---
+
 # From Zero to Production Faster Than Your Average Meeting with Pillars
 
 - Kind: Talk
 - Slug: from-zero-to-prod-faster-with-pillars
 - Category: Tools & Ecosystem
 - confirmed: true
-- DateTime: 2024-11-07T10:45:00
-- Room: A
 
 ## Abstract
 

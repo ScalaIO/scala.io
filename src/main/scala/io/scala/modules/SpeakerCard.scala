@@ -3,6 +3,7 @@ package modules
 
 import com.raquo.laminar.api.L.*
 
+import io.scala.extensions.grayOutIf
 import io.scala.models.Session
 import io.scala.models.Session.Speaker
 import io.scala.models.Social
@@ -10,7 +11,7 @@ import io.scala.modules.elements.Buttons
 import io.scala.modules.elements.Buttons.*
 
 object SpeakerCard {
-  def apply(speaker: Speaker, talksInfo: List[Session.BasicInfo], conference: String) =
+  def apply(speaker: Speaker, talks: List[Session], conference: String) =
     div(
       className := "speaker-card",
       img(
@@ -20,10 +21,10 @@ object SpeakerCard {
       ),
       div(
         div(
-          talksInfo.map(info =>
+          talks.map(t =>
             span(
-              info.kind.toString,
-              className := info.kind.toStyle
+              t.info.kind.toString,
+              className := t.info.kind.toStyle
             )
           ),
           div(
@@ -36,10 +37,10 @@ object SpeakerCard {
         p(speaker.job, className   := "job"),
         className := "body"
       ),
-      linksToTalks(talksInfo, conference)
-    )
+      linksToTalks(talks, conference)
+    ).grayOutIf(talks.forall(_.cancelledReason.isDefined))
 
-  def linksToTalks(infos: List[Session.BasicInfo], conference: String) =
+  def linksToTalks(talks: List[Session], conference: String) =
     def linkButton(info: Session.BasicInfo) =
       val text = if info.kind == Session.Kind.Workshop then "Workshop" else "Talk"
       Buttons
@@ -49,9 +50,9 @@ object SpeakerCard {
     div(
       display.flex,
       flexDirection.row,
-      infos match
+      talks match
         case Nil         => emptyNode
-        case head :: Nil => linkButton(head)
-        case _           => infos.map(linkButton)
+        case head :: Nil => linkButton(head.info)
+        case _           => talks.map(t => linkButton(t.info))
     )
 }

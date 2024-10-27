@@ -2,6 +2,7 @@ package io.scala.app.sessions
 
 import com.raquo.laminar.api.L.*
 
+import io.scala.extensions.grayOutIf
 import io.scala.SessionPage
 import io.scala.data.SessionsHistory
 import io.scala.models.Session
@@ -24,7 +25,13 @@ object SessionView extends ReactiveView[SessionPage]:
       className := "container talk",
       children <-- sessionSignal.map: session =>
         Seq(
-          Titles(session.info.title),
+          session.cancelledReason match
+            case None => Titles(session.info.title)
+            case Some(value) =>
+              Titles.withSub(
+                session.info.title,
+                p(s"Cancelled: $value")
+              ),
           div(
             className := "talk-description",
             Paragraphs.description(session.renderDescription),
@@ -42,7 +49,7 @@ object SessionView extends ReactiveView[SessionPage]:
           ),
           Containers.gridCards(session.speakers.map(SpeakerView(_).body))
         )
-    )
+    ).grayOutIf(sessionSignal.map(_.cancelledReason.isDefined))
 
   private val notFoundTalk = Session(
     Session.BasicInfo(

@@ -81,6 +81,6 @@ object SessionCard:
           .important
           .amend(display.block, width.percent := 100)
       )
-    )
+    ).grayOutIf(session.cancelledReason.isDefined)
 
 end SessionCard
