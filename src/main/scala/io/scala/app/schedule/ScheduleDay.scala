@@ -3,6 +3,7 @@ package io.scala.app.schedule
 import com.raquo.laminar.api.L.*
 import org.scalajs.dom.HTMLDivElement
 
+import io.scala.extensions.*
 import io.scala.models.Act
 import io.scala.models.Break
 import io.scala.models.Session
@@ -22,8 +23,11 @@ object ScheduleDay {
               .find:
                 case t: Session            => t.info.room == room
                 case _: Break | _: Special => true // ! Will cause problem for multi-track events
-              .map(_.render)
-              .getOrElse(div(className := "blank-card"))
+              .map:
+                case s @ Session(info, _, _, _, Some(id)) =>
+                  s.render.amend(idAttr := s"$id${info.`#`.nullGetOrElse("")}")
+                case a => a.render
+              .getOrElse(emptyNode)
           )
 
   def apply(eventsOfDay: List[Act]) =
@@ -36,11 +40,7 @@ object ScheduleDay {
 
     val elements = for
       (time, events) <- talksByTime
-      talks = div(
-        className := "timeslot-talks",
-        events.toTimeslotLine(rooms)
-      )
-      timeSlot <- List(time.render(), talks)
+      timeSlot <- time.render() :: List(events.toTimeslotLine(rooms)*)
     yield timeSlot
 
     div(

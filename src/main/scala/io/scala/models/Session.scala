@@ -36,7 +36,8 @@ case class Session(
     info: Session.BasicInfo,
     description: String,
     speakers: List[Session.Speaker],
-    cancelledReason: Option[String] = None
+    cancelledReason: Option[String] = None,
+    htmlId: Option[String] = None
 ) extends Act
     with Durable:
   lazy val renderDescription: List[ReactiveHtmlElement[HTMLParagraphElement]] =

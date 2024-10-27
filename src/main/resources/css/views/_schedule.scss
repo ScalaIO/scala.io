@@ -60,31 +60,59 @@
 
   .day-view {
     display: grid;
-    grid-template-columns: 3em 1fr;
+    @media screen and (max-width: vars.$tablet-width) {
+      grid-template-columns: 3em 1fr;
+      .talk-card {
+        grid-column: 2;
+      }
+    }
+    @media screen and (min-width: vars.$tablet-width) {
+      grid-template-columns: 3em repeat(3, 1fr);
+    }
     width: 100%;
     row-gap: 2em;
     column-gap: 1em;
   }
 
-  .timeslot-talks {
-    display: grid;
-    grid-template: auto / 1fr;
-    gap: 1em;
+  .body {
+    max-height: 200px;
+  }
 
-    .presentation-keynote {
+  .workshop {
+    grid-column: 4;
+  }
+
+  @media screen and (min-width: vars.$tablet-width) {
+    grid-template: 3em / repeat(3, 1fr);
+
+    .presentation-keynote,
+    .break {
       grid-column: span 3;
     }
-
-    .break {
-      grid-column: span 2;
-    }
-
     .end-day {
       grid-column: span 3;
     }
+    .workshop {
+      justify-content: flex-start;
+      .body {
+        max-height: none;
+      }
+    }
 
-    @media screen and (min-width: vars.$tablet-width) {
-      grid-template: auto / repeat(3, 1fr);
+    #kyo {
+      grid-row: span 4;
+    }
+
+    #fastscala {
+      grid-row: span 5;
+    }
+
+    #scala-tools1 {
+      grid-row: span 7;
+    }
+
+    #scala-tools2 {
+      grid-row: span 4;
     }
   }
 }

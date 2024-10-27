@@ -1,3 +1,7 @@
+---
+id: scala-tools
+---
+
 # Hands-on Scala Products
 
 - Kind: Workshop
