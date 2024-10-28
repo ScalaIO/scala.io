@@ -57,17 +57,12 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
     (time.toHour - minStart.toHour) * pxByHour
 
   def body(signal: Signal[SchedulePage]): HtmlElement =
-    val eventsByDay =
-      signal.map:
-        case SchedulePage(Some(true)) => SortedMap.from(ScheduleInfo.schedule.groupBy(_.startingDay))
-        case _ => SortedMap.from(ScheduleInfo.blankSchedule.groupBy(_.startingDay))
-
     sectionTag(
       className := "container",
       Titles("Schedule"),
       div(),
       globalHours,
       Line(margin = 4, sizeUnit = "rem"),
-      child <-- eventsByDay.map(render)
+      child <-- signal.map(_ => render(SortedMap.from(ScheduleInfo.schedule.groupBy(_.startingDay))))
     )
 }

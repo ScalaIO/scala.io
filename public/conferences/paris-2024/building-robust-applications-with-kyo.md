@@ -1,3 +1,7 @@
+---
+id: kyo
+---
+
 # Building Robust Applications with Kyo: A Hands-on Introduction
 
 - Kind: Workshop

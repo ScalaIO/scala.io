@@ -42,8 +42,9 @@ object Parsers:
     (parser.regex("""```\n""".r))
       ~> ((parser.textLine <~ parser.emptyLine.?) - parser.regex("```".r)).+
       <~ parser.regex("""```\n""".r)
-  val frontMatterDelimiter = parser.regex("""---""".r) <~ emptyLine.?
-  val frontMatter = frontMatterDelimiter ~> (parser.textLine - frontMatterDelimiter).+ <~ frontMatterDelimiter <~ emptyLine.?
+  val frontMatterDelimiter = parser.regex("""---\n""".r)
+  val frontMatter =
+    frontMatterDelimiter ~> (parser.textLine - frontMatterDelimiter).+ <~ frontMatterDelimiter <~ emptyLine.?
 
   val description     = codeBlock <~ emptyLine.?
   def headerN(n: Int) = header.filter { case HeaderChunk(`n`, _) => true; case _ => false } <~ emptyLine.?
@@ -101,11 +102,8 @@ object Parsers:
       .getOrElse(Meetup.empty)
 
   object ConferenceSession:
-    def cancellation =
-      frontMatter.map { frontMatter =>
-        val frontMatterMap = frontMatter.asMap()
-        frontMatterMap.get("cancelled")
-      }
+    def specialInfo =
+      frontMatter.map(_.asMap())
 
     def basicInfos =
       headerN(1) ~ list map {
@@ -162,8 +160,10 @@ object Parsers:
 
     def speakersParser = (headerN(2) ~> speakerParser.+)
 
-    val sessionParser = cancellation.? ~ basicInfos ~ abstractParser ~ speakersParser map { case cancellation ~basicInfos ~ description ~ speakers =>
-      basicInfos.map(Session(_, description, speakers, cancellation.getOrElse(None)))
+    val sessionParser = specialInfo.? ~ basicInfos ~ abstractParser ~ speakersParser map {
+      case Some(specialInfo) ~ basicInfos ~ description ~ speakers =>
+        basicInfos.map(Session(_, description, speakers, specialInfo.get("cancelled"), specialInfo.get("id")))
+      case None ~ basicInfos ~ description ~ speakers => basicInfos.map(Session(_, description, speakers))
     }
 
     def fromText(source: String): List[Session] = parser.parse(sessionParser, source) match
