@@ -4,8 +4,8 @@
 - Slug: tools-for-scala-startups
 - Category: Tools & Ecosystem
 - confirmed: true
-- DateTime: 2024-11-07T11:45:00
-- Room: B
+- DateTime: 2024-11-07T13:30:00
+- Room: A
 
 ## Abstract
 

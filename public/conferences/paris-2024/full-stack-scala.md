@@ -4,7 +4,7 @@
 - Slug: full-stack-scala-the-easy-way
 - Category: Web
 - confirmed: true
-- DateTime: 2024-11-07T15:00:00
+- DateTime: 2024-11-07T15:30:00
 - Room: A
 
 ## Abstract

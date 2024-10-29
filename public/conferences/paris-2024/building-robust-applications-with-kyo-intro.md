@@ -1,15 +1,15 @@
 ---
-id: kyo
+id: kyo-talk
 ---
 
 # Building Robust Applications with Kyo: A Hands-on Introduction
 
-- Kind: Workshop
-- Slug: building-robust-applications-with-kyo
+- Kind: Short
+- Slug: building-robust-applications-with-kyo-intro
 - Category: Effect Systems
 - confirmed: true
-- DateTime: 2024-11-07T13:30:00
-- Room: C
+- DateTime: 2024-11-07T10:45:00
+- Room: A
 
 ## Abstract
 

@@ -4,6 +4,8 @@
 - Slug: beyond-basics-lsp
 - Category: Scala & Friends
 - confirmed: true
+- DateTime: 2024-11-07T13:30:00
+- Room: B
 
 ## Abstract
 

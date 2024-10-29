@@ -1,8 +1,10 @@
 package io.scala.models
 
+import com.raquo.laminar.api.L
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import com.raquo.laminar.nodes.ReactiveSvgElement
+
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -10,7 +12,6 @@ import org.scalajs.dom
 import org.scalajs.dom.HTMLDivElement
 import org.scalajs.dom.HTMLParagraphElement
 import org.scalajs.dom.SVGSVGElement
-
 import io.scala.data.Event
 import io.scala.data.parsers.Parsers
 import io.scala.extensions.*
@@ -29,8 +30,12 @@ sealed trait Act:
 object Act:
   given Ordering[Act] = Ordering.by(_.startingTime)
 
+  object StartsAt:
+    def unapply(act: Act): Option[(Int, Int)] = Option(act.dateTime).map(d => (d.nn.getHour(), d.nn.getMinute))
+
 sealed trait Durable:
   def duration: Int
+
 
 case class Session(
     info: Session.BasicInfo,
@@ -73,12 +78,12 @@ object Session:
 
   enum Kind(val toStyle: String, val duration: Int):
     case Lightning extends Kind("presentation-lightning", 15)
-    case Short     extends Kind("presentation-short", 25)
+    case Short     extends Kind("presentation-short", 30)
     case Talk      extends Kind("presentation-talk", 45)
     case Keynote   extends Kind("presentation-keynote", 60)
     case Workshop  extends Kind("workshop", 150)
 
-    def toPlural: String = s"${this.toString()}s"
+    def toPlural: String = s"${this}s"
   end Kind
 
   case class BasicInfo(
@@ -94,7 +99,8 @@ object Session:
       replay: BasicInfo.Replay = None
   )
   object BasicInfo:
-    def empty: BasicInfo = BasicInfo("Malformed talk info", "", Kind.Talk, "", false, LocalDateTime.MIN, Room("none"), null)
+    def empty: BasicInfo =
+      BasicInfo("Malformed talk info", "", Kind.Talk, "", false, LocalDateTime.MIN, Room("none"), null)
 
     opaque type Slides = Option[String]
     object Slides:

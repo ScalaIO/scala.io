@@ -1,6 +1,7 @@
 package io.scala.app.schedule
 
 import com.raquo.laminar.api.L.*
+import java.time.DayOfWeek
 import org.scalajs.dom.HTMLDivElement
 
 import io.scala.extensions.*
@@ -38,9 +39,18 @@ object ScheduleDay {
         .distinct
         .sorted
 
+    val day = eventsOfDay.head.dateTime.nn.getDayOfWeek()
+
+    def fillEmpty(act: Act): List[Div] =
+      (day, act) match
+        case (DayOfWeek.THURSDAY, Act.StartsAt(10, 45)) => List(div())
+        case (DayOfWeek.THURSDAY, Act.StartsAt(11, 30)) => List(div())
+        case (DayOfWeek.FRIDAY, Act.StartsAt(16, 0))    => List(div())
+        case _                                          => List()
+
     val elements = for
       (time, events) <- talksByTime
-      timeSlot <- time.render() :: List(events.toTimeslotLine(rooms)*)
+      timeSlot       <- time.render() :: List(events.toTimeslotLine(rooms)*).appendedAll(fillEmpty(events.head))
     yield timeSlot
 
     div(

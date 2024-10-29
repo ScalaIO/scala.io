@@ -9,7 +9,7 @@ import io.scala.modules.elements.Titles
 
 object EventsView extends SimpleView {
 
-  lazy val events =
+  lazy val events: Seq[Meetup] =
     EventsData.events
       .map: event =>
         Meetup(event)
