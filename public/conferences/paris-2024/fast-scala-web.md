@@ -4,8 +4,8 @@
 - Slug: complex-web-uis-with-fastscala
 - Category: Web
 - confirmed: true
-- DateTime: 2024-11-07T11:45:00
-- Room: A
+- DateTime: 2024-11-07T10:45:00
+- Room: B
 
 ## Abstract
 

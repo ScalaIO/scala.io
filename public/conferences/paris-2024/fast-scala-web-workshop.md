@@ -8,7 +8,7 @@ id: fastscala
 - Slug: complex-web-uis-with-fastscala-workshop
 - Category: Web
 - confirmed: true
-- DateTime: 2024-11-07T13:30:00
+- DateTime: 2024-11-07T15:30:00
 - Room: C
 
 ## Abstract

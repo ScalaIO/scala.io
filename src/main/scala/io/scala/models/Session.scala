@@ -29,6 +29,9 @@ sealed trait Act:
 object Act:
   given Ordering[Act] = Ordering.by(_.startingTime)
 
+  object StartsAt:
+    def unapply(act: Act): Option[(Int, Int)] = Option(act.dateTime).map(d => (d.nn.getHour(), d.nn.getMinute))
+
 sealed trait Durable:
   def duration: Int
 
@@ -94,7 +97,8 @@ object Session:
       replay: BasicInfo.Replay = None
   )
   object BasicInfo:
-    def empty: BasicInfo = BasicInfo("Malformed talk info", "", Kind.Talk, "", false, LocalDateTime.MIN, Room("none"), null)
+    def empty: BasicInfo =
+      BasicInfo("Malformed talk info", "", Kind.Talk, "", false, LocalDateTime.MIN, Room("none"), null)
 
     opaque type Slides = Option[String]
     object Slides:
