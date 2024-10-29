@@ -44,7 +44,7 @@ object ScheduleDay {
     def fillEmpty(act: Act): List[Div] =
       (day, act) match
         case (DayOfWeek.THURSDAY, Act.StartsAt(10, 45)) => List(div())
-        case (DayOfWeek.THURSDAY, Act.StartsAt(11, 45)) => List(div())
+        case (DayOfWeek.THURSDAY, Act.StartsAt(11, 30)) => List(div())
         case (DayOfWeek.FRIDAY, Act.StartsAt(16, 0))    => List(div())
         case _                                          => List()
 
