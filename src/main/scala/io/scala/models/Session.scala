@@ -76,12 +76,12 @@ object Session:
 
   enum Kind(val toStyle: String, val duration: Int):
     case Lightning extends Kind("presentation-lightning", 15)
-    case Short     extends Kind("presentation-short", 25)
+    case Short     extends Kind("presentation-short", 30)
     case Talk      extends Kind("presentation-talk", 45)
     case Keynote   extends Kind("presentation-keynote", 60)
     case Workshop  extends Kind("workshop", 150)
 
-    def toPlural: String = s"${this.toString()}s"
+    def toPlural: String = s"${this}s"
   end Kind
 
   case class BasicInfo(

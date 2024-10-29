@@ -2,16 +2,17 @@ package io.scala
 package modules
 
 import com.raquo.laminar.api.L.*
-
+import com.raquo.laminar.nodes.ReactiveHtmlElement
 import io.scala.extensions.grayOutIf
 import io.scala.models.Session
 import io.scala.models.Session.Speaker
 import io.scala.models.Social
 import io.scala.modules.elements.Buttons
 import io.scala.modules.elements.Buttons.*
+import org.scalajs.dom.HTMLDivElement
 
 object SpeakerCard {
-  def apply(speaker: Speaker, talks: List[Session], conference: String) =
+  def apply(speaker: Speaker, talks: List[Session], conference: String): ReactiveHtmlElement[HTMLDivElement] =
     div(
       className := "speaker-card",
       img(
@@ -40,7 +41,7 @@ object SpeakerCard {
       linksToTalks(talks, conference)
     ).grayOutIf(talks.forall(_.cancelledReason.isDefined))
 
-  def linksToTalks(talks: List[Session], conference: String) =
+  def linksToTalks(talks: List[Session], conference: String): ReactiveHtmlElement[HTMLDivElement] =
     def linkButton(info: Session.BasicInfo) =
       val text = if info.kind == Session.Kind.Workshop then "Workshop" else "Talk"
       Buttons

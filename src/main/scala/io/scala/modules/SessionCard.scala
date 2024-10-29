@@ -23,8 +23,7 @@ object SessionCard:
   // Remove the dependency on `conference` by having it injected in Session.Basic info for better reusability
   def apply(session: Session, conference: String): Div =
     def realDuration = session.info.title match
-      case s if s.startsWith("Building") => 90
-      case s if s.startsWith("Quick")    => 90
+      case s if session.duration == 150 && (s.startsWith("Building") || s.startsWith("Quick")) => 90
       case _                           => session.info.kind.duration
     
     div(

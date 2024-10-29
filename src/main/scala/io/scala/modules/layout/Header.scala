@@ -4,27 +4,26 @@ package modules.layout
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
-import org.scalajs.dom.window
-
+import org.scalajs.dom.{HTMLButtonElement, HTMLElement, window}
 import io.scala.modules.elements.Buttons
 import io.scala.modules.elements.Links
 import io.scala.svgs.Icons
 
 object Header {
-  val logo = button(
+  val logo: ReactiveHtmlElement[HTMLButtonElement] = button(
     className  := "logo",
     aria.label := "home page",
     Icons.logo(),
     Page.navigateTo(IndexPage())
   )
 
-  val burgerClicked = Var(false)
+  val burgerClicked: Var[Boolean] = Var(false)
   window.addEventListener(
     "click",
     _ => burgerClicked.set(false)
   )
 
-  def render =
+  def render: ReactiveHtmlElement[HTMLElement] =
     headerTag(
       logo,
       div(

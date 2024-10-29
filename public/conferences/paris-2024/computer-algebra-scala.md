@@ -4,7 +4,7 @@
 - Slug: computer-algebra-scala
 - Category: Algebra
 - confirmed: true
-- DateTime: 2024-11-07T11:45:00
+- DateTime: 2024-11-07T11:30:00
 - Room: A
 
 ## Abstract

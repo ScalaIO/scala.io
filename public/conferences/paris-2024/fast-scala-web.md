@@ -1,6 +1,6 @@
 # Quickly developing complex web UIs with the FastScala framework
 
-- Kind: Talk
+- Kind: Short
 - Slug: complex-web-uis-with-fastscala
 - Category: Web
 - confirmed: true
