@@ -42,7 +42,7 @@ object ScheduleInfo {
     sessions ++ List(
       Break.from(Break.Kind.Large, 0, 10, 30),
       Break.from(Break.Kind.Large, 0, 11, 15),
-      Break.from(Break.Kind.Lunch, 0, 12, 15),
+      Break.from(Break.Kind.Lunch, 0, 12, 30),
       Break.from(Break.Kind.Large, 0, 15, 15),
       Break.from(Break.Kind.Large, 0, 16, 15),
       Break.from(Break.Kind.Large, 0, 17, 15),

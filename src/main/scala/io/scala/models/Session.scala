@@ -1,8 +1,10 @@
 package io.scala.models
 
+import com.raquo.laminar.api.L
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import com.raquo.laminar.nodes.ReactiveSvgElement
+
 import java.time.DayOfWeek
 import java.time.LocalDateTime
 import java.time.LocalTime
@@ -10,7 +12,6 @@ import org.scalajs.dom
 import org.scalajs.dom.HTMLDivElement
 import org.scalajs.dom.HTMLParagraphElement
 import org.scalajs.dom.SVGSVGElement
-
 import io.scala.data.Event
 import io.scala.data.parsers.Parsers
 import io.scala.extensions.*
@@ -34,6 +35,7 @@ object Act:
 
 sealed trait Durable:
   def duration: Int
+
 
 case class Session(
     info: Session.BasicInfo,
