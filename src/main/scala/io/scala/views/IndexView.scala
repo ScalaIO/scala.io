@@ -10,6 +10,7 @@ import io.scala.data.SessionsHistory
 import io.scala.extensions.withBinder
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
+import io.scala.extensions.withLink
 
 case object IndexView extends ReactiveView[IndexPage] {
 
@@ -79,22 +80,10 @@ case object IndexView extends ReactiveView[IndexPage] {
     idAttr("tickets"),
     className := "container",
     Titles("Tickets"),
-    a(
-      title                      := "Online ticketing",
-      href                       := "https://www.billetweb.fr/shop.php?event=scalaio-paris-2024-epita",
-      className                  := "shop_frame",
-      target                     := "_blank",
-      dataAttr("src")            := "https://www.billetweb.fr/shop.php?event=scalaio-paris-2024-epita",
-      dataAttr("max-width")      := "100%",
-      dataAttr("initial-height") := "1000",
-      dataAttr("scrolling")      := "no",
-      dataAttr("id")             := "scalaio-paris-2024-epita",
-      dataAttr("resize")         := "1",
-      "Online ticketing"
-    ),
-    scriptTag(
-      `type` := "text/javascript",
-      src    := "https://www.billetweb.fr/js/export.js"
+    p("We offer both on-site and online tickets for the conference (redirect to the same page, just for better readability :)"),
+    div(
+      Buttons.shiny("On-site tickets").withLink("https://www.billetweb.fr/scalaio-paris-2024-epita"),
+      Buttons.shiny("Streaming tickets").withLink("https://www.billetweb.fr/scalaio-paris-2024-epita")
     )
   )
 }
