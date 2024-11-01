@@ -52,6 +52,6 @@ object ScheduleInfo {
       Break.from(Break.Kind.Large, 1, 14, 45),
       Break.from(Break.Kind.Large, 1, 15, 45),
       Break.from(Break.Kind.Large, 1, 16, 45),
-      Special.from(Special.Kind.End, 1, 18, 00)
+      Special.from(Special.Kind.End, 1, 18, 0)
     )
 }
