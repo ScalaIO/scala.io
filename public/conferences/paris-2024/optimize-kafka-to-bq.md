@@ -4,7 +4,7 @@
 - Slug: optimize-data-transfer-kafka-to-bq
 - Category: Data
 - confirmed: true
-- DateTime: 2024-11-08T11:15:00
+- DateTime: 2024-11-08T10:15:00
 - Room: A
 
 ## Abstract
