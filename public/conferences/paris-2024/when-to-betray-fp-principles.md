@@ -5,7 +5,7 @@
 - Category: Language
 - confirmed: true
 - DateTime: 2024-11-08T14:30:00
-- Room: B
+- Room: A
 
 ## Abstract
 

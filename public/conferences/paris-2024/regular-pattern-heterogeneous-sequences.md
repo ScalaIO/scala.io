@@ -5,7 +5,7 @@
 - Category: Algebra
 - confirmed: true
 - DateTime: 2024-11-07T16:30:00
-- Room: A
+- Room: B
 
 ## Abstract
 

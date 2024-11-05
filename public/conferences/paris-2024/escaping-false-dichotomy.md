@@ -4,8 +4,8 @@
 - Slug: escaping-false-dichotomy-with-sanely-automatic-derivation
 - Category: Language
 - confirmed: true
-- DateTime: 2024-11-07T15:30:00
-- Room: B
+- DateTime: 2024-11-07T16:30:00
+- Room: A
 
 ## Abstract
 
