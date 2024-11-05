@@ -60,5 +60,8 @@
 }
 
 .underlined {
-  text-decoration: underline dashed vars.$main-color 3px;
+  text-decoration: underline;
+  text-decoration-style: dashed;
+  text-decoration-color: vars.$main-color;
+  text-decoration-thickness: 3px;
 }
