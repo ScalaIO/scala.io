@@ -42,16 +42,17 @@ object ScheduleInfo {
     sessions ++ List(
       Break.from(Break.Kind.Large, 0, 10, 30),
       Break.from(Break.Kind.Large, 0, 11, 15),
-      Break.from(Break.Kind.Lunch, 0, 12, 30),
+      Break.from(Break.Kind.Lunch1, 0, 12, 15),
+      Break.from(Break.Kind.Large, 0, 14, 15),
       Break.from(Break.Kind.Large, 0, 15, 15),
       Break.from(Break.Kind.Large, 0, 16, 15),
       Special.from(Special.Kind.End, 0, 17, 15),
       Break.from(Break.Kind.Large, 1, 10, 0),
       Break.from(Break.Kind.Large, 1, 11, 0),
-      Break.from(Break.Kind.Large, 1, 12, 0),
-      Break.from(Break.Kind.Large, 1, 14, 45),
-      Break.from(Break.Kind.Large, 1, 15, 45),
-      Break.from(Break.Kind.Large, 1, 16, 45),
-      Special.from(Special.Kind.End, 1, 18, 0)
+      Break.from(Break.Kind.Lunch2, 1, 12, 0),
+      Break.from(Break.Kind.Large, 1, 14, 15),
+      Break.from(Break.Kind.Large, 1, 15, 15),
+      Break.from(Break.Kind.Large, 1, 16, 15),
+      Special.from(Special.Kind.End, 1, 17, 45)
     )
 }

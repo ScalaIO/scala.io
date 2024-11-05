@@ -151,11 +151,13 @@ object Break:
 
   enum Kind(val style: String, val duration: Int):
     case Large extends Kind("break-large", 15)
-    case Lunch extends Kind("break-lunch", 60)
+    case Lunch1 extends Kind("break-lunch", 75)
+    case Lunch2 extends Kind("break-lunch", 90)
 
     def icon: ReactiveSvgElement[SVGSVGElement] = this match
       case Large => Icons.chat
-      case Lunch => Icons.food
+      case Lunch1 => Icons.food
+      case Lunch2 => Icons.food
 
   object Kind:
     val max: Int = Kind.values.map(_.duration).max

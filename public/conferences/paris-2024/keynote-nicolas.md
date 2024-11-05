@@ -4,7 +4,7 @@
 - Slug: programming-a-language
 - Category: Algebra
 - confirmed: true
-- DateTime: 2024-11-08T17:00
+- DateTime: 2024-11-08T16:30
 - Room: A
 
 ## Abstract

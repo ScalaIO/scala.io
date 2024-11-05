@@ -1,9 +1,10 @@
 package io.scala.app.schedule
 
 import com.raquo.laminar.api.L.*
+import com.raquo.laminar.nodes.ReactiveHtmlElement
+
 import java.time.DayOfWeek
 import org.scalajs.dom.HTMLDivElement
-
 import io.scala.extensions.*
 import io.scala.models.Act
 import io.scala.models.Break
@@ -31,7 +32,7 @@ object ScheduleDay {
               .getOrElse(emptyNode)
           )
 
-  def apply(eventsOfDay: List[Act]) =
+  def apply(eventsOfDay: List[Act]): ReactiveHtmlElement[HTMLDivElement] =
     val talksByTime = eventsOfDay.groupBy(_.startingTime).toList.sortBy(_._1)
     val rooms: List[Session.Room] =
       eventsOfDay
