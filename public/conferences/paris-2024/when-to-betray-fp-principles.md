@@ -4,7 +4,7 @@
 - Slug: scala-performance-when-you-should-betray-fp-principles
 - Category: Language
 - confirmed: true
-- DateTime: 2024-11-08T15:00:00
+- DateTime: 2024-11-08T14:30:00
 - Room: B
 
 ## Abstract
