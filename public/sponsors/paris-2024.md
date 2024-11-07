@@ -1,6 +1,5 @@
 # Sponsors Paris 2024
 
-
 ## Clever Cloud
 
 - Clever Cloud

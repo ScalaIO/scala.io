@@ -9,6 +9,7 @@ import io.scala.models.Session
 import io.scala.modules.elements.Buttons
 import io.scala.modules.elements.Buttons.important
 import io.scala.svgs.Icons
+import io.scala.modules.elements.Image
 
 object SessionKindTag:
   def apply(kind: Session.Kind): Span =
@@ -56,10 +57,10 @@ object SessionCard:
           session.speakers.map { speaker =>
             div(
               className := "speaker",
-              img(
+              Image.photo(
                 src       := speaker.photoRelPath,
                 className := "photo",
-                alt       := s"${speaker.name}'s profile picture"
+                alt       := s"${speaker.name}'s profile"
               ),
               div(
                 p(

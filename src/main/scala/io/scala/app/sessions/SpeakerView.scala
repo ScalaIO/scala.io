@@ -6,6 +6,7 @@ import io.scala.models.Social
 import io.scala.models.Session.Speaker
 import io.scala.modules.elements.Titles
 import io.scala.svgs.Icons
+import io.scala.modules.elements.Image
 
 class SpeakerView(speaker: Speaker):
   def body: HtmlElement =
@@ -14,10 +15,10 @@ class SpeakerView(speaker: Speaker):
       Titles.medium(speaker.name),
       div(
         className := "data",
-        img(
+        Image.photo(
           src       := speaker.photoRelPath,
           className := "photo",
-          alt       := s"${speaker.name}'s profile picture"
+          alt       := s"${speaker.name}'s profile"
         ),
         div(
           div(

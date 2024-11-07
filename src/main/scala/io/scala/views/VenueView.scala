@@ -2,7 +2,7 @@ package io.scala.views
 
 import com.raquo.laminar.api.L.*
 
-import io.scala.extensions.withLink
+import io.scala.modules.elements.Image
 import io.scala.modules.elements.Links
 import io.scala.modules.elements.Lists
 import io.scala.modules.elements.Titles
@@ -13,9 +13,7 @@ object VenueView extends SimpleView {
     className := "container venue",
     Titles("Our Venue"),
     div("For this edition, we are invited by EPITA, on their site 'Kremlin-Bicêtre'"),
-    img(
-      src := "images/places/epita-kb.jpeg"
-    ),
+    Image.lazyLoaded(src := "images/places/epita-kb.jpeg"),
     br(),
     Titles("Access"),
     div(

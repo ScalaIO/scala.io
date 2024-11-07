@@ -6,7 +6,7 @@ import io.scala.models.Sponsor
 object SponsorLogo {
   def apply(sponsor: Sponsor) =
     a(
-      img(
+      Image.lazyLoaded(
         src       := sponsor.photoPath,
         alt       := s"${sponsor.name} logo",
         className := s"sponsor-logo-${sponsor.rank.css}"

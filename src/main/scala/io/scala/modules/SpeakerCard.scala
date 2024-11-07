@@ -10,15 +10,17 @@ import io.scala.models.Social
 import io.scala.modules.elements.Buttons
 import io.scala.modules.elements.Buttons.*
 import org.scalajs.dom.HTMLDivElement
+import io.scala.modules.elements.Image
 
 object SpeakerCard {
   def apply(speaker: Speaker, talks: List[Session], conference: String): ReactiveHtmlElement[HTMLDivElement] =
     div(
       className := "speaker-card",
-      img(
+      Image.photo(
         src       := speaker.photoRelPath,
         className := "photo",
-        alt       := s"${speaker.name}'s profile picture"
+        alt       := s"${speaker.name}'s profile",
+        loadingAttr := "lazy"
       ),
       div(
         div(

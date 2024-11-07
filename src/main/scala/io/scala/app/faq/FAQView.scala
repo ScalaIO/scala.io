@@ -17,6 +17,7 @@ import io.scala.modules.elements.Paragraphs
 import io.scala.modules.elements.Titles
 import io.scala.svgs.Icons.github
 import io.scala.views.SimpleView
+import io.scala.modules.elements.Image
 
 object FAQView extends SimpleView {
   private def question(question: String, answer: Modifier[ReactiveElement[HTMLDivElement]]*): HtmlElement = {
@@ -209,10 +210,10 @@ object FAQView extends SimpleView {
         orgs.map { org =>
           div(
             className := "orga",
-            img(
+            Image.photo(
               className := "photo",
               src       := org.photoPath,
-              alt       := s"${org.name}'s profile picture"
+              alt       := s"${org.name}'s profile"
             ),
             div(
               p(org.name),
