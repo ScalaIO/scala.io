@@ -1,11 +1,13 @@
+---
+cancelled: Unfortunately, Kannupriya is unable to attend the conference due to reasons beyond her control; we hope to see her at a future event.
+---
+
 # Anatomy of Scaladex
 
 - Kind: Talk
 - Slug: anatomy-of-scaladex
 - Category: Tools & Ecosystem
 - confirmed: true
-- DateTime: 2024-11-08T13:30
-- Room: B
 
 ## Abstract
 
