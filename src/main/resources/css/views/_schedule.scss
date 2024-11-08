@@ -11,6 +11,22 @@
     }
   }
 
+  .time {
+    text-align: start;
+    font-size: 1.5em;
+    @media screen and (min-width: vars.$tablet-width) {
+      text-align: end;
+    }
+
+    .hour {
+      margin-right: 0.25em;
+    }
+
+    .minute {
+      font-size: 0.666em;
+    }
+  }
+
   .day-base-layout {
     display: grid;
     grid-template-columns: 1fr;
@@ -19,22 +35,6 @@
     @media screen and (max-width: vars.$tablet-width) {
       & > div {
         grid-area: unset !important;
-      }
-    }
-
-    .time {
-      text-align: start;
-      font-size: 1.5em;
-      @media screen and (min-width: vars.$tablet-width) {
-        text-align: end;
-      }
-
-      .hour {
-        margin-right: 0.25em;
-      }
-
-      .minute {
-        font-size: 0.666em;
       }
     }
   }
