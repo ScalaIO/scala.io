@@ -1,7 +1,7 @@
-# Profunctors
+# Profunctors pour le fun et le profit
 
 - Kind: Talk
-- Slug: profunctors
+- Slug: profunctors-for-fun-and-profit
 - Category: Algebra
 - confirmed: true
 - DateTime: 2024-11-08T13:30:00
