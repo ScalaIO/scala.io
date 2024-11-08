@@ -4,8 +4,6 @@
 - Slug: scary-stuff-less-metaprogramming-in-scala3
 - Category: Language
 - confirmed: true
-- DateTime: 2024-11-08T11:15:00
-- Room: B
 
 ## Abstract
 

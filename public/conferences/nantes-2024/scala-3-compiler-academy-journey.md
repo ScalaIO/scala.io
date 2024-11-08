@@ -4,8 +4,6 @@
 - Slug: scala-3-compiler-academy-journey
 - Category: Community
 - confirmed: true
-- DateTime: 2024-02-15T15:40
-- Room: 0
 - Slides: https://docs.google.com/presentation/d/1DPX8w7I07CIm7rU_z5TNJ_R_A7mf6_lZCMfIVBvrRpk/edit?usp=sharing
 - Replay: https://www.youtube.com/watch?v=wmuVcCSsk-4&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=9&pp=iAQB
 

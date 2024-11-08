@@ -4,8 +4,6 @@
 - Slug: nails-are-tree-need-chainsaw
 - Category: Algebra
 - confirmed: true
-- DateTime: 2024-02-15T13:30
-- Room: 0
 - Slides: https://scala.io/slides/2024/Chainsaw.pdf
 - Replay: https://www.youtube.com/watch?v=0unlHZmNYkw&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=5&pp=iAQB
 

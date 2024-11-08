@@ -8,8 +8,6 @@ id: scala-tools
 - Slug: tools-for-scala-workshop
 - Category: Tools & Ecosystem
 - confirmed: true
-- DateTime: 2024-11-08T09:15:00|2024-11-08T13:30:00
-- Room: C
 
 ## Abstract
 

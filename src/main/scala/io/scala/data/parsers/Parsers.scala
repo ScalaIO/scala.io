@@ -9,7 +9,6 @@ import knockoff.HeaderChunk
 import org.scalajs.dom.console
 import scala.collection.immutable.Queue
 
-import io.scala.extensions.*
 import io.scala.models.Meetup
 import io.scala.models.Session
 import io.scala.models.Social
@@ -108,25 +107,18 @@ object Parsers:
     def basicInfos =
       headerN(1) ~ list map {
         case HeaderChunk(_, title) ~ practicalInfo =>
-          val infoMap         = practicalInfo.asMap()
-          val kind            = Session.Kind.valueOf(infoMap("Kind"))
-          val slug            = infoMap("Slug")
-          val category        = infoMap("Category")
-          val confirmed       = infoMap.get("confirmed").map(_.toBoolean).getOrElse(false)
-          val room            = infoMap.getOrElse("Room", null).nullMap(Session.Room(_))
-          val slides          = Session.BasicInfo.Slides(infoMap.get("Slides"))
-          val replay          = Session.BasicInfo.Replay(infoMap.get("Replay"))
-          val dateTimesOption = infoMap.getOrElse("DateTime", null).nullMap(parseDateTime)
-          val baseInfo =
-            Session.BasicInfo(title, slug, kind, category, confirmed, null, room, null, slides, replay)
-          dateTimesOption.nullFold(List(baseInfo)):
-            case dateTime :: Nil => List(baseInfo.copy(dateTime = dateTime, `#` = null))
-            case dateTimes =>
-              dateTimes.zipWithIndex.map { case (dateTime, idx) => baseInfo.copy(dateTime = dateTime, `#` = idx + 1) }
+          val infoMap   = practicalInfo.asMap()
+          val kind      = Session.Kind.valueOf(infoMap("Kind"))
+          val slug      = infoMap("Slug")
+          val category  = infoMap("Category")
+          val confirmed = infoMap.get("confirmed").map(_.toBoolean).getOrElse(false)
+          val slides    = Session.BasicInfo.Slides(infoMap.get("Slides"))
+          val replay    = Session.BasicInfo.Replay(infoMap.get("Replay"))
+          Session.BasicInfo(title, slug, kind, category, confirmed, null, slides, replay)
 
         case chunk =>
           console.log(s"Error while parsing ${chunk._1.content}")
-          List(Session.BasicInfo.empty)
+          Session.BasicInfo.empty
       }
 
     def parseDateTime(str: String): List[LocalDateTime] =
@@ -162,13 +154,11 @@ object Parsers:
 
     val sessionParser = specialInfo.? ~ basicInfos ~ abstractParser ~ speakersParser map {
       case Some(specialInfo) ~ basicInfos ~ description ~ speakers =>
-        basicInfos.map(Session(_, description, speakers, specialInfo.get("cancelled"), specialInfo.get("id")))
-      case None ~ basicInfos ~ description ~ speakers => basicInfos.map(Session(_, description, speakers))
+        Session(basicInfos, description, speakers, specialInfo.get("cancelled"), specialInfo.get("id"))
+      case None ~ basicInfos ~ description ~ speakers => Session(basicInfos, description, speakers)
     }
 
-    def fromText(source: String): List[Session] = parser.parse(sessionParser, source) match
-      case Success(talks, _) => talks
-      case failure           => List(Session.empty)
+    def fromText(source: String): Session = parser.parse(sessionParser, source).getOrElse(Session.empty)
 
   object Description:
     val talk =

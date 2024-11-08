@@ -4,8 +4,6 @@
 - Slug: surprise-opening-keynote
 - Category: Algebra
 - confirmed: true
-- DateTime: 2024-11-07T09:15
-- Room: A
 
 ## Abstract
 

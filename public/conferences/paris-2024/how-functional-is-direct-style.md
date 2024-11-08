@@ -4,8 +4,6 @@
 - Slug: how-functional-is-direct-style
 - Category: Language
 - confirmed: true
-- DateTime: 2024-11-08T09:15:00
-- Room: A
 
 ## Abstract
 

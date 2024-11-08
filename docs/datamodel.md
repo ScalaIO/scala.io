@@ -7,8 +7,6 @@
 
 - Kind: (Keynote|Lightning|Short|Talk|Workshop)
 - Category: <String>
-- DateTime: <date> | <time>
-- Room: <Int>
 - Slides: <url>
 - Replay: <url>
 

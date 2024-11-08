@@ -4,8 +4,6 @@
 - Slug: data-pipelines-simple
 - Category: DataEng
 - confirmed: true
-- DateTime: 2024-02-16T09:50
-- Room: 0
 - Slides: https://scala.io/slides/2024/data-pipeline.pptx
 - Replay: https://www.youtube.com/watch?v=gS6zOfqUHVs&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=8&pp=iAQB
 

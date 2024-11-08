@@ -4,8 +4,6 @@
 - Slug: joyful-and-secure-publishing-to-maven-central
 - Category: Tools & Ecosystem
 - confirmed: true
-- DateTime: 2024-11-07T14:30:00
-- Room: A
 
 ## Abstract
 

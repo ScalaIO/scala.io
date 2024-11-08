@@ -4,8 +4,6 @@
 - Slug: zk-voting-in-scala-and-rust
 - Category: Scala & Friends
 - confirmed: true
-- DateTime: 2024-11-08T10:15:00
-- Room: B
 
 ## Abstract
 

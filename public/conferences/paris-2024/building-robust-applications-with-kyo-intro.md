@@ -8,8 +8,6 @@ id: kyo-talk
 - Slug: building-robust-applications-with-kyo-intro
 - Category: Tools & Ecosystem
 - confirmed: true
-- DateTime: 2024-11-07T10:45:00
-- Room: A
 
 ## Abstract
 

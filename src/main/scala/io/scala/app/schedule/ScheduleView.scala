@@ -2,21 +2,17 @@ package io.scala.app.schedule
 
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import java.time.DayOfWeek
+import java.time.LocalTime
+
 import io.scala.Lexicon
 import io.scala.SchedulePage
 import io.scala.data.ScheduleInfo
-import io.scala.data.ScheduleInfo.minStart
-import io.scala.data.ScheduleInfo.pxByHour
-import io.scala.models.Act
 import io.scala.modules.*
 import io.scala.modules.elements.*
 import io.scala.modules.layout.Tabs
 import io.scala.modules.syntax.*
 import io.scala.views.ReactiveView
-
-import java.time.DayOfWeek
-import java.time.LocalTime
-import scala.collection.SortedMap
 
 case object ScheduleView extends ReactiveView[SchedulePage] {
   val selectedDay: Var[DayOfWeek] = Var(DayOfWeek.THURSDAY)
@@ -46,17 +42,13 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       )
     )
 
-  def render(eventsByDay: SortedMap[DayOfWeek, List[Act]]) =
-    val events = eventsByDay.toSeq
+  def render(events: Seq[(DayOfWeek, HtmlElement)]) =
+    println(s"${events.map(_._1).size}")
     Tabs(
-      events.map:
-        case (day, events) => (day, ScheduleDay(events)),
+      events,
       _.toString,
       events.tail.head._1
     ).render.amend(className := "schedule")
-
-  def computeTop(time: LocalTime, count: Int) =
-    (time.toHour - minStart.toHour) * pxByHour
 
   def body(signal: Signal[SchedulePage]): HtmlElement =
     sectionTag(
@@ -65,6 +57,6 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       div(),
       globalHours,
       Line(margin = 4, sizeUnit = "rem"),
-      child <-- signal.map(_ => render(SortedMap.from(ScheduleInfo.schedule.groupBy(_.startingDay))))
+      child <-- signal.map(_ => render(ScheduleInfo.allDays))
     )
 }

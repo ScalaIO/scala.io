@@ -4,8 +4,6 @@
 - Slug: dependent-types-from-theory-to-practice
 - Category: Algebra
 - confirmed: true
-- DateTime: 2024-02-16T14:00
-- Room: 0
 - Slides: http://d.plaindoux.free.fr/talks/dependent-type/main.html
 - Replay: https://www.youtube.com/watch?v=bYcdxB3Iukc&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=4&pp=iAQB
 

@@ -4,8 +4,6 @@
 - Slug: intro-to-gadts
 - Category: Algebra
 - confirmed: true
-- DateTime: 2024-02-15T09:30
-- Room: 0
 - Slides: https://scala.io/slides/2024/GADTs-xavier-vw-woestyne.pdf
 - Replay: https://www.youtube.com/watch?v=r4c7xuVB9xA&ab_channel=ScalaIOFR
 

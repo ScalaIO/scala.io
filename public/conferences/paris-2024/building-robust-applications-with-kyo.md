@@ -8,8 +8,6 @@ id: kyo
 - Slug: building-robust-applications-with-kyo
 - Category: Effect Systems
 - confirmed: true
-- DateTime: 2024-11-07T13:30:00
-- Room: C
 
 ## Abstract
 

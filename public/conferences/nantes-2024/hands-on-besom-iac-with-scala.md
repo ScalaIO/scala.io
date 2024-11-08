@@ -4,8 +4,6 @@
 - Slug: hands-on-besom-iac-with-scala
 - Category: Cloud
 - confirmed: true
-- DateTime: 2024-02-16T10:50
-- Room: 0
 - Slides: https://scala.io/slides/2024/besom.pdf
 - Replay: https://www.youtube.com/watch?v=J0vXLHN8YpA&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=7&pp=iAQB
 
