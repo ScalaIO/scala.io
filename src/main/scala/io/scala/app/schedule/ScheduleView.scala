@@ -52,7 +52,7 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
 
   def body(signal: Signal[SchedulePage]): HtmlElement =
     sectionTag(
-      className := "container",
+      className := "container schedule",
       Titles("Schedule"),
       div(),
       globalHours,
