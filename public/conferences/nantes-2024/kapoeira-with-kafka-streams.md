@@ -4,8 +4,6 @@
 - Slug: kapoeira-with-kafka-streams
 - Category: DataEng
 - confirmed: true
-- DateTime: 2024-02-15T16:40
-- Room: 0
 - Slides: https://jvauchel.github.io/kapoeira-dance/index-scalaio.html
 - Replay: https://www.youtube.com/watch?v=BUQFj2jrGj8&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=5&pp=iAQB
 

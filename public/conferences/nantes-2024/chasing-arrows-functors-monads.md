@@ -4,8 +4,6 @@
 - Slug: chasing-arrows-functors-monads
 - Category: Algebra
 - confirmed: true
-- DateTime: 2024-02-16T15:40
-- Room: 0
 - Slides: https://scala.io/slides/2024/chasing-arrows.pdf
 - Replay: https://www.youtube.com/watch?v=KFhhR6tSy_0&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=12&pp=iAQB
 

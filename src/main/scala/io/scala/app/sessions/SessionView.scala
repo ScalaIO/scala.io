@@ -58,8 +58,6 @@ object SessionView extends ReactiveView[SessionPage]:
       Session.Kind.Talk,
       category = "non-existent",
       confirmed = false,
-      dateTime = null,
-      room = null,
       `#` = null
     ),
     description = "This session or conference does not exist.",

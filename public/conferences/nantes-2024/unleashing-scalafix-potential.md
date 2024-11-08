@@ -4,8 +4,6 @@
 - Slug: unleashing-scalafix-potential
 - Category: ToolsEcosystem
 - confirmed: true
-- DateTime: 2024-02-15T10:50
-- Room: 0
 - Slides: https://scala.io/slides/2024/scalafix.pdf
 - Replay: https://www.youtube.com/watch?v=qexJYvo2EwY&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=15&pp=iAQB
 

@@ -4,8 +4,6 @@
 - Slug: armored-type-safety-with-iron
 - Category: Modeling
 - confirmed: true
-- DateTime: 2024-02-15T11:40
-- Room: 0
 - Slides: https://scalaio-2024.rlemaitre.com
 - Replay: https://www.youtube.com/watch?v=I3BvpzFVBto&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=6&pp=iAQB
 

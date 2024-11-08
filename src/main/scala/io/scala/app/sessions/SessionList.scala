@@ -50,7 +50,7 @@ case object SessionList extends ReactiveView[SessionsPage] {
       child <-- args.map { arg =>
         val (workshopsByCategory, talksByCategory) =
           SessionsHistory.sessionsForConf(arg).partition(_.isWorkshop)
-        val tabs = List(
+        val tabs = Seq(
           Session.Kind.Keynote ->
             Containers.gridCards(talksByCategory.filter(_.isKeynote).map(SessionCard(_, getConfName(arg.conference)))),
           Session.Kind.Talk -> tabWithTOC(sortedCategories(talksByCategory.filter(!_.isKeynote)), arg),

@@ -4,8 +4,6 @@
 - Slug: calculating-is-funnier-than-guessing
 - Category: Algebra
 - confirmed: true
-- DateTime: 2024-11-07T15:30:00
-- Room: B
 
 ## Abstract
 

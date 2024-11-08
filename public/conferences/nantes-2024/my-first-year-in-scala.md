@@ -4,8 +4,6 @@
 - Slug: my-first-year-in-scala
 - Category: Community
 - confirmed: true
-- DateTime: 2024-02-15T17:30
-- Room: 0
 - Slides: https://scala.io/slides/2024/first-year-scala.pdf
 - Replay: https://www.youtube.com/watch?v=Jyn2l1nhwZE&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=3&pp=iAQB
 

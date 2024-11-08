@@ -4,8 +4,6 @@
 - Slug: ukraine-scala-community
 - Category: Community
 - confirmed: true
-- DateTime: 2024-02-16T16:40
-- Room: 0
 - Slides: https://scala.io/slides/2024/scala-community-building-lessons.pptx
 - Replay: https://www.youtube.com/watch?v=6skPn0evEE8&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=11&pp=iAQB
 

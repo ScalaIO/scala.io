@@ -4,8 +4,6 @@
 - Slug: better-scala-builds-with-mill
 - Category: Tools & Ecosystem
 - confirmed: true
-- DateTime: 2024-11-08T15:30:00
-- Room: A
 
 ## Abstract
 

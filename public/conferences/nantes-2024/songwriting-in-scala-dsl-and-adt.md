@@ -4,8 +4,6 @@
 - Slug: songwriting-in-scala-dsl-and-adt
 - Category: Modeling
 - confirmed: true
-- DateTime: 2024-02-15T14:00
-- Room: 0
 - Slides:
 - Replay: https://www.youtube.com/watch?v=Mr6TtLRU5LM&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=4&pp=iAQB
 

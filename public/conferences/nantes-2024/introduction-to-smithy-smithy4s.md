@@ -4,8 +4,6 @@
 - Slug: introduction-to-smithy-smithy4s
 - Category: Cloud
 - confirmed: true
-- DateTime: 2024-02-15T14:50
-- Room: 0
 - Slides:
 - Replay: https://www.youtube.com/watch?v=UorOxZTJDxg&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=10&pp=iAQB
 

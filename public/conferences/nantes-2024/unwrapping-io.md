@@ -4,8 +4,6 @@
 - Slug: unwrapping-io
 - Category: Effects
 - confirmed: true
-- DateTime: 2024-02-16T17:00
-- Room: 0
 - Slides: https://adamw.github.io/unwrapping-io
 - Replay: https://www.youtube.com/watch?v=qR_Od7qbacs&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=1&pp=iAQB
 

@@ -1,118 +1,107 @@
-@use "../base/vars";
+@use '../base/vars';
 
 .schedule {
   .blank-card {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
-    gap: 32px;
+    gap: 2em;
     &::after {
       margin-left: 0px;
     }
   }
 
-  .timeslot {
-    display: flex;
-    flex-wrap: wrap;
-    border-top: 1px solid #ccc;
-    padding-top: 16px;
-    margin-top: 16px;
-
-    > div:first-child {
-      margin-right: 16px;
-    }
-
-    .talk-card,
-    .blank-card {
-      flex: 1;
-      min-width: min(250px, 100%);
-    }
-  }
-
-  .talk-card .footer {
+  .time {
+    text-align: start;
+    font-size: 2rem;
     @media screen and (min-width: vars.$tablet-width) {
-      flex-direction: row;
-      justify-content: space-between;
+      text-align: end;
+    }
+
+    .hour {
+      margin-right: 0.25em;
+    }
+
+    .minute {
+      font-size: 0.666em;
     }
   }
 
-  .content {
-    padding: 1rem;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-  }
-
-  .break > span {
-    display: flex;
-    align-items: center;
-  }
-
-  .break > span > span:first-child {
-    font-size: xx-large;
-    margin-right: 4px;
-  }
-
-  .track-room {
-    font-size: 1.5rem;
-    text-align: center;
-  }
-
-  .day-view {
+  .day-base-layout {
     display: grid;
+    grid-template-columns: 1fr;
+    gap: 2em;
+
     @media screen and (max-width: vars.$tablet-width) {
-      grid-template-columns: 3em 1fr;
-      .talk-card {
-        grid-column: 2;
+      & > div {
+        grid-area: unset !important;
       }
     }
+  }
+
+  .day-base-layout.day2 {
     @media screen and (min-width: vars.$tablet-width) {
-      grid-template-columns: 3em repeat(3, 1fr);
+      grid-template-columns: 4em 1fr 1fr 1fr;
+      grid-template-areas:
+        'a1 a2 a3 a4'
+        'a5 a6 a6 a4'
+        'a7 a8 a9 a4'
+        'a10 a11 a11 a4'
+        'a12 a13 a14 a4'
+        'a15 a16 a16 a16'
+        'a17 a18 a19 a20'
+        'a21 a22 a22 a20'
+        'a23 a24 a25 a20'
+        'a26 a27 a27 a20'
+        'a28 a29 a30 a20'
+        'a31 a32 a32 a32'
+        'a33 a34 a34 a34'
+        'a35 a36 a36 a36';
     }
-    width: 100%;
-    row-gap: 2em;
-    column-gap: 1em;
+  }
+
+  .day-base-layout.day1 {
+    @media screen and (min-width: vars.$tablet-width) {
+      grid-template-columns: 4em 1fr 1fr 1fr;
+      grid-template-areas:
+        'a1 a2 a2 a2'
+        'a3 a4 a4 empty1'
+        'a5 a6 a7 empty1'
+        'a8 a9 a9 empty1'
+        'a10 a11 a12 empty1'
+        'a13 a14 a14 a14'
+        'a15 a16 a17 a18'
+        'a19 a20 a20 a18'
+        'a21 a22 a23 a18'
+        'a24 a25 a25 a25'
+        'a26 a27 a28 a29'
+        'a30 a31 a31 a29'
+        'a32 a33 a34 a29'
+        'a35 a36 a36 a36';
+    }
+  }
+
+  .break {
+    & > span {
+      display: flex;
+      align-items: center;
+      & > span:first-child {
+        font-size: xx-large;
+        margin-right: 4px;
+      }
+    }
   }
 
   .body {
     max-height: 200px;
   }
 
-  .workshop {
-    grid-column: 4;
-  }
-
   @media screen and (min-width: vars.$tablet-width) {
-    grid-template: 3em / repeat(3, 1fr);
-
-    .presentation-keynote,
-    .break {
-      grid-column: span 3;
-    }
-    .end-day {
-      grid-column: span 3;
-    }
     .workshop {
       justify-content: flex-start;
       .body {
         max-height: none;
       }
-    }
-
-    #kyo {
-      grid-row: span 4;
-    }
-
-    #fastscala {
-      grid-row: span 4;
-    }
-
-    #scala-tools1 {
-      grid-row: span 7;
-    }
-
-    #scala-tools2 {
-      grid-row: span 7;
     }
   }
 }
@@ -135,17 +124,5 @@
     > span {
       font-size: 0.8em;
     }
-  }
-}
-
-.time {
-  text-align: end;
-
-  .hour {
-    margin-right: 0.25em;
-  }
-
-  .minute {
-    font-size: 0.666em;
   }
 }

@@ -4,8 +4,6 @@
 - Slug: plowing-postgres-and-unearthing-hidden-gems
 - Category: Data
 - confirmed: true
-- DateTime: 2024-11-08T11:15:00
-- Room: A
 
 ## Abstract
 

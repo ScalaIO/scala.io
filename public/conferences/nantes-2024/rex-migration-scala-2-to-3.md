@@ -4,8 +4,6 @@
 - Slug: rex-migration-scala-2-to-3
 - Category: ToolsEcosystem
 - confirmed: true
-- DateTime: 2024-02-15T18:20
-- Room: 0
 - Slides:
 - Replay: https://www.youtube.com/watch?v=jGGTqCmwArI&list=PLjkHSzY9VuL8we5GaQgqWrZSwiKtLM7Cb&index=3&pp=iAQB
 

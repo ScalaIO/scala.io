@@ -4,8 +4,6 @@
 - Slug: logic-meta-programming-for-functional-languages
 - Category: Algebra
 - confirmed: true
-- DateTime: 2024-02-16T09:00
-- Room: 0
 - Slides:
 - Replay: https://www.youtube.com/watch?v=K3babGnXfEI&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=2&pp=iAQB
 

@@ -4,8 +4,6 @@
 - Slug: say-goodbye-to-implicits-contextual-abstractions-in-scala3
 - Category: Language
 - confirmed: true
-- DateTime: 2024-11-07T11:30:00
-- Room: A
 
 ## Abstract
 
