@@ -47,10 +47,12 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
     )
 
   def render(eventsByDay: SortedMap[DayOfWeek, List[Act]]) =
+    val events = eventsByDay.toSeq
     Tabs(
-      eventsByDay.toSeq.map:
+      events.map:
         case (day, events) => (day, ScheduleDay(events)),
-      _.toString
+      _.toString,
+      events.tail.head._1
     ).render.amend(className := "schedule")
 
   def computeTop(time: LocalTime, count: Int) =
