@@ -43,7 +43,7 @@ The project is available [here](https://github.com/jimka2001/scala-rte)
 
 ### Jim Newton
 
-- photoRelPath: /images/profiles/paris-2024/jim.webp
+- photoRelPath: /images/profiles/speakers/jim.webp
 - job: Teacher & Researcher @ EPITA
 
 #### Links

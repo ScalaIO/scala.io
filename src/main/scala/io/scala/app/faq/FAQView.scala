@@ -64,19 +64,6 @@ object FAQView extends SimpleView {
       )
     ),
     question(
-      "Why 2023-10 was cancelled?",
-      p(
-        "It was difficult to get sponsorship to close the budget, that's why we had to work on a new format for this edition."
-      )
-    ),
-    question(
-      "Why Nantes?",
-      p(
-        """The conference was in Paris (2013, 2014, 2022) and Lyon (2016, 2017, 2018, 2019).
-          |The organisers are in majority familiar with Nantes, Clever Cloud and _icilundi offered to facilitate hosting the event.""".stripMargin
-      )
-    ),
-    question(
       "Do you reimburse tickets?",
       p("We would prefer not to, however you can always send us an email. We always reimbursed tickets if needed.")
     ),
@@ -147,7 +134,7 @@ object FAQView extends SimpleView {
           github
         )
       )
-    ).withFlexGrow(2)
+    )
   )
 
   lazy val speakerQuestions = Containers.flexCards(

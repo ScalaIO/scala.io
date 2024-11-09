@@ -21,7 +21,7 @@ This talk will show how the Guardian’s new GitHub Action release workflow make
 
 ### Roberto Tyley
 
-- photoRelPath: /images/profiles/paris-2024/rTyley.webp
+- photoRelPath: /images/profiles/speakers/rTyley.webp
 - job: Principal Engineer @ The Guardian
 
 #### Links

@@ -17,7 +17,7 @@ Since the beginning of the 21st century, the functional programming paradigm, wh
 
 ### Enzo Crance
 
-- photoRelPath: /images/profiles/nantes-2024/eCrance.webp
+- photoRelPath: /images/profiles/speakers/eCrance.webp
 - job: PhD Student @ INRIA
 
 #### Links

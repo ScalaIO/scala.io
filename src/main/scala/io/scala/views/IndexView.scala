@@ -44,7 +44,7 @@ case object IndexView extends ReactiveView[IndexPage] {
         .flatMap: talk =>
           talk.speakers.map((_, talk))
         .groupMap(_._1)(_._2)
-        .mapValues(_.distinctBy(_.info.kind).sortBy(_.info.kind))
+        .mapValues(_.sortBy(_.info.kind))
         .toSeq
         .sortBy(_._1)
 

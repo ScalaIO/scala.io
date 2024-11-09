@@ -15,7 +15,7 @@ Mill is a Scala build tool that improves upon the SBT toolchain: more performant
 
 ### Li Haoyi
 
-- photoRelPath: /images/profiles/paris-2024/lHaoyi.webp
+- photoRelPath: /images/profiles/speakers/lHaoyi.webp
 - job: N/A
 
 #### Links

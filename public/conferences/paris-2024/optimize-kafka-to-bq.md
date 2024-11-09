@@ -15,7 +15,7 @@ I will explore how our team developed a custom solution to address the escalatin
 
 ### Dario Amorosi
 
-- photoRelPath: /images/profiles/paris-2024/dAmorosi.webp
+- photoRelPath: /images/profiles/speakers/dAmorosi.webp
 - job: Big Data Engineer @ Adevinta
 
 #### Links

@@ -17,7 +17,7 @@ In this talk, I will show you how to create a  programming language from scratch
 
 ### Nicolas Rinaudo
 
-- photoRelPath: /images/profiles/paris-2024/nRinaudo.jpeg
+- photoRelPath: /images/profiles/speakers/nRinaudo.jpeg
 - job: VP of Engineering @ J.P. Morgan
 
 #### Links

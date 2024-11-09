@@ -21,7 +21,7 @@ Join to learn more about applying functional principle to schema modeling and ha
 
 ### Valentin Bergeron
 
-- photoRelPath: /images/profiles/paris-2024/vBergeron.webp
+- photoRelPath: /images/profiles/speakers/vBergeron.webp
 - job: Engineering team lead @ Ledger
 - confirmed: true
 

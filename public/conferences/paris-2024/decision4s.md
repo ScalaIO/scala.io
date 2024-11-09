@@ -15,7 +15,7 @@ Higher-kinded data is a specialised application of higher-kinded types. It allow
 
 ### Wojciech Pituła
 
-- photoRelPath: /images/profiles/paris-2024/vPitula.webp
+- photoRelPath: /images/profiles/speakers/vPitula.webp
 - job: Staff Engineer @ SwissBorg
 
 #### Links

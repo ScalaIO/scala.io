@@ -23,7 +23,7 @@ Topics covered:
 
 ### Paul Matthews
 
-- photoRelPath: /images/profiles/nantes-2024/pMatthews.webp
+- photoRelPath: /images/profiles/speakers/pMatthews.webp
 - job: Backend Scala Developer @ ClearScore
 
 #### Links

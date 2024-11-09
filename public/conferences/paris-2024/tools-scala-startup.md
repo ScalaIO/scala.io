@@ -26,7 +26,7 @@ I will share
 
 ### Daniel Ciocîrlan
 
-- photoRelPath: /images/profiles/paris-2024/dCiocirlan.webp
+- photoRelPath: /images/profiles/speakers/dCiocirlan.webp
 - job: Software Engineer & instructor @ Rock the JVM
 
 #### Links

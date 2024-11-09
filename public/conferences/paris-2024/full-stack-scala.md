@@ -17,7 +17,7 @@ All set up in 10 seconds.
 
 ### Olivier Nouguier
 
-- photoRelPath: /images/profiles/paris-2024/oNouguier.webp
+- photoRelPath: /images/profiles/speakers/oNouguier.webp
 - job: Software Engineer @ Ledger
 
 #### Links

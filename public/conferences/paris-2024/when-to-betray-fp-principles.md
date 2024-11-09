@@ -17,7 +17,7 @@ Of course, I’ll bring a few benchmarks to show the differences. And while we�
 
 ### Gaël Renoux
 
-- photoRelPath: /images/profiles/paris-2024/gRenoux.webp
+- photoRelPath: /images/profiles/speakers/gRenoux.webp
 - job: Staff Engineer @ DataDome
 
 #### Links

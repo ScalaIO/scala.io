@@ -19,7 +19,7 @@ Expr is very simple though, in real life we seldom face such simplistic cases. T
 
 ### Regis Kuckaertz
 
-- photoRelPath: /images/profiles/paris-2024/rKuckaertz.webp
+- photoRelPath: /images/profiles/speakers/rKuckaertz.webp
 - job: Principal Engineer @ Pirum
 
 #### Links

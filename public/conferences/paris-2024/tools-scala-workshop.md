@@ -19,7 +19,7 @@ This hands-on workshop will teach you the essential skills and toolkit to launch
 
 ### Daniel Ciocîrlan
 
-- photoRelPath: /images/profiles/paris-2024/dCiocirlan.webp
+- photoRelPath: /images/profiles/speakers/dCiocirlan.webp
 - job: Software Engineer & instructor @ Rock the JVM
 
 #### Links

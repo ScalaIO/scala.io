@@ -15,7 +15,7 @@ LSP has greatly standardised the behaviour of IDEs, in a good direction: we can 
 
 ### Xavier Van de Woestyne
 
-- photoRelPath: /images/profiles/paris-2024/xVanDeWoestyne.webp
+- photoRelPath: /images/profiles/speakers/xVanDeWoestyne.webp
 - job: OCaml Software Engineering at Tarides
 
 #### Links

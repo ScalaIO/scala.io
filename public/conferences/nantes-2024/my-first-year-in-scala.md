@@ -27,7 +27,7 @@ By the end of this talk, I hope that newcomers will feel less alone and more opt
 
 ### Monica McGuigan
 
-- photoRelPath: /images/profiles/nantes-2024/mMcGuigan.webp
+- photoRelPath: /images/profiles/speakers/mMcGuigan.webp
 - job: Software Engineer @ JP Morgan
 
 #### Links

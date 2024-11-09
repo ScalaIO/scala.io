@@ -19,7 +19,7 @@ A case study on creating a library management system for the Franco-Ukrainian To
 
 ### Olya Mazhara
 
-- photoRelPath: /images/profiles/paris-2024/oMazhara.webp
+- photoRelPath: /images/profiles/speakers/oMazhara.webp
 - job: Software Engineer @ Intellias
 
 #### Links

@@ -15,7 +15,7 @@ Surprise 👀
 
 ### Xavier Van de Woestyne
 
-- photoRelPath: /images/profiles/paris-2024/xVanDeWoestyne.webp
+- photoRelPath: /images/profiles/speakers/xVanDeWoestyne.webp
 - job: OCaml Software Engineering at Tarides
 
 #### Links

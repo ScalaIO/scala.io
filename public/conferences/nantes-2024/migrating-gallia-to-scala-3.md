@@ -21,7 +21,7 @@ I will briefly introduce how certain features [worked before](https://github.com
 
 ### Anthony Cros
 
-- photoRelPath: /images/profiles/nantes-2024/aCros.webp
+- photoRelPath: /images/profiles/speakers/aCros.webp
 - job: Software Architect @ Self-employed
 
 #### Links

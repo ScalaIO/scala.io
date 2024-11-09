@@ -19,7 +19,7 @@ We’ll investigate what functional programming is at its core, how it relates t
 
 ### Adam Warski
 
-- photoRelPath: /images/profiles/paris-2024/aWarski.webp
+- photoRelPath: /images/profiles/speakers/aWarski.webp
 - job: Co-founder @ SoftwareMill
 
 #### Links

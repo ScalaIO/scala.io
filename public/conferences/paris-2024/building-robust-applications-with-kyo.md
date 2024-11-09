@@ -21,7 +21,7 @@ Participants should have basic Scala knowledge and bring a laptop with a Scala d
 
 ### Adam Hearn
 
-- photoRelPath: /images/profiles/paris-2024/aHearn.jpg
+- photoRelPath: /images/profiles/speakers/aHearn.jpg
 - job: Sofware Engineer @ Amazon
 
 #### Links

@@ -23,7 +23,7 @@ This talk will serve as an introduction to the Smithy IDL, and a demo of what is
 
 ### Olivier Mélois
 
-- photoRelPath: /images/profiles/nantes-2024/oMelois.webp
+- photoRelPath: /images/profiles/speakers/oMelois.webp
 - job: Principal Engineer @ Disney Streaming Services
 
 #### Links

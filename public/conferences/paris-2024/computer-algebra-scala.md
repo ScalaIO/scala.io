@@ -15,7 +15,7 @@ The Scala Algebra System (ScAS) is a research project devised to explore how one
 
 ### Raphaël Jolly
 
-- photoRelPath: /images/profiles/paris-2024/rJolly.webp
+- photoRelPath: /images/profiles/speakers/rJolly.webp
 - job: Software Engineer
 
 #### Links

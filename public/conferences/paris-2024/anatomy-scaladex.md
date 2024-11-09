@@ -19,7 +19,7 @@ In this talk, I will introduce you to Scaladex, an exciting project I began expl
 
 ### Kannupriya Kalra
 
-- photoRelPath: /images/profiles/paris-2024/kKalra.webp
+- photoRelPath: /images/profiles/speakers/kKalra.webp
 - job: Scala Developer @ Sky
 
 #### Links

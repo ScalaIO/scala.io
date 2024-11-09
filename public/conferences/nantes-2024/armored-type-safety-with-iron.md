@@ -23,7 +23,7 @@ In this talk, we’ll show first the different technique we can use to apply con
 
 ### Raphaël Lemaitre
 
-- photoRelPath: /images/profiles/nantes-2024/rLemaitre.webp
+- photoRelPath: /images/profiles/speakers/rLemaitre.webp
 - job: Senior Staff Engineer @ Ledger
 
 #### Links
@@ -47,7 +47,7 @@ My interests span from software development to history and technology, where I e
 
 ### Valentin Bergeron
 
-- photoRelPath: /images/profiles/nantes-2024/vBergeron.webp
+- photoRelPath: /images/profiles/speakers/vBergeron.webp
 - job: Engineering team lead @ Ledger
 
 #### Links

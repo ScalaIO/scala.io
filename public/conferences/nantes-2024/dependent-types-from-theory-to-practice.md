@@ -23,7 +23,7 @@ Nous aborderons: le type fonctionnel dépendant, la paire dépendante, le type s
 
 ### Didier Plaindoux
 
-- photoRelPath: /images/profiles/nantes-2024/dPlaindoux.webp
+- photoRelPath: /images/profiles/speakers/dPlaindoux.webp
 - job: Senior Software Engineer @ Fungus (Freelance)
 
 #### Links

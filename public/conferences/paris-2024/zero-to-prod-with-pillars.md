@@ -25,7 +25,7 @@ Whether you’re a seasoned Scala developer or just getting started, this sessio
 
 ### Raphaël Lemaitre
 
-- photoRelPath: /images/profiles/paris-2024/rLemaitre.webp
+- photoRelPath: /images/profiles/speakers/rLemaitre.webp
 - job: Senior Staff Engineer @ Ledger
 
 #### Links

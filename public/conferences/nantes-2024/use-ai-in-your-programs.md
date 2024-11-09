@@ -19,7 +19,7 @@ Une fois ceci fait, je souhaite montrer comment utiliser un modèle en utilisant
 
 ### François Laroche
 
-- photoRelPath: /images/profiles/nantes-2024/fLaroche.webp
+- photoRelPath: /images/profiles/speakers/fLaroche.webp
 - job: Tech Lead @ NuMind
 
 #### Links
@@ -37,7 +37,7 @@ Je suis actuellement développeur chez NuMind où nous aidons nos clients à ent
 
 ### Samuel Bernard
 
-- photoRelPath: /images/profiles/nantes-2024/sBernard.webp
+- photoRelPath: /images/profiles/speakers/sBernard.webp
 - job: Co-Founder & CTO @ NuMind
 
 #### Links

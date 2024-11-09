@@ -15,7 +15,7 @@ Are you using one of many type-class based libraries in Scala? Have you ever bee
 
 ### Mateusz Kubuszok
 
-- photoRelPath: /images/profiles/paris-2024/mKubuszok.webp
+- photoRelPath: /images/profiles/speakers/mKubuszok.webp
 - job: Senior Scala Developer @ Self-Employed
 
 #### Links

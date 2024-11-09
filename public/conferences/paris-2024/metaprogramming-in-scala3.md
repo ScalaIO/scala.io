@@ -29,7 +29,7 @@ In short, we’ll be exploring the compile-time arsenal that Scala 3 gives us wi
 
 ### Aleksander Rainko
 
-- photoRelPath: /images/profiles/paris-2024/aRainko.webp
+- photoRelPath: /images/profiles/speakers/aRainko.webp
 - job: Scala Developer @ Scalac
 
 #### Links

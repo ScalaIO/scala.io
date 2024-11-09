@@ -19,7 +19,7 @@ In this workshop we will introduce you to the FastScala framework, it's installa
 
 ### David Miguel Antunes
 
-- photoRelPath: /images/profiles/paris-2024/dAntunes.webp
+- photoRelPath: /images/profiles/speakers/dAntunes.webp
 - job: Scala Developer & founder @ Scala Academy
 
 #### Links

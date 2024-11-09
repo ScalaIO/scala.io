@@ -19,7 +19,7 @@ It is expected that many people from the audience get surprised about the sbt pr
 
 ### Alexis Hernandez
 
-- photoRelPath: /images/profiles/paris-2024/aHernandez.webp
+- photoRelPath: /images/profiles/speakers/aHernandez.webp
 - job: Principal Scala Consultant @ wiringbits
 
 #### Links

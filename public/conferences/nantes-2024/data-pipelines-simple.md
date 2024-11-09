@@ -17,7 +17,7 @@ Most organizations have data pipelines and those are growing by the minute. But 
 
 ### Raphael Claude
 
-- photoRelPath: /images/profiles/nantes-2024/rClaude.webp
+- photoRelPath: /images/profiles/speakers/rClaude.webp
 - job: Staff Dev Lead @ Criteo
 
 #### Links

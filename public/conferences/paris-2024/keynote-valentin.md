@@ -19,7 +19,7 @@ Bring your heart, and maybe a notebook.
 
 ### Valentin Kasas
 
-- photoRelPath: /images/profiles/paris-2024/vKasas.jpeg
+- photoRelPath: /images/profiles/speakers/vKasas.jpeg
 - job: Scala Lover
 
 #### Links

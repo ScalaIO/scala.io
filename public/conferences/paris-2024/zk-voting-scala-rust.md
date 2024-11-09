@@ -17,7 +17,7 @@ I’ll start by presenting the challenges of anonymous electronic voting and the
 
 ### Christophe Calvès
 
-- photoRelPath: /images/profiles/paris-2024/cCalves.webp
+- photoRelPath: /images/profiles/speakers/cCalves.webp
 - job: Data Architect @ Ledger
 
 #### Links

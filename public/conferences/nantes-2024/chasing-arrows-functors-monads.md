@@ -26,7 +26,7 @@ This ScalaIO talk will be a overview of the EPITA CT4P course, with emphasis on 
 
 ### Jim Newton
 
-- photoRelPath: /images/profiles/nantes-2024/jim.webp
+- photoRelPath: /images/profiles/speakers/jim.webp
 - job: Researcher @ EPITA Le Kremlin-Bicêtre
 
 #### Links
@@ -46,7 +46,7 @@ Jim has been programming off and on in Scala for about 5 years.
 
 ### Uli Fahrenberg
 
-- photoRelPath: /images/profiles/nantes-2024/uli.webp
+- photoRelPath: /images/profiles/speakers/uli.webp
 - job: @ EPITA Rennes
 
 #### Links

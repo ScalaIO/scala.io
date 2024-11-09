@@ -26,7 +26,7 @@ tout ça dans le but d'accéder au trésor : Scala 3.
 
 ### Antoine Blondeau
 
-- photoRelPath: /images/profiles/nantes-2024/aBlondeau.webp
+- photoRelPath: /images/profiles/speakers/aBlondeau.webp
 - job: Developer @ Clever Cloud
 
 #### Links
@@ -42,7 +42,7 @@ I'm a backend developer specialized in platform orchestration. I have experience
 
 ### Jean-Baptiste Kaiser
 
-- photoRelPath: /images/profiles/nantes-2024/jbKaiser.webp
+- photoRelPath: /images/profiles/speakers/jbKaiser.webp
 - job: Scala Developer @ Clever Cloud
 - confirmed: true
 
