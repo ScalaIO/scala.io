@@ -4,7 +4,7 @@
 - Slug: chasing-arrows-functors-monads
 - Category: Algebra
 - confirmed: true
-- Slides: https://scala.io/slides/2024/chasing-arrows.pdf
+- Slides: https://scala\.io/conferences/nantes-2024/slides/2024/chasing-arrows.pdf
 - Replay: https://www.youtube.com/watch?v=KFhhR6tSy_0&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=12&pp=iAQB
 
 ## Abstract

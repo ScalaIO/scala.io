@@ -4,7 +4,7 @@
 - Slug: contravariance-intuition-building
 - Category: Modeling
 - confirmed: true
-- Slides: https://scala.io/slides/2024/Contravariance.pdf
+- Slides: https://scala\.io/conferences/nantes-2024/slides/2024/Contravariance.pdf
 - Replay: https://www.youtube.com/watch?v=A7t3b0kymFM&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=13&pp=iAQB
 
 ## Abstract

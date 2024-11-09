@@ -4,7 +4,7 @@
 - Slug: my-first-year-in-scala
 - Category: Community
 - confirmed: true
-- Slides: https://scala.io/slides/2024/first-year-scala.pdf
+- Slides: https://scala\.io/conferences/nantes-2024/slides/2024/first-year-scala.pdf
 - Replay: https://www.youtube.com/watch?v=Jyn2l1nhwZE&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=3&pp=iAQB
 
 ## Abstract

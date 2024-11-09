@@ -4,7 +4,7 @@
 - Slug: migrating-gallia-to-scala-3
 - Category: ToolsEcosystem
 - confirmed: true
-- Slides: https://scala.io/slides/2024/gallia-migration.pdf
+- Slides: https://scala\.io/conferences/nantes-2024/slides/2024/gallia-migration.pdf
 - Replay: https://www.youtube.com/watch?v=DzjvFx5YYik&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=14&pp=iAQB
 
 ## Abstract

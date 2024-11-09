@@ -48,14 +48,12 @@ lazy val root = project
     )
   )
 
-def lines(lines: String*)                = lines.mkString("\n")
 def slugify(name: String): String        = name.toLowerCase().replace("-", "_")
-def listMarkdowns(file: File): Seq[File] = file.listFiles().filter(_.getName.endsWith(".md")).toList
-def listFolders(file: File): Seq[File]   = file.listFiles().filter(_.isDirectory()).toList
+val allConferences                       = new File("./public/conferences")
 
 def eventListing() = Def.task {
   val file   = (Compile / sourceManaged).value / "io" / "scala" / "data" / "EventsData.scala"
-  val events = listMarkdowns(new File("./public/scalafr-meetups"))
+  val events = allConferences.listFiles(_.name.endsWith(".md"))
   val content =
     s"""|package io.scala.data
        |
@@ -71,10 +69,9 @@ def eventListing() = Def.task {
 
 def confListing() = Def.task {
   val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "ConfsData.scala"
-  val conferences = listFolders(new File("./public/conferences")).map { folder =>
-    val conference = listMarkdowns(folder).find(_.getName == "conference.md").get
-    val folderSlug = slugify(folder.getName)
-    folderSlug -> s"""|  def ${folderSlug}: String = ${"\"" * 3 + IO.read(conference) + "\"" * 3}"""
+  val conferences = allConferences.globRecursive(_.name == "conference.md").get().map { file =>
+    val folderSlug = slugify(file.getParentFile().name)
+    folderSlug -> s"""|  def ${folderSlug}: String = ${"\"" * 3 + IO.read(file) + "\"" * 3}"""
   }
 
   val content =
@@ -93,12 +90,12 @@ def confListing() = Def.task {
 
 def sessionsListing() = Def.task {
   val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "SessionsData.scala"
-  val sessionsByConf = listFolders(new File("./public/conferences")).map { folder =>
-    val sessions = listMarkdowns(folder).filter(_.getName != "conference.md")
-    s"""|  def ${slugify(
-        folder
-          .getName()
-      )}: List[String] = List(${sessions.map(file => "\"" * 3 + IO.read(file) + "\"" * 3).mkString(",")})"""
+  val sessionsByConf = allConferences.listFiles(_.isDirectory()).map { folder =>
+    val sessions = (folder / "sessions").listFiles()
+    val slug     = slugify(folder.getName)
+    s"""|  def $slug: List[String] = List(${sessions
+        .map(file => "\"" * 3 + IO.read(file) + "\"" * 3)
+        .mkString(",")})"""
   }
 
   val content =
@@ -116,9 +113,10 @@ def sessionsListing() = Def.task {
 
 def sponsorListing() = Def.task {
   val file = (Compile / sourceManaged).value / "io" / "scala" / "data" / "SponsorsData.scala"
-  val sponsors = listMarkdowns(new File("./public/sponsors")).map { md =>
-    s"""|  def ${slugify(md.base)}: String = ${"\"" * 3 + IO.read(md) + "\"" * 3}"""
-  }
+  val sponsors =
+    allConferences.globRecursive(_.name == "sponsors.md").get().map { md =>
+      s"""|  def ${slugify(md.getParentFile.name)}: String = ${"\"" * 3 + IO.read(md) + "\"" * 3}"""
+    }
 
   val content =
     s"""|package io.scala.data
