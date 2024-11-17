@@ -22,9 +22,7 @@ object ScheduleInfo {
 
   extension (d: HtmlElement) def gridArea(area: String) = d.amend(styleAttr := s"grid-area: $area")
 
-  lazy val session: String => Session =
-    val schedulables = SessionsHistory.sessionsForSchedule
-    (slug) => schedulables.find(_.info.slug == slug).getOrElse(Session.empty)
+  def session(slug: String) = Event.Current.sessions.find(_.info.slug == slug).getOrElse(Session.empty)
 
   val day1 = List(
     time(9, 30).render(),
@@ -104,5 +102,8 @@ object ScheduleInfo {
     Special(Special.Kind.End).render
   ).zipWithIndex.map { case (x, i) => x.gridArea(s"a${i + 1}") }
 
-  val allDays = Seq((DayOfWeek.THURSDAY, div(day1, className := "day-base-layout day1")), (DayOfWeek.FRIDAY, div(day2, className := "day-base-layout day2")))
+  val allDays = Seq(
+    (DayOfWeek.THURSDAY, div(day1, className := "day-base-layout day1")),
+    (DayOfWeek.FRIDAY, div(day2, className := "day-base-layout day2"))
+  )
 }

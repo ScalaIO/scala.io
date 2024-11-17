@@ -3,23 +3,25 @@ package modules
 
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
+import org.scalajs.dom.HTMLDivElement
+
+import io.scala.data.Event
 import io.scala.extensions.grayOutIf
 import io.scala.models.Session
 import io.scala.models.Session.Speaker
 import io.scala.models.Social
 import io.scala.modules.elements.Buttons
 import io.scala.modules.elements.Buttons.*
-import org.scalajs.dom.HTMLDivElement
 import io.scala.modules.elements.Image
 
 object SpeakerCard {
-  def apply(speaker: Speaker, talks: List[Session], conference: String): ReactiveHtmlElement[HTMLDivElement] =
+  def apply(speaker: Speaker, talks: List[Session], conference: Event): ReactiveHtmlElement[HTMLDivElement] =
     div(
       className := "speaker-card",
       Image.photo(
-        src       := speaker.photoRelPath,
-        className := "photo",
-        alt       := s"${speaker.name}'s profile",
+        src         := speaker.photoRelPath,
+        className   := "photo",
+        alt         := s"${speaker.name}'s profile",
         loadingAttr := "lazy"
       ),
       div(
@@ -43,7 +45,7 @@ object SpeakerCard {
       linksToTalks(talks, conference)
     ).grayOutIf(talks.forall(_.cancelledReason.isDefined))
 
-  def linksToTalks(talks: List[Session], conference: String): ReactiveHtmlElement[HTMLDivElement] =
+  def linksToTalks(talks: List[Session], conference: Event): ReactiveHtmlElement[HTMLDivElement] =
     def linkButton(info: Session.BasicInfo) =
       val text = if info.kind == Session.Kind.Workshop then "Workshop" else "Talk"
       Buttons

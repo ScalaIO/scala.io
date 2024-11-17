@@ -4,8 +4,8 @@ import com.raquo.laminar.api.L.*
 import scala.collection.immutable.Queue
 
 import io.scala.SessionsPage
+import io.scala.data.Event
 import io.scala.data.SessionsHistory
-import io.scala.data.SessionsHistory.getConfName
 import io.scala.models.Session
 import io.scala.modules.SessionCard
 import io.scala.modules.elements.*
@@ -17,7 +17,7 @@ case object SessionList extends ReactiveView[SessionsPage] {
   given Ordering[(String, List[Session])] =
     case ((cat1, talks1), (cat2, talks2)) =>
       val sizeComparison = talks1.size.compareTo(talks2.size)
-      
+
       if sizeComparison != 0 then -sizeComparison
       else cat1.compareTo(cat2)
 
@@ -35,7 +35,7 @@ case object SessionList extends ReactiveView[SessionsPage] {
             acc
               .enqueue(Titles.medium(category, idAttr := category))
               .enqueue(
-                Containers.gridCards(talks.sorted.map(SessionCard(_, getConfName(sessionArg.conference))))
+                Containers.gridCards(talks.sorted.map(SessionCard(_, sessionArg.conference.getOrElse(Event.Current))))
               )
           }
           .toSeq
@@ -52,10 +52,12 @@ case object SessionList extends ReactiveView[SessionsPage] {
           SessionsHistory.sessionsForConf(arg).partition(_.isWorkshop)
         val tabs = Seq(
           Session.Kind.Keynote ->
-            Containers.gridCards(talksByCategory.filter(_.isKeynote).map(SessionCard(_, getConfName(arg.conference)))),
+            Containers.gridCards(
+              talksByCategory.filter(_.isKeynote).map(SessionCard(_, arg.conference.getOrElse(Event.Current)))
+            ),
           Session.Kind.Talk -> tabWithTOC(sortedCategories(talksByCategory.filter(!_.isKeynote)), arg),
           Session.Kind.Workshop ->
-            Containers.gridCards(workshopsByCategory.map(SessionCard(_, getConfName(arg.conference))))
+            Containers.gridCards(workshopsByCategory.map(SessionCard(_, arg.conference.getOrElse(Event.Current))))
         )
         Tabs(tabs, h => h.toPlural, Session.Kind.Talk).render
       }

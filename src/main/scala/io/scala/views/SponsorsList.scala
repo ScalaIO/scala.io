@@ -5,7 +5,7 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 
 import io.scala.Lexicon
 import io.scala.SponsorsPage
-import io.scala.data.SponsorsHistory
+import io.scala.data.Event
 import io.scala.modules.elements.*
 
 case object SponsorsList extends ReactiveView[SponsorsPage] {
@@ -30,8 +30,9 @@ case object SponsorsList extends ReactiveView[SponsorsPage] {
       div(
         className := "container",
         children <-- args.map(arg =>
-          SponsorsHistory
-            .sponsorsForConf(arg.conference)
+          arg.conference
+            .getOrElse(Event.Current)
+            .sponsors
             .groupBy(_.rank)
             .toSeq
             .sortBy(_._1)

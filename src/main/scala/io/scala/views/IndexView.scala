@@ -6,11 +6,12 @@ import org.scalajs.dom.document
 import io.scala.IndexPage
 import io.scala.Page
 import io.scala.VenuePage
+import io.scala.data.Event
 import io.scala.data.SessionsHistory
 import io.scala.extensions.withBinder
+import io.scala.extensions.withLink
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
-import io.scala.extensions.withLink
 
 case object IndexView extends ReactiveView[IndexPage] {
 
@@ -54,7 +55,7 @@ case object IndexView extends ReactiveView[IndexPage] {
       div(
         className := "card-container",
         children <-- args.map: page =>
-          speakers(page).map(SpeakerCard(_, _, SessionsHistory.getConfName(page.conference)))
+          speakers(page).map(SpeakerCard(_, _, page.conference.getOrElse(Event.Current)))
       )
     )
 
@@ -80,7 +81,9 @@ case object IndexView extends ReactiveView[IndexPage] {
     idAttr("tickets"),
     className := "container",
     Titles("Tickets"),
-    p("We offer both on-site and online tickets for the conference (redirect to the same page, just for better readability :)"),
+    p(
+      "We offer both on-site and online tickets for the conference (redirect to the same page, just for better readability :)"
+    ),
     div(
       Buttons.shiny("On-site tickets").withLink("https://www.billetweb.fr/scalaio-paris-2024-epita"),
       Buttons.shiny("Streaming tickets").withLink("https://www.billetweb.fr/scalaio-paris-2024-epita")

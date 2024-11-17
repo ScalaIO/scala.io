@@ -34,7 +34,7 @@ case class Session(
     Parsers.Description.parseTalk(description).map(Paragraphs.description(_))
 
   def duration: Int       = info.kind.duration
-  def render(room: Session.Room | Null): Div         = SessionCard(this, Event.Current.toString, room)
+  def render(room: Session.Room | Null): Div         = SessionCard(this, Event.Current, room)
   def isKeynote: Boolean  = info.kind == Session.Kind.Keynote
   def isWorkshop: Boolean = info.kind == Session.Kind.Workshop
   def isBreak: Boolean    = false
