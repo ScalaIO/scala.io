@@ -4,7 +4,7 @@
 - Slug: ukraine-scala-community
 - Category: Community
 - confirmed: true
-- Slides: https://scala\.io/conferences/nantes-2024/slides/2024/scala-community-building-lessons.pptx
+- Slides: /conferences/nantes-2024/slides/2024/scala-community-building-lessons.pptx
 - Replay: https://www.youtube.com/watch?v=6skPn0evEE8&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=11&pp=iAQB
 
 ## Abstract

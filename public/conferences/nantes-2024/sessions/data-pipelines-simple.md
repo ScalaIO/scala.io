@@ -4,7 +4,7 @@
 - Slug: data-pipelines-simple
 - Category: DataEng
 - confirmed: true
-- Slides: https://scala\.io/conferences/nantes-2024/slides/2024/data-pipeline.pptx
+- Slides: /conferences/nantes-2024/slides/2024/data-pipeline.pptx
 - Replay: https://www.youtube.com/watch?v=gS6zOfqUHVs&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=8&pp=iAQB
 
 ## Abstract

@@ -4,7 +4,7 @@
 - Slug: hands-on-besom-iac-with-scala
 - Category: Cloud
 - confirmed: true
-- Slides: https://scala\.io/conferences/nantes-2024/slides/2024/besom.pdf
+- Slides: /conferences/nantes-2024/slides/2024/besom.pdf
 - Replay: https://www.youtube.com/watch?v=J0vXLHN8YpA&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=7&pp=iAQB
 
 ## Abstract

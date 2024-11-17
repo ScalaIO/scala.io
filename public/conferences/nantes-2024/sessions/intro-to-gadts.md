@@ -4,7 +4,7 @@
 - Slug: intro-to-gadts
 - Category: Algebra
 - confirmed: true
-- Slides: https://scala\.io/conferences/nantes-2024/slides/2024/GADTs-xavier-vw-woestyne.pdf
+- Slides: /conferences/nantes-2024/slides/2024/GADTs-xavier-vw-woestyne.pdf
 - Replay: https://www.youtube.com/watch?v=r4c7xuVB9xA&ab_channel=ScalaIOFR
 
 ## Abstract

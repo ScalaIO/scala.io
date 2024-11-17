@@ -4,7 +4,7 @@
 - Slug: unleashing-scalafix-potential
 - Category: ToolsEcosystem
 - confirmed: true
-- Slides: https://scala\.io/conferences/nantes-2024/slides/2024/scalafix.pdf
+- Slides: /conferences/nantes-2024/slides/2024/scalafix.pdf
 - Replay: https://www.youtube.com/watch?v=qexJYvo2EwY&list=PLjkHSzY9VuL96myavOIICS-x6yVyAMPjg&index=15&pp=iAQB
 
 ## Abstract
