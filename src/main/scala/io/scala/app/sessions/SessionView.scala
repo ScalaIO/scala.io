@@ -4,7 +4,6 @@ import com.raquo.laminar.api.L.*
 
 import io.scala.extensions.grayOutIf
 import io.scala.SessionPage
-import io.scala.data.SessionsHistory
 import io.scala.models.Session
 import io.scala.modules.elements.Containers
 import io.scala.modules.elements.Paragraphs
@@ -16,9 +15,7 @@ object SessionView extends ReactiveView[SessionPage]:
 
   def body(signal: Signal[SessionPage]): HtmlElement =
     val sessionSignal = signal.map: sessionPage =>
-      SessionsHistory
-        .sessionsForConf(sessionPage.conference)
-        .getOrElse(List.empty)
+      sessionPage.conference.sessions
         .find(_.info.slug == sessionPage.slug)
         .getOrElse(notFoundTalk)
     sectionTag(

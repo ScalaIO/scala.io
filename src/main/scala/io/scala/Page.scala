@@ -13,13 +13,14 @@ import urldsl.errors.DummyError
 import urldsl.vocabulary.FromString
 import urldsl.vocabulary.Printer
 
+import io.scala.data.Event
 import io.scala.views.*
 import io.scala.views.IndexView
 
 sealed trait Draftable:
   def withDraft: Option[Boolean]
 sealed trait Routeable:
-  def conference: Option[String]
+  def conference: Option[Event]
 object Routeable:
   def fallback: String = "paris-2024"
 
@@ -28,19 +29,19 @@ sealed trait Slugify:
 sealed trait Page:
   def title: String
 
-case class IndexPage(withDraft: Option[Boolean] = None, conference: Option[String] = None)
+case class IndexPage(withDraft: Option[Boolean] = None, conference: Option[Event] = None)
     extends Page
     with Draftable
     with Routeable:
   def title: String = "Home"
-case class SessionsPage(withDraft: Option[Boolean] = None, conference: Option[String] = None)
+case class SessionsPage(withDraft: Option[Boolean] = None, conference: Option[Event] = None)
     extends Page
     with Draftable
     with Routeable:
   def title: String = "Sessions"
-case class SessionPage(conference: String, slug: String) extends Page with Slugify:
+case class SessionPage(conference: Event, slug: String) extends Page with Slugify:
   def title: String = s"Session - $slug"
-case class SponsorsPage(conference: Option[String] = None) extends Page with Routeable:
+case class SponsorsPage(conference: Option[Event] = None) extends Page with Routeable:
   def title: String = "Sponsors"
 case object VenuePage extends Page:
   def title: String = "Venue"
@@ -67,7 +68,7 @@ object Page {
   given pageArgBasicCodec: ReadWriter[Page] = macroRW
 
   val draftParam      = param[Boolean]("withDraft").?
-  val conferenceParam = param[String]("conference").?
+  val conferenceParam = param[Event]("conference").?
 
   given FromString[Page, DummyError] = {
     case "sessions" => Right(SessionsPage())
@@ -92,12 +93,12 @@ object Page {
     case _: IndexPage    => ""
   }
 
-  val indexRoute = Route.onlyQuery[IndexPage, (Option[Boolean], Option[String])](
+  val indexRoute = Route.onlyQuery[IndexPage, (Option[Boolean], Option[Event])](
     encode = x => (x.withDraft, x.conference),
     decode = IndexPage(_, _),
     (root / endOfSegments) ? draftParam & conferenceParam
   )
-  val sessionsRoute = Route.onlyQuery[SessionsPage, (Option[Boolean], Option[String])](
+  val sessionsRoute = Route.onlyQuery[SessionsPage, (Option[Boolean], Option[Event])](
     encode = x => (x.withDraft, x.conference),
     decode = SessionsPage(_, _),
     (root / "sessions" / endOfSegments) ? draftParam & conferenceParam
@@ -108,27 +109,27 @@ object Page {
     decode = SessionsPage(_, _),
     (root / "talks" / endOfSegments) ? draftParam & conferenceParam
   )
-  val sessionRoute = Route[SessionPage, (String, String)](
+  val sessionRoute = Route[SessionPage, (Event, String)](
     encode = x => (x.conference, x.slug),
     decode = SessionPage(_, _),
-    (root / "sessions" / segment[String] / segment[String] / endOfSegments)
+    (root / "sessions" / segment[Event] / segment[String] / endOfSegments)
   )
   // maintain old /talks/<conference>/<slug> links
-  private val legacyTalkRoute = Route(
+  private val legacyTalkRoute = Route[SessionPage, (Event, String)](
     encode = (x: SessionPage) => (x.conference, x.slug),
     decode = SessionPage(_, _),
-    root / "talks" / segment[String] / segment[String] / endOfSegments
+    root / "talks" / segment[Event] / segment[String] / endOfSegments
   )
   // maintain links of Nantes 2024 edition: scala.io/talks/<slug>
   private val legacyNantesTalkRoute = Route[SessionPage, String](
     encode = x => x.slug,
-    decode = SessionPage("nantes-2024", _),
+    decode = SessionPage(Event.`nantes-2024`, _),
     root / "talks" / segment[String] / endOfSegments
   )
-  val sponsorsRoute = Route.onlyQuery[SponsorsPage, Option[String]](
+  val sponsorsRoute = Route.onlyQuery[SponsorsPage, Option[Event]](
     encode = x => x.conference,
     decode = args => SponsorsPage(args),
-    (root / "sponsors" / endOfSegments) ? param[String]("conference").?
+    (root / "sponsors" / endOfSegments) ? conferenceParam
   )
   val venueRoute = Route.static(
     VenuePage,

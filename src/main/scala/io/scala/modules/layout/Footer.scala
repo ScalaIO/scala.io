@@ -17,6 +17,7 @@ import io.scala.modules.elements.Links
 import io.scala.modules.elements.Lists
 import io.scala.modules.elements.Titles
 import io.scala.svgs.Icons
+import io.scala.data.Event
 
 object Footer {
   private lazy val summary: Div =
@@ -56,7 +57,7 @@ object Footer {
       Lists.pipes(
         ConfsData.all
           .map { key =>
-            val linkKey = key.replace("_", "-")
+            val linkKey = Event.valueOf(key.replace("_", "-"))
             li(
               Links
                 .highlighted(
