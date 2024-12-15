@@ -4,7 +4,7 @@ name: Clever Cloud Review App on Pull Requests
 
 on:
   workflow_run:
-    workflows: ["Build"]
+    workflows: ["UI testing"]
     types:
       - completed
   pull_request_target:
