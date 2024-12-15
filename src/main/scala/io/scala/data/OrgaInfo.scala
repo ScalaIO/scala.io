@@ -20,9 +20,11 @@ object OrgaInfo:
   val marcKarassev = Organizer(
     name = "Marc Karassev",
     photo = Some("mKarassev.webp"),
-    job = "Scala Freelance",
+    job = "Senior Software Engineer @ Freelance",
     socials = List(
-      Social(Social.Kind.Github, "https://github.com/markarasev")
+      Social(Social.Kind.Github, "https://github.com/markarasev"),
+      Social(Social.Kind.Mastodon, "https://mamot.fr/@mark"),
+      Social(Social.Kind.Other, "https://markarasev.me")
     ),
     representative = true
   )
