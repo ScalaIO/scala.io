@@ -13,6 +13,7 @@ case class Social(
 ):
   private lazy val icon = kind match
     case Social.Kind.Twitter  => Icons.twitter
+    case Social.Kind.Mastodon => Icons.mastodon
     case Social.Kind.Linkedin => Icons.linkedin
     case Social.Kind.Github   => Icons.github
     case Social.Kind.Other    => Icons.chain
@@ -26,7 +27,7 @@ object Social:
   given Ordering[Social] = Ordering.by(_.kind.ordinal)
 
   enum Kind:
-    case Twitter, Linkedin, Github, Gitlab, Other
+    case Twitter, Mastodon, Linkedin, Github, Gitlab, Other
 
   def renderIcons(socials: List[Social], owner: String): Seq[ReactiveHtmlElement[HTMLAnchorElement]] =
     socials.sorted.map: social =>
@@ -34,7 +35,7 @@ object Social:
 
   def renderWithAccount(socials: List[Social]): Seq[ReactiveHtmlElement[HTMLAnchorElement]] =
     socials.sorted.map:
-      case social @ (Social(Kind.Twitter | Kind.Github | Kind.Gitlab, _)) =>
+      case social @ (Social(Kind.Twitter | Kind.Mastodon | Kind.Github | Kind.Gitlab, _)) =>
         Links.highlighted(social.icon, href := social.url, span("@", social.linkName))
       case social @ (Social(Kind.Linkedin, _) | Social(Kind.Other, _)) =>
         Links.highlighted(social.icon, href := social.url, span(social.linkName))
