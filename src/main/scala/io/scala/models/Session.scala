@@ -33,11 +33,11 @@ case class Session(
   lazy val renderDescription: List[ReactiveHtmlElement[HTMLParagraphElement]] =
     Parsers.Description.parseTalk(description).map(Paragraphs.description(_))
 
-  def duration: Int       = info.kind.duration
-  def render(room: Session.Room | Null): Div         = SessionCard(this, Event.Current.toString, room)
-  def isKeynote: Boolean  = info.kind == Session.Kind.Keynote
-  def isWorkshop: Boolean = info.kind == Session.Kind.Workshop
-  def isBreak: Boolean    = false
+  def duration: Int                          = info.kind.duration
+  def render(room: Session.Room | Null): Div = SessionCard(this, Event.Current.toString, room)
+  def isKeynote: Boolean                     = info.kind == Session.Kind.Keynote
+  def isWorkshop: Boolean                    = info.kind == Session.Kind.Workshop
+  def isBreak: Boolean                       = false
 
 object Session:
   def empty: Session = Session(BasicInfo.empty, "To be announced", List.empty)

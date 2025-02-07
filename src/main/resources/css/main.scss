@@ -55,7 +55,7 @@
   }
 }
 
-.grayed-out {
+button[disabled], .grayed-out {
   filter: grayscale(100%);
 }
 
@@ -69,6 +69,10 @@ body {
   color: vars.$text-color;
   line-height: 1.6;
   background: vars.$background-color;
+}
+
+button[disabled] {
+  cursor: not-allowed;
 }
 
 #app > div {

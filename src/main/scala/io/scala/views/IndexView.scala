@@ -8,9 +8,9 @@ import io.scala.Page
 import io.scala.VenuePage
 import io.scala.data.SessionsHistory
 import io.scala.extensions.withBinder
+import io.scala.extensions.withLink
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
-import io.scala.extensions.withLink
 
 case object IndexView extends ReactiveView[IndexPage] {
 
@@ -27,7 +27,7 @@ case object IndexView extends ReactiveView[IndexPage] {
             Links.highlighted(href := "https://www.youtube.com/@scalaio/videos", "YouTube channel")
           ),
           Paragraphs.description(
-            "This edition brings us together in Paris for two days, with a multi-session structure and a large community space. With a great venue, wonderful speakers, and a lot of surprises, we are looking forward to meeting you there!"
+            "This edition brings us together in Paris for one day, with a multi-session structure and a large community space. With a great venue, wonderful speakers, and a lot of surprises, we are looking forward to meeting you there!"
           )
         ),
         Separator(),
@@ -65,25 +65,24 @@ case object IndexView extends ReactiveView[IndexPage] {
       Titles.main("Connecting Scala Enthusiasts!"),
       h2(
         className := "event-date-location",
-        "07 & 08 November 2024 - Paris @ ",
-        u("Epita").withBinder(VenuePage)
+        "\\d{2}/1(0|1)/2025 - Paris @ ",
+        u("To be decided").withBinder(VenuePage)
       ),
       Buttons
         .shiny(
           "Get your ticket!",
-          onClick --> { _ => document.getElementById("tickets").scrollIntoView() }
+          onClick --> { _ => document.getElementById("tickets").scrollIntoView() },
+          disabled := true
         )
     )
   )
 
   lazy val tickets: Div = div(
     idAttr("tickets"),
-    className := "container",
+    className := "container grayed-out",
     Titles("Tickets"),
-    p("We offer both on-site and online tickets for the conference (redirect to the same page, just for better readability :)"),
     div(
-      Buttons.shiny("On-site tickets").withLink("https://www.billetweb.fr/scalaio-paris-2024-epita"),
-      Buttons.shiny("Streaming tickets").withLink("https://www.billetweb.fr/scalaio-paris-2024-epita")
+      Buttons.shiny("💸", disabled := true).withLink("https://www.billetweb.fr/scalaio-paris-2024-epita"),
     )
   )
 }

@@ -104,5 +104,8 @@ object ScheduleInfo {
     Special(Special.Kind.End).render
   ).zipWithIndex.map { case (x, i) => x.gridArea(s"a${i + 1}") }
 
-  val allDays = Seq((DayOfWeek.THURSDAY, div(day1, className := "day-base-layout day1")), (DayOfWeek.FRIDAY, div(day2, className := "day-base-layout day2")))
+  val allDays = Seq(
+    (DayOfWeek.THURSDAY, div(day1, className := "day-base-layout day1")),
+    (DayOfWeek.FRIDAY, div(day2, className := "day-base-layout day2"))
+  )
 }
