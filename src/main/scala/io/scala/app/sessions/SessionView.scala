@@ -25,14 +25,15 @@ object SessionView extends ReactiveView[SessionPage]:
       className := "container talk",
       children <-- sessionSignal.map { session =>
         Seq(
-          session.cancelledReason match
+          session.cancelledReason match {
             case None => Titles(session.info.title)
-            case Some(value) =>
+            case Some(value) => {
               Titles.withSub(
                 session.info.title,
                 p(s"Cancelled: $value")
               )
-          ,
+            }
+          },
           div(
             className := "talk-description",
             Paragraphs.description(session.renderDescription),

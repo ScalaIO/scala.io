@@ -5,6 +5,7 @@ import io.scala.IndexPage
 import io.scala.Page
 import io.scala.VenuePage
 import io.scala.data.SessionsHistory
+import io.scala.data.SponsorsHistory
 import io.scala.extensions.withBinder
 import io.scala.extensions.withLink
 import io.scala.modules.SpeakerCard
@@ -32,7 +33,9 @@ case object IndexView extends ReactiveView[IndexPage] {
         Separator(),
         tickets,
         Separator(),
-        speakerGallery(args)
+        speakerGallery(args),
+        Separator(),
+        previousSponsors
       )
     )
 
@@ -51,7 +54,7 @@ case object IndexView extends ReactiveView[IndexPage] {
       className := "container speaker-gallery",
       Titles("Speaker Gallery"),
       div(
-        className := "card-container",
+        className := "card-container with-global-template",
         children <-- args.map: page =>
           speakers(page).map(SpeakerCard(_, _, SessionsHistory.getConfName(page.conference)))
       )
@@ -82,6 +85,19 @@ case object IndexView extends ReactiveView[IndexPage] {
     Titles("Tickets"),
     div(
       Buttons.shiny("💸", disabled := true).withLink("")
+    )
+  )
+
+  lazy val previousSponsors: Div = div(
+    idAttr("previous-sponsors"),
+    className := "container",
+    Titles("Previous Sponsors"),
+    div(
+      className := "card-container",
+      styleAttr := "grid-auto-flow: dense; grid-template-columns: repeat(auto-fill, min(100%, 10em));",
+      SponsorsHistory.allSponsors.map: sponsor =>
+        SponsorLogo(sponsor, false)
+          .amend(styleAttr := s"grid-column: span ${sponsor.gridCol}; grid-row: span ${sponsor.gridRow};")
     )
   )
 }

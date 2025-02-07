@@ -6,7 +6,7 @@
 - clever.svg
 - https://www.clever-cloud.com/
 - Gold
-1:1
+2:1
 
 ## ledger
 
@@ -14,7 +14,7 @@
 - ledger.webp
 - https://www.ledger.com
 - Bronze
-1:1
+2:1
 
 ## scalac
 
@@ -22,4 +22,4 @@
 - scalac.svg
 - https://scalac.io
 - Partner
-1:1
+2:1

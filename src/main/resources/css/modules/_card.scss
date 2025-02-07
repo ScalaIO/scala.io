@@ -38,8 +38,6 @@ $container-gap: 2em;
 %card-base {
   position: relative;
   display: flex; // Needed for the shadow on hovering
-  flex-direction: column;
-  justify-content: space-between;
   align-items: stretch;
   width: 100%;
   padding: $card-padding;
@@ -150,6 +148,12 @@ span.workshop {
   @include border-style(vars.$main-color, vars.$main-color-lighter);
 }
 
+.speaker-card,
+.talk-card {
+  flex-direction: column;
+  justify-content: space-between;
+}
+
 .talk-card {
   @extend %card-base;
   @extend %card-effects;
@@ -235,6 +239,7 @@ span.workshop {
     @include border-style(vars.$prez-workshop-color, vars.$prez-workshop-color);
   }
 }
+
 .speaker-card {
   @extend %card-base;
   @extend %card-effects;
@@ -281,4 +286,10 @@ span.workshop {
 .sponsor-card {
   @extend %card-base;
   @extend %card-effects;
+
+  justify-content: center;
+
+  &:after {
+    margin-left: 0;
+  }
 }

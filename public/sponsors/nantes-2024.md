@@ -6,7 +6,7 @@
 - clever.svg
 - https://www.clever-cloud.com
 - Platinum
-1:1
+2:1
 
 ## nuMind
 
@@ -14,7 +14,7 @@
 - numind.svg
 - https://www.numind.ai
 - Gold
-1:1
+2:1
 
 ## univalence
 
@@ -22,7 +22,7 @@
 - univalence.svg
 - https://univalence.io
 - Love
-1:1
+2:1
 
 ## lambdaNantes
 
@@ -46,4 +46,4 @@
 - iciLundi.svg
 - https://icilundi.fr
 - Partner
-1:1
+2:1
