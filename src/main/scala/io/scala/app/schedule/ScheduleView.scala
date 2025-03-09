@@ -3,7 +3,6 @@ package io.scala.app.schedule
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import java.time.DayOfWeek
-import java.time.LocalDate
 import java.time.LocalTime
 
 import io.scala.Lexicon

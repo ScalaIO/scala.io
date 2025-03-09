@@ -1,8 +1,6 @@
 package io.scala.views
 
 import com.raquo.laminar.api.L.*
-import org.scalajs.dom.document
-
 import io.scala.IndexPage
 import io.scala.Page
 import io.scala.VenuePage
@@ -11,6 +9,7 @@ import io.scala.extensions.withBinder
 import io.scala.extensions.withLink
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
+import org.scalajs.dom.document
 
 case object IndexView extends ReactiveView[IndexPage] {
 
@@ -65,8 +64,8 @@ case object IndexView extends ReactiveView[IndexPage] {
       Titles.main("Connecting Scala Enthusiasts!"),
       h2(
         className := "event-date-location",
-        "\\d{2}/1(0|1)/2025 - Paris @ ",
-        u("To be decided").withBinder(VenuePage)
+        "17/10/2025 - Paris @ ",
+        u("La Grande Crypte").withBinder(VenuePage)
       ),
       Buttons
         .shiny(
@@ -82,7 +81,7 @@ case object IndexView extends ReactiveView[IndexPage] {
     className := "container grayed-out",
     Titles("Tickets"),
     div(
-      Buttons.shiny("💸", disabled := true).withLink("https://www.billetweb.fr/scalaio-paris-2024-epita"),
+      Buttons.shiny("💸", disabled := true).withLink("https://www.billetweb.fr/scalaio-paris-2024-epita")
     )
   )
 }
