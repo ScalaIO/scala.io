@@ -81,7 +81,7 @@ case object IndexView extends ReactiveView[IndexPage] {
     className := "container grayed-out",
     Titles("Tickets"),
     div(
-      Buttons.shiny("💸", disabled := true).withLink("https://www.billetweb.fr/scalaio-paris-2024-epita")
+      Buttons.shiny("💸", disabled := true).withLink("")
     )
   )
 }

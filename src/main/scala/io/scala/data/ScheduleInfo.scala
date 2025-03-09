@@ -1,13 +1,13 @@
 package io.scala.data
 
 import com.raquo.laminar.api.L.*
-import java.time.DayOfWeek
-import java.time.LocalTime
-
 import io.scala.models.Break
 import io.scala.models.Session
 import io.scala.models.Special
 import io.scala.modules.syntax.*
+
+import java.time.DayOfWeek
+import java.time.LocalTime
 
 object ScheduleInfo {
   val minStart = LocalTime.of(9, 0)
@@ -65,47 +65,7 @@ object ScheduleInfo {
     Special(Special.Kind.End).render
   ).zipWithIndex.map { case (x, i) => x.gridArea(s"a${i + 1}") }
 
-  val day2 = List(
-    time(9, 15).render(),
-    session("how-functional-is-direct-style").render(room1),
-    session("mill-builds-in-scala-3-a-migration-story").render(room2),
-    session("tools-for-scala-workshop").render(room3),
-    time(10, 0).render(),
-    Break(Break.Kind.Large).render,
-    time(10, 15).render(),
-    session("optimize-data-transfer-kafka-to-bq").render(room1),
-    session("zk-voting-in-scala-and-rust").render(room2),
-    time(11, 0).render(),
-    Break(Break.Kind.Large).render,
-    time(11, 15).render(),
-    session("plowing-postgres-and-unearthing-hidden-gems").render(room1),
-    session("scary-stuff-less-metaprogramming-in-scala3").render(room2),
-    time(12, 0).render(),
-    Break(Break.Kind.Lunch1).render,
-    time(13, 30).render(),
-    session("welcome-to-scala-2.7.7-in-2024").render(room1),
-    session("profunctors-for-fun-and-profit").render(room2),
-    session("tools-for-scala-workshop").render(room3),
-    time(14, 15).render(),
-    Break(Break.Kind.Large).render,
-    time(14, 30).render(),
-    session("scala-performance-when-you-should-betray-fp-principles").render(room1),
-    session("decisions4s-conditionals-higher-kinded-data-scala-3").render(room2),
-    time(15, 15).render(),
-    Break(Break.Kind.Large).render,
-    time(15, 30).render(),
-    session("better-scala-builds-with-mill").render(room1),
-    session("embracing-failure-web-development-with-scala-3").render(room2),
-    time(16, 15).render(),
-    Break(Break.Kind.Large).render,
-    time(16, 30).render(),
-    session("programming-a-language").render(room1),
-    time(17, 15).render(),
-    Special(Special.Kind.End).render
-  ).zipWithIndex.map { case (x, i) => x.gridArea(s"a${i + 1}") }
-
   val allDays = Seq(
     (DayOfWeek.THURSDAY, div(day1, className := "day-base-layout day1")),
-    (DayOfWeek.FRIDAY, div(day2, className := "day-base-layout day2"))
   )
 }
