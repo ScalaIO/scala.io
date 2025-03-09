@@ -89,12 +89,11 @@ case object IndexView extends ReactiveView[IndexPage] {
   )
 
   lazy val previousSponsors: Div = div(
-    idAttr("previous-sponsors"),
     className := "container",
     Titles("Previous Sponsors"),
     div(
+      idAttr := "previous-sponsors",
       className := "card-container",
-      styleAttr := "grid-auto-flow: dense; grid-template-columns: repeat(auto-fill, min(100%, 10em));",
       SponsorsHistory.allSponsors.map: sponsor =>
         SponsorLogo(sponsor, false)
           .amend(styleAttr := s"grid-column: span ${sponsor.gridCol}; grid-row: span ${sponsor.gridRow};")

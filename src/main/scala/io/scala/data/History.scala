@@ -55,7 +55,10 @@ object SessionsHistory:
 object SponsorsHistory:
 
   def allSponsors: Array[Sponsor] =
-    Event.values.flatMap(_.sponsors).distinctBy(_.name).sortBy(_.rank)
+    Event.values
+      .flatMap(_.sponsors.filter(_.rank != Sponsor.Rank.Partner))
+      .distinctBy(_.name)
+      .sortBy(_.rank)
 
   def sponsorsForConf(confName: Option[String]): List[Sponsor] =
     confName.flatMap(Event.withName).getOrElse(Event.Current).sponsors
