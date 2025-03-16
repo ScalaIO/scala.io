@@ -10,16 +10,6 @@ on:
   pull_request_target:
     types: [opened, closed, synchronize, reopened]
     branches: [main]
-    paths:
-      - ".github/**"
-      - "project/**"
-      - "public/**"
-      - "src/**"
-      - "build.sbt"
-      - "index.html"
-      - "package.json"
-      - "root.js"
-      - "vite.config.js"
 
 concurrency:
   group: ${{ github.ref }}
@@ -63,12 +53,14 @@ jobs:
           jvm: adoptium:1.17.0.7
           apps: sbt
       - name: Install clever-tools
-        run: npm install -g clever-tools
+        run: |
+          npm install -g clever-tools
+          clever login --token ${{ secrets.CLEVER_TOKEN }} --secret ${{ secrets.CLEVER_SECRET }}
       - name: Create app and add domain
         run: |
           clever create --type node ${{ env.APP_NAME }}-${BRANCH_NAME} --alias ${{ env.APP_NAME }}-${BRANCH_NAME} --region par --org ${{secrets.ORGA_ID}}
           clever scale --flavor pico
-          clever domain add ${{ env.APP_NAME }}-${BRANCH_NAME}.cleverapps.io      
+          clever domain add ${{ env.APP_NAME }}-${BRANCH_NAME}.cleverapps.io
       - name: Compile
         run: |
           sbt "compile; fullLinkJS"
@@ -142,7 +134,8 @@ jobs:
           git commit -m "chore: forward changed to preprod"
       - name: Deploy to Clever Cloud
         run: |
-          npm install -g clever-tools 
+          npm install -g clever-tools
+          clever login --token ${{ secrets.CLEVER_TOKEN }} --secret ${{ secrets.CLEVER_SECRET }}
           clever link -o ${{ env.ORGA_ID }} ${{ env.APP_NAME }}-${BRANCH_NAME}
           clever deploy --force
       - name: Comment PR
@@ -174,6 +167,7 @@ jobs:
       - name: Delete app
         run: |
           npm install -g clever-tools
+          clever login --token ${{ secrets.CLEVER_TOKEN }} --secret ${{ secrets.CLEVER_SECRET }}
           clever link -o ${{ env.ORGA_ID }} ${{ env.APP_NAME }}-${BRANCH_NAME}
           clever delete --alias ${{ env.APP_NAME }}-${BRANCH_NAME} --yes
       - name: Comment PR
