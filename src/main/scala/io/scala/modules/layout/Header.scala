@@ -4,7 +4,10 @@ package modules.layout
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom
-import org.scalajs.dom.{HTMLButtonElement, HTMLElement, window}
+import org.scalajs.dom.HTMLButtonElement
+import org.scalajs.dom.HTMLElement
+import org.scalajs.dom.window
+
 import io.scala.modules.elements.Buttons
 import io.scala.modules.elements.Links
 import io.scala.svgs.Icons
@@ -31,7 +34,13 @@ object Header {
         alignItems.center,
         inlineLinks,
         burgerMenu,
-        Buttons.shiny("Tickets", marginLeft := "0.5em" , padding := "0.5rem 0.5rem", Page.navigateTo(IndexPage(), Some("tickets")))
+        Buttons.shiny(
+          "Tickets",
+          marginLeft := "0.5em",
+          padding    := "0.5rem 0.5rem",
+          Page.navigateTo(IndexPage(), Some("tickets")),
+          disabled := true
+        )
       )
     )
 

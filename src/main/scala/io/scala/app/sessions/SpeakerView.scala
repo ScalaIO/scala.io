@@ -2,11 +2,11 @@ package io.scala.app.sessions
 
 import com.raquo.laminar.api.L.*
 
-import io.scala.models.Social
 import io.scala.models.Session.Speaker
+import io.scala.models.Social
+import io.scala.modules.elements.Image
 import io.scala.modules.elements.Titles
 import io.scala.svgs.Icons
-import io.scala.modules.elements.Image
 
 class SpeakerView(speaker: Speaker):
   def body: HtmlElement =

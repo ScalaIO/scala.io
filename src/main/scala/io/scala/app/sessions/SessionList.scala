@@ -17,7 +17,7 @@ case object SessionList extends ReactiveView[SessionsPage] {
   given Ordering[(String, List[Session])] =
     case ((cat1, talks1), (cat2, talks2)) =>
       val sizeComparison = talks1.size.compareTo(talks2.size)
-      
+
       if sizeComparison != 0 then -sizeComparison
       else cat1.compareTo(cat2)
 

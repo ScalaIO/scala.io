@@ -4,16 +4,15 @@ import com.raquo.laminar.api.L
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import com.raquo.laminar.nodes.ReactiveSvgElement
-import org.scalajs.dom
-import org.scalajs.dom.HTMLDivElement
-import org.scalajs.dom.HTMLParagraphElement
-import org.scalajs.dom.SVGSVGElement
-
 import io.scala.data.Event
 import io.scala.data.parsers.Parsers
 import io.scala.modules.SessionCard
 import io.scala.modules.elements.Paragraphs
 import io.scala.svgs.Icons
+import org.scalajs.dom
+import org.scalajs.dom.HTMLDivElement
+import org.scalajs.dom.HTMLParagraphElement
+import org.scalajs.dom.SVGSVGElement
 
 sealed trait Act:
   def isKeynote: Boolean
@@ -33,11 +32,11 @@ case class Session(
   lazy val renderDescription: List[ReactiveHtmlElement[HTMLParagraphElement]] =
     Parsers.Description.parseTalk(description).map(Paragraphs.description(_))
 
-  def duration: Int       = info.kind.duration
-  def render(room: Session.Room | Null): Div         = SessionCard(this, Event.Current.toString, room)
-  def isKeynote: Boolean  = info.kind == Session.Kind.Keynote
-  def isWorkshop: Boolean = info.kind == Session.Kind.Workshop
-  def isBreak: Boolean    = false
+  def duration: Int                          = info.kind.duration
+  def render(room: Session.Room | Null): Div = SessionCard(this, Event.Current.toString, room)
+  def isKeynote: Boolean                     = info.kind == Session.Kind.Keynote
+  def isWorkshop: Boolean                    = info.kind == Session.Kind.Workshop
+  def isBreak: Boolean                       = false
 
 object Session:
   def empty: Session = Session(BasicInfo.empty, "To be announced", List.empty)

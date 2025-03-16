@@ -1,16 +1,15 @@
 package io.scala.views
 
 import com.raquo.laminar.api.L.*
-import org.scalajs.dom.document
-
 import io.scala.IndexPage
 import io.scala.Page
 import io.scala.VenuePage
 import io.scala.data.SessionsHistory
 import io.scala.extensions.withBinder
+import io.scala.extensions.withLink
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
-import io.scala.extensions.withLink
+import org.scalajs.dom.document
 
 case object IndexView extends ReactiveView[IndexPage] {
 
@@ -27,7 +26,7 @@ case object IndexView extends ReactiveView[IndexPage] {
             Links.highlighted(href := "https://www.youtube.com/@scalaio/videos", "YouTube channel")
           ),
           Paragraphs.description(
-            "This edition brings us together in Paris for two days, with a multi-session structure and a large community space. With a great venue, wonderful speakers, and a lot of surprises, we are looking forward to meeting you there!"
+            "This edition brings us together in Paris for one day, with a multi-session structure and a large community space. With a great venue, wonderful speakers, and a lot of surprises, we are looking forward to meeting you there!"
           )
         ),
         Separator(),
@@ -65,25 +64,24 @@ case object IndexView extends ReactiveView[IndexPage] {
       Titles.main("Connecting Scala Enthusiasts!"),
       h2(
         className := "event-date-location",
-        "07 & 08 November 2024 - Paris @ ",
-        u("Epita").withBinder(VenuePage)
+        "17/10/2025 - Paris @ ",
+        u("La Grande Crypte").withBinder(VenuePage)
       ),
       Buttons
         .shiny(
           "Get your ticket!",
-          onClick --> { _ => document.getElementById("tickets").scrollIntoView() }
+          onClick --> { _ => document.getElementById("tickets").scrollIntoView() },
+          disabled := true
         )
     )
   )
 
   lazy val tickets: Div = div(
     idAttr("tickets"),
-    className := "container",
+    className := "container grayed-out",
     Titles("Tickets"),
-    p("We offer both on-site and online tickets for the conference (redirect to the same page, just for better readability :)"),
     div(
-      Buttons.shiny("On-site tickets").withLink("https://www.billetweb.fr/scalaio-paris-2024-epita"),
-      Buttons.shiny("Streaming tickets").withLink("https://www.billetweb.fr/scalaio-paris-2024-epita")
+      Buttons.shiny("💸", disabled := true).withLink("")
     )
   )
 }

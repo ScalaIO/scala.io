@@ -11,13 +11,13 @@ import io.scala.models.Organizer
 import io.scala.models.Social
 import io.scala.modules.elements.Cards
 import io.scala.modules.elements.Containers
+import io.scala.modules.elements.Image
 import io.scala.modules.elements.Links
 import io.scala.modules.elements.Lists
 import io.scala.modules.elements.Paragraphs
 import io.scala.modules.elements.Titles
 import io.scala.svgs.Icons.github
 import io.scala.views.SimpleView
-import io.scala.modules.elements.Image
 
 object FAQView extends SimpleView {
   private def question(question: String, answer: Modifier[ReactiveElement[HTMLDivElement]]*): HtmlElement = {

@@ -19,9 +19,14 @@ enum Event(val sessions: List[Session], val sponsors: List[Sponsor]):
         SessionsData.paris_2024.map(Parsers.ConferenceSession.fromText),
         Parsers.ConferenceSponsor.fromText(SponsorsData.paris_2024)
       )
+  case `paris-2025`
+      extends Event(
+        SessionsData.paris_2025.map(Parsers.ConferenceSession.fromText),
+        Parsers.ConferenceSponsor.fromText(SponsorsData.paris_2025)
+      )
 
 object Event:
-  val Current: Event = Event.`paris-2024`
+  val Current: Event = Event.`paris-2025`
   // makes me want to use enumeratum again...
   def withName(name: String): Option[Event] =
     Event.values.find(_.toString == name)

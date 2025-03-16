@@ -4,6 +4,7 @@ import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom.HTMLAnchorElement
 import org.scalajs.dom.HTMLButtonElement
+
 import io.scala.Page
 
 object Links:
@@ -20,9 +21,11 @@ object Links:
   def highlighted(modifiers: Modifier[Anchor]*) =
     a(className := "link-highlight", modifiers, target := "_blank")
 
-  def button(text: String, targetUrl: String, anchorModifiers: Modifier[Anchor]*)(buttonModifiers: Modifier[Button]*): Anchor =
+  def button(text: String, targetUrl: String, anchorModifiers: Modifier[Anchor]*)(
+      buttonModifiers: Modifier[Button]*
+  ): Anchor =
     a(
-      href := targetUrl,
+      href   := targetUrl,
       target := "_blank",
       Buttons.shiny(text, buttonModifiers),
       anchorModifiers

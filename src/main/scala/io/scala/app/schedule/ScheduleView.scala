@@ -7,7 +7,6 @@ import java.time.LocalTime
 
 import io.scala.Lexicon
 import io.scala.SchedulePage
-import io.scala.data.ScheduleInfo
 import io.scala.modules.*
 import io.scala.modules.elements.*
 import io.scala.modules.layout.Tabs
@@ -15,7 +14,7 @@ import io.scala.modules.syntax.*
 import io.scala.views.ReactiveView
 
 case object ScheduleView extends ReactiveView[SchedulePage] {
-  val selectedDay: Var[DayOfWeek] = Var(DayOfWeek.THURSDAY)
+  val selectedDay: Var[DayOfWeek] = Var(DayOfWeek.FRIDAY)
 
   lazy val globalHours: Seq[HtmlElement] =
     def renderHours(name: String, hours: Seq[LocalTime]) =
@@ -43,7 +42,6 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
     )
 
   def render(events: Seq[(DayOfWeek, HtmlElement)]) =
-    println(s"${events.map(_._1).size}")
     Tabs(
       events,
       _.toString,
@@ -56,7 +54,7 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       Titles("Schedule"),
       div(),
       globalHours,
-      Line(margin = 4, sizeUnit = "rem"),
-      child <-- signal.map(_ => render(ScheduleInfo.allDays))
+      Line(margin = 4, sizeUnit = "rem")
+      // child <-- signal.map(_ => render(ScheduleInfo.allDays))
     )
 }
