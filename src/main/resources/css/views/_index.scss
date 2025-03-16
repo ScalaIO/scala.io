@@ -7,14 +7,14 @@
     height: calc(100lvh - vars.$header-height);
     font-size: 2em;
     line-height: 1em;
-  
+
     @media screen and (min-width: vars.$mobile-width) {
       font-size: 3em;
     }
     @media screen and (min-width: vars.$laptop-width) {
       font-size: 4em;
     }
-  
+
     .event-date-location {
       font-size: 0.66em;
     }
@@ -27,7 +27,10 @@
 
   .card-container {
     justify-items: center;
-    grid-template: auto / repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+
+    &.with-global-template {
+      grid-template: auto / repeat(auto-fill, minmax(min(250px, 100%), 1fr));
+    }
 
     .job {
       font-size: 0.8em;
@@ -42,5 +45,17 @@
     display: flex;
     gap: 1rem;
     color: vars.$text-color-contrast;
+  }
+
+  #previous-sponsors {
+    margin-top: 1em;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+  }
+
+  #previous-sponsors > div{
+    grid-auto-flow: dense;
+    grid-template-columns: repeat(auto-fill, min(100%, 10em));
   }
 }

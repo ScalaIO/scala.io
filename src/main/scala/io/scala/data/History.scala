@@ -7,6 +7,8 @@ import io.scala.extensions.filterWhen
 import io.scala.models.Session
 import io.scala.models.Sponsor
 
+import scala.collection.MapView
+
 // TODO: propagate usage of Event type instead of raw strings
 enum Event(val sessions: List[Session], val sponsors: List[Sponsor]):
   case `nantes-2024`
@@ -53,6 +55,20 @@ object SessionsHistory:
     confName.getOrElse(Event.Current.toString)
 
 object SponsorsHistory:
+
+  private lazy val allSponsors: MapView[Sponsor.Rank, List[Sponsor]] =
+    Event.values
+      .flatMap(_.sponsors.filter(_.rank != Sponsor.Rank.Partner))
+      .groupBy(_.name)
+      .mapValues(_.minBy(_.rank))
+      .values
+      .groupBy(_.rank)
+      .mapValues(_.toList.sortBy(_.name))
+
+  val allRanks: List[Sponsor.Rank] = allSponsors.keys.toList.sorted
+
+  def values(rank: Sponsor.Rank): List[Sponsor] = allSponsors(rank)
+
 
   def sponsorsForConf(confName: Option[String]): List[Sponsor] =
     confName.flatMap(Event.withName).getOrElse(Event.Current).sponsors

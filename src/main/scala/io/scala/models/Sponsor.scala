@@ -20,8 +20,16 @@ object Sponsor {
     case Love      extends Rank("❤️ J'aime Scala ❤️", "love")
     case Partner   extends Rank("🤝 Partner 🤝", "partner")
 
+    def sizeInPx: Int = this match
+      case Rank.Platinum  => 150
+      case Rank.Gold      => 140
+      case Rank.Silver    => 130
+      case Rank.Bronze    => 120
+      case Rank.Community | Rank.Love | Rank.Partner   => 100
+
   def empty = Sponsor("Malformed sponsor", "", "", Rank.Partner)
 
   object Rank:
     given Ordering[Rank] = Ordering[Int].on(_.ordinal)
+    given Ordered[Rank]  = _.ordinal
 }

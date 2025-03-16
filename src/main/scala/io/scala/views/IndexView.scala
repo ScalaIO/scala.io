@@ -1,15 +1,17 @@
 package io.scala.views
 
 import com.raquo.laminar.api.L.*
+import org.scalajs.dom.document
+
 import io.scala.IndexPage
 import io.scala.Page
 import io.scala.VenuePage
 import io.scala.data.SessionsHistory
+import io.scala.data.SponsorsHistory
 import io.scala.extensions.withBinder
 import io.scala.extensions.withLink
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
-import org.scalajs.dom.document
 
 case object IndexView extends ReactiveView[IndexPage] {
 
@@ -32,7 +34,9 @@ case object IndexView extends ReactiveView[IndexPage] {
         Separator(),
         tickets,
         Separator(),
-        speakerGallery(args)
+        speakerGallery(args),
+        Separator(),
+        previousSponsors
       )
     )
 
@@ -51,7 +55,7 @@ case object IndexView extends ReactiveView[IndexPage] {
       className := "container speaker-gallery",
       Titles("Speaker Gallery"),
       div(
-        className := "card-container",
+        className := "card-container with-global-template",
         children <-- args.map: page =>
           speakers(page).map(SpeakerCard(_, _, SessionsHistory.getConfName(page.conference)))
       )
@@ -82,6 +86,30 @@ case object IndexView extends ReactiveView[IndexPage] {
     Titles("Tickets"),
     div(
       Buttons.shiny("💸", disabled := true).withLink("")
+    )
+  )
+
+  lazy val previousSponsors: Div = div(
+    className := "container",
+    Titles("Previous Sponsors"),
+    div(
+      idAttr := "previous-sponsors",
+      SponsorsHistory.allRanks.map { rank =>
+        div(
+          Titles.medium(rank.toString),
+          div(
+            className := "card-container-flex",
+            SponsorsHistory
+              .values(rank)
+              .map: sponsor =>
+                SponsorLogo(sponsor, false)
+                  .amend(
+                    styleAttr := s"grid-column: span ${sponsor.gridCol}; grid-row: span ${sponsor.gridRow};",
+                    height    := s"${sponsor.rank.sizeInPx}px"
+                  )
+          )
+        )
+      }.toList
     )
   )
 }
