@@ -71,18 +71,33 @@ case object IndexView extends ReactiveView[IndexPage] {
       Buttons
         .shiny(
           "Get your ticket!",
-          onClick --> { _ => document.getElementById("tickets").scrollIntoView() },
-          disabled := true
+          onClick --> { _ => document.getElementById("tickets").scrollIntoView() }
         )
     )
   )
 
   lazy val tickets: Div = div(
     idAttr("tickets"),
-    className := "container grayed-out",
+    className := "container",
     Titles("Tickets"),
     div(
-      Buttons.shiny("💸", disabled := true).withLink("")
+      a(
+        title                      := "Online ticketing",
+        href                       := "https://www.billetweb.fr/shop.php?event=scalaio-2025",
+        className                  := "shop_frame",
+        target                     := "_blank",
+        dataAttr("src")            := "https://www.billetweb.fr/shop.php?event=scalaio-2025",
+        dataAttr("max-width")      := "100%",
+        dataAttr("initial-height") := "600",
+        dataAttr("scrolling")      := "no",
+        dataAttr("id")             := "scalaio-2025",
+        dataAttr("resize")         := "1",
+        "Online ticketing"
+      ),
+      scriptTag(
+        `type` := "text/javascript",
+        src    := "https://www.billetweb.fr/js/export.js"
+      )
     )
   )
 

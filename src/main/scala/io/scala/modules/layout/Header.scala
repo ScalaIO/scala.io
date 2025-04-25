@@ -38,7 +38,6 @@ object Header {
           marginLeft := "0.5em",
           padding    := "0.5rem 0.5rem",
           Page.navigateTo(IndexPage(), Some("tickets")),
-          disabled := true
         )
       )
     )
