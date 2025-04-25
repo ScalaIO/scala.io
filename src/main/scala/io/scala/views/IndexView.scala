@@ -4,11 +4,8 @@ import com.raquo.laminar.api.L.*
 import org.scalajs.dom.document
 
 import io.scala.IndexPage
-import io.scala.Page
-import io.scala.VenuePage
 import io.scala.data.SessionsHistory
 import io.scala.data.SponsorsHistory
-import io.scala.extensions.withBinder
 import io.scala.extensions.withLink
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
@@ -69,7 +66,7 @@ case object IndexView extends ReactiveView[IndexPage] {
       h2(
         className := "event-date-location",
         "17/10/2025 - Paris @ ",
-        u("La Grande Crypte").withBinder(VenuePage)
+        u("La Grande Crypte").withLink("https://lagrandecrypte.com/")
       ),
       Buttons
         .shiny(
