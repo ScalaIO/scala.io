@@ -1,12 +1,70 @@
 package io.scala.app.faq
 
 import com.raquo.laminar.api.L.*
+import knockoff.Paragraph
 
 import io.scala.modules.elements.Links
 import io.scala.modules.elements.Lists
 import io.scala.modules.elements.Paragraphs
 import io.scala.modules.elements.Titles
 import io.scala.views.SimpleView
+
+case class Law(
+    link: Anchor,
+    summary: String,
+    example: String,
+    sanction: Option[String]
+):
+  def render: HtmlElement =
+    Lists.Items.titledItem(
+      link,
+      s"$summary, e.g. $example",
+      Lists.flat(
+        li("Sanction: ", sanction.getOrElse("No standalone sanction defined"))
+      )
+    )
+
+val importantLaws = Seq(
+  Law(
+    Links.highlighted(
+      "225-1 (Penal code)",
+      href := "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045391831"
+    ),
+    "Define what is discrimination (origins, sex, disabilities, etc.)",
+    "refusing to register someone because of its religion",
+    None
+  ),
+  Law(
+    Links.highlighted(
+      "225-2 (Penal code)",
+      href := "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045391831"
+    ),
+    "Define the sanction for discriminating",
+    "refusing the access to someone because of its skin color",
+    Some("3 years of prison and 45k€ fine")
+  ),
+  Law(
+    Links
+      .highlighted("Art. 24 (Law 1881)", href := "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000043982456"),
+    "Incitement to hatred, violence or discrimination",
+    "calls to boycott a religious group",
+    Some("1 year of prison and 45k€ fine")
+  ),
+  Law(
+    Links
+      .highlighted("Art. 32 (Law 1881)", href := "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038313312"),
+    "Public diffamation",
+    "X is dangerous because X is a jew",
+    Some("1 year of prison and 45k€ fine")
+  ),
+  Law(
+    Links
+      .highlighted("Art. 33 (Law 1881)", href := "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000049312747"),
+    "Discriminatory public insult",
+    "women are inferior to men",
+    Some("1 year of prison and 45k€ fine")
+  )
+)
 
 object CoCView extends SimpleView:
   override def body(): HtmlElement = sectionTag(
@@ -35,11 +93,7 @@ object CoCView extends SimpleView:
     ),
     Titles.small("Scope"),
     Paragraphs.description(
-      "CoC applies in any French community space, including",
-      Lists.flat(
-        Lists.titledItem("Physical spaces", "such as meetups, conferences"),
-        Lists.titledItem("Virtual spaces", "such as the Scala-FR discord server")
-      )
+      "CoC applies in any French community space, including"
     ),
     Titles.medium("Community Conduct", idAttr := "community-conduct"),
     Paragraphs.description(
@@ -65,16 +119,23 @@ object CoCView extends SimpleView:
     Titles.small("Our pledge"),
     p("We pledge that we will make reasonable efforts on"),
     Lists.flat(
-      Lists.titledItem(
+      Lists.Items.titledItem(
         "Enforcement",
         "Enforcing the terms and conditions set forth in CoC."
       ),
-      Lists.titledItem(
+      Lists.Items.titledItem(
         "Contact Information",
         "Providing contact information for use in reporting incidents, including an informations on our internal processes"
       )
     ),
     Titles.small("Disclaimers"),
+    Paragraphs.withTitle(
+      "Important reminders",
+      "The event is accountable to the French laws and regulations, so it may surprise some people but this is ",
+      strong("not"),
+      " the land of free speech. We cannot allow anything to be said as it would make us penally responsible.",
+      importantLaws.map(_.render)
+    ),
     Paragraphs.withTitle(
       "Criminal Conduct",
       "CoC is not intended to supplant the laws of governing jurisdictions. Criminal conduct of any kind should be immediately reported to relevant authorities and dealt with as recommended by such authorities."

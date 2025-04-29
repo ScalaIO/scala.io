@@ -24,8 +24,12 @@ object Lists:
       elements.map(li(_))
     )
 
-  def titledItem(title: String, content: Modifier[ReactiveHtmlElement[HTMLLIElement]]) =
-    li(
-      strong(title, className := "list-title"),
-      content
-    )
+  object Items:
+    def titledItem(
+        title: Modifier[ReactiveHtmlElement[HTMLElement]],
+        content: Modifier[ReactiveHtmlElement[HTMLLIElement]]*
+    ) =
+      li(
+        strong(title, className := "list-title"),
+        content
+      )
