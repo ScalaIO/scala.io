@@ -131,9 +131,7 @@ object CoCView extends SimpleView:
     Titles.small("Disclaimers"),
     Paragraphs.withTitle(
       "Important reminders",
-      "The event is accountable to the French laws and regulations, so it may surprise some people but this is ",
-      strong("not"),
-      " the land of free speech. We cannot allow anything to be said as it would make us penally responsible.",
+      "Under French law, speakers are fully responsible for their content, while organizers must prevent discrimination including but not limited to political views, religion, sexual orientation, or ethnicity – with legal consequences for violations.",
       importantLaws.map(_.render)
     ),
     Paragraphs.withTitle(
