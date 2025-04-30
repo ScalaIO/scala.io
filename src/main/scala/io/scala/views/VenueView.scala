@@ -9,7 +9,12 @@ object VenueView extends SimpleView {
   def body(): HtmlElement = sectionTag(
     className := "container venue",
     Titles("Our Venue"),
-    div("Surpise 👀"),
+    div(
+      a(
+        "La Grande Crypte - 69 bis Rue Boissière, Paris",
+        href := "https://lagrandecrypte.com/"
+      )
+    ),
     Titles("Accommodations"),
     div(
       display.flex,
