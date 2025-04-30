@@ -12,16 +12,13 @@ import io.scala.views.SimpleView
 case class Law(
     link: Anchor,
     summary: String,
-    example: String,
     sanction: Option[String]
 ):
   def render: HtmlElement =
-    Lists.Items.titledItem(
-      link,
-      s"$summary, e.g. $example",
-      Lists.flat(
-        li("Sanction: ", sanction.getOrElse("No standalone sanction defined"))
-      )
+    tr(
+      td(strong(link)),
+      td(summary),
+      td(sanction.getOrElse("no standalone sanction defined"))
     )
 
 val importantLaws = Seq(
@@ -31,7 +28,6 @@ val importantLaws = Seq(
       href := "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045391831"
     ),
     "Define what is discrimination (origins, sex, disabilities, etc.)",
-    "refusing to register someone because of its religion",
     None
   ),
   Law(
@@ -40,28 +36,24 @@ val importantLaws = Seq(
       href := "https://www.legifrance.gouv.fr/codes/article_lc/LEGIARTI000045391831"
     ),
     "Define the sanction for discriminating",
-    "refusing the access to someone because of its skin color",
     Some("3 years of prison and 45k€ fine")
   ),
   Law(
     Links
       .highlighted("Art. 24 (Law 1881)", href := "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000043982456"),
     "Incitement to hatred, violence or discrimination",
-    "calls to boycott a religious group",
     Some("1 year of prison and 45k€ fine")
   ),
   Law(
     Links
       .highlighted("Art. 32 (Law 1881)", href := "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000038313312"),
     "Public diffamation",
-    "X is dangerous because X is a jew",
     Some("1 year of prison and 45k€ fine")
   ),
   Law(
     Links
       .highlighted("Art. 33 (Law 1881)", href := "https://www.legifrance.gouv.fr/loda/article_lc/LEGIARTI000049312747"),
     "Discriminatory public insult",
-    "women are inferior to men",
     Some("1 year of prison and 45k€ fine")
   )
 )
@@ -132,7 +124,16 @@ object CoCView extends SimpleView:
     Paragraphs.withTitle(
       "Important reminders",
       "Under French law, speakers are fully responsible for their content, while organizers must prevent discrimination including but not limited to political views, religion, sexual orientation, or ethnicity – with legal consequences for violations.",
-      importantLaws.map(_.render)
+      table(
+        tableLayout := "auto",
+        className   := "table laws",
+        tr(
+          th(strong("Law")),
+          th(strong("Summary")),
+          th(strong("Sanction (up to)"))
+        ),
+        importantLaws.map(_.render)
+      )
     ),
     Paragraphs.withTitle(
       "Criminal Conduct",
