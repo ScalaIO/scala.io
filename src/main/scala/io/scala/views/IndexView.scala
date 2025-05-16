@@ -2,6 +2,7 @@ package io.scala.views
 
 import com.raquo.laminar.api.L.*
 import org.scalajs.dom.document
+import scala.util.Random
 
 import io.scala.IndexPage
 import io.scala.data.SessionsHistory
@@ -101,27 +102,52 @@ case object IndexView extends ReactiveView[IndexPage] {
     )
   )
 
+  lazy val previousSponsorsElements = (for {
+    rank    <- SponsorsHistory.allRanks
+    sponsor <- SponsorsHistory.values(rank)
+  } yield {
+    div(
+      SponsorLogo(sponsor, withRank = false, flat = true).amend(
+        styleAttr := s"grid-column: span ${sponsor.gridCol}; grid-row: span ${sponsor.gridRow};",
+        height    := s"${sponsor.rank.sizeInPx}px"
+      )
+    )
+  }) ++
+    Array(
+      "axa.png",
+      "criteo.png",
+      "ebiz.png",
+      "ebiznext.png",
+      "fyber.png",
+      "lightbend.png",
+      "lunatech.png",
+      "mfglabs.png",
+      "scalac.png",
+      "tabmo.png",
+      "teads.png",
+      "valraiso.png",
+      "xebia.png",
+      "zengularity.png"
+    ).map(fileName =>
+      div(
+        Image.lazyLoaded(
+          src       := s"logos/old-sponsors/$fileName",
+          alt       := s"Scala.IO 2022 sponsor: $fileName",
+          className := "sponsor-logo-id"
+        ),
+        className := "sponsor-card-flat"
+      )
+    )
+
   lazy val previousSponsors: Div = div(
     className := "container",
     Titles("Previous Sponsors"),
     div(
       idAttr := "previous-sponsors",
-      SponsorsHistory.allRanks.map { rank =>
-        div(
-          Titles.medium(rank.toString),
-          div(
-            className := "card-container-flex",
-            SponsorsHistory
-              .values(rank)
-              .map: sponsor =>
-                SponsorLogo(sponsor, false)
-                  .amend(
-                    styleAttr := s"grid-column: span ${sponsor.gridCol}; grid-row: span ${sponsor.gridRow};",
-                    height    := s"${sponsor.rank.sizeInPx}px"
-                  )
-          )
-        )
-      }.toList
+      div(
+        className := "card-container",
+        previousSponsorsElements.sortBy(_ => Random.nextInt(3) - 1)
+      )
     )
   )
 }
