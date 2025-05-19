@@ -293,3 +293,17 @@ span.workshop {
     margin-left: 0;
   }
 }
+
+.sponsor-card-flat {
+  @extend %card-base;
+  @extend %card-effects;
+
+  justify-content: center;
+  align-items: center;
+
+  &:after {
+    margin-left: 0;
+  }
+}
+
+
