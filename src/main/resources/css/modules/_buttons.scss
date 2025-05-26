@@ -5,6 +5,7 @@
 
   font-weight: 500;
   border-radius: 4px;
+  border: 1px dashed vars.$text-color;
   padding: 0.5em 1em;
   transition: background-color 0.5s, color 0.5s;
 

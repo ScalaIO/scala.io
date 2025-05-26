@@ -5,6 +5,8 @@ import org.scalajs.dom.document
 import scala.util.Random
 
 import io.scala.IndexPage
+import io.scala.Page
+import io.scala.SponsorsPage
 import io.scala.data.SessionsHistory
 import io.scala.data.SponsorsHistory
 import io.scala.extensions.withLink
@@ -69,11 +71,15 @@ case object IndexView extends ReactiveView[IndexPage] {
         "17/10/2025 - Paris @ ",
         u("La Grande Crypte").withLink("https://lagrandecrypte.com/")
       ),
-      Buttons
-        .shiny(
-          "Get your ticket!",
-          onClick --> { _ => document.getElementById("tickets").scrollIntoView() }
-        )
+      div(
+        className := "hero-buttons",
+        Buttons
+          .shiny(
+            "Get your ticket!",
+            onClick --> { _ => document.getElementById("tickets").scrollIntoView() }
+          ),
+        Buttons.shiny(Links.innerPage("Sponsor us!", SponsorsPage(None)))
+      )
     )
   )
 

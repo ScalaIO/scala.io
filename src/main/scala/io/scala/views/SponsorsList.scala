@@ -15,15 +15,11 @@ case object SponsorsList extends ReactiveView[SponsorsPage] {
       Titles("Sponsors"),
       p(Lexicon.Sponsors.catchPhrase),
       div(
-        a(
-          Buttons.classy(Lexicon.Sponsors.callToAction),
-          href   := "mailto:contact@scala.io",
-          target := "_blank"
+        Buttons.classy("Become a sponsor", kind = Buttons.ButtonKind.Href("mailto:contact@scala.io")),
+        Buttons.classy(
+          Lexicon.Sponsors.callToBrochure,
+          kind = Buttons.ButtonKind.Href(Lexicon.Sponsors.brochureUrl)
         ),
-        // ClassyButton(
-        //   Lexicon.Sponsors.callToBrochure,
-        //   kind = ButtonKind.Href(Lexicon.Sponsors.brochureUrl)
-        // ),
         className := "sponsors__buttons"
       ),
       Line(margin = 4, sizeUnit = "rem"),
@@ -52,6 +48,18 @@ case object SponsorsList extends ReactiveView[SponsorsPage] {
               )
             }
             .dropRight(1)
+        )
+      ),
+      Line(margin = 4, sizeUnit = "rem"),
+      div(
+        width := "100%",
+        display.flex,
+        flexDirection.row,
+        justifyContent.center,
+        iframe(
+          src := "https://docs.google.com/presentation/d/e/2PACX-1vQnOK-iGp4EJ9Etp_z5yZv8nxOH61cxg_j2xHrOvebNoD0x5mO9OL-2Fv8O5yKBNgWMC74eMgKXc3En/pubembed?start=false&loop=false",
+          width  := "960px",
+          height := "569px"
         )
       )
     )
