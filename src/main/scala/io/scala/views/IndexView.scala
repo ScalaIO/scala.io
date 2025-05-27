@@ -112,11 +112,13 @@ case object IndexView extends ReactiveView[IndexPage] {
     rank    <- SponsorsHistory.allRanks
     sponsor <- SponsorsHistory.values(rank)
   } yield {
-    div(
-      SponsorLogo(sponsor, withRank = false, flat = true).amend(
-        styleAttr := s"grid-column: span ${sponsor.gridCol}; grid-row: span ${sponsor.gridRow};",
-        height    := s"${sponsor.rank.sizeInPx}px"
-      )
+    a(
+      Image.lazyLoaded(
+        src   := sponsor.photoPath,
+        alt   := s"${sponsor.name} logo",
+        width := "100%"
+      ),
+      className := "sponsor-card-flat"
     )
   }) ++
     Array(
