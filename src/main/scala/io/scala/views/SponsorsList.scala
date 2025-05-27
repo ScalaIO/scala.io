@@ -18,37 +18,9 @@ case object SponsorsList extends ReactiveView[SponsorsPage] {
         Buttons.classy("Become a sponsor", kind = Buttons.ButtonKind.Href("mailto:contact@scala.io")),
         Buttons.classy(
           Lexicon.Sponsors.callToBrochure,
-          kind = Buttons.ButtonKind.Href(Lexicon.Sponsors.brochureUrl)
+          kind = Buttons.ButtonKind.Href("/assets/sponsorship/2025.pdf")
         ),
         className := "sponsors__buttons"
-      ),
-      Line(margin = 4, sizeUnit = "rem"),
-      div(
-        className := "container",
-        children <-- args.map(arg =>
-          SponsorsHistory
-            .sponsorsForConf(arg.conference)
-            .groupBy(_.rank)
-            .toSeq
-            .sortBy(_._1)
-            .flatMap { case (rank, sponsors) =>
-              List(
-                div(
-                  className := "container sponsor-kind",
-                  Titles.small(s"${rank.title}"),
-                  div(
-                    className := s"card-container ${rank.css}",
-                    sponsors.map: sponsor =>
-                      SponsorLogo(sponsor).amend(
-                        styleAttr := s"grid-column: span ${sponsor.gridCol}; grid-row: span ${sponsor.gridRow}"
-                      )
-                  )
-                ),
-                Line.separator(width = 6, height = 2)
-              )
-            }
-            .dropRight(1)
-        )
       ),
       Line(margin = 4, sizeUnit = "rem"),
       div(
@@ -61,7 +33,37 @@ case object SponsorsList extends ReactiveView[SponsorsPage] {
           width  := "960px",
           height := "569px"
         )
-      )
+      ),
+      Line(margin = 4, sizeUnit = "rem"),
+      sponsors(args)
     )
   }
+
+  def sponsors(args: Signal[SponsorsPage]) = div(
+    className := "container",
+    children <-- args.map(arg =>
+      SponsorsHistory
+        .sponsorsForConf(arg.conference)
+        .groupBy(_.rank)
+        .toSeq
+        .sortBy(_._1)
+        .flatMap { case (rank, sponsors) =>
+          List(
+            div(
+              className := "container sponsor-kind",
+              Titles.small(s"${rank.title}"),
+              div(
+                className := s"card-container ${rank.css}",
+                sponsors.map: sponsor =>
+                  SponsorLogo(sponsor).amend(
+                    styleAttr := s"grid-column: span ${sponsor.gridCol}; grid-row: span ${sponsor.gridRow}"
+                  )
+              )
+            ),
+            Line.separator(width = 6, height = 2)
+          )
+        }
+        .dropRight(1)
+    )
+  )
 }
