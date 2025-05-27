@@ -4,9 +4,11 @@ import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import org.scalajs.dom.HTMLButtonElement
 
-import io.scala.utils.ButtonKind
-
 object Buttons:
+  enum ButtonKind:
+    case Submit
+    case Href(href: String)
+
   extension (b: Button) inline def important = b.amend(className := "highlight")
 
   def classyNew(modifier: Modifier[Button]*) =
@@ -26,6 +28,13 @@ object Buttons:
   def shiny(text: String, modifiers: Modifier[Button]*): Button =
     button(
       text,
+      typ       := "submit",
+      className := "shiny-button",
+      modifiers
+    )
+
+  def shiny(modifiers: Modifier[Button]*): Button =
+    button(
       typ       := "submit",
       className := "shiny-button",
       modifiers

@@ -21,7 +21,7 @@ object Lexicon {
     val callToBrochure = "Download the brochure"
 
     val brochureUrl =
-      "https://docs.google.com/presentation/d/1nZ_6r4r0M1VZNBUE41DtnKr6FVdjFyoWF-zbJ1BtdSw/edit?usp=sharing"
+      "https://docs.google.com/presentation/d/e/2PACX-1vQnOK-iGp4EJ9Etp_z5yZv8nxOH61cxg_j2xHrOvebNoD0x5mO9OL-2Fv8O5yKBNgWMC74eMgKXc3En/pub?start=false&loop=false&slide=id.p"
 
   object Schedule:
     val opening        = Array(LocalTime.of(7, 45), LocalTime.of(7, 45))
