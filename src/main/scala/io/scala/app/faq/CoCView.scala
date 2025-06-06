@@ -63,7 +63,7 @@ object CoCView extends SimpleView:
     className := "container coc",
     Titles.withSub("Scala-FR Code of Conduct (CoC)", p("Version 0.0.1")),
     Paragraphs.description(
-      "This Code of Conduct is heavily inspired form ",
+      "This Code of Conduct is heavily inspired from ",
       Links.highlighted(
         href     := "https://www.functionalscala.com/code-of-conduct",
         nameAttr := "Functional Scala",
