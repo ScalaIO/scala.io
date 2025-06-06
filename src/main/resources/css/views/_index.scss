@@ -54,15 +54,3 @@
     color: vars.$text-color-contrast;
   }
 }
-
-#previous-sponsors {
-  margin-top: 1em;
-  display: flex;
-  flex-direction: column;
-  gap: 2em;
-}
-
-#previous-sponsors > div {
-  grid-auto-flow: dense;
-  grid-template-columns: repeat(auto-fill, min(100%, 10em));
-}

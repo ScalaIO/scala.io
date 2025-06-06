@@ -36,7 +36,7 @@ case object SponsorsList extends ReactiveView[SponsorsPage] {
         )
       ),
       sponsors(args),
-      IndexView.previousSponsors
+      PreviousSponsors.containerDiv
     )
   }
 
