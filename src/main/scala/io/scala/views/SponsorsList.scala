@@ -11,18 +11,19 @@ import io.scala.modules.elements.*
 case object SponsorsList extends ReactiveView[SponsorsPage] {
   def body(args: Signal[SponsorsPage]): HtmlElement = {
     sectionTag(
-      className := "container",
-      Titles("Sponsors"),
-      p(Lexicon.Sponsors.catchPhrase),
       div(
-        Buttons.classy("Become a sponsor", kind = Buttons.ButtonKind.Href("mailto:contact@scala.io")),
-        Buttons.classy(
-          Lexicon.Sponsors.callToBrochure,
-          kind = Buttons.ButtonKind.Href("/assets/sponsorship/2025.pdf")
-        ),
-        className := "sponsors__buttons"
+        className := "container",
+        Titles("Sponsors"),
+        p(Lexicon.Sponsors.catchPhrase),
+        div(
+          Buttons.classy("Become a sponsor", kind = Buttons.ButtonKind.Href("mailto:contact@scala.io")),
+          Buttons.classy(
+            Lexicon.Sponsors.callToBrochure,
+            kind = Buttons.ButtonKind.Href("/assets/sponsorship/2025.pdf")
+          ),
+          className := "sponsors__buttons"
+        )
       ),
-      Line(margin = 4, sizeUnit = "rem"),
       div(
         width := "100%",
         display.flex,
@@ -34,8 +35,8 @@ case object SponsorsList extends ReactiveView[SponsorsPage] {
           height := "569px"
         )
       ),
-      Line(margin = 4, sizeUnit = "rem"),
-      sponsors(args)
+      sponsors(args),
+      IndexView.previousSponsors
     )
   }
 
