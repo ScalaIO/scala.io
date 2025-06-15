@@ -35,7 +35,7 @@ case object IndexView extends ReactiveView[IndexPage] {
         Separator(),
         speakerGallery(args),
         Separator(),
-        PreviousSponsors.containerDiv
+        PreviousSponsors.h1Div
       )
     )
 

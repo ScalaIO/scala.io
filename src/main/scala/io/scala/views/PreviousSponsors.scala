@@ -1,6 +1,8 @@
 package io.scala.views
 
 import com.raquo.laminar.api.L.*
+import com.raquo.laminar.nodes.ReactiveHtmlElement
+import org.scalajs.dom.HTMLHeadingElement
 import scala.util.Random
 
 import io.scala.data.SponsorsHistory
@@ -47,9 +49,9 @@ object PreviousSponsors {
       )
     )
 
-  lazy val containerDiv: Div = div(
+  private def baseDiv(title: ReactiveHtmlElement[HTMLHeadingElement]) = div(
     className := "container",
-    Titles("Previous Sponsors"),
+    title,
     div(
       idAttr := "previous-sponsors",
       div(
@@ -58,5 +60,11 @@ object PreviousSponsors {
       )
     )
   )
+
+  private val title = "Previous Sponsors"
+
+  def h1Div: Div = baseDiv(Titles(title))
+
+  def h2Div: Div = baseDiv(Titles.medium(title))
 
 }
