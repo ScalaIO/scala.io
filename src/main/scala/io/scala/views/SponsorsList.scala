@@ -11,9 +11,10 @@ import io.scala.modules.elements.*
 case object SponsorsList extends ReactiveView[SponsorsPage] {
   def body(args: Signal[SponsorsPage]): HtmlElement = {
     sectionTag(
+      sponsors(args),
       div(
+        Titles.medium("Become a sponsor"),
         className := "container",
-        Titles("Sponsors"),
         p(Lexicon.Sponsors.catchPhrase),
         div(
           Buttons.classy("Become a sponsor", kind = Buttons.ButtonKind.Href("mailto:contact@scala.io")),
@@ -35,12 +36,13 @@ case object SponsorsList extends ReactiveView[SponsorsPage] {
           height := "569px"
         )
       ),
-      sponsors(args),
-      PreviousSponsors.containerDiv
+      div(className := "container"), // spacer
+      PreviousSponsors.h2Div
     )
   }
 
   def sponsors(args: Signal[SponsorsPage]) = div(
+    Titles("Sponsors"),
     className := "container",
     children <-- args.map(arg =>
       SponsorsHistory
