@@ -6,6 +6,7 @@ import scala.collection.immutable.Queue
 import io.scala.SessionsPage
 import io.scala.data.SessionsHistory
 import io.scala.data.SessionsHistory.getConfName
+import io.scala.extensions.withLink
 import io.scala.models.Session
 import io.scala.modules.SessionCard
 import io.scala.modules.elements.*
@@ -46,6 +47,8 @@ case object SessionList extends ReactiveView[SessionsPage] {
     sectionTag(
       className := "container talks-list", // TODO: rename CSS also
       Titles("Sessions"),
+      div(),
+      Buttons.classy("Submit a talk").withLink("https://www.papercall.io/scala-io-2025"),
       Line(margin = 4, sizeUnit = "rem"),
       child <-- args.map { arg =>
         val (workshopsByCategory, talksByCategory) =
