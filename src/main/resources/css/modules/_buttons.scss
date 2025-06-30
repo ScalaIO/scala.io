@@ -5,8 +5,8 @@
 
   font-weight: 500;
   border-radius: 4px;
+  padding: 1rem 2rem;
   border: 1px dashed vars.$text-color;
-  padding: 0.5em 1em;
   transition: background-color 0.5s, color 0.5s;
 
   &:hover {
@@ -27,6 +27,7 @@
 }
 
 .shiny-button {
+  color: vars.$text-color-contrast;
   background-color: vars.$main-color;
   padding: 1rem 2rem;
   border-radius: 4px;

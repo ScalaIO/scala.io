@@ -4,7 +4,7 @@ import com.raquo.laminar.api.L.*
 import org.scalajs.dom.document
 
 import io.scala.IndexPage
-import io.scala.Page
+import io.scala.SessionsPage
 import io.scala.SponsorsPage
 import io.scala.data.SessionsHistory
 import io.scala.data.SponsorsHistory
@@ -77,7 +77,8 @@ case object IndexView extends ReactiveView[IndexPage] {
             "Get your ticket!",
             onClick --> { _ => document.getElementById("tickets").scrollIntoView() }
           ),
-        Buttons.shiny(Links.innerPage("Sponsor us!", SponsorsPage(None)))
+        Buttons.shiny(Links.innerPage("Sponsor us!", SponsorsPage(None))),
+        Buttons.shiny(Links.innerPage("Submit a talk!", SessionsPage(None, None)))
       )
     )
   )
