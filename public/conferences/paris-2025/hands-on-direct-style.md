@@ -1,16 +1,18 @@
-# Programming a Language
+# Hands-on Direct Style
 
-- Kind: Keynote
-- Slug: programming-a-language
-- Category: Algebra
+- Kind: Talk
+- Slug: hands-on-direct-style
+- Category: Language
 - confirmed: true
 
 ## Abstract
 
 ```
-Programming languages are a large amount of our day to day work and, for some of us, our hobbies. And I am very much of the opinion that in order to fully understand our tools, we must be able to make them ourselves.
+Direct Style programming is an exciting development for the future of Scala, but something that can seem a little abstract and remote.
 
-In this talk, I will show you how to create a  programming language from scratch. You will come away from this with a deeper understanding of, and insights on, your tools. It will also teach you what you need to write powerful DSLs, which in my experience can be an absolute game changer when maintaining software whose purpose I'm not an expert on, but I do have access to experts.
+The purpose of this talk is to introduce the problem Direct Style is trying to solve and then, step by step, build up to the solution that the Scala compiler team is building to. We’ll see what’s already implemented and ready for use right now, but also the things that are still needed in order for the entire vision to be realised.
+
+By the end of the talk, we’ll have created a respectable set of effects and their handlers, and written an entire program using them to demonstrate how natural that style of programming can be.
 ```
 
 ## Speakers

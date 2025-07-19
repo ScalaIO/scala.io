@@ -127,11 +127,11 @@ object Parsers:
     def abstractParser = headerN(2) ~> description map (_.map(_.content).mkString("\n"))
 
     def speakerParser =
-      headerN(3) ~ list ~ headerN(4) ~ list ~ headerN(4) ~ description.? map {
+      headerN(3) ~ list ~ headerN(4) ~ list.? ~ headerN(4) ~ description.? map {
         case HeaderChunk(_, name) ~ info ~ HeaderChunk(4, "Links") ~ socials ~ HeaderChunk(4, "Bio") ~ bio =>
           val infoMap = info.asMap()
           val socialsMap =
-            socials.flatMap { chunk =>
+            socials.getOrElse(List.empty).flatMap { chunk =>
               linkRegex.findFirstMatchIn(chunk.content).map { link =>
                 link.group(1) -> link.group(2)
               }
