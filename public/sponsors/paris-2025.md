@@ -15,3 +15,11 @@
 - https://www.rudder.io/
 - Bronze
   2:1
+
+## Scalac
+
+- Scalac
+- scalac.svg
+- https://scalac.io
+- Partner
+  2:1
