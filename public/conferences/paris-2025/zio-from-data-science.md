@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: zio-from-data-science-perspective
-- Category: Ecosystem
+- Category: Data
 - confirmed: true
 
 ## Abstract

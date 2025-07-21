@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: hands-on-direct-style
-- Category: Language
+- Category: Effect Systems
 - confirmed: true
 
 ## Abstract
