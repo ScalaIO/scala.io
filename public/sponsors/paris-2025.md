@@ -16,6 +16,14 @@
 - Bronze
   2:1
 
+## Criteo
+
+- Rudder
+- criteo_rd.svg
+- https://www.criteo.com/
+- Bronze
+  2:1
+
 ## Scalac
 
 - Scalac
