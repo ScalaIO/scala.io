@@ -27,7 +27,7 @@ If you’ve ever struggled to scale notebooks, wrangle side effects, or make you
 
 ### Kostas Passadis
 
-- photoRelPath: /images/profile.webp
+- photoRelPath: /images/profiles/paris-2025/kostas_passadis.webp
 - job: Section Leader @ National Control Center of the Electrical Grid Operator
 
 #### Links
