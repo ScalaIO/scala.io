@@ -9,7 +9,6 @@ import io.scala.data.parsers.Parsers
 import io.scala.modules.SessionCard
 import io.scala.modules.elements.Paragraphs
 import io.scala.svgs.Icons
-import org.scalajs.dom
 import org.scalajs.dom.HTMLDivElement
 import org.scalajs.dom.HTMLParagraphElement
 import org.scalajs.dom.SVGSVGElement

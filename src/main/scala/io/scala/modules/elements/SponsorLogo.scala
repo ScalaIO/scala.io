@@ -1,7 +1,6 @@
 package io.scala.modules.elements
 
 import com.raquo.laminar.api.L.*
-
 import io.scala.models.Sponsor
 object SponsorLogo {
   def apply(sponsor: Sponsor, withRank: Boolean = true, flat: Boolean = false) =

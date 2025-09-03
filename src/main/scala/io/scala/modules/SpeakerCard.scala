@@ -3,8 +3,6 @@ package modules
 
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import org.scalajs.dom.HTMLDivElement
-
 import io.scala.extensions.grayOutIf
 import io.scala.models.Session
 import io.scala.models.Session.Speaker
@@ -12,6 +10,7 @@ import io.scala.models.Social
 import io.scala.modules.elements.Buttons
 import io.scala.modules.elements.Buttons.*
 import io.scala.modules.elements.Image
+import org.scalajs.dom.HTMLDivElement
 
 object SpeakerCard {
   def apply(speaker: Speaker, talks: List[Session], conference: String): ReactiveHtmlElement[HTMLDivElement] =

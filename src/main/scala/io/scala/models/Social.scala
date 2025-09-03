@@ -2,10 +2,9 @@ package io.scala.models
 
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import org.scalajs.dom.HTMLAnchorElement
-
 import io.scala.modules.elements.Links
 import io.scala.svgs.*
+import org.scalajs.dom.HTMLAnchorElement
 
 case class Social(
     kind: Social.Kind,

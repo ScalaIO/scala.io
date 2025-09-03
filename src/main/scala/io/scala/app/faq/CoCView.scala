@@ -1,8 +1,6 @@
 package io.scala.app.faq
 
 import com.raquo.laminar.api.L.*
-import knockoff.Paragraph
-
 import io.scala.modules.elements.Links
 import io.scala.modules.elements.Lists
 import io.scala.modules.elements.Paragraphs

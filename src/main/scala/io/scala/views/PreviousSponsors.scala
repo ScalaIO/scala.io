@@ -2,11 +2,12 @@ package io.scala.views
 
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import org.scalajs.dom.HTMLHeadingElement
-import scala.util.Random
-
 import io.scala.data.SponsorsHistory
-import io.scala.modules.elements.{Image, Titles}
+import io.scala.modules.elements.Image
+import io.scala.modules.elements.Titles
+import org.scalajs.dom.HTMLHeadingElement
+
+import scala.util.Random
 
 object PreviousSponsors {
 

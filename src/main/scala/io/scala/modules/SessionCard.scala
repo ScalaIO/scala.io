@@ -2,14 +2,14 @@ package io.scala
 package modules
 
 import com.raquo.laminar.api.L.*
-import elements.Line
-
 import io.scala.extensions.*
 import io.scala.models.Session
 import io.scala.modules.elements.Buttons
 import io.scala.modules.elements.Buttons.important
 import io.scala.modules.elements.Image
 import io.scala.svgs.Icons
+
+import elements.Line
 
 object SessionKindTag:
   def apply(kind: Session.Kind): Span =

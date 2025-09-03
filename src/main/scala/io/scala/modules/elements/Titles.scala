@@ -2,7 +2,8 @@ package io.scala.modules.elements
 
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import org.scalajs.dom.{HTMLDivElement, HTMLHeadingElement}
+import org.scalajs.dom.HTMLDivElement
+import org.scalajs.dom.HTMLHeadingElement
 
 object Titles:
 

@@ -1,17 +1,15 @@
 package io.scala.app.schedule
 
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.nodes.ReactiveHtmlElement
-import java.time.DayOfWeek
-import java.time.LocalTime
-
 import io.scala.Lexicon
 import io.scala.SchedulePage
-import io.scala.modules.*
 import io.scala.modules.elements.*
 import io.scala.modules.layout.Tabs
 import io.scala.modules.syntax.*
 import io.scala.views.ReactiveView
+
+import java.time.DayOfWeek
+import java.time.LocalTime
 
 case object ScheduleView extends ReactiveView[SchedulePage] {
   val selectedDay: Var[DayOfWeek] = Var(DayOfWeek.FRIDAY)

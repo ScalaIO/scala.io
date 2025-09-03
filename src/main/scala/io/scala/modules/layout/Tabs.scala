@@ -1,11 +1,10 @@
 package io.scala.modules.layout
 
 import com.raquo.laminar.api.L.*
-import org.scalajs.dom.window
-
 import io.scala.extensions.nullGetOrElse
 import io.scala.modules.elements.Buttons
 import io.scala.svgs.Icons
+import org.scalajs.dom.window
 
 /* Provide a tabbed interface. The tab content must be calculated by the caller for better flexibility (e.g. allow usage of several display layouts)
  */

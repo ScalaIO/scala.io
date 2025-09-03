@@ -1,8 +1,6 @@
 package io.scala.app.sessions
 
 import com.raquo.laminar.api.L.*
-import scala.collection.immutable.Queue
-
 import io.scala.SessionsPage
 import io.scala.data.SessionsHistory
 import io.scala.data.SessionsHistory.getConfName
@@ -12,6 +10,8 @@ import io.scala.modules.SessionCard
 import io.scala.modules.elements.*
 import io.scala.modules.layout.Tabs
 import io.scala.views.ReactiveView
+
+import scala.collection.immutable.Queue
 
 case object SessionList extends ReactiveView[SessionsPage] {
 
