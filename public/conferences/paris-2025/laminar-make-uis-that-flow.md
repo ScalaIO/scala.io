@@ -1,3 +1,7 @@
+---
+cancelled: Unfortunately, Jamie won't be unable to attend the conference
+---
+
 # Laminar: Make UIs that flow
 
 - Kind: Talk
