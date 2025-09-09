@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: ai-assistance-for-scala
-- Category: AI
+- Category: Tools & Ecosystem
 - confirmed: true
 
 ## Abstract

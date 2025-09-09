@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: full-stack-scala-ml-platform
-- Category: Data
+- Category: Tools & Ecosystem
 - confirmed: true
 
 ## Abstract
