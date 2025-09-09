@@ -6,7 +6,6 @@ import com.raquo.laminar.nodes.ReactiveHtmlElement
 import io.scala.modules.elements.Buttons
 import io.scala.modules.elements.Links
 import io.scala.svgs.Icons
-import org.scalajs.dom
 import org.scalajs.dom.HTMLButtonElement
 import org.scalajs.dom.HTMLElement
 import org.scalajs.dom.window

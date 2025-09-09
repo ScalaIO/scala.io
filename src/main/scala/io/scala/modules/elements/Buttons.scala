@@ -1,8 +1,6 @@
 package io.scala.modules.elements
 
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.nodes.ReactiveHtmlElement
-import org.scalajs.dom.HTMLButtonElement
 
 object Buttons:
   enum ButtonKind:

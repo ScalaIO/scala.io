@@ -1,6 +1,6 @@
 package io.scala.models
 
-import com.raquo.laminar.api.L.*
+
 
 final case class Organizer(
     name: String,

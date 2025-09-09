@@ -1,11 +1,9 @@
 package io.scala
 
-import app.faq.*
-import app.schedule.ScheduleView
-import app.sessions.SessionList
-import app.sessions.SessionView
 import com.raquo.laminar.api.L.*
 import com.raquo.waypoint.*
+import io.scala.views.*
+import io.scala.views.IndexView
 import org.scalajs.dom.document
 import org.scalajs.dom.html
 import upickle.default.*
@@ -13,8 +11,10 @@ import urldsl.errors.DummyError
 import urldsl.vocabulary.FromString
 import urldsl.vocabulary.Printer
 
-import io.scala.views.*
-import io.scala.views.IndexView
+import app.faq.*
+import app.schedule.ScheduleView
+import app.sessions.SessionList
+import app.sessions.SessionView
 
 sealed trait Draftable:
   def withDraft: Option[Boolean]

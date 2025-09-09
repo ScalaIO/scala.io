@@ -1,16 +1,14 @@
 package io.scala.views
 
 import com.raquo.laminar.api.L.*
-import org.scalajs.dom.document
-
 import io.scala.IndexPage
 import io.scala.SessionsPage
 import io.scala.SponsorsPage
 import io.scala.data.SessionsHistory
-import io.scala.data.SponsorsHistory
 import io.scala.extensions.withLink
 import io.scala.modules.SpeakerCard
 import io.scala.modules.elements.*
+import org.scalajs.dom.document
 
 case object IndexView extends ReactiveView[IndexPage] {
 
@@ -35,7 +33,7 @@ case object IndexView extends ReactiveView[IndexPage] {
         Separator(),
         speakerGallery(args),
         Separator(),
-        PreviousSponsors.h1Div
+        SponsorsList.sponsors(args.map(arg => SponsorsPage(arg.conference)))
       )
     )
 
@@ -107,5 +105,4 @@ case object IndexView extends ReactiveView[IndexPage] {
       )
     )
   )
-
 }

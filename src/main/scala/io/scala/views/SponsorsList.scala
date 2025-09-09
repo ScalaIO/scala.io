@@ -1,8 +1,6 @@
 package io.scala.views
 
 import com.raquo.laminar.api.L.*
-import com.raquo.laminar.nodes.ReactiveHtmlElement
-
 import io.scala.Lexicon
 import io.scala.SponsorsPage
 import io.scala.data.SponsorsHistory
