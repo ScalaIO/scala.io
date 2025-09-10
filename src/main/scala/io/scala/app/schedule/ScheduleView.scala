@@ -28,14 +28,13 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
         div(
           className := "row",
           span(),
-          span("Thursday"),
-          span("Friday")
-        ),
-        renderHours("Opening", Lexicon.Schedule.opening),
-        renderHours("First talk", Lexicon.Schedule.firstTalk),
-        renderHours("Lunch", Lexicon.Schedule.lunch),
-        renderHours("End of talks", Lexicon.Schedule.endOfTalks),
-        renderHours("Community party", Lexicon.Schedule.communityParty)
+          span("Friday October 17th")
+        )
+//        renderHours("Opening", Lexicon.Schedule.opening),
+//        renderHours("First talk", Lexicon.Schedule.firstTalk),
+//        renderHours("Lunch", Lexicon.Schedule.lunch),
+//        renderHours("End of talks", Lexicon.Schedule.endOfTalks),
+//        renderHours("Community party", Lexicon.Schedule.communityParty)
       )
     )
 
