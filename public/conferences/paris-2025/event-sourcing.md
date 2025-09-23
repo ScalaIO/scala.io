@@ -32,7 +32,7 @@ I’m a veteran backend developer, living in Ardèche and writing mainly free so
 ### Thomas Hilaire
 
 - photoRelPath: /images/profiles/paris-2025/thomas_hilaire.webp
-- job:
+- job: Software Engineer @ Squircles
 
 #### Links
 
@@ -41,5 +41,5 @@ I’m a veteran backend developer, living in Ardèche and writing mainly free so
 #### Bio
 
 ```
-
+I'm a software engineer for 15 years now, my technical evolution reflects the industry's growth - starting with Java enterprise development, transitioning to TypeScript and React, and now specializing in Scala and ZIO for functional programming. At Squircles i learn how to run Event-Sourcing and CQRS architectures in production, which I believe represent resilient systems.
 ```
