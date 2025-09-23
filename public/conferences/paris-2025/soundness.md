@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: higher-standard-of-standard-library
-- Category: Language
+- Category: Tools & Ecosystem
 - confirmed: true
 
 ## Abstract
