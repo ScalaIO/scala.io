@@ -16,11 +16,11 @@ You know what Event Sourcing is but you’re stuck with your good old CRUD? You 
 ### Matthieu Baechler
 
 - photoRelPath: /images/profiles/nantes-2024/mBaechler.webp
-- job:
+- job: Veteran Backend Developer @ Self-employed
 
 #### Links
 
-- [Twitter](http://twitter.com/m_baechler)
+- [Mastodon](https://framapiaf.org/@matthieu)
 - [Github](https://github.com/mbaechler/)
 
 #### Bio
