@@ -76,7 +76,7 @@ object Session:
   )
   object BasicInfo:
     def empty: BasicInfo =
-      BasicInfo("Malformed talk info", "", Kind.Talk, "", false, null)
+      BasicInfo("To be announced", "", Kind.Talk, "", false, null)
 
     opaque type Slides = Option[String]
     object Slides:
@@ -120,12 +120,14 @@ case class Break(
 object Break:
 
   enum Kind(val style: String, val duration: Int):
-    case Large  extends Kind("break-large", 15)
+    case Short extends Kind("break-large", 5)
+    case Long  extends Kind("break-large", 15)
     case Lunch1 extends Kind("break-lunch", 75)
     case Lunch2 extends Kind("break-lunch", 90)
 
     def icon: ReactiveSvgElement[SVGSVGElement] = this match
-      case Large  => Icons.chat
+      case Short => Icons.chat
+      case Long  => Icons.chat
       case Lunch1 => Icons.food
       case Lunch2 => Icons.food
 
