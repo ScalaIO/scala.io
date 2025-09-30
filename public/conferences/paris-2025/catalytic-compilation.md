@@ -1,4 +1,4 @@
-# Catalytic Compilation : A modern take on safe spark 
+# Catalytic Compilation : A modern take on safe spark
 
 - Kind: Talk
 - Slug: catalytic-compilation
@@ -24,10 +24,14 @@ Let’s make Scala the best language to make your data pipelines production-read
 ### Valentin Bergeron
 
 - photoRelPath: /images/profiles/paris-2024/vBergeron.webp
-- job: 
+- job:
 
 #### Links
 
 - [Github](https://github.com/vbergeron)
 
 #### Bio
+
+```
+
+```

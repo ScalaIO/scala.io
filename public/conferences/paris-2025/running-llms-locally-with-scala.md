@@ -1,4 +1,4 @@
-# Running LLMs Locally with Scala: From APIs to Local Inference 
+# Running LLMs Locally with Scala: From APIs to Local Inference
 
 - Kind: Talk
 - Slug: running-llms-locally-with-scala
@@ -15,6 +15,7 @@ Large Language Models (LLMs) are often seen as remote cloud-only services. What 
 
 ### Sören Dreano
 
+- photoRelPath: /images/profiles/paris-2025/sDreano.webp
 - job: Machine Learning Scientist and Engineer @ NuMind
 
 #### Links
