@@ -27,7 +27,7 @@ object ScheduleInfo {
 
   val day1 = List(
     time(8, 45).render(),
-    session("fact-scalatest").render(room1),
+    session("what-is-true").render(room1),
     time(9, 35).render().gridArea("a4"),
     Break(Break.Kind.Short).render,
     time(9, 40).render(),
