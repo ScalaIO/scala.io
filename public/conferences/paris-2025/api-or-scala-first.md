@@ -18,7 +18,6 @@ Designing APIs is always a balancing act between collaboration and productivity.
 - photoRelPath: /images/profiles/profile.webp
 - job: Software Engineer
 
-
 #### Links
 
 - [Twitter](http://twitter.com/wiemzin)

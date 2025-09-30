@@ -28,8 +28,6 @@ Let’s make Scala the best language to make your data pipelines production-read
 
 #### Links
 
-[Github](https://github.com/vbergeron)
+- [Github](https://github.com/vbergeron)
 
 #### Bio
-
-``````
