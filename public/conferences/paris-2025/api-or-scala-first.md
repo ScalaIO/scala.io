@@ -1,4 +1,4 @@
-# API-First or Scala-First? Generating APIs with ZIO-HTTP 
+# API-First or Scala-First? Generating APIs with ZIO-HTTP
 
 - Kind: Talk
 - Slug: api-or-scala-first
@@ -15,7 +15,7 @@ Designing APIs is always a balancing act between collaboration and productivity.
 
 ### Wiem Zine Elabidine
 
-- photoRelPath: /images/profiles/profile.webp
+- photoRelPath: /images/profiles/paris-2025/wiem.webp
 - job: Software Engineer
 
 #### Links
