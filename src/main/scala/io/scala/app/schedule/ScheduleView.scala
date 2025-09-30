@@ -3,6 +3,7 @@ package io.scala.app.schedule
 import com.raquo.laminar.api.L.*
 import io.scala.Lexicon
 import io.scala.SchedulePage
+import io.scala.data.ScheduleInfo
 import io.scala.modules.elements.*
 import io.scala.modules.layout.Tabs
 import io.scala.modules.syntax.*
@@ -28,7 +29,7 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
         div(
           className := "row",
           span(),
-          span("Friday October 17th")
+          span("Friday October 17th sad")
         )
 //        renderHours("Opening", Lexicon.Schedule.opening),
 //        renderHours("First talk", Lexicon.Schedule.firstTalk),
@@ -39,11 +40,10 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
     )
 
   def render(events: Seq[(DayOfWeek, HtmlElement)]) =
-    Tabs(
-      events,
-      _.toString,
-      events.tail.head._1
-    ).render.amend(className := "schedule")
+    div(
+      className := "schedule",
+      events.map(_._2)
+    )
 
   def body(signal: Signal[SchedulePage]): HtmlElement =
     sectionTag(
@@ -51,7 +51,7 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
       Titles("Schedule"),
       div(),
       globalHours,
-      Line(margin = 4, sizeUnit = "rem")
-      // child <-- signal.map(_ => render(ScheduleInfo.allDays))
+      Line(margin = 4, sizeUnit = "rem"),
+      child <-- signal.map(_ => render(ScheduleInfo.allDays))
     )
 }
