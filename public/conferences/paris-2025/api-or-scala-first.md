@@ -20,10 +20,12 @@ Designing APIs is always a balancing act between collaboration and productivity.
 
 #### Links
 
+- [Linkedin](https://de.linkedin.com/in/wiem-zine-el-abidine)
 - [Twitter](http://twitter.com/wiemzin)
+- [Other](https://wiemzin.podbean.com/)
 
 #### Bio
 
 ```
-Wiem Zine Elabidine is a Software Engineer.
+Wiem Zine Elabidine is a Software Engineer and the host of Tech✨Tak Podcast.
 ```
