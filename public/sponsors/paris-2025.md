@@ -24,6 +24,15 @@
 - Bronze
   2:1
 
+## Ledger
+
+- Ledger
+- ledger.webp
+- https://www.ledger.com/
+- Bronze 
+  2:1
+
+
 ## Scalac
 
 - Scalac
@@ -31,3 +40,5 @@
 - https://scalac.io
 - Partner
   2:1
+
+
