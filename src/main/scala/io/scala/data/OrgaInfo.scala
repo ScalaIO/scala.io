@@ -7,7 +7,7 @@ object OrgaInfo:
   val jonathanWinandy = Organizer(
     name = "Jonathan Winandy",
     photo = Some("jWinandy.webp"),
-    job = "Senior Software Engineer @ Clever Cloud",
+    job = "Staff Software Engineer",
     socials = List(
       Social(Social.Kind.Twitter, "https://twitter.com/ahoy_jon"),
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/jwinandy"),
