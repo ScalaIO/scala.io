@@ -1,4 +1,4 @@
-# Effets secondaires : Machin, TrucMuche et Kyo dans un bateau !
+# Beyond `flatMap`: Is Kyo the Future of Scala Effects?
 
 - Kind: Talk
 - Slug: effets-secondaires
@@ -8,18 +8,21 @@
 ## Abstract
 
 ```
-Depuis presque dix ans, Scala héberge plusieurs systèmes d'effets concurrents, chacun avec sa propre vision de la pureté, de la sécurité et du pragmatisme : Cats Effect, ZIO... et maintenant Kyo.
+For nearly a decade, Scala's concurrency has been driven by Akka, Cats Effect and ZIO, 
+each with its own vision for purity, safety, and pragmatism. 
 
-Ce talk propose une exploration technique et critique de ces approches à travers une grille de lecture unifiée :
-- Modélisation des effets : comment chaque système représente les effets, compose les opérations et gère les erreurs.
-- Résilience et concurrence : futures, fibers, structured concurrency... quelles garanties pour quel coût ?
-- Direct style ou "wrapped style",
-- Expérience développeur : lisibilité, ergonomie, types, testabilité.
+Kyo enters this incredible ecosystem with a fresh perspective.
 
-Nous verrons en quoi Kyo :
-- complémente le travail et apporte de nouvelles solutions sur ce qui a été fait du côté de CE et de ZIO.
-- Comment il embrasse Scala 3 sans compromis fonctionnel,
-- et pourquoi il mérite bien sa place dans ce bateau pourtant déjà bien chargé.
+This talk provides a critical, technical comparison of these three systems through a unified framework, evaluating their approaches to:
+
+- Effect Modeling: How they represent, compose, and handle effects and errors.
+
+- Concurrency & Resilience: The guarantees and costs of their fiber and structured concurrency models.
+
+- Developer Experience: The trade-offs in readability, ergonomics, and type-driven safety.
+
+We will focus on how Kyo’s use of algebraic effects complements the work of its predecessors. 
+You'll see how it embraces Scala 3 and understand why it earns its place in an already fantastic field.
 ```
 
 ## Speakers
@@ -27,7 +30,7 @@ Nous verrons en quoi Kyo :
 ### Jonathan Winandy
 
 - photoRelPath: /images/orgas/jWinandy.webp
-- job: Senior Software Engineer
+- job: Staff Engineer
 
 #### Links
 
@@ -39,5 +42,7 @@ Nous verrons en quoi Kyo :
 #### Bio
 
 ```
-Data engineer, adepte des modèles algébriques. Ces derniers temps, je contribue sur Kyo.
+Data engineer, adepte de la programmation qui fonctionne.
+
+Core-contributor on Kyo
 ```
