@@ -1,5 +1,11 @@
 @use "../base/vars" as vars;
 
+.sponsor-card img {
+    object-fit: contain;
+    width: auto;
+}
+
+
 .sponsors__buttons {
   display: flex;
   gap: vars.$spacing-x-small;
