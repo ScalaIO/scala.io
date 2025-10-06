@@ -1,5 +1,13 @@
 # Sponsors Paris 2025
 
+## Clever Cloud
+
+- Clever Cloud
+- clever.svg
+- https://www.clever-cloud.com/
+- Gold
+  2:1
+
 ## Squircles
 
 - Squircles
