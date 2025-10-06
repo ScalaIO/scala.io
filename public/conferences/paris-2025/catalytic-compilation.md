@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: catalytic-compilation
-- Category: Tools & Ecosystem
+- Category: Data
 - confirmed: true
 
 ## Abstract
