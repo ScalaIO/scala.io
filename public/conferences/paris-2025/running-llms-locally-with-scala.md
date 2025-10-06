@@ -2,7 +2,7 @@
 
 - Kind: Talk
 - Slug: running-llms-locally-with-scala
-- Category: Data & AI
+- Category: AI
 - confirmed: true
 
 ## Abstract
