@@ -1,19 +1,19 @@
 package io.scala.data.parsers
 
 import com.raquo.laminar.api.L.*
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME
+import knockoff.Chunk
+import knockoff.ChunkParser
+import knockoff.HeaderChunk
+import org.scalajs.dom.console
+import scala.collection.immutable.Queue
+
 import io.scala.models.Meetup
 import io.scala.models.Session
 import io.scala.models.Social
 import io.scala.models.Sponsor
 import io.scala.modules.elements.Links
-import knockoff.Chunk
-import knockoff.ChunkParser
-import knockoff.HeaderChunk
-import org.scalajs.dom.console
-
-import java.time.LocalDateTime
-import java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME
-import scala.collection.immutable.Queue
 
 extension (chunks: List[Chunk])
   def asMap(sep: String = ":"): Map[String, String] =

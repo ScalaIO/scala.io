@@ -1,6 +1,7 @@
 package io.scala.extensions
 
 import com.raquo.laminar.api.L.*
+
 import io.scala.Page
 
 extension [T](x: T | Null)

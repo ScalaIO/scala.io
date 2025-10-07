@@ -1,6 +1,7 @@
 package io.scala.views
 
 import com.raquo.laminar.api.L.*
+
 import io.scala.data.EventsData
 import io.scala.models.Meetup
 import io.scala.modules.elements.Containers

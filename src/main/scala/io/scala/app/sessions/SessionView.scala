@@ -1,6 +1,7 @@
 package io.scala.app.sessions
 
 import com.raquo.laminar.api.L.*
+
 import io.scala.SessionPage
 import io.scala.data.SessionsHistory
 import io.scala.extensions.grayOutIf

@@ -21,11 +21,11 @@ object Sponsor {
     case Partner   extends Rank("🤝 Partner 🤝", "partner")
 
     def sizeInPx: Int = this match
-      case Rank.Platinum  => 150
-      case Rank.Gold      => 140
-      case Rank.Silver    => 130
-      case Rank.Bronze    => 120
-      case Rank.Community | Rank.Love | Rank.Partner   => 100
+      case Rank.Platinum                             => 150
+      case Rank.Gold                                 => 140
+      case Rank.Silver                               => 130
+      case Rank.Bronze                               => 120
+      case Rank.Community | Rank.Love | Rank.Partner => 100
 
   def empty = Sponsor("Malformed sponsor", "", "", Rank.Partner)
 
