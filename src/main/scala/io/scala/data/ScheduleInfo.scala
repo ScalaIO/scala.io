@@ -1,13 +1,13 @@
 package io.scala.data
 
 import com.raquo.laminar.api.L.*
+import java.time.DayOfWeek
+import java.time.LocalTime
+
 import io.scala.models.Break
 import io.scala.models.Session
 import io.scala.models.Special
 import io.scala.modules.syntax.*
-
-import java.time.DayOfWeek
-import java.time.LocalTime
 
 object ScheduleInfo {
   val minStart = LocalTime.of(8, 0)
@@ -33,46 +33,46 @@ object ScheduleInfo {
     time(9, 40).render(),
     session("higher-standard-of-standard-library").render(room1),
     session("event-sourcing-is-just-a-foldleft-on-events-and-a-decide-function-or-is-it").render(room2),
-    time(10,25).render(),
+    time(10, 25).render(),
     Break(Break.Kind.Long).render,
-    time(10,40).render(),
+    time(10, 40).render(),
     session("to-effect-or-not-to-effect").render(room1),
     session("can-we-have-the-standard-library-for-macros").render(room2),
-    time(11,25).render(),
+    time(11, 25).render(),
     Break(Break.Kind.Short).render,
-    time(11,30).render(),
+    time(11, 30).render(),
     session("effets-secondaires").render(room1),
     session("running-llms-locally-with-scala").render(room2),
-    time(12,15).render(),
+    time(12, 15).render(),
     Break(Break.Kind.Short).render,
-    time(12,20).render(),
+    time(12, 20).render(),
     session("hands-on-direct-style").render(room1),
     session("compile-time-contracts-fiber-safe-data-pipelines").render(room2),
-    time(13,5).render(),
+    time(13, 5).render(),
     Break(Break.Kind.Lunch1).render,
     time(14, 25).render(),
     session("ai-assistance-for-scala").render(room1),
     session("balanced-sampling-for-pbt").render(room2),
-    time(15,10).render(),
+    time(15, 10).render(),
     Break(Break.Kind.Short).render,
-    time(15,15).render(),
+    time(15, 15).render(),
     session("full-stack-scala-ml-platform").render(room1),
     div(className := "blank-card"),
-    time(16,0).render(),
+    time(16, 0).render(),
     Break(Break.Kind.Long).render,
-    time(16,15).render(),
+    time(16, 15).render(),
     session("api-or-scala-first").render(room1),
     session("zio-from-data-science-perspective").render(room2),
-    time(17,0).render(),
+    time(17, 0).render(),
     Break(Break.Kind.Short).render,
-    time(17,5).render(),
+    time(17, 5).render(),
     session("catalytic-compilation").render(room1),
     session("best-jvm-for-best-language").render(room2),
-    time(17,50).render(),
+    time(17, 50).render(),
     Special(Special.Kind.End).render
   ).zipWithIndex.map { case (x, i) => x.gridArea(s"a${i + 1}") }
 
   val allDays = Seq(
-    (DayOfWeek.FRIDAY, div(day1, className := "day-base-layout day1")),
+    (DayOfWeek.FRIDAY, div(day1, className := "day-base-layout day1"))
   )
 }

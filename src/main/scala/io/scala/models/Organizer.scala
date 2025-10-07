@@ -1,7 +1,5 @@
 package io.scala.models
 
-
-
 final case class Organizer(
     name: String,
     photo: Option[String] = None,

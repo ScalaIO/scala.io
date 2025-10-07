@@ -4,14 +4,15 @@ import com.raquo.laminar.api.L
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
 import com.raquo.laminar.nodes.ReactiveSvgElement
+import org.scalajs.dom.HTMLDivElement
+import org.scalajs.dom.HTMLParagraphElement
+import org.scalajs.dom.SVGSVGElement
+
 import io.scala.data.Event
 import io.scala.data.parsers.Parsers
 import io.scala.modules.SessionCard
 import io.scala.modules.elements.Paragraphs
 import io.scala.svgs.Icons
-import org.scalajs.dom.HTMLDivElement
-import org.scalajs.dom.HTMLParagraphElement
-import org.scalajs.dom.SVGSVGElement
 
 sealed trait Act:
   def isKeynote: Boolean
@@ -120,14 +121,14 @@ case class Break(
 object Break:
 
   enum Kind(val style: String, val duration: Int):
-    case Short extends Kind("break-large", 5)
-    case Long  extends Kind("break-large", 15)
+    case Short  extends Kind("break-large", 5)
+    case Long   extends Kind("break-large", 15)
     case Lunch1 extends Kind("break-lunch", 75)
     case Lunch2 extends Kind("break-lunch", 90)
 
     def icon: ReactiveSvgElement[SVGSVGElement] = this match
-      case Short => Icons.chat
-      case Long  => Icons.chat
+      case Short  => Icons.chat
+      case Long   => Icons.chat
       case Lunch1 => Icons.food
       case Lunch2 => Icons.food
 

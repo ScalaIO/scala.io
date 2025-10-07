@@ -1,7 +1,6 @@
 package io.scala.modules.syntax
 
 import com.raquo.laminar.api.L.*
-
 import java.time.LocalTime
 
 extension (time: LocalTime)

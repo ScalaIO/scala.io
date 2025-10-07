@@ -1,13 +1,13 @@
 package io.scala.data
 
+import scala.collection.MapView
+
 import io.scala.Draftable
 import io.scala.Routeable
 import io.scala.data.parsers.Parsers
 import io.scala.extensions.filterWhen
 import io.scala.models.Session
 import io.scala.models.Sponsor
-
-import scala.collection.MapView
 
 // TODO: propagate usage of Event type instead of raw strings
 enum Event(val sessions: List[Session], val sponsors: List[Sponsor]):
@@ -68,7 +68,6 @@ object SponsorsHistory:
   val allRanks: List[Sponsor.Rank] = allSponsors.keys.toList.sorted
 
   def values(rank: Sponsor.Rank): List[Sponsor] = allSponsors(rank)
-
 
   def sponsorsForConf(confName: Option[String]): List[Sponsor] =
     confName.flatMap(Event.withName).getOrElse(Event.Current).sponsors

@@ -2,9 +2,10 @@ package io.scala.modules.elements
 
 import com.raquo.laminar.api.L.*
 import com.raquo.laminar.nodes.ReactiveHtmlElement
-import io.scala.Page
 import org.scalajs.dom.HTMLAnchorElement
 import org.scalajs.dom.HTMLButtonElement
+
+import io.scala.Page
 
 object Links:
   type Anchor     = ReactiveHtmlElement[HTMLAnchorElement]

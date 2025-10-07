@@ -1,7 +1,5 @@
 package io.scala.modules.elements
 
-
-
 sealed trait Slides:
   def url: String
 
