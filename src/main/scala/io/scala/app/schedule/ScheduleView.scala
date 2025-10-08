@@ -29,7 +29,7 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
         div(
           className := "row",
           span(),
-          span("Friday October 17th sad")
+          span("Friday October 17th 2025")
         )
 //        renderHours("Opening", Lexicon.Schedule.opening),
 //        renderHours("First talk", Lexicon.Schedule.firstTalk),
