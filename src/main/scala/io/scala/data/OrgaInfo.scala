@@ -90,7 +90,7 @@ object OrgaInfo:
   val vKasas = Organizer(
     name = "Valentin Kasas",
     photo = Some("vKasas.jpeg"),
-    job = "Frelance",
+    job = "Freelance",
     socials = List(
       Social(Social.Kind.Twitter, "https://x.com/valentinkasas"),
       Social(Social.Kind.Linkedin, "https://www.linkedin.com/in/valentin-kasas-937a5837/")
