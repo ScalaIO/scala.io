@@ -62,7 +62,7 @@ object PreviousSponsors {
     )
   )
 
-  private val title = "Previous Sponsors"
+  private val title = "Past Sponsors"
 
   def h1Div: Div = baseDiv(Titles(title))
 

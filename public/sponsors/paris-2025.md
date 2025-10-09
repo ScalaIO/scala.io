@@ -40,6 +40,13 @@
 - Bronze 
   2:1
 
+## NuMind
+
+- NuMind
+- numind.svg
+- https://numind.ai/
+- Bronze
+  2:1
 
 ## Scalac
 
