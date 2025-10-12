@@ -57,7 +57,7 @@ object ScheduleInfo {
     Break(Break.Kind.Short).render,
     time(15, 10).render(),
     session("full-stack-scala-ml-platform").render(room1),
-    div(className := "blank-card"),
+    session("catalytic-compilation").render(room2),
     time(15, 55).render(),
     Break(Break.Kind.Long).render,
     time(16, 10).render(),
@@ -65,9 +65,9 @@ object ScheduleInfo {
     session("zio-from-data-science-perspective").render(room2),
     time(16, 55).render(),
     Break(Break.Kind.Short).render,
-    session("catalytic-compilation").render(room1),
     time(17, 0).render(),
     session("best-jvm-for-best-language").render(room2),
+    div(className := "blank-card"),
     time(17, 45).render(),
     Special(Special.Kind.End).render
   ).zipWithIndex.map { case (x, i) => x.gridArea(s"a${i + 1}") }
