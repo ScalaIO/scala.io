@@ -121,9 +121,9 @@ case class Break(
 object Break:
 
   enum Kind(val style: String, val duration: Int):
-    case Short  extends Kind("break-large", 5)
+    case Short  extends Kind("break-large", 10)
     case Long   extends Kind("break-large", 15)
-    case Lunch1 extends Kind("break-lunch", 75)
+    case Lunch1 extends Kind("break-lunch", 70)
     case Lunch2 extends Kind("break-lunch", 90)
 
     def icon: ReactiveSvgElement[SVGSVGElement] = this match
