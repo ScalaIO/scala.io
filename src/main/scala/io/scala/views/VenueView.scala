@@ -12,9 +12,19 @@ object VenueView extends SimpleView {
     div(
       Links.highlighted(
         "La Grande Crypte - 69 bis Rue Boissière, Paris",
-        href           := "https://lagrandecrypte.com/",
+        href           := "https://maps.app.goo.gl/GuLkQLZeDLGeVzCz9",
         textDecoration := "underline"
-      )
+      ),
+      p("Closest subway stations: Victor Hugo (line 2), Boissière (line 6)")
+    ),
+    Titles("Community Party"),
+    div(
+      Links.highlighted(
+        "Le Cabanon Pigalle - 14 rue Jean-Baptiste Pigalle",
+        href           := "https://maps.app.goo.gl/KtCXf3zHJLmuhRYr8",
+        textDecoration := "underline"
+      ),
+      p("25 minutes from La Grande Crypte via the subway line 2 between Victor Hugo and Blanche stations.")
     )
   )
 }
