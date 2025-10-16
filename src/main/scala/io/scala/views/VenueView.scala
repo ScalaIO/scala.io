@@ -2,7 +2,7 @@ package io.scala.views
 
 import com.raquo.laminar.api.L.*
 
-import io.scala.modules.elements.Titles
+import io.scala.modules.elements.{Links, Titles}
 
 object VenueView extends SimpleView {
 
@@ -10,10 +10,11 @@ object VenueView extends SimpleView {
     className := "container venue",
     Titles("Our Venue"),
     div(
-      a(
+      Links.highlighted(
         "La Grande Crypte - 69 bis Rue Boissière, Paris",
-        href := "https://lagrandecrypte.com/"
-      ),
+        href           := "https://lagrandecrypte.com/",
+        textDecoration := "underline"
+      )
     )
   )
 }
