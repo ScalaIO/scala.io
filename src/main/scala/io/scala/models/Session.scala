@@ -42,7 +42,7 @@ object Session:
   def empty: Session = Session(BasicInfo.empty, "To be announced", List.empty)
 
   opaque type Room = String
-  extension (room: Room) def show: String = s"Room $room"
+  extension (room: Room) def show: String = room
   object Room:
     def apply(room: String): Room = room
     given Ordering[Room]          = Ordering.String.on(_.show)
