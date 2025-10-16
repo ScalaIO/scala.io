@@ -1,6 +1,7 @@
 package io.scala.data
 
 import com.raquo.laminar.api.L.*
+
 import java.time.DayOfWeek
 import java.time.LocalTime
 
@@ -10,8 +11,6 @@ import io.scala.models.Special
 import io.scala.modules.syntax.*
 
 object ScheduleInfo {
-  val minStart = LocalTime.of(8, 0)
-  val maxEnd   = LocalTime.of(19, 0)
   val pxByHour = 600
 
   val room1 = Session.Room("FlatMap")
@@ -26,9 +25,25 @@ object ScheduleInfo {
     (slug) => schedulables.find(_.info.slug == slug).getOrElse(Session.empty)
 
   val day1 = List(
+    time(8, 40).render(),
+    div(
+      className := s"talk-card presentation-lightning",
+      div(
+        h3(
+          className := "card-title",
+          "Opening Words"
+        ),
+        div(
+          className := "subtitle",
+          room1.show,
+          span(),
+          span(s"5 min")
+        ),
+      ),
+    ),
     time(8, 45).render(),
     session("what-is-true").render(room1),
-    time(9, 35).render().gridArea("a4"),
+    time(9, 35).render(),
     Break(Break.Kind.Short).render,
     time(9, 45).render(),
     session("higher-standard-of-standard-library").render(room1),

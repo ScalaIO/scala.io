@@ -25,7 +25,7 @@ object Lexicon {
 
   object Schedule:
     val opening        = Array(LocalTime.of(7, 45))
-    val firstTalk      = Array(LocalTime.of(8, 45))
+    val firstTalk      = Array(LocalTime.of(8, 40))
     val lunch          = Array(LocalTime.of(12, 20))
     val endOfTalks     = Array(LocalTime.of(17, 55))
     val communityParty = Array(LocalTime.of(18, 30))
