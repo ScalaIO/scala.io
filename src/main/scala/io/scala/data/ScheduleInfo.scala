@@ -1,7 +1,6 @@
 package io.scala.data
 
 import com.raquo.laminar.api.L.*
-
 import java.time.DayOfWeek
 import java.time.LocalTime
 
@@ -38,8 +37,8 @@ object ScheduleInfo {
           room1.show,
           span(),
           span(s"5 min")
-        ),
-      ),
+        )
+      )
     ),
     time(8, 45).render(),
     session("what-is-true").render(room1),
@@ -81,9 +80,25 @@ object ScheduleInfo {
     time(17, 0).render(),
     Break(Break.Kind.Short).render,
     time(17, 10).render(),
-    session("best-jvm-for-best-language").render(room2),
+    session("best-jvm-for-best-language").render(room1),
     div(className := "blank-card"),
     time(17, 55).render(),
+    div(
+      className := s"talk-card presentation-lightning",
+      div(
+        h3(
+          className := "card-title",
+          "Closing Words"
+        ),
+        div(
+          className := "subtitle",
+          room1.show,
+          span(),
+          span(s"5 min")
+        )
+      )
+    ),
+    time(18, 0).render(),
     Special(Special.Kind.End).render
   ).zipWithIndex.map { case (x, i) => x.gridArea(s"a${i + 1}") }
 
