@@ -13,22 +13,7 @@ object VenueView extends SimpleView {
       a(
         "La Grande Crypte - 69 bis Rue Boissière, Paris",
         href := "https://lagrandecrypte.com/"
-      )
-    ),
-    Titles("Accommodations"),
-    div(
-      display.flex,
-      flexDirection.row,
-      flexWrap.wrap
-      // div(
-      //   Titles.small("Economical"),
-      //   Lists.innerDiscs()
-      // ),
-      // div(
-      //   Titles.small("Less economical :)"),
-      //   Lists.innerDiscs(
-      //   )
-      // )
+      ),
     )
   )
 }
