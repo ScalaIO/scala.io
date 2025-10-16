@@ -24,11 +24,11 @@ object Lexicon {
       "https://docs.google.com/presentation/d/e/2PACX-1vQnOK-iGp4EJ9Etp_z5yZv8nxOH61cxg_j2xHrOvebNoD0x5mO9OL-2Fv8O5yKBNgWMC74eMgKXc3En/pub?start=false&loop=false&slide=id.p"
 
   object Schedule:
-    val opening        = Array(LocalTime.of(7, 45), LocalTime.of(7, 45))
-    val firstTalk      = Array(LocalTime.of(9, 15), LocalTime.of(9, 15))
-    val lunch          = Array(LocalTime.of(12, 15), LocalTime.of(12, 0))
-    val endOfTalks     = Array(LocalTime.of(17, 15), LocalTime.of(17, 45))
-    val communityParty = Array(LocalTime.of(19, 30))
+    val opening        = Array(LocalTime.of(7, 45))
+    val firstTalk      = Array(LocalTime.of(8, 45))
+    val lunch          = Array(LocalTime.of(12, 20))
+    val endOfTalks     = Array(LocalTime.of(17, 55))
+    val communityParty = Array(LocalTime.of(18, 30))
 
   object Venue {
     val catchPhrase = "A cosy place in the heart of Nantes"

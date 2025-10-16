@@ -30,12 +30,12 @@ case object ScheduleView extends ReactiveView[SchedulePage] {
           className := "row",
           span(),
           span("Friday October 17th 2025")
-        )
-//        renderHours("Opening", Lexicon.Schedule.opening),
-//        renderHours("First talk", Lexicon.Schedule.firstTalk),
-//        renderHours("Lunch", Lexicon.Schedule.lunch),
-//        renderHours("End of talks", Lexicon.Schedule.endOfTalks),
-//        renderHours("Community party", Lexicon.Schedule.communityParty)
+        ),
+        renderHours("Opening", Lexicon.Schedule.opening),
+        renderHours("First talk", Lexicon.Schedule.firstTalk),
+        renderHours("Lunch", Lexicon.Schedule.lunch),
+        renderHours("End of talks", Lexicon.Schedule.endOfTalks),
+        renderHours("Community party", Lexicon.Schedule.communityParty)
       )
     )
 
