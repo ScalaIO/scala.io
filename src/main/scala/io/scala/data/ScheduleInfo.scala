@@ -14,8 +14,8 @@ object ScheduleInfo {
   val maxEnd   = LocalTime.of(19, 0)
   val pxByHour = 600
 
-  val room1 = Session.Room("A")
-  val room2 = Session.Room("B")
+  val room1 = Session.Room("FlatMap")
+  val room2 = Session.Room("FoldLeft")
 
   def time(h: Int, m: Int) = LocalTime.of(h, m)
 
