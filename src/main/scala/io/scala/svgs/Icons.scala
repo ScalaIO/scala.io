@@ -81,6 +81,7 @@ object Icons:
 
   def burger = svg(
     viewBox := "0 0 32 32",
+    height  := "32px",
     g(
       fill := "#FFF",
       path(
