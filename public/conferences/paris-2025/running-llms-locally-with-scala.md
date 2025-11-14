@@ -20,6 +20,8 @@ Large Language Models (LLMs) are often seen as remote cloud-only services. What 
 
 #### Links
 
+- [Linkedin](https://www.linkedin.com/in/sorendreano)
+
 #### Bio
 
 ```
