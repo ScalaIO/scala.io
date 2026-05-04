@@ -20,3 +20,4 @@ object Main {
     renderOnDomContentLoaded(dom.document.querySelector("#app"), app)
   }
 }
+// optimization
