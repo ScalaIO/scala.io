@@ -12,7 +12,7 @@
     "stylelint-fix": "stylelint 'src/**/*.scss' --fix"
   },
   "devDependencies": {
-    "@scala-js/vite-plugin-scalajs": "1.0.0",
+    "@scala-js/vite-plugin-scalajs": "^1.1.0",
     "puppeteer": "^23.3.1",
     "puppeteer-core": "^23.3.1",
     "sass": "^1.71.1",
@@ -23,7 +23,7 @@
     "stylelint-config-standard-scss": "^13.0.0",
     "stylelint-scss": "^6.1.0",
     "typescript": "4.9.5",
-    "vite": "^5.1.4",
+    "vite": "^6.4.2",
     "vite-plugin-html": "^3.2.2"
   },
   "dependencies": {
